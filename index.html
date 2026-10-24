@@ -144,7 +144,7 @@
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1v4m0-4h-4m4 4l-5-5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
           <span>전체화면 [F]</span>
         </button>
-        <span id="slideCounter" class="text-sky-400 font-bold font-mono">01 / 25</span>
+        <span id="slideCounter" class="text-sky-400 font-bold font-mono">01 / 28</span>
       </div>
     </header>
 
@@ -2199,64 +2199,415 @@
   </div>
 </section>
 
-      <!-- [COMPONENT] 02-essence/05-reality-check.html -->
-<section class="slide" data-title="2.4 이상과 현실">
-  <div class="mb-4">
+      <!-- [COMPONENT] 02-essence/05-reality-check-overview.html -->
+<section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (1) 6대 대비표">
+  <div class="mb-2">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
-    <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : 5분의 데모, 5일의 디버깅</h2>
+    <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : 한눈에 보는 6대 착각과 프로덕션 현실</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      "말만 하면 1시간 만에 SaaS가 완성된다"는 대중적 환상과, 현장 엔지니어가 마주하는 참혹한 프로덕션 현실의 대비:
+    </p>
   </div>
-  <div class="grid grid-cols-2 gap-6 flex-1 items-stretch">
-    <div class="bento-tile p-6 flex flex-col justify-between border-l-4 border-l-amber-500">
-      <div>
-        <span class="text-xs font-mono text-amber-400 font-bold block mb-2">THE FANTASY</span>
-        <h3 class="text-xl font-bold text-white mb-3">트위터 데모의 환상</h3>
-        <p class="text-sm text-slate-300 mb-4 leading-relaxed">
-          "AI한테 말 한마디 했더니 3분 만에 SaaS가 뚝딱 만들어졌어요!"
-        </p>
-        <div class="space-y-2 text-xs text-slate-300">
-          <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
-            • 해피 패스(Happy Path)만 작동하는 프로토타입
-          </div>
-          <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
-            • 동시성 처리, 트랜잭션 롤백 부재
-          </div>
-          <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
-            • 클라이언트단에 Supabase Service Role Key 유출
-          </div>
-        </div>
-      </div>
-      <div class="text-[11px] text-slate-400 font-mono border-t border-slate-800 pt-3">
-        "장난감 데모와 실 서비스의 간극은 상상 이상으로 깊다."
-      </div>
-    </div>
 
-    <div class="bento-tile p-6 flex flex-col justify-between border-l-4 border-l-red-500">
-      <div>
-        <span class="text-xs font-mono text-red-400 font-bold block mb-2">THE REALITY</span>
-        <h3 class="text-xl font-bold text-white mb-3">프로덕션 엔지니어링의 현실</h3>
-        <p class="text-sm text-slate-300 mb-4 leading-relaxed">
-          실제 서비스 오픈 시 마주하는 구조적 난제들:
-        </p>
-        <div class="space-y-2 text-xs text-red-200">
-          <div class="p-2.5 bg-red-950/20 border border-red-900/40 rounded">
-            <strong>🚨 구조적 부채:</strong> 코드가 길어질수록 AI도 앞선 설계를 기억하지 못해 중복 모듈 양산
-          </div>
-          <div class="p-2.5 bg-red-950/20 border border-red-900/40 rounded">
-            <strong>🚨 침묵하는 실패:</strong> 에러를 안 띄우려고 try/catch로 덮어 데이터가 증발하는 유령 버그
-          </div>
-          <div class="p-2.5 bg-red-950/20 border border-red-900/40 rounded">
-            <strong>🚨 보안 누수:</strong> RLS가 꺼진 채 배포되어 다른 사용자의 결제 정보를 전수 덤프당하는 사고
-          </div>
-        </div>
+  <!-- 6-Dimension Contrast Matrix Table -->
+  <div class="bento-tile p-3 border border-slate-800 bg-slate-950/90 overflow-hidden flex-1 flex flex-col justify-between my-auto">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="border-b border-slate-800 text-[11px] font-mono">
+          <th class="py-1.5 px-3 text-slate-400 w-[14%] uppercase">핵심 차원</th>
+          <th class="py-1.5 px-3 text-amber-300 w-[43%] bg-amber-950/30 rounded-l border-l border-amber-800/40">
+            <span class="font-bold">대중이 꿈꾸는 이상 (The Illusion)</span>
+          </th>
+          <th class="py-1.5 px-3 text-rose-300 w-[43%] bg-rose-950/30 rounded-r border-l border-rose-800/40">
+            <span class="font-bold">프로덕션 현장이 마주하는 현실 (The Reality)</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-800/50 font-mono text-[10.5px]">
+        <!-- Row 1 -->
+        <tr class="hover:bg-slate-900/40 transition-colors">
+          <td class="py-2 px-3 font-bold text-sky-400">1. 개발 방식</td>
+          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
+            말 몇 마디, 자연어 프롬프트만으로 1시간 만에 SaaS·게임 완성
+          </td>
+          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
+            파일 20개 넘어가면 AI가 기억을 잃고 <strong class="text-rose-400 font-mono">환각·컨텍스트 오염(Context Drift)</strong> 발생
+          </td>
+        </tr>
+        <!-- Row 2 -->
+        <tr class="hover:bg-slate-900/40 transition-colors">
+          <td class="py-2 px-3 font-bold text-sky-400">2. 백엔드 구축</td>
+          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
+            "DB와 로그인 서버 전부 짜줘" 하면 완벽한 백엔드가 생성됨
+          </td>
+          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
+            바닥부터 짜면 설계 파탄. <strong class="text-emerald-300 font-mono">BaaS(Supabase, Clerk, Vercel)</strong>를 레고처럼 연결해야 작동
+          </td>
+        </tr>
+        <!-- Row 3 -->
+        <tr class="hover:bg-slate-900/40 transition-colors">
+          <td class="py-2 px-3 font-bold text-sky-400">3. 언어 선택</td>
+          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
+            AI가 가장 잘 아는 언어니까 당연히 <strong class="text-amber-300">Python</strong>이 최고
+          </td>
+          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
+            동적 타입 런타임 에러 지옥. 컴파일러가 자가 수정 루프를 주는 <strong class="text-sky-300 font-mono">TypeScript/Rust</strong>가 압도적
+          </td>
+        </tr>
+        <!-- Row 4 -->
+        <tr class="hover:bg-slate-900/40 transition-colors">
+          <td class="py-2 px-3 font-bold text-sky-400">4. 비용 / 지연</td>
+          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
+            월 $20 구독료면 앱을 무제한 찍어내는 초저비용 개발
+          </td>
+          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
+            무차별 탐색과 컨텍스트 비대화로 <strong class="text-amber-400 font-mono">하루 $50~100, 월 $1,000+ 요금 폭탄(Tokenpocalypse)</strong>
+          </td>
+        </tr>
+        <!-- Row 5 -->
+        <tr class="hover:bg-slate-900/40 transition-colors">
+          <td class="py-2 px-3 font-bold text-sky-400">5. 보안 / 운영</td>
+          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
+            AI가 알아서 안전하고 견고한 프로덕션을 만들어 줌
+          </td>
+          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
+            에러를 끄려다 <strong class="text-red-400 font-mono">Supabase RLS를 다 열어버려(USING true)</strong> 전 고객 DB 전면 유출
+          </td>
+        </tr>
+        <!-- Row 6 -->
+        <tr class="hover:bg-slate-900/40 transition-colors">
+          <td class="py-2 px-3 font-bold text-sky-400">6. 작업 흐름</td>
+          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
+            단일 채팅창 하나에 기획부터 배포까지 한 번에 요청
+          </td>
+          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
+            직렬 병목 심화. <strong class="text-purple-300 font-mono">Git Worktree</strong>로 모듈을 쪼개 다중 에이전트 병렬화 필수
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Bottom Takeaway Banner -->
+    <div class="mt-2.5 p-2 bg-slate-900/90 rounded border border-slate-800 flex items-center justify-between text-xs font-mono">
+      <div class="flex items-center gap-2">
+        <span class="text-rose-400 font-bold">🚨 5분의 환상 vs 5일의 디버깅:</span>
+        <span class="text-slate-300">AI는 첫 80%의 토이를 순식간에 만듭니다. 그러나 <strong>나머지 20%의 프로덕션 엔지니어링</strong>이 성패를 가릅니다.</span>
       </div>
-      <div class="text-[11px] text-red-300 font-mono border-t border-slate-800 pt-3">
-        "AI는 첫 80%를 순식간에 만들지만, 나머지 20%의 엔지니어링이 성패를 가른다."
-      </div>
+      <span class="text-sky-400 font-bold text-[11px] shrink-0">엔지니어링 챕터로의 연결 ➔</span>
     </div>
   </div>
 </section>
 
-      <!-- [COMPONENT] 02-essence/06-competencies.html -->
+      <!-- [COMPONENT] 02-essence/06-reality-check-complexity-baas.html -->
+<section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (2) 복잡계 & BaaS">
+  <div class="mb-2">
+    <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
+    <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : ① 자연어의 한계 vs ② BaaS 레고 블록 전략</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      단일 파일 토이 데모를 넘어, 실제 유저와 트랜잭션이 붙는 순간 발생하는 <strong>소프트웨어 복잡계의 벽</strong>:
+    </p>
+  </div>
+
+  <!-- Dual Bento Card Stage -->
+  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch my-auto">
+    <!-- Card 1: Complexity Wall -->
+    <div class="bento-tile p-4 flex flex-col justify-between border-l-4 border-l-amber-500 bg-slate-950/90 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-amber-400 font-bold">쟁점 ① COMPLEXITY WALL</span>
+          <span class="text-[10px] font-mono text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/40">자연어의 한계</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">'말만 하면 된다'는 환상 vs 복잡계의 벽</h3>
+        
+        <div class="p-2.5 bg-slate-900/80 rounded border border-slate-800 text-xs text-slate-300 mb-3 leading-relaxed">
+          <span class="text-amber-300 font-bold">환상:</span> "이제 코딩을 전혀 몰라도 아이디어와 자연어 프롬프트만 있으면 바로 서비스가 완성된다."
+        </div>
+
+        <div class="space-y-2 text-xs text-slate-300">
+          <div class="p-2.5 bg-red-950/20 rounded border border-red-900/40 space-y-1">
+            <div class="font-bold text-red-300 flex items-center gap-1.5">
+              <span>🚨 1. 단일 토이 vs 프로덕션 복잡계</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-normal">
+              1개 파일짜리 데모는 쉽지만, 실제 서비스는 <strong>상태 관리(State), 네트워크 예외 처리, 비동기 파이프라인, 빌드 환경</strong>이라는 거대한 복잡계를 반드시 통과해야 합니다.
+            </p>
+          </div>
+
+          <div class="p-2.5 bg-red-950/20 rounded border border-red-900/40 space-y-1">
+            <div class="font-bold text-red-300 flex items-center gap-1.5">
+              <span>🚨 2. 컨텍스트 표류 (Context Drift)</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-normal">
+              프롬프트에만 의존할수록 세션이 길어지면서 AI가 이전 설계를 잊어버리고, 앞선 코드를 덮어써 버리거나 엉뚱한 라이브러리를 재설치하는 <strong>기억 상실</strong>이 발생합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[11px] text-slate-400 font-mono border-t border-slate-800/80 pt-2.5 mt-2">
+        "자연어는 모호성을 허용하지만, 컴파일러와 런타임은 단 1비트의 모호성도 허용하지 않는다."
+      </div>
+    </div>
+
+    <!-- Card 2: BaaS Lego Strategy -->
+    <div class="bento-tile p-4 flex flex-col justify-between border-l-4 border-l-emerald-500 bg-slate-950/90 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-emerald-400 font-bold">쟁점 ② ARCHITECTURE STRATEGY</span>
+          <span class="text-[10px] font-mono text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/40">현실적 해법</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">바닥부터 구축 vs 현대 BaaS 레고 블록 조립</h3>
+
+        <div class="p-2.5 bg-slate-900/80 rounded border border-slate-800 text-xs text-slate-300 mb-3 leading-relaxed">
+          <span class="text-emerald-300 font-bold">환상:</span> "AI 에이전트에게 DB 스키마, 인증 서버, 결제 연동, 메일 발송 서버를 전부 작성하라고 시킨다."
+        </div>
+
+        <div class="space-y-2 text-xs text-slate-300">
+          <div class="p-2.5 bg-amber-950/20 rounded border border-amber-900/40 space-y-1">
+            <div class="font-bold text-amber-300 flex items-center gap-1.5">
+              <span>⚠️ 바닥부터 백엔드를 짜면 설계 파탄</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-normal">
+              인증 세션 토큰 관리, DB 커넥션 풀링, 트랜잭션 격리 수준을 AI에게 바닥부터 맡기면 취약점과 병목이 폭발합니다.
+            </p>
+          </div>
+
+          <div class="p-2.5 bg-emerald-950/20 rounded border border-emerald-900/40 space-y-1">
+            <div class="font-bold text-emerald-300 flex items-center gap-1.5">
+              <span>✅ 바이브 코더의 생존법 : 글루 코드(Glue Code)</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-normal">
+              이미 수만 개 기업에서 검증된 클라우드 서비스(<strong>Vercel + Supabase + Clerk + Stripe</strong>)를 프롬프트로 엮어내는 것이 유일하게 안전한 전략입니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[11px] text-emerald-300 font-mono border-t border-slate-800/80 pt-2.5 mt-2 flex items-center justify-between">
+        <span>💡 "바닥부터 만들지 말고, 블록을 단단히 결합하라"</span>
+        <span class="text-sky-400 font-bold">Chapter 03 런칭 편 상세 다룸 ➔</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Connector Banner -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-2">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">📌 Takeaway:</span>
+      <span>프롬프트는 '모든 것을 만드는 요술봉'이 아니라, <strong>'검증된 컴포넌트를 조립하는 접착제(Glue)'</strong>로 사용해야 성공합니다.</span>
+    </div>
+    <span class="text-emerald-400 font-bold text-[11px]">BaaS 레고 조립 전략</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 02-essence/07-reality-check-language-token.html -->
+<section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (3) 언어 & 토큰 비용">
+  <div class="mb-2">
+    <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
+    <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : ③ Python의 맹점 vs ④ 토큰 요금 폭탄(Tokenpocalypse)</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      동적 타이핑의 런타임 침묵 버그와, 에이전트의 무차별 컨텍스트 탐색이 부르는 <strong>청구서 폭탄의 실체</strong>:
+    </p>
+  </div>
+
+  <!-- Dual Bento Card Stage -->
+  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch my-auto">
+    <!-- Card 1: Language Paradox -->
+    <div class="bento-tile p-4 flex flex-col justify-between border-l-4 border-l-sky-500 bg-slate-950/90 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-sky-400 font-bold">쟁점 ③ LANGUAGE PARADOX</span>
+          <span class="text-[10px] font-mono text-sky-300 bg-sky-950/60 px-2 py-0.5 rounded border border-sky-800/40">언어의 역설</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Python의 맹점 vs 정적 타이핑의 귀환</h3>
+
+        <div class="p-2.5 bg-slate-900/80 rounded border border-slate-800 text-xs text-slate-300 mb-3 leading-relaxed">
+          <span class="text-sky-300 font-bold">환상:</span> "AI가 가장 많이 학습한 언어가 Python이니, 바이브 코딩에서도 Python이 최고일 것이다."
+        </div>
+
+        <div class="space-y-2 text-xs text-slate-300">
+          <div class="p-2.5 bg-red-950/20 rounded border border-red-900/40 space-y-1">
+            <div class="font-bold text-red-300 flex items-center gap-1.5">
+              <span>🚨 Python의 동적 타이핑 함정</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-normal">
+              코드가 문법적으로 완벽해 보여도 실행(Runtime) 시점에 <code class="text-red-300">AttributeError</code>, <code class="text-red-300">TypeError</code>로 죽어버려 에이전트가 원인을 추적하기 어렵습니다.
+            </p>
+          </div>
+
+          <div class="p-2.5 bg-sky-950/20 rounded border border-sky-900/40 space-y-1">
+            <div class="font-bold text-sky-300 flex items-center gap-1.5">
+              <span>✅ 컴파일러는 최고의 에이전트 내비게이터</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-normal">
+              <strong>TypeScript, Rust, Go</strong>의 엄격한 컴파일러 에러 메시지는 에이전트에게 <strong>"어느 파일 몇 번째 줄을 어떻게 고쳐라"</strong>는 완벽한 자가 치유(Self-Correction) 피드백 루프를 제공합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[11px] text-sky-300 font-mono border-t border-slate-800/80 pt-2.5 mt-2 flex items-center justify-between">
+        <span>💡 "컴파일러가 살아있어야 에이전트가 스스로 고친다"</span>
+        <span class="text-sky-400 font-bold">Chapter 05 언어 편 상세 ➔</span>
+      </div>
+    </div>
+
+    <!-- Card 2: Token Economics -->
+    <div class="bento-tile p-4 flex flex-col justify-between border-l-4 border-l-amber-500 bg-slate-950/90 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-amber-400 font-bold">쟁점 ④ TOKEN ECONOMICS</span>
+          <span class="text-[10px] font-mono text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/40">토큰 경제학</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">공짜 점심은 없다 : 요금 폭탄(Tokenpocalypse)</h3>
+
+        <div class="p-2.5 bg-slate-900/80 rounded border border-slate-800 text-xs text-slate-300 mb-3 leading-relaxed">
+          <span class="text-amber-300 font-bold">환상:</span> "IDE 구독료 월 20달러면 무제한으로 프로덕트를 찍어낼 수 있다."
+        </div>
+
+        <div class="space-y-2 text-xs text-slate-300">
+          <div class="p-2.5 bg-red-950/20 rounded border border-red-900/40 space-y-1">
+            <div class="font-bold text-red-300 flex items-center gap-1.5">
+              <span>💸 탐색 비용(Exploration Tax) 70% 소모</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-normal">
+              프로젝트가 커질수록 에이전트가 파일 구조를 파악하느라 소모하는 토큰이 급증하여, 하루 세션 하나에 <strong>$50~$100(월 $1,000+) 요금 청구서</strong>가 폭발합니다.
+            </p>
+          </div>
+
+          <div class="p-2.5 bg-amber-950/20 rounded border border-amber-900/40 space-y-1">
+            <div class="font-bold text-amber-300 flex items-center gap-1.5">
+              <span>✅ 3대 엔지니어링 돌파구 (80~90% 절감)</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-normal">
+              <strong>Prompt Caching(90% 비용 절감)</strong>, <strong>AST/Tree-sitter Repo Map 압축</strong>, 고지능 모델과 초경량 모델의 <strong>계층형 라우팅</strong>이 필수입니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[11px] text-amber-300 font-mono border-t border-slate-800/80 pt-2.5 mt-2 flex items-center justify-between">
+        <span>💡 "토큰 최적화 없는 에이전트는 적자 기업을 만든다"</span>
+        <span class="text-sky-400 font-bold">Chapter 06 비용 편 상세 ➔</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Connector Banner -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-2">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">📌 Takeaway:</span>
+      <span>언어 선택은 개발자 취향이 아닌 <strong>'에이전트의 자가 치유율'</strong>의 문제이며, <strong>'토큰 비용 통제력'</strong>이 비즈니스의 생사를 가릅니다.</span>
+    </div>
+    <span class="text-purple-400 font-bold text-[11px]">자가 치유 &amp; 비용 통제</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 02-essence/08-reality-check-security-engineer.html -->
+<section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (4) 보안 & 엔지니어의 역할">
+  <div class="mb-2">
+    <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
+    <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : ⑤ 치명적 보안 누수(RLS)와 엔지니어의 존재 이유</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      에러를 해결하기 위해 스스로 보안을 해제해 버리는 AI의 맹점과, <strong>프로덕션 엔지니어의 필수적 가드레일</strong>:
+    </p>
+  </div>
+
+  <!-- Main Security & Role Stage -->
+  <div class="grid grid-cols-12 gap-3.5 flex-1 items-stretch my-auto">
+    <!-- Left Column (7 cols): The Disaster Scenario (RLS Leak & Secret Exposure) -->
+    <div class="col-span-7 bento-tile p-4 flex flex-col justify-between border-l-4 border-l-red-500 bg-slate-950/90 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-red-400 font-bold">쟁점 ⑤ SECURITY DISASTER</span>
+          <span class="text-[10px] font-mono text-red-300 bg-red-950/60 px-2 py-0.5 rounded border border-red-800/40">치명적 사고</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">에이전트의 위험천만한 지름길 : RLS 전면 무력화</h3>
+
+        <div class="p-2.5 bg-slate-900/80 rounded border border-slate-800 text-xs text-slate-300 mb-2.5 leading-relaxed">
+          <span class="text-red-300 font-bold">환상:</span> "보안 규칙이나 인프라 격리까지 AI가 알아서 안전하게 세팅해 줄 것이다."
+        </div>
+
+        <div class="space-y-2 text-xs">
+          <!-- Incident 1: RLS USING true -->
+          <div class="p-2.5 bg-red-950/30 rounded border border-red-900/50 space-y-1">
+            <div class="font-bold text-red-200 flex items-center justify-between">
+              <span>🚨 1. RLS 정책 전면 해제 (USING true) 사고</span>
+              <span class="text-[9.5px] font-mono text-red-400">자주 발생하는 참사</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-normal">
+              에이전트는 "회원 조회가 안 돼요/403 에러"를 마주하면, 문제의 원인을 분석하지 않고 <code class="text-red-300 bg-red-950/60 px-1 py-0.5 rounded">CREATE POLICY ... USING (true);</code>를 실행하여 <strong>전체 유저 DB를 외부에 전면 유출</strong>시키는 코드를 아무렇지 않게 작성합니다.
+            </p>
+          </div>
+
+          <!-- Incident 2: Secret & Webhook leakage -->
+          <div class="p-2.5 bg-red-950/30 rounded border border-red-900/50 space-y-1">
+            <div class="font-bold text-red-200 flex items-center justify-between">
+              <span>🚨 2. 결제 웹훅 서명 검증 누락 &amp; 시크릿 키 노출</span>
+              <span class="text-[9.5px] font-mono text-red-400">프로덕션 파탄</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-normal">
+              Stripe 웹훅의 위변조 방지 서명 검증을 통째로 생략하거나, 브라우저 클라이언트단 번들에 Supabase Service Role Key를 하드코딩하는 치명적 보안 구멍을 남깁니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10.5px] text-red-300 font-mono border-t border-slate-800/80 pt-2 mt-1">
+        "동작하는 코드(Working Code)와 안전한 코드(Secure Code)는 완전히 다른 차원의 영역이다."
+      </div>
+    </div>
+
+    <!-- Right Column (5 cols): The Irreplaceable Role of Engineers -->
+    <div class="col-span-5 bento-tile p-4 flex flex-col justify-between border-l-4 border-l-sky-500 bg-slate-950/90 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-sky-400 font-bold">결론 THE HUMAN ROLE</span>
+          <span class="text-[10px] font-mono text-sky-300 bg-sky-950/60 px-2 py-0.5 rounded border border-sky-800/40">엔지니어의 고유 가치</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">바이브 코딩 시대, 엔지니어의 진짜 역할</h3>
+
+        <div class="space-y-2.5 text-xs text-slate-300 mt-3">
+          <div class="p-2.5 bg-slate-900/90 rounded border border-slate-800 space-y-1">
+            <span class="font-bold text-sky-300 block">🛡️ 1. 보안 아키텍처 및 RLS 감사</span>
+            <p class="text-[10.5px] text-slate-300 leading-normal">
+              에이전트가 생성한 DB 정책을 신뢰하지 않고, 제로 트러스트(Zero Trust) 관점에서 샌드박스와 롤백 가드레일을 설계.
+            </p>
+          </div>
+
+          <div class="p-2.5 bg-slate-900/90 rounded border border-slate-800 space-y-1">
+            <span class="font-bold text-sky-300 block">🔒 2. 인프라 격리 &amp; 시크릿 마스킹</span>
+            <p class="text-[10.5px] text-slate-300 leading-normal">
+              민감한 결제 키와 DB 마스터 권한을 클라우드 시크릿 매니저에 격리하고, 에이전트에게 노출하지 않는 환경 통제.
+            </p>
+          </div>
+
+          <div class="p-2.5 bg-slate-900/90 rounded border border-slate-800 space-y-1">
+            <span class="font-bold text-sky-300 block">⚖️ 3. 최종 책임성 (Accountability)</span>
+            <p class="text-[10.5px] text-slate-300 leading-normal">
+              AI는 결코 서비스 사고의 법적·윤리적 책임을 지지 않습니다. 시스템의 최종 경계선을 책임지는 것은 사람입니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10.5px] text-sky-300 font-mono border-t border-slate-800/80 pt-2 mt-1 flex items-center justify-between">
+        <span>Chapter 08 가드레일 편 ➔</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Quote Banner -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-2">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">💡 Final Verdict:</span>
+      <span>바이브 코딩은 엔지니어를 '코더(Typist)'에서 <strong>'시스템 감사관(Auditor)이자 아키텍트(Architect)'</strong>로 격상시킵니다.</span>
+    </div>
+    <span class="text-rose-400 font-bold text-[11px]">프로덕션 보안 가드레일</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 02-essence/09-competencies.html -->
 <section class="slide" data-title="2.5 4대 핵심 역량">
   <div class="mb-4">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>

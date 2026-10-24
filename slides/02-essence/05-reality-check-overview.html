@@ -1,0 +1,97 @@
+<section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (1) 6대 대비표">
+  <div class="mb-2">
+    <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
+    <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : 한눈에 보는 6대 착각과 프로덕션 현실</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      "말만 하면 1시간 만에 SaaS가 완성된다"는 대중적 환상과, 현장 엔지니어가 마주하는 참혹한 프로덕션 현실의 대비:
+    </p>
+  </div>
+
+  <!-- 6-Dimension Contrast Matrix Table -->
+  <div class="bento-tile p-3 border border-slate-800 bg-slate-950/90 overflow-hidden flex-1 flex flex-col justify-between my-auto">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="border-b border-slate-800 text-[11px] font-mono">
+          <th class="py-1.5 px-3 text-slate-400 w-[14%] uppercase">핵심 차원</th>
+          <th class="py-1.5 px-3 text-amber-300 w-[43%] bg-amber-950/30 rounded-l border-l border-amber-800/40">
+            <span class="font-bold">대중이 꿈꾸는 이상 (The Illusion)</span>
+          </th>
+          <th class="py-1.5 px-3 text-rose-300 w-[43%] bg-rose-950/30 rounded-r border-l border-rose-800/40">
+            <span class="font-bold">프로덕션 현장이 마주하는 현실 (The Reality)</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-800/50 font-mono text-[10.5px]">
+        <!-- Row 1 -->
+        <tr class="hover:bg-slate-900/40 transition-colors">
+          <td class="py-2 px-3 font-bold text-sky-400">1. 개발 방식</td>
+          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
+            말 몇 마디, 자연어 프롬프트만으로 1시간 만에 SaaS·게임 완성
+          </td>
+          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
+            파일 20개 넘어가면 AI가 기억을 잃고 <strong class="text-rose-400 font-mono">환각·컨텍스트 오염(Context Drift)</strong> 발생
+          </td>
+        </tr>
+        <!-- Row 2 -->
+        <tr class="hover:bg-slate-900/40 transition-colors">
+          <td class="py-2 px-3 font-bold text-sky-400">2. 백엔드 구축</td>
+          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
+            "DB와 로그인 서버 전부 짜줘" 하면 완벽한 백엔드가 생성됨
+          </td>
+          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
+            바닥부터 짜면 설계 파탄. <strong class="text-emerald-300 font-mono">BaaS(Supabase, Clerk, Vercel)</strong>를 레고처럼 연결해야 작동
+          </td>
+        </tr>
+        <!-- Row 3 -->
+        <tr class="hover:bg-slate-900/40 transition-colors">
+          <td class="py-2 px-3 font-bold text-sky-400">3. 언어 선택</td>
+          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
+            AI가 가장 잘 아는 언어니까 당연히 <strong class="text-amber-300">Python</strong>이 최고
+          </td>
+          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
+            동적 타입 런타임 에러 지옥. 컴파일러가 자가 수정 루프를 주는 <strong class="text-sky-300 font-mono">TypeScript/Rust</strong>가 압도적
+          </td>
+        </tr>
+        <!-- Row 4 -->
+        <tr class="hover:bg-slate-900/40 transition-colors">
+          <td class="py-2 px-3 font-bold text-sky-400">4. 비용 / 지연</td>
+          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
+            월 $20 구독료면 앱을 무제한 찍어내는 초저비용 개발
+          </td>
+          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
+            무차별 탐색과 컨텍스트 비대화로 <strong class="text-amber-400 font-mono">하루 $50~100, 월 $1,000+ 요금 폭탄(Tokenpocalypse)</strong>
+          </td>
+        </tr>
+        <!-- Row 5 -->
+        <tr class="hover:bg-slate-900/40 transition-colors">
+          <td class="py-2 px-3 font-bold text-sky-400">5. 보안 / 운영</td>
+          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
+            AI가 알아서 안전하고 견고한 프로덕션을 만들어 줌
+          </td>
+          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
+            에러를 끄려다 <strong class="text-red-400 font-mono">Supabase RLS를 다 열어버려(USING true)</strong> 전 고객 DB 전면 유출
+          </td>
+        </tr>
+        <!-- Row 6 -->
+        <tr class="hover:bg-slate-900/40 transition-colors">
+          <td class="py-2 px-3 font-bold text-sky-400">6. 작업 흐름</td>
+          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
+            단일 채팅창 하나에 기획부터 배포까지 한 번에 요청
+          </td>
+          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
+            직렬 병목 심화. <strong class="text-purple-300 font-mono">Git Worktree</strong>로 모듈을 쪼개 다중 에이전트 병렬화 필수
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Bottom Takeaway Banner -->
+    <div class="mt-2.5 p-2 bg-slate-900/90 rounded border border-slate-800 flex items-center justify-between text-xs font-mono">
+      <div class="flex items-center gap-2">
+        <span class="text-rose-400 font-bold">🚨 5분의 환상 vs 5일의 디버깅:</span>
+        <span class="text-slate-300">AI는 첫 80%의 토이를 순식간에 만듭니다. 그러나 <strong>나머지 20%의 프로덕션 엔지니어링</strong>이 성패를 가릅니다.</span>
+      </div>
+      <span class="text-sky-400 font-bold text-[11px] shrink-0">엔지니어링 챕터로의 연결 ➔</span>
+    </div>
+  </div>
+</section>

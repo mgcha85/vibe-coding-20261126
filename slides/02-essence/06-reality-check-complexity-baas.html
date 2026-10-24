@@ -1,0 +1,100 @@
+<section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (2) 복잡계 & BaaS">
+  <div class="mb-2">
+    <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
+    <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : ① 자연어의 한계 vs ② BaaS 레고 블록 전략</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      단일 파일 토이 데모를 넘어, 실제 유저와 트랜잭션이 붙는 순간 발생하는 <strong>소프트웨어 복잡계의 벽</strong>:
+    </p>
+  </div>
+
+  <!-- Dual Bento Card Stage -->
+  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch my-auto">
+    <!-- Card 1: Complexity Wall -->
+    <div class="bento-tile p-4 flex flex-col justify-between border-l-4 border-l-amber-500 bg-slate-950/90 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-amber-400 font-bold">쟁점 ① COMPLEXITY WALL</span>
+          <span class="text-[10px] font-mono text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/40">자연어의 한계</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">'말만 하면 된다'는 환상 vs 복잡계의 벽</h3>
+        
+        <div class="p-2.5 bg-slate-900/80 rounded border border-slate-800 text-xs text-slate-300 mb-3 leading-relaxed">
+          <span class="text-amber-300 font-bold">환상:</span> "이제 코딩을 전혀 몰라도 아이디어와 자연어 프롬프트만 있으면 바로 서비스가 완성된다."
+        </div>
+
+        <div class="space-y-2 text-xs text-slate-300">
+          <div class="p-2.5 bg-red-950/20 rounded border border-red-900/40 space-y-1">
+            <div class="font-bold text-red-300 flex items-center gap-1.5">
+              <span>🚨 1. 단일 토이 vs 프로덕션 복잡계</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-normal">
+              1개 파일짜리 데모는 쉽지만, 실제 서비스는 <strong>상태 관리(State), 네트워크 예외 처리, 비동기 파이프라인, 빌드 환경</strong>이라는 거대한 복잡계를 반드시 통과해야 합니다.
+            </p>
+          </div>
+
+          <div class="p-2.5 bg-red-950/20 rounded border border-red-900/40 space-y-1">
+            <div class="font-bold text-red-300 flex items-center gap-1.5">
+              <span>🚨 2. 컨텍스트 표류 (Context Drift)</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-normal">
+              프롬프트에만 의존할수록 세션이 길어지면서 AI가 이전 설계를 잊어버리고, 앞선 코드를 덮어써 버리거나 엉뚱한 라이브러리를 재설치하는 <strong>기억 상실</strong>이 발생합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[11px] text-slate-400 font-mono border-t border-slate-800/80 pt-2.5 mt-2">
+        "자연어는 모호성을 허용하지만, 컴파일러와 런타임은 단 1비트의 모호성도 허용하지 않는다."
+      </div>
+    </div>
+
+    <!-- Card 2: BaaS Lego Strategy -->
+    <div class="bento-tile p-4 flex flex-col justify-between border-l-4 border-l-emerald-500 bg-slate-950/90 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-emerald-400 font-bold">쟁점 ② ARCHITECTURE STRATEGY</span>
+          <span class="text-[10px] font-mono text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/40">현실적 해법</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">바닥부터 구축 vs 현대 BaaS 레고 블록 조립</h3>
+
+        <div class="p-2.5 bg-slate-900/80 rounded border border-slate-800 text-xs text-slate-300 mb-3 leading-relaxed">
+          <span class="text-emerald-300 font-bold">환상:</span> "AI 에이전트에게 DB 스키마, 인증 서버, 결제 연동, 메일 발송 서버를 전부 작성하라고 시킨다."
+        </div>
+
+        <div class="space-y-2 text-xs text-slate-300">
+          <div class="p-2.5 bg-amber-950/20 rounded border border-amber-900/40 space-y-1">
+            <div class="font-bold text-amber-300 flex items-center gap-1.5">
+              <span>⚠️ 바닥부터 백엔드를 짜면 설계 파탄</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-normal">
+              인증 세션 토큰 관리, DB 커넥션 풀링, 트랜잭션 격리 수준을 AI에게 바닥부터 맡기면 취약점과 병목이 폭발합니다.
+            </p>
+          </div>
+
+          <div class="p-2.5 bg-emerald-950/20 rounded border border-emerald-900/40 space-y-1">
+            <div class="font-bold text-emerald-300 flex items-center gap-1.5">
+              <span>✅ 바이브 코더의 생존법 : 글루 코드(Glue Code)</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-normal">
+              이미 수만 개 기업에서 검증된 클라우드 서비스(<strong>Vercel + Supabase + Clerk + Stripe</strong>)를 프롬프트로 엮어내는 것이 유일하게 안전한 전략입니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[11px] text-emerald-300 font-mono border-t border-slate-800/80 pt-2.5 mt-2 flex items-center justify-between">
+        <span>💡 "바닥부터 만들지 말고, 블록을 단단히 결합하라"</span>
+        <span class="text-sky-400 font-bold">Chapter 03 런칭 편 상세 다룸 ➔</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Connector Banner -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-2">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">📌 Takeaway:</span>
+      <span>프롬프트는 '모든 것을 만드는 요술봉'이 아니라, <strong>'검증된 컴포넌트를 조립하는 접착제(Glue)'</strong>로 사용해야 성공합니다.</span>
+    </div>
+    <span class="text-emerald-400 font-bold text-[11px]">BaaS 레고 조립 전략</span>
+  </div>
+</section>

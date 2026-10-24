@@ -1,0 +1,102 @@
+<section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (4) 보안 & 엔지니어의 역할">
+  <div class="mb-2">
+    <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
+    <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : ⑤ 치명적 보안 누수(RLS)와 엔지니어의 존재 이유</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      에러를 해결하기 위해 스스로 보안을 해제해 버리는 AI의 맹점과, <strong>프로덕션 엔지니어의 필수적 가드레일</strong>:
+    </p>
+  </div>
+
+  <!-- Main Security & Role Stage -->
+  <div class="grid grid-cols-12 gap-3.5 flex-1 items-stretch my-auto">
+    <!-- Left Column (7 cols): The Disaster Scenario (RLS Leak & Secret Exposure) -->
+    <div class="col-span-7 bento-tile p-4 flex flex-col justify-between border-l-4 border-l-red-500 bg-slate-950/90 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-red-400 font-bold">쟁점 ⑤ SECURITY DISASTER</span>
+          <span class="text-[10px] font-mono text-red-300 bg-red-950/60 px-2 py-0.5 rounded border border-red-800/40">치명적 사고</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">에이전트의 위험천만한 지름길 : RLS 전면 무력화</h3>
+
+        <div class="p-2.5 bg-slate-900/80 rounded border border-slate-800 text-xs text-slate-300 mb-2.5 leading-relaxed">
+          <span class="text-red-300 font-bold">환상:</span> "보안 규칙이나 인프라 격리까지 AI가 알아서 안전하게 세팅해 줄 것이다."
+        </div>
+
+        <div class="space-y-2 text-xs">
+          <!-- Incident 1: RLS USING true -->
+          <div class="p-2.5 bg-red-950/30 rounded border border-red-900/50 space-y-1">
+            <div class="font-bold text-red-200 flex items-center justify-between">
+              <span>🚨 1. RLS 정책 전면 해제 (USING true) 사고</span>
+              <span class="text-[9.5px] font-mono text-red-400">자주 발생하는 참사</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-normal">
+              에이전트는 "회원 조회가 안 돼요/403 에러"를 마주하면, 문제의 원인을 분석하지 않고 <code class="text-red-300 bg-red-950/60 px-1 py-0.5 rounded">CREATE POLICY ... USING (true);</code>를 실행하여 <strong>전체 유저 DB를 외부에 전면 유출</strong>시키는 코드를 아무렇지 않게 작성합니다.
+            </p>
+          </div>
+
+          <!-- Incident 2: Secret & Webhook leakage -->
+          <div class="p-2.5 bg-red-950/30 rounded border border-red-900/50 space-y-1">
+            <div class="font-bold text-red-200 flex items-center justify-between">
+              <span>🚨 2. 결제 웹훅 서명 검증 누락 &amp; 시크릿 키 노출</span>
+              <span class="text-[9.5px] font-mono text-red-400">프로덕션 파탄</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-normal">
+              Stripe 웹훅의 위변조 방지 서명 검증을 통째로 생략하거나, 브라우저 클라이언트단 번들에 Supabase Service Role Key를 하드코딩하는 치명적 보안 구멍을 남깁니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10.5px] text-red-300 font-mono border-t border-slate-800/80 pt-2 mt-1">
+        "동작하는 코드(Working Code)와 안전한 코드(Secure Code)는 완전히 다른 차원의 영역이다."
+      </div>
+    </div>
+
+    <!-- Right Column (5 cols): The Irreplaceable Role of Engineers -->
+    <div class="col-span-5 bento-tile p-4 flex flex-col justify-between border-l-4 border-l-sky-500 bg-slate-950/90 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-sky-400 font-bold">결론 THE HUMAN ROLE</span>
+          <span class="text-[10px] font-mono text-sky-300 bg-sky-950/60 px-2 py-0.5 rounded border border-sky-800/40">엔지니어의 고유 가치</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">바이브 코딩 시대, 엔지니어의 진짜 역할</h3>
+
+        <div class="space-y-2.5 text-xs text-slate-300 mt-3">
+          <div class="p-2.5 bg-slate-900/90 rounded border border-slate-800 space-y-1">
+            <span class="font-bold text-sky-300 block">🛡️ 1. 보안 아키텍처 및 RLS 감사</span>
+            <p class="text-[10.5px] text-slate-300 leading-normal">
+              에이전트가 생성한 DB 정책을 신뢰하지 않고, 제로 트러스트(Zero Trust) 관점에서 샌드박스와 롤백 가드레일을 설계.
+            </p>
+          </div>
+
+          <div class="p-2.5 bg-slate-900/90 rounded border border-slate-800 space-y-1">
+            <span class="font-bold text-sky-300 block">🔒 2. 인프라 격리 &amp; 시크릿 마스킹</span>
+            <p class="text-[10.5px] text-slate-300 leading-normal">
+              민감한 결제 키와 DB 마스터 권한을 클라우드 시크릿 매니저에 격리하고, 에이전트에게 노출하지 않는 환경 통제.
+            </p>
+          </div>
+
+          <div class="p-2.5 bg-slate-900/90 rounded border border-slate-800 space-y-1">
+            <span class="font-bold text-sky-300 block">⚖️ 3. 최종 책임성 (Accountability)</span>
+            <p class="text-[10.5px] text-slate-300 leading-normal">
+              AI는 결코 서비스 사고의 법적·윤리적 책임을 지지 않습니다. 시스템의 최종 경계선을 책임지는 것은 사람입니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10.5px] text-sky-300 font-mono border-t border-slate-800/80 pt-2 mt-1 flex items-center justify-between">
+        <span>Chapter 08 가드레일 편 ➔</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Quote Banner -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-2">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">💡 Final Verdict:</span>
+      <span>바이브 코딩은 엔지니어를 '코더(Typist)'에서 <strong>'시스템 감사관(Auditor)이자 아키텍트(Architect)'</strong>로 격상시킵니다.</span>
+    </div>
+    <span class="text-rose-400 font-bold text-[11px]">프로덕션 보안 가드레일</span>
+  </div>
+</section>
