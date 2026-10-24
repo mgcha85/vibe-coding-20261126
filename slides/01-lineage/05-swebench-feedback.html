@@ -92,10 +92,34 @@
               <span class="text-[10px] font-mono text-sky-400">Tree-sitter + PageRank</span>
             </div>
             <p class="text-[11px] text-slate-300 leading-relaxed mb-1.5">
-              수십만 줄의 코드베이스를 토큰 낭비 없이 전달하기 위해, <strong>Tree-sitter(AST 분석기)</strong>와 <strong>PageRank 알고리즘</strong>을 결합해 현재 작업과 가장 연관된 핵심 파일·심볼 관계도만 추출 주입.
+              수십만 줄의 코드베이스를 토큰 낭비 없이 전달하기 위해, <strong>Tree-sitter(AST 분석기)</strong>와 <strong>PageRank 알고리즘</strong>을 결합해 현재 작업과 가장 연관된 핵심 파일·심볼 관계도만 추출:
             </p>
-            <div class="text-[10.5px] text-sky-200 bg-sky-950/40 px-2 py-1 rounded font-mono">
-              ➔ 컨텍스트 오염을 막고 토큰 요금을 80% 이상 절감하는 핵심 기법
+
+            <!-- Repo Map Compression Visual Flow -->
+            <div class="p-1.5 bg-slate-950/80 rounded border border-slate-800 text-[9.5px] font-mono my-1.5 flex items-center justify-between">
+              <div class="px-1.5 py-1 bg-red-950/40 border border-red-900/60 rounded text-center">
+                <div class="text-red-300 font-bold">전체 Repo</div>
+                <div class="text-[8px] text-slate-400">200k+ 토큰 ❌</div>
+              </div>
+              <span class="text-slate-600">➔</span>
+              <div class="px-1.5 py-1 bg-slate-900 border border-sky-800/60 rounded text-center">
+                <div class="text-sky-300 font-bold">Tree-sitter</div>
+                <div class="text-[8px] text-slate-400">AST 심볼 추출</div>
+              </div>
+              <span class="text-slate-600">➔</span>
+              <div class="px-1.5 py-1 bg-indigo-950/40 border border-indigo-800/60 rounded text-center">
+                <div class="text-indigo-300 font-bold">PageRank</div>
+                <div class="text-[8px] text-slate-400">중요도 그래프</div>
+              </div>
+              <span class="text-slate-600">➔</span>
+              <div class="px-1.5 py-1 bg-emerald-950/40 border border-emerald-800/60 rounded text-center">
+                <div class="text-emerald-300 font-bold">Repo Map</div>
+                <div class="text-[8px] text-emerald-400">80%+ 절감 ✅</div>
+              </div>
+            </div>
+
+            <div class="text-[10.5px] text-sky-200 bg-sky-950/40 px-2 py-0.5 rounded font-mono">
+              ➔ 컨텍스트 오염을 원천 차단하고 모델 지능을 유지하는 핵심 기술
             </div>
           </div>
         </div>

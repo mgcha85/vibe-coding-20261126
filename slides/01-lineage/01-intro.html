@@ -1,18 +1,108 @@
-<section class="slide justify-center" data-title="Ch 01. 계보 인트로">
-  <div class="max-w-3xl">
-    <span class="text-sky-400 font-mono text-sm tracking-widest font-semibold px-3 py-1 rounded bg-sky-500/10 border border-sky-400/20">CHAPTER 01</span>
-    <h2 class="text-4xl md:text-5xl font-black text-white mt-4 mb-3">
-      계보 : 챗봇에서 자율 에이전트까지
+<section class="slide flex flex-col justify-between" data-title="Ch 01. 계보 인트로">
+  <div>
+    <span class="text-sky-400 font-mono text-xs tracking-widest font-semibold px-2.5 py-1 rounded bg-sky-500/10 border border-sky-400/20">CHAPTER 01 · HISTORICAL LINEAGE</span>
+    <h2 class="text-3xl md:text-4xl font-black text-white mt-2.5 mb-2">
+      계보 : 챗봇에서 자율 에이전트까지 (2022 ~ 2026)
     </h2>
-    <p class="text-lg text-slate-300 leading-relaxed mb-6">
-      LLM은 더 이상 질문에 그럴듯한 텍스트로 대답하는 '말동무'가 아닙니다.<br>
-      2023년 AutoGPT의 단일 모놀리식 좌절을 딛고, 2024년 다중 에이전트(Multi-Agent)와 인지 아키텍처(Cognitive Architecture) 연구를 거쳐 탄생한 자율 에이전트의 발전 계보를 추적합니다.
+    <p class="text-sm text-slate-300 leading-relaxed max-w-4xl">
+      LLM은 더 이상 질문에 그럴듯한 텍스트로 답하는 '말동무'가 아닙니다. 
+      단일 모놀리식의 좌절과 학술적 분업 연구, 그리고 추론 모델을 거쳐 현재의 자율 워크스페이스로 진화한 <strong>5단계 패러다임 로드맵</strong>을 추적합니다.
     </p>
-    <div class="flex items-center gap-3 text-xs font-mono text-slate-400">
-      <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#AutoGPT_2023</span>
-      <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#MultiAgent_2024</span>
-      <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#CoALA_Architecture</span>
-      <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#SWE-bench</span>
+  </div>
+
+  <!-- 5-Stage Evolution Timeline Roadmap -->
+  <div class="grid grid-cols-5 gap-3 my-auto">
+    <!-- 1. 2022 -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-slate-500">
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-mono font-bold text-slate-300">2022</span>
+          <span class="text-[10px] font-mono text-slate-400 bg-slate-800 px-1.5 py-0.2 rounded">Single-turn</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">ChatGPT</h3>
+        <p class="text-[11px] text-slate-300 leading-relaxed">
+          1회성 텍스트 질의응답. 외부 실행 도구와 환경 관찰(눈)이 전무했던 수동 챗봇.
+        </p>
+      </div>
+      <div class="text-[10px] text-slate-400 font-mono border-t border-slate-800 pt-1.5 mt-2">
+        "말동무의 시대"
+      </div>
     </div>
+
+    <!-- 2. 2023 -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-amber-500">
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-mono font-bold text-amber-400">2023</span>
+          <span class="text-[10px] font-mono text-amber-300 bg-amber-950/60 px-1.5 py-0.2 rounded">Monolithic</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">AutoGPT · ReAct</h3>
+        <p class="text-[11px] text-slate-300 leading-relaxed">
+          Thought-Act-Observe 루프 태동. 단일 컨텍스트 오염과 연쇄 환각의 좌절.
+        </p>
+      </div>
+      <div class="text-[10px] text-amber-300 font-mono border-t border-slate-800 pt-1.5 mt-2">
+        "자율 루프의 첫 시도"
+      </div>
+    </div>
+
+    <!-- 3. 2024 -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-sky-500">
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-mono font-bold text-sky-400">2024</span>
+          <span class="text-[10px] font-mono text-sky-300 bg-sky-950/60 px-1.5 py-0.2 rounded">Multi-Agent</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">MetaGPT · CoALA</h3>
+        <p class="text-[11px] text-slate-300 leading-relaxed">
+          SOP 명세 강제로 환각 차단. 인지과학 4대 메모리(작업·일화·의미·절차) 체계화.
+        </p>
+      </div>
+      <div class="text-[10px] text-sky-300 font-mono border-t border-slate-800 pt-1.5 mt-2">
+        "조직 분업과 기억"
+      </div>
+    </div>
+
+    <!-- 4. 2025 -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-purple-500">
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-mono font-bold text-purple-400">2025</span>
+          <span class="text-[10px] font-mono text-purple-300 bg-purple-950/60 px-1.5 py-0.2 rounded">Reasoning</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">o1/o3 · Repo Map</h3>
+        <p class="text-[11px] text-slate-300 leading-relaxed">
+          Test-Time Compute로 실행 전 가상 검증. Tree-sitter + PageRank로 토큰 80% 절감.
+        </p>
+      </div>
+      <div class="text-[10px] text-purple-300 font-mono border-t border-slate-800 pt-1.5 mt-2">
+        "사전 추론 & AST 맵"
+      </div>
+    </div>
+
+    <!-- 5. 2026 -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-emerald-500">
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-mono font-bold text-emerald-400">2026</span>
+          <span class="text-[10px] font-mono text-emerald-300 bg-emerald-950/60 px-1.5 py-0.2 rounded">Outer-Inner</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">Grok · Worktree</h3>
+        <p class="text-[11px] text-slate-300 leading-relaxed">
+          클라우드 지속형 Outer Loop와 초고속 국소 Inner Loop의 물리적 분리 체제.
+        </p>
+      </div>
+      <div class="text-[10px] text-emerald-300 font-mono border-t border-slate-800 pt-1.5 mt-2">
+        "자율 클라우드 러너"
+      </div>
+    </div>
+  </div>
+
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">💡 KEY TAKEAWAY :</span>
+      <span>"단순 프롬프트 테크닉의 시대는 끝났다 ➔ 이제는 조직적 아키텍처와 툴체인의 시대다."</span>
+    </div>
+    <span class="text-slate-500 text-[11px]">20분 아젠다 로드맵</span>
   </div>
 </section>
