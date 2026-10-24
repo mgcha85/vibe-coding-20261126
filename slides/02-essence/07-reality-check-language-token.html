@@ -1,100 +1,131 @@
 <section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (3) 언어 & 토큰 비용">
-  <div class="mb-2">
+  <div class="mb-1.5">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
     <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : ③ Python의 맹점 vs ④ 토큰 요금 폭탄(Tokenpocalypse)</h2>
-    <p class="text-xs text-slate-300 mt-1">
-      동적 타이핑의 런타임 침묵 버그와, 에이전트의 무차별 컨텍스트 탐색이 부르는 <strong>청구서 폭탄의 실체</strong>:
+    <p class="text-xs text-slate-300 mt-0.5">
+      AI 시대에 소멸한 Python의 생산성 장점과, 에이전트의 무차별 컨텍스트 탐색이 부르는 <strong>청구서 폭탄의 실체</strong>:
     </p>
   </div>
 
-  <!-- Dual Bento Card Stage -->
-  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch my-auto">
-    <!-- Card 1: Language Paradox -->
-    <div class="bento-tile p-4 flex flex-col justify-between border-l-4 border-l-sky-500 bg-slate-950/90 shadow-xl">
+  <!-- Dual Bento Card Stage with Visual Diagrams -->
+  <div class="grid grid-cols-2 gap-3.5 flex-1 items-stretch my-auto">
+    <!-- Card 1: Language Paradox & Compiler Loop SVG -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-l-4 border-l-sky-500 bg-slate-950/90 shadow-xl">
       <div>
-        <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center justify-between mb-1.5">
           <span class="text-xs font-mono text-sky-400 font-bold">쟁점 ③ LANGUAGE PARADOX</span>
-          <span class="text-[10px] font-mono text-sky-300 bg-sky-950/60 px-2 py-0.5 rounded border border-sky-800/40">언어의 역설</span>
+          <span class="text-[9.5px] font-mono text-sky-300 bg-sky-950/60 px-2 py-0.5 rounded border border-sky-800/40">언어의 역설</span>
         </div>
-        <h3 class="text-lg font-bold text-white mb-2">Python의 맹점 vs 정적 타이핑의 귀환</h3>
+        <h3 class="text-base font-bold text-white mb-1">Python의 맹점 vs 정적 타이핑의 귀환</h3>
 
-        <div class="p-2.5 bg-slate-900/80 rounded border border-slate-800 text-xs text-slate-300 mb-3 leading-relaxed">
-          <span class="text-sky-300 font-bold">환상:</span> "AI가 가장 많이 학습한 언어가 Python이니, 바이브 코딩에서도 Python이 최고일 것이다."
+        <!-- New Core Insight Callout: Productivity Advantage Vanished -->
+        <div class="p-2 bg-slate-900/90 rounded border border-slate-800 text-[10px] text-slate-300 mb-2 leading-relaxed">
+          <strong class="text-amber-300">💡 왜 지금 Python의 장점이 사라졌는가?</strong><br>
+          과거 인간 개발자에게 Python은 <em>'성능을 크게 희생하는 대신 인간의 타이핑 생산성을 높여준 언어'</em>였습니다. 하지만 <strong>AI가 코딩하는 시대에는 AI에게 문법 난이도 차이가 없어 Python의 유일한 비교우위(생산성)가 소멸</strong>하고, <strong class="text-red-300">'동적 런타임 에러와 성능 저하'</strong>라는 치명적 페널티만 고스란히 남았습니다.
         </div>
 
-        <div class="space-y-2 text-xs text-slate-300">
-          <div class="p-2.5 bg-red-950/20 rounded border border-red-900/40 space-y-1">
-            <div class="font-bold text-red-300 flex items-center gap-1.5">
-              <span>🚨 Python의 동적 타이핑 함정</span>
-            </div>
-            <p class="text-[11px] text-slate-300 leading-normal">
-              코드가 문법적으로 완벽해 보여도 실행(Runtime) 시점에 <code class="text-red-300">AttributeError</code>, <code class="text-red-300">TypeError</code>로 죽어버려 에이전트가 원인을 추적하기 어렵습니다.
-            </p>
+        <!-- Feedback Loop Comparison SVG -->
+        <div class="bg-slate-900/90 rounded border border-slate-800 p-2 mb-2">
+          <div class="flex items-center justify-between text-[9px] font-mono mb-1">
+            <span class="text-slate-400 font-bold">에이전트 피드백 루프의 극명한 차이</span>
+            <span class="text-sky-300">Self-Healing 성패</span>
           </div>
+          <svg viewBox="0 0 380 75" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+            <!-- Left: Python Broken Loop -->
+            <g transform="translate(10, 5)">
+              <rect width="170" height="65" rx="5" fill="#450a0a" fill-opacity="0.3" stroke="#ef4444" stroke-width="0.9"/>
+              <text x="85" y="14" text-anchor="middle" fill="#fca5a5" font-size="7.5" font-family="JetBrains Mono" font-weight="bold">❌ Python (단절된 피드백 루프)</text>
+              <text x="12" y="30" fill="#cbd5e1" font-size="6.5">코드 생성 ➔ 런타임 AttributeError</text>
+              <text x="12" y="44" fill="#f87171" font-size="6.5">침묵하는 크래시 ➔ 원인 파악 불가</text>
+              <rect x="10" y="50" width="150" height="11" rx="2" fill="#7f1d1d"/>
+              <text x="85" y="58" text-anchor="middle" fill="#fee2e2" font-size="6" font-family="JetBrains Mono">에이전트 추측 환각 &amp; 무한 루프</text>
+            </g>
 
-          <div class="p-2.5 bg-sky-950/20 rounded border border-sky-900/40 space-y-1">
-            <div class="font-bold text-sky-300 flex items-center gap-1.5">
-              <span>✅ 컴파일러는 최고의 에이전트 내비게이터</span>
-            </div>
-            <p class="text-[11px] text-slate-300 leading-normal">
-              <strong>TypeScript, Rust, Go</strong>의 엄격한 컴파일러 에러 메시지는 에이전트에게 <strong>"어느 파일 몇 번째 줄을 어떻게 고쳐라"</strong>는 완벽한 자가 치유(Self-Correction) 피드백 루프를 제공합니다.
-            </p>
-          </div>
+            <!-- Right: TS/Rust Closed Loop -->
+            <g transform="translate(200, 5)">
+              <rect width="170" height="65" rx="5" fill="#064e3b" fill-opacity="0.3" stroke="#10b981" stroke-width="0.9"/>
+              <text x="85" y="14" text-anchor="middle" fill="#6ee7b7" font-size="7.5" font-family="JetBrains Mono" font-weight="bold">✅ TS / Rust (완결된 피드백 루프)</text>
+              <text x="12" y="30" fill="#cbd5e1" font-size="6.5">코드 생성 ➔ 컴파일러 ($ tsc, cargo)</text>
+              <text x="12" y="44" fill="#34d399" font-size="6.5">Line 42: Type mismatch 명확한 피드백</text>
+              <rect x="10" y="50" width="150" height="11" rx="2" fill="#065f46"/>
+              <text x="85" y="58" text-anchor="middle" fill="#d1fae5" font-size="6" font-family="JetBrains Mono">원샷 자가 치유(Self-Healing) 성공</text>
+            </g>
+          </svg>
         </div>
       </div>
 
-      <div class="text-[11px] text-sky-300 font-mono border-t border-slate-800/80 pt-2.5 mt-2 flex items-center justify-between">
-        <span>💡 "컴파일러가 살아있어야 에이전트가 스스로 고친다"</span>
+      <div class="text-[10px] text-sky-300 font-mono border-t border-slate-800/80 pt-1.5 mt-1 flex items-center justify-between">
+        <span>"컴파일러 피드백이 있어야 에이전트가 완벽히 자가 치유한다"</span>
         <span class="text-sky-400 font-bold">Chapter 05 언어 편 상세 ➔</span>
       </div>
     </div>
 
-    <!-- Card 2: Token Economics -->
-    <div class="bento-tile p-4 flex flex-col justify-between border-l-4 border-l-amber-500 bg-slate-950/90 shadow-xl">
+    <!-- Card 2: Token Economics & Exploration Tax Chart -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-l-4 border-l-amber-500 bg-slate-950/90 shadow-xl">
       <div>
-        <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center justify-between mb-1.5">
           <span class="text-xs font-mono text-amber-400 font-bold">쟁점 ④ TOKEN ECONOMICS</span>
-          <span class="text-[10px] font-mono text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/40">토큰 경제학</span>
+          <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/40">토큰 경제학</span>
         </div>
-        <h3 class="text-lg font-bold text-white mb-2">공짜 점심은 없다 : 요금 폭탄(Tokenpocalypse)</h3>
+        <h3 class="text-base font-bold text-white mb-1">공짜 점심은 없다 : 요금 폭탄(Tokenpocalypse)</h3>
 
-        <div class="p-2.5 bg-slate-900/80 rounded border border-slate-800 text-xs text-slate-300 mb-3 leading-relaxed">
-          <span class="text-amber-300 font-bold">환상:</span> "IDE 구독료 월 20달러면 무제한으로 프로덕트를 찍어낼 수 있다."
-        </div>
-
-        <div class="space-y-2 text-xs text-slate-300">
-          <div class="p-2.5 bg-red-950/20 rounded border border-red-900/40 space-y-1">
-            <div class="font-bold text-red-300 flex items-center gap-1.5">
-              <span>💸 탐색 비용(Exploration Tax) 70% 소모</span>
-            </div>
-            <p class="text-[11px] text-slate-300 leading-normal">
-              프로젝트가 커질수록 에이전트가 파일 구조를 파악하느라 소모하는 토큰이 급증하여, 하루 세션 하나에 <strong>$50~$100(월 $1,000+) 요금 청구서</strong>가 폭발합니다.
-            </p>
+        <!-- Exploration Tax Pie/Bar Visual SVG -->
+        <div class="bg-slate-900/90 rounded border border-slate-800 p-2 mb-2">
+          <div class="flex items-center justify-between text-[9px] font-mono mb-1">
+            <span class="text-amber-400 font-bold">에이전트 토큰 소모 분석 (Exploration Tax의 실체)</span>
+            <span class="text-red-400">일 $50~100 요금의 주범</span>
           </div>
+          <svg viewBox="0 0 380 75" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+            <!-- Full Bar Container -->
+            <rect x="10" y="15" width="360" height="20" rx="4" fill="#1e293b"/>
 
-          <div class="p-2.5 bg-amber-950/20 rounded border border-amber-900/40 space-y-1">
-            <div class="font-bold text-amber-300 flex items-center gap-1.5">
-              <span>✅ 3대 엔지니어링 돌파구 (80~90% 절감)</span>
-            </div>
-            <p class="text-[11px] text-slate-300 leading-normal">
-              <strong>Prompt Caching(90% 비용 절감)</strong>, <strong>AST/Tree-sitter Repo Map 압축</strong>, 고지능 모델과 초경량 모델의 <strong>계층형 라우팅</strong>이 필수입니다.
-            </p>
+            <!-- Segment 1: Exploration Tax (70%) -->
+            <rect x="10" y="15" width="252" height="20" rx="4" fill="#ef4444"/>
+            <text x="136" y="28" text-anchor="middle" fill="#ffffff" font-size="7.5" font-family="JetBrains Mono" font-weight="black">파일 탐색 비용 (Exploration Tax) 70%</text>
+
+            <!-- Segment 2: Actual Code Gen (15%) -->
+            <rect x="262" y="15" width="54" height="20" fill="#10b981"/>
+            <text x="289" y="28" text-anchor="middle" fill="#ffffff" font-size="7" font-family="JetBrains Mono" font-weight="bold">코드 15%</text>
+
+            <!-- Segment 3: Overhead (15%) -->
+            <rect x="316" y="15" width="54" height="20" rx="4" fill="#6366f1"/>
+            <text x="343" y="28" text-anchor="middle" fill="#ffffff" font-size="7" font-family="JetBrains Mono" font-weight="bold">오버헤드</text>
+
+            <!-- Solution Callout Row Below -->
+            <g transform="translate(10, 43)">
+              <rect width="360" height="26" rx="4" fill="#022c22" stroke="#10b981" stroke-width="0.8"/>
+              <text x="12" y="12" fill="#34d399" font-size="7" font-weight="bold" font-family="JetBrains Mono">
+                ⚡ 필수 엔지니어링 돌파구 (비용 80~90% 절감 솔루션):
+              </text>
+              <text x="12" y="22" fill="#a7f3d0" font-size="6.5" font-family="JetBrains Mono">
+                1) Prompt Caching (90% 비용 컷)  2) AST Repo Map 압축  3) 계층형 모델 라우팅
+              </text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="space-y-1 text-xs text-slate-300">
+          <div class="p-1.5 bg-red-950/20 rounded border border-red-900/40 text-[10px]">
+            <strong class="text-red-300">🚨 무차별 파일 읽기 폭탄:</strong> 에이전트가 파일 위치를 몰라 200k 토큰을 통째로 쏟아부으며 하루에만 수십 달러의 API 요금이 누적됩니다.
+          </div>
+          <div class="p-1.5 bg-amber-950/20 rounded border border-amber-900/40 text-[10px]">
+            <strong class="text-amber-300">✅ 토큰 통제력:</strong> 캐시 적중률(Hit Rate)을 90% 이상 유지하고, 심볼 그래프로 필요한 함수만 주입해야 지속 가능한 비즈니스가 됩니다.
           </div>
         </div>
       </div>
 
-      <div class="text-[11px] text-amber-300 font-mono border-t border-slate-800/80 pt-2.5 mt-2 flex items-center justify-between">
-        <span>💡 "토큰 최적화 없는 에이전트는 적자 기업을 만든다"</span>
+      <div class="text-[10px] text-amber-300 font-mono border-t border-slate-800/80 pt-1.5 mt-1 flex items-center justify-between">
+        <span>"토큰 아키텍처 없는 바이브 코딩은 적자 기업을 낳는다"</span>
         <span class="text-sky-400 font-bold">Chapter 06 비용 편 상세 ➔</span>
       </div>
     </div>
   </div>
 
   <!-- Bottom Connector Banner -->
-  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-2">
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-1">
     <div class="flex items-center gap-2">
       <span class="text-sky-400 font-bold">📌 Takeaway:</span>
-      <span>언어 선택은 개발자 취향이 아닌 <strong>'에이전트의 자가 치유율'</strong>의 문제이며, <strong>'토큰 비용 통제력'</strong>이 비즈니스의 생사를 가릅니다.</span>
+      <span>언어는 <strong>'컴파일러 피드백을 통한 에이전트 완결성'</strong>이 기준이어야 하며, <strong>'토큰 비용 통제력'</strong>이 비즈니스의 생사를 가릅니다.</span>
     </div>
     <span class="text-purple-400 font-bold text-[11px]">자가 치유 &amp; 비용 통제</span>
   </div>

@@ -1,99 +1,157 @@
 <section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (2) 복잡계 & BaaS">
-  <div class="mb-2">
+  <div class="mb-1.5">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
     <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : ① 자연어의 한계 vs ② BaaS 레고 블록 전략</h2>
-    <p class="text-xs text-slate-300 mt-1">
-      단일 파일 토이 데모를 넘어, 실제 유저와 트랜잭션이 붙는 순간 발생하는 <strong>소프트웨어 복잡계의 벽</strong>:
+    <p class="text-xs text-slate-300 mt-0.5">
+      단일 파일 토이 데모를 넘어, 실제 유저와 트랜잭션이 붙는 순간 발생하는 <strong>소프트웨어 복잡계의 벽과 생존 전략</strong>:
     </p>
   </div>
 
-  <!-- Dual Bento Card Stage -->
-  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch my-auto">
-    <!-- Card 1: Complexity Wall -->
-    <div class="bento-tile p-4 flex flex-col justify-between border-l-4 border-l-amber-500 bg-slate-950/90 shadow-xl">
+  <!-- Dual Bento Card Stage with Visual Diagrams -->
+  <div class="grid grid-cols-2 gap-3.5 flex-1 items-stretch my-auto">
+    <!-- Card 1: Complexity Wall & Context Drift Decay Graph -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-l-4 border-l-amber-500 bg-slate-950/90 shadow-xl">
       <div>
-        <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center justify-between mb-1.5">
           <span class="text-xs font-mono text-amber-400 font-bold">쟁점 ① COMPLEXITY WALL</span>
-          <span class="text-[10px] font-mono text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/40">자연어의 한계</span>
+          <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/40">자연어의 한계</span>
         </div>
-        <h3 class="text-lg font-bold text-white mb-2">'말만 하면 된다'는 환상 vs 복잡계의 벽</h3>
-        
-        <div class="p-2.5 bg-slate-900/80 rounded border border-slate-800 text-xs text-slate-300 mb-3 leading-relaxed">
-          <span class="text-amber-300 font-bold">환상:</span> "이제 코딩을 전혀 몰라도 아이디어와 자연어 프롬프트만 있으면 바로 서비스가 완성된다."
-        </div>
+        <h3 class="text-base font-bold text-white mb-1.5">'말만 하면 된다'는 환상 vs 복잡계의 벽</h3>
 
-        <div class="space-y-2 text-xs text-slate-300">
-          <div class="p-2.5 bg-red-950/20 rounded border border-red-900/40 space-y-1">
-            <div class="font-bold text-red-300 flex items-center gap-1.5">
-              <span>🚨 1. 단일 토이 vs 프로덕션 복잡계</span>
-            </div>
-            <p class="text-[11px] text-slate-300 leading-normal">
-              1개 파일짜리 데모는 쉽지만, 실제 서비스는 <strong>상태 관리(State), 네트워크 예외 처리, 비동기 파이프라인, 빌드 환경</strong>이라는 거대한 복잡계를 반드시 통과해야 합니다.
-            </p>
+        <!-- Context Drift Decay SVG Mini Graph -->
+        <div class="bg-slate-900/90 rounded border border-slate-800 p-2 mb-2">
+          <div class="flex items-center justify-between text-[9px] font-mono mb-1">
+            <span class="text-slate-400 font-bold">세션 장기화에 따른 기억력 붕괴 (Context Drift)</span>
+            <span class="text-red-400">파일 20개+ 위험 구간</span>
           </div>
+          <svg viewBox="0 0 380 75" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+            <!-- Grid Lines -->
+            <line x1="30" y1="10" x2="370" y2="10" stroke="#334155" stroke-width="0.5" stroke-dasharray="2 2"/>
+            <line x1="30" y1="40" x2="370" y2="40" stroke="#334155" stroke-width="0.5" stroke-dasharray="2 2"/>
+            <line x1="30" y1="65" x2="370" y2="65" stroke="#475569" stroke-width="0.8"/>
+            <line x1="30" y1="5" x2="30" y2="65" stroke="#475569" stroke-width="0.8"/>
 
-          <div class="p-2.5 bg-red-950/20 rounded border border-red-900/40 space-y-1">
-            <div class="font-bold text-red-300 flex items-center gap-1.5">
-              <span>🚨 2. 컨텍스트 표류 (Context Drift)</span>
-            </div>
-            <p class="text-[11px] text-slate-300 leading-normal">
-              프롬프트에만 의존할수록 세션이 길어지면서 AI가 이전 설계를 잊어버리고, 앞선 코드를 덮어써 버리거나 엉뚱한 라이브러리를 재설치하는 <strong>기억 상실</strong>이 발생합니다.
-            </p>
+            <!-- Axis Labels -->
+            <text x="25" y="14" text-anchor="end" fill="#94a3b8" font-size="6.5" font-family="JetBrains Mono">100%</text>
+            <text x="25" y="66" text-anchor="end" fill="#94a3b8" font-size="6.5" font-family="JetBrains Mono">0%</text>
+            <text x="35" y="73" fill="#64748b" font-size="6.5" font-family="JetBrains Mono">파일 1개 (단순 토이)</text>
+            <text x="180" y="73" fill="#f59e0b" font-size="6.5" font-family="JetBrains Mono">파일 15개</text>
+            <text x="310" y="73" fill="#ef4444" font-size="6.5" font-family="JetBrains Mono">파일 30개+ (복잡계)</text>
+
+            <!-- Curve 1: Retention Decay (Green to Red) -->
+            <path d="M 30 15 Q 160 20, 240 50 T 370 63" fill="none" stroke="#10b981" stroke-width="2"/>
+            <text x="90" y="24" fill="#34d399" font-size="7" font-weight="bold" font-family="JetBrains Mono">AI 설계 기억력 (급격 추락 📉)</text>
+
+            <!-- Curve 2: Hallucination & Overwrite Risk (Red Line) -->
+            <path d="M 30 62 Q 180 58, 250 30 T 370 12" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="3 2"/>
+            <text x="235" y="22" fill="#f87171" font-size="7" font-weight="bold" font-family="JetBrains Mono">코드 덮어쓰기·환각 위험 (급상승 📈)</text>
+          </svg>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-slate-300">
+          <div class="p-1.5 bg-red-950/20 rounded border border-red-900/40 text-[10.5px]">
+            <strong class="text-red-300">🚨 상태·네트워크 복잡계:</strong> 1개 파일 토이는 작동하지만, 실제 유저 상태 동기화, 트랜잭션 롤백, 네트워크 재시도 앞에서는 자연어 프롬프트만으로 통제 불가.
+          </div>
+          <div class="p-1.5 bg-red-950/20 rounded border border-red-900/40 text-[10.5px]">
+            <strong class="text-red-300">🚨 컨텍스트 오염 (Drift):</strong> 세션이 길어지면 앞선 아키텍처 결정을 망각하고 기존 코드를 덮어써 버리는 치명적 퇴행 발생.
           </div>
         </div>
       </div>
 
-      <div class="text-[11px] text-slate-400 font-mono border-t border-slate-800/80 pt-2.5 mt-2">
-        "자연어는 모호성을 허용하지만, 컴파일러와 런타임은 단 1비트의 모호성도 허용하지 않는다."
+      <div class="text-[10px] text-slate-400 font-mono border-t border-slate-800/80 pt-1.5 mt-1">
+        "자연어는 모호성을 허용하지만, 컴퓨터 런타임은 단 1비트의 모호성도 용납하지 않는다."
       </div>
     </div>
 
-    <!-- Card 2: BaaS Lego Strategy -->
-    <div class="bento-tile p-4 flex flex-col justify-between border-l-4 border-l-emerald-500 bg-slate-950/90 shadow-xl">
+    <!-- Card 2: BaaS Lego Assembly Architecture -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-l-4 border-l-emerald-500 bg-slate-950/90 shadow-xl">
       <div>
-        <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center justify-between mb-1.5">
           <span class="text-xs font-mono text-emerald-400 font-bold">쟁점 ② ARCHITECTURE STRATEGY</span>
-          <span class="text-[10px] font-mono text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/40">현실적 해법</span>
+          <span class="text-[9.5px] font-mono text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/40">현실적 해법</span>
         </div>
-        <h3 class="text-lg font-bold text-white mb-2">바닥부터 구축 vs 현대 BaaS 레고 블록 조립</h3>
+        <h3 class="text-base font-bold text-white mb-1.5">바닥부터 구축 vs 현대 BaaS 레고 블록 조립</h3>
 
-        <div class="p-2.5 bg-slate-900/80 rounded border border-slate-800 text-xs text-slate-300 mb-3 leading-relaxed">
-          <span class="text-emerald-300 font-bold">환상:</span> "AI 에이전트에게 DB 스키마, 인증 서버, 결제 연동, 메일 발송 서버를 전부 작성하라고 시킨다."
-        </div>
-
-        <div class="space-y-2 text-xs text-slate-300">
-          <div class="p-2.5 bg-amber-950/20 rounded border border-amber-900/40 space-y-1">
-            <div class="font-bold text-amber-300 flex items-center gap-1.5">
-              <span>⚠️ 바닥부터 백엔드를 짜면 설계 파탄</span>
-            </div>
-            <p class="text-[11px] text-slate-300 leading-normal">
-              인증 세션 토큰 관리, DB 커넥션 풀링, 트랜잭션 격리 수준을 AI에게 바닥부터 맡기면 취약점과 병목이 폭발합니다.
-            </p>
+        <!-- BaaS Lego Blocks SVG Diagram -->
+        <div class="bg-slate-900/90 rounded border border-slate-800 p-2 mb-2">
+          <div class="flex items-center justify-between text-[9px] font-mono mb-1">
+            <span class="text-emerald-400 font-bold">모던 BaaS 레고 블록 조립 (Glue Code 아키텍처)</span>
+            <span class="text-slate-400">검증된 표준 모듈</span>
           </div>
+          <svg viewBox="0 0 380 75" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="glueStream" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#38bdf8"/>
+                <stop offset="50%" stop-color="#c084fc"/>
+                <stop offset="100%" stop-color="#34d399"/>
+              </linearGradient>
+            </defs>
 
-          <div class="p-2.5 bg-emerald-950/20 rounded border border-emerald-900/40 space-y-1">
-            <div class="font-bold text-emerald-300 flex items-center gap-1.5">
-              <span>✅ 바이브 코더의 생존법 : 글루 코드(Glue Code)</span>
-            </div>
-            <p class="text-[11px] text-slate-300 leading-normal">
-              이미 수만 개 기업에서 검증된 클라우드 서비스(<strong>Vercel + Supabase + Clerk + Stripe</strong>)를 프롬프트로 엮어내는 것이 유일하게 안전한 전략입니다.
-            </p>
+            <!-- Connecting Glue Code Stream Behind -->
+            <rect x="20" y="24" width="340" height="12" rx="6" fill="url(#glueStream)" fill-opacity="0.25" stroke="#a855f7" stroke-dasharray="3 2"/>
+            <text x="190" y="33" text-anchor="middle" fill="#e0e7ff" font-size="7" font-family="JetBrains Mono" font-weight="bold">AI Agent Glue Code (프롬프트로 연결하는 얇은 접착제)</text>
+
+            <!-- 4 Lego Blocks -->
+            <!-- Block 1: Vercel -->
+            <g transform="translate(15, 6)">
+              <rect width="78" height="46" rx="5" fill="#0f172a" stroke="#ffffff" stroke-width="1.2"/>
+              <rect width="78" height="12" rx="5" fill="#1e293b"/>
+              <text x="39" y="9" text-anchor="middle" fill="#ffffff" font-size="6.5" font-family="JetBrains Mono" font-weight="black">▲ VERCEL</text>
+              <text x="39" y="25" text-anchor="middle" fill="#7dd3fc" font-size="6.5" font-weight="bold">Edge 호스팅</text>
+              <text x="39" y="37" text-anchor="middle" fill="#94a3b8" font-size="6">Global CDN 배포</text>
+            </g>
+
+            <!-- Block 2: Supabase Auth / Clerk -->
+            <g transform="translate(103, 6)">
+              <rect width="80" height="46" rx="5" fill="#0f172a" stroke="#6366f1" stroke-width="1.2"/>
+              <rect width="80" height="12" rx="5" fill="#312e81"/>
+              <text x="40" y="9" text-anchor="middle" fill="#e0e7ff" font-size="6.5" font-family="JetBrains Mono" font-weight="black">CLERK / AUTH</text>
+              <text x="40" y="25" text-anchor="middle" fill="#a5b4fc" font-size="6.5" font-weight="bold">인증 &amp; 세션 토큰</text>
+              <text x="40" y="37" text-anchor="middle" fill="#94a3b8" font-size="6">소셜/JWT 보안</text>
+            </g>
+
+            <!-- Block 3: Supabase Postgres RLS -->
+            <g transform="translate(193, 6)">
+              <rect width="82" height="46" rx="5" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+              <rect width="82" height="12" rx="5" fill="#064e3b"/>
+              <text x="41" y="9" text-anchor="middle" fill="#a7f3d0" font-size="6.5" font-family="JetBrains Mono" font-weight="black">SUPABASE DB</text>
+              <text x="41" y="25" text-anchor="middle" fill="#6ee7b7" font-size="6.5" font-weight="bold">Postgres RLS</text>
+              <text x="41" y="37" text-anchor="middle" fill="#94a3b8" font-size="6">행 단위 접근 통제</text>
+            </g>
+
+            <!-- Block 4: Stripe -->
+            <g transform="translate(285, 6)">
+              <rect width="80" height="46" rx="5" fill="#0f172a" stroke="#6366f1" stroke-width="1.2"/>
+              <rect width="80" height="12" rx="5" fill="#3730a3"/>
+              <text x="40" y="9" text-anchor="middle" fill="#e0e7ff" font-size="6.5" font-family="JetBrains Mono" font-weight="black">STRIPE</text>
+              <text x="40" y="25" text-anchor="middle" fill="#c7d2fe" font-size="6.5" font-weight="bold">글로벌 결제</text>
+              <text x="40" y="37" text-anchor="middle" fill="#94a3b8" font-size="6">구독 웹훅 파이프</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-slate-300">
+          <div class="p-1.5 bg-amber-950/20 rounded border border-amber-900/40 text-[10.5px]">
+            <strong class="text-amber-300">⚠️ 바닥부터 짜면 파탄:</strong> AI에게 DB 커넥션 풀링, 세션 핸들러, 웹훅을 바닥부터 코딩시키면 보안 취약점과 병목이 폭발합니다.
+          </div>
+          <div class="p-1.5 bg-emerald-950/20 rounded border border-emerald-900/40 text-[10.5px]">
+            <strong class="text-emerald-300">✅ 글루 코드(Glue Code) 전략:</strong> 이미 수만 개 기업에서 검증된 BaaS 모듈을 레고처럼 조립하고, 에이전트는 결합 로직만 작성합니다.
           </div>
         </div>
       </div>
 
-      <div class="text-[11px] text-emerald-300 font-mono border-t border-slate-800/80 pt-2.5 mt-2 flex items-center justify-between">
-        <span>💡 "바닥부터 만들지 말고, 블록을 단단히 결합하라"</span>
-        <span class="text-sky-400 font-bold">Chapter 03 런칭 편 상세 다룸 ➔</span>
+      <div class="text-[10px] text-emerald-300 font-mono border-t border-slate-800/80 pt-1.5 mt-1 flex items-center justify-between">
+        <span>"바닥부터 만들지 말고, 검증된 블록을 조립하라"</span>
+        <span class="text-sky-400 font-bold">Chapter 03 런칭 편 상세 ➔</span>
       </div>
     </div>
   </div>
 
   <!-- Bottom Connector Banner -->
-  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-2">
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-1">
     <div class="flex items-center gap-2">
       <span class="text-sky-400 font-bold">📌 Takeaway:</span>
-      <span>프롬프트는 '모든 것을 만드는 요술봉'이 아니라, <strong>'검증된 컴포넌트를 조립하는 접착제(Glue)'</strong>로 사용해야 성공합니다.</span>
+      <span>프롬프트는 '모든 것을 짓는 요술봉'이 아니라, <strong>'검증된 컴포넌트를 조립하는 접착제(Glue)'</strong>로 사용할 때 비로소 작동합니다.</span>
     </div>
     <span class="text-emerald-400 font-bold text-[11px]">BaaS 레고 조립 전략</span>
   </div>

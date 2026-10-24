@@ -106,6 +106,27 @@ Contrast the failure of the past with the modern solution side-by-side:
 - **Multi-turn Agent Loop**: `User ➔ Micro-Task ➔ Sandbox execution ➔ Stderr observe ➔ Self-Healing patch ✅`
 - **Repo Map Token Compression**: `Full Repo (200k+ tokens ❌)` ➔ `Tree-sitter AST` ➔ `PageRank Graph` ➔ `Skeleton Map (80%+ cost reduction ✅)`
 
+### Pattern 3.5: HyperFrames Living Video / Mockup Keyframe Motion Timeline
+Inspired by [HeyGen HyperFrames](https://github.com/heygen-com/hyperframes) (*"Write HTML. Render video. Built for agents"*), simulate active screen recording videos using pure, zero-dependency 60 FPS CSS keyframes:
+1. **Video Player Shell & Scrubber**:
+   - Add a `● REC` recording indicator (pulsing red dot) and a live gradient scrubber bar (`@keyframes scrubberMove 12s linear infinite`).
+   - Display a lightweight timecode (`12s LOOP`, `60 FPS Native`).
+2. **Sequential Event Timing (% Keyframe Sequence)**:
+   - Synchronize all elements to a unified 12-second loop:
+     - `0s ~ 4s (Scene 1)`: User prompt appears (`anim-chat-prompt`) ➔ AI thinking indicator pulses (`anim-chat-thinking`) ➔ code snippet outputs ➔ limitation warning flashes.
+     - `4.5s ~ 10s (Scene 2)`: Intent prompt bar glows neon ➔ File tree folders expand and files pop in (`anim-file-1`, `anim-file-2`) ➔ Terminal lines print sequentially ➔ Local server ready badge pops up.
+     - `11.5s ~ 12s (Scene 3)`: Smooth fade-out reset to seamlessly restart loop.
+3. **Chat Messenger Alignment**:
+   - Align User messages to the **Right (`flex justify-end`)** with blue-accented bubbles.
+   - Align AI responses to the **Left (`flex justify-start`)** with dark/slate borders and code blocks.
+
+### Pattern 3.6: High-Impact Engineering Infographic Metaphors
+When explaining abstract architectural and engineering trade-offs, use concrete physical metaphors:
+- **The Vibe Iceberg**: Waterline separating the 10% visible surface (User prompt, 3-minute demo, shiny UI) from the 90% submerged engineering reality (State sync, DB transactions, RLS security, token explosions, context drift).
+- **BaaS Lego Block Stream**: 4 modular pre-built blocks (Vercel, Clerk/Auth, Supabase DB, Stripe) connected by thin AI agent "Glue Code" instead of fragile scratch monolithic backends.
+- **Compiler Closed-Loop vs Dynamic Broken Loop**: Python's runtime crash leading to hallucinations vs TypeScript/Rust compiler error feedback leading to deterministic one-shot self-healing.
+- **Exploration Tax Token Bar**: Visualizing that 70% of tokens are wasted on file discovery before Prompt Caching slashes 90% of costs.
+
 ---
 
 ## 4. Historical Knowledge Milestones (2022 ~ 2026 Reference)

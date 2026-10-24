@@ -1,97 +1,178 @@
 <section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (1) 6대 대비표">
-  <div class="mb-2">
+  <div class="mb-1.5">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
     <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : 한눈에 보는 6대 착각과 프로덕션 현실</h2>
-    <p class="text-xs text-slate-300 mt-1">
+    <p class="text-xs text-slate-300 mt-0.5">
       "말만 하면 1시간 만에 SaaS가 완성된다"는 대중적 환상과, 현장 엔지니어가 마주하는 참혹한 프로덕션 현실의 대비:
     </p>
   </div>
 
-  <!-- 6-Dimension Contrast Matrix Table -->
-  <div class="bento-tile p-3 border border-slate-800 bg-slate-950/90 overflow-hidden flex-1 flex flex-col justify-between my-auto">
-    <table class="w-full text-left border-collapse">
-      <thead>
-        <tr class="border-b border-slate-800 text-[11px] font-mono">
-          <th class="py-1.5 px-3 text-slate-400 w-[14%] uppercase">핵심 차원</th>
-          <th class="py-1.5 px-3 text-amber-300 w-[43%] bg-amber-950/30 rounded-l border-l border-amber-800/40">
-            <span class="font-bold">대중이 꿈꾸는 이상 (The Illusion)</span>
-          </th>
-          <th class="py-1.5 px-3 text-rose-300 w-[43%] bg-rose-950/30 rounded-r border-l border-rose-800/40">
-            <span class="font-bold">프로덕션 현장이 마주하는 현실 (The Reality)</span>
-          </th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-slate-800/50 font-mono text-[10.5px]">
-        <!-- Row 1 -->
-        <tr class="hover:bg-slate-900/40 transition-colors">
-          <td class="py-2 px-3 font-bold text-sky-400">1. 개발 방식</td>
-          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
-            말 몇 마디, 자연어 프롬프트만으로 1시간 만에 SaaS·게임 완성
-          </td>
-          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
-            파일 20개 넘어가면 AI가 기억을 잃고 <strong class="text-rose-400 font-mono">환각·컨텍스트 오염(Context Drift)</strong> 발생
-          </td>
-        </tr>
-        <!-- Row 2 -->
-        <tr class="hover:bg-slate-900/40 transition-colors">
-          <td class="py-2 px-3 font-bold text-sky-400">2. 백엔드 구축</td>
-          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
-            "DB와 로그인 서버 전부 짜줘" 하면 완벽한 백엔드가 생성됨
-          </td>
-          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
-            바닥부터 짜면 설계 파탄. <strong class="text-emerald-300 font-mono">BaaS(Supabase, Clerk, Vercel)</strong>를 레고처럼 연결해야 작동
-          </td>
-        </tr>
-        <!-- Row 3 -->
-        <tr class="hover:bg-slate-900/40 transition-colors">
-          <td class="py-2 px-3 font-bold text-sky-400">3. 언어 선택</td>
-          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
-            AI가 가장 잘 아는 언어니까 당연히 <strong class="text-amber-300">Python</strong>이 최고
-          </td>
-          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
-            동적 타입 런타임 에러 지옥. 컴파일러가 자가 수정 루프를 주는 <strong class="text-sky-300 font-mono">TypeScript/Rust</strong>가 압도적
-          </td>
-        </tr>
-        <!-- Row 4 -->
-        <tr class="hover:bg-slate-900/40 transition-colors">
-          <td class="py-2 px-3 font-bold text-sky-400">4. 비용 / 지연</td>
-          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
-            월 $20 구독료면 앱을 무제한 찍어내는 초저비용 개발
-          </td>
-          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
-            무차별 탐색과 컨텍스트 비대화로 <strong class="text-amber-400 font-mono">하루 $50~100, 월 $1,000+ 요금 폭탄(Tokenpocalypse)</strong>
-          </td>
-        </tr>
-        <!-- Row 5 -->
-        <tr class="hover:bg-slate-900/40 transition-colors">
-          <td class="py-2 px-3 font-bold text-sky-400">5. 보안 / 운영</td>
-          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
-            AI가 알아서 안전하고 견고한 프로덕션을 만들어 줌
-          </td>
-          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
-            에러를 끄려다 <strong class="text-red-400 font-mono">Supabase RLS를 다 열어버려(USING true)</strong> 전 고객 DB 전면 유출
-          </td>
-        </tr>
-        <!-- Row 6 -->
-        <tr class="hover:bg-slate-900/40 transition-colors">
-          <td class="py-2 px-3 font-bold text-sky-400">6. 작업 흐름</td>
-          <td class="py-2 px-3 text-slate-300 bg-amber-950/10">
-            단일 채팅창 하나에 기획부터 배포까지 한 번에 요청
-          </td>
-          <td class="py-2 px-3 text-rose-200 bg-rose-950/10 font-sans">
-            직렬 병목 심화. <strong class="text-purple-300 font-mono">Git Worktree</strong>로 모듈을 쪼개 다중 에이전트 병렬화 필수
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <!-- Main Layout: 6-Dimension Table (Left 7.5) + Iceberg Infographic (Right 4.5) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-auto">
+    <!-- Left: 6-Dimension Contrast Matrix Table -->
+    <div class="col-span-8 bento-tile p-2.5 border border-slate-800 bg-slate-950/90 flex flex-col justify-between">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b border-slate-800 text-[10.5px] font-mono">
+            <th class="py-1 px-2 text-slate-400 w-[14%] uppercase">핵심 차원</th>
+            <th class="py-1 px-2 text-amber-300 w-[43%] bg-amber-950/30 rounded-l border-l border-amber-800/40 font-bold">
+              대중이 꿈꾸는 이상 (The Illusion)
+            </th>
+            <th class="py-1 px-2 text-rose-300 w-[43%] bg-rose-950/30 rounded-r border-l border-rose-800/40 font-bold">
+              프로덕션 현장의 현실 (The Reality)
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800/50 font-mono text-[9.5px]">
+          <!-- Row 1 -->
+          <tr class="hover:bg-slate-900/40 transition-colors">
+            <td class="py-1.5 px-2 font-bold text-sky-400">1. 개발 방식</td>
+            <td class="py-1.5 px-2 text-slate-300 bg-amber-950/10 font-sans">
+              말 몇 마디로 1시간 만에 SaaS·게임 완성
+            </td>
+            <td class="py-1.5 px-2 text-rose-200 bg-rose-950/10 font-sans">
+              파일 20개 넘어가면 AI 기억 상실 &amp; <strong class="text-rose-400 font-mono">컨텍스트 표류</strong> 발생
+            </td>
+          </tr>
+          <!-- Row 2 -->
+          <tr class="hover:bg-slate-900/40 transition-colors">
+            <td class="py-1.5 px-2 font-bold text-sky-400">2. 백엔드 구축</td>
+            <td class="py-1.5 px-2 text-slate-300 bg-amber-950/10 font-sans">
+              "DB와 로그인 서버 전부 짜줘" 하면 완성
+            </td>
+            <td class="py-1.5 px-2 text-rose-200 bg-rose-950/10 font-sans">
+              바닥부터 짜면 설계 파탄. <strong class="text-emerald-300 font-mono">BaaS 레고 조립</strong> 필수
+            </td>
+          </tr>
+          <!-- Row 3 -->
+          <tr class="hover:bg-slate-900/40 transition-colors">
+            <td class="py-1.5 px-2 font-bold text-sky-400">3. 언어 선택</td>
+            <td class="py-1.5 px-2 text-slate-300 bg-amber-950/10 font-sans">
+              AI가 가장 잘 아는 언어니까 <strong class="text-amber-300">Python</strong> 최고
+            </td>
+            <td class="py-1.5 px-2 text-rose-200 bg-rose-950/10 font-sans">
+              동적 런타임 에러 지옥. <strong class="text-sky-300 font-mono">TS/Rust 컴파일러</strong> 피드백 압도적
+            </td>
+          </tr>
+          <!-- Row 4 -->
+          <tr class="hover:bg-slate-900/40 transition-colors">
+            <td class="py-1.5 px-2 font-bold text-sky-400">4. 비용 / 지연</td>
+            <td class="py-1.5 px-2 text-slate-300 bg-amber-950/10 font-sans">
+              월 $20 구독료면 무제한 앱 개발
+            </td>
+            <td class="py-1.5 px-2 text-rose-200 bg-rose-950/10 font-sans">
+              무차별 탐색으로 <strong class="text-amber-400 font-mono">하루 $50~100 요금 폭탄(Tokenpocalypse)</strong>
+            </td>
+          </tr>
+          <!-- Row 5 -->
+          <tr class="hover:bg-slate-900/40 transition-colors">
+            <td class="py-1.5 px-2 font-bold text-sky-400">5. 보안 / 운영</td>
+            <td class="py-1.5 px-2 text-slate-300 bg-amber-950/10 font-sans">
+              AI가 안전한 프로덕션을 자동 구축
+            </td>
+            <td class="py-1.5 px-2 text-rose-200 bg-rose-950/10 font-sans">
+              에러 끄려다 <strong class="text-red-400 font-mono">RLS 전면 개방(USING true)</strong> 전 고객 DB 유출
+            </td>
+          </tr>
+          <!-- Row 6 -->
+          <tr class="hover:bg-slate-900/40 transition-colors">
+            <td class="py-1.5 px-2 font-bold text-sky-400">6. 작업 흐름</td>
+            <td class="py-1.5 px-2 text-slate-300 bg-amber-950/10 font-sans">
+              단일 채팅창에 기획부터 배포까지 요청
+            </td>
+            <td class="py-1.5 px-2 text-rose-200 bg-rose-950/10 font-sans">
+              직렬 병목. <strong class="text-purple-300 font-mono">Git Worktree</strong> 다중 에이전트 병렬화 필수
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-    <!-- Bottom Takeaway Banner -->
-    <div class="mt-2.5 p-2 bg-slate-900/90 rounded border border-slate-800 flex items-center justify-between text-xs font-mono">
-      <div class="flex items-center gap-2">
-        <span class="text-rose-400 font-bold">🚨 5분의 환상 vs 5일의 디버깅:</span>
-        <span class="text-slate-300">AI는 첫 80%의 토이를 순식간에 만듭니다. 그러나 <strong>나머지 20%의 프로덕션 엔지니어링</strong>이 성패를 가릅니다.</span>
+      <!-- Bottom Mini Takeaway -->
+      <div class="mt-1 p-1.5 bg-slate-900/80 rounded border border-slate-800 text-[10px] font-mono text-slate-300 flex items-center justify-between">
+        <span>💡 AI는 첫 80%의 토이를 5분에 만듭니다. 그러나 <strong>나머지 20%의 프로덕션 엔지니어링</strong>이 성패를 가릅니다.</span>
       </div>
-      <span class="text-sky-400 font-bold text-[11px] shrink-0">엔지니어링 챕터로의 연결 ➔</span>
     </div>
+
+    <!-- Right: The Vibe Coding Iceberg Infographic -->
+    <div class="col-span-4 bento-tile p-2.5 border border-slate-800 bg-slate-950/90 flex flex-col justify-between overflow-hidden relative">
+      <div class="text-[10.5px] font-mono font-bold text-sky-400 flex items-center justify-between border-b border-slate-800/80 pb-1 mb-1">
+        <span>THE VIBE ICEBERG</span>
+        <span class="text-[9px] text-amber-400 bg-amber-950/60 px-1.5 py-0.5 rounded">빙산의 일각</span>
+      </div>
+
+      <!-- SVG Iceberg Illustration -->
+      <svg viewBox="0 0 300 215" class="w-full h-auto max-h-[195px]" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="skyAirGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#0f172a"/>
+            <stop offset="100%" stop-color="#1e293b"/>
+          </linearGradient>
+          <linearGradient id="deepOceanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#0369a1" stop-opacity="0.6"/>
+            <stop offset="30%" stop-color="#0c4a6e" stop-opacity="0.85"/>
+            <stop offset="100%" stop-color="#021f35" stop-opacity="0.98"/>
+          </linearGradient>
+          <linearGradient id="icebergPeak" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#e0f2fe"/>
+            <stop offset="100%" stop-color="#7dd3fc"/>
+          </linearGradient>
+          <linearGradient id="icebergDeep" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.5"/>
+            <stop offset="60%" stop-color="#0284c7" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="#0369a1" stop-opacity="0.2"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Sky Background -->
+        <rect x="0" y="0" width="300" height="65" fill="url(#skyAirGrad)"/>
+
+        <!-- Ocean Background -->
+        <rect x="0" y="65" width="300" height="150" fill="url(#deepOceanGrad)"/>
+
+        <!-- Water Line -->
+        <line x1="0" y1="65" x2="300" y2="65" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="4 2"/>
+        <text x="290" y="61" text-anchor="end" fill="#38bdf8" font-size="7.5" font-family="JetBrains Mono" font-weight="bold">수면선 (Waterline)</text>
+
+        <!-- Submerged Massive Iceberg Body (90% Reality) -->
+        <polygon points="150,65 240,75 275,140 230,205 70,205 25,145 60,75" fill="url(#icebergDeep)" stroke="#38bdf8" stroke-width="1.2"/>
+
+        <!-- Above Water Tip (10% Illusion) -->
+        <polygon points="150,15 195,65 105,65" fill="url(#icebergPeak)" stroke="#bae6fd" stroke-width="1.4"/>
+        <text x="150" y="32" text-anchor="middle" fill="#0f172a" font-size="7.5" font-weight="black">자연어 1줄</text>
+        <text x="150" y="44" text-anchor="middle" fill="#0369a1" font-size="7" font-weight="bold">3분 SaaS 데모</text>
+        <text x="150" y="56" text-anchor="middle" fill="#0284c7" font-size="6.5">화려한 UI</text>
+
+        <!-- Illusion Tag -->
+        <rect x="10" y="10" width="76" height="15" rx="3" fill="#f59e0b" fill-opacity="0.2" stroke="#f59e0b" stroke-width="0.8"/>
+        <text x="48" y="20.5" text-anchor="middle" fill="#fef3c7" font-size="7" font-family="JetBrains Mono" font-weight="bold">대중의 환상 10%</text>
+
+        <!-- Reality Tag -->
+        <rect x="10" y="75" width="82" height="15" rx="3" fill="#ef4444" fill-opacity="0.25" stroke="#ef4444" stroke-width="0.8"/>
+        <text x="51" y="85.5" text-anchor="middle" fill="#fee2e2" font-size="7" font-family="JetBrains Mono" font-weight="bold">프로덕션 현실 90%</text>
+
+        <!-- Submerged Issues (Realistic Architecture Points) -->
+        <g fill="#e0f2fe" font-size="7.5" font-family="JetBrains Mono">
+          <text x="150" y="92" text-anchor="middle" fill="#fca5a5" font-weight="bold">🚨 상태 관리 (State Sync)</text>
+          <text x="150" y="112" text-anchor="middle" fill="#fca5a5" font-weight="bold">🚨 DB 트랜잭션 &amp; 커넥션 풀링</text>
+          <text x="150" y="132" text-anchor="middle" fill="#fca5a5" font-weight="bold">🚨 Supabase RLS 보안 격리</text>
+          <text x="150" y="152" text-anchor="middle" fill="#fca5a5" font-weight="bold">🚨 토큰 폭탄 &amp; Prompt Caching</text>
+          <text x="150" y="172" text-anchor="middle" fill="#fca5a5" font-weight="bold">🚨 네트워크 예외 &amp; 결제 웹훅</text>
+          <text x="150" y="192" text-anchor="middle" fill="#fca5a5" font-weight="bold">🚨 컨텍스트 표류 방지 (Worktree)</text>
+        </g>
+      </svg>
+
+      <div class="text-[9px] text-center font-mono text-slate-400 border-t border-slate-800/80 pt-1">
+        수면 아래를 통제하는 자만이 프로덕션을 런칭합니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Takeaway Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-1">
+    <div class="flex items-center gap-2">
+      <span class="text-rose-400 font-bold">🚨 Reality Check 핵심:</span>
+      <span class="text-slate-200">단순한 코딩 도구 소개가 아닌, <strong>진짜 서비스를 완성하기 위한 엔지니어링 생존 가이드</strong>입니다.</span>
+    </div>
+    <span class="text-sky-400 font-bold text-[11px]">Chapter 03 ~ 08 로드맵</span>
   </div>
 </section>
