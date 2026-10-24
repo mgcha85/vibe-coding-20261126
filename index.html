@@ -571,7 +571,24 @@
         </p>
 
         <!-- SVG ReAct Loop State Machine -->
-        <div class="bg-slate-950/80 border border-slate-800 rounded-lg p-1.5 flex items-center justify-center">
+        <div class="bg-slate-950/80 border border-slate-800 rounded-lg p-1.5 flex items-center justify-center relative overflow-hidden">
+          <style>
+            @keyframes reactConveyor {
+              to { stroke-dashoffset: -20; }
+            }
+            .animate-react-flow {
+              stroke-dasharray: 6 3;
+              animation: reactConveyor 1.2s linear infinite;
+            }
+            @keyframes centerGlowPulse {
+              0%, 100% { filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.4)); }
+              50% { filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.8)); }
+            }
+            .react-pulse-badge {
+              animation: centerGlowPulse 2.5s ease-in-out infinite;
+            }
+          </style>
+
           <svg viewBox="0 0 460 190" class="w-full h-auto max-h-[175px]" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <marker id="reactArrowSky" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
@@ -588,20 +605,40 @@
               </marker>
             </defs>
 
-            <!-- Arcs Connecting 4 Nodes -->
+            <!-- Arcs Connecting 4 Nodes (With Conveyor Dash Animation) -->
             <!-- 1. Reason -> Act -->
-            <path d="M 290 28 C 340 28, 360 45, 370 65" fill="none" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#reactArrowSky)"/>
+            <path d="M 290 28 C 340 28, 360 45, 370 65" fill="none" stroke="#38bdf8" stroke-width="2" class="animate-react-flow" marker-end="url(#reactArrowSky)"/>
             <!-- 2. Act -> Environment -->
-            <path d="M 370 105 C 370 125, 340 145, 290 155" fill="none" stroke="#818cf8" stroke-width="1.8" marker-end="url(#reactArrowIndigo)"/>
+            <path d="M 370 105 C 370 125, 340 145, 290 155" fill="none" stroke="#818cf8" stroke-width="2" class="animate-react-flow" marker-end="url(#reactArrowIndigo)"/>
             <!-- 3. Environment -> Observe -->
-            <path d="M 170 155 C 120 145, 90 125, 90 105" fill="none" stroke="#34d399" stroke-width="1.8" marker-end="url(#reactArrowGreen)"/>
+            <path d="M 170 155 C 120 145, 90 125, 90 105" fill="none" stroke="#34d399" stroke-width="2" class="animate-react-flow" marker-end="url(#reactArrowGreen)"/>
             <!-- 4. Observe -> Reason (Closing Loop) -->
-            <path d="M 90 65 C 90 45, 120 28, 170 28" fill="none" stroke="#fbbf24" stroke-width="1.8" marker-end="url(#reactArrowAmber)"/>
+            <path d="M 90 65 C 90 45, 120 28, 170 28" fill="none" stroke="#fbbf24" stroke-width="2" class="animate-react-flow" marker-end="url(#reactArrowAmber)"/>
+
+            <!-- Continuous Flowing Particles (Traveling Photons) -->
+            <!-- Particle 1: Reason -> Act -->
+            <circle r="3.5" fill="#38bdf8">
+              <animateMotion path="M 290 28 C 340 28, 360 45, 370 65" dur="1.2s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Particle 2: Act -> Environment -->
+            <circle r="3.5" fill="#818cf8">
+              <animateMotion path="M 370 105 C 370 125, 340 145, 290 155" dur="1.2s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Particle 3: Environment -> Observe -->
+            <circle r="3.5" fill="#34d399">
+              <animateMotion path="M 170 155 C 120 145, 90 125, 90 105" dur="1.2s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Particle 4: Observe -> Reason -->
+            <circle r="3.5" fill="#fbbf24">
+              <animateMotion path="M 90 65 C 90 45, 120 28, 170 28" dur="1.2s" repeatCount="indefinite"/>
+            </circle>
 
             <!-- Center Badge -->
-            <circle cx="230" cy="92" r="30" fill="#0f172a" stroke="#334155" stroke-width="1.2"/>
-            <text x="230" y="88" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="bold" font-family="JetBrains Mono">ReAct</text>
-            <text x="230" y="100" text-anchor="middle" fill="#94a3b8" font-size="7.5" font-family="JetBrains Mono">상태 전이 루프</text>
+            <g class="react-pulse-badge">
+              <circle cx="230" cy="92" r="30" fill="#0f172a" stroke="#38bdf8" stroke-width="1.4"/>
+              <text x="230" y="88" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="bold" font-family="JetBrains Mono">ReAct</text>
+              <text x="230" y="100" text-anchor="middle" fill="#94a3b8" font-size="7.5" font-family="JetBrains Mono">상태 전이 루프</text>
+            </g>
 
             <!-- Node 1: Reason (Top) -->
             <g transform="translate(170, 10)">
@@ -661,7 +698,24 @@
         </p>
 
         <!-- SVG Arc Diagram -->
-        <div class="bg-slate-950/80 border border-slate-800 rounded-lg p-2.5 flex items-center justify-center">
+        <div class="bg-slate-950/80 border border-slate-800 rounded-lg p-2.5 flex items-center justify-center relative overflow-hidden">
+          <style>
+            @keyframes autogptConveyor {
+              to { stroke-dashoffset: -20; }
+            }
+            .animate-autogpt-loop {
+              stroke-dasharray: 6 3;
+              animation: autogptConveyor 1.2s linear infinite;
+            }
+            @keyframes pulseGlowLoop {
+              0%, 100% { filter: drop-shadow(0 0 3px rgba(129, 140, 248, 0.4)); }
+              50% { filter: drop-shadow(0 0 10px rgba(129, 140, 248, 0.85)); }
+            }
+            .loop-pulse-badge {
+              animation: pulseGlowLoop 2.2s ease-in-out infinite;
+            }
+          </style>
+
           <svg viewBox="0 0 620 220" class="w-full h-auto max-h-[200px]" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="userGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -704,12 +758,18 @@
               <text x="47" y="73" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="JetBrains Mono">단 1회 프롬프트</text>
             </g>
 
-            <!-- Arc: User -> Agent (Prompt) -->
-            <path d="M 110 88 C 128 78, 142 78, 160 88" fill="none" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowSky)"/>
+            <!-- Arc: User -> Agent (Prompt) with Particle -->
+            <path d="M 110 88 C 128 78, 142 78, 160 88" fill="none" stroke="#38bdf8" stroke-width="2" class="animate-autogpt-loop" marker-end="url(#arrowSky)"/>
+            <circle r="3" fill="#38bdf8">
+              <animateMotion path="M 110 88 C 128 78, 142 78, 160 88" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
             <text x="135" y="74" text-anchor="middle" fill="#38bdf8" font-size="9" font-weight="bold">목표 전달</text>
 
-            <!-- Arc: Agent -> User (Result) -->
-            <path d="M 160 115 C 142 125, 128 125, 110 115" fill="none" stroke="#34d399" stroke-width="2" marker-end="url(#arrowEmerald)"/>
+            <!-- Arc: Agent -> User (Result) with Particle -->
+            <path d="M 160 115 C 142 125, 128 125, 110 115" fill="none" stroke="#34d399" stroke-width="2" class="animate-autogpt-loop" marker-end="url(#arrowEmerald)"/>
+            <circle r="3" fill="#34d399">
+              <animateMotion path="M 160 115 C 142 125, 128 125, 110 115" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
             <text x="135" y="137" text-anchor="middle" fill="#34d399" font-size="9" font-weight="bold">결과 반환</text>
 
             <!-- 2. Agent Node -->
@@ -721,8 +781,11 @@
               <text x="57" y="62" text-anchor="middle" fill="#bae6fd" font-size="8.5">유저 접수 & 위임</text>
             </g>
 
-            <!-- Arc: Agent to Loop -->
-            <path d="M 277 88 C 295 88, 305 55, 330 46" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-dasharray="3 3" marker-end="url(#arrowPurple)"/>
+            <!-- Arc: Agent to Loop with Particle -->
+            <path d="M 277 88 C 295 88, 305 55, 330 46" fill="none" stroke="#a78bfa" stroke-width="1.8" class="animate-autogpt-loop" marker-end="url(#arrowPurple)"/>
+            <circle r="2.5" fill="#c084fc">
+              <animateMotion path="M 277 88 C 295 88, 305 55, 330 46" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
 
             <!-- 4-Stage Loop Nodes (Clockwise) -->
             <!-- Step 1: Thought (Top) -->
@@ -734,8 +797,11 @@
               <text x="73" y="27" text-anchor="middle" fill="#a5b4fc" font-size="8">추론 & 상황 판단</text>
             </g>
 
-            <!-- Arc: Thought -> Plan -->
-            <path d="M 525 47 C 565 47, 575 75, 560 95" fill="none" stroke="#818cf8" stroke-width="2" marker-end="url(#arrowPurple)"/>
+            <!-- Arc: Thought -> Plan (Flowing Stream) -->
+            <path d="M 525 47 C 565 47, 575 75, 560 95" fill="none" stroke="#818cf8" stroke-width="2" class="animate-autogpt-loop" marker-end="url(#arrowPurple)"/>
+            <circle r="3" fill="#a78bfa">
+              <animateMotion path="M 525 47 C 565 47, 575 75, 560 95" dur="1s" repeatCount="indefinite"/>
+            </circle>
 
             <!-- Step 2: Plan (Right) -->
             <g transform="translate(485, 96)">
@@ -746,8 +812,11 @@
               <text x="65" y="27" text-anchor="middle" fill="#a5b4fc" font-size="8">하위 과제 분할</text>
             </g>
 
-            <!-- Arc: Plan -> Criticism -->
-            <path d="M 542 130 C 542 155, 510 165, 480 165" fill="none" stroke="#818cf8" stroke-width="2" marker-end="url(#arrowPurple)"/>
+            <!-- Arc: Plan -> Criticism (Flowing Stream) -->
+            <path d="M 542 130 C 542 155, 510 165, 480 165" fill="none" stroke="#818cf8" stroke-width="2" class="animate-autogpt-loop" marker-end="url(#arrowPurple)"/>
+            <circle r="3" fill="#818cf8">
+              <animateMotion path="M 542 130 C 542 155, 510 165, 480 165" dur="1s" repeatCount="indefinite"/>
+            </circle>
 
             <!-- Step 3: Criticism (Bottom) -->
             <g transform="translate(390, 150)">
@@ -758,8 +827,11 @@
               <text x="73" y="27" text-anchor="middle" fill="#fda4af" font-size="8">리스크 & 오류 자가점검</text>
             </g>
 
-            <!-- Arc: Criticism -> Action -->
-            <path d="M 390 165 C 345 165, 335 145, 335 130" fill="none" stroke="#818cf8" stroke-width="2" marker-end="url(#arrowPurple)"/>
+            <!-- Arc: Criticism -> Action (Flowing Stream) -->
+            <path d="M 390 165 C 345 165, 335 145, 335 130" fill="none" stroke="#818cf8" stroke-width="2" class="animate-autogpt-loop" marker-end="url(#arrowPurple)"/>
+            <circle r="3" fill="#fb7185">
+              <animateMotion path="M 390 165 C 345 165, 335 145, 335 130" dur="1s" repeatCount="indefinite"/>
+            </circle>
 
             <!-- Step 4: Action (Left) -->
             <g transform="translate(315, 96)">
@@ -770,11 +842,14 @@
               <text x="65" y="27" text-anchor="middle" fill="#7dd3fc" font-size="8">도구/쉘 자율 실행</text>
             </g>
 
-            <!-- Arc: Action -> Thought (Closing Loop) -->
-            <path d="M 365 96 C 365 70, 375 55, 390 47" fill="none" stroke="#818cf8" stroke-width="2" marker-end="url(#arrowPurple)"/>
+            <!-- Arc: Action -> Thought (Closing Flowing Loop) -->
+            <path d="M 365 96 C 365 70, 375 55, 390 47" fill="none" stroke="#818cf8" stroke-width="2" class="animate-autogpt-loop" marker-end="url(#arrowPurple)"/>
+            <circle r="3" fill="#38bdf8">
+              <animateMotion path="M 365 96 C 365 70, 375 55, 390 47" dur="1s" repeatCount="indefinite"/>
+            </circle>
 
             <!-- Center Badge of the Loop -->
-            <g transform="translate(422, 90)">
+            <g transform="translate(422, 90)" class="loop-pulse-badge">
               <rect width="70" height="34" rx="17" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
               <text x="35" y="16" text-anchor="middle" fill="#38bdf8" font-size="8.5" font-weight="bold">스스로</text>
               <text x="35" y="26" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="JetBrains Mono">Multi-turn</text>
