@@ -2873,55 +2873,283 @@
 </section>
 
       <!-- [COMPONENT] 02-essence/09-competencies.html -->
-<section class="slide" data-title="2.5 4대 핵심 역량">
-  <div class="mb-4">
+<section class="slide flex flex-col justify-between" data-title="2.5 4대 핵심 역량">
+  <div class="mb-1.5">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
-    <h2 class="text-3xl font-black text-white">2.5 2026 바이브 코더의 4대 핵심 역량</h2>
+    <h2 class="text-3xl font-black text-white">2.5 2026 바이브 코더의 4대 핵심 역량 : 코더에서 '시스템 지휘자'로</h2>
+    <p class="text-xs text-slate-300 mt-0.5">
+      문법을 손으로 타이핑하던 시대는 끝났습니다. 이제 엔지니어는 <strong>관제탑에서 4대 가드레일을 쥐고 에이전트를 지휘</strong>합니다:
+    </p>
   </div>
-  <div class="grid grid-cols-2 gap-4 flex-1">
-    <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-sky-400">
-      <div>
-        <span class="text-xs font-mono text-sky-400 font-bold">01 / ARCHITECTURE</span>
-        <h3 class="text-base font-bold text-white mt-1 mb-2">아키텍처 문해력 (System Literacy)</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
-          어떤 컴포넌트가 프론트에 있어야 하고 어떤 로직이 백엔드/트랜잭션에 있어야 하는지 데이터 흐름과 의존성 관계를 꿰뚫어 보는 능력.
-        </p>
+
+  <style>
+    @keyframes radarSweep {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .animate-radar {
+      animation: radarSweep 6s linear infinite;
+      transform-origin: center;
+    }
+    @keyframes coreGlow {
+      0%, 100% { filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.4)); }
+      50% { filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.8)); }
+    }
+    .cockpit-glow {
+      animation: coreGlow 3s ease-in-out infinite;
+    }
+    @keyframes loopFlowDash {
+      to { stroke-dashoffset: -16; }
+    }
+    .flow-dash {
+      stroke-dasharray: 4 3;
+      animation: loopFlowDash 1.2s linear infinite;
+    }
+  </style>
+
+  <!-- Central Cockpit Hub Layout (Left 5 + Center 2 + Right 5) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-auto">
+    <!-- LEFT COLUMN: 01. Architecture & 03. Precision (5 cols) -->
+    <div class="col-span-5 flex flex-col justify-between gap-2.5">
+      <!-- 01. Architecture Literacy Card -->
+      <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-sky-400 bg-slate-950/90 shadow-lg">
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[10px] font-mono text-sky-400 font-bold uppercase tracking-wider">01 / SYSTEM LITERACY</span>
+            <span class="text-[9px] font-mono text-sky-300 bg-sky-950/80 px-1.5 py-0.5 rounded border border-sky-800/50">구조 투시경</span>
+          </div>
+          <h3 class="text-sm font-bold text-white mb-1">아키텍처 문해력 (System Architecture)</h3>
+          
+          <!-- Mini SVG: Pipeline X-Ray -->
+          <div class="bg-slate-900/90 rounded border border-slate-800 p-1.5 my-1.5">
+            <svg viewBox="0 0 280 40" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+              <!-- Pipeline Boxes -->
+              <rect x="5" y="8" width="60" height="24" rx="4" fill="#0369a1" fill-opacity="0.4" stroke="#38bdf8" stroke-width="1"/>
+              <text x="35" y="23" text-anchor="middle" fill="#e0f2fe" font-size="7" font-family="JetBrains Mono" font-weight="bold">Client (UI)</text>
+
+              <line x1="65" y1="20" x2="105" y2="20" stroke="#38bdf8" stroke-width="1.5" class="flow-dash"/>
+
+              <rect x="105" y="8" width="70" height="24" rx="4" fill="#1e1b4b" stroke="#818cf8" stroke-width="1"/>
+              <text x="140" y="23" text-anchor="middle" fill="#e0e7ff" font-size="7" font-family="JetBrains Mono" font-weight="bold">Edge / Server</text>
+
+              <line x1="175" y1="20" x2="215" y2="20" stroke="#34d399" stroke-width="1.5" class="flow-dash"/>
+
+              <rect x="215" y="8" width="60" height="24" rx="4" fill="#064e3b" fill-opacity="0.5" stroke="#34d399" stroke-width="1"/>
+              <text x="245" y="23" text-anchor="middle" fill="#d1fae5" font-size="7" font-family="JetBrains Mono" font-weight="bold">Postgres RLS</text>
+            </svg>
+            <div class="text-[8px] text-center font-mono text-slate-400 mt-0.5">
+              프론트 ⇄ 백엔드 ⇄ DB 트랜잭션 데이터 흐름의 의존 관계 직관 파악
+            </div>
+          </div>
+
+          <p class="text-[10.5px] text-slate-300 leading-snug">
+            어떤 연산이 프론트에 있고 어떤 로직이 백엔드 트랜잭션에 있어야 하는지 <strong>데이터 흐름과 의존성</strong>을 꿰뚫어 보는 역량.
+          </p>
+        </div>
+        <div class="text-[9.5px] text-sky-300 font-mono border-t border-slate-800/80 pt-1 mt-1">
+          ✓ 신택스 암기보다 시스템 구조 설계 능력이 우선
+        </div>
       </div>
-      <div class="text-[10px] text-slate-400 font-mono">신택스 암기보다 구조 설계 능력이 우선</div>
+
+      <!-- 03. Specification Precision Card -->
+      <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-purple-400 bg-slate-950/90 shadow-lg">
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[10px] font-mono text-purple-400 font-bold uppercase tracking-wider">03 / AMBIGUITY ELIMINATION</span>
+            <span class="text-[9px] font-mono text-purple-300 bg-purple-950/80 px-1.5 py-0.5 rounded border border-purple-800/50">정밀 조준경</span>
+          </div>
+          <h3 class="text-sm font-bold text-white mb-1">명세 정밀도 (Ambiguity Elimination)</h3>
+
+          <!-- Mini SVG: Ambiguity to Precision Filter -->
+          <div class="bg-slate-900/90 rounded border border-slate-800 p-1.5 my-1.5">
+            <svg viewBox="0 0 280 40" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" y="8" width="75" height="24" rx="3" fill="#450a0a" stroke="#ef4444" stroke-width="0.8"/>
+              <text x="42" y="19" text-anchor="middle" fill="#fca5a5" font-size="6.5">"대충 예쁘게 해줘"</text>
+              <text x="42" y="27" text-anchor="middle" fill="#f87171" font-size="5.5" font-family="JetBrains Mono">모호성 80% (환각 ❌)</text>
+
+              <line x1="80" y1="20" x2="115" y2="20" stroke="#a855f7" stroke-width="1.5" class="flow-dash"/>
+
+              <!-- Interface Filter Funnel -->
+              <polygon points="115,10 145,16 145,24 115,30" fill="#7e22ce" stroke="#c084fc" stroke-width="0.8"/>
+              <text x="130" y="22" text-anchor="middle" fill="#ffffff" font-size="5.5" font-weight="bold">필터</text>
+
+              <line x1="145" y1="20" x2="175" y2="20" stroke="#a855f7" stroke-width="1.5" class="flow-dash"/>
+
+              <rect x="175" y="8" width="100" height="24" rx="3" fill="#2e1065" stroke="#a855f7" stroke-width="0.8"/>
+              <text x="225" y="19" text-anchor="middle" fill="#f0abfc" font-size="6.5" font-family="JetBrains Mono" font-weight="bold">Payload Type &amp; Error 401</text>
+              <text x="225" y="27" text-anchor="middle" fill="#34d399" font-size="5.5" font-family="JetBrains Mono">환각 0% 수렴 🎯</text>
+            </svg>
+            <div class="text-[8px] text-center font-mono text-slate-400 mt-0.5">
+              입력 페이로드 타입, 반환 에러 코드, 엣지 케이스 조건을 모호함 없이 명시
+            </div>
+          </div>
+
+          <p class="text-[10.5px] text-slate-300 leading-snug">
+            막연한 자연어 잡담 대신, <strong>정밀한 인터페이스 스펙과 제약조건</strong>을 정의하여 AI 환각을 근본적으로 차단하는 소통력.
+          </p>
+        </div>
+        <div class="text-[9.5px] text-purple-300 font-mono border-t border-slate-800/80 pt-1 mt-1">
+          ✓ 모호함이 제거될수록 AI의 성공률은 100%로 수렴
+        </div>
+      </div>
     </div>
 
-    <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-indigo-400">
-      <div>
-        <span class="text-xs font-mono text-indigo-400 font-bold">02 / TESTING</span>
-        <h3 class="text-base font-bold text-white mt-1 mb-2">테스트 주도 검증력 (TDD Harness)</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
-          AI가 작성한 코드가 요구사항을 만족했는지 판별할 수 있는 자동화된 테스트 케이스를 먼저 정의하고 AI에게 피드백으로 밀어 넣는 역량.
-        </p>
+    <!-- CENTER COLUMN: Central Cockpit Command Hub (2 cols) -->
+    <div class="col-span-2 bento-tile p-2.5 border-2 border-indigo-500/60 bg-slate-950 flex flex-col items-center justify-between cockpit-glow relative overflow-hidden shadow-2xl">
+      <!-- Top Title -->
+      <div class="text-center">
+        <span class="text-[9px] font-mono text-indigo-300 bg-indigo-950/80 px-2 py-0.5 rounded border border-indigo-700/50 uppercase font-bold">
+          COMMAND COCKPIT
+        </span>
+        <div class="text-xs font-black text-white mt-1">관제탑 코어</div>
       </div>
-      <div class="text-[10px] text-indigo-300 font-mono">컴파일러와 단위 테스트를 에이전트 가이드로 활용</div>
+
+      <!-- Radar & Conductor SVG Illustration -->
+      <div class="relative w-full flex items-center justify-center my-auto">
+        <svg viewBox="0 0 140 140" class="w-full max-w-[125px] h-auto" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="radarCoreGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#818cf8" stop-opacity="0.4"/>
+              <stop offset="60%" stop-color="#4f46e5" stop-opacity="0.15"/>
+              <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Concentric Radar Rings -->
+          <circle cx="70" cy="70" r="62" fill="none" stroke="#4338ca" stroke-width="0.8" stroke-dasharray="2 3"/>
+          <circle cx="70" cy="70" r="46" fill="none" stroke="#6366f1" stroke-width="0.9"/>
+          <circle cx="70" cy="70" r="30" fill="url(#radarCoreGrad)" stroke="#818cf8" stroke-width="1.2"/>
+
+          <!-- Radar Crosshairs -->
+          <line x1="70" y1="8" x2="70" y2="132" stroke="#4f46e5" stroke-width="0.8" stroke-dasharray="3 3"/>
+          <line x1="8" y1="70" x2="132" y2="70" stroke="#4f46e5" stroke-width="0.8" stroke-dasharray="3 3"/>
+
+          <!-- Rotating Radar Sweep Line -->
+          <line x1="70" y1="70" x2="70" y2="12" stroke="#a855f7" stroke-width="2" class="animate-radar"/>
+
+          <!-- Center Conductor Icon -->
+          <circle cx="70" cy="70" r="16" fill="#1e1b4b" stroke="#c084fc" stroke-width="1.8"/>
+          <text x="70" y="74" text-anchor="middle" fill="#ffffff" font-size="12">🧠</text>
+
+          <!-- 4 Radiating Branch Arrows -->
+          <!-- ↖ 01 -->
+          <path d="M 54 54 L 20 20" stroke="#38bdf8" stroke-width="1.4" stroke-dasharray="2 2"/>
+          <!-- ↗ 02 -->
+          <path d="M 86 54 L 120 20" stroke="#818cf8" stroke-width="1.4" stroke-dasharray="2 2"/>
+          <!-- ↙ 03 -->
+          <path d="M 54 86 L 20 120" stroke="#c084fc" stroke-width="1.4" stroke-dasharray="2 2"/>
+          <!-- ↘ 04 -->
+          <path d="M 86 86 L 120 120" stroke="#34d399" stroke-width="1.4" stroke-dasharray="2 2"/>
+        </svg>
+      </div>
+
+      <!-- Core Label & Takeaway -->
+      <div class="text-center space-y-1">
+        <div class="text-[10.5px] font-black text-indigo-200">인간 시스템 지휘자</div>
+        <div class="text-[8.5px] font-mono text-slate-400 leading-tight">
+          신택스 타이피스트에서<br>
+          <strong class="text-sky-300">4대 시스템 총괄 사령관</strong>으로
+        </div>
+      </div>
     </div>
 
-    <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-purple-400">
-      <div>
-        <span class="text-xs font-mono text-purple-400 font-bold">03 / PRECISION</span>
-        <h3 class="text-base font-bold text-white mt-1 mb-2">명세 정밀도 (Ambiguity Elimination)</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
-          "적당히 예쁘게 만들어줘" 대신, 입력 페이로드 타입, 반환 에러 코드, 엣지 케이스 처리 조건을 모호함 없이 명시하는 커뮤니케이션.
-        </p>
-      </div>
-      <div class="text-[10px] text-slate-400 font-mono">모호함이 제거될수록 AI 환각은 0으로 수렴</div>
-    </div>
+    <!-- RIGHT COLUMN: 02. Testing & 04. Guardrails (5 cols) -->
+    <div class="col-span-5 flex flex-col justify-between gap-2.5">
+      <!-- 02. TDD Harness Card -->
+      <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-indigo-400 bg-slate-950/90 shadow-lg">
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[10px] font-mono text-indigo-400 font-bold uppercase tracking-wider">02 / TDD HARNESS</span>
+            <span class="text-[9px] font-mono text-indigo-300 bg-indigo-950/80 px-1.5 py-0.5 rounded border border-indigo-800/50">자가치유 내비</span>
+          </div>
+          <h3 class="text-sm font-bold text-white mb-1">테스트 주도 검증력 (TDD Harness)</h3>
 
-    <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-emerald-400">
-      <div>
-        <span class="text-xs font-mono text-emerald-400 font-bold">04 / GUARDRAILS</span>
-        <h3 class="text-base font-bold text-white mt-1 mb-2">보안 가드레일 (Security Auditing)</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
-          RLS 누수 여부 확인, Secret Key 환경변수 분리, Typosquatting 악성 패키지 유입 방어 등 프로덕션 레벨의 안정성 검증.
-        </p>
+          <!-- Mini SVG: Red-Green Closed Loop -->
+          <div class="bg-slate-900/90 rounded border border-slate-800 p-1.5 my-1.5">
+            <svg viewBox="0 0 280 40" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" y="8" width="75" height="24" rx="3" fill="#450a0a" stroke="#ef4444" stroke-width="0.8"/>
+              <text x="42" y="19" text-anchor="middle" fill="#fca5a5" font-size="6.5" font-family="JetBrains Mono" font-weight="bold">1. Red Test Fail</text>
+              <text x="42" y="27" text-anchor="middle" fill="#fca5a5" font-size="5.5">기대 결과 명시</text>
+
+              <line x1="80" y1="20" x2="105" y2="20" stroke="#818cf8" stroke-width="1.5" class="flow-dash"/>
+
+              <rect x="105" y="8" width="80" height="24" rx="3" fill="#1e1b4b" stroke="#818cf8" stroke-width="0.8"/>
+              <text x="145" y="19" text-anchor="middle" fill="#e0e7ff" font-size="6.5" font-family="JetBrains Mono" font-weight="bold">2. Agent Feedback</text>
+              <text x="145" y="27" text-anchor="middle" fill="#c7d2fe" font-size="5.5">Stderr 즉시 주입</text>
+
+              <line x1="185" y1="20" x2="210" y2="20" stroke="#34d399" stroke-width="1.5" class="flow-dash"/>
+
+              <rect x="210" y="8" width="65" height="24" rx="3" fill="#064e3b" stroke="#10b981" stroke-width="0.8"/>
+              <text x="242" y="19" text-anchor="middle" fill="#6ee7b7" font-size="6.5" font-family="JetBrains Mono" font-weight="bold">3. Green Pass</text>
+              <text x="242" y="27" text-anchor="middle" fill="#a7f3d0" font-size="5.5">원샷 자가치유 ✨</text>
+            </svg>
+            <div class="text-[8px] text-center font-mono text-slate-400 mt-0.5">
+              실패하는 테스트를 먼저 작성하여 에이전트에게 최고의 수정 나침반 제공
+            </div>
+          </div>
+
+          <p class="text-[10.5px] text-slate-300 leading-snug">
+            AI 코드가 요구사항을 충족했는지 판별하는 <strong>자동화된 테스트 케이스</strong>를 먼저 정의하고 에이전트에게 피드백으로 밀어 넣는 역량.
+          </p>
+        </div>
+        <div class="text-[9.5px] text-indigo-300 font-mono border-t border-slate-800/80 pt-1 mt-1">
+          ✓ 컴파일러와 단위 테스트를 에이전트 가이드로 활용
+        </div>
       </div>
-      <div class="text-[10px] text-emerald-400 font-mono">개발자의 책임은 '완성'이 아닌 '안전'에 있다</div>
+
+      <!-- 04. Security Guardrails Card -->
+      <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-950/90 shadow-lg">
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[10px] font-mono text-emerald-400 font-bold uppercase tracking-wider">04 / SECURITY AUDITING</span>
+            <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-800/50">안전 방패</span>
+          </div>
+          <h3 class="text-sm font-bold text-white mb-1">보안 가드레일 (Zero-Trust Security)</h3>
+
+          <!-- Mini SVG: Zero Trust Shield & Gate -->
+          <div class="bg-slate-900/90 rounded border border-slate-800 p-1.5 my-1.5">
+            <svg viewBox="0 0 280 40" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" y="8" width="85" height="24" rx="3" fill="#334155" stroke="#64748b" stroke-width="0.8"/>
+              <text x="47" y="19" text-anchor="middle" fill="#f1f5f9" font-size="6.5">AI 생성 패치/SQL</text>
+              <text x="47" y="27" text-anchor="middle" fill="#cbd5e1" font-size="5.5">검증되지 않은 코드</text>
+
+              <line x1="90" y1="20" x2="120" y2="20" stroke="#10b981" stroke-width="1.5" class="flow-dash"/>
+
+              <!-- Shield Gate -->
+              <g transform="translate(120, 6)">
+                <polygon points="18,0 36,6 36,20 18,28 0,20 0,6" fill="#064e3b" stroke="#34d399" stroke-width="1.2"/>
+                <text x="18" y="17" text-anchor="middle" fill="#ffffff" font-size="10">🛡️</text>
+              </g>
+
+              <line x1="160" y1="20" x2="190" y2="20" stroke="#10b981" stroke-width="1.5" class="flow-dash"/>
+
+              <rect x="190" y="8" width="85" height="24" rx="3" fill="#022c22" stroke="#10b981" stroke-width="0.8"/>
+              <text x="232" y="19" text-anchor="middle" fill="#6ee7b7" font-size="6.5" font-family="JetBrains Mono" font-weight="bold">Zero-Trust Verified</text>
+              <text x="232" y="27" text-anchor="middle" fill="#34d399" font-size="5.5" font-family="JetBrains Mono">RLS &amp; Secret 격리 ✅</text>
+            </svg>
+            <div class="text-[8px] text-center font-mono text-slate-400 mt-0.5">
+              RLS 누수 차단, 시크릿 키 격리, 타이포스쿼팅 악성 패키지 유입 방어
+            </div>
+          </div>
+
+          <p class="text-[10.5px] text-slate-300 leading-snug">
+            Supabase RLS 누수 방어, Secret Key 격리, 공급망 보안 등 <strong>프로덕션 레벨의 무결성</strong>을 제로 트러스트 관점에서 검증.
+          </p>
+        </div>
+        <div class="text-[9.5px] text-emerald-300 font-mono border-t border-slate-800/80 pt-1 mt-1">
+          ✓ 개발자의 최종 책임은 '동작'이 아닌 '안전'에 있다
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Bottom Takeaway Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-1">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">💡 2026 패러다임 전환:</span>
+      <span class="text-slate-200">신택스를 외워 타이핑하던 엔지니어는 도태됩니다. <strong>관제탑에서 4대 역량으로 AI를 지휘하는 아키텍트</strong>만이 살아남습니다.</span>
+    </div>
+    <span class="text-purple-400 font-bold text-[11px]">Chapter 02 결론</span>
   </div>
 </section>
 
