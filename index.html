@@ -1361,48 +1361,158 @@
 </section>
 
       <!-- [COMPONENT] 02-essence/02-karpathy.html -->
-<section class="slide" data-title="2.1 Karpathy의 선언">
-  <div class="mb-4">
+<section class="slide flex flex-col justify-between" data-title="2.1 Karpathy와 프로젝트 합성">
+  <div class="mb-2">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
-    <h2 class="text-3xl font-black text-white">2.1 바이브 코딩의 정의와 패러다임 전환</h2>
+    <h2 class="text-3xl font-black text-white">2.1 바이브 코딩 : 챗봇 스니펫에서 '자율 프로젝트 합성'으로</h2>
+    <p class="text-xs text-slate-300 mt-0.5">
+      함수 하나를 물어보고 손수 복사-붙여넣기하던 챗봇의 시대를 지나, 프롬프트 하나로 <strong>전체 프로젝트를 자율 구축</strong>하는 패러다임 전환:
+    </p>
   </div>
-  <div class="grid grid-cols-2 gap-6 flex-1 items-stretch">
-    <div class="bento-tile p-6 flex flex-col justify-between">
-      <div>
-        <span class="text-xs font-mono text-sky-400 font-bold block mb-2">DEFINITION</span>
-        <h3 class="text-xl font-bold text-white mb-3">Karpathy가 말한 'Vibe Coding'</h3>
-        <p class="text-sm text-slate-300 mb-4 leading-relaxed">
-          "코드를 직접 타이핑하거나 줄 단위 문법을 외우지 않고, 자연어로 의도(Vibe)를 전달한 뒤 생성된 결과물을 감상하고 조율하는 코딩 스타일"
-        </p>
-        <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-300 italic">
-          "There is a new kind of coding I call 'vibe coding', where I fully give in to the vibes, embrace every impatience, and forget that the code even exists."
-          <span class="block text-right text-sky-400 mt-2 font-mono font-semibold">— Andrej Karpathy</span>
+
+  <!-- HyperFrames-style Living Dual Window Mockup Stage -->
+  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch my-auto">
+    <!-- Window 1: 2023 ChatGPT Snippet Interface -->
+    <div class="bento-tile p-0 rounded-xl overflow-hidden border border-slate-800 flex flex-col justify-between bg-slate-950/90 shadow-2xl">
+      <!-- Window Title Bar -->
+      <div class="bg-slate-900/90 px-3 py-2 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-1.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+          <span class="text-[11px] font-mono text-slate-400 ml-2">ChatGPT (2023) - Web Chat UI</span>
+        </div>
+        <span class="text-[10px] font-mono text-amber-400 bg-amber-950/50 px-2 py-0.5 rounded border border-amber-800/40">단편적 함수 복붙</span>
+      </div>
+
+      <!-- ChatGPT Chat Area -->
+      <div class="p-3.5 space-y-2.5 text-xs flex-1 flex flex-col justify-between">
+        <div class="space-y-2">
+          <!-- User Bubble -->
+          <div class="flex items-start gap-2 bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+            <span class="w-5 h-5 rounded-full bg-sky-600 text-white font-bold flex items-center justify-center text-[10px] shrink-0 font-mono">U</span>
+            <div class="text-slate-200 text-[11px]">
+              "사용자 로그인 인증이랑 Stripe 결제 연동하는 함수 코드 짜줘."
+            </div>
+          </div>
+
+          <!-- ChatGPT Reply Bubble -->
+          <div class="flex items-start gap-2 bg-slate-900/40 p-2.5 rounded-lg border border-slate-800/60">
+            <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-[10px] shrink-0 font-mono">AI</span>
+            <div class="space-y-1.5 flex-1 text-[11px]">
+              <p class="text-slate-400 text-[10.5px]">아래는 요청하신 Node.js 인증 및 결제 예제 함수 스니펫입니다:</p>
+              
+              <!-- Code Snippet Block -->
+              <div class="bg-slate-950 p-2.5 rounded border border-slate-800 font-mono text-[10px] text-slate-300 overflow-x-hidden leading-relaxed">
+                <div class="text-slate-500">// 1. 수동으로 bcrypt와 stripe를 설치하세요</div>
+                <div><span class="text-purple-400">async function</span> <span class="text-sky-300">handleLogin</span>(email, pw) {</div>
+                <div class="pl-3 text-slate-400">const user = await db.find(email);</div>
+                <div class="pl-3 text-slate-400">return bcrypt.compare(pw, user.hash);</div>
+                <div>}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reality Check Callout -->
+        <div class="p-2 bg-red-950/30 border border-red-900/50 rounded text-[10.5px] text-red-300 space-y-0.5">
+          <div class="font-bold flex items-center gap-1">
+            <span>⚠️ 2023의 한계 (인간의 수동 복붙 지옥)</span>
+          </div>
+          <div class="text-[10px] text-slate-400">
+            디렉토리 생성, 패키지 설치, 라우팅, DB 마이그레이션 등 <strong class="text-red-200">노동의 95%는 여전히 인간의 몫</strong>
+          </div>
         </div>
       </div>
-      <div class="text-[11px] text-slate-400 font-mono border-t border-slate-800 pt-3">
-        영어와 한국어가 새로운 프로그래밍 언어가 되었다
+
+      <!-- Window Footer -->
+      <div class="bg-slate-950 px-3 py-1.5 border-t border-slate-800 text-[10px] font-mono text-slate-500 flex justify-between">
+        <span>Context: Isolated Single Turn</span>
+        <span>Environment: None (No Tool)</span>
       </div>
     </div>
 
-    <div class="bento-tile p-6 flex flex-col justify-between">
-      <div>
-        <span class="text-xs font-mono text-sky-400 font-bold block mb-2">PARADIGM SHIFT</span>
-        <h3 class="text-xl font-bold text-white mb-3">How(명령형)에서 What(선언형)으로</h3>
-        <div class="space-y-3 text-xs">
-          <div class="p-3 bg-slate-800/80 rounded border border-slate-700">
-            <span class="text-slate-400 font-mono font-bold block mb-1">전통적 프로그래밍 (Imperative)</span>
-            메모리 할당, 반복문 인덱스, 예외 처리 등 '어떻게 구현할 것인가(How)'에 지적 노동의 80% 소모
-          </div>
-          <div class="p-3 bg-sky-950/40 border border-sky-800/50 rounded text-sky-100">
-            <span class="text-sky-300 font-mono font-bold block mb-1">바이브 코딩 (Intent & Declarative)</span>
-            도메인 규칙, 사용자 시나리오, 인터페이스 계약 등 '무엇을 만들 것인가(What)'에 집중
-          </div>
+    <!-- Window 2: 2026 VS Code / Vibe Coding Studio -->
+    <div class="bento-tile p-0 rounded-xl overflow-hidden border-2 border-sky-500/40 flex flex-col justify-between bg-slate-950 shadow-2xl relative">
+      <!-- Window Title Bar -->
+      <div class="bg-slate-900 px-3 py-2 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-1.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+          <span class="text-[11px] font-mono text-slate-300 ml-2 font-bold">VS Code · Vibe Coding Agent (2026)</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span class="text-[10px] font-mono text-emerald-400 font-bold">Agent Auto-Scaffolding</span>
         </div>
       </div>
-      <div class="text-[11px] text-sky-300 font-mono border-t border-slate-800 pt-3">
-        문법 암기의 종말과 '고수준 설계 문해력'의 부상
+
+      <!-- IDE Workspace Body -->
+      <div class="p-3 space-y-2 text-xs flex-1 flex flex-col justify-between">
+        <!-- Agent Intent Prompt Bar -->
+        <div class="bg-indigo-950/40 border border-indigo-700/60 rounded-lg p-2 flex items-center gap-2">
+          <span class="px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-mono text-[9.5px] font-bold shrink-0">INTENT</span>
+          <span class="text-[11px] text-white font-medium truncate">
+            "Supabase Auth + Stripe 결제 + SvelteKit 반응형 대시보드 프로젝트 완제품 빌드해줘"
+          </span>
+        </div>
+
+        <!-- Split View: File Tree + Auto Actions -->
+        <div class="grid grid-cols-12 gap-2 flex-1 items-stretch">
+          <!-- Left: Auto-generated Project Tree -->
+          <div class="col-span-5 bg-slate-900/90 rounded border border-slate-800 p-2 font-mono text-[10px] text-slate-300 space-y-1">
+            <div class="text-[9.5px] text-slate-500 font-bold uppercase mb-1">Explorer (Auto Scaffold)</div>
+            <div class="text-sky-300">📁 my-saas-app/</div>
+            <div class="pl-2.5 text-slate-400">├── 📁 src/routes/</div>
+            <div class="pl-5 text-emerald-300">├── 📄 +page.svelte <span class="text-[9px] text-emerald-400">✨</span></div>
+            <div class="pl-5 text-emerald-300">├── 📄 checkout/+server.ts</div>
+            <div class="pl-2.5 text-slate-400">├── 📁 lib/</div>
+            <div class="pl-5 text-emerald-300">├── 📄 supabaseClient.ts</div>
+            <div class="pl-5 text-emerald-300">└── 📄 stripeWebhook.ts</div>
+            <div class="pl-2.5 text-amber-300">├── 📄 supabase_rls.sql</div>
+            <div class="pl-2.5 text-slate-400">└── 📄 package.json</div>
+          </div>
+
+          <!-- Right: Autonomous Terminal & Gate Execution -->
+          <div class="col-span-7 bg-slate-950 rounded border border-slate-800 p-2 font-mono text-[10px] flex flex-col justify-between">
+            <div class="space-y-1">
+              <div class="text-[9px] text-slate-500 uppercase font-bold">Integrated Terminal (Runner)</div>
+              <div class="text-sky-400">$ uv run agent scaffold --preset=svelte-stripe</div>
+              <div class="text-slate-300 text-[9.5px] pl-2">✔ Scaffolding 14 project files... Done</div>
+              <div class="text-slate-300 text-[9.5px] pl-2">✔ Running 'npm install' dependencies... Done</div>
+              <div class="text-slate-300 text-[9.5px] pl-2">✔ Applying Supabase RLS migrations... Done</div>
+              <div class="text-emerald-400 text-[9.5px] pl-2 font-bold">✔ TypeScript check: 0 errors (Pass)</div>
+            </div>
+            <div class="p-1 bg-emerald-950/40 rounded border border-emerald-800/40 text-[9.5px] text-emerald-300 flex items-center justify-between mt-1">
+              <span>🚀 Local Server Ready</span>
+              <span class="text-slate-400">http://localhost:5173</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2026 Reality Callout -->
+        <div class="p-2 bg-sky-950/30 border border-sky-800/50 rounded text-[10.5px] text-sky-200">
+          <strong class="text-sky-300">⚡ 2026 패러다임:</strong>
+          단일 함수 작성을 넘어, 에이전트가 <strong>환경 구축·의존성 설치·파일 구조화·컴파일 검증까지 완결</strong>
+        </div>
+      </div>
+
+      <!-- Window Footer -->
+      <div class="bg-slate-900 px-3 py-1.5 border-t border-slate-800 text-[10px] font-mono text-slate-400 flex justify-between">
+        <span>Workspace: Multi-file Agent Session</span>
+        <span class="text-emerald-400">Outcome: Ready-to-run App</span>
       </div>
     </div>
+  </div>
+
+  <!-- Karpathy Quote Banner -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-1">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">💡 Andrej Karpathy (2025):</span>
+      <span class="text-slate-200 italic">"There is a new kind of coding where I fully give in to the vibes, and forget that the code even exists."</span>
+    </div>
+    <span class="text-purple-400 font-bold text-[11px]">함수 복붙 ➔ 자율 프로젝트 합성</span>
   </div>
 </section>
 
