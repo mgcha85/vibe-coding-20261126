@@ -1,5 +1,5 @@
 <section class="slide flex flex-col justify-between" data-title="2.1 Karpathy와 프로젝트 합성">
-  <div class="mb-2">
+  <div class="mb-1">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
     <h2 class="text-3xl font-black text-white">2.1 바이브 코딩 : 챗봇 스니펫에서 '자율 프로젝트 합성'으로</h2>
     <p class="text-xs text-slate-300 mt-0.5">
@@ -7,144 +7,330 @@
     </p>
   </div>
 
-  <!-- HyperFrames-style Living Dual Window Mockup Stage -->
-  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch my-auto">
-    <!-- Window 1: 2023 ChatGPT Snippet Interface -->
-    <div class="bento-tile p-0 rounded-xl overflow-hidden border border-slate-800 flex flex-col justify-between bg-slate-950/90 shadow-2xl">
-      <!-- Window Title Bar -->
-      <div class="bg-slate-900/90 px-3 py-2 border-b border-slate-800 flex items-center justify-between">
-        <div class="flex items-center gap-1.5">
-          <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
-          <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
-          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
-          <span class="text-[11px] font-mono text-slate-400 ml-2">ChatGPT (2023) - Web Chat UI</span>
-        </div>
-        <span class="text-[10px] font-mono text-amber-400 bg-amber-950/50 px-2 py-0.5 rounded border border-amber-800/40">단편적 함수 복붙</span>
+  <!-- HyperFrames-style Living Video Player Mockup Stage -->
+  <div class="bento-tile p-0 rounded-xl overflow-hidden border border-slate-700/80 bg-slate-950 flex flex-col my-auto shadow-2xl">
+    <style>
+      /* Master 12-second Video Loop Animations */
+      @keyframes scrubberMove {
+        0% { width: 0%; }
+        94% { width: 100%; }
+        98%, 100% { width: 100%; opacity: 0; }
+      }
+      .animate-scrubber {
+        animation: scrubberMove 12s linear infinite;
+      }
+
+      /* Window 1 (2023 ChatGPT) Sequence */
+      @keyframes chatPromptFade {
+        0%, 3% { opacity: 0; transform: translateY(4px); }
+        8%, 94% { opacity: 1; transform: translateY(0); }
+        97%, 100% { opacity: 0; }
+      }
+      .anim-chat-prompt {
+        animation: chatPromptFade 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+      }
+
+      @keyframes chatThinkingPulse {
+        0%, 14% { opacity: 0; display: none; }
+        17%, 26% { opacity: 1; display: flex; }
+        28%, 100% { opacity: 0; display: none; }
+      }
+      .anim-chat-thinking {
+        animation: chatThinkingPulse 12s ease-in-out infinite;
+      }
+
+      @keyframes chatCodePop {
+        0%, 27% { opacity: 0; transform: scale(0.97); }
+        31%, 94% { opacity: 1; transform: scale(1); }
+        97%, 100% { opacity: 0; }
+      }
+      .anim-chat-code {
+        animation: chatCodePop 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+      }
+
+      @keyframes chatWarnPulse {
+        0%, 35% { opacity: 0; transform: translateY(4px); }
+        39%, 94% { opacity: 1; transform: translateY(0); }
+        97%, 100% { opacity: 0; }
+      }
+      .anim-chat-warn {
+        animation: chatWarnPulse 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+      }
+
+      /* Window 2 (2026 VS Code) Sequence */
+      @keyframes ideIntentGlow {
+        0%, 38% { opacity: 0.35; border-color: rgba(99, 102, 241, 0.2); }
+        42%, 94% { opacity: 1; border-color: rgba(129, 140, 248, 0.9); box-shadow: 0 0 16px rgba(99, 102, 241, 0.45); }
+        97%, 100% { opacity: 0.35; }
+      }
+      .anim-ide-intent {
+        animation: ideIntentGlow 12s ease-in-out infinite;
+      }
+
+      @keyframes explorerPop {
+        0%, 43% { opacity: 0.3; }
+        47%, 94% { opacity: 1; }
+        97%, 100% { opacity: 0.3; }
+      }
+      .anim-explorer {
+        animation: explorerPop 12s ease-in-out infinite;
+      }
+
+      @keyframes fileItem1Anim {
+        0%, 46% { opacity: 0; transform: translateX(-5px); }
+        50%, 94% { opacity: 1; transform: translateX(0); }
+        97%, 100% { opacity: 0; }
+      }
+      .anim-file-1 {
+        animation: fileItem1Anim 12s ease-out infinite;
+      }
+
+      @keyframes fileItem2Anim {
+        0%, 51% { opacity: 0; transform: translateX(-5px); }
+        55%, 94% { opacity: 1; transform: translateX(0); }
+        97%, 100% { opacity: 0; }
+      }
+      .anim-file-2 {
+        animation: fileItem2Anim 12s ease-out infinite;
+      }
+
+      @keyframes fileItem3Anim {
+        0%, 56% { opacity: 0; transform: translateX(-5px); }
+        60%, 94% { opacity: 1; transform: translateX(0); }
+        97%, 100% { opacity: 0; }
+      }
+      .anim-file-3 {
+        animation: fileItem3Anim 12s ease-out infinite;
+      }
+
+      /* Terminal Logs Sequence */
+      @keyframes termLine1Anim {
+        0%, 50% { opacity: 0; transform: translateY(2px); }
+        53%, 94% { opacity: 1; transform: translateY(0); }
+        97%, 100% { opacity: 0; }
+      }
+      .anim-term-1 {
+        animation: termLine1Anim 12s ease-out infinite;
+      }
+
+      @keyframes termLine2Anim {
+        0%, 58% { opacity: 0; transform: translateY(2px); }
+        61%, 94% { opacity: 1; transform: translateY(0); }
+        97%, 100% { opacity: 0; }
+      }
+      .anim-term-2 {
+        animation: termLine2Anim 12s ease-out infinite;
+      }
+
+      @keyframes termLine3Anim {
+        0%, 66% { opacity: 0; transform: translateY(2px); }
+        69%, 94% { opacity: 1; transform: translateY(0); }
+        97%, 100% { opacity: 0; }
+      }
+      .anim-term-3 {
+        animation: termLine3Anim 12s ease-out infinite;
+      }
+
+      @keyframes termLine4Anim {
+        0%, 74% { opacity: 0; transform: translateY(2px); }
+        77%, 94% { opacity: 1; transform: translateY(0); }
+        97%, 100% { opacity: 0; }
+      }
+      .anim-term-4 {
+        animation: termLine4Anim 12s ease-out infinite;
+      }
+
+      @keyframes termLine5Anim {
+        0%, 82% { opacity: 0; transform: scale(0.97); }
+        85%, 94% { opacity: 1; transform: scale(1); }
+        97%, 100% { opacity: 0; }
+      }
+      .anim-term-5 {
+        animation: termLine5Anim 12s ease-out infinite;
+      }
+
+      @keyframes serverReadyPop {
+        0%, 86% { opacity: 0; transform: translateY(4px); }
+        89%, 94% { opacity: 1; transform: translateY(0); }
+        97%, 100% { opacity: 0; }
+      }
+      .anim-server-ready {
+        animation: serverReadyPop 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+      }
+
+      @keyframes ideCalloutPop {
+        0%, 88% { opacity: 0; transform: translateY(4px); }
+        91%, 94% { opacity: 1; transform: translateY(0); }
+        97%, 100% { opacity: 0; }
+      }
+      .anim-ide-callout {
+        animation: ideCalloutPop 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+      }
+    </style>
+
+    <!-- Video Player Header Controls -->
+    <div class="bg-slate-900/90 px-3.5 py-1.5 border-b border-slate-800 flex items-center justify-between text-[10.5px] font-mono">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
+        <span class="text-rose-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
+          <span>● REC</span>
+          <span class="text-slate-400 font-normal">| Live Scene Comparison (HyperFrames Motion Loop)</span>
+        </span>
       </div>
-
-      <!-- ChatGPT Chat Area -->
-      <div class="p-3.5 space-y-2.5 text-xs flex-1 flex flex-col justify-between">
-        <div class="space-y-2">
-          <!-- User Bubble -->
-          <div class="flex items-start gap-2 bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
-            <span class="w-5 h-5 rounded-full bg-sky-600 text-white font-bold flex items-center justify-center text-[10px] shrink-0 font-mono">U</span>
-            <div class="text-slate-200 text-[11px]">
-              "사용자 로그인 인증이랑 Stripe 결제 연동하는 함수 코드 짜줘."
-            </div>
-          </div>
-
-          <!-- ChatGPT Reply Bubble -->
-          <div class="flex items-start gap-2 bg-slate-900/40 p-2.5 rounded-lg border border-slate-800/60">
-            <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-[10px] shrink-0 font-mono">AI</span>
-            <div class="space-y-1.5 flex-1 text-[11px]">
-              <p class="text-slate-400 text-[10.5px]">아래는 요청하신 Node.js 인증 및 결제 예제 함수 스니펫입니다:</p>
-              
-              <!-- Code Snippet Block -->
-              <div class="bg-slate-950 p-2.5 rounded border border-slate-800 font-mono text-[10px] text-slate-300 overflow-x-hidden leading-relaxed">
-                <div class="text-slate-500">// 1. 수동으로 bcrypt와 stripe를 설치하세요</div>
-                <div><span class="text-purple-400">async function</span> <span class="text-sky-300">handleLogin</span>(email, pw) {</div>
-                <div class="pl-3 text-slate-400">const user = await db.find(email);</div>
-                <div class="pl-3 text-slate-400">return bcrypt.compare(pw, user.hash);</div>
-                <div>}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Reality Check Callout -->
-        <div class="p-2 bg-red-950/30 border border-red-900/50 rounded text-[10.5px] text-red-300 space-y-0.5">
-          <div class="font-bold flex items-center gap-1">
-            <span>⚠️ 2023의 한계 (인간의 수동 복붙 지옥)</span>
-          </div>
-          <div class="text-[10px] text-slate-400">
-            디렉토리 생성, 패키지 설치, 라우팅, DB 마이그레이션 등 <strong class="text-red-200">노동의 95%는 여전히 인간의 몫</strong>
-          </div>
-        </div>
-      </div>
-
-      <!-- Window Footer -->
-      <div class="bg-slate-950 px-3 py-1.5 border-t border-slate-800 text-[10px] font-mono text-slate-500 flex justify-between">
-        <span>Context: Isolated Single Turn</span>
-        <span>Environment: None (No Tool)</span>
+      <div class="flex items-center gap-3">
+        <span id="video-timecode" class="text-sky-300 font-bold tracking-widest">PLAYING 12s LOOP</span>
+        <span class="text-[9.5px] bg-sky-950/80 text-sky-300 border border-sky-800/60 px-2 py-0.5 rounded">60 FPS Native</span>
       </div>
     </div>
 
-    <!-- Window 2: 2026 VS Code / Vibe Coding Studio -->
-    <div class="bento-tile p-0 rounded-xl overflow-hidden border-2 border-sky-500/40 flex flex-col justify-between bg-slate-950 shadow-2xl relative">
-      <!-- Window Title Bar -->
-      <div class="bg-slate-900 px-3 py-2 border-b border-slate-800 flex items-center justify-between">
-        <div class="flex items-center gap-1.5">
-          <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
-          <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
-          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
-          <span class="text-[11px] font-mono text-slate-300 ml-2 font-bold">VS Code · Vibe Coding Agent (2026)</span>
+    <!-- Live Animated Progress Scrubber -->
+    <div class="w-full bg-slate-900 h-1 overflow-hidden border-b border-slate-800">
+      <div class="bg-gradient-to-r from-sky-400 via-purple-400 to-emerald-400 h-full animate-scrubber"></div>
+    </div>
+
+    <!-- Dual OS Windows Screen Area -->
+    <div class="grid grid-cols-2 gap-3 p-3 items-stretch">
+      <!-- Window 1: 2023 ChatGPT Snippet Interface -->
+      <div class="rounded-lg overflow-hidden border border-slate-800 flex flex-col justify-between bg-slate-950/90 shadow-lg">
+        <!-- Title Bar -->
+        <div class="bg-slate-900/90 px-3 py-1.5 border-b border-slate-800 flex items-center justify-between">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-red-500/80"></span>
+            <span class="w-2 h-2 rounded-full bg-amber-500/80"></span>
+            <span class="w-2 h-2 rounded-full bg-emerald-500/80"></span>
+            <span class="text-[10px] font-mono text-slate-400 ml-1.5">ChatGPT (2023) - Web Chat UI</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-amber-400 bg-amber-950/50 px-1.5 py-0.5 rounded border border-amber-800/40">단편적 함수 복붙</span>
         </div>
-        <div class="flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          <span class="text-[10px] font-mono text-emerald-400 font-bold">Agent Auto-Scaffolding</span>
+
+        <!-- Chat Area -->
+        <div class="p-2.5 space-y-2 text-xs flex-1 flex flex-col justify-between min-h-[195px]">
+          <div class="space-y-1.5">
+            <!-- User Prompt (Animated Fade-in) -->
+            <div class="anim-chat-prompt flex items-start gap-1.5 bg-slate-900/80 p-2 rounded border border-slate-800">
+              <span class="w-4 h-4 rounded-full bg-sky-600 text-white font-bold flex items-center justify-center text-[9px] shrink-0 font-mono">U</span>
+              <div class="text-slate-200 text-[10px]">
+                "사용자 로그인 인증이랑 Stripe 결제 연동하는 함수 코드 짜줘."
+              </div>
+            </div>
+
+            <!-- ChatGPT Thinking Animation -->
+            <div class="anim-chat-thinking items-center gap-1.5 px-2 py-1 text-slate-400 text-[10px] font-mono">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+              <span>ChatGPT is typing...</span>
+            </div>
+
+            <!-- ChatGPT Reply Bubble (Animated Appearance) -->
+            <div class="anim-chat-code flex items-start gap-1.5 bg-slate-900/40 p-2 rounded border border-slate-800/60">
+              <span class="w-4 h-4 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-[9px] shrink-0 font-mono">AI</span>
+              <div class="space-y-1 flex-1 text-[10px]">
+                <p class="text-slate-400 text-[9.5px]">요청하신 Node.js 인증 및 결제 예제 함수 스니펫입니다:</p>
+                
+                <!-- Code Snippet Block -->
+                <div class="bg-slate-950 p-2 rounded border border-slate-800 font-mono text-[9px] text-slate-300 leading-relaxed">
+                  <div class="text-slate-500">// 1. 수동으로 bcrypt와 stripe를 설치하세요</div>
+                  <div><span class="text-purple-400">async function</span> <span class="text-sky-300">handleLogin</span>(email, pw) {</div>
+                  <div class="pl-2.5 text-slate-400">const user = await db.find(email);</div>
+                  <div class="pl-2.5 text-slate-400">return bcrypt.compare(pw, user.hash);</div>
+                  <div>}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reality Check Callout (Animated Pulse) -->
+          <div class="anim-chat-warn p-1.5 bg-red-950/30 border border-red-900/50 rounded text-[10px] text-red-300 space-y-0.5">
+            <div class="font-bold flex items-center gap-1">
+              <span>⚠️ 2023의 한계 (인간의 수동 복붙 지옥)</span>
+            </div>
+            <div class="text-[9.5px] text-slate-400 leading-tight">
+              디렉토리 생성, 패키지 설치, 라우팅, DB 마이그레이션 등 <strong class="text-red-200">노동의 95%는 여전히 인간의 몫</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-950 px-2.5 py-1 border-t border-slate-800 text-[9px] font-mono text-slate-500 flex justify-between">
+          <span>Context: Isolated Single Turn</span>
+          <span>Environment: None (No Tool)</span>
         </div>
       </div>
 
-      <!-- IDE Workspace Body -->
-      <div class="p-3 space-y-2 text-xs flex-1 flex flex-col justify-between">
-        <!-- Agent Intent Prompt Bar -->
-        <div class="bg-indigo-950/40 border border-indigo-700/60 rounded-lg p-2 flex items-center gap-2">
-          <span class="px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-mono text-[9.5px] font-bold shrink-0">INTENT</span>
-          <span class="text-[11px] text-white font-medium truncate">
-            "Supabase Auth + Stripe 결제 + SvelteKit 반응형 대시보드 프로젝트 완제품 빌드해줘"
-          </span>
-        </div>
-
-        <!-- Split View: File Tree + Auto Actions -->
-        <div class="grid grid-cols-12 gap-2 flex-1 items-stretch">
-          <!-- Left: Auto-generated Project Tree -->
-          <div class="col-span-5 bg-slate-900/90 rounded border border-slate-800 p-2 font-mono text-[10px] text-slate-300 space-y-1">
-            <div class="text-[9.5px] text-slate-500 font-bold uppercase mb-1">Explorer (Auto Scaffold)</div>
-            <div class="text-sky-300">📁 my-saas-app/</div>
-            <div class="pl-2.5 text-slate-400">├── 📁 src/routes/</div>
-            <div class="pl-5 text-emerald-300">├── 📄 +page.svelte <span class="text-[9px] text-emerald-400">✨</span></div>
-            <div class="pl-5 text-emerald-300">├── 📄 checkout/+server.ts</div>
-            <div class="pl-2.5 text-slate-400">├── 📁 lib/</div>
-            <div class="pl-5 text-emerald-300">├── 📄 supabaseClient.ts</div>
-            <div class="pl-5 text-emerald-300">└── 📄 stripeWebhook.ts</div>
-            <div class="pl-2.5 text-amber-300">├── 📄 supabase_rls.sql</div>
-            <div class="pl-2.5 text-slate-400">└── 📄 package.json</div>
+      <!-- Window 2: 2026 VS Code / Vibe Coding Studio -->
+      <div class="rounded-lg overflow-hidden border-2 border-sky-500/50 flex flex-col justify-between bg-slate-950 shadow-lg relative">
+        <!-- Title Bar -->
+        <div class="bg-slate-900 px-3 py-1.5 border-b border-slate-800 flex items-center justify-between">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-red-500/80"></span>
+            <span class="w-2 h-2 rounded-full bg-amber-500/80"></span>
+            <span class="w-2 h-2 rounded-full bg-emerald-500/80"></span>
+            <span class="text-[10px] font-mono text-slate-200 ml-1.5 font-bold">VS Code · Vibe Coding Agent (2026)</span>
           </div>
-
-          <!-- Right: Autonomous Terminal & Gate Execution -->
-          <div class="col-span-7 bg-slate-950 rounded border border-slate-800 p-2 font-mono text-[10px] flex flex-col justify-between">
-            <div class="space-y-1">
-              <div class="text-[9px] text-slate-500 uppercase font-bold">Integrated Terminal (Runner)</div>
-              <div class="text-sky-400">$ uv run agent scaffold --preset=svelte-stripe</div>
-              <div class="text-slate-300 text-[9.5px] pl-2">✔ Scaffolding 14 project files... Done</div>
-              <div class="text-slate-300 text-[9.5px] pl-2">✔ Running 'npm install' dependencies... Done</div>
-              <div class="text-slate-300 text-[9.5px] pl-2">✔ Applying Supabase RLS migrations... Done</div>
-              <div class="text-emerald-400 text-[9.5px] pl-2 font-bold">✔ TypeScript check: 0 errors (Pass)</div>
-            </div>
-            <div class="p-1 bg-emerald-950/40 rounded border border-emerald-800/40 text-[9.5px] text-emerald-300 flex items-center justify-between mt-1">
-              <span>🚀 Local Server Ready</span>
-              <span class="text-slate-400">http://localhost:5173</span>
-            </div>
+          <div class="flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+            <span class="text-[9.5px] font-mono text-emerald-400 font-bold">Live Auto-Synthesis</span>
           </div>
         </div>
 
-        <!-- 2026 Reality Callout -->
-        <div class="p-2 bg-sky-950/30 border border-sky-800/50 rounded text-[10.5px] text-sky-200">
-          <strong class="text-sky-300">⚡ 2026 패러다임:</strong>
-          단일 함수 작성을 넘어, 에이전트가 <strong>환경 구축·의존성 설치·파일 구조화·컴파일 검증까지 완결</strong>
-        </div>
-      </div>
+        <!-- IDE Workspace Body -->
+        <div class="p-2.5 space-y-1.5 text-xs flex-1 flex flex-col justify-between min-h-[195px]">
+          <!-- Agent Intent Prompt Bar (Animated Glow) -->
+          <div class="anim-ide-intent bg-indigo-950/40 border border-indigo-700/60 rounded p-1.5 flex items-center gap-1.5">
+            <span class="px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-mono text-[9px] font-bold shrink-0">INTENT</span>
+            <span class="text-[10px] text-white font-medium truncate">
+              "Supabase Auth + Stripe 결제 + SvelteKit 반응형 대시보드 프로젝트 완제품 빌드해줘"
+            </span>
+          </div>
 
-      <!-- Window Footer -->
-      <div class="bg-slate-900 px-3 py-1.5 border-t border-slate-800 text-[10px] font-mono text-slate-400 flex justify-between">
-        <span>Workspace: Multi-file Agent Session</span>
-        <span class="text-emerald-400">Outcome: Ready-to-run App</span>
+          <!-- Split View: File Tree + Auto Actions -->
+          <div class="grid grid-cols-12 gap-1.5 flex-1 items-stretch">
+            <!-- Left: Auto-generated Project Tree (Animated File Expansion) -->
+            <div class="anim-explorer col-span-5 bg-slate-900/90 rounded border border-slate-800 p-1.5 font-mono text-[9px] text-slate-300 space-y-0.5">
+              <div class="text-[8.5px] text-slate-500 font-bold uppercase mb-0.5">Explorer (Auto Scaffold)</div>
+              <div class="text-sky-300">📁 my-saas-app/</div>
+              <div class="pl-2 text-slate-400">├── 📁 src/routes/</div>
+              <div class="anim-file-1 pl-4 text-emerald-300">├── 📄 +page.svelte ✨</div>
+              <div class="anim-file-2 pl-4 text-emerald-300">├── 📄 checkout/+server.ts</div>
+              <div class="anim-file-3 pl-2 text-amber-300">├── 📄 supabase_rls.sql</div>
+              <div class="pl-2 text-slate-400">└── 📄 package.json</div>
+            </div>
+
+            <!-- Right: Autonomous Terminal (Animated Sequential Lines) -->
+            <div class="col-span-7 bg-slate-950 rounded border border-slate-800 p-1.5 font-mono text-[9px] flex flex-col justify-between">
+              <div class="space-y-0.5">
+                <div class="text-[8px] text-slate-500 uppercase font-bold">Integrated Terminal (Runner)</div>
+                <div class="anim-term-1 text-sky-400">$ uv run agent scaffold --preset=svelte-stripe</div>
+                <div class="anim-term-2 text-slate-300 text-[8.5px] pl-1.5">✔ Scaffolding 14 project files... Done</div>
+                <div class="anim-term-3 text-slate-300 text-[8.5px] pl-1.5">✔ Running 'npm install' deps... Done</div>
+                <div class="anim-term-4 text-slate-300 text-[8.5px] pl-1.5">✔ Applying Supabase RLS migrations... Done</div>
+                <div class="anim-term-5 text-emerald-400 text-[8.5px] pl-1.5 font-bold">✔ TypeScript check: 0 errors (Pass ✨)</div>
+              </div>
+              <!-- Server Ready Badge (Animated Pop) -->
+              <div class="anim-server-ready p-1 bg-emerald-950/60 rounded border border-emerald-800/60 text-[8.5px] text-emerald-300 flex items-center justify-between mt-1">
+                <span>🚀 Local Server Ready</span>
+                <span class="text-slate-300 font-mono">http://localhost:5173</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2026 Reality Callout (Animated Appearance) -->
+          <div class="anim-ide-callout p-1.5 bg-sky-950/40 border border-sky-800/60 rounded text-[10px] text-sky-200">
+            <strong class="text-sky-300">⚡ 2026 패러다임:</strong>
+            단일 함수 작성을 넘어, 에이전트가 <strong>환경 구축·의존성 설치·파일 구조화·컴파일 검증까지 완결</strong>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-900 px-2.5 py-1 border-t border-slate-800 text-[9px] font-mono text-slate-400 flex justify-between">
+          <span>Workspace: Multi-file Agent Session</span>
+          <span class="text-emerald-400 font-bold">Outcome: Ready-to-run App</span>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Karpathy Quote Banner -->
-  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-1">
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-1">
     <div class="flex items-center gap-2">
       <span class="text-sky-400 font-bold">💡 Andrej Karpathy (2025):</span>
       <span class="text-slate-200 italic">"There is a new kind of coding where I fully give in to the vibes, and forget that the code even exists."</span>
