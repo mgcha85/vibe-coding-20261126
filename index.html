@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>말이 코드가 되는 시대 : 바이브 코딩(Vibe Coding)의 이상과 현실, 그리고 프로덕션 엔지니어링</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+            },
+            dark: {
+              950: '#030712',
+              900: '#070d1a',
+              850: '#0c1527',
+              800: '#111f38',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #030712;
+      color: #f3f4f6;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100vw;
+      font-family: 'Pretendard', sans-serif;
+      user-select: none;
+    }
+
+    /* 16:9 Presentation Stage */
+    .slide-viewport {
+      position: relative;
+      width: 100vw;
+      height: 56.25vw; /* 16:9 */
+      max-height: 100vh;
+      max-width: 177.78vh; /* 16:9 */
+      box-shadow: 0 25px 70px -15px rgba(0, 0, 0, 0.8), 0 0 50px rgba(14, 165, 233, 0.12);
+      background: radial-gradient(circle at 10% 10%, #0d1a33 0%, #060b17 65%, #030712 100%);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 3.5rem 4.5rem;
+      box-sizing: border-box;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: scale(0.985);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: scale(1);
+    }
+
+    /* Bento Tile Style */
+    .bento-tile {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 0.875rem;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .bento-tile:hover {
+      border-color: rgba(56, 189, 248, 0.35);
+      background: rgba(20, 32, 58, 0.75);
+    }
+
+    .badge-glow {
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); }
+    ::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.3); border-radius: 3px; }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.7; }
+    }
+    .ambient-glow {
+      animation: pulseGlow 5s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 16:9 Presentation Viewport -->
+  <div class="slide-viewport relative flex flex-col justify-between" id="presentationContainer">
+
+    <!-- Ambient Gradient Backdrops -->
+    <div class="absolute -top-36 -right-36 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none ambient-glow"></div>
+    <div class="absolute -bottom-36 -left-36 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none ambient-glow"></div>
+
+    <!-- Global Header -->
+    <header class="absolute top-0 left-0 right-0 h-14 px-10 flex items-center justify-between text-xs font-mono text-slate-400 z-20 border-b border-slate-800/60 bg-dark-900/50 backdrop-blur-md">
+      <div class="flex items-center gap-3">
+        <span class="px-2.5 py-0.5 rounded-full bg-sky-500/15 text-sky-300 font-bold border border-sky-400/30">KIIS 2026 TUTORIAL</span>
+        <span class="text-slate-600">|</span>
+        <span class="text-slate-300 font-medium">말이 코드가 되는 시대 : 바이브 코딩(Vibe Coding)</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <button id="tocBtn" class="hover:text-sky-400 flex items-center gap-1.5 transition-colors px-2.5 py-1 rounded bg-slate-800/60 border border-slate-700/60 text-slate-300">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+          <span>목차 [M]</span>
+        </button>
+        <button id="fullscreenBtn" class="hover:text-sky-400 flex items-center gap-1.5 transition-colors px-2.5 py-1 rounded bg-slate-800/60 border border-slate-700/60 text-slate-300">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1v4m0-4h-4m4 4l-5-5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+          <span>전체화면 [F]</span>
+        </button>
+        <span id="slideCounter" class="text-sky-400 font-bold font-mono">01 / 23</span>
+      </div>
+    </header>
+
+    <!-- Slides Wrapper -->
+    <main class="relative w-full h-full pt-14 pb-12 flex-1 overflow-hidden" id="slidesWrapper">
+
+      <!-- ================= SLIDE 1: Cover ================= -->
+      <section class="slide active justify-center items-center text-center relative" data-title="타이틀">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-500/15 border border-sky-400/30 text-sky-300 text-xs font-semibold tracking-wider uppercase mb-6 badge-glow">
+          <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+          한국지능시스템학회 2026 추계학술대회 TUTORIAL
+        </div>
+        <h1 class="text-5xl md:text-6xl font-black tracking-tight text-white mb-4 leading-tight">
+          말이 코드가 되는 시대
+        </h1>
+        <p class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-sky-400 via-indigo-300 to-cyan-300 bg-clip-text text-transparent mb-8">
+          바이브 코딩(Vibe Coding)의 이상과 현실, 그리고 프로덕션 엔지니어링
+        </p>
+
+        <div class="grid grid-cols-3 gap-6 max-w-4xl w-full text-left mt-2">
+          <div class="bento-tile p-4 border-l-4 border-l-sky-500">
+            <span class="text-xs text-slate-400 block font-mono">일시</span>
+            <span class="text-sm font-semibold text-slate-100">2026. 11. 26 (목) 13:00 ~ 16:00 (3시간)</span>
+          </div>
+          <div class="bento-tile p-4 border-l-4 border-l-indigo-500">
+            <span class="text-xs text-slate-400 block font-mono">장소</span>
+            <span class="text-sm font-semibold text-slate-100">김포대학교 글로벌캠퍼스 211-B호</span>
+          </div>
+          <div class="bento-tile p-4 border-l-4 border-l-cyan-500">
+            <span class="text-xs text-slate-400 block font-mono">강사</span>
+            <span class="text-sm font-semibold text-slate-100">차민규 AI Engineer (LG AI & Big Data)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 2: Speaker Profile ================= -->
+      <section class="slide" data-title="강사 소개">
+        <div class="mb-4">
+          <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Speaker Introduction</span>
+          <h2 class="text-3xl font-black text-white">강사 소개</h2>
+        </div>
+        <div class="grid grid-cols-12 gap-8 items-center flex-1">
+          <div class="col-span-4 flex flex-col items-center text-center">
+            <div class="w-44 h-44 rounded-2xl overflow-hidden border-2 border-sky-400/40 shadow-xl shadow-sky-500/10 mb-4 bg-slate-800 flex items-center justify-center relative group">
+              <!-- Avatar or Portrait image -->
+              <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-800 to-dark-900 text-sky-400">
+                <svg class="w-20 h-20 text-slate-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                <span class="text-xs font-mono text-slate-400 mt-2">차민규 강사</span>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold text-white">차민규</h3>
+            <p class="text-sky-400 font-mono text-sm">AI Engineer · Agentic AI Team</p>
+            <p class="text-xs text-slate-400 mt-1">LG AI & Big Data Group</p>
+          </div>
+          <div class="col-span-8 space-y-4">
+            <div class="bento-tile p-5">
+              <h4 class="text-sm font-semibold text-sky-300 font-mono flex items-center gap-2 mb-3">
+                <span class="w-2 h-2 rounded-full bg-sky-400"></span> 주요 경력 (Career)
+              </h4>
+              <ul class="space-y-2 text-sm text-slate-300">
+                <li class="flex items-start gap-2">
+                  <span class="text-sky-400 font-mono">現</span>
+                  <span><strong>LG AI & Big Data Group</strong>, Agentic AI 팀 AI Engineer</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-slate-500 font-mono">前</span>
+                  <span><strong>우리은행 (Bank Woori)</strong>, AI전략센터 AI플랫폼팀</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-slate-500 font-mono">前</span>
+                  <span><strong>LG AX Group</strong>, AI & Big Data Analytics 팀</span>
+                </li>
+              </ul>
+            </div>
+            <div class="bento-tile p-5">
+              <h4 class="text-sm font-semibold text-indigo-300 font-mono flex items-center gap-2 mb-3">
+                <span class="w-2 h-2 rounded-full bg-indigo-400"></span> 학력 (Education)
+              </h4>
+              <ul class="space-y-2 text-sm text-slate-300">
+                <li>• <strong>University of Central Florida</strong> 컴퓨터공학 박사수료</li>
+                <li>• <strong>GIST (광주과학기술원)</strong> 전자공학 석사</li>
+                <li>• <strong>한국외국어대학교</strong> 컴퓨터공학 학사</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 3: Course Timetable ================= -->
+      <section class="slide" data-title="3시간 로드맵">
+        <div class="mb-4">
+          <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Course Schedule</span>
+          <h2 class="text-3xl font-black text-white">3시간 튜토리얼 로드맵 (총 180분)</h2>
+        </div>
+        <div class="grid grid-cols-3 gap-6 flex-1 items-stretch">
+          <!-- Part 1 -->
+          <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-sky-500">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-mono font-bold px-2 py-1 rounded bg-sky-500/20 text-sky-300">PART 1 (70m)</span>
+                <span class="text-xs text-slate-400 font-mono">13:00 ~ 14:20</span>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">기초 & 런칭 아키텍처</h3>
+              <p class="text-xs text-slate-400 mb-4">에이전트 계보와 바이브 코딩의 본질, 1시간 만에 배포하는 Serverless BaaS</p>
+              <div class="space-y-2 text-xs">
+                <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700/50">
+                  <strong class="text-sky-400 font-mono">Ch 01. 계보 :</strong> 챗봇에서 자율 에이전트까지
+                </div>
+                <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700/50">
+                  <strong class="text-sky-400 font-mono">Ch 02. 본질 :</strong> 바이브 코딩이란 무엇인가
+                </div>
+                <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700/50">
+                  <strong class="text-sky-400 font-mono">Ch 03. 런칭 :</strong> Vercel · Supabase · Stripe
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 text-[11px] text-amber-400 font-mono bg-amber-500/10 p-2 rounded border border-amber-500/20">
+              ☕ 14:20 ~ 14:30 중간 휴식 (10분)
+            </div>
+          </div>
+
+          <!-- Part 2 -->
+          <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-indigo-500">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-mono font-bold px-2 py-1 rounded bg-indigo-500/20 text-indigo-300">PART 2 (60m)</span>
+                <span class="text-xs text-slate-400 font-mono">14:30 ~ 15:30</span>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">엔지니어링 & 비용 최적화</h3>
+              <p class="text-xs text-slate-400 mb-4">프롬프트를 넘은 도구 체계화, 타입 안정성 언어 선택, 80~90% 토큰 비용 절감</p>
+              <div class="space-y-2 text-xs">
+                <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700/50">
+                  <strong class="text-indigo-400 font-mono">Ch 04. 툴체인 :</strong> Skills · LLM-Wiki · Aside
+                </div>
+                <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700/50">
+                  <strong class="text-indigo-400 font-mono">Ch 05. 언어 :</strong> Python은 최적인가
+                </div>
+                <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700/50">
+                  <strong class="text-indigo-400 font-mono">Ch 06. 비용 :</strong> 토큰 요금 80~90% 절감
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 text-[11px] text-amber-400 font-mono bg-amber-500/10 p-2 rounded border border-amber-500/20">
+              ☕ 15:30 ~ 15:35 짧은 리프레시 (5분)
+            </div>
+          </div>
+
+          <!-- Part 3 -->
+          <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-cyan-500">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-mono font-bold px-2 py-1 rounded bg-cyan-500/20 text-cyan-300">PART 3 (30m)</span>
+                <span class="text-xs text-slate-400 font-mono">15:35 ~ 16:05</span>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">병렬화, 보안 & Wrap-up</h3>
+              <p class="text-xs text-slate-400 mb-4">멀티 에이전트 동시 작업과 Git Worktree, RLS 누수 방지 및 프로덕션 가드레일</p>
+              <div class="space-y-2 text-xs">
+                <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700/50">
+                  <strong class="text-cyan-400 font-mono">Ch 07. 병렬화 :</strong> Grok Bot · Jev · Git Worktree
+                </div>
+                <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700/50">
+                  <strong class="text-cyan-400 font-mono">Ch 08. 가드레일 :</strong> RLS 누수 · 민감정보 격리
+                </div>
+                <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700/50">
+                  <strong class="text-emerald-400 font-mono">Wrap-up & Q&A :</strong> 엔지니어의 미래 전략
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 text-[11px] text-emerald-400 font-mono bg-emerald-500/10 p-2 rounded border border-emerald-500/20">
+              🎯 16:00 ~ 16:05 종합 질의응답
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 4: Overall Agenda ================= -->
+      <section class="slide" data-title="전체 아젠다">
+        <div class="mb-4">
+          <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Curriculum Index</span>
+          <h2 class="text-3xl font-black text-white">강의 세부 내용 아젠다 (Chapter 01 ~ 08)</h2>
+        </div>
+        <div class="grid grid-cols-2 gap-4 flex-1">
+          <div class="bento-tile p-3.5 flex items-center gap-3">
+            <span class="text-base font-black font-mono text-sky-400 bg-sky-500/10 px-3 py-2 rounded-lg border border-sky-400/20">01</span>
+            <div>
+              <div class="text-sm font-bold text-white">계보 : 챗봇에서 자율 에이전트까지</div>
+              <div class="text-xs text-slate-400">ReAct, Tool-use 패러다임, Multi-turn 피드백 루프</div>
+            </div>
+          </div>
+          <div class="bento-tile p-3.5 flex items-center gap-3">
+            <span class="text-base font-black font-mono text-sky-400 bg-sky-500/10 px-3 py-2 rounded-lg border border-sky-400/20">02</span>
+            <div>
+              <div class="text-sm font-bold text-white">본질 : 바이브 코딩이란 무엇인가</div>
+              <div class="text-xs text-slate-400">Intent 기반 소프트웨어 합성, 이상과 현실, 엔지니어의 핵심 역량</div>
+            </div>
+          </div>
+          <div class="bento-tile p-3.5 flex items-center gap-3">
+            <span class="text-base font-black font-mono text-sky-400 bg-sky-500/10 px-3 py-2 rounded-lg border border-sky-400/20">03</span>
+            <div>
+              <div class="text-sm font-bold text-white">런칭 : Vercel · Supabase · Stripe</div>
+              <div class="text-xs text-slate-400">Serverless BaaS, Postgres RLS, 글로벌 결제 파이프라인</div>
+            </div>
+          </div>
+          <div class="bento-tile p-3.5 flex items-center gap-3 border-sky-400/30">
+            <span class="text-base font-black font-mono text-sky-400 bg-sky-500/20 px-3 py-2 rounded-lg border border-sky-400/40">04</span>
+            <div>
+              <div class="text-sm font-bold text-white">툴체인 : Skills · LLM-Wiki · Aside</div>
+              <div class="text-xs text-sky-300">★ 오늘 집중 조명 : 4.1 에이전트 진화 계보 (AutoGPT to 2024)</div>
+            </div>
+          </div>
+          <div class="bento-tile p-3.5 flex items-center gap-3 opacity-60">
+            <span class="text-base font-black font-mono text-slate-500 bg-slate-800 px-3 py-2 rounded-lg">05</span>
+            <div>
+              <div class="text-sm font-bold text-slate-300">언어 : Python은 최적인가</div>
+              <div class="text-xs text-slate-500">동적 타이핑의 런타임 함정, 컴파일러 피드백과 Go/Rust/TS</div>
+            </div>
+          </div>
+          <div class="bento-tile p-3.5 flex items-center gap-3 opacity-60">
+            <span class="text-base font-black font-mono text-slate-500 bg-slate-800 px-3 py-2 rounded-lg">06</span>
+            <div>
+              <div class="text-sm font-bold text-slate-300">비용 : 토큰 요금 80~90% 절감</div>
+              <div class="text-xs text-slate-500">Prompt Caching, 계층형 모델 라우팅, AST 선별 주입</div>
+            </div>
+          </div>
+          <div class="bento-tile p-3.5 flex items-center gap-3 opacity-60">
+            <span class="text-base font-black font-mono text-slate-500 bg-slate-800 px-3 py-2 rounded-lg">07</span>
+            <div>
+              <div class="text-sm font-bold text-slate-300">병렬화 : Grok Bot · Jev · Git Worktree</div>
+              <div class="text-xs text-slate-500">멀티 에이전트 격리 디렉토리 병렬 작업 및 자동 머지 전략</div>
+            </div>
+          </div>
+          <div class="bento-tile p-3.5 flex items-center gap-3 opacity-60">
+            <span class="text-base font-black font-mono text-slate-500 bg-slate-800 px-3 py-2 rounded-lg">08</span>
+            <div>
+              <div class="text-sm font-bold text-slate-300">가드레일 : RLS 누수 · 민감정보 격리</div>
+              <div class="text-xs text-slate-500">데이터 누수 방지, Sandbox 실행 환경, 프로덕션 보안 게이트</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 5: Chapter 01 Intro ================= -->
+      <section class="slide justify-center" data-title="Ch 01. 계보 인트로">
+        <div class="max-w-3xl">
+          <span class="text-sky-400 font-mono text-sm tracking-widest font-semibold px-3 py-1 rounded bg-sky-500/10 border border-sky-400/20">CHAPTER 01</span>
+          <h2 class="text-4xl md:text-5xl font-black text-white mt-4 mb-3">
+            계보 : 챗봇에서 자율 에이전트까지
+          </h2>
+          <p class="text-lg text-slate-300 leading-relaxed mb-6">
+            LLM은 더 이상 질문에 그럴듯한 텍스트로 대답하는 '말동무'가 아닙니다.<br>
+            자신의 환경을 관찰하고 도구를 조작하며, 스스로 오류를 수정하는 자율 실행 루프(Autonomous Loop)로 진화했습니다.
+          </p>
+          <div class="flex items-center gap-3 text-xs font-mono text-slate-400">
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#ReAct</span>
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#Tool-Use</span>
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#Multi-turn</span>
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#Self-Healing</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 6: 1.1 Prompt Engineering Fall ================= -->
+      <section class="slide" data-title="1.1 프롬프트의 종말">
+        <div class="mb-4">
+          <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
+          <h2 class="text-3xl font-black text-white">1.1 프롬프트 엔지니어링의 종말</h2>
+        </div>
+        <div class="grid grid-cols-2 gap-6 flex-1 items-stretch">
+          <div class="bento-tile p-6 flex flex-col justify-between border-l-4 border-l-red-500">
+            <div>
+              <span class="text-xs font-mono text-red-400 font-bold block mb-2">PAST : 1회성 생성 (Single-turn)</span>
+              <h3 class="text-xl font-bold text-white mb-3">"완벽한 프롬프트"라는 환상</h3>
+              <p class="text-sm text-slate-300 mb-4 leading-relaxed">
+                긴 프롬프트를 한 번에 던져 완성된 코드를 얻으려던 시도의 필연적 실패:
+              </p>
+              <div class="space-y-2.5 text-xs text-slate-300">
+                <div class="p-3 bg-red-950/20 border border-red-900/40 rounded">
+                  <strong>💥 문맥 중간 단절:</strong> 긴 코드를 출력하다가 중간에 토큰 제한이나 구조적 환각으로 중단
+                </div>
+                <div class="p-3 bg-red-950/20 border border-red-900/40 rounded">
+                  <strong>💥 무오류 전제:</strong> 런타임 환경(파일 시스템, 패키지 버전)을 보지 않고 맹목적으로 추론
+                </div>
+              </div>
+            </div>
+            <div class="text-[11px] text-slate-400 font-mono border-t border-slate-800 pt-3">
+              "인간 개발자도 한 번에 무결점 1,000줄 코드를 짜지 않는다."
+            </div>
+          </div>
+
+          <div class="bento-tile p-6 flex flex-col justify-between border-l-4 border-l-sky-500">
+            <div>
+              <span class="text-xs font-mono text-sky-400 font-bold block mb-2">PRESENT : Agentic Workflow</span>
+              <h3 class="text-xl font-bold text-white mb-3">작게 쪼개고, 실행하고, 검증하라</h3>
+              <p class="text-sm text-slate-300 mb-4 leading-relaxed">
+                앤드류 응(Andrew Ng) 교수가 강조한 현대 에이전트의 핵심 패러다임:
+              </p>
+              <div class="space-y-2 text-xs text-slate-300 font-mono">
+                <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
+                  <span class="text-sky-400">Step 1: Plan</span> 요구사항 분석 및 실행 계획 수립
+                </div>
+                <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
+                  <span class="text-indigo-400">Step 2: Act</span> 단일 파일/단일 함수 단위 점진적 구현
+                </div>
+                <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
+                  <span class="text-emerald-400">Step 3: Evaluate</span> 단위 테스트 및 컴파일러 검증
+                </div>
+              </div>
+            </div>
+            <div class="text-[11px] text-sky-300 font-mono border-t border-slate-800 pt-3">
+              구형 모델(GPT-3.5)도 Agentic Loop를 타면 신형 모델의 단일 샷 성능을 능가함
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 7: 1.2 ReAct Paradigm ================= -->
+      <section class="slide" data-title="1.2 ReAct 패러다임">
+        <div class="mb-4">
+          <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
+          <h2 class="text-3xl font-black text-white">1.2 ReAct & Tool-use 패러다임</h2>
+        </div>
+        <div class="grid grid-cols-12 gap-6 flex-1 items-stretch">
+          <div class="col-span-5 bento-tile p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-mono text-sky-400 font-bold block mb-2">CORE MECHANISM</span>
+              <h3 class="text-xl font-bold text-white mb-3">LLM에게 손과 눈을 주는 법</h3>
+              <p class="text-sm text-slate-300 mb-4 leading-relaxed">
+                ReAct(Yao et al., ICLR 2023)는 모델의 내적 추론(Reasoning)과 외적 행동(Acting)을 번갈아 수행하게 하는 자율 루프의 근간입니다.
+              </p>
+              <div class="p-3 bg-slate-900 rounded border border-slate-800 text-xs text-slate-400 font-mono">
+                LLM의 뇌 (Brain)<br>
+                + 파일시스템 열람 (Eyes : view_file)<br>
+                + 쉘 커맨드 실행 (Hands : run_command)<br>
+                = <span class="text-sky-300">자율 소프트웨어 에이전트</span>
+              </div>
+            </div>
+            <div class="text-[11px] text-slate-400 font-mono border-t border-slate-800 pt-3">
+              단순 텍스트 생성이 아닌 '시스템 조작 상태 전이(State Transition)'
+            </div>
+          </div>
+
+          <div class="col-span-7 bento-tile p-6 flex flex-col justify-between">
+            <h3 class="text-lg font-bold text-white mb-3">ReAct 실행 사이클 구조</h3>
+            <div class="space-y-3 flex-1 justify-center flex flex-col">
+              <div class="p-3 bg-sky-950/40 border border-sky-800/40 rounded-lg flex items-center gap-4">
+                <span class="px-2.5 py-1 rounded bg-sky-500 text-white font-mono font-bold text-xs">Reason</span>
+                <span class="text-xs text-slate-200">"main.go 32행에서 nil 포인터 참조 에러가 발생했으니 해당 줄과 호출 스택을 확인해야 한다."</span>
+              </div>
+              <div class="text-center text-slate-500 font-mono text-xs">▼</div>
+              <div class="p-3 bg-indigo-950/40 border border-indigo-800/40 rounded-lg flex items-center gap-4">
+                <span class="px-2.5 py-1 rounded bg-indigo-500 text-white font-mono font-bold text-xs">Act</span>
+                <span class="text-xs text-slate-200"><code class="text-indigo-300 font-mono">call tool: view_file(main.go, StartLine: 25, EndLine: 40)</code></span>
+              </div>
+              <div class="text-center text-slate-500 font-mono text-xs">▼</div>
+              <div class="p-3 bg-emerald-950/40 border border-emerald-800/40 rounded-lg flex items-center gap-4">
+                <span class="px-2.5 py-1 rounded bg-emerald-500 text-white font-mono font-bold text-xs">Observe</span>
+                <span class="text-xs text-slate-200">"라인 32에서 user 구조체 초기화 없이 멤버에 직접 접근하고 있음을 실제 코드로 확인."</span>
+              </div>
+            </div>
+            <div class="text-[11px] text-emerald-400 font-mono border-t border-slate-800 pt-3">
+              관찰(Observe) 결과를 바탕으로 즉각적인 버그 픽스 액션 도출
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 8: 1.3 Multi-turn Self Healing ================= -->
+      <section class="slide" data-title="1.3 멀티턴 자가치유">
+        <div class="mb-4">
+          <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
+          <h2 class="text-3xl font-black text-white">1.3 Multi-turn 피드백 루프와 자가 치유(Self-Healing)</h2>
+        </div>
+        <div class="grid grid-cols-2 gap-6 flex-1 items-stretch">
+          <div class="bento-tile p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-mono text-sky-400 font-bold block mb-2">AUTONOMOUS FEEDBACK</span>
+              <h3 class="text-xl font-bold text-white mb-3">자가 치유(Self-Healing)의 메커니즘</h3>
+              <p class="text-sm text-slate-300 mb-4 leading-relaxed">
+                에이전트는 실패를 두려워하지 않고, 에러 로그를 읽고 스스로 고칩니다:
+              </p>
+              <div class="space-y-2 text-xs font-mono text-slate-300">
+                <div class="p-2.5 bg-slate-900 rounded border border-slate-800 flex justify-between">
+                  <span>1. 코드 작성 (Write Code)</span>
+                  <span class="text-sky-400">Agent</span>
+                </div>
+                <div class="text-center text-slate-600">↓</div>
+                <div class="p-2.5 bg-slate-900 rounded border border-slate-800 flex justify-between">
+                  <span>2. 테스트 실행 (Run go test / cargo test)</span>
+                  <span class="text-indigo-400">Sandbox</span>
+                </div>
+                <div class="text-center text-slate-600">↓</div>
+                <div class="p-2.5 bg-slate-900 rounded border border-red-900/50 text-red-300 flex justify-between">
+                  <span>3. 에러 트레이스백 관찰 (Stderr)</span>
+                  <span class="text-red-400">Fail</span>
+                </div>
+                <div class="text-center text-slate-600">↓</div>
+                <div class="p-2.5 bg-slate-900 rounded border border-emerald-900/50 text-emerald-300 flex justify-between">
+                  <span>4. 버그 원인 분석 후 국소 수정 (Replace Chunk)</span>
+                  <span class="text-emerald-400">Pass</span>
+                </div>
+              </div>
+            </div>
+            <div class="text-[11px] text-slate-400 font-mono border-t border-slate-800 pt-3">
+              "테스트 스위트와 린터는 에이전트의 가장 엄격한 과외 선생님이다."
+            </div>
+          </div>
+
+          <div class="bento-tile p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-mono text-sky-400 font-bold block mb-2">BENCHMARK REVOLUTION</span>
+              <h3 class="text-xl font-bold text-white mb-3">SWE-bench가 증명한 현실</h3>
+              <p class="text-sm text-slate-300 mb-4 leading-relaxed">
+                실제 GitHub 오픈소스(Django, SymPy, Flask) 이슈 해결 벤치마크:
+              </p>
+              <div class="space-y-3 text-xs">
+                <div class="p-3 bg-slate-800/80 rounded border border-slate-700">
+                  <div class="flex justify-between font-bold mb-1">
+                    <span>단일 프롬프트 (GPT-4 Zero-shot)</span>
+                    <span class="text-red-400 font-mono">1.96% 해결</span>
+                  </div>
+                  <div class="text-[11px] text-slate-400">맥락 없이 파일 전체를 주면 거의 다 실패함</div>
+                </div>
+                <div class="p-3 bg-sky-950/40 border border-sky-800/50 rounded">
+                  <div class="flex justify-between font-bold mb-1">
+                    <span class="text-sky-300">Tool-use + Multi-turn Agent</span>
+                    <span class="text-emerald-400 font-mono">50% ~ 70%+ 돌파</span>
+                  </div>
+                  <div class="text-[11px] text-slate-300">검색 도구, 국소 편집 도구, 테스트 피드백이 붙자 비약적 성능 상승</div>
+                </div>
+              </div>
+            </div>
+            <div class="text-[11px] text-sky-300 font-mono border-t border-slate-800 pt-3">
+              도구 환경(Environment)의 완성도가 에이전트의 실질 지능을 결정함
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 9: 1.4 Agent Landscape ================= -->
+      <section class="slide" data-title="1.4 2026 에이전트 지형도">
+        <div class="mb-4">
+          <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
+          <h2 class="text-3xl font-black text-white">1.4 2026 에이전트 2대 진영</h2>
+        </div>
+        <div class="grid grid-cols-2 gap-6 flex-1 items-stretch">
+          <div class="bento-tile p-6 flex flex-col justify-between border-t-4 border-t-sky-500">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-sky-500/20 text-sky-300">CAMP A</span>
+                <span class="text-xs text-slate-400 font-mono">Human-in-the-loop</span>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-2">IDE 내장형 인라인 에이전트</h3>
+              <p class="text-xs text-slate-300 mb-4">Cursor, Windsurf, Antigravity IDE 등</p>
+              <ul class="space-y-2.5 text-xs text-slate-300">
+                <li class="p-2.5 bg-slate-900 rounded border border-slate-800">
+                  <strong>• 페어 프로그래밍 UX:</strong> 개발자의 탭 타이핑과 단축키에 맞춰 실시간으로 코드 완성 및 추천
+                </li>
+                <li class="p-2.5 bg-slate-900 rounded border border-slate-800">
+                  <strong>• 빠른 인터랙션:</strong> 3초 안에 인라인 디프(Diff)를 확인하고 Accept / Reject 결정
+                </li>
+                <li class="p-2.5 bg-slate-900 rounded border border-slate-800">
+                  <strong>• 주 용도:</strong> 신규 UI 컴포넌트 작성, 특정 함수 리팩토링, 빠른 버그 수정
+                </li>
+              </ul>
+            </div>
+            <div class="text-[11px] text-sky-400 font-mono border-t border-slate-800 pt-3">
+              개발자의 즉각적 통제와 호흡 중심
+            </div>
+          </div>
+
+          <div class="bento-tile p-6 flex flex-col justify-between border-t-4 border-t-indigo-500">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300">CAMP B</span>
+                <span class="text-xs text-slate-400 font-mono">Autonomous Worker</span>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-2">자율 백그라운드 태스크 러너</h3>
+              <p class="text-xs text-slate-300 mb-4">Devin, SWE-agent, 컨테이너 백그라운드 에이전트</p>
+              <ul class="space-y-2.5 text-xs text-slate-300">
+                <li class="p-2.5 bg-slate-900 rounded border border-slate-800">
+                  <strong>• 비동기 분업:</strong> 이슈 티켓 URL을 던지면 독립 샌드박스에서 20분간 코딩 후 PR 제출
+                </li>
+                <li class="p-2.5 bg-slate-900 rounded border border-slate-800">
+                  <strong>• 심층 탐색:</strong> 100개 이상의 파일을 검색하고 스스로 회귀 테스트를 돌려 통과할 때까지 지속
+                </li>
+                <li class="p-2.5 bg-slate-900 rounded border border-slate-800">
+                  <strong>• 주 용도:</strong> 마이그레이션(Vue → Svelte), 레거시 리팩토링, 대규모 테스트 코드 자동 양산
+                </li>
+              </ul>
+            </div>
+            <div class="text-[11px] text-indigo-400 font-mono border-t border-slate-800 pt-3">
+              퇴근할 때 이슈를 던져두고 다음 날 PR을 리뷰하는 형태
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 10: Chapter 02 Intro ================= -->
+      <section class="slide justify-center" data-title="Ch 02. 본질 인트로">
+        <div class="max-w-3xl">
+          <span class="text-sky-400 font-mono text-sm tracking-widest font-semibold px-3 py-1 rounded bg-sky-500/10 border border-sky-400/20">CHAPTER 02</span>
+          <h2 class="text-4xl md:text-5xl font-black text-white mt-4 mb-3">
+            본질 : 바이브 코딩이란 무엇인가
+          </h2>
+          <p class="text-lg text-slate-300 leading-relaxed mb-6">
+            "I vibe code. I see stuff, say stuff, run stuff, and it mostly works."<br>
+            Andrej Karpathy의 이 한마디는 프로그래밍의 문법 장벽을 무너뜨렸지만, 동시에 새로운 기술 부채와 환상을 낳았습니다.
+          </p>
+          <div class="flex items-center gap-3 text-xs font-mono text-slate-400">
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#AndrejKarpathy</span>
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#IntentBased</span>
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#RealityCheck</span>
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#ArchitecturalLiteracy</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 11: 2.1 Karpathy Declaration ================= -->
+      <section class="slide" data-title="2.1 Karpathy의 선언">
+        <div class="mb-4">
+          <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
+          <h2 class="text-3xl font-black text-white">2.1 바이브 코딩의 정의와 패러다임 전환</h2>
+        </div>
+        <div class="grid grid-cols-2 gap-6 flex-1 items-stretch">
+          <div class="bento-tile p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-mono text-sky-400 font-bold block mb-2">DEFINITION</span>
+              <h3 class="text-xl font-bold text-white mb-3">Karpathy가 말한 'Vibe Coding'</h3>
+              <p class="text-sm text-slate-300 mb-4 leading-relaxed">
+                "코드를 직접 타이핑하거나 줄 단위 문법을 외우지 않고, 자연어로 의도(Vibe)를 전달한 뒤 생성된 결과물을 감상하고 조율하는 코딩 스타일"
+              </p>
+              <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-300 italic">
+                "There is a new kind of coding I call 'vibe coding', where I fully give in to the vibes, embrace every impatience, and forget that the code even exists."
+                <span class="block text-right text-sky-400 mt-2 font-mono font-semibold">— Andrej Karpathy</span>
+              </div>
+            </div>
+            <div class="text-[11px] text-slate-400 font-mono border-t border-slate-800 pt-3">
+              영어와 한국어가 새로운 프로그래밍 언어가 되었다
+            </div>
+          </div>
+
+          <div class="bento-tile p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-mono text-sky-400 font-bold block mb-2">PARADIGM SHIFT</span>
+              <h3 class="text-xl font-bold text-white mb-3">How(명령형)에서 What(선언형)으로</h3>
+              <div class="space-y-3 text-xs">
+                <div class="p-3 bg-slate-800/80 rounded border border-slate-700">
+                  <span class="text-slate-400 font-mono font-bold block mb-1">전통적 프로그래밍 (Imperative)</span>
+                  메모리 할당, 반복문 인덱스, 예외 처리 등 '어떻게 구현할 것인가(How)'에 지적 노동의 80% 소모
+                </div>
+                <div class="p-3 bg-sky-950/40 border border-sky-800/50 rounded text-sky-100">
+                  <span class="text-sky-300 font-mono font-bold block mb-1">바이브 코딩 (Intent & Declarative)</span>
+                  도메인 규칙, 사용자 시나리오, 인터페이스 계약 등 '무엇을 만들 것인가(What)'에 집중
+                </div>
+              </div>
+            </div>
+            <div class="text-[11px] text-sky-300 font-mono border-t border-slate-800 pt-3">
+              문법 암기의 종말과 '고수준 설계 문해력'의 부상
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 12: 2.2 Intent Synthesis Mechanism ================= -->
+      <section class="slide" data-title="2.2 Intent 합성 메커니즘">
+        <div class="mb-4">
+          <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
+          <h2 class="text-3xl font-black text-white">2.2 말이 코드가 되는 메커니즘</h2>
+        </div>
+        <div class="grid grid-cols-4 gap-4 flex-1 items-stretch">
+          <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-sky-400">
+            <div>
+              <div class="w-7 h-7 rounded-full bg-sky-500/20 text-sky-400 font-mono font-bold flex items-center justify-center text-xs mb-3">01</div>
+              <h3 class="text-sm font-bold text-white mb-2">자연어 의도 명세</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                "로그인한 사용자만 결제 페이지에 접근하고 결제 완료 시 구독 플래그를 true로 갱신해줘."
+              </p>
+            </div>
+            <span class="text-[10px] font-mono text-slate-500">Intent Formulation</span>
+          </div>
+
+          <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-indigo-400">
+            <div>
+              <div class="w-7 h-7 rounded-full bg-indigo-500/20 text-indigo-400 font-mono font-bold flex items-center justify-center text-xs mb-3">02</div>
+              <h3 class="text-sm font-bold text-white mb-2">인터페이스 & 계약 정의</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                DB 스키마(users, subscriptions), Auth 세션 미들웨어, Stripe 웹훅 엔드포인트 명세 합성.
+              </p>
+            </div>
+            <span class="text-[10px] font-mono text-slate-500">Spec & Contracts</span>
+          </div>
+
+          <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-purple-400">
+            <div>
+              <div class="w-7 h-7 rounded-full bg-purple-500/20 text-purple-400 font-mono font-bold flex items-center justify-center text-xs mb-3">03</div>
+              <h3 class="text-sm font-bold text-white mb-2">소스 코드 합성</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                SvelteKit 라우트, Supabase Postgres RLS 정책 SQL, 결제 세션 핸들러 바이너리 코드 생성.
+              </p>
+            </div>
+            <span class="text-[10px] font-mono text-slate-500">Code Synthesis</span>
+          </div>
+
+          <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-emerald-400">
+            <div>
+              <div class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 font-mono font-bold flex items-center justify-center text-xs mb-3">04</div>
+              <h3 class="text-sm font-bold text-white mb-2">컴파일 & 런타임 검증</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                타입 체커(TypeScript) 실행, API 통합 테스트, RLS 누수 감사 통과 후 최종 패치 확정.
+              </p>
+            </div>
+            <span class="text-[10px] font-mono text-emerald-400 font-bold">Verification Gate</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 13: 2.3 Reality Check ================= -->
+      <section class="slide" data-title="2.3 이상과 현실">
+        <div class="mb-4">
+          <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
+          <h2 class="text-3xl font-black text-white">2.3 이상과 현실 (Reality Check) : 5분의 데모, 5일의 디버깅</h2>
+        </div>
+        <div class="grid grid-cols-2 gap-6 flex-1 items-stretch">
+          <div class="bento-tile p-6 flex flex-col justify-between border-l-4 border-l-amber-500">
+            <div>
+              <span class="text-xs font-mono text-amber-400 font-bold block mb-2">THE FANTASY</span>
+              <h3 class="text-xl font-bold text-white mb-3">트위터 데모의 환상</h3>
+              <p class="text-sm text-slate-300 mb-4 leading-relaxed">
+                "AI한테 말 한마디 했더니 3분 만에 SaaS가 뚝딱 만들어졌어요!"
+              </p>
+              <div class="space-y-2 text-xs text-slate-300">
+                <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
+                  • 해피 패스(Happy Path)만 작동하는 프로토타입
+                </div>
+                <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
+                  • 동시성 처리, 트랜잭션 롤백 부재
+                </div>
+                <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
+                  • 클라이언트단에 Supabase Service Role Key 유출
+                </div>
+              </div>
+            </div>
+            <div class="text-[11px] text-slate-400 font-mono border-t border-slate-800 pt-3">
+              "장난감 데모와 실 서비스의 간극은 상상 이상으로 깊다."
+            </div>
+          </div>
+
+          <div class="bento-tile p-6 flex flex-col justify-between border-l-4 border-l-red-500">
+            <div>
+              <span class="text-xs font-mono text-red-400 font-bold block mb-2">THE REALITY</span>
+              <h3 class="text-xl font-bold text-white mb-3">프로덕션 엔지니어링의 현실</h3>
+              <p class="text-sm text-slate-300 mb-4 leading-relaxed">
+                실제 서비스 오픈 시 마주하는 구조적 난제들:
+              </p>
+              <div class="space-y-2 text-xs text-red-200">
+                <div class="p-2.5 bg-red-950/20 border border-red-900/40 rounded">
+                  <strong>🚨 구조적 부채:</strong> 코드가 길어질수록 AI도 앞선 설계를 기억하지 못해 중복 모듈 양산
+                </div>
+                <div class="p-2.5 bg-red-950/20 border border-red-900/40 rounded">
+                  <strong>🚨 침묵하는 실패:</strong> 에러를 안 띄우려고 try/catch로 덮어 데이터가 증발하는 유령 버그
+                </div>
+                <div class="p-2.5 bg-red-950/20 border border-red-900/40 rounded">
+                  <strong>🚨 보안 누수:</strong> RLS가 꺼진 채 배포되어 다른 사용자의 결제 정보를 전수 덤프당하는 사고
+                </div>
+              </div>
+            </div>
+            <div class="text-[11px] text-red-300 font-mono border-t border-slate-800 pt-3">
+              "AI는 첫 80%를 순식간에 만들지만, 나머지 20%의 엔지니어링이 성패를 가른다."
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 14: 2.4 Core Competencies ================= -->
+      <section class="slide" data-title="2.4 4대 핵심 역량">
+        <div class="mb-4">
+          <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
+          <h2 class="text-3xl font-black text-white">2.4 2026 바이브 코더의 4대 핵심 역량</h2>
+        </div>
+        <div class="grid grid-cols-2 gap-4 flex-1">
+          <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-sky-400">
+            <div>
+              <span class="text-xs font-mono text-sky-400 font-bold">01 / ARCHITECTURE</span>
+              <h3 class="text-base font-bold text-white mt-1 mb-2">아키텍처 문해력 (System Literacy)</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                어떤 컴포넌트가 프론트에 있어야 하고 어떤 로직이 백엔드/트랜잭션에 있어야 하는지 데이터 흐름과 의존성 관계를 꿰뚫어 보는 능력.
+              </p>
+            </div>
+            <div class="text-[10px] text-slate-400 font-mono">신택스 암기보다 구조 설계 능력이 우선</div>
+          </div>
+
+          <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-indigo-400">
+            <div>
+              <span class="text-xs font-mono text-indigo-400 font-bold">02 / TESTING</span>
+              <h3 class="text-base font-bold text-white mt-1 mb-2">테스트 주도 검증력 (TDD Harness)</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                AI가 작성한 코드가 요구사항을 만족했는지 판별할 수 있는 자동화된 테스트 케이스를 먼저 정의하고 AI에게 피드백으로 밀어 넣는 역량.
+              </p>
+            </div>
+            <div class="text-[10px] text-indigo-300 font-mono">컴파일러와 단위 테스트를 에이전트 가이드로 활용</div>
+          </div>
+
+          <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-purple-400">
+            <div>
+              <span class="text-xs font-mono text-purple-400 font-bold">03 / PRECISION</span>
+              <h3 class="text-base font-bold text-white mt-1 mb-2">명세 정밀도 (Ambiguity Elimination)</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                "적당히 예쁘게 만들어줘" 대신, 입력 페이로드 타입, 반환 에러 코드, 엣지 케이스 처리 조건을 모호함 없이 명시하는 커뮤니케이션.
+              </p>
+            </div>
+            <div class="text-[10px] text-slate-400 font-mono">모호함이 제거될수록 AI 환각은 0으로 수렴</div>
+          </div>
+
+          <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-emerald-400">
+            <div>
+              <span class="text-xs font-mono text-emerald-400 font-bold">04 / GUARDRAILS</span>
+              <h3 class="text-base font-bold text-white mt-1 mb-2">보안 가드레일 (Security Auditing)</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                RLS 누수 여부 확인, Secret Key 환경변수 분리, Typosquatting 악성 패키지 유입 방어 등 프로덕션 레벨의 안정성 검증.
+              </p>
+            </div>
+            <div class="text-[10px] text-emerald-400 font-mono">개발자의 책임은 '완성'이 아닌 '안전'에 있다</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 15: Chapter 03 Intro ================= -->
+      <section class="slide justify-center" data-title="Ch 03. 런칭 인트로">
+        <div class="max-w-3xl">
+          <span class="text-sky-400 font-mono text-sm tracking-widest font-semibold px-3 py-1 rounded bg-sky-500/10 border border-sky-400/20">CHAPTER 03</span>
+          <h2 class="text-4xl md:text-5xl font-black text-white mt-4 mb-3">
+            런칭 : Vercel · Supabase · Stripe
+          </h2>
+          <p class="text-lg text-slate-300 leading-relaxed mb-6">
+            클라우드 인프라를 프로비저닝하느라 며칠을 허비하던 시대는 끝났습니다.<br>
+            Modern Serverless BaaS 3대장을 결합하여 아이디어 구상부터 실 결제 가능한 글로벌 프로덕트 런칭까지 단 1시간에 관통하는 워크플로우를 살펴봅니다.
+          </p>
+          <div class="flex items-center gap-3 text-xs font-mono text-slate-400">
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#Vercel</span>
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#Supabase</span>
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#Stripe</span>
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#1HourLaunch</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 16: 3.1 & 3.2 Modern BaaS & Vercel ================= -->
+      <section class="slide" data-title="3.1 & 3.2 BaaS & Vercel">
+        <div class="mb-4">
+          <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 03. 런칭</span>
+          <h2 class="text-3xl font-black text-white">3.1 Serverless BaaS 생태계 & 3.2 Vercel 프리뷰 배포</h2>
+        </div>
+        <div class="grid grid-cols-2 gap-6 flex-1 items-stretch">
+          <div class="bento-tile p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-mono text-sky-400 font-bold block mb-2">SUB-CHAPTER 3.1</span>
+              <h3 class="text-xl font-bold text-white mb-3">Modern Serverless BaaS 3대장</h3>
+              <p class="text-sm text-slate-300 mb-4 leading-relaxed">
+                왜 1인 창업자와 바이브 코더들은 AWS VPC 설정을 버리고 BaaS를 선택하는가?
+              </p>
+              <div class="space-y-2.5 text-xs">
+                <div class="p-3 bg-slate-900 rounded border border-slate-800 flex justify-between items-center">
+                  <div>
+                    <span class="font-bold text-sky-400">Vercel</span>
+                    <span class="text-slate-300 block text-[11px]">프론트 호스팅, Edge Functions, Preview 배포</span>
+                  </div>
+                  <span class="font-mono text-slate-500 text-[10px]">Zero-Ops</span>
+                </div>
+                <div class="p-3 bg-slate-900 rounded border border-slate-800 flex justify-between items-center">
+                  <div>
+                    <span class="font-bold text-emerald-400">Supabase</span>
+                    <span class="text-slate-300 block text-[11px]">Managed PostgreSQL, Auth, 실시간 동기화, RLS</span>
+                  </div>
+                  <span class="font-mono text-slate-500 text-[10px]">Open BaaS</span>
+                </div>
+                <div class="p-3 bg-slate-900 rounded border border-slate-800 flex justify-between items-center">
+                  <div>
+                    <span class="font-bold text-indigo-400">Stripe</span>
+                    <span class="text-slate-300 block text-[11px]">글로벌 결제, 구독 라이프사이클, 고객 포털</span>
+                  </div>
+                  <span class="font-mono text-slate-500 text-[10px]">Billing Engine</span>
+                </div>
+              </div>
+            </div>
+            <div class="text-[11px] text-slate-400 font-mono border-t border-slate-800 pt-3">
+              서버 관리 비용을 '비즈니스 로직과 프롬프트'로 온전히 전환
+            </div>
+          </div>
+
+          <div class="bento-tile p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-mono text-sky-400 font-bold block mb-2">SUB-CHAPTER 3.2</span>
+              <h3 class="text-xl font-bold text-white mb-3">Vercel의 Preview 배포 자동화</h3>
+              <p class="text-sm text-slate-300 mb-4 leading-relaxed">
+                AI 에이전트의 브랜치 푸시마다 격리된 테스트 URL 실시간 발급:
+              </p>
+              <div class="space-y-2 text-xs">
+                <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
+                  <span class="text-sky-400 font-mono font-bold block mb-0.5">1. Git Push 이벤트 트리거</span>
+                  에이전트가 생성한 브랜치가 푸시되면 즉시 Next/Svelte 빌드
+                </div>
+                <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
+                  <span class="text-indigo-400 font-mono font-bold block mb-0.5">2. 격리된 Preview URL 생성</span>
+                  <code class="text-slate-300 font-mono text-[11px]">app-git-feat-auth.vercel.app</code>에서 실제 브라우저 렌더링 검증
+                </div>
+                <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
+                  <span class="text-emerald-400 font-mono font-bold block mb-0.5">3. 1초 Instant Rollback</span>
+                  장애 발생 시 클릭 한 번으로 이전 빌드로 즉시 복구
+                </div>
+              </div>
+            </div>
+            <div class="text-[11px] text-sky-300 font-mono border-t border-slate-800 pt-3">
+              "말보다 작동하는 라이브 URL을 직접 보며 피드백하는 속도"
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 17: 3.3, 3.4 & 3.5 Supabase, Stripe & Demo ================= -->
+      <section class="slide" data-title="3.3 ~ 3.5 Supabase & Stripe">
+        <div class="mb-4">
+          <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 03. 런칭</span>
+          <h2 class="text-3xl font-black text-white">3.3 Supabase · 3.4 Stripe · 3.5 1시간 런칭 파이프라인</h2>
+        </div>
+        <div class="grid grid-cols-3 gap-5 flex-1 items-stretch">
+          <div class="bento-tile p-5 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-mono text-sky-400 font-bold block mb-1">SUB-CHAPTER 3.3</span>
+              <h3 class="text-base font-bold text-white mb-2">Supabase 백엔드</h3>
+              <p class="text-xs text-slate-300 mb-3">풀스택 백엔드를 10분 만에 구축:</p>
+              <ul class="space-y-2 text-xs text-slate-300">
+                <li class="p-2 bg-slate-800/80 rounded border border-slate-700/60">
+                  <strong>• Postgres DDL 자동 합성:</strong> AI가 엔티티 관계를 파악하고 마이그레이션 SQL 생성
+                </li>
+                <li class="p-2 bg-slate-800/80 rounded border border-slate-700/60">
+                  <strong>• Auth & Social OAuth:</strong> 구글/깃허브 로그인 5줄로 즉시 활성화
+                </li>
+                <li class="p-2 bg-slate-800/80 rounded border border-slate-700/60">
+                  <strong>• Row Level Security:</strong> DB 레벨에서 유저별 데이터 격리 정책 부여
+                </li>
+              </ul>
+            </div>
+            <div class="text-[10px] text-slate-400 font-mono border-t border-slate-800 pt-2">
+              타입 안전한 클라이언트 SDK 자동 생성
+            </div>
+          </div>
+
+          <div class="bento-tile p-5 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-mono text-sky-400 font-bold block mb-1">SUB-CHAPTER 3.4</span>
+              <h3 class="text-base font-bold text-white mb-2">Stripe 결제 인프라</h3>
+              <p class="text-xs text-slate-300 mb-3">글로벌 SaaS 과금 체계 연결:</p>
+              <ul class="space-y-2 text-xs text-slate-300">
+                <li class="p-2 bg-slate-800/80 rounded border border-slate-700/60">
+                  <strong>• Stripe Checkout:</strong> 보안 호스팅된 결제 세션으로 카드/애플페이 수납
+                </li>
+                <li class="p-2 bg-slate-800/80 rounded border border-slate-700/60">
+                  <strong>• Webhook 핸들링:</strong> 결제 성공 이벤트 수신 시 Supabase 구독 플래그 갱신
+                </li>
+                <li class="p-2 bg-slate-800/80 rounded border border-slate-700/60">
+                  <strong>• Customer Portal:</strong> 구독 변경/카드 수정 UI 무료 활용
+                </li>
+              </ul>
+            </div>
+            <div class="text-[10px] text-slate-400 font-mono border-t border-slate-800 pt-2">
+              PG사 심사 없이 즉시 테스트 모드로 글로벌 결제 검증
+            </div>
+          </div>
+
+          <div class="bento-tile p-5 flex flex-col justify-between border-sky-400/30">
+            <div>
+              <span class="text-xs font-mono text-sky-400 font-bold block mb-1">SUB-CHAPTER 3.5</span>
+              <h3 class="text-base font-bold text-white mb-2">1시간 실전 런칭 파이프라인</h3>
+              <p class="text-xs text-slate-300 mb-3">기획서 1장에서 프로덕션까지:</p>
+              <div class="space-y-1.5 text-[11px] font-mono text-slate-300">
+                <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
+                  <span class="text-sky-400">00~15m:</span> PRD 작성 & DB 스키마 생성
+                </div>
+                <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
+                  <span class="text-sky-400">15~35m:</span> UI 컴포넌트 & 상태 관리 연결
+                </div>
+                <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
+                  <span class="text-sky-400">35~50m:</span> Stripe 결제 웹훅 & Auth 연동
+                </div>
+                <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
+                  <span class="text-emerald-400">50~60m:</span> 도메인 연결 & 최종 런칭
+                </div>
+              </div>
+            </div>
+            <div class="text-[10px] text-emerald-400 font-mono border-t border-slate-800 pt-2">
+              실제 상용 서비스 가능한 수준의 라이브 데모
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 18: Intermission 1 ================= -->
+      <section class="slide justify-center items-center text-center" data-title="중간 휴식 1">
+        <div class="bento-tile p-10 max-w-xl border-amber-500/30">
+          <div class="text-5xl mb-4">☕</div>
+          <span class="text-xs font-mono font-bold px-3 py-1 rounded bg-amber-500/20 text-amber-300 uppercase tracking-widest">Intermission 1</span>
+          <h2 class="text-3xl font-black text-white mt-3 mb-2">중간 휴식 (10분)</h2>
+          <p class="text-sm text-slate-300 mb-6 font-mono">14:20 ~ 14:30</p>
+          <div class="p-4 bg-slate-900/80 rounded-lg border border-slate-800 text-xs text-slate-300 text-left">
+            <div class="font-bold text-amber-400 mb-2">Part 1 복습 체크포인트:</div>
+            • 챗봇에서 ReAct 도구 사용 에이전트로의 변화를 체감하셨나요?<br>
+            • 왜 바이브 코딩에서 아키텍처 문해력이 가장 중요한지 확인하셨나요?<br>
+            • 잠시 후 Part 2에서는 <strong>AutoGPT의 한계와 2024년 에이전트 학술 논문의 대폭발</strong>을 살펴봅니다.
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 19: Chapter 04 Intro ================= -->
+      <section class="slide justify-center" data-title="Ch 04. 툴체인 인트로">
+        <div class="max-w-3xl">
+          <span class="text-sky-400 font-mono text-sm tracking-widest font-semibold px-3 py-1 rounded bg-sky-500/10 border border-sky-400/20">CHAPTER 04</span>
+          <h2 class="text-4xl md:text-5xl font-black text-white mt-4 mb-3">
+            툴체인 : Skills · LLM-Wiki · Aside
+          </h2>
+          <p class="text-lg text-slate-300 leading-relaxed mb-6">
+            에이전트의 성능은 모델 자체의 파라미터 크기보다, 에이전트가 쥐고 있는 도구와 기억 장비의 정교함에서 결정됩니다.<br>
+            단일 에이전트의 실패에서 시작해 다중 에이전트와 인지 아키텍처로 진화한 학술적 배경을 집중 분석합니다.
+          </p>
+          <div class="flex items-center gap-3 text-xs font-mono text-slate-400">
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#AutoGPT_2023</span>
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#MetaGPT_ChatDev</span>
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#CoALA_Memory</span>
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#SkillsArchitecture</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 20: 4.1 Academic Evolution (HIGHLIGHT) ================= -->
+      <section class="slide" data-title="4.1 에이전트 학술적 진화">
+        <div class="mb-3">
+          <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 04. 툴체인 핵심 심화</span>
+          <h2 class="text-2xl md:text-3xl font-black text-white">4.1 에이전트 아키텍처의 학술적 진화 (AutoGPT 2023 → 2024+)</h2>
+        </div>
+        <div class="grid grid-cols-12 gap-5 flex-1 items-stretch">
+          <!-- Left: 2023 AutoGPT & Single-Agent Monolith -->
+          <div class="col-span-5 bento-tile p-5 flex flex-col justify-between border-l-4 border-l-red-500">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-red-500/20 text-red-300">2023.03 AutoGPT의 태동</span>
+                <span class="text-[11px] text-slate-400 font-mono">Single-Agent Loop</span>
+              </div>
+              <h3 class="text-base font-bold text-white mb-2">단일 모놀리식 에이전트의 한계</h3>
+              <p class="text-xs text-slate-300 mb-3 leading-relaxed">
+                LLM에 <code class="text-sky-300 bg-slate-800 px-1 py-0.5 rounded font-mono">Thought → Plan → Criticism → Action</code> 단일 루프를 부여하여 자율적으로 목표를 달성하게 하려던 최초의 대중적 시도.
+              </p>
+              <div class="space-y-2 text-xs">
+                <div class="p-2.5 bg-red-950/30 border border-red-900/40 rounded text-red-200">
+                  <strong>⚠️ 컨텍스트 드리프트 (Context Drift):</strong> 단일 윈도우에 모든 계획과 쉘 로그가 누적되며 원래 목표(Goal)를 망각
+                </div>
+                <div class="p-2.5 bg-red-950/30 border border-red-900/40 rounded text-red-200">
+                  <strong>⚠️ 연쇄 환각 & 무한 루프:</strong> 에러를 수정하려다 엉뚱한 가정을 사실로 믿고 디렉토리를 무한 헤맴
+                </div>
+                <div class="p-2.5 bg-slate-900 border border-slate-800 rounded text-slate-400">
+                  <strong>결과:</strong> 복잡한 실무 소프트웨어 생성 성공률 1점대(AutoGPT 1.0 점)에 그침
+                </div>
+              </div>
+            </div>
+            <div class="text-[11px] text-slate-400 font-mono border-t border-slate-800 pt-2">
+              "단일 LLM에게 모든 역할을 맡기는 Monolithic 프롬프트는 필연적으로 붕괴한다."
+            </div>
+          </div>
+
+          <!-- Right: 2024 Explosion of Multi-Agent & Cognitive Papers -->
+          <div class="col-span-7 bento-tile p-5 flex flex-col justify-between border-l-4 border-l-sky-500">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-sky-500/20 text-sky-300">2023 하반기 ~ 2024 학술 논문 대폭발</span>
+                <span class="text-[11px] text-sky-400 font-mono">Multi-Agent & Cognitive Architecture</span>
+              </div>
+              <h3 class="text-base font-bold text-white mb-2">역할 분업, SOP, 그리고 외부 기억 장치로의 도약</h3>
+
+              <div class="grid grid-cols-2 gap-2.5 text-xs">
+                <!-- MetaGPT -->
+                <div class="p-2.5 bg-slate-800/80 rounded border border-slate-700">
+                  <div class="font-bold text-sky-300 flex items-center justify-between">
+                    <span>MetaGPT (ICLR 2024)</span>
+                    <span class="text-[10px] text-emerald-400 font-mono">Pass@1 85%+</span>
+                  </div>
+                  <p class="text-[11px] text-slate-300 mt-1">
+                    자연어 잡담을 금지하고 <strong>SOP(표준운영절차)</strong>와 PRD, 클래스 다이어그램 명세를 강제하여 연쇄 환각 억제.
+                  </p>
+                </div>
+
+                <!-- ChatDev -->
+                <div class="p-2.5 bg-slate-800/80 rounded border border-slate-700">
+                  <div class="font-bold text-sky-300">ChatDev (ACL 2024)</div>
+                  <p class="text-[11px] text-slate-300 mt-1">
+                    가상 소프트웨어 회사 모방. CEO-CTO-개발자-테스터 간 <strong>Multi-agent Chat-Chain</strong>을 통해 단계별 검증.
+                  </p>
+                </div>
+
+                <!-- Reflexion & CoALA -->
+                <div class="p-2.5 bg-slate-800/80 rounded border border-slate-700">
+                  <div class="font-bold text-indigo-300">Reflexion (NeurIPS 2023)</div>
+                  <p class="text-[11px] text-slate-300 mt-1">
+                    가중치 튜닝 없이 <strong>언어적 자가 반성(Verbal Reflection)</strong>을 버퍼에 축적하여 자가 치유(Self-healing) 실현.
+                  </p>
+                </div>
+
+                <!-- CoALA Framework -->
+                <div class="p-2.5 bg-slate-800/80 rounded border border-slate-700">
+                  <div class="font-bold text-indigo-300">CoALA (Sumers et al., 2024)</div>
+                  <p class="text-[11px] text-slate-300 mt-1">
+                    인지과학 기반 체계화: <strong>Working / Episodic / Semantic / Procedural Memory</strong>의 명시적 분리.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Andrew Ng's 4 Patterns -->
+              <div class="mt-2.5 p-2.5 bg-sky-950/30 border border-sky-800/40 rounded text-xs">
+                <span class="font-bold text-sky-300 block mb-1">Andrew Ng의 4대 Agentic Design Patterns (2024)</span>
+                <div class="flex items-center justify-between text-[11px] text-slate-300 font-mono">
+                  <span>① Reflection (자가 반성)</span>
+                  <span>② Tool Use (도구 활용)</span>
+                  <span>③ Planning (다단계 계획)</span>
+                  <span>④ Multi-Agent (협업)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-[11px] text-sky-300 font-mono border-t border-slate-800 pt-2">
+              결론: "지능은 모델에 머무르지 않는다. 정교한 툴체인과 메모리 아키텍처가 결합되어야 에이전트가 완성된다."
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 21: Toolchain Transition Blueprint ================= -->
+      <section class="slide" data-title="툴체인 연결 지도">
+        <div class="mb-4">
+          <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 04. 툴체인</span>
+          <h2 class="text-3xl font-black text-white">학술 연구에서 도출된 프로덕션 툴체인 매핑</h2>
+        </div>
+        <div class="grid grid-cols-4 gap-4 flex-1 items-stretch">
+          <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-sky-400">
+            <div>
+              <span class="text-[10px] font-mono text-sky-400 font-bold">PROCEDURAL MEMORY</span>
+              <h3 class="text-base font-bold text-white mt-1 mb-2">Skills Architecture</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                CoALA의 '절차 기억'을 실체화. 시스템 프롬프트 과적을 막고 필요할 때만 `.skills/` 문서를 로드하는 모듈러 스킬.
+              </p>
+            </div>
+            <span class="text-xs text-sky-300 font-mono font-bold">→ 4.2에서 상세 다룸</span>
+          </div>
+
+          <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-indigo-400">
+            <div>
+              <span class="text-[10px] font-mono text-indigo-400 font-bold">SEMANTIC & EPISODIC</span>
+              <h3 class="text-base font-bold text-white mt-1 mb-2">LLM-Wiki</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                CoALA의 '의미/일화 기억'. 대화 세션이 끊겨도 아키텍처 결정(ADR)과 지식 베이스를 지속 캐싱하여 기억 복원.
+              </p>
+            </div>
+            <span class="text-xs text-indigo-300 font-mono font-bold">→ 4.3에서 상세 다룸</span>
+          </div>
+
+          <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-purple-400">
+            <div>
+              <span class="text-[10px] font-mono text-purple-400 font-bold">ISOLATED CONTEXT</span>
+              <h3 class="text-base font-bold text-white mt-1 mb-2">Aside (사이드카)</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                메인 에이전트의 컨텍스트를 지키기 위해 대용량 로그 분석이나 조사를 격리된 서브 에이전트에 위임하는 기법.
+              </p>
+            </div>
+            <span class="text-xs text-purple-300 font-mono font-bold">→ 4.4에서 상세 다룸</span>
+          </div>
+
+          <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-emerald-400">
+            <div>
+              <span class="text-[10px] font-mono text-emerald-400 font-bold">INTEROPERABILITY</span>
+              <h3 class="text-base font-bold text-white mt-1 mb-2">MCP 표준 프로토콜</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Anthropic 주도의 개방형 표준. 사내 DB, 파일, 개발 툴을 어떤 LLM에든 플러그인처럼 연결하는 범용 규격.
+              </p>
+            </div>
+            <span class="text-xs text-emerald-400 font-mono font-bold">→ 4.5에서 상세 다룸</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 22: Summary of Part 1 & 4.1 ================= -->
+      <section class="slide" data-title="Part 1 & 4.1 핵심 요약">
+        <div class="mb-4">
+          <span class="text-emerald-400 font-mono text-xs uppercase tracking-wider">Milestone Summary</span>
+          <h2 class="text-3xl font-black text-white">Part 1 및 4.1 핵심 요약 (Key Takeaways)</h2>
+        </div>
+        <div class="grid grid-cols-3 gap-6 flex-1 items-stretch">
+          <div class="bento-tile p-6 flex flex-col justify-between border-t-4 border-t-sky-500">
+            <div>
+              <div class="text-3xl mb-2">🧠</div>
+              <h3 class="text-base font-bold text-white mb-2">1. 단일 루프의 붕괴</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                AutoGPT의 실패는 모델 성능 부족이 아닌, '인지 아키텍처 부재'에서 비롯되었습니다. 이제 에이전트는 분업(Multi-Agent)과 SOP로 작동합니다.
+              </p>
+            </div>
+            <span class="text-[11px] text-sky-400 font-mono font-semibold">From Monolith to Multi-Agent</span>
+          </div>
+
+          <div class="bento-tile p-6 flex flex-col justify-between border-t-4 border-t-indigo-500">
+            <div>
+              <div class="text-3xl mb-2">⚡</div>
+              <h3 class="text-base font-bold text-white mb-2">2. 1시간 런칭의 실현</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Vercel, Supabase, Stripe BaaS 생태계를 결합하여 인프라 설정 시간을 0으로 줄이고 비즈니스 로직 검증에 모든 시간을 집중할 수 있습니다.
+              </p>
+            </div>
+            <span class="text-[11px] text-indigo-400 font-mono font-semibold">Serverless BaaS Power</span>
+          </div>
+
+          <div class="bento-tile p-6 flex flex-col justify-between border-t-4 border-t-emerald-500">
+            <div>
+              <div class="text-3xl mb-2">🛠️</div>
+              <h3 class="text-base font-bold text-white mb-2">3. 툴체인의 결정적 역할</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                프롬프트에 모든 규칙을 우겨넣지 않고, 절차 기억(Skills), 영속 기억(Wiki), 격리 에이전트(Aside)를 장착해야 프로덕션 엔지니어링이 가능합니다.
+              </p>
+            </div>
+            <span class="text-[11px] text-emerald-400 font-mono font-semibold">Toolchain is the Brain</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 23: Next Preview ================= -->
+      <section class="slide justify-center items-center text-center relative" data-title="다음 세션 예고">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/15 border border-indigo-400/30 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-4">
+          Up Next : Part 2 & Part 3
+        </div>
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
+          잠시 후 계속됩니다
+        </h2>
+        <p class="text-lg text-slate-300 max-w-xl mb-8">
+          4.1 이후의 실전 세션에서는 <strong class="text-sky-300">토큰 비용 90% 절감법, Rust/Go 언어 선택 이유, Git Worktree 병렬화</strong>가 이어집니다.
+        </p>
+
+        <div class="bento-tile p-5 max-w-lg w-full text-left space-y-2">
+          <div class="flex items-center justify-between text-xs font-mono">
+            <span class="text-slate-400">• Ch 04 후반부</span>
+            <span class="text-sky-300">Skills, LLM-Wiki, Aside 라이브 구현</span>
+          </div>
+          <div class="flex items-center justify-between text-xs font-mono">
+            <span class="text-slate-400">• Ch 05 언어</span>
+            <span class="text-indigo-300">Python의 런타임 함정과 Go/Rust 비교</span>
+          </div>
+          <div class="flex items-center justify-between text-xs font-mono">
+            <span class="text-slate-400">• Ch 06 비용</span>
+            <span class="text-purple-300">Prompt Caching & 계층형 라우팅 (90% 절감)</span>
+          </div>
+          <div class="flex items-center justify-between text-xs font-mono">
+            <span class="text-slate-400">• Ch 07 병렬화</span>
+            <span class="text-cyan-300">Git Worktree 다중 에이전트 오케스트레이션</span>
+          </div>
+          <div class="flex items-center justify-between text-xs font-mono">
+            <span class="text-slate-400">• Ch 08 가드레일</span>
+            <span class="text-emerald-300">Supabase RLS 누수 감사 & 시크릿 격리</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Global Footer Controls -->
+    <footer class="absolute bottom-0 left-0 right-0 h-12 px-8 flex items-center justify-between text-xs text-slate-400 z-20 border-t border-slate-800/60 bg-dark-900/60 backdrop-blur-sm">
+      <div class="flex items-center gap-2">
+        <span class="text-[11px] text-slate-500 font-mono">단축키: ← 이전 | → / Space 다음 | F 전체화면 | M 목차</span>
+      </div>
+
+      <!-- Navigation buttons -->
+      <div class="flex items-center gap-3">
+        <button id="prevBtn" class="px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors flex items-center gap-1 border border-slate-700">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+          <span>이전</span>
+        </button>
+        <button id="nextBtn" class="px-4 py-1 rounded bg-sky-600 hover:bg-sky-500 text-white font-semibold transition-colors flex items-center gap-1 shadow-lg shadow-sky-600/30">
+          <span>다음</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="w-32 bg-slate-800 h-1.5 rounded-full overflow-hidden border border-slate-700/50">
+        <div id="progressBar" class="bg-gradient-to-r from-sky-400 to-indigo-500 h-full w-0 transition-all duration-300"></div>
+      </div>
+    </footer>
+
+    <!-- Table of Contents Modal -->
+    <div id="tocModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-200">
+      <div class="bento-tile max-w-2xl w-full p-6 max-h-[85vh] flex flex-col border border-sky-500/30 shadow-2xl">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+          <h3 class="text-lg font-bold text-white flex items-center gap-2">
+            <span class="text-sky-400 font-mono">📑</span> 슬라이드 전체 목차 (Cover ~ 4.1)
+          </h3>
+          <button id="closeTocBtn" class="text-slate-400 hover:text-white p-1">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+        <div id="tocList" class="overflow-y-auto space-y-1.5 pr-2 flex-1 text-sm">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const slideCounter = document.getElementById('slideCounter');
+    const progressBar = document.getElementById('progressBar');
+    const tocBtn = document.getElementById('tocBtn');
+    const tocModal = document.getElementById('tocModal');
+    const closeTocBtn = document.getElementById('closeTocBtn');
+    const tocList = document.getElementById('tocList');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    function updateSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+
+      slides.forEach((slide, idx) => {
+        slide.classList.remove('active');
+        if (idx === index) {
+          slide.classList.add('active');
+        }
+      });
+
+      currentSlide = index;
+
+      const currentStr = String(currentSlide + 1).padStart(2, '0');
+      const totalStr = String(totalSlides).padStart(2, '0');
+      slideCounter.textContent = `${currentStr} / ${totalStr}`;
+
+      const progress = ((currentSlide + 1) / totalSlides) * 100;
+      progressBar.style.width = `${progress}%`;
+
+      prevBtn.disabled = currentSlide === 0;
+      prevBtn.style.opacity = currentSlide === 0 ? '0.4' : '1';
+      nextBtn.disabled = currentSlide === totalSlides - 1;
+      nextBtn.style.opacity = currentSlide === totalSlides - 1 ? '0.4' : '1';
+    }
+
+    function prevSlide() { if (currentSlide > 0) updateSlide(currentSlide - 1); }
+    function nextSlide() { if (currentSlide < totalSlides - 1) updateSlide(currentSlide + 1); }
+
+    window.addEventListener('keydown', (e) => {
+      if (!tocModal.classList.contains('hidden')) {
+        if (e.key === 'Escape' || e.key === 'm' || e.key === 'M') toggleToc(false);
+        return;
+      }
+
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') nextSlide();
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+      else if (e.key === 'Home') updateSlide(0);
+      else if (e.key === 'End') updateSlide(totalSlides - 1);
+      else if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+      else if (e.key === 'm' || e.key === 'M') toggleToc(true);
+    });
+
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => console.log(err));
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    // Build Table of Contents
+    slides.forEach((slide, idx) => {
+      const title = slide.getAttribute('data-title') || `Slide ${idx + 1}`;
+      const item = document.createElement('div');
+      item.className = 'px-3 py-2 rounded-lg hover:bg-slate-800 cursor-pointer flex items-center justify-between text-slate-300 transition-colors border border-transparent hover:border-slate-700';
+      item.innerHTML = `
+        <span class="flex items-center gap-2">
+          <span class="font-mono text-xs text-sky-400 font-bold">${String(idx + 1).padStart(2, '0')}</span>
+          <span>${title}</span>
+        </span>
+        <span class="text-xs text-slate-500 font-mono">#${idx + 1}</span>
+      `;
+      item.addEventListener('click', () => {
+        updateSlide(idx);
+        toggleToc(false);
+      });
+      tocList.appendChild(item);
+    });
+
+    function toggleToc(show) {
+      if (show) {
+        tocModal.classList.remove('hidden');
+        setTimeout(() => tocModal.classList.remove('opacity-0'), 10);
+      } else {
+        tocModal.classList.add('opacity-0');
+        setTimeout(() => tocModal.classList.add('hidden'), 200);
+      }
+    }
+
+    tocBtn.addEventListener('click', () => toggleToc(true));
+    closeTocBtn.addEventListener('click', () => toggleToc(false));
+    tocModal.addEventListener('click', (e) => {
+      if (e.target === tocModal) toggleToc(false);
+    });
+
+    updateSlide(0);
+  </script>
+</body>
+</html>

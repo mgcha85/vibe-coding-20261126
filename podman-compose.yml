@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  slides:
+    image: nginx:alpine
+    container_name: vibe-coding-20261126-slides
+    restart: always
+    ports:
+      - "${PORT:-8080}:80"
+    volumes:
+      - ./:/usr/share/nginx/html:ro
+    environment:
+      - ENV_TYPE=${ENV_TYPE:-dev}
