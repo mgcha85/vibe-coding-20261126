@@ -38,10 +38,20 @@
 ## 3. 챕터별 세부 아젠다 (Sub-Chapters)
 
 ### Chapter 01. 계보 : 챗봇에서 자율 에이전트까지
-- **1.1 프롬프트 엔지니어링의 종말**: 1회성 텍스트 생성기에서 지속 실행 에이전트로의 전환
-- **1.2 ReAct & Tool-Use 패러다임**: Reason(추론) + Act(행동) + Observe(관찰) 루프
-- **1.3 Multi-turn 피드백 루프의 원리**: 에러 로그를 읽고 스스로 코드를 수정하는 메커니즘
-- **1.4 2026 에이전트 생태계 해부**: IDE 내장형(Cursor, Windsurf 등) vs 자율 백그라운드 에이전트(Devin, SWE-bench)
+- **1.1 프롬프트의 종말과 ReAct 패러다임**: 1회성 텍스트 생성기(Single-turn)의 한계와 Reason-Act-Observe 상호작용 루프의 태동
+- **1.2 AutoGPT(2023.03)의 등장과 Monolithic Single-Agent의 좌절**:
+  - `Thought → Plan → Criticism → Action` 단일 루프의 최초 대중화 시도
+  - 왜 실패했는가?: 단일 컨텍스트 오염, *컨텍스트 드리프트(Context Drift)*, 연쇄 환각(Cascading Hallucination), 무한 루프와 목표 망각(Goal Loss)
+- **1.3 2024년 학술 연구 대폭발 (Multi-Agent & Cognitive Architecture)**:
+  - **MetaGPT (Hong et al., ICLR 2024)**: 단순 자연어 잡담 금지, **SOP(표준 운영 절차)**와 구조화된 명세(PRD, 클래스 다이어그램)를 강제하여 Pass@1 85%+ 달성
+  - **ChatDev (Qian et al., ACL 2024)**: 인간 소프트웨어 회사의 분업(CEO-CTO-Programmer-Tester)을 모방한 Multi-Agent Chat-Chain
+  - **Reflexion (Shinn et al., NeurIPS 2023)**: 모델 가중치 수정 없이 언어적 자가 반성(Verbal Reflection) 버퍼로 자가 치유(Self-healing) 실현
+  - **CoALA (Sumers et al., 2024 Cognitive Architectures for Language Agents)**: 인지과학 기반 에이전트 메모리 체계화 (Working / Episodic / Semantic / Procedural Memory)
+  - **Andrew Ng의 4대 Agentic Design Patterns (2024)**: Reflection, Tool Use, Planning, Multi-Agent Collaboration
+- **1.4 SWE-bench와 Multi-turn 피드백 루프**: 2,294개 실제 GitHub 이슈 해결 벤치마크가 증명한 피드백 루프의 위력 (단일 샷 1.96% → 에이전트 루프 70%+)
+- **1.5 2026 에이전트 2대 진영과 툴체인의 필연성**:
+  - IDE 인라인 페어(Cursor, Windsurf) vs 자율 백그라운드 러너(Devin, SWE-agent)
+  - 단일 프롬프트 시대의 종말 → 절차 기억(Skills), 영속 기억(Wiki), 인지 격리(Aside)로의 필연적 연결고리
 
 ### Chapter 02. 본질 : 바이브 코딩이란 무엇인가
 - **2.1 Andrej Karpathy의 바이브 코딩 선언**: "코드를 읽지 않고 느낌과 의도로 개발한다?"
@@ -57,18 +67,7 @@
 - **3.5 실전 런칭 파이프라인**: 텍스트 기획서에서 실제 결제 가능한 웹 서비스까지의 End-to-End 파이프라인
 
 ### Chapter 04. 툴체인 : Skills · LLM-Wiki · Aside
-- **4.1 에이전트 아키텍처의 학술적 진화 (AutoGPT 2023 → 2024+ Multi-Agent & Cognitive Architecture)**:
-  - **AutoGPT(2023.03)의 등장과 Single-Agent Monolithic Loop의 한계**:
-    - Thought-Plan-Criticism-Action의 단일 루프 시도.
-    - 단일 컨텍스트에 모든 계획과 실행 로그를 때려 넣으면서 발생하는 *컨텍스트 드리프트(Context Drift)*, 연쇄 환각(Cascading Hallucination), 무한 루프 및 목표 망각(Goal Loss).
-  - **2024년 학계의 패러다임 전환과 Agentic AI 연구 폭발**:
-    - **ChatDev (Qian et al., 2023/2024)**: 인간 소프트웨어 회사의 분업(CEO-CTO-Programmer-Tester)을 모방한 Multi-Agent Chat-chain.
-    - **MetaGPT (Hong et al., ICLR 2024)**: 단순 자연어 대화의 노이즈를 비판하고, **SOP(표준 운영 절차)**와 구조화된 명세(PRD, 아키텍처 다이어그램)를 강제하여 환각을 억제하고 Pass@1 80% 돌파.
-    - **Reflexion (Shinn et al., NeurIPS 2023)**: 언어적 자가 반성(Verbal Self-Reflection)을 단기 메모리에 축적하여 모델 가중치 수정 없이 행동 궤도를 자가 치유.
-    - **CoALA (Sumers et al., 2024 Cognitive Architectures for Language Agents)**: 에이전트의 뇌를 Working / Episodic / Semantic / Procedural Memory와 외부 액션 공간으로 체계화.
-    - **Andrew Ng의 4대 Agentic Design Patterns (2024)**: Reflection, Tool Use, Planning, Multi-agent Collaboration.
-  - **왜 '프롬프트'에서 '툴체인(Skills, Wiki, Aside)'으로 이동해야만 하는가?**:
-    - 모델 파라미터가 커져도 인지 아키텍처(외부 기억, 모듈러 도구, 컨텍스트 격리)가 없으면 실전 복잡 엔지니어링은 불가능함을 학술적으로 입증.
+- **4.1 인지 아키텍처의 프로덕션 구현 (From Paper to Production Code)**: Chapter 01에서 정립한 CoALA 4대 메모리 구조를 실제 툴체인으로 구현하는 청사진
 - **4.2 Skills Architecture**: CoALA의 절차 기억(Procedural Memory) 구현체 — 도메인 규칙, 컨벤션, 전용 CLI를 LLM에 모듈러 방식으로 주입하기
 - **4.3 LLM-Wiki & Context 지속성**: CoALA의 의미/일화 기억(Semantic & Episodic Memory) — 프로젝트 진행에 따른 아키텍처 결정(ADR)과 지식 자동 누적
 - **4.4 Aside / 사이드카 에이전트**: 메인 작업 컨텍스트를 오염시키지 않고 서브 태스크를 병렬 조사하는 인지적 격리 기법
