@@ -1,0 +1,51 @@
+<section class="slide" data-title="2.2 Intent 합성 메커니즘">
+  <div class="mb-4">
+    <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
+    <h2 class="text-3xl font-black text-white">2.2 말이 코드가 되는 메커니즘</h2>
+  </div>
+  <div class="grid grid-cols-4 gap-4 flex-1 items-stretch">
+    <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-sky-400">
+      <div>
+        <div class="w-7 h-7 rounded-full bg-sky-500/20 text-sky-400 font-mono font-bold flex items-center justify-center text-xs mb-3">01</div>
+        <h3 class="text-sm font-bold text-white mb-2">자연어 의도 명세</h3>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          "로그인한 사용자만 결제 페이지에 접근하고 결제 완료 시 구독 플래그를 true로 갱신해줘."
+        </p>
+      </div>
+      <span class="text-[10px] font-mono text-slate-500">Intent Formulation</span>
+    </div>
+
+    <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-indigo-400">
+      <div>
+        <div class="w-7 h-7 rounded-full bg-indigo-500/20 text-indigo-400 font-mono font-bold flex items-center justify-center text-xs mb-3">02</div>
+        <h3 class="text-sm font-bold text-white mb-2">인터페이스 & 계약 정의</h3>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          DB 스키마(users, subscriptions), Auth 세션 미들웨어, Stripe 웹훅 엔드포인트 명세 합성.
+        </p>
+      </div>
+      <span class="text-[10px] font-mono text-slate-500">Spec & Contracts</span>
+    </div>
+
+    <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-purple-400">
+      <div>
+        <div class="w-7 h-7 rounded-full bg-purple-500/20 text-purple-400 font-mono font-bold flex items-center justify-center text-xs mb-3">03</div>
+        <h3 class="text-sm font-bold text-white mb-2">소스 코드 합성</h3>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          SvelteKit 라우트, Supabase Postgres RLS 정책 SQL, 결제 세션 핸들러 바이너리 코드 생성.
+        </p>
+      </div>
+      <span class="text-[10px] font-mono text-slate-500">Code Synthesis</span>
+    </div>
+
+    <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-emerald-400">
+      <div>
+        <div class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 font-mono font-bold flex items-center justify-center text-xs mb-3">04</div>
+        <h3 class="text-sm font-bold text-white mb-2">컴파일 & 런타임 검증</h3>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          타입 체커(TypeScript) 실행, API 통합 테스트, RLS 누수 감사 통과 후 최종 패치 확정.
+        </p>
+      </div>
+      <span class="text-[10px] font-mono text-emerald-400 font-bold">Verification Gate</span>
+    </div>
+  </div>
+</section>

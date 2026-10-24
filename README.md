@@ -7,20 +7,25 @@
 - **장소**: 김포대학교 글로벌캠퍼스 211-B호
 - **강사**: 차민규 AI Engineer (LG AI & Big Data Group, Agentic AI 팀)
 
-## 2. 파일 구조
+## 2. 파일 구조 (모듈러 슬라이드 아키텍처)
 ```text
-├── index.html               # 16:9 비율의 인터랙티브 HTML 프레젠테이션 슬라이드
-├── start.sh                 # 구동 스크립트 (podman-compose 또는 python 서버 fallback)
+├── index.html               # 빌드된 16:9 반응형 슬라이드 (더블클릭 실행 가능)
+├── template.html            # 프레젠테이션 엔진 템플릿 (16:9 프레임, 단축키 이벤트 등)
+├── build.py                 # slides/ 컴포넌트들을 index.html로 0.01초 만에 합쳐주는 초경량 빌더
+├── slides/                  # 챕터별 독립 슬라이드 컴포넌트 (각 파일 30~50줄)
+│   ├── 00-intro/            # 표지, 강사 소개, 로드맵, 전체 아젠다
+│   ├── 01-lineage/          # Ch 01 계보 (AutoGPT 실패, 2024 논문 대폭발, SWE-bench)
+│   ├── 02-essence/          # Ch 02 본질 (Karpathy 선언, Intent 합성, 현실 점검)
+│   ├── 03-launch/           # Ch 03 런칭 (Vercel, Supabase, Stripe, 1시간 데모)
+│   ├── 04-toolchain/        # Ch 04 툴체인 (CoALA 인지 아키텍처 실무 매핑)
+│   └── 99-summary/          # 요약 및 다음 세션 예고
+├── start.sh                 # 자동 컴파일 & 구동 스크립트
 ├── stop.sh                  # 정지 스크립트
 ├── podman-compose.yml       # 컨테이너 기반 정적 호스팅 명세
-├── .env.example             # 환경변수 템플릿
-├── .env.dev                 # 개발 환경변수
-├── .env.prod                # 프로덕션 환경변수
-├── .github/
-│   └── workflows/
-│       └── deploy.yml       # CI/CD 자동 배포 워크플로우
+├── .github/workflows/
+│   └── pages.yml            # GitHub Pages 자동 빌드 & 배포 워크플로우
 └── docs/
-    ├── curriculum.md        # 3시간 타임테이블 및 챕터 1~8 세부 서브챕터 강의계획서
+    ├── curriculum.md        # 3시간 타임테이블 및 챕터 1~8 상세 강의계획서
     └── TODO.md              # 프로젝트 현황 및 향후 계획
 ```
 

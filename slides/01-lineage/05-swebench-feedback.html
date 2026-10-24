@@ -1,0 +1,70 @@
+<section class="slide" data-title="1.4 SWE-bench & 피드백">
+  <div class="mb-4">
+    <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
+    <h2 class="text-3xl font-black text-white">1.4 SWE-bench와 Multi-turn 피드백 루프</h2>
+  </div>
+  <div class="grid grid-cols-2 gap-6 flex-1 items-stretch">
+    <div class="bento-tile p-6 flex flex-col justify-between">
+      <div>
+        <span class="text-xs font-mono text-sky-400 font-bold block mb-2">AUTONOMOUS RECOVERY</span>
+        <h3 class="text-xl font-bold text-white mb-3">자가 치유(Self-Healing)의 메커니즘</h3>
+        <p class="text-sm text-slate-300 mb-4 leading-relaxed">
+          실패를 두려워하지 않고, 에러 로그를 읽고 스스로 고치는 파이프라인:
+        </p>
+        <div class="space-y-2 text-xs font-mono text-slate-300">
+          <div class="p-2.5 bg-slate-900 rounded border border-slate-800 flex justify-between">
+            <span>1. 코드 작성 (Write Code)</span>
+            <span class="text-sky-400">Agent</span>
+          </div>
+          <div class="text-center text-slate-600">↓</div>
+          <div class="p-2.5 bg-slate-900 rounded border border-slate-800 flex justify-between">
+            <span>2. 테스트 실행 (Run test suite)</span>
+            <span class="text-indigo-400">Sandbox</span>
+          </div>
+          <div class="text-center text-slate-600">↓</div>
+          <div class="p-2.5 bg-slate-900 rounded border border-red-900/50 text-red-300 flex justify-between">
+            <span>3. 에러 트레이스백 관찰 (Stderr)</span>
+            <span class="text-red-400">Fail</span>
+          </div>
+          <div class="text-center text-slate-600">↓</div>
+          <div class="p-2.5 bg-slate-900 rounded border border-emerald-900/50 text-emerald-300 flex justify-between">
+            <span>4. 버그 원인 분석 후 국소 수정 (Replace Chunk)</span>
+            <span class="text-emerald-400">Pass</span>
+          </div>
+        </div>
+      </div>
+      <div class="text-[11px] text-slate-400 font-mono border-t border-slate-800 pt-3">
+        "테스트 스위트와 린터는 에이전트의 가장 엄격한 과외 선생님이다."
+      </div>
+    </div>
+
+    <div class="bento-tile p-6 flex flex-col justify-between">
+      <div>
+        <span class="text-xs font-mono text-sky-400 font-bold block mb-2">EVIDENCE</span>
+        <h3 class="text-xl font-bold text-white mb-3">SWE-bench가 증명한 현실</h3>
+        <p class="text-sm text-slate-300 mb-4 leading-relaxed">
+          실제 GitHub 오픈소스(Django, SymPy, Flask) 2,294개 이슈 해결 벤치마크:
+        </p>
+        <div class="space-y-3 text-xs">
+          <div class="p-3 bg-slate-800/80 rounded border border-slate-700">
+            <div class="flex justify-between font-bold mb-1">
+              <span>단일 프롬프트 (GPT-4 Zero-shot)</span>
+              <span class="text-red-400 font-mono">1.96% 해결</span>
+            </div>
+            <div class="text-[11px] text-slate-400">맥락 없이 파일 전체를 주면 거의 100% 실패</div>
+          </div>
+          <div class="p-3 bg-sky-950/40 border border-sky-800/50 rounded">
+            <div class="flex justify-between font-bold mb-1">
+              <span class="text-sky-300">Tool-use + Multi-turn Agent</span>
+              <span class="text-emerald-400 font-mono">50% ~ 70%+ 돌파</span>
+            </div>
+            <div class="text-[11px] text-slate-300">검색 도구, 국소 편집 도구, 테스트 피드백이 붙자 비약적 성능 상승</div>
+          </div>
+        </div>
+      </div>
+      <div class="text-[11px] text-sky-300 font-mono border-t border-slate-800 pt-3">
+        도구 환경(Environment)의 완성도가 에이전트의 실질 지능을 결정함
+      </div>
+    </div>
+  </div>
+</section>

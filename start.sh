@@ -10,6 +10,9 @@ if [ ! -f "$ENV_FILE" ]; then
     cp .env.example "$ENV_FILE"
 fi
 
+echo "🔨 Compiling slides from slides/ into index.html..."
+python3 build.py
+
 echo "🚀 Starting presentation slides in [$ENV_MODE] mode using $ENV_FILE..."
 
 # export variables from env file
