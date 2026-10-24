@@ -836,125 +836,226 @@
 </section>
 
       <!-- [COMPONENT] 01-lineage/05-swebench-feedback.html -->
-<section class="slide" data-title="1.4 SWE-bench & 피드백">
-  <div class="mb-4">
+<section class="slide" data-title="1.4 SWE-bench & 2025 추론 혁신">
+  <div class="mb-3">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
-    <h2 class="text-3xl font-black text-white">1.4 SWE-bench와 Multi-turn 피드백 루프</h2>
+    <h2 class="text-3xl font-black text-white">1.4 SWE-bench와 2025년 추론 모델(Test-Time Compute) 혁신</h2>
   </div>
-  <div class="grid grid-cols-2 gap-6 flex-1 items-stretch">
-    <div class="bento-tile p-6 flex flex-col justify-between">
+
+  <div class="grid grid-cols-12 gap-5 flex-1 items-stretch">
+    <!-- Left: SWE-bench Evidence & Multimodal v2 -->
+    <div class="col-span-6 bento-tile p-4 flex flex-col justify-between border-l-4 border-l-sky-500">
       <div>
-        <span class="text-xs font-mono text-sky-400 font-bold block mb-2">AUTONOMOUS RECOVERY</span>
-        <h3 class="text-xl font-bold text-white mb-3">자가 치유(Self-Healing)의 메커니즘</h3>
-        <p class="text-sm text-slate-300 mb-4 leading-relaxed">
-          실패를 두려워하지 않고, 에러 로그를 읽고 스스로 고치는 파이프라인:
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-sky-500/20 text-sky-300">BENCHMARKS & SELF-HEALING</span>
+          <span class="text-[11px] text-slate-400 font-mono">Feedback Loop</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">자가 치유(Self-Healing)와 SWE-bench 실증</h3>
+        <p class="text-xs text-slate-300 mb-3 leading-relaxed">
+          실제 GitHub 2,294개 오픈소스 이슈 해결 벤치마크가 증명한 피드백 루프의 위력:
         </p>
-        <div class="space-y-2 text-xs font-mono text-slate-300">
-          <div class="p-2.5 bg-slate-900 rounded border border-slate-800 flex justify-between">
-            <span>1. 코드 작성 (Write Code)</span>
-            <span class="text-sky-400">Agent</span>
+
+        <!-- Benchmark Comparison -->
+        <div class="grid grid-cols-2 gap-2 mb-3">
+          <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
+            <span class="text-[11px] text-slate-400 block mb-0.5">단일 프롬프트 (Zero-shot)</span>
+            <div class="text-xl font-black text-red-400 font-mono">1.96%</div>
+            <p class="text-[10px] text-slate-400 mt-0.5">맥락 없이 파일 전체 주입 시 100%에 가깝게 실패</p>
           </div>
-          <div class="text-center text-slate-600">↓</div>
-          <div class="p-2.5 bg-slate-900 rounded border border-slate-800 flex justify-between">
-            <span>2. 테스트 실행 (Run test suite)</span>
-            <span class="text-indigo-400">Sandbox</span>
-          </div>
-          <div class="text-center text-slate-600">↓</div>
-          <div class="p-2.5 bg-slate-900 rounded border border-red-900/50 text-red-300 flex justify-between">
-            <span>3. 에러 트레이스백 관찰 (Stderr)</span>
-            <span class="text-red-400">Fail</span>
-          </div>
-          <div class="text-center text-slate-600">↓</div>
-          <div class="p-2.5 bg-slate-900 rounded border border-emerald-900/50 text-emerald-300 flex justify-between">
-            <span>4. 버그 원인 분석 후 국소 수정 (Replace Chunk)</span>
-            <span class="text-emerald-400">Pass</span>
+          <div class="p-2.5 bg-sky-950/40 rounded border border-sky-800/60">
+            <span class="text-[11px] text-sky-300 block mb-0.5">Tool-use + 피드백 에이전트</span>
+            <div class="text-xl font-black text-emerald-400 font-mono">50% ~ 70%+</div>
+            <p class="text-[10px] text-emerald-300 mt-0.5">검색, 국소 수정, Stderr 관찰 루프로 비약적 상승</p>
           </div>
         </div>
+
+        <!-- 4-step Micro Loop -->
+        <div class="p-2 bg-slate-950/60 rounded border border-slate-800 text-[11px] font-mono text-slate-300 flex items-center justify-between mb-3">
+          <span class="px-1.5 py-0.5 bg-slate-800 rounded">1. 코드 작성</span>
+          <span class="text-slate-600">➔</span>
+          <span class="px-1.5 py-0.5 bg-slate-800 rounded text-indigo-300">2. 테스트 실행</span>
+          <span class="text-slate-600">➔</span>
+          <span class="px-1.5 py-0.5 bg-red-950 text-red-300 rounded border border-red-900/60">3. Stderr 관찰</span>
+          <span class="text-slate-600">➔</span>
+          <span class="px-1.5 py-0.5 bg-emerald-950 text-emerald-300 rounded border border-emerald-900/60">4. 국소 패치</span>
+        </div>
+
+        <!-- 2025 SWE-bench Multimodal v2 -->
+        <div class="p-2.5 bg-indigo-950/30 border border-indigo-800/40 rounded">
+          <div class="flex items-center justify-between mb-1">
+            <strong class="text-indigo-300 text-xs font-mono">2025 진화: SWE-bench Multimodal & v2</strong>
+            <span class="text-[10px] px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-300 font-mono">Vision Agent</span>
+          </div>
+          <p class="text-[11px] text-slate-300 leading-relaxed">
+            텍스트 코드뿐 아니라 <strong>브라우저 렌더링 화면, Figma 디자인 시안, 웹 UI 버그</strong>를 시각적으로 보고 고치는 멀티모달 자율 엔지니어링 연구로 확장.
+          </p>
+        </div>
       </div>
-      <div class="text-[11px] text-slate-400 font-mono border-t border-slate-800 pt-3">
-        "테스트 스위트와 린터는 에이전트의 가장 엄격한 과외 선생님이다."
+      <div class="text-[10.5px] text-sky-400 font-mono border-t border-slate-800 pt-2">
+        "도구 환경(Environment)과 테스트 피드백이 에이전트의 실질 지능을 결정한다."
       </div>
     </div>
 
-    <div class="bento-tile p-6 flex flex-col justify-between">
+    <!-- Right: 2025 Test-Time Compute & Repo Map -->
+    <div class="col-span-6 bento-tile p-4 flex flex-col justify-between border-l-4 border-l-purple-500">
       <div>
-        <span class="text-xs font-mono text-sky-400 font-bold block mb-2">EVIDENCE</span>
-        <h3 class="text-xl font-bold text-white mb-3">SWE-bench가 증명한 현실</h3>
-        <p class="text-sm text-slate-300 mb-4 leading-relaxed">
-          실제 GitHub 오픈소스(Django, SymPy, Flask) 2,294개 이슈 해결 벤치마크:
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-purple-500/20 text-purple-300">2025 REASONING & REPO MAP</span>
+          <span class="text-[11px] text-slate-400 font-mono">Long-Horizon Loop</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">2025년: '추론 모델' 결합과 장기 실행(Long-Horizon)</h3>
+        <p class="text-xs text-slate-300 mb-3 leading-relaxed">
+          OpenAI o1/o3, Claude 3.5/3.7 Sonnet 등 **Test-Time Compute(추론 시간 연산)**의 에이전트 이식:
         </p>
-        <div class="space-y-3 text-xs">
-          <div class="p-3 bg-slate-800/80 rounded border border-slate-700">
-            <div class="flex justify-between font-bold mb-1">
-              <span>단일 프롬프트 (GPT-4 Zero-shot)</span>
-              <span class="text-red-400 font-mono">1.96% 해결</span>
+
+        <div class="space-y-2.5 text-xs">
+          <!-- ① Test-Time Compute -->
+          <div class="p-3 bg-slate-900 rounded border border-slate-800">
+            <div class="flex items-center justify-between mb-1">
+              <strong class="text-purple-300 font-bold">① Test-Time Compute 기반 에이전트 계획 수립</strong>
+              <span class="text-[10px] font-mono text-purple-400">Think Before Coding</span>
             </div>
-            <div class="text-[11px] text-slate-400">맥락 없이 파일 전체를 주면 거의 100% 실패</div>
+            <p class="text-[11px] text-slate-300 leading-relaxed mb-1.5">
+              과거에는 에이전트가 잘못된 코드를 짜면 되돌아오지 못했으나, 모델 내부의 <strong>Hidden CoT(생각 사슬)</strong>를 통해 코드를 실행하기 전 가상으로 수십 가지 경우의 수를 사전 시뮬레이션 및 Self-Correction.
+            </p>
+            <div class="text-[10.5px] text-purple-200 bg-purple-950/40 px-2 py-1 rounded font-mono">
+              ➔ "바로 코드를 타이핑하지 않고 먼저 깊게 생각하는" 에이전트로 패러다임 전환
+            </div>
           </div>
-          <div class="p-3 bg-sky-950/40 border border-sky-800/50 rounded">
-            <div class="flex justify-between font-bold mb-1">
-              <span class="text-sky-300">Tool-use + Multi-turn Agent</span>
-              <span class="text-emerald-400 font-mono">50% ~ 70%+ 돌파</span>
+
+          <!-- ② Repo Map -->
+          <div class="p-3 bg-slate-900 rounded border border-slate-800">
+            <div class="flex items-center justify-between mb-1">
+              <strong class="text-sky-300 font-bold">② Aider의 'Repo Map' 최적화 (2024~2025)</strong>
+              <span class="text-[10px] font-mono text-sky-400">Tree-sitter + PageRank</span>
             </div>
-            <div class="text-[11px] text-slate-300">검색 도구, 국소 편집 도구, 테스트 피드백이 붙자 비약적 성능 상승</div>
+            <p class="text-[11px] text-slate-300 leading-relaxed mb-1.5">
+              수십만 줄의 코드베이스를 토큰 낭비 없이 전달하기 위해, <strong>Tree-sitter(AST 분석기)</strong>와 <strong>PageRank 알고리즘</strong>을 결합해 현재 작업과 가장 연관된 핵심 파일·심볼 관계도만 추출 주입.
+            </p>
+            <div class="text-[10.5px] text-sky-200 bg-sky-950/40 px-2 py-1 rounded font-mono">
+              ➔ 컨텍스트 오염을 막고 토큰 요금을 80% 이상 절감하는 핵심 기법
+            </div>
           </div>
         </div>
       </div>
-      <div class="text-[11px] text-sky-300 font-mono border-t border-slate-800 pt-3">
-        도구 환경(Environment)의 완성도가 에이전트의 실질 지능을 결정함
+      <div class="text-[10.5px] text-purple-300 font-mono border-t border-slate-800 pt-2">
+        "깊은 사전 추론과 정밀한 코드베이스 맵핑이 롱호라이즌 성공률을 좌우한다."
       </div>
     </div>
   </div>
 </section>
 
       <!-- [COMPONENT] 01-lineage/06-two-camps.html -->
-<section class="slide" data-title="1.5 2대 진영과 툴체인 필연론">
-  <div class="mb-4">
+<section class="slide" data-title="1.5 Outer-Inner Loop & 2대 진영">
+  <div class="mb-2.5">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
-    <h2 class="text-3xl font-black text-white">1.5 2026 에이전트 2대 진영과 툴체인의 필연성</h2>
+    <h2 class="text-3xl font-black text-white">1.5 2026 에이전트 아키텍처 : Outer-Inner Loop와 2대 진영</h2>
   </div>
-  <div class="grid grid-cols-2 gap-6 flex-1 items-stretch">
-    <div class="bento-tile p-6 flex flex-col justify-between border-t-4 border-t-sky-500">
-      <div>
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-sky-500/20 text-sky-300">CAMP A</span>
-          <span class="text-xs text-slate-400 font-mono">Human-in-the-loop</span>
+
+  <div class="flex flex-col gap-3 flex-1 justify-between">
+    <!-- Top: Outer Loop vs Inner Loop Separation (2025~2026 Standard) -->
+    <div class="bento-tile p-3.5 border-l-4 border-l-purple-500">
+      <div class="flex items-center justify-between mb-1">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-purple-500/20 text-purple-300">2026 ARCHITECTURE</span>
+          <h3 class="text-sm font-bold text-white">자율 워크스페이스와 'Outer Loop & Inner Loop'의 분리</h3>
         </div>
-        <h3 class="text-xl font-bold text-white mb-2">IDE 인라인 페어 에이전트</h3>
-        <p class="text-xs text-slate-300 mb-4">Cursor, Windsurf, Antigravity IDE 등</p>
-        <ul class="space-y-2 text-xs text-slate-300">
-          <li class="p-2.5 bg-slate-900 rounded border border-slate-800">
-            <strong>• 실시간 코드 완성:</strong> 개발자의 탭 타이핑과 단축키에 맞춰 인라인 코드 제안
-          </li>
-          <li class="p-2.5 bg-slate-900 rounded border border-slate-800">
-            <strong>• 빠른 인터랙션:</strong> 3초 안에 디프(Diff)를 보고 즉시 수용/거절 결정
-          </li>
-        </ul>
+        <span class="text-[10px] font-mono text-slate-400">xAI Grok Bot · 최신 클라우드 에이전트 표준</span>
       </div>
-      <div class="text-[11px] text-sky-400 font-mono border-t border-slate-800 pt-3">
-        개발자의 즉각적 통제와 호흡 중심
+      <p class="text-[11px] text-slate-300 mb-2 leading-relaxed">
+        단일 세션에 기획·탐색·코딩·테스트·PR을 다 넣으면 컨텍스트(200k+) 오염으로 지능이 급격히 저하되므로, <strong>역할과 실행 환경을 물리적으로 2단계 분리</strong>:
+      </p>
+
+      <!-- SVG Outer vs Inner Flow Diagram -->
+      <div class="bg-slate-950/70 border border-slate-800 rounded-lg p-2 flex items-center justify-center">
+        <svg viewBox="0 0 960 90" class="w-full h-auto max-h-[85px]" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrowRightSky" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+              <polygon points="0,0 7,3.5 0,7" fill="#38bdf8"/>
+            </marker>
+            <marker id="arrowRightGreen" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+              <polygon points="0,0 7,3.5 0,7" fill="#34d399"/>
+            </marker>
+          </defs>
+
+          <!-- Outer Loop Box -->
+          <g transform="translate(10, 10)">
+            <rect width="430" height="70" rx="8" fill="#1e1b4b" fill-opacity="0.5" stroke="#818cf8" stroke-width="1.4"/>
+            <text x="15" y="22" fill="#c084fc" font-size="11" font-weight="bold" font-family="JetBrains Mono">Outer Loop (클라우드 지속형 에이전트)</text>
+            <text x="15" y="40" fill="#cbd5e1" font-size="9.5">• 격리된 Cloud VM / Git Worktree에서 장기 지속(Long-running)</text>
+            <text x="15" y="55" fill="#cbd5e1" font-size="9.5">• 이슈 분석 ➔ 브랜치 생성 ➔ 환경 셋업 ➔ CI/CD 결과 분석 ➔ PR 생성</text>
+          </g>
+
+          <!-- Middle Connectors -->
+          <!-- Dispatch Arrow -->
+          <path d="M 445 32 L 495 32" fill="none" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowRightSky)"/>
+          <text x="470" y="24" text-anchor="middle" fill="#38bdf8" font-size="8" font-family="JetBrains Mono">작업 지시</text>
+
+          <!-- Report Arrow -->
+          <path d="M 495 56 L 445 56" fill="none" stroke="#34d399" stroke-width="2" marker-end="url(#arrowRightGreen)"/>
+          <text x="470" y="68" text-anchor="middle" fill="#34d399" font-size="8" font-family="JetBrains Mono">결과 보고</text>
+
+          <!-- Inner Loop Box -->
+          <g transform="translate(505, 10)">
+            <rect width="445" height="70" rx="8" fill="#0c4a6e" fill-opacity="0.4" stroke="#38bdf8" stroke-width="1.4"/>
+            <text x="15" y="22" fill="#38bdf8" font-size="11" font-weight="bold" font-family="JetBrains Mono">Inner Loop (IDE / 국소 작업 에이전트)</text>
+            <text x="15" y="40" fill="#cbd5e1" font-size="9.5">• 깨끗하고 격리된 작은 컨텍스트(Single Micro-Task) 수신</text>
+            <text x="15" y="55" fill="#cbd5e1" font-size="9.5">• 함수 수정 & 버그 픽스만 초고속 수행 ➔ 즉각 린터/컴파일러 검증</text>
+          </g>
+        </svg>
       </div>
     </div>
 
-    <div class="bento-tile p-6 flex flex-col justify-between border-t-4 border-t-indigo-500">
-      <div>
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300">CAMP B</span>
-          <span class="text-xs text-slate-400 font-mono">Autonomous Worker</span>
+    <!-- Bottom: 2 Major Camps & Toolchain Inevitability -->
+    <div class="grid grid-cols-2 gap-4">
+      <!-- CAMP A -->
+      <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-sky-500">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-sky-500/20 text-sky-300">CAMP A</span>
+            <span class="text-[11px] text-slate-400 font-mono">Human-in-the-loop</span>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1">IDE 인라인 페어 에이전트</h3>
+          <p class="text-[11px] text-slate-400 mb-2.5">Cursor, Windsurf, Antigravity IDE 등</p>
+          <ul class="space-y-1.5 text-xs text-slate-300">
+            <li class="p-2 bg-slate-900 rounded border border-slate-800">
+              <strong class="text-sky-300 block mb-0.5">• 실시간 탭 완성 & 인라인 에딧:</strong>
+              개발자의 타이핑 호흡에 맞춰 3초 안에 디프(Diff)를 제안하고 즉시 피드백 수용
+            </li>
+            <li class="p-2 bg-slate-900 rounded border border-slate-800">
+              <strong class="text-sky-300 block mb-0.5">• 개발자의 즉각적 통제:</strong>
+              에디터 내부에서 Human-AI 실시간 협업 페어 프로그래밍
+            </li>
+          </ul>
         </div>
-        <h3 class="text-xl font-bold text-white mb-2">자율 백그라운드 태스크 러너</h3>
-        <p class="text-xs text-slate-300 mb-4">Devin, SWE-agent, 컨테이너 백그라운드 러너</p>
-        <ul class="space-y-2 text-xs text-slate-300">
-          <li class="p-2.5 bg-slate-900 rounded border border-slate-800">
-            <strong>• 비동기 분업:</strong> 이슈 티켓 URL을 던지면 독립 샌드박스에서 20분간 코딩 후 PR 제출
-          </li>
-          <li class="p-2.5 bg-slate-900 rounded border border-slate-800">
-            <strong>• 툴체인의 필연성:</strong> 긴 작업을 지탱하려면 <strong>절차 기억(Skills), 영속 기억(Wiki), 인지 격리(Aside)</strong>가 필수
-          </li>
-        </ul>
+        <div class="text-[10.5px] text-sky-400 font-mono border-t border-slate-800 pt-1.5 mt-1">
+          "개발자의 집중 흐름을 깨지 않는 초저지연 상호작용"
+        </div>
       </div>
-      <div class="text-[11px] text-indigo-400 font-mono border-t border-slate-800 pt-3">
-        → 이것이 바로 Chapter 04에서 다룰 "툴체인"의 핵심 이유!
+
+      <!-- CAMP B -->
+      <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-indigo-500">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300">CAMP B</span>
+            <span class="text-[11px] text-slate-400 font-mono">Autonomous Worker</span>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1">자율 백그라운드 태스크 러너</h3>
+          <p class="text-[11px] text-slate-400 mb-2.5">Devin, SWE-agent, 클라우드 컨테이너 에이전트</p>
+          <ul class="space-y-1.5 text-xs text-slate-300">
+            <li class="p-2 bg-slate-900 rounded border border-slate-800">
+              <strong class="text-indigo-300 block mb-0.5">• 비동기 분업:</strong>
+              이슈 URL을 전달하면 독립 클라우드 샌드박스에서 20분간 코딩·테스트 후 PR 제출
+            </li>
+            <li class="p-2 bg-slate-900 rounded border border-slate-800">
+              <strong class="text-indigo-300 block mb-0.5">• 2026 툴체인의 필연성:</strong>
+              장기 실행을 버티려면 <strong>절차 기억(Skills), 영속 기억(LLM-Wiki), 인지 격리(Aside)</strong>가 필수!
+            </li>
+          </ul>
+        </div>
+        <div class="text-[10.5px] text-indigo-300 font-mono border-t border-slate-800 pt-1.5 mt-1">
+          ➔ 이것이 바로 Chapter 04에서 다룰 "2026 툴체인"의 핵심 이유!
+        </div>
       </div>
     </div>
   </div>

@@ -48,10 +48,17 @@
   - **Reflexion (Shinn et al., NeurIPS 2023)**: 모델 가중치 수정 없이 언어적 자가 반성(Verbal Reflection) 버퍼로 자가 치유(Self-healing) 실현
   - **CoALA (Sumers et al., 2024 Cognitive Architectures for Language Agents)**: 인지과학 기반 에이전트 메모리 체계화 (Working / Episodic / Semantic / Procedural Memory)
   - **Andrew Ng의 4대 Agentic Design Patterns (2024)**: Reflection, Tool Use, Planning, Multi-Agent Collaboration
-- **1.4 SWE-bench와 Multi-turn 피드백 루프**: 2,294개 실제 GitHub 이슈 해결 벤치마크가 증명한 피드백 루프의 위력 (단일 샷 1.96% → 에이전트 루프 70%+)
-- **1.5 2026 에이전트 2대 진영과 툴체인의 필연성**:
-  - IDE 인라인 페어(Cursor, Windsurf) vs 자율 백그라운드 러너(Devin, SWE-agent)
-  - 단일 프롬프트 시대의 종말 → 절차 기억(Skills), 영속 기억(Wiki), 인지 격리(Aside)로의 필연적 연결고리
+- **1.4 SWE-bench와 2025년 추론 모델(Test-Time Compute) 혁신**:
+  - SWE-bench 실증: 단일 샷 1.96% → 자가 치유(Self-healing) 피드백 루프 70%+ 돌파
+  - **SWE-bench Multimodal & v2 (2025)**: 텍스트 코드를 넘어 웹 화면·Figma 디자인·UI 버그를 시각적으로 보고 고치는 Vision Agent
+  - **Test-Time Compute 기반 계획 수립 (o1, o3, Claude 3.7)**: Hidden CoT로 코드 작성 전 가상 시뮬레이션 및 Self-Correction ("Think before coding")
+  - **Aider의 Repo Map (Tree-sitter + PageRank)**: 대규모 코드베이스의 심볼 관계도 추출을 통한 컨텍스트 최적화 및 토큰 80%+ 절감
+- **1.5 2026 에이전트 아키텍처 : Outer-Inner Loop 분리와 2대 진영**:
+  - **자율 워크스페이스의 2단계 분리 (xAI Grok Bot 최신 표준)**:
+    - *Outer Loop (클라우드 지속형)*: 이슈 분석, Git 브랜치, 빌드 환경, CI/CD 테스트 분석, PR 생성
+    - *Inner Loop (로컬/작업 에이전트)*: 깨끗한 미니 컨텍스트에서 함수 수정 및 버그 픽스 초고속 수행
+  - **2대 진영**: IDE 인라인 페어(Cursor, Windsurf) vs 자율 백그라운드 러너(Devin, SWE-agent)
+  - 롱호라이즌 작업을 지탱하기 위한 툴체인의 필연성: 절차 기억(Skills), 영속 기억(LLM-Wiki), 인지 격리(Aside)로의 연결
 
 ### Chapter 02. 본질 : 바이브 코딩이란 무엇인가
 - **2.1 Andrej Karpathy의 바이브 코딩 선언**: "코드를 읽지 않고 느낌과 의도로 개발한다?"
