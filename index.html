@@ -1332,54 +1332,225 @@
 </section>
 
       <!-- [COMPONENT] 02-essence/03-intent-mechanism.html -->
-<section class="slide" data-title="2.2 Intent 합성 메커니즘">
-  <div class="mb-4">
+<section class="slide flex flex-col justify-between" data-title="2.2 말이 코드가 되는 메커니즘">
+  <div class="mb-2">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
-    <h2 class="text-3xl font-black text-white">2.2 말이 코드가 되는 메커니즘</h2>
+    <h2 class="text-3xl font-black text-white">2.2 소프트웨어 추상화 계층의 대전환 : 말이 코드가 되는 원리</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      과거 프로그래밍 언어가 사람과 바이너리 사이를 번역했다면, 이제 사람 앞에 <strong>AI 에이전트 계층</strong>이 새롭게 적층되어 사람의 말을 코드로 번역합니다.
+    </p>
   </div>
-  <div class="grid grid-cols-4 gap-4 flex-1 items-stretch">
-    <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-sky-400">
+
+  <!-- Animated Video-like Flowing Pipeline Stage -->
+  <div class="bento-tile p-2.5 border border-slate-800 bg-slate-950/80 relative overflow-hidden">
+    <style>
+      @keyframes dashConveyor {
+        to { stroke-dashoffset: -24; }
+      }
+      .animate-conveyor {
+        stroke-dasharray: 6 4;
+        animation: dashConveyor 1.2s linear infinite;
+      }
+      @keyframes agentPulse {
+        0%, 100% { filter: drop-shadow(0 0 6px rgba(192, 132, 252, 0.4)); }
+        50% { filter: drop-shadow(0 0 16px rgba(192, 132, 252, 0.85)); }
+      }
+      .agent-glow-box {
+        animation: agentPulse 2.4s ease-in-out infinite;
+      }
+    </style>
+
+    <svg viewBox="0 0 960 170" class="w-full h-auto max-h-[160px]" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="humanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0369a1"/>
+          <stop offset="100%" stop-color="#082f49"/>
+        </linearGradient>
+        <linearGradient id="agentLayerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#6b21a8"/>
+          <stop offset="50%" stop-color="#3b0764"/>
+          <stop offset="100%" stop-color="#1e1b4b"/>
+        </linearGradient>
+        <linearGradient id="codeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#1e293b"/>
+          <stop offset="100%" stop-color="#0f172a"/>
+        </linearGradient>
+        <linearGradient id="binaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#064e3b"/>
+          <stop offset="100%" stop-color="#022c22"/>
+        </linearGradient>
+        <marker id="flowArrowSky" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto">
+          <polygon points="0,0 6,3 0,6" fill="#38bdf8"/>
+        </marker>
+        <marker id="flowArrowPurple" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto">
+          <polygon points="0,0 6,3 0,6" fill="#c084fc"/>
+        </marker>
+        <marker id="flowArrowGreen" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto">
+          <polygon points="0,0 6,3 0,6" fill="#34d399"/>
+        </marker>
+      </defs>
+
+      <!-- Connecting Pipes with Conveyor Dash Animation -->
+      <!-- Pipe 1: Human -> AI Agent -->
+      <line x1="185" y1="85" x2="270" y2="85" stroke="#38bdf8" stroke-width="2.5" class="animate-conveyor" marker-end="url(#flowArrowSky)"/>
+      <text x="227" y="75" text-anchor="middle" fill="#7dd3fc" font-size="8.5" font-family="JetBrains Mono">말/생각</text>
+
+      <!-- Pipe 2: AI Agent -> Code -->
+      <line x1="475" y1="85" x2="550" y2="85" stroke="#c084fc" stroke-width="2.5" class="animate-conveyor" marker-end="url(#flowArrowPurple)"/>
+      <text x="512" y="75" text-anchor="middle" fill="#d8b4fe" font-size="8.5" font-family="JetBrains Mono">코드 번역</text>
+
+      <!-- Pipe 3: Code -> Binary -->
+      <line x1="730" y1="85" x2="800" y2="85" stroke="#34d399" stroke-width="2.5" class="animate-conveyor" marker-end="url(#flowArrowGreen)"/>
+      <text x="765" y="75" text-anchor="middle" fill="#86efac" font-size="8.5" font-family="JetBrains Mono">컴파일/실행</text>
+
+      <!-- Flowing Light Particles (Streaming Animation like a Video) -->
+      <!-- Particle Stream 1 -->
+      <circle r="4" fill="#38bdf8">
+        <animateMotion path="M 185 85 L 270 85" dur="1.2s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="2.5" fill="#e0f2fe">
+        <animateMotion path="M 185 85 L 270 85" dur="1.2s" begin="0.6s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Particle Stream 2 -->
+      <circle r="4.5" fill="#c084fc">
+        <animateMotion path="M 475 85 L 550 85" dur="1.2s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="2.5" fill="#f3e8ff">
+        <animateMotion path="M 475 85 L 550 85" dur="1.2s" begin="0.6s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Particle Stream 3 -->
+      <circle r="4" fill="#34d399">
+        <animateMotion path="M 730 85 L 800 85" dur="1.2s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="2.5" fill="#dcfce7">
+        <animateMotion path="M 730 85 L 800 85" dur="1.2s" begin="0.6s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Stage 1: Human Intent -->
+      <g transform="translate(15, 20)">
+        <rect width="170" height="130" rx="8" fill="url(#humanGrad)" stroke="#38bdf8" stroke-width="1.4"/>
+        <rect width="170" height="22" rx="8" fill="#0284c7" fill-opacity="0.5"/>
+        <text x="85" y="15" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold">1. Human Intent</text>
+        <text x="85" y="32" text-anchor="middle" fill="#7dd3fc" font-size="8.5">인간의 생각 & 자연어</text>
+        <!-- Speech Bubble Snippet -->
+        <g transform="translate(10, 42)">
+          <rect width="150" height="58" rx="5" fill="#082f49" stroke="#0284c7" stroke-width="1"/>
+          <text x="8" y="18" fill="#e0f2fe" font-size="8.5" font-weight="bold">"로그인 사용자만</text>
+          <text x="8" y="31" fill="#e0f2fe" font-size="8.5" font-weight="bold">구독 결제창 접근하게 해줘"</text>
+          <text x="8" y="47" fill="#38bdf8" font-size="7.5" font-family="JetBrains Mono">➔ 고수준 비즈니스 의도</text>
+        </g>
+        <text x="85" y="118" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="JetBrains Mono">[자연어 생각 발화]</text>
+      </g>
+
+      <!-- Stage 2: NEW AI Agent Layer -->
+      <g transform="translate(270, 10)" class="agent-glow-box">
+        <rect width="205" height="150" rx="10" fill="url(#agentLayerGrad)" stroke="#c084fc" stroke-width="2"/>
+        <rect width="205" height="26" rx="10" fill="#7e22ce" fill-opacity="0.6"/>
+        <rect x="52" y="-9" width="100" height="16" rx="8" fill="#ec4899" stroke="#ffffff" stroke-width="0.8"/>
+        <text x="102" y="3" text-anchor="middle" fill="#ffffff" font-size="8" font-weight="900" font-family="JetBrains Mono">✨ NEW 2026 LAYER</text>
+        <text x="102" y="18" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="black">2. AI 에이전트 계층</text>
+        <!-- Agent Inner Functions -->
+        <g transform="translate(10, 34)">
+          <rect width="185" height="106" rx="6" fill="#1e1b4b" fill-opacity="0.8" stroke="#a855f7" stroke-dasharray="3 3"/>
+          <text x="10" y="16" fill="#f5d0fe" font-size="8.5" font-weight="bold">🧠 의도 ➔ 코드 지능형 번역</text>
+          <text x="12" y="33" fill="#cbd5e1" font-size="8">• 요구사항 분해 (Intent Parsing)</text>
+          <text x="12" y="48" fill="#cbd5e1" font-size="8">• 아키텍처 & DB 인터페이스 도출</text>
+          <text x="12" y="63" fill="#cbd5e1" font-size="8">• 소스 코드 합성 (AST/TypeScript)</text>
+          <text x="12" y="78" fill="#cbd5e1" font-size="8">• Stderr/타입 검증 루프 실행</text>
+          <rect x="10" y="87" width="165" height="14" rx="3" fill="#581c87"/>
+          <text x="92" y="97" text-anchor="middle" fill="#f0abfc" font-size="7.5" font-family="JetBrains Mono">사람 앞에 새로 적층된 지능 계층</text>
+        </g>
+      </g>
+
+      <!-- Stage 3: Programming Language Layer -->
+      <g transform="translate(550, 20)">
+        <rect width="180" height="130" rx="8" fill="url(#codeGrad)" stroke="#818cf8" stroke-width="1.4"/>
+        <rect width="180" height="22" rx="8" fill="#312e81" fill-opacity="0.6"/>
+        <text x="90" y="15" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold">3. 프로그래밍 언어</text>
+        <text x="90" y="32" text-anchor="middle" fill="#a5b4fc" font-size="8.5">고수준 문법 (1차 번역 언어)</text>
+        <!-- Code Snippet -->
+        <g transform="translate(8, 42)">
+          <rect width="164" height="58" rx="5" fill="#020617" stroke="#334155" stroke-width="1"/>
+          <text x="6" y="14" fill="#38bdf8" font-size="7.5" font-family="JetBrains Mono">export async function</text>
+          <text x="6" y="26" fill="#cbd5e1" font-size="7.5" font-family="JetBrains Mono">POST({ request }) {</text>
+          <text x="12" y="38" fill="#a5b4fc" font-size="7.5" font-family="JetBrains Mono">await checkAuth(req);</text>
+          <text x="6" y="50" fill="#34d399" font-size="7.5" font-family="JetBrains Mono">return createSession();</text>
+        </g>
+        <text x="90" y="118" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="JetBrains Mono">[과거의 인간-기계 번역기]</text>
+      </g>
+
+      <!-- Stage 4: Binary & Silicon Hardware -->
+      <g transform="translate(800, 20)">
+        <rect width="145" height="130" rx="8" fill="url(#binaryGrad)" stroke="#34d399" stroke-width="1.4"/>
+        <rect width="145" height="22" rx="8" fill="#047857" fill-opacity="0.5"/>
+        <text x="72" y="15" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold">4. 머신 & 실리콘</text>
+        <text x="72" y="32" text-anchor="middle" fill="#6ee7b7" font-size="8.5">0 & 1 물리 바이너리</text>
+        <!-- Binary Matrix Stream -->
+        <g transform="translate(8, 42)">
+          <rect width="129" height="58" rx="5" fill="#022c22" stroke="#059669" stroke-width="1"/>
+          <text x="8" y="15" fill="#34d399" font-size="8" font-family="JetBrains Mono">01000011 01101111</text>
+          <text x="8" y="28" fill="#34d399" font-size="8" font-family="JetBrains Mono">01100100 01100101</text>
+          <text x="8" y="41" fill="#10b981" font-size="8" font-family="JetBrains Mono">11010100 00101011</text>
+          <text x="8" y="52" fill="#059669" font-size="7.5" font-family="JetBrains Mono">CPU / GPU 트랜지스터</text>
+        </g>
+        <text x="72" y="118" text-anchor="middle" fill="#6ee7b7" font-size="8" font-family="JetBrains Mono">[최종 하드웨어 실행]</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- 3 Explanatory Insight Cards -->
+  <div class="grid grid-cols-3 gap-3">
+    <!-- Card 1 -->
+    <div class="bento-tile p-3 border-t-2 border-t-slate-500 flex flex-col justify-between">
       <div>
-        <div class="w-7 h-7 rounded-full bg-sky-500/20 text-sky-400 font-mono font-bold flex items-center justify-center text-xs mb-3">01</div>
-        <h3 class="text-sm font-bold text-white mb-2">자연어 의도 명세</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
-          "로그인한 사용자만 결제 페이지에 접근하고 결제 완료 시 구독 플래그를 true로 갱신해줘."
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-mono font-bold text-slate-300">STEP 1. 과거의 추상화</span>
+          <span class="text-[10px] text-slate-500 font-mono">1차 혁명</span>
+        </div>
+        <h4 class="text-xs font-bold text-white mb-1">인간과 바이너리 사이의 '언어'</h4>
+        <p class="text-[11px] text-slate-300 leading-relaxed">
+          사람이 0과 1의 전기 신호를 직접 다룰 수 없어, 기계와 소통하기 위해 C·Python·Rust 등 <strong>프로그래밍 언어와 컴파일러</strong>라는 번역 계층을 쌓았습니다.
         </p>
       </div>
-      <span class="text-[10px] font-mono text-slate-500">Intent Formulation</span>
+      <div class="text-[10px] text-slate-400 font-mono border-t border-slate-800 pt-1 mt-1">
+        기계 제어를 위한 인간 친화적 문법화
+      </div>
     </div>
 
-    <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-indigo-400">
+    <!-- Card 2 -->
+    <div class="bento-tile p-3 border-t-2 border-t-purple-500 flex flex-col justify-between">
       <div>
-        <div class="w-7 h-7 rounded-full bg-indigo-500/20 text-indigo-400 font-mono font-bold flex items-center justify-center text-xs mb-3">02</div>
-        <h3 class="text-sm font-bold text-white mb-2">인터페이스 & 계약 정의</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
-          DB 스키마(users, subscriptions), Auth 세션 미들웨어, Stripe 웹훅 엔드포인트 명세 합성.
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-mono font-bold text-purple-300">STEP 2. 2026 바이브 코딩</span>
+          <span class="text-[10px] text-purple-400 font-mono">2차 적층 혁명</span>
+        </div>
+        <h4 class="text-xs font-bold text-white mb-1">사람 앞에 쌓인 'AI 에이전트' 계층</h4>
+        <p class="text-[11px] text-slate-300 leading-relaxed">
+          이제 사람이 신택스(문법)를 직접 타이핑하지 않고, <strong>사람 바로 앞에 AI 에이전트가 붙어 자연어 의도(Intent)를 소스 코드로 실시간 번역</strong>합니다.
         </p>
       </div>
-      <span class="text-[10px] font-mono text-slate-500">Spec & Contracts</span>
+      <div class="text-[10px] text-purple-300 font-mono border-t border-slate-800 pt-1 mt-1">
+        "말(Natural Language)이 코드가 되는 원리"
+      </div>
     </div>
 
-    <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-purple-400">
+    <!-- Card 3 -->
+    <div class="bento-tile p-3 border-t-2 border-t-sky-500 flex flex-col justify-between">
       <div>
-        <div class="w-7 h-7 rounded-full bg-purple-500/20 text-purple-400 font-mono font-bold flex items-center justify-center text-xs mb-3">03</div>
-        <h3 class="text-sm font-bold text-white mb-2">소스 코드 합성</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
-          SvelteKit 라우트, Supabase Postgres RLS 정책 SQL, 결제 세션 핸들러 바이너리 코드 생성.
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-mono font-bold text-sky-300">STEP 3. 개발자의 역할 이동</span>
+          <span class="text-[10px] text-sky-400 font-mono">Role Shift</span>
+        </div>
+        <h4 class="text-xs font-bold text-white mb-1">타이피스트에서 '아키텍트'로 승격</h4>
+        <p class="text-[11px] text-slate-300 leading-relaxed">
+          개발자의 핵심 역량은 세부 문법 암기에서 <strong>고수준 의도(Intent) 명세, 시스템 인터페이스 설계, 그리고 컴파일·테스트 검증 게이트 통제</strong>로 전환됩니다.
         </p>
       </div>
-      <span class="text-[10px] font-mono text-slate-500">Code Synthesis</span>
-    </div>
-
-    <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-emerald-400">
-      <div>
-        <div class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 font-mono font-bold flex items-center justify-center text-xs mb-3">04</div>
-        <h3 class="text-sm font-bold text-white mb-2">컴파일 & 런타임 검증</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
-          타입 체커(TypeScript) 실행, API 통합 테스트, RLS 누수 감사 통과 후 최종 패치 확정.
-        </p>
+      <div class="text-[10px] text-sky-300 font-mono border-t border-slate-800 pt-1 mt-1">
+        코드 작성자 ➔ 시스템 감독자(Supervisor)
       </div>
-      <span class="text-[10px] font-mono text-emerald-400 font-bold">Verification Gate</span>
     </div>
   </div>
 </section>
