@@ -40,10 +40,10 @@
 ### Chapter 01. 계보 : 챗봇에서 자율 에이전트까지
 - **1.1 프롬프트의 종말과 ReAct 패러다임**: 1회성 텍스트 생성기(Single-turn)의 한계와 Reason-Act-Observe 상호작용 루프의 태동
 - **1.2 AutoGPT(2023.03)의 등장과 Monolithic Single-Agent의 좌절**:
-  - `Thought → Plan → Criticism → Action` 단일 루프의 최초 대중화 시도
+  - `Thought → Plan → Criticism → Action` 단일 루프의 최초 대중화 시도 (인간의 수동 멀티턴 대신 AI가 백그라운드에서 스스로 멀티턴 루프를 도는 패러다임 제시)
   - 왜 실패했는가?: 단일 컨텍스트 오염, *컨텍스트 드리프트(Context Drift)*, 연쇄 환각(Cascading Hallucination), 무한 루프와 목표 망각(Goal Loss)
-- **1.3 2024년 학술 연구 대폭발 (Multi-Agent & Cognitive Architecture)**:
-  - **MetaGPT (Hong et al., ICLR 2024)**: 단순 자연어 잡담 금지, **SOP(표준 운영 절차)**와 구조화된 명세(PRD, 클래스 다이어그램)를 강제하여 Pass@1 85%+ 달성
+- **1.3 2023년 하반기 ~ 2024년 학술 연구 대폭발 (Multi-Agent & Cognitive Architecture)**:
+  - **MetaGPT (Hong et al., 2023.08 공개 / ICLR 2024)**: 단순 자연어 잡담 금지, 소프트웨어 회사를 객체지향 클래스로 추상화하고 **SOP(표준 운영 절차)**와 구조화된 명세(PRD, 클래스 다이어그램)를 강제하여 Pass@1 85%+ 달성
   - **ChatDev (Qian et al., ACL 2024)**: 인간 소프트웨어 회사의 분업(CEO-CTO-Programmer-Tester)을 모방한 Multi-Agent Chat-Chain
   - **Reflexion (Shinn et al., NeurIPS 2023)**: 모델 가중치 수정 없이 언어적 자가 반성(Verbal Reflection) 버퍼로 자가 치유(Self-healing) 실현
   - **CoALA (Sumers et al., 2024 Cognitive Architectures for Language Agents)**: 인지과학 기반 에이전트 메모리 체계화 (Working / Episodic / Semantic / Procedural Memory)

@@ -463,140 +463,373 @@
 
       <!-- [COMPONENT] 01-lineage/03-autogpt-failure.html -->
 <section class="slide" data-title="1.2 AutoGPT의 태동과 좌절">
-  <div class="mb-4">
+  <div class="mb-3">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
     <h2 class="text-3xl font-black text-white">1.2 AutoGPT(2023.03)의 등장과 Monolithic의 좌절</h2>
   </div>
-  <div class="grid grid-cols-12 gap-6 flex-1 items-stretch">
-    <div class="col-span-5 bento-tile p-6 flex flex-col justify-between border-l-4 border-l-red-500">
+  <div class="grid grid-cols-12 gap-5 flex-1 items-stretch">
+    <!-- Left: Autonomous Multi-Turn Concept & SVG Arc Diagram -->
+    <div class="col-span-7 bento-tile p-5 flex flex-col justify-between border-l-4 border-l-sky-500">
       <div>
         <div class="flex items-center justify-between mb-2">
-          <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-red-500/20 text-red-300">2023.03 최초의 대중적 실험</span>
-          <span class="text-[11px] text-slate-400 font-mono">AutoGPT</span>
+          <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-sky-500/20 text-sky-300">2023.03 최초의 대중적 자율 에이전트 실험</span>
+          <span class="text-[11px] text-slate-400 font-mono">Single-Agent Loop</span>
         </div>
-        <h3 class="text-xl font-bold text-white mb-3">단일 에이전트 루프의 시도</h3>
-        <p class="text-sm text-slate-300 mb-4 leading-relaxed">
-          LLM에게 자율 목표를 주고 <code class="text-sky-300 bg-slate-800 px-1 py-0.5 rounded font-mono">Thought → Plan → Criticism → Action</code> 4단계를 무한 반복하도록 설계.
+        <h3 class="text-lg font-bold text-white mb-1.5">단일 에이전트의 '자율 멀티턴' 패러다임</h3>
+        <p class="text-xs text-slate-300 mb-3 leading-relaxed">
+          인간이 질문-답을 매 턴 반복하는 대신, 에이전트 1명이 단일 목표를 접수하고 백그라운드에서 4단계 루프를 <strong class="text-sky-300">스스로 멀티턴</strong>하여 결과를 반환하는 혁신 제시:
         </p>
-        <div class="p-3.5 bg-slate-900 border border-slate-800 rounded text-xs font-mono text-slate-300 space-y-1">
-          <div>1. THOUGHTS: I should build the auth system.</div>
-          <div>2. REASONING: Users must log in first.</div>
-          <div>3. PLAN: Create auth.py and install bcrypt.</div>
-          <div>4. CRITICISM: Ensure I don't overwrite db.py.</div>
-          <div>5. ACTION: execute_shell("pip install bcrypt")</div>
+
+        <!-- SVG Arc Diagram -->
+        <div class="bg-slate-950/80 border border-slate-800 rounded-lg p-2.5 flex items-center justify-center">
+          <svg viewBox="0 0 620 220" class="w-full h-auto max-h-[200px]" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="userGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1e293b"/>
+                <stop offset="100%" stop-color="#0f172a"/>
+              </linearGradient>
+              <linearGradient id="agentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0284c7"/>
+                <stop offset="100%" stop-color="#0369a1"/>
+              </linearGradient>
+              <linearGradient id="loopNodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1e1b4b"/>
+                <stop offset="100%" stop-color="#0f172a"/>
+              </linearGradient>
+              <marker id="arrowSky" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrowEmerald" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#34d399"/>
+              </marker>
+              <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#a78bfa"/>
+              </marker>
+              <filter id="glowLight" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+              </filter>
+            </defs>
+
+            <!-- Loop Background Area -->
+            <rect x="305" y="10" width="305" height="200" rx="12" fill="#0f172a" fill-opacity="0.4" stroke="#334155" stroke-dasharray="4 4"/>
+            <text x="457" y="24" text-anchor="middle" fill="#64748b" font-size="10" font-family="JetBrains Mono">AI 내부 자율 멀티턴 영역 (No Human-in-the-Loop)</text>
+
+            <!-- 1. User Node -->
+            <g transform="translate(15, 60)">
+              <rect width="95" height="80" rx="10" fill="url(#userGrad)" stroke="#64748b" stroke-width="1.5"/>
+              <circle cx="47" cy="28" r="12" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+              <path d="M35 50 C35 42, 59 42, 59 50 Z" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+              <text x="47" y="62" text-anchor="middle" fill="#f8fafc" font-size="11" font-weight="bold">User (인간)</text>
+              <text x="47" y="73" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="JetBrains Mono">단 1회 프롬프트</text>
+            </g>
+
+            <!-- Arc: User -> Agent (Prompt) -->
+            <path d="M 110 88 C 128 78, 142 78, 160 88" fill="none" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowSky)"/>
+            <text x="135" y="74" text-anchor="middle" fill="#38bdf8" font-size="9" font-weight="bold">목표 전달</text>
+
+            <!-- Arc: Agent -> User (Result) -->
+            <path d="M 160 115 C 142 125, 128 125, 110 115" fill="none" stroke="#34d399" stroke-width="2" marker-end="url(#arrowEmerald)"/>
+            <text x="135" y="137" text-anchor="middle" fill="#34d399" font-size="9" font-weight="bold">결과 반환</text>
+
+            <!-- 2. Agent Node -->
+            <g transform="translate(162, 60)">
+              <rect width="115" height="80" rx="10" fill="url(#agentGrad)" stroke="#38bdf8" stroke-width="2" filter="url(#glowLight)"/>
+              <rect x="8" y="8" width="99" height="64" rx="6" fill="#0c4a6e" fill-opacity="0.6"/>
+              <text x="57" y="32" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="JetBrains Mono">AutoGPT</text>
+              <text x="57" y="48" text-anchor="middle" fill="#7dd3fc" font-size="10" font-weight="bold">단일 에이전트</text>
+              <text x="57" y="62" text-anchor="middle" fill="#bae6fd" font-size="8.5">유저 접수 & 위임</text>
+            </g>
+
+            <!-- Arc: Agent to Loop -->
+            <path d="M 277 88 C 295 88, 305 55, 330 46" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-dasharray="3 3" marker-end="url(#arrowPurple)"/>
+
+            <!-- 4-Stage Loop Nodes (Clockwise) -->
+            <!-- Step 1: Thought (Top) -->
+            <g transform="translate(390, 30)">
+              <rect width="135" height="34" rx="6" fill="url(#loopNodeGrad)" stroke="#818cf8" stroke-width="1.5"/>
+              <circle cx="16" cy="17" r="7" fill="#4338ca"/>
+              <text x="16" y="20.5" text-anchor="middle" fill="#e0e7ff" font-size="9" font-weight="bold">1</text>
+              <text x="73" y="16" text-anchor="middle" fill="#e0e7ff" font-size="10" font-weight="bold">Thought</text>
+              <text x="73" y="27" text-anchor="middle" fill="#a5b4fc" font-size="8">추론 & 상황 판단</text>
+            </g>
+
+            <!-- Arc: Thought -> Plan -->
+            <path d="M 525 47 C 565 47, 575 75, 560 95" fill="none" stroke="#818cf8" stroke-width="2" marker-end="url(#arrowPurple)"/>
+
+            <!-- Step 2: Plan (Right) -->
+            <g transform="translate(485, 96)">
+              <rect width="115" height="34" rx="6" fill="url(#loopNodeGrad)" stroke="#818cf8" stroke-width="1.5"/>
+              <circle cx="16" cy="17" r="7" fill="#4338ca"/>
+              <text x="16" y="20.5" text-anchor="middle" fill="#e0e7ff" font-size="9" font-weight="bold">2</text>
+              <text x="65" y="16" text-anchor="middle" fill="#e0e7ff" font-size="10" font-weight="bold">Plan</text>
+              <text x="65" y="27" text-anchor="middle" fill="#a5b4fc" font-size="8">하위 과제 분할</text>
+            </g>
+
+            <!-- Arc: Plan -> Criticism -->
+            <path d="M 542 130 C 542 155, 510 165, 480 165" fill="none" stroke="#818cf8" stroke-width="2" marker-end="url(#arrowPurple)"/>
+
+            <!-- Step 3: Criticism (Bottom) -->
+            <g transform="translate(390, 150)">
+              <rect width="135" height="34" rx="6" fill="url(#loopNodeGrad)" stroke="#f43f5e" stroke-width="1.5"/>
+              <circle cx="16" cy="17" r="7" fill="#9f1239"/>
+              <text x="16" y="20.5" text-anchor="middle" fill="#ffe4e6" font-size="9" font-weight="bold">3</text>
+              <text x="73" y="16" text-anchor="middle" fill="#ffe4e6" font-size="10" font-weight="bold">Criticism</text>
+              <text x="73" y="27" text-anchor="middle" fill="#fda4af" font-size="8">리스크 & 오류 자가점검</text>
+            </g>
+
+            <!-- Arc: Criticism -> Action -->
+            <path d="M 390 165 C 345 165, 335 145, 335 130" fill="none" stroke="#818cf8" stroke-width="2" marker-end="url(#arrowPurple)"/>
+
+            <!-- Step 4: Action (Left) -->
+            <g transform="translate(315, 96)">
+              <rect width="115" height="34" rx="6" fill="url(#loopNodeGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+              <circle cx="16" cy="17" r="7" fill="#0369a1"/>
+              <text x="16" y="20.5" text-anchor="middle" fill="#e0f2fe" font-size="9" font-weight="bold">4</text>
+              <text x="65" y="16" text-anchor="middle" fill="#e0f2fe" font-size="10" font-weight="bold">Action</text>
+              <text x="65" y="27" text-anchor="middle" fill="#7dd3fc" font-size="8">도구/쉘 자율 실행</text>
+            </g>
+
+            <!-- Arc: Action -> Thought (Closing Loop) -->
+            <path d="M 365 96 C 365 70, 375 55, 390 47" fill="none" stroke="#818cf8" stroke-width="2" marker-end="url(#arrowPurple)"/>
+
+            <!-- Center Badge of the Loop -->
+            <g transform="translate(422, 90)">
+              <rect width="70" height="34" rx="17" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+              <text x="35" y="16" text-anchor="middle" fill="#38bdf8" font-size="8.5" font-weight="bold">스스로</text>
+              <text x="35" y="26" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="JetBrains Mono">Multi-turn</text>
+            </g>
+          </svg>
         </div>
       </div>
-      <div class="text-[11px] text-slate-400 font-mono border-t border-slate-800 pt-3">
-        전 세계 개발자들에게 "AI 자율 에이전트"의 충격을 안겨준 시발점
+      <div class="text-[11px] text-sky-300 font-mono border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>💡 인간의 수동 프롬프트 반복 ➔ AI 에이전트의 내부 자율 멀티턴 루프 실행</span>
+        <span class="text-slate-400">자율성 1단계 달성</span>
       </div>
     </div>
 
-    <div class="col-span-7 bento-tile p-6 flex flex-col justify-between border-l-4 border-l-amber-500">
+    <!-- Right: Why It Failed -->
+    <div class="col-span-5 bento-tile p-5 flex flex-col justify-between border-l-4 border-l-amber-500">
       <div>
         <span class="text-xs font-mono text-amber-400 font-bold block mb-2">ROOT CAUSES OF FAILURE</span>
-        <h3 class="text-xl font-bold text-white mb-3">왜 실전 소프트웨어 개발에 실패했는가?</h3>
-        <p class="text-sm text-slate-300 mb-4 leading-relaxed">
+        <h3 class="text-lg font-bold text-white mb-2">왜 실전 소프트웨어 개발에 실패했는가?</h3>
+        <p class="text-xs text-slate-300 mb-3 leading-relaxed">
           단일 LLM 컨텍스트에 모든 역할을 몰아넣은 Monolithic 구조의 치명적 한계:
         </p>
-        <div class="space-y-3 text-xs">
-          <div class="p-3 bg-red-950/20 border border-red-900/40 rounded text-red-200">
-            <strong>⚠️ 컨텍스트 드리프트 (Context Drift & Goal Loss):</strong>
+        <div class="space-y-2.5 text-xs">
+          <div class="p-2.5 bg-red-950/20 border border-red-900/40 rounded text-red-200">
+            <strong class="text-red-300 block mb-0.5">⚠️ 컨텍스트 드리프트 (Context Drift & Goal Loss)</strong>
             수십 턴 동안 터미널 에러 로그와 파일 덤프가 쌓이면서, 최초 유저가 지시했던 원래 목표(Original Goal)를 완전히 망각
           </div>
-          <div class="p-3 bg-red-950/20 border border-red-900/40 rounded text-red-200">
-            <strong>⚠️ 연쇄 환각 (Cascading Hallucination) & 무한 루프:</strong>
+          <div class="p-2.5 bg-red-950/20 border border-red-900/40 rounded text-red-200">
+            <strong class="text-red-300 block mb-0.5">⚠️ 연쇄 환각 (Cascading Hallucination) & 무한 루프</strong>
             자신이 상상한 가짜 파일 경로를 사실로 믿고, 이를 고치려다 엉뚱한 폴더를 무한 생성·삭제하며 크레딧만 전소
           </div>
-          <div class="p-3 bg-slate-800/80 rounded border border-slate-700 text-slate-300">
-            <strong>⚠️ 벤치마크 점수 참패:</strong> 복잡한 리포지토리 생성 성공률 1점대(AutoGPT 1.0)에 그침
+          <div class="p-2.5 bg-slate-800/80 rounded border border-slate-700 text-slate-300">
+            <strong class="text-amber-300 block mb-0.5">⚠️ 벤치마크 점수 참패 (SWE-bench &lt; 2%)</strong>
+            복잡한 실전 리포지토리 태스크 성공률 1점대에 그치며, 프로덕션 투입 불가능 입증
           </div>
         </div>
       </div>
-      <div class="text-[11px] text-amber-300 font-mono border-t border-slate-800 pt-3">
-        "단일 LLM에게 모든 것을 다 시키는 모놀리식 프롬프트는 필연적으로 붕괴한다."
+      <div class="text-[11px] text-amber-300 font-mono border-t border-slate-800 pt-2">
+        "단일 LLM에게 모든 것을 다 시키는 모놀리식 루프는 필연적으로 붕괴한다."
       </div>
     </div>
   </div>
 </section>
 
       <!-- [COMPONENT] 01-lineage/04-academic-papers.html -->
-<section class="slide" data-title="1.3 2024 학술 논문 대폭발">
-  <div class="mb-4">
+<section class="slide" data-title="1.3 2023~2024 학술 연구 대폭발">
+  <div class="mb-2.5">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
-    <h2 class="text-3xl font-black text-white">1.3 2024년 학술 연구 대폭발 : Multi-Agent & CoALA</h2>
+    <h2 class="text-3xl font-black text-white">1.3 2023년 하반기 ~ 2024년 학술 연구 대폭발 : Multi-Agent & CoALA</h2>
   </div>
-  <div class="grid grid-cols-12 gap-5 flex-1 items-stretch">
-    <div class="col-span-7 bento-tile p-5 flex flex-col justify-between border-l-4 border-l-sky-500">
-      <div>
-        <span class="text-xs font-mono text-sky-400 font-bold block mb-2">MULTI-AGENT & SOP BREAKTHROUGH</span>
-        <h3 class="text-base font-bold text-white mb-2">역할 분업과 인지 아키텍처 연구의 개화</h3>
-        <div class="grid grid-cols-2 gap-2.5 text-xs">
-          <!-- MetaGPT -->
-          <div class="p-2.5 bg-slate-800/80 rounded border border-slate-700">
-            <div class="font-bold text-sky-300 flex justify-between">
-              <span>MetaGPT (ICLR 2024)</span>
-              <span class="text-emerald-400 font-mono text-[10px]">Pass@1 85%+</span>
-            </div>
-            <p class="text-[11px] text-slate-300 mt-1">
-              자연어 잡담을 차단하고 <strong>SOP(표준운영절차)</strong>와 PRD, 클래스 다이어그램 명세를 강제해 연쇄 환각 극복.
-            </p>
-          </div>
-          <!-- ChatDev -->
-          <div class="p-2.5 bg-slate-800/80 rounded border border-slate-700">
-            <div class="font-bold text-sky-300">ChatDev (ACL 2024)</div>
-            <p class="text-[11px] text-slate-300 mt-1">
-              가상 소프트웨어 회사 모방. CEO-CTO-개발자-테스터 간 <strong>Multi-agent Chat-Chain</strong>으로 단계별 교차 검증.
-            </p>
-          </div>
-          <!-- Reflexion -->
-          <div class="p-2.5 bg-slate-800/80 rounded border border-slate-700">
-            <div class="font-bold text-indigo-300">Reflexion (NeurIPS 2023)</div>
-            <p class="text-[11px] text-slate-300 mt-1">
-              가중치 미수정. <strong>언어적 자가 반성(Verbal Reflection)</strong>을 메모리 버퍼에 기록해 자가 치유(Self-healing) 달성.
-            </p>
-          </div>
-          <!-- CoALA Framework -->
-          <div class="p-2.5 bg-slate-800/80 rounded border border-slate-700">
-            <div class="font-bold text-indigo-300">CoALA (Sumers et al., 2024)</div>
-            <p class="text-[11px] text-slate-300 mt-1">
-              인지과학 기반 체계화: <strong>Working / Episodic / Semantic / Procedural Memory</strong> 4분할 이론 확립.
-            </p>
-          </div>
+
+  <div class="flex flex-col gap-3 flex-1 justify-between">
+    <!-- Top: MetaGPT Multi-Agent SOP Architecture (SVG UML Class Diagram) -->
+    <div class="bento-tile p-4 border-l-4 border-l-purple-500">
+      <div class="flex items-center justify-between mb-1.5">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-purple-500/20 text-purple-300">MetaGPT (2023.08 공개 / ICLR 2024)</span>
+          <h3 class="text-sm font-bold text-white">소프트웨어 회사를 객체지향 클래스 & SOP로 추상화한 Multi-Agent 구조</h3>
         </div>
+        <span class="text-[11px] font-mono text-emerald-400 font-bold bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-800/40">Pass@1 85%+ 달성 (CodeX 벤치마크)</span>
       </div>
-      <div class="text-[11px] text-sky-300 font-mono border-t border-slate-800 pt-2">
-        "에이전트의 지능은 모델 단독이 아니라, 조직적 아키텍처와 분업에서 나온다."
+      <p class="text-[11px] text-slate-300 mb-2">
+        자연어 잡담을 차단하고, <strong>SOP(표준운영절차)</strong>와 정형 명세(PRD, Design, Code, Test)를 강제하여 연쇄 환각을 극복:
+      </p>
+
+      <!-- SVG UML Class Diagram -->
+      <div class="bg-slate-950/70 border border-slate-800 rounded-lg p-2 flex items-center justify-center">
+        <svg viewBox="0 0 960 195" class="w-full h-auto max-h-[175px]" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="umlArrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+              <polygon points="0,1 8,4.5 0,8" fill="#0f172a" stroke="#a78bfa" stroke-width="1.3"/>
+            </marker>
+            <linearGradient id="parentHeaderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3b0764"/>
+              <stop offset="100%" stop-color="#1e1b4b"/>
+            </linearGradient>
+            <linearGradient id="childHeaderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1e293b"/>
+              <stop offset="100%" stop-color="#0f172a"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Arc Connectors from 6 Subclasses to SoftwareCompany -->
+          <!-- 1. Boss -> SoftwareCompany -->
+          <path d="M 80 105 C 80 75, 400 80, 435 68" fill="none" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#umlArrow)"/>
+          <!-- 2. ProductManager -> SoftwareCompany -->
+          <path d="M 235 105 C 235 75, 420 80, 445 68" fill="none" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#umlArrow)"/>
+          <!-- 3. Architect -> SoftwareCompany -->
+          <path d="M 395 105 C 395 82, 455 78, 465 68" fill="none" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#umlArrow)"/>
+          <!-- 4. ProjectManager -> SoftwareCompany -->
+          <path d="M 555 105 C 555 82, 495 78, 485 68" fill="none" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#umlArrow)"/>
+          <!-- 5. Engineer -> SoftwareCompany -->
+          <path d="M 715 105 C 715 75, 530 80, 505 68" fill="none" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#umlArrow)"/>
+          <!-- 6. QA -> SoftwareCompany -->
+          <path d="M 870 105 C 870 75, 550 80, 515 68" fill="none" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#umlArrow)"/>
+
+          <!-- Top Class: SoftwareCompany -->
+          <g transform="translate(400, 8)">
+            <rect width="150" height="60" rx="5" fill="#0f172a" stroke="#c084fc" stroke-width="1.8"/>
+            <rect width="150" height="20" rx="5" fill="url(#parentHeaderGrad)"/>
+            <rect y="16" width="150" height="4" fill="url(#parentHeaderGrad)"/>
+            <line x1="0" y1="20" x2="150" y2="20" stroke="#c084fc" stroke-width="1.2"/>
+            <text x="75" y="14" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="JetBrains Mono">SoftwareCompany</text>
+            <text x="10" y="32" fill="#e9d5ff" font-size="9" font-family="JetBrains Mono">+ Investment</text>
+            <text x="10" y="44" fill="#e9d5ff" font-size="9" font-family="JetBrains Mono">+ Idea</text>
+            <text x="10" y="56" fill="#e9d5ff" font-size="9" font-family="JetBrains Mono">+ Environment</text>
+          </g>
+
+          <!-- Bottom Class 1: Boss -->
+          <g transform="translate(10, 105)">
+            <rect width="140" height="42" rx="4" fill="#0f172a" stroke="#818cf8" stroke-width="1.3"/>
+            <rect width="140" height="18" rx="4" fill="url(#childHeaderGrad)"/>
+            <line x1="0" y1="18" x2="140" y2="18" stroke="#818cf8" stroke-width="1"/>
+            <text x="70" y="13" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold">Boss</text>
+            <text x="8" y="31" fill="#c7d2fe" font-size="8.5" font-family="JetBrains Mono">+ BossRequirement</text>
+          </g>
+
+          <!-- Bottom Class 2: ProductManager -->
+          <g transform="translate(165, 105)">
+            <rect width="145" height="54" rx="4" fill="#0f172a" stroke="#818cf8" stroke-width="1.3"/>
+            <rect width="145" height="18" rx="4" fill="url(#childHeaderGrad)"/>
+            <line x1="0" y1="18" x2="145" y2="18" stroke="#818cf8" stroke-width="1"/>
+            <text x="72.5" y="13" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold">ProductManager</text>
+            <text x="8" y="31" fill="#c7d2fe" font-size="8.5" font-family="JetBrains Mono">+ WritePRD</text>
+            <text x="8" y="44" fill="#c7d2fe" font-size="8.5" font-family="JetBrains Mono">+ RevisePRD</text>
+          </g>
+
+          <!-- Bottom Class 3: Architect -->
+          <g transform="translate(325, 105)">
+            <rect width="145" height="80" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1.3"/>
+            <rect width="145" height="18" rx="4" fill="url(#childHeaderGrad)"/>
+            <line x1="0" y1="18" x2="145" y2="18" stroke="#38bdf8" stroke-width="1"/>
+            <text x="72.5" y="13" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold">Architect</text>
+            <text x="8" y="31" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ WriteDesign</text>
+            <text x="8" y="44" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ ReviseDesign</text>
+            <text x="8" y="57" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ ReviewPRD</text>
+            <text x="8" y="70" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ ReviewCode</text>
+          </g>
+
+          <!-- Bottom Class 4: ProjectManager -->
+          <g transform="translate(485, 105)">
+            <rect width="145" height="84" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1.3"/>
+            <rect width="145" height="18" rx="4" fill="url(#childHeaderGrad)"/>
+            <line x1="0" y1="18" x2="145" y2="18" stroke="#38bdf8" stroke-width="1"/>
+            <text x="72.5" y="13" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold">ProjectManager</text>
+            <text x="8" y="31" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ WriteTasks</text>
+            <text x="8" y="44" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ AssignTask</text>
+            <text x="8" y="57" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ ReviewPRD / Design</text>
+            <text x="8" y="70" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ ReviewCode</text>
+          </g>
+
+          <!-- Bottom Class 5: Engineer -->
+          <g transform="translate(645, 105)">
+            <rect width="145" height="68" rx="4" fill="#0f172a" stroke="#34d399" stroke-width="1.3"/>
+            <rect width="145" height="18" rx="4" fill="url(#childHeaderGrad)"/>
+            <line x1="0" y1="18" x2="145" y2="18" stroke="#34d399" stroke-width="1"/>
+            <text x="72.5" y="13" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold">Engineer</text>
+            <text x="8" y="31" fill="#a7f3d0" font-size="8.5" font-family="JetBrains Mono">+ WriteCode</text>
+            <text x="8" y="44" fill="#a7f3d0" font-size="8.5" font-family="JetBrains Mono">+ ReviewCode</text>
+            <text x="8" y="57" fill="#a7f3d0" font-size="8.5" font-family="JetBrains Mono">+ DebugCode</text>
+          </g>
+
+          <!-- Bottom Class 6: QA -->
+          <g transform="translate(805, 105)">
+            <rect width="145" height="54" rx="4" fill="#0f172a" stroke="#34d399" stroke-width="1.3"/>
+            <rect width="145" height="18" rx="4" fill="url(#childHeaderGrad)"/>
+            <line x1="0" y1="18" x2="145" y2="18" stroke="#34d399" stroke-width="1"/>
+            <text x="72.5" y="13" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold">QA</text>
+            <text x="8" y="31" fill="#a7f3d0" font-size="8.5" font-family="JetBrains Mono">+ WriteTests</text>
+            <text x="8" y="44" fill="#a7f3d0" font-size="8.5" font-family="JetBrains Mono">+ RunTests</text>
+          </g>
+        </svg>
       </div>
     </div>
 
-    <div class="col-span-5 bento-tile p-5 flex flex-col justify-between border-l-4 border-l-indigo-500">
-      <div>
-        <span class="text-xs font-mono text-indigo-400 font-bold block mb-2">ANDREW NG'S FRAMEWORK</span>
-        <h3 class="text-base font-bold text-white mb-2">4대 Agentic Design Patterns (2024)</h3>
-        <p class="text-xs text-slate-300 mb-3 leading-relaxed">
-          앤드류 응 교수가 정리한 실전 에이전트 시스템의 4가지 핵심 축:
-        </p>
-        <div class="space-y-2 text-xs">
-          <div class="p-2 bg-slate-900 rounded border border-slate-800">
-            <strong class="text-sky-300 block">① Reflection (반성/자가 검토)</strong>
-            스스로 출력 결과를 검토하고 개선 루프 실행
-          </div>
-          <div class="p-2 bg-slate-900 rounded border border-slate-800">
-            <strong class="text-indigo-300 block">② Tool Use (도구 활용)</strong>
-            외부 계산기, 웹 검색, 코드 인터프리터 조작
-          </div>
-          <div class="p-2 bg-slate-900 rounded border border-slate-800">
-            <strong class="text-purple-300 block">③ Planning (다단계 계획 수립)</strong>
-            거대 과제를 작은 시퀀스로 분할 실행
-          </div>
-          <div class="p-2 bg-slate-900 rounded border border-slate-800">
-            <strong class="text-emerald-300 block">④ Multi-agent Collaboration (협업)</strong>
-            서로 다른 전문 역할을 맡은 에이전트 간 분업
+    <!-- Bottom: Academic Papers & Andrew Ng Patterns -->
+    <div class="grid grid-cols-12 gap-4">
+      <!-- Left: Academic Milestones -->
+      <div class="col-span-7 bento-tile p-3.5 flex flex-col justify-between border-l-4 border-l-sky-500">
+        <div>
+          <span class="text-xs font-mono text-sky-400 font-bold block mb-1">2023~2024 학술 연구 트리</span>
+          <div class="grid grid-cols-3 gap-2 text-xs">
+            <!-- ChatDev -->
+            <div class="p-2 bg-slate-900 rounded border border-slate-800">
+              <div class="font-bold text-sky-300 text-[11px]">ChatDev (ACL 2024)</div>
+              <p class="text-[10px] text-slate-300 mt-1 leading-relaxed">
+                가상 SW 기업 모방. CEO-CTO-개발자-테스터 간 <strong>Multi-agent Chat-Chain</strong> 단계별 교차 검증.
+              </p>
+            </div>
+            <!-- Reflexion -->
+            <div class="p-2 bg-slate-900 rounded border border-slate-800">
+              <div class="font-bold text-indigo-300 text-[11px]">Reflexion (NeurIPS 2023)</div>
+              <p class="text-[10px] text-slate-300 mt-1 leading-relaxed">
+                가중치 미수정. <strong>언어적 자가 반성</strong> 버퍼로 오류를 피드백해 Self-healing 달성.
+              </p>
+            </div>
+            <!-- CoALA Framework -->
+            <div class="p-2 bg-slate-900 rounded border border-slate-800">
+              <div class="font-bold text-purple-300 text-[11px]">CoALA (Sumers, 2024)</div>
+              <p class="text-[10px] text-slate-300 mt-1 leading-relaxed">
+                인지과학 기반: <strong>Working / Episodic / Semantic / Procedural Memory</strong> 4분할 체계화.
+              </p>
+            </div>
           </div>
         </div>
+        <div class="text-[10.5px] text-sky-300 font-mono border-t border-slate-800 pt-1.5 mt-1.5">
+          "에이전트의 지능은 모델 단독이 아니라, 조직적 아키텍처와 SOP 분업에서 나온다."
+        </div>
       </div>
-      <div class="text-[10px] text-slate-400 font-mono border-t border-slate-800 pt-2">
-        구형 모델도 4대 패턴을 타면 신형 모델 Zero-shot을 능가함
+
+      <!-- Right: Andrew Ng's 4 Patterns -->
+      <div class="col-span-5 bento-tile p-3.5 flex flex-col justify-between border-l-4 border-l-indigo-500">
+        <div>
+          <span class="text-xs font-mono text-indigo-400 font-bold block mb-1">ANDREW NG'S AGENTIC PATTERNS (2024)</span>
+          <div class="grid grid-cols-2 gap-1.5 text-[10.5px]">
+            <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
+              <strong class="text-sky-300 block">① Reflection (반성)</strong>
+              <span class="text-slate-300 text-[10px]">출력 자가검토 & 개선 루프</span>
+            </div>
+            <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
+              <strong class="text-indigo-300 block">② Tool Use (도구)</strong>
+              <span class="text-slate-300 text-[10px]">쉘, 파일, 웹 검색 조작</span>
+            </div>
+            <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
+              <strong class="text-purple-300 block">③ Planning (계획)</strong>
+              <span class="text-slate-300 text-[10px]">과제 시퀀스 분할 실행</span>
+            </div>
+            <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
+              <strong class="text-emerald-300 block">④ Multi-agent (협업)</strong>
+              <span class="text-slate-300 text-[10px]">전문 역할 간 분업</span>
+            </div>
+          </div>
+        </div>
+        <div class="text-[10px] text-slate-400 font-mono border-t border-slate-800 pt-1.5 mt-1.5">
+          구형 모델도 4대 패턴을 타면 신형 모델 Zero-shot을 능가함
+        </div>
       </div>
     </div>
   </div>

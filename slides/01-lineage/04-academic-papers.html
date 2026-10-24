@@ -1,80 +1,194 @@
-<section class="slide" data-title="1.3 2024 학술 논문 대폭발">
-  <div class="mb-4">
+<section class="slide" data-title="1.3 2023~2024 학술 연구 대폭발">
+  <div class="mb-2.5">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
-    <h2 class="text-3xl font-black text-white">1.3 2024년 학술 연구 대폭발 : Multi-Agent & CoALA</h2>
+    <h2 class="text-3xl font-black text-white">1.3 2023년 하반기 ~ 2024년 학술 연구 대폭발 : Multi-Agent & CoALA</h2>
   </div>
-  <div class="grid grid-cols-12 gap-5 flex-1 items-stretch">
-    <div class="col-span-7 bento-tile p-5 flex flex-col justify-between border-l-4 border-l-sky-500">
-      <div>
-        <span class="text-xs font-mono text-sky-400 font-bold block mb-2">MULTI-AGENT & SOP BREAKTHROUGH</span>
-        <h3 class="text-base font-bold text-white mb-2">역할 분업과 인지 아키텍처 연구의 개화</h3>
-        <div class="grid grid-cols-2 gap-2.5 text-xs">
-          <!-- MetaGPT -->
-          <div class="p-2.5 bg-slate-800/80 rounded border border-slate-700">
-            <div class="font-bold text-sky-300 flex justify-between">
-              <span>MetaGPT (ICLR 2024)</span>
-              <span class="text-emerald-400 font-mono text-[10px]">Pass@1 85%+</span>
-            </div>
-            <p class="text-[11px] text-slate-300 mt-1">
-              자연어 잡담을 차단하고 <strong>SOP(표준운영절차)</strong>와 PRD, 클래스 다이어그램 명세를 강제해 연쇄 환각 극복.
-            </p>
-          </div>
-          <!-- ChatDev -->
-          <div class="p-2.5 bg-slate-800/80 rounded border border-slate-700">
-            <div class="font-bold text-sky-300">ChatDev (ACL 2024)</div>
-            <p class="text-[11px] text-slate-300 mt-1">
-              가상 소프트웨어 회사 모방. CEO-CTO-개발자-테스터 간 <strong>Multi-agent Chat-Chain</strong>으로 단계별 교차 검증.
-            </p>
-          </div>
-          <!-- Reflexion -->
-          <div class="p-2.5 bg-slate-800/80 rounded border border-slate-700">
-            <div class="font-bold text-indigo-300">Reflexion (NeurIPS 2023)</div>
-            <p class="text-[11px] text-slate-300 mt-1">
-              가중치 미수정. <strong>언어적 자가 반성(Verbal Reflection)</strong>을 메모리 버퍼에 기록해 자가 치유(Self-healing) 달성.
-            </p>
-          </div>
-          <!-- CoALA Framework -->
-          <div class="p-2.5 bg-slate-800/80 rounded border border-slate-700">
-            <div class="font-bold text-indigo-300">CoALA (Sumers et al., 2024)</div>
-            <p class="text-[11px] text-slate-300 mt-1">
-              인지과학 기반 체계화: <strong>Working / Episodic / Semantic / Procedural Memory</strong> 4분할 이론 확립.
-            </p>
-          </div>
+
+  <div class="flex flex-col gap-3 flex-1 justify-between">
+    <!-- Top: MetaGPT Multi-Agent SOP Architecture (SVG UML Class Diagram) -->
+    <div class="bento-tile p-4 border-l-4 border-l-purple-500">
+      <div class="flex items-center justify-between mb-1.5">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-purple-500/20 text-purple-300">MetaGPT (2023.08 공개 / ICLR 2024)</span>
+          <h3 class="text-sm font-bold text-white">소프트웨어 회사를 객체지향 클래스 & SOP로 추상화한 Multi-Agent 구조</h3>
         </div>
+        <span class="text-[11px] font-mono text-emerald-400 font-bold bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-800/40">Pass@1 85%+ 달성 (CodeX 벤치마크)</span>
       </div>
-      <div class="text-[11px] text-sky-300 font-mono border-t border-slate-800 pt-2">
-        "에이전트의 지능은 모델 단독이 아니라, 조직적 아키텍처와 분업에서 나온다."
+      <p class="text-[11px] text-slate-300 mb-2">
+        자연어 잡담을 차단하고, <strong>SOP(표준운영절차)</strong>와 정형 명세(PRD, Design, Code, Test)를 강제하여 연쇄 환각을 극복:
+      </p>
+
+      <!-- SVG UML Class Diagram -->
+      <div class="bg-slate-950/70 border border-slate-800 rounded-lg p-2 flex items-center justify-center">
+        <svg viewBox="0 0 960 195" class="w-full h-auto max-h-[175px]" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="umlArrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+              <polygon points="0,1 8,4.5 0,8" fill="#0f172a" stroke="#a78bfa" stroke-width="1.3"/>
+            </marker>
+            <linearGradient id="parentHeaderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3b0764"/>
+              <stop offset="100%" stop-color="#1e1b4b"/>
+            </linearGradient>
+            <linearGradient id="childHeaderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1e293b"/>
+              <stop offset="100%" stop-color="#0f172a"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Arc Connectors from 6 Subclasses to SoftwareCompany -->
+          <!-- 1. Boss -> SoftwareCompany -->
+          <path d="M 80 105 C 80 75, 400 80, 435 68" fill="none" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#umlArrow)"/>
+          <!-- 2. ProductManager -> SoftwareCompany -->
+          <path d="M 235 105 C 235 75, 420 80, 445 68" fill="none" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#umlArrow)"/>
+          <!-- 3. Architect -> SoftwareCompany -->
+          <path d="M 395 105 C 395 82, 455 78, 465 68" fill="none" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#umlArrow)"/>
+          <!-- 4. ProjectManager -> SoftwareCompany -->
+          <path d="M 555 105 C 555 82, 495 78, 485 68" fill="none" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#umlArrow)"/>
+          <!-- 5. Engineer -> SoftwareCompany -->
+          <path d="M 715 105 C 715 75, 530 80, 505 68" fill="none" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#umlArrow)"/>
+          <!-- 6. QA -> SoftwareCompany -->
+          <path d="M 870 105 C 870 75, 550 80, 515 68" fill="none" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#umlArrow)"/>
+
+          <!-- Top Class: SoftwareCompany -->
+          <g transform="translate(400, 8)">
+            <rect width="150" height="60" rx="5" fill="#0f172a" stroke="#c084fc" stroke-width="1.8"/>
+            <rect width="150" height="20" rx="5" fill="url(#parentHeaderGrad)"/>
+            <rect y="16" width="150" height="4" fill="url(#parentHeaderGrad)"/>
+            <line x1="0" y1="20" x2="150" y2="20" stroke="#c084fc" stroke-width="1.2"/>
+            <text x="75" y="14" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="JetBrains Mono">SoftwareCompany</text>
+            <text x="10" y="32" fill="#e9d5ff" font-size="9" font-family="JetBrains Mono">+ Investment</text>
+            <text x="10" y="44" fill="#e9d5ff" font-size="9" font-family="JetBrains Mono">+ Idea</text>
+            <text x="10" y="56" fill="#e9d5ff" font-size="9" font-family="JetBrains Mono">+ Environment</text>
+          </g>
+
+          <!-- Bottom Class 1: Boss -->
+          <g transform="translate(10, 105)">
+            <rect width="140" height="42" rx="4" fill="#0f172a" stroke="#818cf8" stroke-width="1.3"/>
+            <rect width="140" height="18" rx="4" fill="url(#childHeaderGrad)"/>
+            <line x1="0" y1="18" x2="140" y2="18" stroke="#818cf8" stroke-width="1"/>
+            <text x="70" y="13" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold">Boss</text>
+            <text x="8" y="31" fill="#c7d2fe" font-size="8.5" font-family="JetBrains Mono">+ BossRequirement</text>
+          </g>
+
+          <!-- Bottom Class 2: ProductManager -->
+          <g transform="translate(165, 105)">
+            <rect width="145" height="54" rx="4" fill="#0f172a" stroke="#818cf8" stroke-width="1.3"/>
+            <rect width="145" height="18" rx="4" fill="url(#childHeaderGrad)"/>
+            <line x1="0" y1="18" x2="145" y2="18" stroke="#818cf8" stroke-width="1"/>
+            <text x="72.5" y="13" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold">ProductManager</text>
+            <text x="8" y="31" fill="#c7d2fe" font-size="8.5" font-family="JetBrains Mono">+ WritePRD</text>
+            <text x="8" y="44" fill="#c7d2fe" font-size="8.5" font-family="JetBrains Mono">+ RevisePRD</text>
+          </g>
+
+          <!-- Bottom Class 3: Architect -->
+          <g transform="translate(325, 105)">
+            <rect width="145" height="80" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1.3"/>
+            <rect width="145" height="18" rx="4" fill="url(#childHeaderGrad)"/>
+            <line x1="0" y1="18" x2="145" y2="18" stroke="#38bdf8" stroke-width="1"/>
+            <text x="72.5" y="13" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold">Architect</text>
+            <text x="8" y="31" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ WriteDesign</text>
+            <text x="8" y="44" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ ReviseDesign</text>
+            <text x="8" y="57" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ ReviewPRD</text>
+            <text x="8" y="70" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ ReviewCode</text>
+          </g>
+
+          <!-- Bottom Class 4: ProjectManager -->
+          <g transform="translate(485, 105)">
+            <rect width="145" height="84" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1.3"/>
+            <rect width="145" height="18" rx="4" fill="url(#childHeaderGrad)"/>
+            <line x1="0" y1="18" x2="145" y2="18" stroke="#38bdf8" stroke-width="1"/>
+            <text x="72.5" y="13" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold">ProjectManager</text>
+            <text x="8" y="31" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ WriteTasks</text>
+            <text x="8" y="44" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ AssignTask</text>
+            <text x="8" y="57" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ ReviewPRD / Design</text>
+            <text x="8" y="70" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ ReviewCode</text>
+          </g>
+
+          <!-- Bottom Class 5: Engineer -->
+          <g transform="translate(645, 105)">
+            <rect width="145" height="68" rx="4" fill="#0f172a" stroke="#34d399" stroke-width="1.3"/>
+            <rect width="145" height="18" rx="4" fill="url(#childHeaderGrad)"/>
+            <line x1="0" y1="18" x2="145" y2="18" stroke="#34d399" stroke-width="1"/>
+            <text x="72.5" y="13" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold">Engineer</text>
+            <text x="8" y="31" fill="#a7f3d0" font-size="8.5" font-family="JetBrains Mono">+ WriteCode</text>
+            <text x="8" y="44" fill="#a7f3d0" font-size="8.5" font-family="JetBrains Mono">+ ReviewCode</text>
+            <text x="8" y="57" fill="#a7f3d0" font-size="8.5" font-family="JetBrains Mono">+ DebugCode</text>
+          </g>
+
+          <!-- Bottom Class 6: QA -->
+          <g transform="translate(805, 105)">
+            <rect width="145" height="54" rx="4" fill="#0f172a" stroke="#34d399" stroke-width="1.3"/>
+            <rect width="145" height="18" rx="4" fill="url(#childHeaderGrad)"/>
+            <line x1="0" y1="18" x2="145" y2="18" stroke="#34d399" stroke-width="1"/>
+            <text x="72.5" y="13" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold">QA</text>
+            <text x="8" y="31" fill="#a7f3d0" font-size="8.5" font-family="JetBrains Mono">+ WriteTests</text>
+            <text x="8" y="44" fill="#a7f3d0" font-size="8.5" font-family="JetBrains Mono">+ RunTests</text>
+          </g>
+        </svg>
       </div>
     </div>
 
-    <div class="col-span-5 bento-tile p-5 flex flex-col justify-between border-l-4 border-l-indigo-500">
-      <div>
-        <span class="text-xs font-mono text-indigo-400 font-bold block mb-2">ANDREW NG'S FRAMEWORK</span>
-        <h3 class="text-base font-bold text-white mb-2">4대 Agentic Design Patterns (2024)</h3>
-        <p class="text-xs text-slate-300 mb-3 leading-relaxed">
-          앤드류 응 교수가 정리한 실전 에이전트 시스템의 4가지 핵심 축:
-        </p>
-        <div class="space-y-2 text-xs">
-          <div class="p-2 bg-slate-900 rounded border border-slate-800">
-            <strong class="text-sky-300 block">① Reflection (반성/자가 검토)</strong>
-            스스로 출력 결과를 검토하고 개선 루프 실행
-          </div>
-          <div class="p-2 bg-slate-900 rounded border border-slate-800">
-            <strong class="text-indigo-300 block">② Tool Use (도구 활용)</strong>
-            외부 계산기, 웹 검색, 코드 인터프리터 조작
-          </div>
-          <div class="p-2 bg-slate-900 rounded border border-slate-800">
-            <strong class="text-purple-300 block">③ Planning (다단계 계획 수립)</strong>
-            거대 과제를 작은 시퀀스로 분할 실행
-          </div>
-          <div class="p-2 bg-slate-900 rounded border border-slate-800">
-            <strong class="text-emerald-300 block">④ Multi-agent Collaboration (협업)</strong>
-            서로 다른 전문 역할을 맡은 에이전트 간 분업
+    <!-- Bottom: Academic Papers & Andrew Ng Patterns -->
+    <div class="grid grid-cols-12 gap-4">
+      <!-- Left: Academic Milestones -->
+      <div class="col-span-7 bento-tile p-3.5 flex flex-col justify-between border-l-4 border-l-sky-500">
+        <div>
+          <span class="text-xs font-mono text-sky-400 font-bold block mb-1">2023~2024 학술 연구 트리</span>
+          <div class="grid grid-cols-3 gap-2 text-xs">
+            <!-- ChatDev -->
+            <div class="p-2 bg-slate-900 rounded border border-slate-800">
+              <div class="font-bold text-sky-300 text-[11px]">ChatDev (ACL 2024)</div>
+              <p class="text-[10px] text-slate-300 mt-1 leading-relaxed">
+                가상 SW 기업 모방. CEO-CTO-개발자-테스터 간 <strong>Multi-agent Chat-Chain</strong> 단계별 교차 검증.
+              </p>
+            </div>
+            <!-- Reflexion -->
+            <div class="p-2 bg-slate-900 rounded border border-slate-800">
+              <div class="font-bold text-indigo-300 text-[11px]">Reflexion (NeurIPS 2023)</div>
+              <p class="text-[10px] text-slate-300 mt-1 leading-relaxed">
+                가중치 미수정. <strong>언어적 자가 반성</strong> 버퍼로 오류를 피드백해 Self-healing 달성.
+              </p>
+            </div>
+            <!-- CoALA Framework -->
+            <div class="p-2 bg-slate-900 rounded border border-slate-800">
+              <div class="font-bold text-purple-300 text-[11px]">CoALA (Sumers, 2024)</div>
+              <p class="text-[10px] text-slate-300 mt-1 leading-relaxed">
+                인지과학 기반: <strong>Working / Episodic / Semantic / Procedural Memory</strong> 4분할 체계화.
+              </p>
+            </div>
           </div>
         </div>
+        <div class="text-[10.5px] text-sky-300 font-mono border-t border-slate-800 pt-1.5 mt-1.5">
+          "에이전트의 지능은 모델 단독이 아니라, 조직적 아키텍처와 SOP 분업에서 나온다."
+        </div>
       </div>
-      <div class="text-[10px] text-slate-400 font-mono border-t border-slate-800 pt-2">
-        구형 모델도 4대 패턴을 타면 신형 모델 Zero-shot을 능가함
+
+      <!-- Right: Andrew Ng's 4 Patterns -->
+      <div class="col-span-5 bento-tile p-3.5 flex flex-col justify-between border-l-4 border-l-indigo-500">
+        <div>
+          <span class="text-xs font-mono text-indigo-400 font-bold block mb-1">ANDREW NG'S AGENTIC PATTERNS (2024)</span>
+          <div class="grid grid-cols-2 gap-1.5 text-[10.5px]">
+            <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
+              <strong class="text-sky-300 block">① Reflection (반성)</strong>
+              <span class="text-slate-300 text-[10px]">출력 자가검토 & 개선 루프</span>
+            </div>
+            <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
+              <strong class="text-indigo-300 block">② Tool Use (도구)</strong>
+              <span class="text-slate-300 text-[10px]">쉘, 파일, 웹 검색 조작</span>
+            </div>
+            <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
+              <strong class="text-purple-300 block">③ Planning (계획)</strong>
+              <span class="text-slate-300 text-[10px]">과제 시퀀스 분할 실행</span>
+            </div>
+            <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
+              <strong class="text-emerald-300 block">④ Multi-agent (협업)</strong>
+              <span class="text-slate-300 text-[10px]">전문 역할 간 분업</span>
+            </div>
+          </div>
+        </div>
+        <div class="text-[10px] text-slate-400 font-mono border-t border-slate-800 pt-1.5 mt-1.5">
+          구형 모델도 4대 패턴을 타면 신형 모델 Zero-shot을 능가함
+        </div>
       </div>
     </div>
   </div>
