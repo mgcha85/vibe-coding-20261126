@@ -144,7 +144,7 @@
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1v4m0-4h-4m4 4l-5-5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
           <span>전체화면 [F]</span>
         </button>
-        <span id="slideCounter" class="text-sky-400 font-bold font-mono">01 / 24</span>
+        <span id="slideCounter" class="text-sky-400 font-bold font-mono">01 / 25</span>
       </div>
     </header>
 
@@ -336,7 +336,7 @@
       <span class="text-base font-black font-mono text-sky-400 bg-sky-500/10 px-3 py-2 rounded-lg border border-sky-400/20">02</span>
       <div>
         <div class="text-sm font-bold text-white">본질 : 바이브 코딩이란 무엇인가</div>
-        <div class="text-xs text-slate-400">Intent 기반 소프트웨어 합성, 이상과 현실, 엔지니어의 핵심 역량</div>
+        <div class="text-xs text-slate-400">Intent 합성, LLM-Client 런타임 아키텍처, 이상과 현실, 핵심 역량</div>
       </div>
     </div>
     <div class="bento-tile p-3.5 flex items-center gap-3">
@@ -1740,11 +1740,278 @@
   </div>
 </section>
 
-      <!-- [COMPONENT] 02-essence/04-reality-check.html -->
-<section class="slide" data-title="2.3 이상과 현실">
+      <!-- [COMPONENT] 02-essence/04-vibe-architecture.html -->
+<section class="slide flex flex-col justify-between" data-title="2.3 바이브 코딩 아키텍처 원리">
+  <div class="mb-2">
+    <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
+    <h2 class="text-3xl font-black text-white">2.3 바이브 코딩의 런타임 아키텍처 : LLM Server(뇌)와 Local Client(손·발)</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      자연어 의도(Intent)가 실제 동작하는 애플리케이션으로 완성되기까지, <strong>클라우드 지능 엔진</strong>과 <strong>로컬 실행 런타임</strong>이 주고받는 자율 오케스트레이션 루프
+    </p>
+  </div>
+
+  <!-- Central Architecture Flow Stage -->
+  <div class="bento-tile p-2.5 border border-slate-800 bg-slate-950/90 relative overflow-hidden">
+    <style>
+      @keyframes flowDashForward {
+        to { stroke-dashoffset: -20; }
+      }
+      @keyframes flowDashBackward {
+        to { stroke-dashoffset: 20; }
+      }
+      .animate-flow-forward {
+        stroke-dasharray: 5 4;
+        animation: flowDashForward 1.2s linear infinite;
+      }
+      .animate-flow-backward {
+        stroke-dasharray: 5 4;
+        animation: flowDashBackward 1.2s linear infinite;
+      }
+      @keyframes brainPulse {
+        0%, 100% { filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.35)); }
+        50% { filter: drop-shadow(0 0 14px rgba(168, 85, 247, 0.7)); }
+      }
+      .brain-glow {
+        animation: brainPulse 2.5s ease-in-out infinite;
+      }
+      @keyframes clientPulse {
+        0%, 100% { filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.35)); }
+        50% { filter: drop-shadow(0 0 14px rgba(16, 185, 129, 0.7)); }
+      }
+      .client-glow {
+        animation: clientPulse 2.5s ease-in-out infinite;
+      }
+    </style>
+
+    <svg viewBox="0 0 960 210" class="w-full h-auto max-h-[205px]" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Gradients -->
+        <linearGradient id="serverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#3b0764"/>
+          <stop offset="50%" stop-color="#1e1b4b"/>
+          <stop offset="100%" stop-color="#0f172a"/>
+        </linearGradient>
+        <linearGradient id="clientGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#064e3b"/>
+          <stop offset="50%" stop-color="#062e24"/>
+          <stop offset="100%" stop-color="#0f172a"/>
+        </linearGradient>
+        <linearGradient id="bridgeGradDown" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#a855f7"/>
+          <stop offset="100%" stop-color="#38bdf8"/>
+        </linearGradient>
+        <linearGradient id="bridgeGradUp" x1="100%" y1="0%" x2="0%" y2="0%">
+          <stop offset="0%" stop-color="#34d399"/>
+          <stop offset="100%" stop-color="#fbbf24"/>
+        </linearGradient>
+
+        <!-- Arrow Markers -->
+        <marker id="arrowRightSky" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto">
+          <polygon points="0,0 6,3 0,6" fill="#38bdf8"/>
+        </marker>
+        <marker id="arrowLeftAmber" markerWidth="6" markerHeight="6" refX="2" refY="3" orient="auto">
+          <polygon points="6,0 0,3 6,6" fill="#fbbf24"/>
+        </marker>
+        <marker id="loopArrow" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto">
+          <polygon points="0,0 6,3 0,6" fill="#f43f5e"/>
+        </marker>
+      </defs>
+
+      <!-- 1. LEFT ZONE: LLM Server (Cloud Cognitive Engine) -->
+      <g transform="translate(10, 10)" class="brain-glow">
+        <rect width="430" height="175" rx="8" fill="url(#serverGrad)" stroke="#a855f7" stroke-width="1.6"/>
+        <rect width="430" height="24" rx="8" fill="#581c87" fill-opacity="0.6"/>
+        
+        <!-- Header -->
+        <text x="14" y="16" fill="#ffffff" font-size="10.5" font-weight="900" font-family="JetBrains Mono">☁️ LLM SERVER (Cloud Brain &amp; Cognitive Router)</text>
+        <rect x="330" y="4" width="88" height="16" rx="4" fill="#7e22ce"/>
+        <text x="374" y="15" text-anchor="middle" fill="#f5d0fe" font-size="7.5" font-family="JetBrains Mono" font-weight="bold">AI 추론 엔진</text>
+
+        <!-- Step 1: Model Routing & Thinking Effort -->
+        <g transform="translate(12, 32)">
+          <rect width="406" height="40" rx="5" fill="#1e1b4b" stroke="#7c3aed" stroke-width="0.9"/>
+          <circle cx="14" cy="14" r="5" fill="#c084fc"/>
+          <text x="14" y="17" text-anchor="middle" fill="#1e1b4b" font-size="8" font-weight="bold">1</text>
+          <text x="26" y="16" fill="#f3e8ff" font-size="9" font-weight="bold">Model Routing &amp; Thinking Effort 판단 (Test-Time Compute)</text>
+          <text x="26" y="30" fill="#cbd5e1" font-size="7.5">
+            • Task 난이도 평가 ➔ Fast 모델 vs 심층 추론(o1/o3/Claude 3.7 Thinking Budget 10s~60s) 동적 선택
+          </text>
+        </g>
+
+        <!-- Step 2: Hidden CoT Planning -->
+        <g transform="translate(12, 78)">
+          <rect width="406" height="40" rx="5" fill="#1e1b4b" stroke="#7c3aed" stroke-width="0.9"/>
+          <circle cx="14" cy="14" r="5" fill="#c084fc"/>
+          <text x="14" y="17" text-anchor="middle" fill="#1e1b4b" font-size="8" font-weight="bold">2</text>
+          <text x="26" y="16" fill="#f3e8ff" font-size="9" font-weight="bold">자율 추론 &amp; 가상 시뮬레이션 (Hidden CoT Planning)</text>
+          <text x="26" y="30" fill="#cbd5e1" font-size="7.5">
+            • 바로 코딩하지 않고 부작용 사전 탐색 ➔ Multi-file 의존성 분석 및 도구 호출 순서(Plan) 확정
+          </text>
+        </g>
+
+        <!-- Step 3: Tool Call & Code Gen -->
+        <g transform="translate(12, 124)">
+          <rect width="406" height="44" rx="5" fill="#2e1065" stroke="#a855f7" stroke-width="1.1"/>
+          <circle cx="14" cy="14" r="5" fill="#e879f9"/>
+          <text x="14" y="17" text-anchor="middle" fill="#2e1065" font-size="8" font-weight="bold">3</text>
+          <text x="26" y="16" fill="#ffffff" font-size="9" font-weight="black">도구 호출 명세 &amp; 코드 합성 (Tool Call &amp; Code Synth)</text>
+          <g transform="translate(26, 23)">
+            <rect x="0" y="0" width="112" height="15" rx="3" fill="#4c1d95"/>
+            <text x="56" y="11" text-anchor="middle" fill="#f0abfc" font-size="7" font-family="JetBrains Mono">CLI 명령 JSON 생성</text>
+            <rect x="118" y="0" width="124" height="15" rx="3" fill="#4c1d95"/>
+            <text x="180" y="11" text-anchor="middle" fill="#f0abfc" font-size="7" font-family="JetBrains Mono">AST Diff 패치 생성</text>
+            <rect x="248" y="0" width="124" height="15" rx="3" fill="#4c1d95"/>
+            <text x="310" y="11" text-anchor="middle" fill="#f0abfc" font-size="7" font-family="JetBrains Mono">MCP 프로토콜 호출</text>
+          </g>
+        </g>
+      </g>
+
+      <!-- 2. CENTER BRIDGE: Real-Time Bi-Directional Event Stream -->
+      <g transform="translate(440, 10)">
+        <!-- Downward Stream: Tool Calls & Code -->
+        <path d="M 5 65 L 75 65" stroke="url(#bridgeGradDown)" stroke-width="2.5" class="animate-flow-forward" marker-end="url(#arrowRightSky)"/>
+        <rect x="10" y="47" width="60" height="14" rx="3" fill="#1e1b4b" stroke="#38bdf8" stroke-width="0.7"/>
+        <text x="40" y="57" text-anchor="middle" fill="#38bdf8" font-size="7" font-family="JetBrains Mono" font-weight="bold">Tool Calls</text>
+
+        <!-- Streaming Particle: Left to Right -->
+        <circle r="3.5" fill="#38bdf8">
+          <animateMotion path="M 5 65 L 75 65" dur="1.2s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="2" fill="#ffffff">
+          <animateMotion path="M 5 65 L 75 65" dur="1.2s" begin="0.6s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Upward Stream: Execution Observation & Feedback -->
+        <path d="M 75 115 L 5 115" stroke="url(#bridgeGradUp)" stroke-width="2.5" class="animate-flow-backward" marker-end="url(#arrowLeftAmber)"/>
+        <rect x="10" y="120" width="60" height="14" rx="3" fill="#062e24" stroke="#fbbf24" stroke-width="0.7"/>
+        <text x="40" y="130" text-anchor="middle" fill="#fbbf24" font-size="7" font-family="JetBrains Mono" font-weight="bold">Feedback</text>
+
+        <!-- Streaming Particle: Right to Left -->
+        <circle r="3.5" fill="#fbbf24">
+          <animateMotion path="M 75 115 L 5 115" dur="1.2s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="2" fill="#fef08a">
+          <animateMotion path="M 75 115 L 5 115" dur="1.2s" begin="0.6s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Protocol Pill -->
+        <rect x="5" y="85" width="70" height="15" rx="4" fill="#0f172a" stroke="#475569" stroke-width="0.8"/>
+        <text x="40" y="95" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="JetBrains Mono">SSE / IPC 통신</text>
+      </g>
+
+      <!-- 3. RIGHT ZONE: Local Client Runtime (Execution Hands & Eyes) -->
+      <g transform="translate(520, 10)" class="client-glow">
+        <rect width="430" height="175" rx="8" fill="url(#clientGrad)" stroke="#10b981" stroke-width="1.6"/>
+        <rect width="430" height="24" rx="8" fill="#065f46" fill-opacity="0.6"/>
+
+        <!-- Header -->
+        <text x="14" y="16" fill="#ffffff" font-size="10.5" font-weight="900" font-family="JetBrains Mono">💻 LOCAL CLIENT / IDE (Execution Hands &amp; Eyes)</text>
+        <rect x="330" y="4" width="88" height="16" rx="4" fill="#047857"/>
+        <text x="374" y="15" text-anchor="middle" fill="#a7f3d0" font-size="7.5" font-family="JetBrains Mono" font-weight="bold">로컬 런타임</text>
+
+        <!-- Handler Grid (2x2 Compact Blocks) -->
+        <!-- Handler 1: CLI Execution -->
+        <g transform="translate(12, 32)">
+          <rect width="196" height="60" rx="5" fill="#062e24" stroke="#059669" stroke-width="0.9"/>
+          <text x="10" y="16" fill="#6ee7b7" font-size="8.5" font-weight="bold">⚡ 1. CLI 명령 자율 수행</text>
+          <text x="10" y="30" fill="#cbd5e1" font-size="7">• Terminal/Shell 백그라운드 구동</text>
+          <text x="10" y="42" fill="#94a3b8" font-size="6.5" font-family="JetBrains Mono">$ npm install, cargo build, pytest</text>
+          <text x="10" y="53" fill="#34d399" font-size="6.5" font-weight="bold">➔ exit code / stdout / stderr 캡처</text>
+        </g>
+
+        <!-- Handler 2: Atomic Code Writer -->
+        <g transform="translate(222, 32)">
+          <rect width="196" height="60" rx="5" fill="#062e24" stroke="#059669" stroke-width="0.9"/>
+          <text x="10" y="16" fill="#6ee7b7" font-size="8.5" font-weight="bold">📝 2. 코드 파일 시스템 반영</text>
+          <text x="10" y="30" fill="#cbd5e1" font-size="7">• Workspace 디렉토리 자동 스캐폴딩</text>
+          <text x="10" y="42" fill="#94a3b8" font-size="6.5" font-family="JetBrains Mono">write_file / replace_content (Diff)</text>
+          <text x="10" y="53" fill="#34d399" font-size="6.5" font-weight="bold">➔ Linter &amp; 타입체커 즉각 검증</text>
+        </g>
+
+        <!-- Handler 3: MCP Tool Server -->
+        <g transform="translate(12, 100)">
+          <rect width="196" height="68" rx="5" fill="#062e24" stroke="#059669" stroke-width="0.9"/>
+          <text x="10" y="16" fill="#6ee7b7" font-size="8.5" font-weight="bold">🔌 3. MCP (Model Context Protocol)</text>
+          <text x="10" y="30" fill="#cbd5e1" font-size="7">• 외부 시스템 &amp; DB RPC 통신</text>
+          <text x="10" y="42" fill="#94a3b8" font-size="6.5" font-family="JetBrains Mono">Supabase Postgres 스키마 직접 쿼리</text>
+          <text x="10" y="53" fill="#94a3b8" font-size="6.5" font-family="JetBrains Mono">사내 REST/GraphQL 도구 실시간 연동</text>
+          <text x="10" y="63" fill="#34d399" font-size="6.5" font-weight="bold">➔ 정밀한 컨텍스트 추출</text>
+        </g>
+
+        <!-- Handler 4: Browser Agent -->
+        <g transform="translate(222, 100)">
+          <rect width="196" height="68" rx="5" fill="#062e24" stroke="#059669" stroke-width="0.9"/>
+          <text x="10" y="16" fill="#6ee7b7" font-size="8.5" font-weight="bold">🌐 4. 사용자 브라우저 실행 &amp; 검증</text>
+          <text x="10" y="30" fill="#cbd5e1" font-size="7">• Dev Server 기동 (<code class="text-sky-300">localhost:5173</code>)</text>
+          <text x="10" y="42" fill="#94a3b8" font-size="6.5" font-family="JetBrains Mono">Headless/실제 브라우저 자율 실행</text>
+          <text x="10" y="53" fill="#94a3b8" font-size="6.5" font-family="JetBrains Mono">Console Error &amp; DOM 시각 렌더링 확인</text>
+          <text x="10" y="63" fill="#34d399" font-size="6.5" font-weight="bold">➔ 런타임 크래시 즉시 피드백</text>
+        </g>
+      </g>
+
+      <!-- 4. SELF-HEALING CLOSED FEEDBACK LOOP ARC -->
+      <path d="M 735 188 C 735 204, 225 204, 225 188" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="4 3" marker-end="url(#loopArrow)"/>
+      <rect x="365" y="193" width="230" height="15" rx="4" fill="#881337" stroke="#f43f5e" stroke-width="0.8"/>
+      <text x="480" y="204" text-anchor="middle" fill="#ffe4e6" font-size="7.5" font-family="JetBrains Mono" font-weight="bold">
+        🔄 에러 발생 시 자가 치유 루프 (Self-Correction Loop)
+      </text>
+    </svg>
+  </div>
+
+  <!-- Bottom 3 Key Principles Cards -->
+  <div class="grid grid-cols-3 gap-3 mt-2">
+    <div class="bento-tile p-2.5 flex flex-col justify-between border-t-2 border-t-purple-400">
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[11px] font-bold text-white">01. Dynamic Thinking Effort</span>
+          <span class="text-[9px] font-mono text-purple-300 bg-purple-900/50 px-1.5 py-0.5 rounded">Brain Layer</span>
+        </div>
+        <p class="text-[11px] text-slate-300 leading-snug">
+          단순 오타 수정은 초고속 Flash 모델(0s)로 처리하고, 아키텍처 재설계 및 의존성 분석은 <strong>Deep Thinking(o1/o3/Claude 3.7)</strong>을 호출하여 사전에 버그를 가상 시뮬레이션합니다.
+        </p>
+      </div>
+      <div class="text-[9.5px] text-purple-300 font-mono mt-1 border-t border-slate-800/80 pt-1">
+        ✓ 생각 사슬(CoT) 예산 통제로 품질과 비용 동시 최적화
+      </div>
+    </div>
+
+    <div class="bento-tile p-2.5 flex flex-col justify-between border-t-2 border-t-emerald-400">
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[11px] font-bold text-white">02. Local 4-Execution Handlers</span>
+          <span class="text-[9px] font-mono text-emerald-300 bg-emerald-900/50 px-1.5 py-0.5 rounded">Hands &amp; Eyes</span>
+        </div>
+        <p class="text-[11px] text-slate-300 leading-snug">
+          단순 텍스트 출력을 넘어, 로컬 런타임에서 <strong>CLI 쉘 명령어 수행, Atomic 파일 수정, MCP 프로토콜을 통한 DB 쿼리, 실제 브라우저 기동</strong>까지 에이전트가 직접 수행합니다.
+        </p>
+      </div>
+      <div class="text-[9.5px] text-emerald-300 font-mono mt-1 border-t border-slate-800/80 pt-1">
+        ✓ 인간의 수동 복붙 없이 시스템 리소스를 직접 제어
+      </div>
+    </div>
+
+    <div class="bento-tile p-2.5 flex flex-col justify-between border-t-2 border-t-rose-400">
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[11px] font-bold text-white">03. Autonomous Closed-Loop</span>
+          <span class="text-[9px] font-mono text-rose-300 bg-rose-900/50 px-1.5 py-0.5 rounded">Self-Healing</span>
+        </div>
+        <p class="text-[11px] text-slate-300 leading-snug">
+          실행 중 컴파일 에러, Linter 경고, 브라우저 콘솔 에러가 발생하면 사람이 디버깅할 필요 없이 <strong>자동 캡처된 Stderr가 LLM의 다음 턴 입력</strong>으로 환류되어 자가 치유를 완료합니다.
+        </p>
+      </div>
+      <div class="text-[9.5px] text-rose-300 font-mono mt-1 border-t border-slate-800/80 pt-1">
+        ✓ Stderr 관측 ➔ 원샷 패치 ➔ 녹색 빌드(Green Build) 달성
+      </div>
+    </div>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 02-essence/05-reality-check.html -->
+<section class="slide" data-title="2.4 이상과 현실">
   <div class="mb-4">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
-    <h2 class="text-3xl font-black text-white">2.3 이상과 현실 (Reality Check) : 5분의 데모, 5일의 디버깅</h2>
+    <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : 5분의 데모, 5일의 디버깅</h2>
   </div>
   <div class="grid grid-cols-2 gap-6 flex-1 items-stretch">
     <div class="bento-tile p-6 flex flex-col justify-between border-l-4 border-l-amber-500">
@@ -1797,11 +2064,11 @@
   </div>
 </section>
 
-      <!-- [COMPONENT] 02-essence/05-competencies.html -->
-<section class="slide" data-title="2.4 4대 핵심 역량">
+      <!-- [COMPONENT] 02-essence/06-competencies.html -->
+<section class="slide" data-title="2.5 4대 핵심 역량">
   <div class="mb-4">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
-    <h2 class="text-3xl font-black text-white">2.4 2026 바이브 코더의 4대 핵심 역량</h2>
+    <h2 class="text-3xl font-black text-white">2.5 2026 바이브 코더의 4대 핵심 역량</h2>
   </div>
   <div class="grid grid-cols-2 gap-4 flex-1">
     <div class="bento-tile p-5 flex flex-col justify-between border-t-2 border-t-sky-400">
