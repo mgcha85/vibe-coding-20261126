@@ -30,6 +30,13 @@
       stroke-dasharray: 4 3;
       animation: loopFlowDash 1.2s linear infinite;
     }
+    @keyframes shieldPulse {
+      0%, 100% { filter: drop-shadow(0 0 4px rgba(52, 211, 153, 0.5)); }
+      50% { filter: drop-shadow(0 0 12px rgba(52, 211, 153, 0.9)); }
+    }
+    .shield-glow {
+      animation: shieldPulse 2s ease-in-out infinite;
+    }
   </style>
 
   <!-- Central Cockpit Hub Layout (Left 5 + Center 2 + Right 5) -->
@@ -41,34 +48,54 @@
         <div>
           <div class="flex items-center justify-between mb-1">
             <span class="text-[10px] font-mono text-sky-400 font-bold uppercase tracking-wider">01 / SYSTEM LITERACY</span>
-            <span class="text-[9px] font-mono text-sky-300 bg-sky-950/80 px-1.5 py-0.5 rounded border border-sky-800/50">구조 투시경</span>
+            <span class="text-[9px] font-mono text-sky-300 bg-sky-950/80 px-1.5 py-0.5 rounded border border-sky-800/50">설계도 &amp; 레일</span>
           </div>
-          <h3 class="text-sm font-bold text-white mb-1">아키텍처 문해력 (System Architecture)</h3>
+          <h3 class="text-sm font-bold text-white mb-0.5">아키텍처 문해력 (Blueprint &amp; Highway)</h3>
           
-          <!-- Mini SVG: Pipeline X-Ray -->
-          <div class="bg-slate-900/90 rounded border border-slate-800 p-1.5 my-1.5">
-            <svg viewBox="0 0 280 40" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-              <!-- Pipeline Boxes -->
-              <rect x="5" y="8" width="60" height="24" rx="4" fill="#0369a1" fill-opacity="0.4" stroke="#38bdf8" stroke-width="1"/>
-              <text x="35" y="23" text-anchor="middle" fill="#e0f2fe" font-size="7" font-family="JetBrains Mono" font-weight="bold">Client (UI)</text>
+          <!-- Mini SVG Scene 1: Blueprint Map with AI Component Highway -->
+          <div class="bg-slate-900/95 rounded-lg border border-slate-800 p-1.5 my-1.5">
+            <svg viewBox="0 0 280 48" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="blueprintGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#0284c7" stroke-width="0.3" stroke-opacity="0.3"/>
+                </pattern>
+              </defs>
+              <!-- Blueprint Sheet Background -->
+              <rect x="2" y="2" width="276" height="44" rx="3" fill="#082f49" fill-opacity="0.3" stroke="#0284c7" stroke-width="0.8" stroke-dasharray="3 2"/>
+              <rect x="2" y="2" width="276" height="44" fill="url(#blueprintGrid)"/>
+              
+              <!-- Blueprint Label -->
+              <text x="8" y="10" fill="#38bdf8" font-size="5.5" font-family="JetBrains Mono" font-weight="bold">📐 ARCHITECTURE BLUEPRINT</text>
 
-              <line x1="65" y1="20" x2="105" y2="20" stroke="#38bdf8" stroke-width="1.5" class="flow-dash"/>
+              <!-- Highway Track Line -->
+              <line x1="20" y1="28" x2="260" y2="28" stroke="#38bdf8" stroke-width="1.8" class="flow-dash"/>
 
-              <rect x="105" y="8" width="70" height="24" rx="4" fill="#1e1b4b" stroke="#818cf8" stroke-width="1"/>
-              <text x="140" y="23" text-anchor="middle" fill="#e0e7ff" font-size="7" font-family="JetBrains Mono" font-weight="bold">Edge / Server</text>
+              <!-- Station 1: Client UI -->
+              <rect x="15" y="16" width="60" height="24" rx="3" fill="#0369a1" stroke="#7dd3fc" stroke-width="1"/>
+              <text x="45" y="27" text-anchor="middle" fill="#ffffff" font-size="6.5" font-family="JetBrains Mono" font-weight="bold">Client (UI)</text>
+              <text x="45" y="35" text-anchor="middle" fill="#bae6fd" font-size="5">Svelte / State</text>
 
-              <line x1="175" y1="20" x2="215" y2="20" stroke="#34d399" stroke-width="1.5" class="flow-dash"/>
+              <!-- Moving AI Builder on Highway -->
+              <circle cx="95" cy="28" r="6" fill="#1e1b4b" stroke="#c084fc" stroke-width="1.2"/>
+              <text x="95" y="31" text-anchor="middle" fill="#ffffff" font-size="7">🤖</text>
 
-              <rect x="215" y="8" width="60" height="24" rx="4" fill="#064e3b" fill-opacity="0.5" stroke="#34d399" stroke-width="1"/>
-              <text x="245" y="23" text-anchor="middle" fill="#d1fae5" font-size="7" font-family="JetBrains Mono" font-weight="bold">Postgres RLS</text>
+              <!-- Station 2: Edge Serverless -->
+              <rect x="115" y="16" width="65" height="24" rx="3" fill="#1e1b4b" stroke="#818cf8" stroke-width="1"/>
+              <text x="147" y="27" text-anchor="middle" fill="#ffffff" font-size="6.5" font-family="JetBrains Mono" font-weight="bold">Edge API</text>
+              <text x="147" y="35" text-anchor="middle" fill="#c7d2fe" font-size="5">Serverless Tx</text>
+
+              <!-- Station 3: BaaS Postgres -->
+              <rect x="200" y="16" width="65" height="24" rx="3" fill="#064e3b" stroke="#34d399" stroke-width="1"/>
+              <text x="232" y="27" text-anchor="middle" fill="#ffffff" font-size="6.5" font-family="JetBrains Mono" font-weight="bold">Supabase DB</text>
+              <text x="232" y="35" text-anchor="middle" fill="#a7f3d0" font-size="5">Postgres RLS</text>
             </svg>
-            <div class="text-[8px] text-center font-mono text-slate-400 mt-0.5">
-              프론트 ⇄ 백엔드 ⇄ DB 트랜잭션 데이터 흐름의 의존 관계 직관 파악
+            <div class="text-[8px] text-center font-mono text-sky-300 mt-0.5">
+              엔지니어가 설계도로 데이터 경계선(Boundary)을 먼저 깔아주어야 AI가 탈선하지 않음
             </div>
           </div>
 
           <p class="text-[10.5px] text-slate-300 leading-snug">
-            어떤 연산이 프론트에 있고 어떤 로직이 백엔드 트랜잭션에 있어야 하는지 <strong>데이터 흐름과 의존성</strong>을 꿰뚫어 보는 역량.
+            AI에게 무작정 코딩을 시키지 않고, <strong>데이터 흐름과 컴포넌트 경계선(UI ⇄ Edge ⇄ DB)</strong>을 지도처럼 설계도로 먼저 통제하는 역량.
           </p>
         </div>
         <div class="text-[9.5px] text-sky-300 font-mono border-t border-slate-800/80 pt-1 mt-1">
@@ -81,40 +108,56 @@
         <div>
           <div class="flex items-center justify-between mb-1">
             <span class="text-[10px] font-mono text-purple-400 font-bold uppercase tracking-wider">03 / AMBIGUITY ELIMINATION</span>
-            <span class="text-[9px] font-mono text-purple-300 bg-purple-950/80 px-1.5 py-0.5 rounded border border-purple-800/50">정밀 조준경</span>
+            <span class="text-[9px] font-mono text-purple-300 bg-purple-950/80 px-1.5 py-0.5 rounded border border-purple-800/50">문서 표지판</span>
           </div>
-          <h3 class="text-sm font-bold text-white mb-1">명세 정밀도 (Ambiguity Elimination)</h3>
+          <h3 class="text-sm font-bold text-white mb-0.5">명세 정밀도 (Guided Roadway with Skills)</h3>
 
-          <!-- Mini SVG: Ambiguity to Precision Filter -->
-          <div class="bg-slate-900/90 rounded border border-slate-800 p-1.5 my-1.5">
-            <svg viewBox="0 0 280 40" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-              <rect x="5" y="8" width="75" height="24" rx="3" fill="#450a0a" stroke="#ef4444" stroke-width="0.8"/>
-              <text x="42" y="19" text-anchor="middle" fill="#fca5a5" font-size="6.5">"대충 예쁘게 해줘"</text>
-              <text x="42" y="27" text-anchor="middle" fill="#f87171" font-size="5.5" font-family="JetBrains Mono">모호성 80% (환각 ❌)</text>
+          <!-- Mini SVG Scene 3: Document Signposts Guiding AI -->
+          <div class="bg-slate-900/95 rounded-lg border border-slate-800 p-1.5 my-1.5">
+            <svg viewBox="0 0 280 48" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+              <!-- Fog/Mist Danger Zones (Hallucination Abyss) -->
+              <rect x="5" y="4" width="270" height="40" rx="3" fill="#18181b"/>
+              
+              <!-- Illuminated Guidance Roadway -->
+              <polygon points="10,38 270,38 250,14 30,14" fill="#2e1065" fill-opacity="0.5" stroke="#a855f7" stroke-width="0.8" stroke-dasharray="3 2"/>
+              <line x1="20" y1="26" x2="260" y2="26" stroke="#c084fc" stroke-width="1.5" class="flow-dash"/>
 
-              <line x1="80" y1="20" x2="115" y2="20" stroke="#a855f7" stroke-width="1.5" class="flow-dash"/>
+              <!-- Signpost 1: SKILL.md -->
+              <g transform="translate(45, 8)">
+                <rect width="48" height="20" rx="2" fill="#3b0764" stroke="#c084fc" stroke-width="0.9"/>
+                <text x="24" y="11" text-anchor="middle" fill="#ffffff" font-size="5.5" font-family="JetBrains Mono" font-weight="bold">📄 SKILL.md</text>
+                <text x="24" y="17" text-anchor="middle" fill="#d8b4fe" font-size="4.5">절차 기억/규칙</text>
+              </g>
 
-              <!-- Interface Filter Funnel -->
-              <polygon points="115,10 145,16 145,24 115,30" fill="#7e22ce" stroke="#c084fc" stroke-width="0.8"/>
-              <text x="130" y="22" text-anchor="middle" fill="#ffffff" font-size="5.5" font-weight="bold">필터</text>
+              <!-- Signpost 2: types.ts -->
+              <g transform="translate(115, 8)">
+                <rect width="48" height="20" rx="2" fill="#1e1b4b" stroke="#818cf8" stroke-width="0.9"/>
+                <text x="24" y="11" text-anchor="middle" fill="#ffffff" font-size="5.5" font-family="JetBrains Mono" font-weight="bold">📋 types.ts</text>
+                <text x="24" y="17" text-anchor="middle" fill="#a5b4fc" font-size="4.5">엄격한 타입 규격</text>
+              </g>
 
-              <line x1="145" y1="20" x2="175" y2="20" stroke="#a855f7" stroke-width="1.5" class="flow-dash"/>
+              <!-- AI Following Signposts -->
+              <circle cx="185" cy="26" r="6" fill="#1e1b4b" stroke="#34d399" stroke-width="1.2"/>
+              <text x="185" y="29" text-anchor="middle" fill="#ffffff" font-size="7">🤖</text>
 
-              <rect x="175" y="8" width="100" height="24" rx="3" fill="#2e1065" stroke="#a855f7" stroke-width="0.8"/>
-              <text x="225" y="19" text-anchor="middle" fill="#f0abfc" font-size="6.5" font-family="JetBrains Mono" font-weight="bold">Payload Type &amp; Error 401</text>
-              <text x="225" y="27" text-anchor="middle" fill="#34d399" font-size="5.5" font-family="JetBrains Mono">환각 0% 수렴 🎯</text>
+              <!-- Destination Target -->
+              <g transform="translate(210, 8)">
+                <rect width="55" height="20" rx="2" fill="#064e3b" stroke="#34d399" stroke-width="1"/>
+                <text x="27" y="11" text-anchor="middle" fill="#a7f3d0" font-size="5.5" font-family="JetBrains Mono" font-weight="black">🎯 ZERO DRIFT</text>
+                <text x="27" y="17" text-anchor="middle" fill="#6ee7b7" font-size="4.5">환각 0% 무결점</text>
+              </g>
             </svg>
-            <div class="text-[8px] text-center font-mono text-slate-400 mt-0.5">
-              입력 페이로드 타입, 반환 에러 코드, 엣지 케이스 조건을 모호함 없이 명시
+            <div class="text-[8px] text-center font-mono text-purple-300 mt-0.5">
+              자연어 잡담 대신 Skills/규칙 문서를 징검다리로 세워 AI를 목적지로 직진시킴
             </div>
           </div>
 
           <p class="text-[10.5px] text-slate-300 leading-snug">
-            막연한 자연어 잡담 대신, <strong>정밀한 인터페이스 스펙과 제약조건</strong>을 정의하여 AI 환각을 근본적으로 차단하는 소통력.
+            막연한 프롬프트 대신, <strong>Skills 문서와 인터페이스 규격(Harness)</strong>을 길잡이 표지판으로 꽂아 AI 환각과 표류를 원천 차단하는 소통력.
           </p>
         </div>
         <div class="text-[9.5px] text-purple-300 font-mono border-t border-slate-800/80 pt-1 mt-1">
-          ✓ 모호함이 제거될수록 AI의 성공률은 100%로 수렴
+          ✓ 명세가 정밀할수록 AI의 성공률은 100%로 수렴
         </div>
       </div>
     </div>
@@ -154,17 +197,17 @@
 
           <!-- Center Conductor Icon -->
           <circle cx="70" cy="70" r="16" fill="#1e1b4b" stroke="#c084fc" stroke-width="1.8"/>
-          <text x="70" y="74" text-anchor="middle" fill="#ffffff" font-size="12">🧠</text>
+          <text x="70" y="74" text-anchor="middle" fill="#ffffff" font-size="12">👨‍✈️</text>
 
-          <!-- 4 Radiating Branch Arrows -->
-          <!-- ↖ 01 -->
-          <path d="M 54 54 L 20 20" stroke="#38bdf8" stroke-width="1.4" stroke-dasharray="2 2"/>
-          <!-- ↗ 02 -->
-          <path d="M 86 54 L 120 20" stroke="#818cf8" stroke-width="1.4" stroke-dasharray="2 2"/>
-          <!-- ↙ 03 -->
-          <path d="M 54 86 L 20 120" stroke="#c084fc" stroke-width="1.4" stroke-dasharray="2 2"/>
-          <!-- ↘ 04 -->
-          <path d="M 86 86 L 120 120" stroke="#34d399" stroke-width="1.4" stroke-dasharray="2 2"/>
+          <!-- 4 Radiating Command Beams -->
+          <!-- ↖ 01 Blueprint -->
+          <path d="M 54 54 L 18 18" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="2 2"/>
+          <!-- ↗ 02 TDD Harness -->
+          <path d="M 86 54 L 122 18" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="2 2"/>
+          <!-- ↙ 03 Skills Guide -->
+          <path d="M 54 86 L 18 122" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="2 2"/>
+          <!-- ↘ 04 Security Shield -->
+          <path d="M 86 86 L 122 122" stroke="#34d399" stroke-width="1.5" stroke-dasharray="2 2"/>
         </svg>
       </div>
 
@@ -185,36 +228,47 @@
         <div>
           <div class="flex items-center justify-between mb-1">
             <span class="text-[10px] font-mono text-indigo-400 font-bold uppercase tracking-wider">02 / TDD HARNESS</span>
-            <span class="text-[9px] font-mono text-indigo-300 bg-indigo-950/80 px-1.5 py-0.5 rounded border border-indigo-800/50">자가치유 내비</span>
+            <span class="text-[9px] font-mono text-indigo-300 bg-indigo-950/80 px-1.5 py-0.5 rounded border border-indigo-800/50">자가치유 관문</span>
           </div>
-          <h3 class="text-sm font-bold text-white mb-1">테스트 주도 검증력 (TDD Harness)</h3>
+          <h3 class="text-sm font-bold text-white mb-0.5">테스트 주도 검증력 (Harness Checkpoint)</h3>
 
-          <!-- Mini SVG: Red-Green Closed Loop -->
-          <div class="bg-slate-900/90 rounded border border-slate-800 p-1.5 my-1.5">
-            <svg viewBox="0 0 280 40" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-              <rect x="5" y="8" width="75" height="24" rx="3" fill="#450a0a" stroke="#ef4444" stroke-width="0.8"/>
-              <text x="42" y="19" text-anchor="middle" fill="#fca5a5" font-size="6.5" font-family="JetBrains Mono" font-weight="bold">1. Red Test Fail</text>
-              <text x="42" y="27" text-anchor="middle" fill="#fca5a5" font-size="5.5">기대 결과 명시</text>
+          <!-- Mini SVG Scene 2: TDD Checkpoint Gate & Rebound Self-Healing -->
+          <div class="bg-slate-900/95 rounded-lg border border-slate-800 p-1.5 my-1.5">
+            <svg viewBox="0 0 280 48" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+              <!-- Running Track -->
+              <line x1="15" y1="28" x2="265" y2="28" stroke="#475569" stroke-width="1.5"/>
 
-              <line x1="80" y1="20" x2="105" y2="20" stroke="#818cf8" stroke-width="1.5" class="flow-dash"/>
+              <!-- AI Code Runner -->
+              <g transform="translate(15, 14)">
+                <circle cx="10" cy="14" r="8" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.2"/>
+                <text x="10" y="17" text-anchor="middle" fill="#ffffff" font-size="8">🤖</text>
+                <text x="10" y="27" text-anchor="middle" fill="#c7d2fe" font-size="5" font-family="JetBrains Mono">AI Code</text>
+              </g>
 
-              <rect x="105" y="8" width="80" height="24" rx="3" fill="#1e1b4b" stroke="#818cf8" stroke-width="0.8"/>
-              <text x="145" y="19" text-anchor="middle" fill="#e0e7ff" font-size="6.5" font-family="JetBrains Mono" font-weight="bold">2. Agent Feedback</text>
-              <text x="145" y="27" text-anchor="middle" fill="#c7d2fe" font-size="5.5">Stderr 즉시 주입</text>
+              <!-- Step 1: Red Test Laser Gate (Checkpoint Barrier) -->
+              <g transform="translate(110, 8)">
+                <rect width="60" height="32" rx="3" fill="#450a0a" fill-opacity="0.4" stroke="#ef4444" stroke-width="1"/>
+                <text x="30" y="14" text-anchor="middle" fill="#fca5a5" font-size="6" font-family="JetBrains Mono" font-weight="bold">🚨 TEST GATE</text>
+                <text x="30" y="22" text-anchor="middle" fill="#ef4444" font-size="5.5" font-weight="bold">Fail ➔ Stderr</text>
+                <!-- Bounce Feedback Arrow back to AI -->
+                <path d="M 5 25 C -15 25, -40 25, -60 25" fill="none" stroke="#f87171" stroke-width="1.2" stroke-dasharray="2 2"/>
+                <text x="-30" y="21" text-anchor="middle" fill="#fca5a5" font-size="5" font-family="JetBrains Mono">반사 피드백</text>
+              </g>
 
-              <line x1="185" y1="20" x2="210" y2="20" stroke="#34d399" stroke-width="1.5" class="flow-dash"/>
-
-              <rect x="210" y="8" width="65" height="24" rx="3" fill="#064e3b" stroke="#10b981" stroke-width="0.8"/>
-              <text x="242" y="19" text-anchor="middle" fill="#6ee7b7" font-size="6.5" font-family="JetBrains Mono" font-weight="bold">3. Green Pass</text>
-              <text x="242" y="27" text-anchor="middle" fill="#a7f3d0" font-size="5.5">원샷 자가치유 ✨</text>
+              <!-- Step 2: Green Pass Finish Line -->
+              <g transform="translate(200, 8)">
+                <rect width="65" height="32" rx="3" fill="#064e3b" stroke="#10b981" stroke-width="1.2"/>
+                <text x="32" y="15" text-anchor="middle" fill="#6ee7b7" font-size="6" font-family="JetBrains Mono" font-weight="black">🏁 GREEN PASS</text>
+                <text x="32" y="24" text-anchor="middle" fill="#a7f3d0" font-size="5.5">자가치유 완결 ✨</text>
+              </g>
             </svg>
-            <div class="text-[8px] text-center font-mono text-slate-400 mt-0.5">
-              실패하는 테스트를 먼저 작성하여 에이전트에게 최고의 수정 나침반 제공
+            <div class="text-[8px] text-center font-mono text-indigo-300 mt-0.5">
+              테스트 관문을 세워두면 AI가 부딪히며 Stderr를 보고 스스로 코드를 고쳐 통과함
             </div>
           </div>
 
           <p class="text-[10.5px] text-slate-300 leading-snug">
-            AI 코드가 요구사항을 충족했는지 판별하는 <strong>자동화된 테스트 케이스</strong>를 먼저 정의하고 에이전트에게 피드백으로 밀어 넣는 역량.
+            인간이 코드를 한 줄씩 읽는 대신, <strong>자동화된 테스트 관문(Harness)</strong>을 세워 AI가 스스로 부딪히며 녹색 불(Green)을 띄우게 만드는 검증력.
           </p>
         </div>
         <div class="text-[9.5px] text-indigo-300 font-mono border-t border-slate-800/80 pt-1 mt-1">
@@ -227,38 +281,55 @@
         <div>
           <div class="flex items-center justify-between mb-1">
             <span class="text-[10px] font-mono text-emerald-400 font-bold uppercase tracking-wider">04 / SECURITY AUDITING</span>
-            <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-800/50">안전 방패</span>
+            <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-800/50">방패 &amp; 조율</span>
           </div>
-          <h3 class="text-sm font-bold text-white mb-1">보안 가드레일 (Zero-Trust Security)</h3>
+          <h3 class="text-sm font-bold text-white mb-0.5">보안 가드레일 (Engineer-Tuned AI Shield)</h3>
 
-          <!-- Mini SVG: Zero Trust Shield & Gate -->
-          <div class="bg-slate-900/90 rounded border border-slate-800 p-1.5 my-1.5">
-            <svg viewBox="0 0 280 40" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-              <rect x="5" y="8" width="85" height="24" rx="3" fill="#334155" stroke="#64748b" stroke-width="0.8"/>
-              <text x="47" y="19" text-anchor="middle" fill="#f1f5f9" font-size="6.5">AI 생성 패치/SQL</text>
-              <text x="47" y="27" text-anchor="middle" fill="#cbd5e1" font-size="5.5">검증되지 않은 코드</text>
-
-              <line x1="90" y1="20" x2="120" y2="20" stroke="#10b981" stroke-width="1.5" class="flow-dash"/>
-
-              <!-- Shield Gate -->
-              <g transform="translate(120, 6)">
-                <polygon points="18,0 36,6 36,20 18,28 0,20 0,6" fill="#064e3b" stroke="#34d399" stroke-width="1.2"/>
-                <text x="18" y="17" text-anchor="middle" fill="#ffffff" font-size="10">🛡️</text>
+          <!-- Mini SVG Scene 4: Engineer-Tuned AI Shield Deflecting Attacks -->
+          <div class="bg-slate-900/95 rounded-lg border border-slate-800 p-1.5 my-1.5">
+            <svg viewBox="0 0 280 48" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+              <!-- Left: External Attackers / Threats -->
+              <g transform="translate(10, 10)">
+                <text x="0" y="10" fill="#f87171" font-size="6" font-family="JetBrains Mono" font-weight="bold">⚡ SQL Injection</text>
+                <text x="0" y="20" fill="#f87171" font-size="6" font-family="JetBrains Mono" font-weight="bold">⚡ DB Dump Attack</text>
+                <!-- Attack Beams Flying Right -->
+                <line x1="60" y1="8" x2="95" y2="16" stroke="#ef4444" stroke-width="1.8"/>
+                <line x1="60" y1="18" x2="95" y2="18" stroke="#ef4444" stroke-width="1.8"/>
               </g>
 
-              <line x1="160" y1="20" x2="190" y2="20" stroke="#10b981" stroke-width="1.5" class="flow-dash"/>
+              <!-- Center: AI Deploying Zero-Trust Energy Shield -->
+              <g transform="translate(100, 6)" class="shield-glow">
+                <!-- Energy Shield Arc -->
+                <path d="M 2 2 C 16 12, 16 28, 2 38" fill="none" stroke="#34d399" stroke-width="3"/>
+                <!-- Sparks Bouncing Off -->
+                <text x="-4" y="22" fill="#fef08a" font-size="7" font-weight="black">💥</text>
+                <!-- AI Shield Bearer -->
+                <circle cx="18" cy="20" r="7" fill="#064e3b" stroke="#34d399" stroke-width="1.2"/>
+                <text x="18" y="23" text-anchor="middle" fill="#ffffff" font-size="7">🤖</text>
+              </g>
 
-              <rect x="190" y="8" width="85" height="24" rx="3" fill="#022c22" stroke="#10b981" stroke-width="0.8"/>
-              <text x="232" y="19" text-anchor="middle" fill="#6ee7b7" font-size="6.5" font-family="JetBrains Mono" font-weight="bold">Zero-Trust Verified</text>
-              <text x="232" y="27" text-anchor="middle" fill="#34d399" font-size="5.5" font-family="JetBrains Mono">RLS &amp; Secret 격리 ✅</text>
+              <!-- Right-Top: Engineer Controller Console -->
+              <g transform="translate(140, 8)">
+                <rect width="65" height="15" rx="3" fill="#1e1b4b" stroke="#a855f7" stroke-width="0.8"/>
+                <text x="32" y="10" text-anchor="middle" fill="#f0abfc" font-size="5.5" font-family="JetBrains Mono">🎛️ RLS 정책 튜닝</text>
+                <!-- Line from engineer console to shield -->
+                <line x1="0" y1="15" x2="-20" y2="18" stroke="#a855f7" stroke-width="1" stroke-dasharray="2 1.5"/>
+              </g>
+
+              <!-- Right: Protected Database & Secret Vault -->
+              <g transform="translate(215, 8)">
+                <rect width="55" height="32" rx="3" fill="#022c22" stroke="#10b981" stroke-width="1.2"/>
+                <text x="27" y="16" text-anchor="middle" fill="#6ee7b7" font-size="6" font-family="JetBrains Mono" font-weight="black">🔒 SAFE VAULT</text>
+                <text x="27" y="25" text-anchor="middle" fill="#a7f3d0" font-size="5">고객 DB &amp; 시크릿</text>
+              </g>
             </svg>
-            <div class="text-[8px] text-center font-mono text-slate-400 mt-0.5">
-              RLS 누수 차단, 시크릿 키 격리, 타이포스쿼팅 악성 패키지 유입 방어
+            <div class="text-[8px] text-center font-mono text-emerald-300 mt-0.5">
+              엔지니어가 보안 정책을 지휘하여 AI가 RLS와 시크릿 방패를 세워 외부 공격을 차단
             </div>
           </div>
 
           <p class="text-[10.5px] text-slate-300 leading-snug">
-            Supabase RLS 누수 방어, Secret Key 격리, 공급망 보안 등 <strong>프로덕션 레벨의 무결성</strong>을 제로 트러스트 관점에서 검증.
+            엔지니어의 통제 하에 <strong>AI가 제로 트러스트 쉴드(RLS · 시크릿 마스킹)</strong>를 전개하여 외부 침입과 데이터 유출을 원천 봉쇄하는 역량.
           </p>
         </div>
         <div class="text-[9.5px] text-emerald-300 font-mono border-t border-slate-800/80 pt-1 mt-1">
