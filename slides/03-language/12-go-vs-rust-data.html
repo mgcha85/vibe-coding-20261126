@@ -1,0 +1,168 @@
+<section class="slide flex flex-col justify-between" data-title="3.11 Go vs Rust 5개년 성장 궤적 비교">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 03. 언어 &middot; 3.11 Go vs Rust 데이터 분석</span>
+      <span class="px-2.5 py-0.5 rounded bg-cyan-950/80 border border-cyan-700/50 text-cyan-300 font-mono text-[11px] font-bold">
+        GROWTH METRICS &middot; 2021-2026
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">Go vs Rust 5개년 데이터 분석 : 선형적 안착 vs 지수적 폭발</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      GitHub Octoverse와 SlashData 연구가 입증하는 Modern Static 양대 산맥의 <strong>성장 궤적과 점유율 변화율</strong>
+    </p>
+  </div>
+
+  <!-- Main 2-Column Bento Grid -->
+  <div class="grid grid-cols-12 gap-3.5 flex-1 items-stretch my-1.5">
+    <!-- LEFT: 차트 시각화 (5 cols) -->
+    <div class="col-span-5 bento-tile p-3.5 flex flex-col justify-between bg-slate-900/95 border border-slate-700/80 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-cyan-300 font-bold uppercase tracking-wider">DEVELOPER POPULATION &middot; 개발자 성장 추이</span>
+          <span class="text-[10px] font-mono text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded">SlashData 시계열</span>
+        </div>
+
+        <!-- 2 Metric Mini Cards -->
+        <div class="grid grid-cols-2 gap-2 mb-2.5 text-xs font-mono">
+          <div class="p-2 rounded-lg bg-sky-950/60 border border-sky-600/40">
+            <span class="text-sky-300 text-[10.5px] block font-bold">Go (2025~2026)</span>
+            <div class="text-lg font-black text-white mt-0.5">5.3<span class="text-xs font-normal text-slate-300 ml-1">백만 명</span></div>
+            <span class="text-[9.5px] text-sky-400 font-bold bg-sky-900/60 px-1.5 py-0.5 rounded mt-1 inline-block">+96.3% 전체 성장</span>
+          </div>
+          <div class="p-2 rounded-lg bg-rose-950/60 border border-rose-600/40">
+            <span class="text-rose-300 text-[10.5px] block font-bold">Rust (2025~2026)</span>
+            <div class="text-lg font-black text-white mt-0.5">4.8<span class="text-xs font-normal text-slate-300 ml-1">백만 명</span></div>
+            <span class="text-[9.5px] text-rose-400 font-bold bg-rose-900/60 px-1.5 py-0.5 rounded mt-1 inline-block">+269.2% 폭발 성장</span>
+          </div>
+        </div>
+
+        <!-- Chart Image -->
+        <div class="rounded-lg overflow-hidden border border-slate-700/60 bg-black/40 flex items-center justify-center p-1">
+          <img src="./slides/03-language/assets/go_vs_rust_growth.png" alt="Go vs Rust 개발자 성장 추이 비교 차트" class="w-full max-h-[220px] object-contain rounded" />
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-slate-950 border border-slate-800 text-[10.5px] font-mono text-slate-300 mt-2">
+        📈 <strong>격차 급축소:</strong> 2021년 2배 격차(2.7M vs 1.3M) ➔ 2026년 턱밑 추격(5.3M vs 4.8M)
+      </div>
+    </div>
+
+    <!-- RIGHT: 5개년 지표 비교 테이블 (7 cols) -->
+    <div class="col-span-7 bento-tile p-3.5 flex flex-col justify-between bg-slate-900/95 border border-slate-700/80 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider">5-YEAR TIME-SERIES MATRIX &middot; 시계열 지표 비교</span>
+          <span class="text-[10px] font-mono text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded">GitHub Octoverse &amp; SlashData</span>
+        </div>
+
+        <!-- Detailed Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="border-b border-slate-700 bg-slate-950/90 text-slate-300 font-mono text-[10.5px]">
+                <th class="py-1.5 px-2 font-semibold text-slate-400">지표</th>
+                <th class="py-1.5 px-2 font-semibold text-slate-300 border-l border-slate-800">언어</th>
+                <th class="py-1.5 px-2 border-l border-slate-800 text-center">2021</th>
+                <th class="py-1.5 px-2 border-l border-slate-800 text-center">2022</th>
+                <th class="py-1.5 px-2 border-l border-slate-800 text-center">2023</th>
+                <th class="py-1.5 px-2 border-l border-slate-800 text-center">2024</th>
+                <th class="py-1.5 px-2 border-l border-slate-800 text-center font-bold text-white">2025~2026</th>
+                <th class="py-1.5 px-2 border-l border-slate-800 font-semibold text-amber-300">연평균 성장 추세</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/80 text-[10.5px] text-slate-200 font-mono">
+              <!-- GitHub 기여자 순위 -->
+              <tr class="hover:bg-slate-800/30">
+                <td rowspan="2" class="py-1.5 px-2 font-sans font-bold text-slate-300 border-b border-slate-800">GitHub<br>기여자 순위</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-sky-300 font-bold">Go</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center text-slate-400">10위권 밖</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">10위</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">8위</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">7위</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center font-bold text-sky-300">7위</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 font-sans text-slate-300">7위권 안착 (안정적 볼륨)</td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 border-b border-slate-800">
+                <td class="py-1.5 px-2 border-l border-slate-800 text-rose-300 font-bold">Rust</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center text-slate-400">20위권</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">19위</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">14위</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">11위</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center font-bold text-rose-300">9위</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 font-sans text-rose-300 font-bold">20위권 ➔ Top 10 (최고 속도)</td>
+              </tr>
+
+              <!-- 글로벌 활성 개발자 수 -->
+              <tr class="hover:bg-slate-800/30">
+                <td rowspan="2" class="py-1.5 px-2 font-sans font-bold text-slate-300 border-b border-slate-800">글로벌 활성<br>개발자 수</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-sky-300 font-bold">Go</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">270만</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">330만</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">410만</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">470만</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center font-bold text-sky-300">530만</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 font-sans text-slate-300">연평균 +15~20% 안정적 순증</td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 border-b border-slate-800">
+                <td class="py-1.5 px-2 border-l border-slate-800 text-rose-300 font-bold">Rust</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">130만</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">180만</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">280만</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">370만</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center font-bold text-rose-300">480만</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 font-sans text-rose-300 font-bold">연평균 +35~45% 폭발적 급증</td>
+              </tr>
+
+              <!-- 신규 레포 연간 증가율 -->
+              <tr class="hover:bg-slate-800/30">
+                <td rowspan="2" class="py-1.5 px-2 font-sans font-bold text-slate-300">신규 레포<br>연간 증가율</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-sky-300 font-bold">Go</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">+22%</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">+24%</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">+26%</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">+25%</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center font-bold text-sky-300">+24%</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 font-sans text-slate-300">클라우드 마이크로서비스 표준</td>
+              </tr>
+              <tr class="hover:bg-slate-800/30">
+                <td class="py-1.5 px-2 border-l border-slate-800 text-rose-300 font-bold">Rust</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">+36%</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">+40%</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">+43%</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center">+41%</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 text-center font-bold text-rose-300">+39%</td>
+                <td class="py-1.5 px-2 border-l border-slate-800 font-sans text-rose-300 font-bold">AI 추론엔진 &middot; 툴체인 견인</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Qualitative Summary Box -->
+        <div class="grid grid-cols-2 gap-2 mt-2 text-[10.5px]">
+          <div class="p-2 rounded bg-sky-950/40 border border-sky-800/40">
+            <strong class="text-sky-300 block mb-0.5">🔹 Go: 클라우드 인프라의 확고한 표준</strong>
+            <p class="text-slate-300 font-sans">K8s, Docker, 분산 인프라에서 완만하지만 높은 절대 볼륨을 유지하는 선형적 성장</p>
+          </div>
+          <div class="p-2 rounded bg-rose-950/40 border border-rose-800/40">
+            <strong class="text-rose-300 block mb-0.5">🔺 Rust: 메모리 안전 규제 &amp; 지수적 폭발</strong>
+            <p class="text-slate-300 font-sans">C/C++ 대체 수요와 AI 코어 가속에 힘입어 매년 30~45%의 압도적 연평균 성장</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-slate-400 font-mono pt-1 text-right border-t border-slate-800">
+        데이터 출처: GitHub Octoverse (2021~2025/2026), SlashData Developer Nation Report
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Takeaway -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-200 border border-slate-700 bg-slate-900/95 mt-1">
+    <div class="flex items-center gap-2">
+      <span class="text-amber-400 font-bold">💡 핵심 데이터:</span>
+      <span>Go는 <strong>7위권의 단단한 인프라 볼륨</strong>을 굳혔고, Rust는 <strong>Top 10에 진입하며 Go의 턱밑까지 맹추격</strong>했습니다.</span>
+    </div>
+    <span class="text-cyan-400 font-bold text-[11px]">Next: 3.12 3가지 구조적 변화 요인 &amp; AI 분업화 ➔</span>
+  </div>
+</section>

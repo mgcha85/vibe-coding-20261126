@@ -1,0 +1,104 @@
+<section class="slide flex flex-col justify-between" data-title="3.12 구조적 변화 요인 &amp; AI 분업화">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 03. 언어 &middot; 3.12 구조적 변화 요인</span>
+      <span class="px-2.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-700/50 text-emerald-300 font-mono text-[11px] font-bold">
+        STRUCTURAL DRIVERS &middot; AI DIVISION
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">연구와 통계가 입증하는 3가지 구조적 변화 요인</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      Go와 Rust는 단순 경쟁을 넘어, <strong>"클라우드 게이트웨이"</strong>와 <strong>"AI 가속 런타임"</strong>으로 완벽한 인프라 분업을 구축하고 있습니다.
+    </p>
+  </div>
+
+  <!-- 3 Golden Structural Drivers (3 Bento Cards) -->
+  <div class="grid grid-cols-3 gap-3.5 flex-1 items-stretch my-1.5">
+    <!-- Driver 1: Rust Doubling Cycle -->
+    <div class="bento-tile p-4 flex flex-col justify-between border-t-4 border-t-rose-500 bg-slate-900/95 border border-slate-700/70 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono font-bold text-rose-400">DRIVER 01</span>
+          <span class="text-[10px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">지수적 성장</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-2">Rust의 3년 주기 2배 성장<br><span class="text-xs text-rose-300 font-normal">(Doubling Cycle)</span></h3>
+        <p class="text-slate-300 text-[11.5px] leading-relaxed mb-3">
+          SlashData 연구에 따르면, Rust 커뮤니티는 <strong>약 24~30개월마다 개발자 수가 2배로 증가</strong>하는 가장 가파른 확장세를 기록했습니다.
+        </p>
+        <div class="p-2.5 rounded bg-slate-950/90 border border-slate-800 text-[11px] text-slate-300 space-y-1">
+          <div class="flex justify-between">
+            <span class="text-slate-400">2021년 (Go의 절반):</span>
+            <span class="font-mono text-slate-200">130만 vs 270만</span>
+          </div>
+          <div class="flex justify-between font-bold">
+            <span class="text-rose-400">2026년 (턱밑 추격):</span>
+            <span class="font-mono text-rose-300">480만 vs 530만 ⚡</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-rose-950/40 border border-rose-800/40 text-[10.5px] font-mono text-rose-200 mt-2">
+        ➔ 테크 역사상 가장 빠른 개발자 커뮤니티 흡수력
+      </div>
+    </div>
+
+    <!-- Driver 2: Security Regulations -->
+    <div class="bento-tile p-4 flex flex-col justify-between border-t-4 border-t-amber-500 bg-slate-900/95 border border-slate-700/70 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono font-bold text-amber-400">DRIVER 02</span>
+          <span class="text-[10px] font-mono text-amber-300 bg-amber-950 px-2 py-0.5 rounded border border-amber-800">보안 규제 현실화</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-2">시스템 안정성 규제의 법제화<br><span class="text-xs text-amber-300 font-normal">(CISA &middot; 백악관 가이드라인)</span></h3>
+        <p class="text-slate-300 text-[11.5px] leading-relaxed mb-3">
+          2023~2024년을 기점으로 <strong>미 정부(CISA/NSA) 및 EU가 메모리 안전 언어(Memory Safe Languages) 도입을 의무화</strong>하면서 거대한 패러다임 전환이 발생했습니다.
+        </p>
+        <div class="p-2.5 rounded bg-slate-950/90 border border-slate-800 text-[11px] text-slate-300 space-y-1">
+          <p class="leading-relaxed">
+            Linux 커널, Windows/Android 코어, 빅테크 인프라의 <strong>C/C++ 신규 코드가 Rust로 전면 대체</strong>되며 강력한 제도적 추진력 확보.
+          </p>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-amber-950/40 border border-amber-800/40 text-[10.5px] font-mono text-amber-200 mt-2">
+        ➔ 컴파일 타임에 70%의 보안 취약점 원천 박멸
+      </div>
+    </div>
+
+    <!-- Driver 3: AI Pipeline Division -->
+    <div class="bento-tile p-4 flex flex-col justify-between border-t-4 border-t-cyan-500 bg-slate-900/95 border border-slate-700/70 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono font-bold text-cyan-400">DRIVER 03</span>
+          <span class="text-[10px] font-mono text-cyan-300 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800">AI 파이프라인 분업</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-2">AI 파이프라인의 명확한 분업<br><span class="text-xs text-cyan-300 font-normal">&ldquo;게이트웨이는 Go, 런타임은 Rust&rdquo;</span></h3>
+        <p class="text-slate-300 text-[11.5px] leading-relaxed mb-3">
+          현대 AI 프로덕션 시스템에서 두 언어는 경쟁하지 않고 각자의 강점에 맞게 완벽히 분업합니다.
+        </p>
+        <div class="space-y-1.5 text-[11px]">
+          <div class="p-1.5 rounded bg-sky-950/60 border border-sky-800/40">
+            <strong class="text-sky-300 font-mono">⚡ Go:</strong> 가벼운 Goroutine &middot; 초고속 빌드 ➔ <span class="text-slate-200">LLM 라우터, 인증, 에이전트 게이트웨이</span>
+          </div>
+          <div class="p-1.5 rounded bg-rose-950/60 border border-rose-800/40">
+            <strong class="text-rose-300 font-mono">🦀 Rust:</strong> 초고속 가속 &middot; 무오버헤드 ➔ <span class="text-slate-200">AI 툴체인(uv, Ruff, Polars) &middot; vLLM 플러그인</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-cyan-950/40 border border-cyan-800/40 text-[10.5px] font-mono text-cyan-200 mt-2">
+        ➔ Go의 고동시성 게이트웨이 + Rust의 극한 연산 코어
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Takeaway -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-200 border border-slate-700 bg-slate-900/95 mt-1">
+    <div class="flex items-center gap-2">
+      <span class="text-amber-400 font-bold">💎 핵심 분업 공식:</span>
+      <span>AI 에이전트 인프라는 <strong>Go(게이트웨이)</strong>로 감싸고, Python의 느린 성능은 <strong>Rust(툴체인 &middot; 런타임)</strong>로 메웁니다.</span>
+    </div>
+    <span class="text-emerald-400 font-bold text-[11px]">Next: 3.13 그렇다면 Python은 퇴출되는가? : 진짜 무기 C-Extension ➔</span>
+  </div>
+</section>
