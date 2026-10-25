@@ -1,0 +1,91 @@
+<section class="slide flex flex-col justify-between" data-title="6.2 실전 실습: 비용 최적화">
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <div>
+        <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider">Chapter 06. 실전 실습 &middot; 6.2 토큰 다이어트 세팅</span>
+        <h2 class="text-3xl font-black text-white">실전 팁 &amp; 바로바로 실습 : 프롬프트 캐시 &amp; 모델 라우팅</h2>
+      </div>
+      <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/40 text-xs font-mono font-bold animate-pulse">
+        ⏱️ 5분 실습 (Hands-on)
+      </span>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-auto">
+    <!-- LEFT: Tips (5 cols) -->
+    <div class="col-span-5 bento-tile p-4 flex flex-col justify-between border-t-2 border-t-cyan-400 bg-slate-950/90">
+      <div>
+        <span class="text-[10px] font-mono text-cyan-400 font-bold uppercase tracking-wider block mb-1">PRO-TIP 04</span>
+        <h3 class="text-base font-bold text-white mb-2">실전 팁 : 컨텍스트 오염과 캐시 미스 막기</h3>
+        
+        <div class="space-y-2 text-xs text-slate-300 leading-relaxed">
+          <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
+            <strong class="text-sky-300 block mb-1">❌ 캐시를 깨뜨리는 실수:</strong>
+            프롬프트 맨 첫 줄에 "오늘 날짜: 2026-10-25" 같은 가변 텍스트를 넣기 ➔ 매번 3만 토큰 전체가 신규 과금됨!
+          </div>
+
+          <div class="p-2.5 bg-slate-900 rounded border border-cyan-900/50">
+            <strong class="text-emerald-300 block mb-1">✅ 프로 바이브 코더의 비결:</strong>
+            <code>AGENTS.md</code>와 공통 룰은 <strong>System Prompt의 최상단</strong>에 불변으로 박아두고, 유저 질문은 가장 끝에 붙입니다. (캐시 히트율 98% 달성)
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10.5px] font-mono text-cyan-300 bg-cyan-950/60 p-2 rounded border border-cyan-800/40 mt-2">
+        💡 우리 프로젝트 RULE[user_global] 8번에도 "기본은 gemini-3.0-flash를 사용할 것"으로 비용을 통제하고 있습니다.
+      </div>
+    </div>
+
+    <!-- RIGHT: Immediate Hands-on Steps (7 cols) -->
+    <div class="col-span-7 bento-tile p-4 flex flex-col justify-between border-t-2 border-t-amber-400 bg-slate-950/90 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-[10px] font-mono text-amber-400 font-bold uppercase tracking-wider">LIVE ACTION</span>
+          <span class="text-[10px] font-mono text-slate-400">설정 파일에서 지금 바로 확인하세요</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-2">실습 : 하위 작업 모델을 Flash로 라우팅하기</h3>
+
+        <div class="space-y-2 text-xs font-mono">
+          <!-- Step 1 -->
+          <div class="p-2 bg-slate-900 rounded border border-slate-800">
+            <div class="text-amber-300 font-bold mb-0.5">Step 1. 시스템 프롬프트 상단 캐시 앵커 고정</div>
+            <div class="text-[10px] text-slate-400">
+              [SYSTEM_PROMPT] (불변: 아키텍처 규칙, 코딩 컨벤션, SDK 인터페이스) ➔ 자동 캐싱
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="p-2 bg-slate-900 rounded border border-slate-800">
+            <div class="text-amber-300 font-bold mb-0.5">Step 2. 코드 타이핑 에이전트에 Flash 지정</div>
+            <div class="text-[10.5px] text-emerald-300 bg-slate-950 p-1.5 rounded border border-slate-800/80">
+              # 서브태스크 호출 시<br>
+              invoke_subagent(TypeName="coder", Model="flash", Prompt="단위 테스트 작성...")
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="p-2 bg-slate-900 rounded border border-slate-800">
+            <div class="text-amber-300 font-bold mb-0.5">Step 3. 관전 포인트</div>
+            <div class="text-[10.5px] text-slate-300 font-sans">
+              Pro 대비 <span class="text-emerald-400 font-bold font-mono">비용 1/15, 속도 4배</span>로 단위 테스트 50개가 10초 만에 쏟아져 나오는 속도감을 체감하세요!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-2 border-t border-slate-800 text-[10px] font-mono text-amber-300 mt-2">
+        <span>✓ 실습 결과: 토큰 비용 85% 절감 및 실시간 개발 속도 확보</span>
+        <span class="text-slate-400">다음 챕터: 1시간 글로벌 런칭 ➔</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-amber-400 font-bold">🚀 실습 테이크어웨이:</span>
+      <span class="text-slate-200">비용 최적화는 '돈을 아끼는 기술'이 아니라 <strong>'AI를 마음껏 무제한으로 굴릴 수 있게 만드는 원동력'</strong>입니다.</span>
+    </div>
+    <span class="text-cyan-400 font-bold text-[11px]">Chapter 06 완료</span>
+  </div>
+</section>

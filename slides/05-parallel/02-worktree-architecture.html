@@ -1,0 +1,106 @@
+<section class="slide flex flex-col justify-between" data-title="5.1 Git Worktree 아키텍처">
+  <div class="mb-2">
+    <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider">Chapter 05. 병렬화 &middot; 5.1 가상 작업실 분리 아키텍처</span>
+    <h2 class="text-3xl font-black text-white">Git Worktree : 에이전트별 독립된 물리 작업실</h2>
+    <p class="text-xs text-slate-300 mt-0.5">
+      레포지토리를 여러 번 복제하지 않고, <strong>단일 .git 데이터베이스를 공유하며 여러 디렉토리를 동시에 여는 기법</strong>입니다.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-auto">
+    <!-- Visual Architecture Diagram (7 cols) -->
+    <div class="col-span-7 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-indigo-400 bg-slate-950/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-indigo-400 font-bold uppercase">WORKTREE ORCHESTRATION</span>
+          <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/50">컨텍스트 오염 0%</span>
+        </div>
+
+        <!-- SVG Diagram -->
+        <div class="bg-slate-900/90 rounded-lg p-2.5 border border-slate-800 my-1">
+          <svg viewBox="0 0 400 130" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+            <!-- Central .git repo -->
+            <rect x="15" y="45" width="100" height="40" rx="4" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.2"/>
+            <text x="65" y="62" text-anchor="middle" fill="#ffffff" font-size="9" font-family="JetBrains Mono" font-weight="bold">Single .git</text>
+            <text x="65" y="75" text-anchor="middle" fill="#a5b4fc" font-size="7">통합 저장소 / 브랜치</text>
+
+            <!-- Arrows -->
+            <line x1="115" y1="52" x2="160" y2="28" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <line x1="115" y1="65" x2="160" y2="65" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <line x1="115" y1="78" x2="160" y2="102" stroke="#34d399" stroke-width="1.5" stroke-dasharray="3 2"/>
+
+            <!-- Worktree 1: Agent FE -->
+            <g transform="translate(160, 10)">
+              <rect width="225" height="32" rx="3" fill="#0369a1" fill-opacity="0.25" stroke="#38bdf8" stroke-width="1"/>
+              <text x="10" y="16" fill="#38bdf8" font-size="8" font-family="JetBrains Mono" font-weight="bold">📁 worktrees/frontend</text>
+              <text x="10" y="26" fill="#bae6fd" font-size="7">🤖 에이전트 A: Svelte 대시보드 컴포넌트 개발</text>
+            </g>
+
+            <!-- Worktree 2: Agent BE -->
+            <g transform="translate(160, 49)">
+              <rect width="225" height="32" rx="3" fill="#312e81" fill-opacity="0.3" stroke="#818cf8" stroke-width="1"/>
+              <text x="10" y="16" fill="#818cf8" font-size="8" font-family="JetBrains Mono" font-weight="bold">📁 worktrees/backend</text>
+              <text x="10" y="26" fill="#c7d2fe" font-size="7">🤖 에이전트 B: Go/Postgres 트랜잭션 API 개발</text>
+            </g>
+
+            <!-- Worktree 3: Agent Test -->
+            <g transform="translate(160, 88)">
+              <rect width="225" height="32" rx="3" fill="#064e3b" fill-opacity="0.3" stroke="#34d399" stroke-width="1"/>
+              <text x="10" y="16" fill="#34d399" font-size="8" font-family="JetBrains Mono" font-weight="bold">📁 worktrees/tests</text>
+              <text x="10" y="26" fill="#a7f3d0" font-size="7">🤖 에이전트 C: E2E 통합 테스트 &amp; CI 검증</text>
+            </g>
+          </svg>
+        </div>
+
+        <p class="text-xs text-slate-300 leading-snug">
+          단일 디렉토리에서 여러 에이전트가 동시에 파일을 수정하면 <strong>'파일 충돌(Git Lock / File Write Conflict)'</strong>과 <strong>'프롬프트 컨텍스트 오염'</strong>이 발생합니다. Worktree는 이를 물리적으로 완벽 차단합니다.
+        </p>
+      </div>
+
+      <div class="text-[9.5px] text-indigo-300 font-mono border-t border-slate-800/80 pt-1 mt-1">
+        ✓ 1개의 Git 레포로 3개 이상의 IDE 창을 띄워 각각 다른 AI 에이전트 가동
+      </div>
+    </div>
+
+    <!-- Comparative Benefits (5 cols) -->
+    <div class="col-span-5 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-sky-400 bg-slate-950/90">
+      <div>
+        <span class="text-xs font-mono text-sky-400 font-bold uppercase tracking-wider block mb-2">WHY WORKTREE?</span>
+        <h3 class="text-base font-bold text-white mb-2">복제(Clone) vs Worktree 비교</h3>
+
+        <div class="space-y-2 text-xs">
+          <div class="p-2.5 bg-slate-900 rounded border border-rose-900/40">
+            <strong class="text-rose-400 block mb-0.5">❌ git clone 3번 하기</strong>
+            <div class="text-slate-400 text-[11px] leading-relaxed">
+              • 디스크 용량 3배 낭비 (수 GB 복제)<br>
+              • 커밋/푸시를 따로 하고 remote를 통해 머지해야 함<br>
+              • 세팅 시간 5~10분 소요
+            </div>
+          </div>
+
+          <div class="p-2.5 bg-slate-900 rounded border border-emerald-900/40">
+            <strong class="text-emerald-400 block mb-0.5">✅ git worktree 1초 생성</strong>
+            <div class="text-slate-300 text-[11px] leading-relaxed">
+              • 디스크 추가 0바이트 (히스토리 공유)<br>
+              • 메인 레포에서 <code>git merge</code> 즉시 가능<br>
+              • 명령어 1줄로 0.5초 만에 작업실 생성/삭제
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-sky-300 font-mono bg-sky-950/60 p-2 rounded border border-sky-800/40 mt-2">
+        💡 AGENTS.md에 "worktree에서 작업하라"고 명시해두면 에이전트가 격리된 공간에서만 안전하게 작업합니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-indigo-400 font-bold">💡 지휘자의 사고방식:</span>
+      <span class="text-slate-200">에이전트를 한 명만 부리는 사람은 '코더'이고, <strong>워크트리로 3명을 동시에 부리는 사람은 '팀장'</strong>입니다.</span>
+    </div>
+    <span class="text-amber-400 font-bold text-[11px]">Next: 바로 실습해보기 ➔</span>
+  </div>
+</section>

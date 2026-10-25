@@ -1,0 +1,79 @@
+<section class="slide flex flex-col justify-between" data-title="8.1 RLS & 시크릿 보안 가드레일">
+  <div class="mb-2">
+    <span class="text-emerald-400 font-mono text-xs uppercase tracking-wider">Chapter 08. 가드레일 &middot; 8.1 제로 트러스트 보안 게이트</span>
+    <h2 class="text-3xl font-black text-white">RLS 누수 방지 &amp; 시크릿 키 격리 3원칙</h2>
+    <p class="text-xs text-slate-300 mt-0.5">
+      "코드가 잘 돌아가니까 배포하자"는 순간 참사가 시작됩니다. 엔지니어의 최종 책임은 '동작'이 아닌 '안전'입니다.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch my-auto">
+    <!-- Rule 1: Supabase RLS -->
+    <div class="bento-tile p-4 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-950/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-emerald-400 font-bold uppercase">GUARDRAIL 01. DATABASE RLS</span>
+          <span class="text-[10px] font-mono text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/50">DB 레벨 원천 차단</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-2">테이블 생성 즉시 RLS 강제 활성화</h3>
+
+        <div class="bg-slate-900 rounded p-2.5 font-mono text-[11px] border border-slate-800 space-y-1 mb-2.5">
+          <div class="text-slate-500">-- AI에게 마이그레이션 생성 시 무조건 포함시킬 룰</div>
+          <div class="text-emerald-300 font-bold">ALTER TABLE orders ENABLE ROW LEVEL SECURITY;</div>
+          <div class="text-sky-300">CREATE POLICY "Users can only see own orders"</div>
+          <div class="text-sky-300 pl-3">ON orders FOR SELECT USING (auth.uid() = user_id);</div>
+        </div>
+
+        <ul class="text-xs text-slate-300 space-y-1.5 leading-relaxed">
+          <li>• <strong>프론트엔드 탈취 방어:</strong> 해커가 클라이언트 API 키를 뜯어내도 DB RLS가 타인 데이터 조회를 100% 거절.</li>
+          <li>• <strong>에이전트 검증 룰:</strong> "모든 DDL SQL에 RLS 정책이 없으면 테스트 실패 처리하라"는 하네스 주입.</li>
+        </ul>
+      </div>
+      <div class="text-[10px] text-emerald-400 font-mono border-t border-slate-800/80 pt-1.5 mt-2">
+        ✓ 백엔드 API가 뚫려도 DB 자체가 방패를 들고 있는 구조
+      </div>
+    </div>
+
+    <!-- Rule 2: Secret Isolation -->
+    <div class="bento-tile p-4 flex flex-col justify-between border-t-2 border-t-rose-400 bg-slate-950/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-rose-400 font-bold uppercase">GUARDRAIL 02. SECRET ISOLATION</span>
+          <span class="text-[10px] font-mono text-rose-300 bg-rose-950/80 px-2 py-0.5 rounded border border-rose-800/50">키 유출 0% 원칙</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-2">환경 변수 3중 격리 (.env 3원칙)</h3>
+
+        <div class="bg-slate-900 rounded p-2.5 font-mono text-[10.5px] border border-slate-800 space-y-1 mb-2.5">
+          <div class="flex justify-between items-center text-slate-300">
+            <span>📁 .env.dev / .env.prod</span>
+            <span class="text-rose-400 font-bold">.gitignore 필수 (깃 절대 금지)</span>
+          </div>
+          <div class="flex justify-between items-center text-slate-300">
+            <span>📁 .env.example</span>
+            <span class="text-emerald-400 font-bold">더미 키만 기재하여 Git 커밋</span>
+          </div>
+          <div class="text-slate-500 text-[10px] pt-1">
+            ⚠️ NEXT_PUBLIC_ / VITE_ 접두사에 Stripe Secret Key 절대 넣지 말 것!
+          </div>
+        </div>
+
+        <ul class="text-xs text-slate-300 space-y-1.5 leading-relaxed">
+          <li>• <strong>Git 커밋 감시:</strong> CI/CD 파이프라인에서 Secret Scanner(TruffleHog)로 커밋 검증.</li>
+          <li>• <strong>서버리스 런타임 주입:</strong> 배포 환경(Vercel, GitHub Secrets)의 환경 변수 관리자 활용.</li>
+        </ul>
+      </div>
+      <div class="text-[10px] text-rose-400 font-mono border-t border-slate-800/80 pt-1.5 mt-2">
+        ✓ 단 한 번의 실수로 인한 결제 키 탈취 및 AWS 요금 폭탄 원천 차단
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-emerald-400 font-bold">🛡️ 프로덕션 최종 관문:</span>
+      <span class="text-slate-200">배포 전 <strong>'RLS 활성화 여부'</strong>와 <strong>'.env 깃 제외 여부'</strong> 2가지는 인간 엔지니어가 직접 결재해야 합니다.</span>
+    </div>
+    <span class="text-purple-400 font-bold text-[11px]">Chapter 08 완료</span>
+  </div>
+</section>

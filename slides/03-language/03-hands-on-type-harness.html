@@ -1,0 +1,91 @@
+<section class="slide flex flex-col justify-between" data-title="3.2 실전 실습: 타입 하네스">
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <div>
+        <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider">Chapter 03. 실전 실습 &middot; 3.2 컴파일러 하네스 구축</span>
+        <h2 class="text-3xl font-black text-white">실전 팁 &amp; 바로바로 실습 : 컴파일러 가드레일 주기</h2>
+      </div>
+      <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/40 text-xs font-mono font-bold animate-pulse">
+        ⏱️ 5분 실습 (Hands-on)
+      </span>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-auto">
+    <!-- LEFT: Practical Vibe Coding Tips (5 cols) -->
+    <div class="col-span-5 bento-tile p-4 flex flex-col justify-between border-t-2 border-t-indigo-400 bg-slate-950/90">
+      <div>
+        <span class="text-[10px] font-mono text-indigo-400 font-bold uppercase tracking-wider block mb-1">PRO-TIP 01</span>
+        <h3 class="text-base font-bold text-white mb-2">실전 팁 : 코드보다 '타입 규격'을 먼저 줘라</h3>
+        
+        <div class="space-y-2 text-xs text-slate-300 leading-relaxed">
+          <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
+            <strong class="text-sky-300 block mb-1">❌ 초보자의 실수:</strong>
+            "사용자 정보 받아서 DB에 넣고 결제 승인하는 API 만들어줘."<br>
+            <span class="text-slate-500 text-[11px]">➔ AI가 필드명 제멋대로 지음 (`user_id` vs `userId`, 환각 발생)</span>
+          </div>
+
+          <div class="p-2.5 bg-slate-900 rounded border border-indigo-900/50">
+            <strong class="text-emerald-300 block mb-1">✅ 프로 바이브 코더의 비결:</strong>
+            "아래 <code>types.ts</code>의 인터페이스 규격을 100% 만족하도록 구현해. 작업 완료 후 반드시 <code>tsc --noEmit</code>을 실행해 에러가 0건일 때만 완료 보고해."
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10.5px] font-mono text-indigo-300 bg-indigo-950/60 p-2 rounded border border-indigo-800/40 mt-2">
+        💡 컴파일러가 에러를 뿜으면 AI가 스스로 고칩니다. 인간이 에러를 읽을 필요가 없습니다.
+      </div>
+    </div>
+
+    <!-- RIGHT: Immediate Hands-on Steps (7 cols) -->
+    <div class="col-span-7 bento-tile p-4 flex flex-col justify-between border-t-2 border-t-amber-400 bg-slate-950/90 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-[10px] font-mono text-amber-400 font-bold uppercase tracking-wider">LIVE ACTION</span>
+          <span class="text-[10px] font-mono text-slate-400">노트북에서 지금 바로 따라 하세요</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-2">실습 : 타입 정의 던지고 자가치유 시키기</h3>
+
+        <div class="space-y-2 text-xs font-mono">
+          <!-- Step 1 -->
+          <div class="p-2 bg-slate-900 rounded border border-slate-800">
+            <div class="text-amber-300 font-bold mb-0.5">Step 1. 타입 인터페이스 선언 (`types.ts`)</div>
+            <div class="text-[10.5px] text-slate-400 overflow-x-auto">
+              export interface PaymentOrder { id: string; amount: number; currency: 'KRW' | 'USD'; }
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="p-2 bg-slate-900 rounded border border-slate-800">
+            <div class="text-amber-300 font-bold mb-0.5">Step 2. AI 프롬프트 입력 (그대로 복사)</div>
+            <div class="text-[10.5px] text-emerald-300 bg-slate-950 p-1.5 rounded border border-slate-800/80 select-all">
+              "types.ts의 PaymentOrder를 인자로 받아 유효성을 검증하는 processOrder 함수를 order.ts에 작성해. 함수 작성 후 터미널에서 npx tsc --noEmit 을 실행하고, 타입 에러가 발생하면 직접 수정하여 성공할 때까지 반복해."
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="p-2 bg-slate-900 rounded border border-slate-800">
+            <div class="text-amber-300 font-bold mb-0.5">Step 3. 관전 포인트</div>
+            <div class="text-[10.5px] text-slate-300 font-sans">
+              AI가 환각으로 없는 필드를 쓰다가 ➔ <span class="text-rose-400 font-mono font-bold">tsc 에러</span>를 맞고 ➔ 스스로 코드를 고쳐 <span class="text-emerald-400 font-mono font-bold">0 errors</span>로 수렴하는 과정을 목격하세요!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-2 border-t border-slate-800 text-[10px] font-mono text-amber-300 mt-2">
+        <span>✓ 실습 결과: 타입 검증 100% 통과된 무결점 코드 완성</span>
+        <span class="text-slate-400">다음 챕터: 툴체인(Skills) ➔</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-amber-400 font-bold">🚀 실습 테이크어웨이:</span>
+      <span class="text-slate-200">에이전트에게 최고의 프롬프트는 '친절한 한국어 설명'이 아니라 <strong>'엄격한 TypeScript 인터페이스'</strong>입니다.</span>
+    </div>
+    <span class="text-indigo-400 font-bold text-[11px]">Chapter 03 완료</span>
+  </div>
+</section>
