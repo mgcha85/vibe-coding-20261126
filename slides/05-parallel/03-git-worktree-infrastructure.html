@@ -1,0 +1,134 @@
+<section class="slide flex flex-col justify-between" data-title="5.2 격리 기술의 핵심 : git worktree">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 05. 병렬화 &middot; 5.2 물리 격리 인프라</span>
+      <span class="px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-600/50 text-sky-300 font-mono text-[11px] font-bold">
+        PHYSICAL ISOLATION &middot; ZERO DISK OVERHEAD
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">격리 기술의 핵심 : git worktree vs 기존 브랜치 전환</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      하나의 레포지토리에서 여러 브랜치를 서로 다른 물리 디렉터리로 동시 체크아웃하여 <strong>에이전트 간 간섭(Race Condition)을 0%로 박멸</strong>합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: Why git checkout fails (5 cols) -->
+    <div class="col-span-5 bento-tile p-3.5 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-[11px] font-mono text-rose-400 font-bold uppercase">❌ 왜 git checkout/switch로는 불가능한가?</span>
+          <span class="text-[9.5px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">Collision Alert</span>
+        </div>
+
+        <p class="text-[11px] text-slate-300 mb-2 leading-relaxed">
+          동일한 로컬 작업 폴더에서 2개 이상의 에이전트를 돌리면 발생하는 참사:
+        </p>
+
+        <!-- Friction List -->
+        <div class="space-y-1.5 text-xs font-mono">
+          <div class="p-2 rounded bg-rose-950/30 border border-rose-800/40">
+            <div class="text-rose-300 font-bold text-[10.5px]">1. 파일 쓰기 충돌 (File Clobbering)</div>
+            <div class="text-[10px] text-slate-300 font-sans mt-0.5">
+              에이전트 A가 고치는 파일 위에 에이전트 B가 중간 코드를 덮어써서 파괴.
+            </div>
+          </div>
+
+          <div class="p-2 rounded bg-rose-950/30 border border-rose-800/40">
+            <div class="text-rose-300 font-bold text-[10.5px]">2. 락 파일 &amp; 빌드 캐시 오염</div>
+            <div class="text-[10px] text-slate-300 font-sans mt-0.5">
+              <code class="text-rose-300">node_modules</code>, <code class="text-rose-300">target/</code>, <code class="text-rose-300">.git/index.lock</code> 충돌로 빌드 즉각 크래시.
+            </div>
+          </div>
+
+          <div class="p-2 rounded bg-rose-950/30 border border-rose-800/40">
+            <div class="text-rose-300 font-bold text-[10.5px]">3. 개발자 락아웃 (Developer Lockout)</div>
+            <div class="text-[10px] text-slate-300 font-sans mt-0.5">
+              에이전트가 2분간 수정 중일 때 다른 브랜치로 switch조차 못 하고 손 묶임.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-slate-950 border border-slate-800 text-[10px] font-mono text-slate-400">
+        ➔ 해결책: <strong>디스크 용량 낭비 없이 물리 폴더만 N개로 쪼개는 git worktree</strong>
+      </div>
+    </div>
+
+    <!-- RIGHT: git worktree Architecture & CLI (7 cols) -->
+    <div class="col-span-7 bento-tile p-3.5 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-[11px] font-mono text-sky-400 font-bold uppercase">⚡ git worktree 동작 원리와 3대 워크스페이스</span>
+          <span class="text-[9.5px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">Shared .git Database</span>
+        </div>
+
+        <!-- SVG Architecture Diagram -->
+        <div class="bg-slate-950 rounded-lg p-2 border border-slate-800 mb-2">
+          <svg viewBox="0 0 420 95" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+            <!-- Central .git database -->
+            <rect x="10" y="20" width="105" height="55" rx="5" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
+            <text x="62" y="42" text-anchor="middle" fill="#ffffff" font-size="10" font-family="JetBrains Mono" font-weight="bold">Single .git</text>
+            <text x="62" y="58" text-anchor="middle" fill="#a5b4fc" font-size="7.5">커밋/브랜치 1벌 공유</text>
+
+            <!-- Connecting dashed lines -->
+            <path d="M 115 32 L 165 18" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <path d="M 115 47 L 165 47" stroke="#34d399" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <path d="M 115 62 L 165 76" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="3 2"/>
+
+            <!-- Worktree 1 -->
+            <g transform="translate(165, 5)">
+              <rect width="245" height="25" rx="4" fill="#0369a1" fill-opacity="0.25" stroke="#38bdf8" stroke-width="1"/>
+              <text x="8" y="16" fill="#38bdf8" font-size="8.5" font-family="JetBrains Mono" font-weight="bold">📁 ../wt-auth</text>
+              <text x="110" y="16" fill="#bae6fd" font-size="7.5">🤖 Agent A: 인증 서비스 (Go/JWT)</text>
+            </g>
+
+            <!-- Worktree 2 -->
+            <g transform="translate(165, 35)">
+              <rect width="245" height="25" rx="4" fill="#064e3b" fill-opacity="0.25" stroke="#34d399" stroke-width="1"/>
+              <text x="8" y="16" fill="#34d399" font-size="8.5" font-family="JetBrains Mono" font-weight="bold">📁 ../wt-billing</text>
+              <text x="110" y="16" fill="#a7f3d0" font-size="7.5">🤖 Agent B: 결제 모듈 (Stripe)</text>
+            </g>
+
+            <!-- Worktree 3 -->
+            <g transform="translate(165, 65)">
+              <rect width="245" height="25" rx="4" fill="#581c87" fill-opacity="0.25" stroke="#c084fc" stroke-width="1"/>
+              <text x="8" y="16" fill="#c084fc" font-size="8.5" font-family="JetBrains Mono" font-weight="bold">📁 ../wt-e2e</text>
+              <text x="110" y="16" fill="#e9d5ff" font-size="7.5">🤖 Agent C: E2E 통합 테스트</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- CLI Command Box -->
+        <div class="p-2 rounded bg-slate-950 border border-slate-800 font-mono text-[10px] leading-relaxed text-slate-300">
+          <div class="text-slate-400 font-bold mb-0.5"># 메인 저장소에서 단 1초 만에 격리 작업실 생성:</div>
+          <div><code class="text-sky-300">git worktree add ../wt-auth -b feat/auth-service</code></div>
+          <div><code class="text-emerald-300">git worktree add ../wt-billing -b feat/billing-stripe</code></div>
+          <div><code class="text-purple-300">git worktree add ../wt-e2e -b test/e2e-pipeline</code></div>
+        </div>
+      </div>
+
+      <!-- 2 Key Benefits -->
+      <div class="grid grid-cols-2 gap-2 mt-2 text-[10px] font-mono">
+        <div class="p-1.5 bg-indigo-950/40 rounded border border-indigo-800/40 text-indigo-300">
+          ✓ 디스크 용량 90% 절약 (.git 중복 클론 없음)
+        </div>
+        <div class="p-1.5 bg-emerald-950/40 rounded border border-emerald-800/40 text-emerald-300">
+          ✓ 완전한 파일 격리 ➔ Cursor/VSCode N개 창 동시 실행
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">🌿 Git Worktree의 미학:</span>
+      <span class="text-slate-200">중복 클론 없이 <strong>완벽히 격리된 물리 디렉토리</strong>를 에이전트마다 배정하십시오.</span>
+    </div>
+    <span class="text-sky-400 font-bold text-[11px]">Slide 55</span>
+  </div>
+</section>

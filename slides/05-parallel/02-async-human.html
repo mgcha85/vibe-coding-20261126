@@ -1,0 +1,120 @@
+<section class="slide flex flex-col justify-between" data-title="5.1 비동기 인간 : 단일 에이전트의 병목 탈피">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 05. 병렬화 &middot; 5.1 패러다임 전환</span>
+      <span class="px-2.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-700/50 text-indigo-300 font-mono text-[11px] font-bold">
+        PARADIGM SHIFT &middot; ASYNC ORCHESTRATION
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">AI가 코드를 치는 동안 무엇을 하고 계십니까?</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      바이브 코딩의 생산성 격차는 프롬프트 작문 실력이 아니라 <strong>"에이전트 병렬화 지수(Parallel Index)"</strong>에서 갈립니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: The Synchronous Bottleneck (6 cols) -->
+    <div class="col-span-6 bento-tile p-3.5 bg-slate-900/90 border-t-2 border-t-rose-500 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">⏳</span>
+            <span class="text-[11px] font-mono text-rose-400 font-bold uppercase">동기식 개발의 함정 (The Synchronous Bottleneck)</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">1x Bottleneck</span>
+        </div>
+
+        <p class="text-[11px] text-slate-300 mb-2 leading-relaxed">
+          1개의 대화창에서 AI가 타이핑하는 글자를 멍하니 지켜보는 것은 바이브 코딩에서 <strong>가장 치명적인 안티패턴</strong>입니다.
+        </p>
+
+        <!-- Bottleneck Flow -->
+        <div class="space-y-1.5 text-xs font-mono">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800 flex items-center justify-between">
+            <span class="text-slate-300">① 프롬프트 투척</span>
+            <span class="text-[10px] text-sky-400">10초 소요</span>
+          </div>
+          <div class="p-2 rounded bg-rose-950/40 border border-rose-600/40 flex items-center justify-between animate-pulse">
+            <span class="text-rose-300 font-bold">② AI 추론 &amp; 코드 생성 대기</span>
+            <span class="text-[10px] text-rose-400 font-bold">1~3분 멍하니 대기 🛑</span>
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800 flex items-center justify-between">
+            <span class="text-slate-300">③ 빌드 &amp; 인간 수동 검증</span>
+            <span class="text-[10px] text-amber-300">1분 소요</span>
+          </div>
+        </div>
+
+        <div class="mt-2 p-2 rounded bg-rose-950/20 border border-rose-800/40 text-[10.5px] text-slate-300 font-sans">
+          ⚠️ <strong>결과:</strong> 인간 개발자가 AI의 생성 속도에 종속되어 컨텍스트 스위칭 피로감 누적, 하루 종일 2~3개 기능 만들고 탈진.
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-slate-950 border border-slate-800 text-[10px] font-mono text-rose-400">
+        "AI가 생각하는 동안 인간이 멈춰 있다면, 그것은 페어 프로그래밍이 아니라 대기실이다."
+      </div>
+    </div>
+
+    <!-- RIGHT: Async Orchestration Paradigm (6 cols) -->
+    <div class="col-span-6 bento-tile p-3.5 bg-slate-900/90 border-t-2 border-t-emerald-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🚀</span>
+            <span class="text-[11px] font-mono text-emerald-400 font-bold uppercase">비동기 오케스트레이터 (Async Human)</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">Nx Scaling</span>
+        </div>
+
+        <p class="text-[11px] text-slate-300 mb-2 leading-relaxed">
+          개발자는 직접 삽질하는 일꾼이 아니라, <strong>여러 명의 AI 주니어에게 태스크를 동시 분배하고 취합하는 매니저(PM &middot; Architect)</strong>입니다.
+        </p>
+
+        <!-- Orchestrator Model -->
+        <div class="space-y-1.5 text-xs font-mono">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="text-emerald-300 font-bold text-[11px] mb-0.5 flex items-center gap-1">
+              <span>🎯</span> <span>태스크 병렬 분할 (Fire &amp; Forget)</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans">
+              인증 모듈, 결제 연동, DB 마이그레이션, E2E 테스트를 4개 독립 트랙으로 쪼개어 동시 투척.
+            </div>
+          </div>
+
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="text-cyan-300 font-bold text-[11px] mb-0.5 flex items-center gap-1">
+              <span>⚡</span> <span>추론 레이턴시 완전 은폐 (Latency Hiding)</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans">
+              에이전트 A가 코드를 짜는 2분 동안, 인간은 에이전트 B의 요구사항을 지시하고 에이전트 C의 PR을 리뷰.
+            </div>
+          </div>
+
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="text-indigo-300 font-bold text-[11px] mb-0.5 flex items-center gap-1">
+              <span>📊</span> <span>단일 인간 ➔ 4인 개발팀 산출물</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans">
+              완벽한 격리 인프라 위에서 3~5개의 작업이 병렬 완료되어 1시간 만에 4개 기능 동시 런칭.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-emerald-950/40 border border-emerald-800/40 text-[10px] font-mono text-emerald-300">
+        💡 개발자의 역할: "타이핑 노동자에서 <strong>다중 에이전트 오케스트라 지휘자</strong>로의 진화"
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-indigo-400 font-bold">⚡ 비동기 패러다임:</span>
+      <span class="text-slate-200">AI의 응답을 기다리지 마십시오. <strong>격리된 워크스페이스에 4개의 에이전트를 동시 가동</strong>하십시오.</span>
+    </div>
+    <span class="text-indigo-400 font-bold text-[11px]">Slide 54</span>
+  </div>
+</section>

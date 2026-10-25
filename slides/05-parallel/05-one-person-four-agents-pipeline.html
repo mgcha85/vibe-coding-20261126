@@ -1,0 +1,150 @@
+<section class="slide flex flex-col justify-between" data-title="5.4 실전 워크플로 : 1인 4 에이전트 파이프라인">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 05. 병렬화 &middot; 5.4 실전 파이프라인</span>
+      <span class="px-2.5 py-0.5 rounded bg-amber-950/80 border border-amber-600/50 text-amber-300 font-mono text-[11px] font-bold">
+        THE ASYNC LOOP &middot; 4-TRACK CONCURRENCY
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">실전 워크플로 : 1인 4 에이전트 파이프라인 (The Async Loop)</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      실전! 1시간 만에 4개 기능 배포하기 : <strong>작업 분할(Divide) ➔ 독립 위임(Delegate) ➔ 컴파일/테스트 자가 검증 ➔ 최종 머지</strong>
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: Pipeline Architecture ASCII Diagram (5 cols) -->
+    <div class="col-span-5 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-[11px] font-mono text-sky-400 font-bold uppercase">🎼 1인 4 에이전트 지휘 흐름도</span>
+          <span class="text-[9.5px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">Pass Gate Loop</span>
+        </div>
+
+        <!-- Visual Flow Graphic -->
+        <div class="p-2 rounded bg-slate-950 border border-slate-800 font-mono text-[10px] text-slate-300 leading-tight">
+          <!-- Human Architect -->
+          <div class="p-1.5 rounded bg-indigo-950/60 border border-indigo-500/50 text-center font-bold text-white mb-2 shadow">
+            👨‍💻 [개발자: Architect &amp; Reviewer]
+          </div>
+
+          <!-- Split Fork Line -->
+          <div class="text-center text-amber-400 text-xs">
+            ┌──────────────┼──────────────┐
+          </div>
+          <div class="text-center text-amber-400 text-xs mb-1">
+            ▼              ▼              ▼
+          </div>
+
+          <!-- 3 Worktree Boxes -->
+          <div class="grid grid-cols-3 gap-1 text-center text-[9px] mb-2">
+            <div class="p-1.5 rounded bg-sky-950/40 border border-sky-500/40">
+              <div class="font-bold text-sky-300">[Worktree A]</div>
+              <div class="text-slate-400">Agent: Auth</div>
+              <div class="text-emerald-400 font-bold mt-1">go test ✅</div>
+            </div>
+            <div class="p-1.5 rounded bg-emerald-950/40 border border-emerald-500/40">
+              <div class="font-bold text-emerald-300">[Worktree B]</div>
+              <div class="text-slate-400">Agent: UI</div>
+              <div class="text-emerald-400 font-bold mt-1">npm test ✅</div>
+            </div>
+            <div class="p-1.5 rounded bg-purple-950/40 border border-purple-500/40">
+              <div class="font-bold text-purple-300">[Worktree C]</div>
+              <div class="text-slate-400">Agent: Engine</div>
+              <div class="text-emerald-400 font-bold mt-1">cargo test ✅</div>
+            </div>
+          </div>
+
+          <!-- Merge Line -->
+          <div class="text-center text-emerald-400 text-xs">
+            └──────────────┬──────────────┘
+          </div>
+          <div class="text-center text-emerald-400 text-xs my-0.5">▼</div>
+
+          <!-- Final Review & Merge -->
+          <div class="p-1.5 rounded bg-slate-900 border border-slate-700 text-center font-bold text-emerald-300">
+            🚀 [통합 리뷰 &amp; 메인 브랜치 Rebase/Merge]
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-indigo-950/40 border border-indigo-800/40 text-[10px] font-mono text-indigo-300 mt-2">
+        💡 핵심: 에이전트가 테스트를 통과할 때까지 <strong>스스로 자가 치유(Self-healing)</strong>하므로 인간의 개입 시간 최소화!
+      </div>
+    </div>
+
+    <!-- RIGHT: 4 Step Implementation Recipe (7 cols) -->
+    <div class="col-span-7 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-[11px] font-mono text-amber-400 font-bold uppercase">📋 4단계 실전 오케스트레이션 레시피</span>
+          <span class="text-[9.5px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Actionable Guide</span>
+        </div>
+
+        <!-- 4 Steps Detailed -->
+        <div class="space-y-1.5 text-xs">
+          <!-- Step 1 -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="text-sky-300 font-bold text-[11px] flex items-center justify-between">
+              <span>1️⃣ 태스크 잘게 쪼개기 (Divide &amp; Decouple)</span>
+              <span class="text-[9px] text-slate-500 font-mono">기획 단계</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans mt-0.5">
+              의존성이 없는 3~4개 단위로 이슈 분할 (예: 1. Stripe 결제 모듈, 2. 관리자 대시보드 UI, 3. E2E 테스트, 4. DB 인덱스 튜닝).
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="text-amber-300 font-bold text-[11px] flex items-center justify-between">
+              <span>2️⃣ 비동기 프롬프트 투척 (Fire &amp; Forget)</span>
+              <span class="text-[9px] text-slate-500 font-mono">위임 단계</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans mt-0.5">
+              각 워크트리마다 에이전트를 배치하고 프롬프트 실행 후 <strong>AI 응답을 기다리지 않고 즉시 다음 워크트리로 이동</strong>.
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="text-emerald-300 font-bold text-[11px] flex items-center justify-between">
+              <span>3️⃣ 컴파일러 &amp; 테스트 기반 자가 검증 (Self-Healing)</span>
+              <span class="text-[9px] text-slate-500 font-mono">자동 품질 게이트</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans mt-0.5">
+              에이전트가 <code class="text-emerald-300 font-mono">go test</code>, <code class="text-emerald-300 font-mono">cargo test</code>, <code class="text-emerald-300 font-mono">pytest</code>가 100% 녹색(PASS)을 띄울 때까지 내부 루프 수행.
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="text-purple-300 font-bold text-[11px] flex items-center justify-between">
+              <span>4️⃣ 리뷰어로서의 머지 (Review &amp; Integrate)</span>
+              <span class="text-[9px] text-slate-500 font-mono">최종 통합</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans mt-0.5">
+              인간은 코드를 직접 타이핑하는 것이 아니라, 에이전트가 통과시킨 테스트 결과와 Git Diff만 검토하고 PR 머지 클릭!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker note highlight quote -->
+      <div class="p-2 rounded bg-amber-950/40 border border-amber-800/40 text-[10.5px] font-sans text-amber-200 mt-2">
+        📢 <strong>발표 핵심 멘트:</strong> "바이브 코딩 1단계가 '좋은 프롬프트 주기'였다면, <strong>2단계는 '여러 에이전트를 동시에 돌리는 비동기 작업 파이프라인 구축'</strong>입니다."
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-amber-400 font-bold">🚀 비동기 1인 개발 완성:</span>
+      <span class="text-slate-200">작업 분할 ➔ 비동기 위임 ➔ 테스트 자가치유 ➔ 5분 리뷰로 <strong>1시간 만에 4개 기능 런칭</strong>을 달성하십시오.</span>
+    </div>
+    <span class="text-amber-400 font-bold text-[11px]">Slide 57</span>
+  </div>
+</section>
