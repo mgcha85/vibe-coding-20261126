@@ -1,27 +1,27 @@
-<section class="slide flex flex-col justify-between" data-title="3.2 Python 동적 타이핑 함정과 Quality Stack">
+<section class="slide flex flex-col justify-between" data-title="3.6 Python을 살리는 유일한 길: Quality Stack">
   <!-- Header -->
-  <div class="mb-3">
+  <div class="mb-2">
     <div class="flex items-center justify-between">
-      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 03. 언어 &middot; 3.2 런타임 지뢰밭 vs Quality Stack</span>
-      <span class="px-2.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-700/50 text-indigo-300 font-mono text-[11px]">
-        DILEMMA &middot; QUALITY STACK
+      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 03. 언어 &middot; 3.6 Python 품질 하네스</span>
+      <span class="px-2.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-700/50 text-indigo-300 font-mono text-[11px] font-bold">
+        QUALITY STACK HARNESS
       </span>
     </div>
-    <h2 class="text-3xl font-black text-white mt-1">Python 동적 타이핑의 함정과 Quality Stack</h2>
+    <h2 class="text-3xl font-black text-white mt-1">Python을 안전하게 쓰는 유일한 길 : Quality Stack</h2>
     <p class="text-xs text-slate-300 mt-1">
-      AI 시대, Python의 문법적 자유는 양날의 검입니다. <strong class="text-indigo-300">Ruff &middot; Mypy &middot; Pytest</strong> 조합의 빛과 그림자를 심층 분석합니다.
+      AI가 코드를 작성할 때 Python을 쓰려면, <strong>uv &middot; Ruff &middot; Mypy &middot; Pydantic</strong>으로 구성된 강력한 검증 방어선이 필수적입니다.
     </p>
   </div>
 
   <!-- Main Bento Grid -->
-  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch my-1">
+  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch my-2">
     <!-- LEFT: Python Quality Stack 장점 -->
-    <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-emerald-500 bg-slate-900/90 border border-slate-700/60 shadow-xl">
+    <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-emerald-500 bg-slate-900/95 border border-slate-700/70 shadow-xl">
       <div>
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wide">Quality Stack의 3대 강점</span>
+            <span class="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wide">Quality Stack의 3대 무기</span>
           </div>
           <span class="text-[11px] font-mono font-bold text-emerald-300 bg-emerald-950/90 px-2.5 py-1 rounded border border-emerald-600/50">
             생태계 &middot; 점진적 유연성 🛡️
@@ -71,69 +71,69 @@
       </div>
     </div>
 
-    <!-- RIGHT: 치명적 단점 및 딜레마 -->
-    <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-rose-500 bg-slate-900/90 border border-slate-700/60 shadow-xl">
+    <!-- RIGHT: 치명적 단점 및 방어책 -->
+    <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-rose-500 bg-slate-900/95 border border-slate-700/70 shadow-xl">
       <div>
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-rose-400 animate-pulse"></span>
-            <span class="text-xs font-mono text-rose-400 font-bold uppercase tracking-wide">치명적 단점 &amp; 3대 딜레마</span>
+            <span class="text-xs font-mono text-rose-400 font-bold uppercase tracking-wide">치명적 함정과 방어 가드레일</span>
           </div>
           <span class="text-[11px] font-mono font-bold text-rose-300 bg-rose-950/90 px-2.5 py-1 rounded border border-rose-600/50">
-            런타임 환각 지뢰밭 💣
+            환각 방어선 🛡️
           </span>
         </div>
-        <h3 class="text-lg font-bold text-white mb-3">에이전트 협업 시 발생하는 치명적 병목</h3>
+        <h3 class="text-lg font-bold text-white mb-3">보조 도구 없이는 런타임 지뢰밭으로 돌변</h3>
 
         <div class="space-y-2.5 text-xs">
           <!-- Item 1 -->
           <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 hover:border-rose-500/40 transition-colors">
             <div class="flex items-center justify-between mb-1">
-              <strong class="text-rose-300 text-[12.5px]">01. AI 환각(Hallucination)에 대한 즉각 제어력 부재</strong>
-              <span class="text-[10px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded">Silent Killer</span>
+              <strong class="text-rose-300 text-[12.5px]">01. AI 환각에 대한 런타임 참사 방어</strong>
+              <span class="text-[10px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded">Mypy Strict</span>
             </div>
             <p class="text-slate-200 text-[11.5px] leading-relaxed">
-              신택스 에러만 없으면 AI는 완벽하다고 착각하고 종료. 컴파일러가 없어 배포 후 실사용 시점에 <code class="text-rose-300 bg-rose-950/80 px-1 rounded">AttributeError</code>, <code class="text-rose-300 bg-rose-950/80 px-1 rounded">TypeError</code>로 프로덕션 크래시.
+              신택스 검사만으로는 <code class="text-rose-300 bg-rose-950 px-1 rounded">AttributeError</code>를 잡을 수 없음. 반드시 <strong class="text-cyan-300">Mypy/Pyright</strong> 정적 분석기를 파이프라인에 배치해 배포 전 차단.
             </p>
           </div>
 
           <!-- Item 2 -->
           <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 hover:border-rose-500/40 transition-colors">
             <div class="flex items-center justify-between mb-1">
-              <strong class="text-rose-300 text-[12.5px]">02. 검증 파이프라인(Quality Stack) 설정 오버헤드</strong>
-              <span class="text-[10px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded">Setup Burden</span>
+              <strong class="text-rose-300 text-[12.5px]">02. 파이프라인 자동화로 오버헤드 상쇄</strong>
+              <span class="text-[10px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded">Pre-commit</span>
             </div>
             <p class="text-slate-200 text-[11.5px] leading-relaxed">
-              정적 언어와 달리 Ruff, Mypy, Pytest를 직접 체이닝해야 하며, Mypy 엄격 모드(`strict`) 설정 및 서드파티 타입 스텁(`types-*`) 누락 시 검증 공백 발생.
+              개발자가 일일이 수동 실행하지 않도록, Git Pre-commit 훅 또는 에이전트의 Bash Tool 실행 조건에 <code class="text-cyan-300 bg-slate-950 px-1 rounded">uv run ruff check</code>을 의무화.
             </p>
           </div>
 
           <!-- Item 3 -->
           <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 hover:border-rose-500/40 transition-colors">
             <div class="flex items-center justify-between mb-1">
-              <strong class="text-rose-300 text-[12.5px]">03. 프롬프트 토큰 &amp; 컨텍스트 윈도우 낭비</strong>
-              <span class="text-[10px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded">Token Drain</span>
+              <strong class="text-rose-300 text-[12.5px]">03. Pydantic으로 토큰 낭비와 환각 차단</strong>
+              <span class="text-[10px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded">Structured Input</span>
             </div>
             <p class="text-slate-200 text-[11.5px] leading-relaxed">
-              명확한 타입 인터페이스가 없으면 LLM이 데이터 형태를 유추하느라 수천 토큰을 낭비. 한국어로 긴 장문 프롬프트를 쓰게 되어 본질적 생산성 저하.
+              딕셔너리(dict) 대신 <strong class="text-emerald-300">Pydantic BaseModel</strong>을 규격으로 AI에게 제공하면 불필요한 설명 토큰을 80% 줄이고 필드명 오타 원천 차단.
             </p>
           </div>
         </div>
       </div>
 
       <div class="text-[11px] text-rose-300 font-mono bg-rose-950/40 border border-rose-800/40 px-3 py-1.5 rounded mt-3 flex items-center justify-between">
-        <span>⚠ 경고: 자동 하네스 없는 순수 Python은 AI 시대 최대의 런타임 리스크</span>
-        <span class="font-bold">Fragile Runtime</span>
+        <span>⚠ 결론: 방어선 없는 순수 Python은 금지, Quality Stack 장착 시 강력한 무기</span>
+        <span class="font-bold">Guarded Python</span>
       </div>
     </div>
   </div>
 
   <!-- Bottom Takeaway -->
-  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-200 border border-slate-700 bg-slate-900/95 mt-2">
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-200 border border-slate-700 bg-slate-900/95 mt-1">
     <div class="flex items-center gap-2">
-      <span class="text-amber-400 font-bold">💡 핵심 진단:</span>
-      <span>인간이 타이핑하던 시절의 '문법적 편리함'이, 에이전트가 코드를 쏟아내는 시대에는 <strong class="text-white">'검증 지연의 저주'</strong>가 됩니다.</span>
+      <span class="text-emerald-400 font-bold">💡 실전 원칙:</span>
+      <span>Python으로 바이브 코딩을 할 때는 <strong>"uv + Ruff + Pydantic"</strong>을 반드시 하네스로 묶어서 AI를 구동해야 합니다.</span>
     </div>
-    <span class="text-sky-400 font-bold text-[11px]">Next: 정적 vs 동적 언어 매트릭스 ➔</span>
+    <span class="text-amber-400 font-bold text-[11px]">Next: 바로바로 실습해보기 ➔</span>
   </div>
 </section>

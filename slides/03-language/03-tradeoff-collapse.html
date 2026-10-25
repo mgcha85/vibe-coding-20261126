@@ -1,0 +1,89 @@
+<section class="slide flex flex-col justify-between" data-title="3.2 패러다임의 붕괴: 생산성 환상의 종말">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 03. 언어 &middot; 3.2 패러다임의 붕괴</span>
+      <span class="px-2.5 py-0.5 rounded bg-rose-950/80 border border-rose-700/50 text-rose-300 font-mono text-[11px] font-bold">
+        PARADIGM SHIFT
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">"생산성 환상"의 종말 : Python 개발 속도 프리미엄은 유효한가?</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      AI가 코드를 대신 타이핑하는 시대, 지난 20년간 소프트웨어 공학을 지배해온 <strong>'생산성 vs 성능 트레이드오프'</strong>가 붕괴하고 있습니다.
+    </p>
+  </div>
+
+  <!-- Content: Before vs After -->
+  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch my-2">
+    <!-- LEFT: 과거의 방정식 -->
+    <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-slate-500 bg-slate-900/95 border border-slate-700/70 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono text-slate-400 font-bold uppercase tracking-wider">THE OLD TRADE-OFF</span>
+          <span class="text-[11px] font-mono text-slate-400 bg-slate-800 px-2.5 py-1 rounded border border-slate-700">과거 20년의 공식</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-3">"서버 비용을 더 내고 개발자 시간을 아끼자"</h3>
+
+        <div class="space-y-3 text-xs">
+          <div class="p-3 bg-slate-950/90 rounded-lg border border-slate-800">
+            <strong class="text-amber-300 text-[12.5px] block mb-1">🐍 Python의 압도적 지위:</strong>
+            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+              10~100배 느린 런타임 성능을 감수하더라도, 인간 개발자의 작성 속도가 압도적으로 빠르기 때문에 경제적 타당성 확보.
+            </p>
+          </div>
+
+          <div class="p-3 bg-slate-950/90 rounded-lg border border-slate-800">
+            <strong class="text-slate-400 text-[12.5px] block mb-1">⚡ C++ / Go / Rust의 높은 진입장벽:</strong>
+            <p class="text-slate-300 text-[11.5px] leading-relaxed">
+              압도적인 실행 속도와 메모리 효율을 가졌으나, 장황한 보일러플레이트와 까다로운 컴파일 규칙 때문에 인간의 개발 공수가 3~5배 이상 소요.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2.5 rounded bg-slate-950 border border-slate-800 font-mono text-[11px] text-slate-400">
+        📌 옛 공식: <strong>개발자 인건비 &gt;&gt; 서버 인프라 비용</strong> ➔ Python 선택의 정당성
+      </div>
+    </div>
+
+    <!-- RIGHT: 바이브 코딩 시대의 새로운 현실 -->
+    <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-sky-400 bg-slate-900/95 border border-slate-700/70 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono text-sky-400 font-bold uppercase tracking-wider">THE VIBE CODING REALITY</span>
+          <span class="text-[11px] font-mono font-bold text-sky-300 bg-sky-950 px-2.5 py-1 rounded border border-sky-700/50">2026 패러다임</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-3">작성 비용 = 0, 남은 것은 언어의 순수 스펙뿐</h3>
+
+        <div class="space-y-3 text-xs">
+          <div class="p-3 bg-slate-950/90 rounded-lg border border-sky-900/40">
+            <strong class="text-sky-300 text-[12.5px] block mb-1">🤖 보일러플레이트 작성 시간 제로(0) 수렴:</strong>
+            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+              구조체 선언, 복잡한 제네릭, 엄격한 인터페이스 정의를 <strong>AI 에이전트(Cursor, Claude 등)가 수 초 만에 생성</strong>. 인간의 타이핑 피로 소멸.
+            </p>
+          </div>
+
+          <div class="p-3 bg-slate-950/90 rounded-lg border border-sky-900/40">
+            <strong class="text-emerald-300 text-[12.5px] block mb-1">📉 고성능 언어의 진입 장벽 증발:</strong>
+            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+              Rust/Go의 장황함이 AI에겐 아무런 장애가 되지 않음. "문법이 어려워서 못 쓴다"는 변명이 통하지 않는 시대.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2.5 rounded bg-sky-950/60 border border-sky-800/50 font-mono text-[11px] text-sky-200 font-bold">
+        🔥 핵심 질문: <strong>모든 언어의 작성 속도가 같아졌다면, 왜 굳이 느린 언어를 써야 하는가?</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Takeaway -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-200 border border-slate-700 bg-slate-900/95 mt-1">
+    <div class="flex items-center gap-2">
+      <span class="text-rose-400 font-bold">💥 패러다임 시프트:</span>
+      <span>인간 개발자를 편하게 해주던 '간결한 문법 프리미엄'이, AI 시대에는 <strong>순식간에 소멸</strong>했습니다.</span>
+    </div>
+    <span class="text-amber-400 font-bold text-[11px]">Next: 생산성 평준화 vs 성능 격차 매트릭스 ➔</span>
+  </div>
+</section>

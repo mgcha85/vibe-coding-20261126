@@ -1,0 +1,100 @@
+<section class="slide flex flex-col justify-between" data-title="3.5 현실적 반론과 진짜 무기: C-Extension">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 03. 언어 &middot; 3.5 현실적 반론과 Python의 진면목</span>
+      <span class="px-2.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-700/50 text-emerald-300 font-mono text-[11px] font-bold">
+        GLUE CODE &middot; C-EXTENSION
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">그렇다면 Python은 퇴출되는가? : 진짜 무기는 'C-Extension'</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      "단순 문법의 생산성"은 평준화되었지만, <strong>"C/CUDA 엔진을 지휘하는 접착제(Glue Code)"</strong>로서의 Python은 여전히 대체 불가능합니다.
+    </p>
+  </div>
+
+  <!-- Main Comparison Bento Grid -->
+  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch my-2">
+    <!-- LEFT: 오해 vs 현실 -->
+    <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-amber-500 bg-slate-900/95 border border-slate-700/70 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider">REALITY CHECK</span>
+          <span class="text-[11px] font-mono text-amber-300 bg-amber-950 px-2 py-0.5 rounded border border-amber-800">오해와 진실</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-3">우리가 쓰는 Python은 사실 'Python'이 아니다</h3>
+
+        <div class="space-y-3 text-xs">
+          <div class="p-3 bg-slate-950/90 rounded-lg border border-slate-800">
+            <strong class="text-rose-400 text-[12px] block mb-1">❌ 흔한 오해:</strong>
+            <p class="text-slate-300 text-[11.5px] leading-relaxed">
+              "Python 인터프리터가 느리니까 AI 모델 연구와 서빙 코어에서도 완전히 퇴출당할 것이다."
+            </p>
+          </div>
+
+          <div class="p-3 bg-slate-950/90 rounded-lg border border-emerald-900/40">
+            <strong class="text-emerald-300 text-[12px] block mb-1">✅ 엔지니어링 현실:</strong>
+            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+              <strong>PyTorch, vLLM, TensorRT, NumPy</strong>는 껍데기만 Python 문법일 뿐, 실제 연산 코어는 <strong>100% C++와 CUDA 커널</strong>로 동작하는 네이티브 바이너리.
+            </p>
+            <div class="mt-2 text-[11px] text-cyan-300 font-mono bg-slate-900 p-1.5 rounded border border-slate-800">
+              ➔ Python = 고성능 C/CUDA 기계어를 부리는 최상위 리모컨 (Glue Code)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2.5 rounded bg-slate-950 border border-slate-800 font-mono text-[11px] text-slate-300">
+        👑 NVIDIA, AMD 등 모든 AI 반도체 드라이버와 1차 툴킷은 오직 Python 우선 출시
+      </div>
+    </div>
+
+    <!-- RIGHT: 언어의 역할 재정의 (Architecture Split) -->
+    <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-cyan-500 bg-slate-900/95 border border-slate-700/70 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono text-cyan-400 font-bold uppercase tracking-wider">ARCHITECTURE SPLIT</span>
+          <span class="text-[11px] font-mono font-bold text-cyan-300 bg-cyan-950 px-2.5 py-1 rounded border border-cyan-700/50">역할 재정의</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-3">프로덕션 바이브 코딩의 2분할 분업 체계</h3>
+
+        <div class="space-y-3 text-xs font-mono">
+          <!-- Python 역할 -->
+          <div class="p-3 bg-slate-950/90 rounded-lg border border-emerald-800/40">
+            <div class="flex items-center justify-between text-emerald-300 font-bold text-[12px] mb-1">
+              <span>🐍 Python : AI 코어의 DSL</span>
+              <span class="text-[10px] bg-emerald-950 px-1.5 py-0.5 rounded border border-emerald-700">Modeling &amp; Research</span>
+            </div>
+            <p class="text-slate-300 font-sans text-[11.5px] leading-relaxed">
+              C/CUDA 엔진을 조작하는 데이터 파이프라인, AI 모델 미세조정(Fine-tuning), 가설 검증 영역의 전용 도메인 특화 언어로 고착화.
+            </p>
+          </div>
+
+          <!-- Go / Rust / TS 역할 -->
+          <div class="p-3 bg-slate-950/90 rounded-lg border border-cyan-800/40">
+            <div class="flex items-center justify-between text-cyan-300 font-bold text-[12px] mb-1">
+              <span>⚡ Go &middot; Rust &middot; TypeScript : 프로덕션 런타임</span>
+              <span class="text-[10px] bg-cyan-950 px-1.5 py-0.5 rounded border border-cyan-700">Infra &amp; Serving</span>
+            </div>
+            <p class="text-slate-300 font-sans text-[11.5px] leading-relaxed">
+              고동시성 AI 에이전트 오케스트레이션, 고속 백엔드 API, 툴체인(Skills), 프론트엔드 UI를 지배하는 견고한 인프라 뼈대.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2.5 rounded bg-cyan-950/60 border border-cyan-800/50 font-mono text-[11px] text-cyan-200 font-bold">
+        🎯 전략: <strong>AI 코어는 Python + Pydantic, 주변 인프라는 TS/Go로 분업하라!</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Takeaway -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-200 border border-slate-700 bg-slate-900/95 mt-1">
+    <div class="flex items-center gap-2">
+      <span class="text-emerald-400 font-bold">💎 핵심 결론:</span>
+      <span>Python은 죽지 않습니다. 단, <strong>'만능 언어'에서 'AI 가속기를 조작하는 특수 접착제'</strong>로 진화했을 뿐입니다.</span>
+    </div>
+    <span class="text-amber-400 font-bold text-[11px]">Next: Python을 살리는 Quality Stack 가드레일 ➔</span>
+  </div>
+</section>

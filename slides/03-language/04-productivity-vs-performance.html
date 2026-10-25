@@ -1,0 +1,119 @@
+<section class="slide flex flex-col justify-between" data-title="3.3 생산성 평준화 vs 성능 격차 비교 매트릭스">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 03. 언어 &middot; 3.3 생산성 평준화 vs 성능 격차</span>
+      <span class="px-2.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300 font-mono text-[11px]">
+        COMPARISON MATRIX
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-0.5">과거 vs 바이브 코딩 시대 : 언어별 판세의 대역전</h2>
+    <p class="text-xs text-slate-300 mt-0.5">
+      AI가 코드를 생성하면서 과거의 강점은 평준화되고, 숨겨져 있던 언어의 구조적 결함만 남게 되었습니다.
+    </p>
+  </div>
+
+  <!-- Table -->
+  <div class="bento-tile p-4 bg-slate-900/95 border border-slate-700/70 shadow-2xl flex-1 flex flex-col justify-around my-1.5">
+    <table class="w-full text-left font-mono border-collapse">
+      <thead>
+        <tr class="border-b-2 border-slate-700 text-xs uppercase tracking-wider bg-slate-950/90">
+          <th class="py-3 px-5 text-slate-300 w-1/5 font-bold">비교 축</th>
+          <th class="py-3 px-5 text-slate-400 w-1/4 font-bold border-l border-slate-800">과거 (인간 직접 코딩)</th>
+          <th class="py-3 px-5 text-sky-300 w-3/10 font-bold border-l border-slate-800">바이브 코딩 시대 (AI 협업)</th>
+          <th class="py-3 px-5 text-amber-300 w-1/4 font-bold border-l border-slate-800">결과적 판세 변화</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-800/80 text-[12.5px] leading-relaxed">
+        <!-- Row 1 -->
+        <tr class="hover:bg-slate-800/40 transition-colors">
+          <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
+            코드 작성 속도
+            <span class="block text-[11px] text-slate-400 font-sans font-normal">Coding Velocity</span>
+          </td>
+          <td class="py-3.5 px-5 text-emerald-300 border-l border-slate-800">
+            <span class="font-bold text-[13px]">Python 압승 👑</span><br>
+            <span class="text-[11px] text-slate-400 font-sans">문법 간결, 빠른 프로토타이핑</span>
+          </td>
+          <td class="py-3.5 px-5 text-sky-200 border-l border-slate-800 bg-sky-950/20">
+            <span class="text-sky-300 font-bold text-[13px]">완전 동등 (Zero Gap) ⚖️</span><br>
+            <span class="text-[11.5px] text-slate-200 font-sans">AI가 Rust/Go의 긴 코드도 2초 만에 생성</span>
+          </td>
+          <td class="py-3.5 px-5 text-rose-300 border-l border-slate-800 bg-rose-950/15">
+            <span class="text-rose-400 font-bold">Python 프리미엄 증발</span><br>
+            <span class="text-[11px] text-slate-400 font-sans">작성 편의성의 가치 소멸</span>
+          </td>
+        </tr>
+
+        <!-- Row 2 -->
+        <tr class="hover:bg-slate-800/40 transition-colors">
+          <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
+            디버깅 &amp; 검증 루프
+            <span class="block text-[11px] text-slate-400 font-sans font-normal">Verification Loop</span>
+          </td>
+          <td class="py-3.5 px-5 text-slate-300 border-l border-slate-800">
+            <span class="text-slate-200 font-bold text-[13px]">Python 유리</span><br>
+            <span class="text-[11px] text-slate-400 font-sans">인터프리터로 즉시 REPL 테스트</span>
+          </td>
+          <td class="py-3.5 px-5 text-cyan-200 border-l border-slate-800 bg-cyan-950/20">
+            <span class="text-cyan-300 font-bold text-[13px]">컴파일러의 즉각 피드백 🛡️</span><br>
+            <span class="text-[11.5px] text-slate-200 font-sans">정적 언어 컴파일러가 AI 환각을 즉시 검거</span>
+          </td>
+          <td class="py-3.5 px-5 text-cyan-300 border-l border-slate-800 bg-cyan-950/15">
+            <span class="text-cyan-400 font-bold">Go/Rust/TS 검증 속도 우위</span><br>
+            <span class="text-[11px] text-slate-400 font-sans">AI 자가치유 성공률 극대화</span>
+          </td>
+        </tr>
+
+        <!-- Row 3 -->
+        <tr class="hover:bg-slate-800/40 transition-colors">
+          <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
+            실행 성능 (Throughput)
+            <span class="block text-[11px] text-slate-400 font-sans font-normal">Runtime Throughput</span>
+          </td>
+          <td class="py-3.5 px-5 text-slate-300 border-l border-slate-800">
+            <span class="text-amber-300 font-bold text-[13px]">런타임 성능 의도적 희생</span><br>
+            <span class="text-[11px] text-slate-400 font-sans">GIL, 인터프리터 오버헤드 감내</span>
+          </td>
+          <td class="py-3.5 px-5 text-slate-200 border-l border-slate-800 bg-slate-950/20">
+            <span class="text-rose-400 font-bold text-[13px]">격차 불변 (10~100배 차이)</span><br>
+            <span class="text-[11.5px] text-slate-200 font-sans">기계어 직접 실행 vs 인터프리터</span>
+          </td>
+          <td class="py-3.5 px-5 text-rose-300 border-l border-slate-800 bg-rose-950/15">
+            <span class="text-rose-400 font-bold">Python의 단점만 고스란히 노출</span><br>
+            <span class="text-[11px] text-slate-400 font-sans">방패(생산성) 없이 약점 노출</span>
+          </td>
+        </tr>
+
+        <!-- Row 4 -->
+        <tr class="hover:bg-slate-800/40 transition-colors">
+          <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
+            메모리 &amp; 인프라 비용
+            <span class="block text-[11px] text-slate-400 font-sans font-normal">Infra &amp; Cloud Cost</span>
+          </td>
+          <td class="py-3.5 px-5 text-slate-300 border-l border-slate-800">
+            <span class="text-slate-300 font-bold text-[13px]">"서버 증설이 더 싸다"</span><br>
+            <span class="text-[11px] text-slate-400 font-sans">스케일아웃으로 문제 해결</span>
+          </td>
+          <td class="py-3.5 px-5 text-emerald-200 border-l border-slate-800 bg-emerald-950/20">
+            <span class="text-emerald-300 font-bold text-[13px]">대규모 트래픽에서 비용 폭증 💸</span><br>
+            <span class="text-[11.5px] text-slate-200 font-sans">AI 에이전트 다단계 체인에서 수천만 원 차이</span>
+          </td>
+          <td class="py-3.5 px-5 text-emerald-300 border-l border-slate-800 bg-emerald-950/15">
+            <span class="text-emerald-400 font-bold">네이티브 언어 ROI 극대화</span><br>
+            <span class="text-[11px] text-slate-400 font-sans">클라우드 청구서 70~90% 절감</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bottom Takeaway -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-200 border border-slate-700 bg-slate-900/95 mt-1">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">💡 매트릭스 결론:</span>
+      <span>작성 속도가 동등해진 순간, <strong>"디버깅 안정성"</strong>과 <strong>"실행 성능"</strong>을 갖춘 정적 언어가 압도적 우위를 점합니다.</span>
+    </div>
+    <span class="text-amber-400 font-bold text-[11px]">Next: AI 시대 성능 단점이 치명적인 이유 ➔</span>
+  </div>
+</section>
