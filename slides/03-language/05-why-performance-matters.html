@@ -4,7 +4,7 @@
     <div class="flex items-center justify-between">
       <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 03. 언어 &middot; 3.4 성능 병목의 나비효과</span>
       <span class="px-2.5 py-0.5 rounded bg-rose-950/80 border border-rose-700/50 text-rose-300 font-mono text-[11px] font-bold">
-        LATENCY &middot; CONCURRENCY &middot; COST
+        BENCHMARK &middot; LATENCY &middot; COST
       </span>
     </div>
     <h2 class="text-3xl font-black text-white mt-1">왜 AI 에이전트 시대에 '성능 단점'이 더 치명적인가?</h2>
@@ -13,83 +13,159 @@
     </p>
   </div>
 
-  <!-- 3 Pillar Bento Grid -->
-  <div class="grid grid-cols-3 gap-4 flex-1 items-stretch my-2">
-    <!-- Card 1: Latency Amplification -->
-    <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-rose-500 bg-slate-900/95 border border-slate-700/70 shadow-xl">
+  <!-- Main 12-Col Bento Grid: Left 7 cols (Benchmark Chart) + Right 5 cols (3 Amplification Pillars) -->
+  <div class="grid grid-cols-12 gap-3.5 flex-1 items-stretch my-1.5">
+    <!-- LEFT: 실측 성능 벤치마크 차트 (7 cols) -->
+    <div class="col-span-7 bento-tile p-4 flex flex-col justify-between bg-slate-900/95 border border-slate-700/80 shadow-xl">
       <div>
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-xs font-mono text-rose-400 font-bold uppercase tracking-wider">PILLAR 01</span>
-          <span class="text-[10.5px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">지연 시간 증폭</span>
+        <div class="flex items-center justify-between mb-2">
+          <div>
+            <span class="text-xs font-mono text-cyan-300 font-bold uppercase tracking-wider block">TECHEMPOWER ROUND 22 &middot; 공식 벤치마크</span>
+            <span class="text-[10.5px] text-slate-400">JSON 직렬화 및 마이크로서비스 처리량 (Throughput: req/sec)</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-slate-300 bg-slate-800 px-2 py-0.5 rounded border border-slate-700">
+            실측 벤치마크
+          </span>
         </div>
-        <h3 class="text-base font-bold text-white mb-2">에이전트 루프의 레이턴시 증폭</h3>
-        <p class="text-xs text-slate-300 leading-relaxed mb-3">
-          에이전트가 도구를 호출(Tool Call)하고, JSON 데이터를 직렬화/역직렬화하고, 추론 결과를 파싱하는 <strong>10~30회 연속 다단계 체인</strong>에서 오버헤드 누적.
-        </p>
-        
-        <div class="p-2.5 bg-slate-950 rounded border border-slate-800 font-mono text-[11px] space-y-1">
-          <div class="text-slate-400">LLM Call ➔ <span class="text-rose-400">Python 파싱 (+40ms)</span></div>
-          <div class="text-slate-400">Tool Exec ➔ <span class="text-rose-400">Python Glue (+60ms)</span></div>
-          <div class="text-rose-300 font-bold pt-1 border-t border-slate-800">체인 반복 시 1~3초 지연 ➔ UX 마비</div>
+
+        <!-- Horizontal Bar Chart -->
+        <div class="space-y-2.5 my-2">
+          <!-- Rust (Actix-web) -->
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono mb-1">
+              <span class="font-bold text-emerald-300 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                Rust (Actix-web / Axum)
+              </span>
+              <span class="text-white font-bold">850,000+ RPS <span class="text-emerald-400 font-normal ml-1">(12.0x 👑)</span></span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-4 p-0.5 border border-slate-800">
+              <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full w-full flex items-center justify-end pr-2 text-[9px] font-bold text-slate-950 font-mono">
+                P99: 0.8ms &middot; 4MB RAM
+              </div>
+            </div>
+          </div>
+
+          <!-- Go (Fiber / Gin) -->
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono mb-1">
+              <span class="font-bold text-sky-300 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+                Go (Fiber / Gin)
+              </span>
+              <span class="text-white font-bold">340,000+ RPS <span class="text-sky-400 font-normal ml-1">(4.8x ⚡)</span></span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-4 p-0.5 border border-slate-800">
+              <div class="bg-gradient-to-r from-sky-500 to-cyan-400 h-full rounded-full w-[40%] flex items-center justify-end pr-2 text-[9px] font-bold text-slate-950 font-mono">
+                P99: 2.1ms &middot; 15MB
+              </div>
+            </div>
+          </div>
+
+          <!-- TypeScript (Fastify / Node.js) -->
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono mb-1">
+              <span class="font-bold text-indigo-300 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+                TypeScript (Fastify)
+              </span>
+              <span class="text-slate-200 font-bold">120,000 RPS <span class="text-indigo-400 font-normal ml-1">(1.7x)</span></span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-4 p-0.5 border border-slate-800">
+              <div class="bg-gradient-to-r from-indigo-500 to-blue-400 h-full rounded-full w-[15%] flex items-center justify-end pr-1 text-[9px] font-bold text-white font-mono">
+                P99: 8.5ms
+              </div>
+            </div>
+          </div>
+
+          <!-- Python (FastAPI + Uvicorn) -->
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono mb-1">
+              <span class="font-bold text-rose-400 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                Python (FastAPI + Uvicorn)
+              </span>
+              <span class="text-rose-300 font-bold">71,000 RPS <span class="text-slate-400 font-normal ml-1">(1.0x 기준)</span></span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-4 p-0.5 border border-slate-800">
+              <div class="bg-gradient-to-r from-rose-500 to-amber-500 h-full rounded-full w-[8.5%] flex items-center justify-end pr-1 text-[9px] font-bold text-slate-950 font-mono">
+              </div>
+            </div>
+            <div class="text-[9.5px] text-rose-300 font-mono mt-0.5 pl-3">
+              ⚠️ P99: 48.0ms (큐잉 지연 급증) &middot; 워커당 65MB+ RAM
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Quick Metrics Badges -->
+        <div class="grid grid-cols-3 gap-2 mt-3 pt-2 border-t border-slate-800 text-[10px] font-mono">
+          <div class="p-1.5 rounded bg-slate-950 border border-slate-800 text-center">
+            <span class="text-slate-400 block">처리량 격차</span>
+            <span class="text-emerald-400 font-bold">Go/Rust 5~12배</span>
+          </div>
+          <div class="p-1.5 rounded bg-slate-950 border border-slate-800 text-center">
+            <span class="text-slate-400 block">P99 지연 시간</span>
+            <span class="text-rose-400 font-bold">Python 23배 지연</span>
+          </div>
+          <div class="p-1.5 rounded bg-slate-950 border border-slate-800 text-center">
+            <span class="text-slate-400 block">워커당 메모리</span>
+            <span class="text-cyan-300 font-bold">65MB vs 2KB(Go)</span>
+          </div>
         </div>
       </div>
 
-      <div class="text-[11px] font-mono text-rose-300/90 pt-2 border-t border-slate-800/80">
-        ⚡ Go/Rust는 수 마이크로초(&micro;s) 단위로 파싱 &middot; 도구 디스패치
+      <div class="text-[9.5px] text-slate-400 font-mono pt-1 text-right border-t border-slate-800">
+        데이터: TechEmpower Round 22 &middot; Computer Language Benchmarks Game
       </div>
     </div>
 
-    <!-- Card 2: Concurrency & GIL -->
-    <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-amber-500 bg-slate-900/95 border border-slate-700/70 shadow-xl">
+    <!-- RIGHT: AI 에이전트 루프에서 왜 치명적인가? (5 cols) -->
+    <div class="col-span-5 bento-tile p-4 flex flex-col justify-between bg-slate-900/95 border border-slate-700/80 shadow-xl">
       <div>
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider">PILLAR 02</span>
-          <span class="text-[10.5px] font-mono text-amber-300 bg-amber-950 px-2 py-0.5 rounded border border-amber-800">단일 프로세스 한계</span>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-rose-400 font-bold uppercase tracking-wider">AMPLIFICATION IN VIBE CODING</span>
+          <span class="text-[10px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">3대 증폭 효과</span>
         </div>
-        <h3 class="text-base font-bold text-white mb-2">GIL 제약과 메모리 낭비</h3>
-        <p class="text-xs text-slate-300 leading-relaxed mb-3">
-          Python의 <strong>GIL(Global Interpreter Lock)</strong>로 인해 단일 프로세스에서 멀티코어를 온전히 쓸 수 없으며, 수만 개 동시 연결 시 프로세스 복제(Fork) 필수.
-        </p>
+        <h3 class="text-sm font-bold text-white mb-2.5">작은 인터프리터 오버헤드가 눈덩이로 커지는 이유</h3>
 
-        <div class="p-2.5 bg-slate-950 rounded border border-slate-800 font-mono text-[11px] space-y-1">
-          <div class="flex justify-between text-slate-400">
-            <span>Python Worker 1개:</span>
-            <span class="text-amber-300 font-bold">~50MB RAM</span>
+        <div class="space-y-2 text-xs">
+          <!-- 1. Latency Amplification -->
+          <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 hover:border-rose-900/40 transition-colors">
+            <div class="flex items-center justify-between text-rose-300 font-bold text-[11px] mb-0.5">
+              <span>01. 에이전트 다단계 체인 지연</span>
+              <span class="text-[9.5px] font-mono bg-rose-950 px-1 py-0.5 rounded">10~30회 연속</span>
+            </div>
+            <p class="text-slate-300 text-[10.5px] leading-relaxed">
+              도구 호출(Tool Call)과 JSON 직렬화가 30회 반복되면, <strong>순수 Python 파싱 오버헤드만 1~3초 누적</strong>되어 사용자 체감 UX 마비.
+            </p>
           </div>
-          <div class="flex justify-between text-slate-400">
-            <span>Go Goroutine 1개:</span>
-            <span class="text-emerald-400 font-bold">~2KB RAM</span>
+
+          <!-- 2. Concurrency & GIL -->
+          <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 hover:border-amber-900/40 transition-colors">
+            <div class="flex items-center justify-between text-amber-300 font-bold text-[11px] mb-0.5">
+              <span>02. GIL 제약과 동시성 메모리 낭비</span>
+              <span class="text-[9.5px] font-mono bg-amber-950 px-1 py-0.5 rounded">멀티코어 불능</span>
+            </div>
+            <p class="text-slate-300 text-[10.5px] leading-relaxed">
+              GIL로 인해 단일 프로세스에서 멀티코어를 못 써서 프로세스 복제(Fork) 필수. 1만 개 동시 연결 시 <strong>Go는 20MB, Python은 수 GB RAM</strong> 폭발.
+            </p>
           </div>
-          <div class="text-amber-300 font-bold pt-1 border-t border-slate-800">동시 연결 1만 개 시 메모리 수십 배 격차</div>
+
+          <!-- 3. Infra Cost -->
+          <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 hover:border-cyan-900/40 transition-colors">
+            <div class="flex items-center justify-between text-cyan-300 font-bold text-[11px] mb-0.5">
+              <span>03. 클라우드 인프라 비용 폭증</span>
+              <span class="text-[9.5px] font-mono bg-cyan-950 px-1 py-0.5 rounded">비용의 나비효과</span>
+            </div>
+            <p class="text-slate-300 text-[10.5px] leading-relaxed">
+              쿠버네티스 Pod가 수십 배 증설되어 월 수천만 원 인프라 손실. <strong>Go/Rust 전환 시 즉시 70~80% 인프라 비용 절감</strong>.
+            </p>
+          </div>
         </div>
       </div>
 
-      <div class="text-[11px] font-mono text-amber-300/90 pt-2 border-t border-slate-800/80">
-        🧵 에이전트 오케스트레이션에서 심각한 CPU/메모리 병목
-      </div>
-    </div>
-
-    <!-- Card 3: Cloud Infra Cost -->
-    <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-cyan-500 bg-slate-900/95 border border-slate-700/70 shadow-xl">
-      <div>
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-xs font-mono text-cyan-400 font-bold uppercase tracking-wider">PILLAR 03</span>
-          <span class="text-[10.5px] font-mono text-cyan-300 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800">클라우드 비용 폭증</span>
-        </div>
-        <h3 class="text-base font-bold text-white mb-2">인프라 비용의 나비효과</h3>
-        <p class="text-xs text-slate-300 leading-relaxed mb-3">
-          트래픽이 증가할수록 메모리와 CPU 부족으로 쿠버네티스 Pod 및 컨테이너 수가 기하급수적으로 폭증하여 클라우드 청구서 직격타.
-        </p>
-
-        <div class="p-2.5 bg-slate-950 rounded border border-slate-800 font-mono text-[11px] space-y-1">
-          <div class="text-slate-400">과거: "서버 증설이 인건비보다 싸다"</div>
-          <div class="text-rose-400 font-bold">대규모 LLM 서빙/에이전트 인프라:</div>
-          <div class="text-cyan-300 font-bold pt-1 border-t border-slate-800">월 수천만 원의 순수 인프라 비용 손실</div>
-        </div>
-      </div>
-
-      <div class="text-[11px] font-mono text-cyan-300/90 pt-2 border-t border-slate-800/80">
-        💰 고성능 컴파일 언어 전환 시 즉시 70~80% 인프라 비용 절감
+      <div class="p-2 rounded bg-rose-950/50 border border-rose-800/50 text-[10.5px] font-mono text-rose-200 mt-2">
+        💥 <strong>결론:</strong> 에이전트 시대에 런타임 성능은 '단순 속도'가 아니라 <strong>'서비스 생존 마진'</strong>입니다.
       </div>
     </div>
   </div>
@@ -100,6 +176,6 @@
       <span class="text-rose-400 font-bold">⚠️ 현실 직시:</span>
       <span>AI 에이전트의 다단계 오케스트레이션 환경에서는 <strong>런타임 효율이 곧 서비스 마진과 사용자 경험</strong>입니다.</span>
     </div>
-    <span class="text-amber-400 font-bold text-[11px]">Next: 그렇다면 Python은 퇴출되는가? ➔</span>
+    <span class="text-cyan-400 font-bold text-[11px]">Next: 3.5 토큰 경제학과 리팩토링 안전망 ➔</span>
   </div>
 </section>
