@@ -1,0 +1,135 @@
+<section class="slide flex flex-col justify-between" data-title="3.3 정적 vs 동적 언어 심층 매트릭스 & 실전 전략">
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <div>
+        <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider">Chapter 03. 언어 &middot; 3.3 정밀 비교 매트릭스 &amp; 결론</span>
+        <h2 class="text-3xl font-black text-white">정적 언어 vs Python Quality Stack 심층 매트릭스</h2>
+      </div>
+      <span class="px-2.5 py-1 rounded bg-slate-800 border border-slate-700 text-slate-300 font-mono text-[11px]">
+        📊 패러다임 비교표
+      </span>
+    </div>
+    <p class="text-xs text-slate-300 mt-0.5">
+      타입 검증 시점부터 AI 자가치유까지, 바이브 코딩 환경에서의 실전 득실을 다각도로 비교합니다.
+    </p>
+  </div>
+
+  <!-- Comparison Matrix Table -->
+  <div class="bento-tile p-3 bg-slate-950/95 border border-slate-800 my-auto flex-1 flex flex-col justify-center">
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-xs font-mono border-collapse">
+        <thead>
+          <tr class="border-b border-slate-700 text-[11px] text-slate-400 uppercase tracking-wider bg-slate-900/60">
+            <th class="py-2 px-3 text-slate-300 w-1/5">평가 기준</th>
+            <th class="py-2 px-3 text-cyan-300 w-1/4">정적 언어 (TypeScript 등)</th>
+            <th class="py-2 px-3 text-rose-300 w-1/4">Python 단독 (Pure)</th>
+            <th class="py-2 px-3 text-emerald-300 w-3/10">Python + Quality Stack</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800/80 text-[11.5px] leading-relaxed">
+          <tr class="hover:bg-slate-900/40">
+            <td class="py-2.5 px-3 font-bold text-slate-200">
+              타입 검증 시점
+              <span class="block text-[10px] text-slate-500 font-sans font-normal">Feedback Loop</span>
+            </td>
+            <td class="py-2.5 px-3 text-cyan-200 bg-cyan-950/10">
+              <span class="text-cyan-400 font-bold">컴파일/트랜스파일 (0.1초)</span><br>
+              <span class="text-[10px] text-slate-400 font-sans">작성 즉시 편집기 &middot; 컴파일러 실시간 감지</span>
+            </td>
+            <td class="py-2.5 px-3 text-rose-200 bg-rose-950/10">
+              <span class="text-rose-400 font-bold">런타임 실행 시점 (지연 폭탄)</span><br>
+              <span class="text-[10px] text-slate-400 font-sans">배포 후 유저가 호출할 때까지 에러 잠복</span>
+            </td>
+            <td class="py-2.5 px-3 text-emerald-200 bg-emerald-950/10">
+              <span class="text-emerald-400 font-bold">CI &middot; 린터 실행 시점</span><br>
+              <span class="text-[10px] text-slate-400 font-sans">uv / Ruff(ms 단위) + Mypy(수 초 추가 소요)</span>
+            </td>
+          </tr>
+
+          <tr class="hover:bg-slate-900/40">
+            <td class="py-2.5 px-3 font-bold text-slate-200">
+              초기 프로토타이핑
+              <span class="block text-[10px] text-slate-500 font-sans font-normal">Fast Vibe Velocity</span>
+            </td>
+            <td class="py-2.5 px-3 text-slate-300 bg-cyan-950/10">
+              <span class="text-amber-300 font-bold">인터페이스 &middot; 타입 선언 선행</span><br>
+              <span class="text-[10px] text-slate-400 font-sans">초기 설계 수고 필요 (규격 우선)</span>
+            </td>
+            <td class="py-2.5 px-3 text-emerald-300 bg-rose-950/10">
+              <span class="text-emerald-400 font-bold">가장 빠름 (High Velocity)</span><br>
+              <span class="text-[10px] text-slate-400 font-sans">아이디어 즉시 코딩 &middot; 스크립트 작성</span>
+            </td>
+            <td class="py-2.5 px-3 text-emerald-200 bg-emerald-950/10">
+              <span class="text-emerald-400 font-bold">점진적 유연성 (Gradual)</span><br>
+              <span class="text-[10px] text-slate-400 font-sans">핵심 모델(Pydantic)만 우선 정의 후 점진 확장</span>
+            </td>
+          </tr>
+
+          <tr class="hover:bg-slate-900/40">
+            <td class="py-2.5 px-3 font-bold text-slate-200">
+              AI 자가치유 능력
+              <span class="block text-[10px] text-slate-500 font-sans font-normal">Self-Healing Agent</span>
+            </td>
+            <td class="py-2.5 px-3 text-cyan-200 bg-cyan-950/10">
+              <span class="text-cyan-400 font-bold">극대화 (99% 자동 복구)</span><br>
+              <span class="text-[10px] text-slate-400 font-sans">컴파일러의 정확한 Stderr 보고 AI가 즉각 교정</span>
+            </td>
+            <td class="py-2.5 px-3 text-rose-300 bg-rose-950/10">
+              <span class="text-rose-400 font-bold">극도로 취약</span><br>
+              <span class="text-[10px] text-slate-400 font-sans">런타임 재현 환경 &middot; 입력 데이터 없으면 수정 불가</span>
+            </td>
+            <td class="py-2.5 px-3 text-emerald-200 bg-emerald-950/10">
+              <span class="text-amber-300 font-bold">부분 보완 (양호)</span><br>
+              <span class="text-[10px] text-slate-400 font-sans">Ruff/Mypy/Pytest 출력 로그 피드백으로 보완</span>
+            </td>
+          </tr>
+
+          <tr class="hover:bg-slate-900/40">
+            <td class="py-2.5 px-3 font-bold text-slate-200">
+              AI 생태계 접근성
+              <span class="block text-[10px] text-slate-500 font-sans font-normal">Ecosystem Reach</span>
+            </td>
+            <td class="py-2.5 px-3 text-slate-300 bg-cyan-950/10">
+              <span class="text-slate-300 font-semibold">간접 연동 (REST/SDK)</span><br>
+              <span class="text-[10px] text-slate-400 font-sans">모델 서빙 API 래퍼 위주 호출</span>
+            </td>
+            <td class="py-2.5 px-3 text-emerald-300 bg-rose-950/10">
+              <span class="text-emerald-400 font-bold">압도적 1위 (최신 AI 독점)</span><br>
+              <span class="text-[10px] text-slate-400 font-sans">모든 최신 LLM &middot; 프레임워크 1st party</span>
+            </td>
+            <td class="py-2.5 px-3 text-emerald-200 bg-emerald-950/10">
+              <span class="text-emerald-400 font-bold">압도적 1위 유지 + 안전망</span><br>
+              <span class="text-[10px] text-slate-400 font-sans">최신 생태계 흡수 + 보조 도구로 방어선 구축</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Bottom Recommendation: Dual-Stack Architecture -->
+  <div class="bento-tile p-3 bg-gradient-to-r from-slate-950 via-indigo-950/50 to-slate-950 border border-indigo-500/40 mt-2">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="px-2.5 py-1 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-400/40 font-mono text-xs font-bold">
+          🎯 실전 결론: Dual-Stack 전략
+        </span>
+        <span class="text-xs text-slate-200">
+          "바이브 코딩 시대, Python은 만능이 아니라 <strong>도메인 특화 무기</strong>다."
+        </span>
+      </div>
+      <span class="text-amber-400 font-mono text-xs font-bold">Next: 바로바로 실습 ➔</span>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3 mt-2 text-[11px] font-mono">
+      <div class="bg-slate-900/80 p-2 rounded border border-cyan-800/40 text-slate-300">
+        <strong class="text-cyan-300 block mb-0.5">1. 서비스 &middot; UI 레이어 (TypeScript 등 컴파일 언어)</strong>
+        엄격한 컴파일러 하네스로 AI 자가치유 극대화, 런타임 크래시 0% 지향
+      </div>
+      <div class="bg-slate-900/80 p-2 rounded border border-emerald-800/40 text-slate-300">
+        <strong class="text-emerald-300 block mb-0.5">2. AI 코어 &middot; 데이터 &middot; 에이전트 (Python + Quality Stack)</strong>
+        최신 AI 라이브러리 독점 활용하되, 반드시 <span class="text-emerald-400 font-bold">uv &middot; Ruff &middot; Pydantic</span> 가드레일 장착
+      </div>
+    </div>
+  </div>
+</section>
