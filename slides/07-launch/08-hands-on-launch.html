@@ -1,0 +1,169 @@
+<section class="slide flex flex-col justify-between" data-title="7.7 실전 5분 실습: 0원에서 프로덕션까지 3단계">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.7 실전 5분 핸즈온</span>
+      <span class="px-2.5 py-0.5 rounded bg-amber-950/80 border border-amber-600/50 text-amber-300 font-mono text-[11px] font-bold">
+        HANDS-ON &middot; 3-STEP LAUNCH
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">실전 5분 실습 : 0원에서 상용 런칭까지</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      BaaS 인증, 결제 위젯, CI/CD 자동 배포 파이프라인을 3단계로 연결하여 실제 인터넷에 살아있는 서비스를 런칭합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (3 cols) -->
+  <div class="grid grid-cols-3 gap-3 my-auto">
+    
+    <!-- Step 1: Supabase Auth -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-sky-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-sky-400 font-bold uppercase">STEP 1. SNS 인증 연동</span>
+          <span class="text-[9px] font-mono text-sky-300 bg-sky-950 px-1.5 py-0.5 rounded border border-sky-800">소요 시간 2분</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">Supabase Auth &middot; RLS</h3>
+        <p class="text-[10px] text-slate-300 mb-2 leading-relaxed">
+          대시보드에서 SNS 프로바이더를 켜고 환경변수를 로컬과 Vercel에 주입합니다.
+        </p>
+
+        <!-- 1. Env Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9px] border border-slate-800 space-y-0.5 text-slate-300 mb-1.5">
+          <div class="text-slate-500"># 1. .env.dev 환경변수 등록</div>
+          <div>VITE_SUPABASE_URL="https://xxx.supabase.co"</div>
+          <div>VITE_SUPABASE_ANON_KEY="eyJhbGciOi..."</div>
+        </div>
+
+        <!-- 2. Code Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9px] border border-slate-800 space-y-0.5 text-slate-300 mb-1.5">
+          <div class="text-sky-300"># 2. 프론트엔드 로그인 호출:</div>
+          <div class="text-emerald-300">await supabase.auth.signInWithOAuth({</div>
+          <div class="text-slate-400 pl-2">provider: 'google', redirectTo: callbackUrl</div>
+          <div class="text-emerald-300">});</div>
+        </div>
+
+        <!-- 3. RLS DDL Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9px] border border-slate-800 space-y-0.5 text-purple-300 mb-1.5">
+          <div class="text-slate-500"># 3. PostgreSQL RLS 보안 활성화:</div>
+          <div>ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;</div>
+          <div>CREATE POLICY p1 ON profiles FOR ALL USING (auth.uid() = id);</div>
+        </div>
+
+        <!-- Verification Checklist -->
+        <div class="p-1.5 bg-slate-950 rounded border border-slate-800 text-[9px] font-mono space-y-0.5">
+          <span class="text-sky-400 font-bold block">✅ Step 1 검증:</span>
+          <div class="text-slate-300">[x] 구글 로그인 시 <code>auth.users</code> 행 자동 생성</div>
+          <div class="text-slate-300">[x] RLS 정책으로 타인 데이터 접근 100% 거절</div>
+        </div>
+      </div>
+
+      <div class="text-[9.5px] text-sky-400 font-mono border-t border-slate-800 pt-1.5 mt-2">
+        ✓ 1클릭으로 Google OAuth 인증 흐름 완성
+      </div>
+    </div>
+
+    <!-- Step 2: Payment Widget -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-blue-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-blue-400 font-bold uppercase">STEP 2. Toss 결제창 &middot; Footer</span>
+          <span class="text-[9px] font-mono text-blue-300 bg-blue-950 px-1.5 py-0.5 rounded border border-blue-800">소요 시간 2분</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">결제 위젯 &middot; 필수 약관</h3>
+        <p class="text-[10px] text-slate-300 mb-2 leading-relaxed">
+          토스페이먼츠 테스트 클라이언트 키를 연결하고 법적 필수 표기사항을 푸터에 배치합니다.
+        </p>
+
+        <!-- 1. Widget Code Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9px] border border-slate-800 space-y-0.5 text-slate-300 mb-1.5">
+          <div class="text-blue-300"># 1. Toss 결제 위젯 렌더링 &amp; 요청:</div>
+          <div class="text-slate-400">const widget = loadPaymentWidget(clientKey, customerKey);</div>
+          <div class="text-emerald-300">widget.renderPaymentMethods('#payment-methods', 29000);</div>
+          <div class="text-emerald-300">widget.requestPayment({ orderId, orderName: 'PRO 요금제' });</div>
+        </div>
+
+        <!-- 2. Server Confirm Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9px] border border-slate-800 space-y-0.5 text-slate-300 mb-1.5">
+          <div class="text-amber-300"># 2. 백엔드 결제 승인 API:</div>
+          <div class="text-slate-400">POST https://api.tosspayments.com/v1/payments/confirm</div>
+          <div class="text-emerald-300">headers: { Authorization: `Basic ${secretKeyBase64}` }</div>
+        </div>
+
+        <!-- 3. Legal Footer Box -->
+        <div class="p-1.5 bg-amber-950/40 rounded border border-amber-800/50 text-[9px] font-mono text-amber-200 mb-1.5">
+          <strong class="text-amber-300 block mb-0.5">⚖️ 3. Footer 필수 법적 고지 4요소:</strong>
+          <div>&bull; 약관: 이용약관, 개인정보처리방침, 환불/취소 정책</div>
+          <div>&bull; 사업자: 상호명, 대표자명, 등록번호, 통신판매번호</div>
+        </div>
+
+        <!-- Verification Checklist -->
+        <div class="p-1.5 bg-slate-950 rounded border border-slate-800 text-[9px] font-mono space-y-0.5">
+          <span class="text-blue-400 font-bold block">✅ Step 2 검증:</span>
+          <div class="text-slate-300">[x] 테스트 카드로 1,000원 결제 승인 200 OK</div>
+          <div class="text-slate-300">[x] PG 심사 필수 약관 링크 푸터 노출 확인</div>
+        </div>
+      </div>
+
+      <div class="text-[9.5px] text-blue-400 font-mono border-t border-slate-800 pt-1.5 mt-2">
+        ✓ PG사 심사 기준을 즉시 충족하는 결제창 완성
+      </div>
+    </div>
+
+    <!-- Step 3: CI/CD Deploy -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-emerald-400 font-bold uppercase">STEP 3. GitHub Actions 배포</span>
+          <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950 px-1.5 py-0.5 rounded border border-emerald-800">소요 시간 1분</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">Git Push ➔ 라이브 서빙</h3>
+        <p class="text-[10px] text-slate-300 mb-2 leading-relaxed">
+          GitHub Repository Settings에 시크릿을 등록하고 push하여 자동 배포를 확인합니다.
+        </p>
+
+        <!-- 1. Secrets Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9px] border border-slate-800 space-y-0.5 text-slate-300 mb-1.5">
+          <div class="text-slate-500"># 1. GitHub Secrets 등록:</div>
+          <div class="text-emerald-300">DEPLOY_HOST: "203.0.113.10"</div>
+          <div class="text-emerald-300">DEPLOY_SSH_KEY: "-----BEGIN OPENSSH PRIVATE KEY..."</div>
+          <div class="text-emerald-300">DEPLOY_USER: "ubuntu"</div>
+        </div>
+
+        <!-- 2. Workflow Trigger Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9px] border border-slate-800 space-y-0.5 text-slate-300 mb-1.5">
+          <div class="text-purple-300"># 2. .github/workflows/deploy.yml:</div>
+          <div class="text-slate-400">on: { push: { branches: [ 'main' ] } }</div>
+          <div class="text-emerald-300">script: "cd /app &amp;&amp; git pull &amp;&amp; ./start.sh prod"</div>
+        </div>
+
+        <!-- 3. Terminal Push Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9px] border border-slate-800 space-y-0.5 text-slate-300 mb-1.5">
+          <div class="text-sky-300"># 3. 터미널 푸시 즉시 배포 트리거:</div>
+          <div class="text-slate-300">$ git add . &amp;&amp; git commit -m "launch"</div>
+          <div class="text-sky-300">$ git push origin main</div>
+        </div>
+
+        <!-- Verification Checklist -->
+        <div class="p-1.5 bg-slate-950 rounded border border-slate-800 text-[9px] font-mono space-y-0.5">
+          <span class="text-emerald-400 font-bold block">✅ Step 3 검증:</span>
+          <div class="text-slate-300">[x] GitHub Actions 워크플로우 통과 (✓ 녹색)</div>
+          <div class="text-slate-300">[x] 운영 서버 라이브 도메인 200 OK 접속 확인</div>
+        </div>
+      </div>
+
+      <div class="text-[9.5px] text-emerald-400 font-mono border-t border-slate-800 pt-1.5 mt-2">
+        ✓ 손 하나 대지 않고 프로덕션 무중단 릴리즈 완료
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-amber-400 font-bold">💡 실습 핵심:</span>
+      <span class="text-slate-200">로컬 터미널에서 서버에 직접 접속하지 마십시오. <strong>모든 인프라 변경과 배포는 Git Commit과 GitHub Actions</strong>를 통해서만 실행되어야 안전합니다.</span>
+    </div>
+    <span class="text-amber-400 font-bold text-[11px]">Slide 77</span>
+  </div>
+</section>

@@ -1,0 +1,115 @@
+<section class="slide flex flex-col justify-between" data-title="7.5 CI/CD 개념 &amp; GitHub Actions 실전 파이프라인">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.5 배포 자동화 파이프라인</span>
+      <span class="px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-600/50 text-sky-300 font-mono text-[11px] font-bold">
+        CONTINUOUS INTEGRATION &middot; CONTINUOUS DEPLOYMENT
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">CI/CD의 본질 &amp; GitHub Actions 자동 배포</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      "내 컴퓨터에서는 잘 도는데?"를 영원히 없앱니다. Git push 한 번으로 <strong>검증(CI) ➔ 빌드 ➔ 무중단 배포(CD)</strong>가 끝나는 자동화 게이트를 구축합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 my-auto">
+    
+    <!-- LEFT: CI/CD 개념 및 수동 배포의 위험 (5 cols) -->
+    <div class="col-span-5 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-rose-500 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">❌</span>
+            <span class="text-xs font-mono text-rose-400 font-bold uppercase">수동 배포의 비극 vs CI/CD</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">사람의 실수 차단</span>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-slate-300 mb-2">
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5 text-[10.5px]">⚠️ 로컬 수동 배포(FTP/SSH 직접 복사)의 위험</strong>
+            <span class="text-[10px] text-slate-400 leading-tight">빌드 산출물 누락, 로컬 환경 의존성 오염, 배포 중 서버 다운타임, 시크릿 키 유출 위험 상존.</span>
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-sky-400 block mb-0.5 text-[10.5px]">🔍 CI (지속적 통합 - Continuous Integration)</strong>
+            <span class="text-[10px] text-slate-400 leading-tight">푸시 즉시 클라우드 격리 환경에서 린트(Ruff/ESLint), 타입 검사, 유닛 테스트를 자동 통과해야만 브랜치 병합 허용.</span>
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-emerald-400 block mb-0.5 text-[10.5px]">🚀 CD (지속적 배포 - Continuous Deployment)</strong>
+            <span class="text-[10px] text-slate-400 leading-tight">CI 검증이 통과된 클린 코드만 운영 서버(Cloud Run, VM, Vercel)에 무중단 자동 릴리즈.</span>
+          </div>
+        </div>
+
+        <!-- 4-Stage Pipeline Diagram -->
+        <div class="p-2 bg-slate-950 rounded border border-slate-800 font-mono text-[9.5px] space-y-1">
+          <span class="text-sky-400 font-bold block">🔄 CI/CD 4단계 상태 전이 게이트:</span>
+          <div class="text-slate-300">[1. Push] Git commit ➔ GitHub 원격 저장소</div>
+          <div class="text-amber-300">[2. CI Gate] Ruff &amp; Pytest ➔ 실패 시 배포 중단!</div>
+          <div class="text-purple-300">[3. Build] 컨테이너 빌드 &amp; GHCR 이미지 태깅</div>
+          <div class="text-emerald-300">[4. CD Live] SSH 무중단 재기동 (./start.sh prod)</div>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-sky-400 font-mono border-t border-slate-800 pt-1.5 flex items-center justify-between">
+        <span>✓ "인간은 코드를 푸시하고, 배포는 기계가 수행한다"</span>
+        <span class="text-slate-500">Zero Human Error</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: 실전 GitHub Actions Workflow YAML (7 cols) -->
+    <div class="col-span-7 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">⚙️</span>
+            <span class="text-xs font-mono text-emerald-400 font-bold uppercase">실전 GitHub Actions : .github/workflows/deploy.yml</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">월 2,000분 무료 러너</span>
+        </div>
+
+        <!-- Code Block -->
+        <div class="bg-slate-950 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-0.5 text-slate-300 mb-2">
+          <div><span class="text-purple-400">name:</span> Production Deploy</div>
+          <div><span class="text-purple-400">on:</span> { push: { branches: [ <span class="text-emerald-300">'main'</span> ] } }</div>
+          <div class="text-purple-400">jobs:</div>
+          <div class="pl-2.5"><span class="text-sky-300">ci-test:</span> <span class="text-slate-500"># 1단계: 품질 검증</span></div>
+          <div class="pl-5">runs-on: ubuntu-latest</div>
+          <div class="pl-5">steps:</div>
+          <div class="pl-7">- uses: actions/checkout@v4</div>
+          <div class="pl-7">- run: <span class="text-amber-300">uv run ruff check &amp;&amp; uv run pytest -q</span></div>
+          <div class="pl-2.5"><span class="text-emerald-300">cd-deploy:</span> <span class="text-slate-500"># 2단계: 테스트 통과 시에만 배포</span></div>
+          <div class="pl-5">needs: ci-test</div>
+          <div class="pl-5">runs-on: ubuntu-latest</div>
+          <div class="pl-5">steps:</div>
+          <div class="pl-7">- uses: appleboy/ssh-action@v1.0.3</div>
+          <div class="pl-9">with:</div>
+          <div class="pl-11 text-slate-400">host: <span class="text-sky-300">${{ secrets.DEPLOY_HOST }}</span>, key: <span class="text-sky-300">${{ secrets.DEPLOY_SSH_KEY }}</span></div>
+          <div class="pl-11 text-emerald-300">script: "cd /app &amp;&amp; git pull &amp;&amp; ./start.sh prod"</div>
+        </div>
+
+        <!-- SSH Key & Secrets Setup Box -->
+        <div class="p-2 bg-slate-950 rounded border border-slate-800 font-mono text-[9.5px] space-y-0.5">
+          <span class="text-emerald-400 font-bold block">🔐 GitHub Secrets &amp; SSH Key 발급 가이드:</span>
+          <div class="text-slate-400">$ ssh-keygen -t ed25519 -C "deploy_runner" -f ~/.ssh/deploy_key</div>
+          <div class="text-slate-300">GitHub Settings &gt; Secrets: <span class="text-sky-300">DEPLOY_HOST</span>, <span class="text-sky-300">DEPLOY_SSH_KEY</span>, <span class="text-sky-300">DEPLOY_USER</span></div>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-emerald-400 font-mono border-t border-slate-800 pt-1.5 flex items-center justify-between">
+        <span>✓ GitHub Repository Secrets를 활용해 비밀번호&middot;SSH 키 완벽 은폐</span>
+        <span class="text-slate-500">Secret Safe</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">💡 실무 원칙:</span>
+      <span class="text-slate-200">배포 서버 접속 권한은 <strong>개인 비밀번호가 아닌 SSH 개인키를 GitHub Secrets에 등록</strong>하여 CI 러너만 접근하도록 엄격히 제한하십시오.</span>
+    </div>
+    <span class="text-sky-400 font-bold text-[11px]">Slide 75</span>
+  </div>
+</section>

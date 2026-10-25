@@ -1,0 +1,141 @@
+<section class="slide flex flex-col justify-between" data-title="7.1 SNS 로그인 &amp; BaaS 인증: Supabase Auth">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.1 사용자 인증의 정석</span>
+      <span class="px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-600/50 text-sky-300 font-mono text-[11px] font-bold">
+        SNS OAUTH &middot; SUPABASE AUTH &middot; RLS
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">SNS 로그인 &amp; BaaS 인증 : 왜 Supabase인가?</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      바이브 코딩 시 <strong>"로그인 백엔드 직접 구현"</strong>은 최악의 안티패턴입니다. 검증된 BaaS로 5분 만에 OAuth를 붙이고 RLS로 격리합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 my-auto">
+    
+    <!-- LEFT: 직접 구현의 함정 (5 cols) -->
+    <div class="col-span-5 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-rose-500 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">⚠️</span>
+            <span class="text-xs font-mono text-rose-400 font-bold uppercase">직접 구현(DIY Auth)의 보안 참사</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">취약점 덩어리</span>
+        </div>
+
+        <p class="text-[11px] text-slate-400 mb-2 leading-relaxed">
+          AI에게 <em>"JWT 로그인 백엔드 짜줘"</em>라고 요청하면 겉만 돌아가는 위험천만한 코드가 생성됩니다.
+        </p>
+
+        <div class="space-y-1.5 text-xs text-slate-300 mb-2.5">
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5 text-[11px]">1. JWT 시크릿 &amp; LocalStorage 탈취 위험</strong>
+            <span class="text-[10px] text-slate-400 leading-tight">브라우저 LocalStorage에 저장하여 악성 스크립트(XSS) 1초 탈취, 유효기간 만료 예외 누락.</span>
+          </div>
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5 text-[11px]">2. Refresh 토큰 로테이션 &amp; 세션 무효화 부재</strong>
+            <span class="text-[10px] text-slate-400 leading-tight">동시 요청 시 토큰 중복 재발급 레이스 컨디션, 비밀번호 변경 시 기존 세션 강제 만료 미구현.</span>
+          </div>
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5 text-[11px]">3. 카카오/구글 OAuth 규격 파편화</strong>
+            <span class="text-[10px] text-slate-400 leading-tight">제공자마다 제각각인 인증 응답 규격 파싱 및 콜백 핸들링에 수백 줄의 유지보수 부채 발생.</span>
+          </div>
+        </div>
+
+        <!-- Vulnerable Code Example Box -->
+        <div class="bg-rose-950/40 rounded p-2.5 font-mono text-[10px] border border-rose-800/50 space-y-1 text-rose-200">
+          <div class="text-rose-400 font-bold flex items-center justify-between">
+            <span>❌ AI가 흔히 만드는 취약 코드 안티패턴:</span>
+            <span class="text-[9px] bg-rose-900/60 px-1.5 py-0.5 rounded">Security Bug</span>
+          </div>
+          <div>// LocalStorage 저장 ➔ XSS 공격 시 1초 만에 계정 탈취</div>
+          <div class="text-rose-300">localStorage.setItem('accessToken', token);</div>
+          <div class="text-slate-400">// 하드코딩된 시크릿 키 ➔ 깃허브 공개 레포 노출 대참사</div>
+          <div class="text-rose-300">jwt.verify(token, "my-super-secret-123");</div>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-rose-400 font-mono border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>❌ 비밀번호 해싱 &middot; 세션 관리에 엔지니어링 40시간 낭비</span>
+        <span class="text-slate-500">Anti-Pattern</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Supabase Auth 해결책 (7 cols) -->
+    <div class="col-span-7 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">⚡</span>
+            <span class="text-xs font-mono text-emerald-400 font-bold uppercase">해결책 : Supabase Auth &middot; RLS 직결</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">월 50,000 MAU 무료</span>
+        </div>
+
+        <p class="text-[11px] text-slate-400 mb-2 leading-relaxed">
+          Google, Kakao, GitHub OAuth를 클릭 한 번으로 활성화하고, 프론트엔드와 PostgreSQL RLS를 직결합니다.
+        </p>
+
+        <!-- 3 Steps flow -->
+        <div class="grid grid-cols-3 gap-2 mb-2 text-xs">
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <span class="text-[10px] font-mono text-sky-400 font-bold block mb-0.5">STEP 1. 대시보드 클릭</span>
+            <span class="text-white font-semibold text-[11px]">SNS Provider 토글</span>
+            <span class="text-[9.5px] text-slate-400 block mt-0.5">Google, Kakao Client ID 복붙</span>
+          </div>
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <span class="text-[10px] font-mono text-emerald-400 font-bold block mb-0.5">STEP 2. 프론트 3줄 호출</span>
+            <span class="text-white font-semibold text-[11px]">원클릭 리다이렉트</span>
+            <span class="text-[9.5px] text-slate-400 block mt-0.5">PKCE 보안 흐름 &amp; 쿠키 동기화</span>
+          </div>
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <span class="text-[10px] font-mono text-purple-400 font-bold block mb-0.5">STEP 3. DB 레벨 격리</span>
+            <span class="text-white font-semibold text-[11px]">RLS 자동 바인딩</span>
+            <span class="text-[9.5px] text-slate-400 block mt-0.5"><code>auth.uid() = user_id</code> 격리</span>
+          </div>
+        </div>
+
+        <!-- Code Snippet 1: Frontend Auth -->
+        <div class="bg-slate-950 rounded p-2.5 font-mono text-[10.5px] border border-slate-800 space-y-0.5 mb-2">
+          <div class="text-slate-500">// 1. 프론트엔드(Svelte/React): 단 4줄로 구글/카카오 로그인 완료</div>
+          <div class="text-sky-300"><span class="text-purple-400">const</span> { data, error } = <span class="text-purple-400">await</span> supabase.auth.signInWithOAuth({</div>
+          <div class="text-slate-300 pl-4">provider: <span class="text-emerald-300">'google'</span>, <span class="text-slate-500">// 'kakao', 'github' 전환 즉시 가능</span></div>
+          <div class="text-slate-300 pl-4">options: { redirectTo: <span class="text-emerald-300">`https://myapp.com/auth/callback`</span> }</div>
+          <div class="text-sky-300">});</div>
+        </div>
+
+        <!-- Code Snippet 2: Postgres RLS Policy -->
+        <div class="bg-slate-950 rounded p-2.5 font-mono text-[10.5px] border border-slate-800 space-y-0.5 mb-2">
+          <div class="text-slate-500">// 2. PostgreSQL RLS 정책: 백엔드 API 없이도 유저별 데이터 자동 보호</div>
+          <div class="text-emerald-300 font-bold">ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;</div>
+          <div class="text-sky-300">CREATE POLICY <span class="text-white">"Users can read own profile"</span> ON profiles</div>
+          <div class="text-purple-300 pl-4">FOR SELECT USING (auth.uid() = id);</div>
+        </div>
+
+        <!-- Session Listener Tip Box -->
+        <div class="p-2 bg-slate-950 rounded border border-slate-800 font-mono text-[10px] text-slate-300 flex items-center justify-between">
+          <span>🔄 <code>supabase.auth.onAuthStateChange((event, session) =&gt; ...)</code>로 실시간 상태 동기화</span>
+          <span class="text-emerald-400 font-bold">Zero Polling</span>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-emerald-400 font-mono border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 백엔드 API 작성 없이 프론트 ➔ Supabase 다이렉트 쿼리 실현</span>
+        <span class="text-slate-400">Zero Auth Codebase</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">💡 바이브 코딩 실전 팁:</span>
+      <span class="text-slate-200">AI에게 <em>"인증 백엔드를 짜달라"</em>고 하지 말고, <strong>"Supabase Auth SDK를 사용해 SNS 로그인 버튼 및 보호 라우트를 작성해달라"</strong>고 지시하십시오.</span>
+    </div>
+    <span class="text-sky-400 font-bold text-[11px]">Slide 71</span>
+  </div>
+</section>

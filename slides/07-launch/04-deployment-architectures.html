@@ -1,0 +1,148 @@
+<section class="slide flex flex-col justify-between" data-title="7.3 배포 인프라 3대 패러다임 비교: Cloud Run vs Vercel vs VM">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.3 클라우드 인프라 아키텍처 비교</span>
+      <span class="px-2.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-600/50 text-emerald-300 font-mono text-[11px] font-bold">
+        VERCEL vs CLOUD RUN vs CLOUD VM
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">배포 환경 3대 패러다임 : Vercel &middot; Cloud Run &middot; VM</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      "어디에 올려야 하는가?" — 프론트엔드 특화 PaaS, 서버리스 컨테이너, 전통적 가상 서버(IaaS)의 작동 원리와 차이점을 비교합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (3 columns) -->
+  <div class="grid grid-cols-3 gap-3 my-auto">
+    
+    <!-- 1. Vercel -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-sky-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-sky-400 font-bold uppercase">1. Vercel (Edge PaaS)</span>
+          <span class="text-[9px] font-mono text-sky-300 bg-sky-950 px-1.5 py-0.5 rounded border border-sky-800">프론트엔드 0-Ops</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">Next.js &middot; Svelte 최적화</h3>
+        <p class="text-[10.5px] text-slate-300 mb-2 leading-relaxed">
+          Git 푸시 즉시 글로벌 엣지 CDN에 배포되며 브랜치별 프리뷰 URL 자동 생성.
+        </p>
+
+        <!-- Architecture Flow Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9.5px] border border-slate-800 mb-2 text-sky-300">
+          Git Push ➔ Edge Build ➔ 300+ 글로벌 CDN PoP ➔ TTFB &lt; 20ms
+        </div>
+
+        <div class="space-y-1 text-[10px]">
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-emerald-400">장점:</strong> 인프라 설정 0초, 빠른 CDN 응답, Git 연동 자동화
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-rose-400">한계:</strong> 15~60초 타임아웃, WebSocket 지속 연결 불가
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800 font-mono text-slate-300">
+            <strong>비용 (0트래픽):</strong> <span class="text-emerald-400 font-bold">$0 (취미 플랜 평생 무료)</span>
+          </div>
+        </div>
+
+        <!-- CLI Command -->
+        <div class="mt-2 p-1.5 bg-slate-950 rounded border border-slate-800 font-mono text-[9.5px] text-slate-400">
+          💻 <span class="text-sky-300">$ npx vercel --prod</span> (10초 배포)
+        </div>
+      </div>
+
+      <div class="text-[9.5px] text-sky-400 font-mono border-t border-slate-800 pt-1.5 mt-2">
+        🎯 적합: 웹 프론트, 블로그, 포트폴리오, 가벼운 API
+      </div>
+    </div>
+
+    <!-- 2. GCP Cloud Run -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-emerald-400 font-bold uppercase">2. GCP Cloud Run (Container)</span>
+          <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950 px-1.5 py-0.5 rounded border border-emerald-800">Scale-to-Zero</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">서버리스 컨테이너</h3>
+        <p class="text-[10.5px] text-slate-300 mb-2 leading-relaxed">
+          Dockerfile만 있으면 Go, Python, Rust 등 어떤 언어든 HTTP 요청 단위로 기동.
+        </p>
+
+        <!-- Architecture Flow Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9.5px] border border-slate-800 mb-2 text-emerald-300">
+          Dockerfile ➔ Scale-to-Zero ($0) ➔ Request ➔ 1초 확장 (0➔1000)
+        </div>
+
+        <div class="space-y-1 text-[10px]">
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-emerald-400">장점:</strong> 트래픽 0이면 0원, 트래픽 폭증 시 무제한 자동 스케일링
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-amber-400">한계:</strong> 첫 요청 시 콜드 스타트(1~2초), 60분 최대 타임아웃
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800 font-mono text-slate-300">
+            <strong>비용 (0트래픽):</strong> <span class="text-emerald-400 font-bold">$0 (월 200만 건 완전 무료)</span>
+          </div>
+        </div>
+
+        <!-- CLI Command -->
+        <div class="mt-2 p-1.5 bg-slate-950 rounded border border-slate-800 font-mono text-[9.5px] text-slate-400">
+          💻 <span class="text-emerald-300">$ gcloud run deploy api --image gcr.io/app</span>
+        </div>
+      </div>
+
+      <div class="text-[9.5px] text-emerald-400 font-mono border-t border-slate-800 pt-1.5 mt-2">
+        🎯 적합: Go/Python 백엔드 API, AI 추론 서빙, 비정기 배치
+      </div>
+    </div>
+
+    <!-- 3. Cloud VM (AWS EC2, Lightsail, GCP GCE) -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-purple-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-purple-400 font-bold uppercase">3. Cloud VM / VPS (IaaS)</span>
+          <span class="text-[9px] font-mono text-purple-300 bg-purple-950 px-1.5 py-0.5 rounded border border-purple-800">24/7 상시 가동</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">AWS EC2 &middot; GCP &middot; Hetzner</h3>
+        <p class="text-[10.5px] text-slate-300 mb-2 leading-relaxed">
+          전용 CPU/메모리를 점유하는 완전한 가상 머신. Podman/Docker Compose로 운영.
+        </p>
+
+        <!-- Architecture Flow Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9.5px] border border-slate-800 mb-2 text-purple-300">
+          Dedicated OS ➔ Podman / Compose ➔ Systemd ➔ 24/7 연결 유지
+        </div>
+
+        <div class="space-y-1 text-[10px]">
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-emerald-400">장점:</strong> WebSocket 무제한 지속, 24시간 백그라운드 봇, 고정 비용
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-rose-400">한계:</strong> OS 보안 패치, Nginx 리버스 프록시, 수동 관리(Ops) 필요
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800 font-mono text-slate-300">
+            <strong>비용 (0트래픽):</strong> <span class="text-amber-400 font-bold">월 $4~10 (고정 요금제)</span>
+          </div>
+        </div>
+
+        <!-- CLI Command -->
+        <div class="mt-2 p-1.5 bg-slate-950 rounded border border-slate-800 font-mono text-[9.5px] text-slate-400">
+          💻 <span class="text-purple-300">$ podman-compose up -d &amp;&amp; ./start.sh prod</span>
+        </div>
+      </div>
+
+      <div class="text-[9.5px] text-purple-400 font-mono border-t border-slate-800 pt-1.5 mt-2">
+        🎯 적합: 24시간 트레이딩 봇, 웹소켓 거래소, 대용량 캐시/DB
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-emerald-400 font-bold">💡 아키텍처 공식:</span>
+      <span class="text-slate-200">프론트는 <strong>Vercel</strong>, 간헐적 API는 <strong>GCP Cloud Run</strong>, 24시간 실시간 데몬/봇은 <strong>VPS(Podman)</strong>가 최적의 분업 조합입니다.</span>
+    </div>
+    <span class="text-emerald-400 font-bold text-[11px]">Slide 73</span>
+  </div>
+</section>

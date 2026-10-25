@@ -1,0 +1,192 @@
+<section class="slide flex flex-col justify-between" data-title="7.6 무료 &amp; 가성비 CI/CD 플랫폼 총정리">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.6 무료 &amp; 가성비 CI/CD 생태계</span>
+      <span class="px-2.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-600/50 text-emerald-300 font-mono text-[11px] font-bold">
+        FREE CI/CD ECOSYSTEM &middot; RUNNER AUDIT
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">무료 &amp; 가성비 CI/CD 서비스 총정리</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      빌드 요금 걱정 없이 1인 창업자와 바이브 코더가 <strong>무료 티어만으로 파이프라인을 구축</strong>할 수 있는 최적의 도구들을 비교합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (4 cols) -->
+  <div class="grid grid-cols-4 gap-3 my-auto">
+    
+    <!-- 1. GitHub Actions -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-sky-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">🐙</span>
+          <span class="text-[9.5px] font-mono text-sky-300 bg-sky-950 px-2 py-0.5 rounded border border-sky-800 font-bold">업계 표준 1위</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-1">GitHub Actions</h3>
+        <p class="text-xs text-slate-400 mb-2.5 leading-relaxed">
+          저장소 내장, 1만 개 이상의 마켓플레이스 액션으로 3분 만에 완성.
+        </p>
+
+        <div class="space-y-2 text-xs mb-2.5">
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <span class="text-slate-300 font-bold">Public 저장소</span>
+            <span class="text-emerald-400 font-bold font-mono">무제한 무료</span>
+          </div>
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <span class="text-slate-300 font-bold">Private 저장소</span>
+            <span class="text-sky-300 font-bold font-mono">월 2,000분 무료</span>
+          </div>
+        </div>
+
+        <!-- Workflow Snippet -->
+        <div class="bg-slate-950 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-0.5 text-slate-300 mb-2">
+          <div class="text-sky-300"># .github/workflows/ci.yml</div>
+          <div>runs-on: ubuntu-latest</div>
+          <div class="text-emerald-300">steps: [- uses: actions/checkout@v4]</div>
+        </div>
+
+        <div class="p-2 bg-sky-950/40 rounded border border-sky-800/40 text-[10.5px] text-sky-200">
+          ✓ SSH 키 &middot; Docker GHCR 연동이 가장 자연스러움
+        </div>
+      </div>
+
+      <div class="text-[10px] text-sky-400 font-mono border-t border-slate-800 pt-2 mt-2 flex items-center justify-between">
+        <span>🎯 범용 백엔드 &middot; 풀스택</span>
+        <span class="text-slate-500">Global Standard</span>
+      </div>
+    </div>
+
+    <!-- 2. Vercel / Cloudflare CI -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">⚡</span>
+          <span class="text-[9.5px] font-mono text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800 font-bold">Zero-Config</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-1">Vercel &middot; Cloudflare</h3>
+        <p class="text-xs text-slate-400 mb-2.5 leading-relaxed">
+          YAML 파일 없이 Git 푸시만 감지하여 빌드 &middot; 캐싱 &middot; 도메인 배포.
+        </p>
+
+        <div class="space-y-2 text-xs mb-2.5">
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <span class="text-slate-300 font-bold">Vercel 취미 플랜</span>
+            <span class="text-emerald-400 font-bold font-mono">월 100시간 무료</span>
+          </div>
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <span class="text-slate-300 font-bold">Cloudflare Pages</span>
+            <span class="text-emerald-400 font-bold font-mono">월 500회 빌드 무료</span>
+          </div>
+        </div>
+
+        <!-- Workflow Snippet -->
+        <div class="bg-slate-950 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-0.5 text-slate-300 mb-2">
+          <div class="text-emerald-300"># Git Branch 자동 바인딩:</div>
+          <div>main ➔ Production (도메인 연결)</div>
+          <div class="text-slate-400">feat/* ➔ Instant Preview URL</div>
+        </div>
+
+        <div class="p-2 bg-emerald-950/40 rounded border border-emerald-800/40 text-[10.5px] text-emerald-200">
+          ✓ 프론트엔드 빌드 속도 및 전 세계 CDN 캐싱 1위
+        </div>
+      </div>
+
+      <div class="text-[10px] text-emerald-400 font-mono border-t border-slate-800 pt-2 mt-2 flex items-center justify-between">
+        <span>🎯 정적 웹, SvelteKit, Next.js</span>
+        <span class="text-slate-500">Fastest Edge</span>
+      </div>
+    </div>
+
+    <!-- 3. GitLab CI/CD -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-amber-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">🦊</span>
+          <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950 px-2 py-0.5 rounded border border-amber-800 font-bold">엔터프라이즈</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-1">GitLab CI/CD</h3>
+        <p class="text-xs text-slate-400 mb-2.5 leading-relaxed">
+          복잡한 다단계 의존성 제어 및 내장 컨테이너 레지스트리 제공.
+        </p>
+
+        <div class="space-y-2 text-xs mb-2.5">
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <span class="text-slate-300 font-bold">공유 클라우드 러너</span>
+            <span class="text-amber-400 font-bold font-mono">월 400분 무료</span>
+          </div>
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <span class="text-slate-300 font-bold">자체 GitLab Runner</span>
+            <span class="text-emerald-400 font-bold font-mono">등록 무제한 무료</span>
+          </div>
+        </div>
+
+        <!-- Workflow Snippet -->
+        <div class="bg-slate-950 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-0.5 text-slate-300 mb-2">
+          <div class="text-amber-300"># .gitlab-ci.yml</div>
+          <div>stages: [test, build, deploy]</div>
+          <div class="text-slate-400">deploy: { stage: deploy, script: ... }</div>
+        </div>
+
+        <div class="p-2 bg-amber-950/40 rounded border border-amber-800/40 text-[10.5px] text-amber-200">
+          ✓ 사내 온프레미스 폐쇄망 구축에 최적
+        </div>
+      </div>
+
+      <div class="text-[10px] text-amber-400 font-mono border-t border-slate-800 pt-2 mt-2 flex items-center justify-between">
+        <span>🎯 자체 서버 보유팀 &middot; 사내망</span>
+        <span class="text-slate-500">Complex DAG</span>
+      </div>
+    </div>
+
+    <!-- 4. Self-Hosted Runner -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-purple-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">💻</span>
+          <span class="text-[9.5px] font-mono text-purple-300 bg-purple-950 px-2 py-0.5 rounded border border-purple-800 font-bold">무제한 $0</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-1">Self-Hosted Runner</h3>
+        <p class="text-xs text-slate-400 mb-2.5 leading-relaxed">
+          남는 PC나 저가 VPS를 러너 데몬으로 등록해 빌드 시간 제약 돌파.
+        </p>
+
+        <div class="space-y-2 text-xs mb-2.5">
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <span class="text-slate-300 font-bold">러너 사용 비용</span>
+            <span class="text-emerald-400 font-bold font-mono">완전 무료 ($0)</span>
+          </div>
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <span class="text-slate-300 font-bold">대표 도구</span>
+            <span class="text-purple-300 font-bold font-mono">GH Runner, Woodpecker</span>
+          </div>
+        </div>
+
+        <!-- Workflow Snippet -->
+        <div class="bg-slate-950 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-0.5 text-slate-300 mb-2">
+          <div class="text-purple-300"># 러너 데몬 등록 &amp; 실행:</div>
+          <div>$ ./config.sh --url https://github.com/repo</div>
+          <div class="text-emerald-300">$ ./run.sh &amp; # 백그라운드 상시 수신</div>
+        </div>
+
+        <div class="p-2 bg-purple-950/40 rounded border border-purple-800/40 text-[10.5px] text-purple-200">
+          ✓ 로컬 Docker 캐시 재사용으로 빌드 5초 단축
+        </div>
+      </div>
+
+      <div class="text-[10px] text-purple-400 font-mono border-t border-slate-800 pt-2 mt-2 flex items-center justify-between">
+        <span>🎯 대규모 빌드 &middot; GPU 프로젝트</span>
+        <span class="text-slate-500">Unlimited Power</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-emerald-400 font-bold">💡 추천 전략:</span>
+      <span class="text-slate-200">기본적으로 <strong>GitHub Actions의 월 2,000분 무료 러너</strong>를 사용하고, 프론트는 <strong>Vercel 자동 빌드</strong>에 맡기는 것이 가장 깔끔합니다.</span>
+    </div>
+    <span class="text-emerald-400 font-bold text-[11px]">Slide 76</span>
+  </div>
+</section>

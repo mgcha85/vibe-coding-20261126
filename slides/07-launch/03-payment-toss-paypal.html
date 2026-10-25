@@ -1,0 +1,121 @@
+<section class="slide flex flex-col justify-between" data-title="7.2 결제 연동 실전: Toss Payments &amp; PayPal">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.2 결제 인프라 &amp; 법적 필수 규정</span>
+      <span class="px-2.5 py-0.5 rounded bg-blue-950/80 border border-blue-600/50 text-blue-300 font-mono text-[11px] font-bold">
+        TOSS PAYMENTS &middot; PAYPAL &middot; WEBHOOK
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">결제 연동 실전 : Toss Payments &amp; PayPal</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      국내 간편결제(Toss)와 글로벌 결제(PayPal)의 3단계 승인 아키텍처를 이해하고, 법적 필수 표기사항과 보안 원칙을 준수합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 my-auto">
+    
+    <!-- LEFT: 국내 Toss Payments (6 cols) -->
+    <div class="col-span-6 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-blue-500 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">💳</span>
+            <span class="text-xs font-mono text-blue-400 font-bold uppercase">국내 1위 PG : Toss Payments 위젯</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-blue-300 bg-blue-950 px-2 py-0.5 rounded border border-blue-800">카카오&middot;토스&middot;네이버페이 지원</span>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-slate-300 mb-2">
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-white text-[11px] block mb-0.5">1. 결제 UI 위젯 (Payment Widget SDK)</strong>
+            <span class="text-[10px] text-slate-400">프론트엔드에 <code>renderPaymentMethods()</code> 한 줄로 모든 카드사 및 간편결제 UI 자동 렌더링.</span>
+          </div>
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-white text-[11px] block mb-0.5">2. 서버 최종 승인 API (Confirm Flow)</strong>
+            <span class="text-[10px] text-slate-400">클라이언트가 받은 <code>paymentKey</code>, <code>orderId</code>, <code>amount</code>를 백엔드에서 Toss API에 POST 승인 요청.</span>
+          </div>
+        </div>
+
+        <!-- Code Snippet: Toss Widget SDK -->
+        <div class="bg-slate-950 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-0.5 mb-2">
+          <div class="text-slate-500">// 프론트엔드 결제 요청</div>
+          <div class="text-blue-300"><span class="text-purple-400">await</span> paymentWidget.requestPayment({</div>
+          <div class="text-slate-300 pl-3">orderId: <span class="text-emerald-300">"ORDER_20261126_01"</span>, orderName: <span class="text-emerald-300">"PRO 멤버십 1개월"</span>,</div>
+          <div class="text-slate-300 pl-3">amount: 29000, successUrl: <span class="text-emerald-300">window.location.origin + "/success"</span></div>
+          <div class="text-blue-300">});</div>
+        </div>
+
+        <!-- Legal Requirements box -->
+        <div class="p-2 bg-amber-950/50 rounded border border-amber-600/40 text-[10px]">
+          <strong class="text-amber-300 block mb-0.5 font-mono">⚖️ PG 심사 통과를 위한 Footer 필수 명시 4요소:</strong>
+          <ul class="text-slate-300 space-y-0.5">
+            <li>&bull; <strong class="text-white">약관 링크:</strong> 이용약관 &middot; 개인정보처리방침 &middot; 환불/취소 정책</li>
+            <li>&bull; <strong class="text-white">사업자 정보:</strong> 상호명, 대표자명, 사업자번호, 통신판매업 신고번호, 주소</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-blue-300 font-mono border-t border-slate-800 pt-1.5 flex items-center justify-between">
+        <span>✓ 테스트 키로 즉시 연동 후 사업자 등록 시 라이브 키 교체</span>
+        <span class="text-slate-500">Domestic Standard</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: 글로벌 PayPal & 결제 보안 3원칙 (6 cols) -->
+    <div class="col-span-6 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-indigo-500 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🌐</span>
+            <span class="text-xs font-mono text-indigo-400 font-bold uppercase">글로벌 결제 : PayPal &middot; 결제 보안 원칙</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-indigo-300 bg-indigo-950 px-2 py-0.5 rounded border border-indigo-800">전 세계 카드 &middot; USD 수납</span>
+        </div>
+
+        <div class="p-2 bg-slate-950 rounded border border-slate-800 mb-2">
+          <strong class="text-white text-[11px] block mb-0.5">1. PayPal Orders API (v2) 흐름</strong>
+          <span class="text-[10px] text-slate-400">서버에서 주문 생성(<code>createOrder</code>) ➔ 유저 결제 승인 ➔ 서버에서 캡처(<code>captureOrder</code>)로 안전 완료.</span>
+        </div>
+
+        <!-- Code Snippet: Webhook verification -->
+        <div class="bg-slate-950 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-0.5 mb-2">
+          <div class="text-slate-500">// 백엔드 Webhook HMAC 서명 검증 (위조 방지)</div>
+          <div class="text-indigo-300"><span class="text-purple-400">const</span> isValid = verifyWebhookSignature({</div>
+          <div class="text-slate-300 pl-3">headerSignature: req.headers[<span class="text-emerald-300">'paypal-transmission-sig'</span>],</div>
+          <div class="text-slate-300 pl-3">webhookId: process.env.PAYPAL_WEBHOOK_ID, body: req.rawBody</div>
+          <div class="text-indigo-300">});</div>
+        </div>
+
+        <!-- 3 Critical Security Rules -->
+        <div class="p-2 bg-slate-950 rounded border border-slate-800 space-y-1">
+          <strong class="text-indigo-300 text-[10.5px] block font-mono">🛡️ 결제 연동 엔지니어링 3대 철칙:</strong>
+          <div class="text-[10px] text-slate-300 leading-tight">
+            <strong class="text-rose-400">① 카드번호 보관 절대 금지:</strong> 카드 정보는 100% PG사 인프라에만 남기며, 내 DB에는 <code>paymentKey</code>만 저장 (PCI-DSS 준수).
+          </div>
+          <div class="text-[10px] text-slate-300 leading-tight">
+            <strong class="text-amber-300">② Webhook 시크릿 서명 검증:</strong> 위조된 가짜 결제 완료 HTTP 요청을 막기 위해 HMAC 서명 헤더를 반드시 검증.
+          </div>
+          <div class="text-[10px] text-slate-300 leading-tight">
+            <strong class="text-emerald-300">③ 멱등성(Idempotency) 보장:</strong> 네트워크 재시도로 동일 주문이 2번 승인되지 않도록 DB Unique Key(orderId) 잠금.
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-indigo-300 font-mono border-t border-slate-800 pt-1.5 flex items-center justify-between">
+        <span>✓ Webhook 수신 시점에만 DB 결제 상태를 'PAID'로 변경</span>
+        <span class="text-slate-500">Zero Leakage</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-blue-400 font-bold">💡 실무 원칙:</span>
+      <span class="text-slate-200">결제 완료 처리는 <strong>브라우저 프론트엔드가 아닌, PG사 Webhook 비동기 콜백</strong>에서 DB 트랜잭션으로 처리해야 유저가 창을 닫아도 안전합니다.</span>
+    </div>
+    <span class="text-blue-400 font-bold text-[11px]">Slide 72</span>
+  </div>
+</section>

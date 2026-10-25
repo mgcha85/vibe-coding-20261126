@@ -144,7 +144,7 @@
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1v4m0-4h-4m4 4l-5-5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
           <span>전체화면 [F]</span>
         </button>
-        <span id="slideCounter" class="text-sky-400 font-bold font-mono">01 / 76</span>
+        <span id="slideCounter" class="text-sky-400 font-bold font-mono">01 / 82</span>
       </div>
     </header>
 
@@ -9233,170 +9233,1254 @@
       <!-- [COMPONENT] 07-launch/01-intro.html -->
 <section class="slide justify-center" data-title="Ch 07. 런칭 인트로">
   <div class="max-w-3xl">
-    <span class="text-sky-400 font-mono text-sm tracking-widest font-semibold px-3 py-1 rounded bg-sky-500/10 border border-sky-400/20">CHAPTER 07</span>
-    <h2 class="text-4xl md:text-5xl font-black text-white mt-4 mb-3">
-      런칭 : Vercel · Supabase · Stripe
+    <div class="flex items-center gap-2 mb-3">
+      <span class="text-sky-400 font-mono text-sm tracking-widest font-semibold px-3 py-1 rounded bg-sky-500/10 border border-sky-400/20">CHAPTER 07</span>
+      <span class="text-emerald-300 font-mono text-xs px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-400/30 font-bold">🚀 LAUNCH &amp; PRODUCTION INFRA</span>
+    </div>
+    <h2 class="text-4xl md:text-5xl font-black text-white mb-3">
+      런칭 : 인증 &middot; 결제 &middot; 배포 &middot; CI/CD의 완성
     </h2>
     <p class="text-lg text-slate-300 leading-relaxed mb-6">
-      클라우드 인프라를 프로비저닝하느라 며칠을 허비하던 시대는 끝났습니다.<br>
-      Modern Serverless BaaS 3대장을 결합하여 아이디어 구상부터 실 결제 가능한 글로벌 프로덕트 런칭까지 단 1시간에 관통하는 워크플로우를 살펴봅니다.
+      AI가 코드를 완성했다고 프로젝트가 끝난 것이 아닙니다. 진짜 엔지니어링은 <strong>유저를 받고(SNS 로그인), 돈을 벌고(Toss &middot; PayPal 결제), 안정적으로 서빙하며(Vercel &middot; Cloud Run &middot; VM), 변경 사항을 자동 배포(GitHub Actions)</strong>할 수 있을 때 완성됩니다.<br>
+      0원으로 시작하여 상용 프로덕션 수준까지 확장 가능한 실전 런칭 아키텍처를 마스터합니다.
     </p>
-    <div class="flex items-center gap-3 text-xs font-mono text-slate-400">
-      <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#Vercel</span>
-      <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#Supabase</span>
-      <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#Stripe</span>
-      <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#1HourLaunch</span>
+    <div class="flex flex-wrap items-center gap-2.5 text-xs font-mono text-slate-400">
+      <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#Supabase_Auth</span>
+      <span class="px-2.5 py-1 rounded bg-slate-800 text-blue-300">#TossPayments</span>
+      <span class="px-2.5 py-1 rounded bg-slate-800 text-indigo-300">#PayPal</span>
+      <span class="px-2.5 py-1 rounded bg-slate-800 text-emerald-300">#CloudRun_vs_Vercel</span>
+      <span class="px-2.5 py-1 rounded bg-slate-800 text-purple-300">#FreeTier_Guide</span>
+      <span class="px-2.5 py-1 rounded bg-sky-950/80 text-sky-300 border border-sky-800/50 font-bold">#GitHub_Actions_CICD</span>
     </div>
   </div>
 </section>
 
-      <!-- [COMPONENT] 07-launch/02-baas-vercel.html -->
-<section class="slide" data-title="7.1 & 7.2 BaaS & Vercel">
-  <div class="mb-4">
-    <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 07. 런칭</span>
-    <h2 class="text-3xl font-black text-white">7.1 Serverless BaaS 생태계 & 7.2 Vercel 프리뷰 배포</h2>
+      <!-- [COMPONENT] 07-launch/02-auth-sns-supabase.html -->
+<section class="slide flex flex-col justify-between" data-title="7.1 SNS 로그인 &amp; BaaS 인증: Supabase Auth">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.1 사용자 인증의 정석</span>
+      <span class="px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-600/50 text-sky-300 font-mono text-[11px] font-bold">
+        SNS OAUTH &middot; SUPABASE AUTH &middot; RLS
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">SNS 로그인 &amp; BaaS 인증 : 왜 Supabase인가?</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      바이브 코딩 시 <strong>"로그인 백엔드 직접 구현"</strong>은 최악의 안티패턴입니다. 검증된 BaaS로 5분 만에 OAuth를 붙이고 RLS로 격리합니다.
+    </p>
   </div>
-  <div class="grid grid-cols-2 gap-6 flex-1 items-stretch">
-    <div class="bento-tile p-6 flex flex-col justify-between">
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 my-auto">
+    
+    <!-- LEFT: 직접 구현의 함정 (5 cols) -->
+    <div class="col-span-5 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-rose-500 bg-slate-900/90">
       <div>
-        <span class="text-xs font-mono text-sky-400 font-bold block mb-2">SUB-CHAPTER 7.1</span>
-        <h3 class="text-xl font-bold text-white mb-3">Modern Serverless BaaS 3대장</h3>
-        <p class="text-sm text-slate-300 mb-4 leading-relaxed">
-          왜 1인 창업자와 바이브 코더들은 AWS VPC 설정을 버리고 BaaS를 선택하는가?
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">⚠️</span>
+            <span class="text-xs font-mono text-rose-400 font-bold uppercase">직접 구현(DIY Auth)의 보안 참사</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">취약점 덩어리</span>
+        </div>
+
+        <p class="text-[11px] text-slate-400 mb-2 leading-relaxed">
+          AI에게 <em>"JWT 로그인 백엔드 짜줘"</em>라고 요청하면 겉만 돌아가는 위험천만한 코드가 생성됩니다.
         </p>
-        <div class="space-y-2.5 text-xs">
-          <div class="p-3 bg-slate-900 rounded border border-slate-800 flex justify-between items-center">
-            <div>
-              <span class="font-bold text-sky-400">Vercel</span>
-              <span class="text-slate-300 block text-[11px]">프론트 호스팅, Edge Functions, Preview 배포</span>
-            </div>
-            <span class="font-mono text-slate-500 text-[10px]">Zero-Ops</span>
+
+        <div class="space-y-1.5 text-xs text-slate-300 mb-2.5">
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5 text-[11px]">1. JWT 시크릿 &amp; LocalStorage 탈취 위험</strong>
+            <span class="text-[10px] text-slate-400 leading-tight">브라우저 LocalStorage에 저장하여 악성 스크립트(XSS) 1초 탈취, 유효기간 만료 예외 누락.</span>
           </div>
-          <div class="p-3 bg-slate-900 rounded border border-slate-800 flex justify-between items-center">
-            <div>
-              <span class="font-bold text-emerald-400">Supabase</span>
-              <span class="text-slate-300 block text-[11px]">Managed PostgreSQL, Auth, 실시간 동기화, RLS</span>
-            </div>
-            <span class="font-mono text-slate-500 text-[10px]">Open BaaS</span>
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5 text-[11px]">2. Refresh 토큰 로테이션 &amp; 세션 무효화 부재</strong>
+            <span class="text-[10px] text-slate-400 leading-tight">동시 요청 시 토큰 중복 재발급 레이스 컨디션, 비밀번호 변경 시 기존 세션 강제 만료 미구현.</span>
           </div>
-          <div class="p-3 bg-slate-900 rounded border border-slate-800 flex justify-between items-center">
-            <div>
-              <span class="font-bold text-indigo-400">Stripe</span>
-              <span class="text-slate-300 block text-[11px]">글로벌 결제, 구독 라이프사이클, 고객 포털</span>
-            </div>
-            <span class="font-mono text-slate-500 text-[10px]">Billing Engine</span>
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5 text-[11px]">3. 카카오/구글 OAuth 규격 파편화</strong>
+            <span class="text-[10px] text-slate-400 leading-tight">제공자마다 제각각인 인증 응답 규격 파싱 및 콜백 핸들링에 수백 줄의 유지보수 부채 발생.</span>
           </div>
         </div>
+
+        <!-- Vulnerable Code Example Box -->
+        <div class="bg-rose-950/40 rounded p-2.5 font-mono text-[10px] border border-rose-800/50 space-y-1 text-rose-200">
+          <div class="text-rose-400 font-bold flex items-center justify-between">
+            <span>❌ AI가 흔히 만드는 취약 코드 안티패턴:</span>
+            <span class="text-[9px] bg-rose-900/60 px-1.5 py-0.5 rounded">Security Bug</span>
+          </div>
+          <div>// LocalStorage 저장 ➔ XSS 공격 시 1초 만에 계정 탈취</div>
+          <div class="text-rose-300">localStorage.setItem('accessToken', token);</div>
+          <div class="text-slate-400">// 하드코딩된 시크릿 키 ➔ 깃허브 공개 레포 노출 대참사</div>
+          <div class="text-rose-300">jwt.verify(token, "my-super-secret-123");</div>
+        </div>
       </div>
-      <div class="text-[11px] text-slate-400 font-mono border-t border-slate-800 pt-3">
-        서버 관리 비용을 '비즈니스 로직과 프롬프트'로 온전히 전환
+
+      <div class="text-[10px] text-rose-400 font-mono border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>❌ 비밀번호 해싱 &middot; 세션 관리에 엔지니어링 40시간 낭비</span>
+        <span class="text-slate-500">Anti-Pattern</span>
       </div>
     </div>
 
-    <div class="bento-tile p-6 flex flex-col justify-between">
+    <!-- RIGHT: Supabase Auth 해결책 (7 cols) -->
+    <div class="col-span-7 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-900/90">
       <div>
-        <span class="text-xs font-mono text-sky-400 font-bold block mb-2">SUB-CHAPTER 7.2</span>
-        <h3 class="text-xl font-bold text-white mb-3">Vercel의 Preview 배포 자동화</h3>
-        <p class="text-sm text-slate-300 mb-4 leading-relaxed">
-          AI 에이전트의 브랜치 푸시마다 격리된 테스트 URL 실시간 발급:
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">⚡</span>
+            <span class="text-xs font-mono text-emerald-400 font-bold uppercase">해결책 : Supabase Auth &middot; RLS 직결</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">월 50,000 MAU 무료</span>
+        </div>
+
+        <p class="text-[11px] text-slate-400 mb-2 leading-relaxed">
+          Google, Kakao, GitHub OAuth를 클릭 한 번으로 활성화하고, 프론트엔드와 PostgreSQL RLS를 직결합니다.
         </p>
-        <div class="space-y-2 text-xs">
-          <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
-            <span class="text-sky-400 font-mono font-bold block mb-0.5">1. Git Push 이벤트 트리거</span>
-            에이전트가 생성한 브랜치가 푸시되면 즉시 Next/Svelte 빌드
+
+        <!-- 3 Steps flow -->
+        <div class="grid grid-cols-3 gap-2 mb-2 text-xs">
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <span class="text-[10px] font-mono text-sky-400 font-bold block mb-0.5">STEP 1. 대시보드 클릭</span>
+            <span class="text-white font-semibold text-[11px]">SNS Provider 토글</span>
+            <span class="text-[9.5px] text-slate-400 block mt-0.5">Google, Kakao Client ID 복붙</span>
           </div>
-          <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
-            <span class="text-indigo-400 font-mono font-bold block mb-0.5">2. 격리된 Preview URL 생성</span>
-            <code class="text-slate-300 font-mono text-[11px]">app-git-feat-auth.vercel.app</code>에서 실제 브라우저 렌더링 검증
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <span class="text-[10px] font-mono text-emerald-400 font-bold block mb-0.5">STEP 2. 프론트 3줄 호출</span>
+            <span class="text-white font-semibold text-[11px]">원클릭 리다이렉트</span>
+            <span class="text-[9.5px] text-slate-400 block mt-0.5">PKCE 보안 흐름 &amp; 쿠키 동기화</span>
           </div>
-          <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
-            <span class="text-emerald-400 font-mono font-bold block mb-0.5">3. 1초 Instant Rollback</span>
-            장애 발생 시 클릭 한 번으로 이전 빌드로 즉시 복구
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <span class="text-[10px] font-mono text-purple-400 font-bold block mb-0.5">STEP 3. DB 레벨 격리</span>
+            <span class="text-white font-semibold text-[11px]">RLS 자동 바인딩</span>
+            <span class="text-[9.5px] text-slate-400 block mt-0.5"><code>auth.uid() = user_id</code> 격리</span>
           </div>
         </div>
+
+        <!-- Code Snippet 1: Frontend Auth -->
+        <div class="bg-slate-950 rounded p-2.5 font-mono text-[10.5px] border border-slate-800 space-y-0.5 mb-2">
+          <div class="text-slate-500">// 1. 프론트엔드(Svelte/React): 단 4줄로 구글/카카오 로그인 완료</div>
+          <div class="text-sky-300"><span class="text-purple-400">const</span> { data, error } = <span class="text-purple-400">await</span> supabase.auth.signInWithOAuth({</div>
+          <div class="text-slate-300 pl-4">provider: <span class="text-emerald-300">'google'</span>, <span class="text-slate-500">// 'kakao', 'github' 전환 즉시 가능</span></div>
+          <div class="text-slate-300 pl-4">options: { redirectTo: <span class="text-emerald-300">`https://myapp.com/auth/callback`</span> }</div>
+          <div class="text-sky-300">});</div>
+        </div>
+
+        <!-- Code Snippet 2: Postgres RLS Policy -->
+        <div class="bg-slate-950 rounded p-2.5 font-mono text-[10.5px] border border-slate-800 space-y-0.5 mb-2">
+          <div class="text-slate-500">// 2. PostgreSQL RLS 정책: 백엔드 API 없이도 유저별 데이터 자동 보호</div>
+          <div class="text-emerald-300 font-bold">ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;</div>
+          <div class="text-sky-300">CREATE POLICY <span class="text-white">"Users can read own profile"</span> ON profiles</div>
+          <div class="text-purple-300 pl-4">FOR SELECT USING (auth.uid() = id);</div>
+        </div>
+
+        <!-- Session Listener Tip Box -->
+        <div class="p-2 bg-slate-950 rounded border border-slate-800 font-mono text-[10px] text-slate-300 flex items-center justify-between">
+          <span>🔄 <code>supabase.auth.onAuthStateChange((event, session) =&gt; ...)</code>로 실시간 상태 동기화</span>
+          <span class="text-emerald-400 font-bold">Zero Polling</span>
+        </div>
       </div>
-      <div class="text-[11px] text-sky-300 font-mono border-t border-slate-800 pt-3">
-        "말보다 작동하는 라이브 URL을 직접 보며 피드백하는 속도"
+
+      <div class="text-[10px] text-emerald-400 font-mono border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 백엔드 API 작성 없이 프론트 ➔ Supabase 다이렉트 쿼리 실현</span>
+        <span class="text-slate-400">Zero Auth Codebase</span>
       </div>
     </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">💡 바이브 코딩 실전 팁:</span>
+      <span class="text-slate-200">AI에게 <em>"인증 백엔드를 짜달라"</em>고 하지 말고, <strong>"Supabase Auth SDK를 사용해 SNS 로그인 버튼 및 보호 라우트를 작성해달라"</strong>고 지시하십시오.</span>
+    </div>
+    <span class="text-sky-400 font-bold text-[11px]">Slide 71</span>
   </div>
 </section>
 
-      <!-- [COMPONENT] 07-launch/03-supabase-stripe.html -->
-<section class="slide" data-title="7.3 ~ 7.5 Supabase & Stripe">
-  <div class="mb-4">
-    <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 07. 런칭</span>
-    <h2 class="text-3xl font-black text-white">7.3 Supabase · 7.4 Stripe · 7.5 1시간 런칭 파이프라인</h2>
+      <!-- [COMPONENT] 07-launch/03-payment-toss-paypal.html -->
+<section class="slide flex flex-col justify-between" data-title="7.2 결제 연동 실전: Toss Payments &amp; PayPal">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.2 결제 인프라 &amp; 법적 필수 규정</span>
+      <span class="px-2.5 py-0.5 rounded bg-blue-950/80 border border-blue-600/50 text-blue-300 font-mono text-[11px] font-bold">
+        TOSS PAYMENTS &middot; PAYPAL &middot; WEBHOOK
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">결제 연동 실전 : Toss Payments &amp; PayPal</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      국내 간편결제(Toss)와 글로벌 결제(PayPal)의 3단계 승인 아키텍처를 이해하고, 법적 필수 표기사항과 보안 원칙을 준수합니다.
+    </p>
   </div>
-  <div class="grid grid-cols-3 gap-5 flex-1 items-stretch">
-    <div class="bento-tile p-5 flex flex-col justify-between">
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 my-auto">
+    
+    <!-- LEFT: 국내 Toss Payments (6 cols) -->
+    <div class="col-span-6 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-blue-500 bg-slate-900/90">
       <div>
-        <span class="text-xs font-mono text-sky-400 font-bold block mb-1">SUB-CHAPTER 7.3</span>
-        <h3 class="text-base font-bold text-white mb-2">Supabase 백엔드</h3>
-        <p class="text-xs text-slate-300 mb-3">풀스택 백엔드를 10분 만에 구축:</p>
-        <ul class="space-y-2 text-xs text-slate-300">
-          <li class="p-2 bg-slate-800/80 rounded border border-slate-700/60">
-            <strong>• Postgres DDL 자동 합성:</strong> AI가 엔티티 관계를 파악하고 마이그레이션 SQL 생성
-          </li>
-          <li class="p-2 bg-slate-800/80 rounded border border-slate-700/60">
-            <strong>• Auth & Social OAuth:</strong> 구글/깃허브 로그인 5줄로 즉시 활성화
-          </li>
-          <li class="p-2 bg-slate-800/80 rounded border border-slate-700/60">
-            <strong>• Row Level Security:</strong> DB 레벨에서 유저별 데이터 격리 정책 부여
-          </li>
-        </ul>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">💳</span>
+            <span class="text-xs font-mono text-blue-400 font-bold uppercase">국내 1위 PG : Toss Payments 위젯</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-blue-300 bg-blue-950 px-2 py-0.5 rounded border border-blue-800">카카오&middot;토스&middot;네이버페이 지원</span>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-slate-300 mb-2">
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-white text-[11px] block mb-0.5">1. 결제 UI 위젯 (Payment Widget SDK)</strong>
+            <span class="text-[10px] text-slate-400">프론트엔드에 <code>renderPaymentMethods()</code> 한 줄로 모든 카드사 및 간편결제 UI 자동 렌더링.</span>
+          </div>
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-white text-[11px] block mb-0.5">2. 서버 최종 승인 API (Confirm Flow)</strong>
+            <span class="text-[10px] text-slate-400">클라이언트가 받은 <code>paymentKey</code>, <code>orderId</code>, <code>amount</code>를 백엔드에서 Toss API에 POST 승인 요청.</span>
+          </div>
+        </div>
+
+        <!-- Code Snippet: Toss Widget SDK -->
+        <div class="bg-slate-950 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-0.5 mb-2">
+          <div class="text-slate-500">// 프론트엔드 결제 요청</div>
+          <div class="text-blue-300"><span class="text-purple-400">await</span> paymentWidget.requestPayment({</div>
+          <div class="text-slate-300 pl-3">orderId: <span class="text-emerald-300">"ORDER_20261126_01"</span>, orderName: <span class="text-emerald-300">"PRO 멤버십 1개월"</span>,</div>
+          <div class="text-slate-300 pl-3">amount: 29000, successUrl: <span class="text-emerald-300">window.location.origin + "/success"</span></div>
+          <div class="text-blue-300">});</div>
+        </div>
+
+        <!-- Legal Requirements box -->
+        <div class="p-2 bg-amber-950/50 rounded border border-amber-600/40 text-[10px]">
+          <strong class="text-amber-300 block mb-0.5 font-mono">⚖️ PG 심사 통과를 위한 Footer 필수 명시 4요소:</strong>
+          <ul class="text-slate-300 space-y-0.5">
+            <li>&bull; <strong class="text-white">약관 링크:</strong> 이용약관 &middot; 개인정보처리방침 &middot; 환불/취소 정책</li>
+            <li>&bull; <strong class="text-white">사업자 정보:</strong> 상호명, 대표자명, 사업자번호, 통신판매업 신고번호, 주소</li>
+          </ul>
+        </div>
       </div>
-      <div class="text-[10px] text-slate-400 font-mono border-t border-slate-800 pt-2">
-        타입 안전한 클라이언트 SDK 자동 생성
+
+      <div class="text-[10px] text-blue-300 font-mono border-t border-slate-800 pt-1.5 flex items-center justify-between">
+        <span>✓ 테스트 키로 즉시 연동 후 사업자 등록 시 라이브 키 교체</span>
+        <span class="text-slate-500">Domestic Standard</span>
       </div>
     </div>
 
-    <div class="bento-tile p-5 flex flex-col justify-between">
+    <!-- RIGHT: 글로벌 PayPal & 결제 보안 3원칙 (6 cols) -->
+    <div class="col-span-6 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-indigo-500 bg-slate-900/90">
       <div>
-        <span class="text-xs font-mono text-sky-400 font-bold block mb-1">SUB-CHAPTER 7.4</span>
-        <h3 class="text-base font-bold text-white mb-2">Stripe 결제 인프라</h3>
-        <p class="text-xs text-slate-300 mb-3">글로벌 SaaS 과금 체계 연결:</p>
-        <ul class="space-y-2 text-xs text-slate-300">
-          <li class="p-2 bg-slate-800/80 rounded border border-slate-700/60">
-            <strong>• Stripe Checkout:</strong> 보안 호스팅된 결제 세션으로 카드/애플페이 수납
-          </li>
-          <li class="p-2 bg-slate-800/80 rounded border border-slate-700/60">
-            <strong>• Webhook 핸들링:</strong> 결제 성공 이벤트 수신 시 Supabase 구독 플래그 갱신
-          </li>
-          <li class="p-2 bg-slate-800/80 rounded border border-slate-700/60">
-            <strong>• Customer Portal:</strong> 구독 변경/카드 수정 UI 무료 활용
-          </li>
-        </ul>
-      </div>
-      <div class="text-[10px] text-slate-400 font-mono border-t border-slate-800 pt-2">
-        PG사 심사 없이 즉시 테스트 모드로 글로벌 결제 검증
-      </div>
-    </div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🌐</span>
+            <span class="text-xs font-mono text-indigo-400 font-bold uppercase">글로벌 결제 : PayPal &middot; 결제 보안 원칙</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-indigo-300 bg-indigo-950 px-2 py-0.5 rounded border border-indigo-800">전 세계 카드 &middot; USD 수납</span>
+        </div>
 
-    <div class="bento-tile p-5 flex flex-col justify-between border-sky-400/30">
-      <div>
-        <span class="text-xs font-mono text-sky-400 font-bold block mb-1">SUB-CHAPTER 7.5</span>
-        <h3 class="text-base font-bold text-white mb-2">1시간 실전 런칭 파이프라인</h3>
-        <p class="text-xs text-slate-300 mb-3">기획서 1장에서 프로덕션까지:</p>
-        <div class="space-y-1.5 text-[11px] font-mono text-slate-300">
-          <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
-            <span class="text-sky-400">00~15m:</span> PRD 작성 & DB 스키마 생성
+        <div class="p-2 bg-slate-950 rounded border border-slate-800 mb-2">
+          <strong class="text-white text-[11px] block mb-0.5">1. PayPal Orders API (v2) 흐름</strong>
+          <span class="text-[10px] text-slate-400">서버에서 주문 생성(<code>createOrder</code>) ➔ 유저 결제 승인 ➔ 서버에서 캡처(<code>captureOrder</code>)로 안전 완료.</span>
+        </div>
+
+        <!-- Code Snippet: Webhook verification -->
+        <div class="bg-slate-950 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-0.5 mb-2">
+          <div class="text-slate-500">// 백엔드 Webhook HMAC 서명 검증 (위조 방지)</div>
+          <div class="text-indigo-300"><span class="text-purple-400">const</span> isValid = verifyWebhookSignature({</div>
+          <div class="text-slate-300 pl-3">headerSignature: req.headers[<span class="text-emerald-300">'paypal-transmission-sig'</span>],</div>
+          <div class="text-slate-300 pl-3">webhookId: process.env.PAYPAL_WEBHOOK_ID, body: req.rawBody</div>
+          <div class="text-indigo-300">});</div>
+        </div>
+
+        <!-- 3 Critical Security Rules -->
+        <div class="p-2 bg-slate-950 rounded border border-slate-800 space-y-1">
+          <strong class="text-indigo-300 text-[10.5px] block font-mono">🛡️ 결제 연동 엔지니어링 3대 철칙:</strong>
+          <div class="text-[10px] text-slate-300 leading-tight">
+            <strong class="text-rose-400">① 카드번호 보관 절대 금지:</strong> 카드 정보는 100% PG사 인프라에만 남기며, 내 DB에는 <code>paymentKey</code>만 저장 (PCI-DSS 준수).
           </div>
-          <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
-            <span class="text-sky-400">15~35m:</span> UI 컴포넌트 & 상태 관리 연결
+          <div class="text-[10px] text-slate-300 leading-tight">
+            <strong class="text-amber-300">② Webhook 시크릿 서명 검증:</strong> 위조된 가짜 결제 완료 HTTP 요청을 막기 위해 HMAC 서명 헤더를 반드시 검증.
           </div>
-          <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
-            <span class="text-sky-400">35~50m:</span> Stripe 결제 웹훅 & Auth 연동
-          </div>
-          <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
-            <span class="text-emerald-400">50~60m:</span> 도메인 연결 & 최종 런칭
+          <div class="text-[10px] text-slate-300 leading-tight">
+            <strong class="text-emerald-300">③ 멱등성(Idempotency) 보장:</strong> 네트워크 재시도로 동일 주문이 2번 승인되지 않도록 DB Unique Key(orderId) 잠금.
           </div>
         </div>
       </div>
-      <div class="text-[10px] text-emerald-400 font-mono border-t border-slate-800 pt-2">
-        실제 상용 서비스 가능한 수준의 라이브 데모
+
+      <div class="text-[10px] text-indigo-300 font-mono border-t border-slate-800 pt-1.5 flex items-center justify-between">
+        <span>✓ Webhook 수신 시점에만 DB 결제 상태를 'PAID'로 변경</span>
+        <span class="text-slate-500">Zero Leakage</span>
       </div>
     </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-blue-400 font-bold">💡 실무 원칙:</span>
+      <span class="text-slate-200">결제 완료 처리는 <strong>브라우저 프론트엔드가 아닌, PG사 Webhook 비동기 콜백</strong>에서 DB 트랜잭션으로 처리해야 유저가 창을 닫아도 안전합니다.</span>
+    </div>
+    <span class="text-blue-400 font-bold text-[11px]">Slide 72</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 07-launch/04-deployment-architectures.html -->
+<section class="slide flex flex-col justify-between" data-title="7.3 배포 인프라 3대 패러다임 비교: Cloud Run vs Vercel vs VM">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.3 클라우드 인프라 아키텍처 비교</span>
+      <span class="px-2.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-600/50 text-emerald-300 font-mono text-[11px] font-bold">
+        VERCEL vs CLOUD RUN vs CLOUD VM
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">배포 환경 3대 패러다임 : Vercel &middot; Cloud Run &middot; VM</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      "어디에 올려야 하는가?" — 프론트엔드 특화 PaaS, 서버리스 컨테이너, 전통적 가상 서버(IaaS)의 작동 원리와 차이점을 비교합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (3 columns) -->
+  <div class="grid grid-cols-3 gap-3 my-auto">
+    
+    <!-- 1. Vercel -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-sky-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-sky-400 font-bold uppercase">1. Vercel (Edge PaaS)</span>
+          <span class="text-[9px] font-mono text-sky-300 bg-sky-950 px-1.5 py-0.5 rounded border border-sky-800">프론트엔드 0-Ops</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">Next.js &middot; Svelte 최적화</h3>
+        <p class="text-[10.5px] text-slate-300 mb-2 leading-relaxed">
+          Git 푸시 즉시 글로벌 엣지 CDN에 배포되며 브랜치별 프리뷰 URL 자동 생성.
+        </p>
+
+        <!-- Architecture Flow Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9.5px] border border-slate-800 mb-2 text-sky-300">
+          Git Push ➔ Edge Build ➔ 300+ 글로벌 CDN PoP ➔ TTFB &lt; 20ms
+        </div>
+
+        <div class="space-y-1 text-[10px]">
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-emerald-400">장점:</strong> 인프라 설정 0초, 빠른 CDN 응답, Git 연동 자동화
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-rose-400">한계:</strong> 15~60초 타임아웃, WebSocket 지속 연결 불가
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800 font-mono text-slate-300">
+            <strong>비용 (0트래픽):</strong> <span class="text-emerald-400 font-bold">$0 (취미 플랜 평생 무료)</span>
+          </div>
+        </div>
+
+        <!-- CLI Command -->
+        <div class="mt-2 p-1.5 bg-slate-950 rounded border border-slate-800 font-mono text-[9.5px] text-slate-400">
+          💻 <span class="text-sky-300">$ npx vercel --prod</span> (10초 배포)
+        </div>
+      </div>
+
+      <div class="text-[9.5px] text-sky-400 font-mono border-t border-slate-800 pt-1.5 mt-2">
+        🎯 적합: 웹 프론트, 블로그, 포트폴리오, 가벼운 API
+      </div>
+    </div>
+
+    <!-- 2. GCP Cloud Run -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-emerald-400 font-bold uppercase">2. GCP Cloud Run (Container)</span>
+          <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950 px-1.5 py-0.5 rounded border border-emerald-800">Scale-to-Zero</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">서버리스 컨테이너</h3>
+        <p class="text-[10.5px] text-slate-300 mb-2 leading-relaxed">
+          Dockerfile만 있으면 Go, Python, Rust 등 어떤 언어든 HTTP 요청 단위로 기동.
+        </p>
+
+        <!-- Architecture Flow Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9.5px] border border-slate-800 mb-2 text-emerald-300">
+          Dockerfile ➔ Scale-to-Zero ($0) ➔ Request ➔ 1초 확장 (0➔1000)
+        </div>
+
+        <div class="space-y-1 text-[10px]">
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-emerald-400">장점:</strong> 트래픽 0이면 0원, 트래픽 폭증 시 무제한 자동 스케일링
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-amber-400">한계:</strong> 첫 요청 시 콜드 스타트(1~2초), 60분 최대 타임아웃
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800 font-mono text-slate-300">
+            <strong>비용 (0트래픽):</strong> <span class="text-emerald-400 font-bold">$0 (월 200만 건 완전 무료)</span>
+          </div>
+        </div>
+
+        <!-- CLI Command -->
+        <div class="mt-2 p-1.5 bg-slate-950 rounded border border-slate-800 font-mono text-[9.5px] text-slate-400">
+          💻 <span class="text-emerald-300">$ gcloud run deploy api --image gcr.io/app</span>
+        </div>
+      </div>
+
+      <div class="text-[9.5px] text-emerald-400 font-mono border-t border-slate-800 pt-1.5 mt-2">
+        🎯 적합: Go/Python 백엔드 API, AI 추론 서빙, 비정기 배치
+      </div>
+    </div>
+
+    <!-- 3. Cloud VM (AWS EC2, Lightsail, GCP GCE) -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-purple-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-purple-400 font-bold uppercase">3. Cloud VM / VPS (IaaS)</span>
+          <span class="text-[9px] font-mono text-purple-300 bg-purple-950 px-1.5 py-0.5 rounded border border-purple-800">24/7 상시 가동</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">AWS EC2 &middot; GCP &middot; Hetzner</h3>
+        <p class="text-[10.5px] text-slate-300 mb-2 leading-relaxed">
+          전용 CPU/메모리를 점유하는 완전한 가상 머신. Podman/Docker Compose로 운영.
+        </p>
+
+        <!-- Architecture Flow Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9.5px] border border-slate-800 mb-2 text-purple-300">
+          Dedicated OS ➔ Podman / Compose ➔ Systemd ➔ 24/7 연결 유지
+        </div>
+
+        <div class="space-y-1 text-[10px]">
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-emerald-400">장점:</strong> WebSocket 무제한 지속, 24시간 백그라운드 봇, 고정 비용
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-rose-400">한계:</strong> OS 보안 패치, Nginx 리버스 프록시, 수동 관리(Ops) 필요
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800 font-mono text-slate-300">
+            <strong>비용 (0트래픽):</strong> <span class="text-amber-400 font-bold">월 $4~10 (고정 요금제)</span>
+          </div>
+        </div>
+
+        <!-- CLI Command -->
+        <div class="mt-2 p-1.5 bg-slate-950 rounded border border-slate-800 font-mono text-[9.5px] text-slate-400">
+          💻 <span class="text-purple-300">$ podman-compose up -d &amp;&amp; ./start.sh prod</span>
+        </div>
+      </div>
+
+      <div class="text-[9.5px] text-purple-400 font-mono border-t border-slate-800 pt-1.5 mt-2">
+        🎯 적합: 24시간 트레이딩 봇, 웹소켓 거래소, 대용량 캐시/DB
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-emerald-400 font-bold">💡 아키텍처 공식:</span>
+      <span class="text-slate-200">프론트는 <strong>Vercel</strong>, 간헐적 API는 <strong>GCP Cloud Run</strong>, 24시간 실시간 데몬/봇은 <strong>VPS(Podman)</strong>가 최적의 분업 조합입니다.</span>
+    </div>
+    <span class="text-emerald-400 font-bold text-[11px]">Slide 73</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 07-launch/05-free-tier-and-fit-guide.html -->
+<section class="slide flex flex-col justify-between" data-title="7.4 앱 유형별 최적 배포처 &amp; Free Tier 완전 분석">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.4 앱 유형별 매핑 &amp; 비용 0원 가이드</span>
+      <span class="px-2.5 py-0.5 rounded bg-purple-950/80 border border-purple-600/50 text-purple-300 font-mono text-[11px] font-bold">
+        APP FIT MATRIX &middot; FREE TIER AUDIT
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">어디에 배포하고, 어디까지 무료인가?</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      내 애플리케이션의 특성(정적 UI, 간헐적 API, 24시간 데몬)에 맞춰 <strong>월 0원으로 프로덕션을 운영하는 Free Tier 조합</strong>을 설계합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 my-auto">
+    
+    <!-- LEFT: App Fit Matrix (6 cols) -->
+    <div class="col-span-6 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-sky-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🗺️</span>
+            <span class="text-xs font-mono text-sky-400 font-bold uppercase">앱 유형별 최적 배포 매핑 가이드</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-sky-300 bg-sky-950 px-2 py-0.5 rounded border border-sky-800">성격별 분업</span>
+        </div>
+
+        <div class="space-y-1.5 text-xs mb-2">
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800 flex items-center justify-between">
+            <div>
+              <strong class="text-white block text-[10.5px]">1. 정적 프론트엔드 (Svelte &middot; React SPA)</strong>
+              <span class="text-[9.5px] text-slate-400">CDN 캐싱, 무중단 배포, 전 세계 초저지연 로딩</span>
+            </div>
+            <span class="px-2 py-0.5 bg-sky-950 text-sky-300 rounded font-mono text-[9.5px] border border-sky-800 font-bold">Vercel &middot; Cloudflare</span>
+          </div>
+
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800 flex items-center justify-between">
+            <div>
+              <strong class="text-white block text-[10.5px]">2. 이벤트 백엔드 (Go &middot; Python API)</strong>
+              <span class="text-[9.5px] text-slate-400">간헐적 요청 처리, 결제 Webhook, AI 프롬프트 중계</span>
+            </div>
+            <span class="px-2 py-0.5 bg-emerald-950 text-emerald-300 rounded font-mono text-[9.5px] border border-emerald-800 font-bold">GCP Cloud Run</span>
+          </div>
+
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800 flex items-center justify-between">
+            <div>
+              <strong class="text-white block text-[10.5px]">3. 24/7 실시간 봇 &middot; WebSocket 서버</strong>
+              <span class="text-[9.5px] text-slate-400">거래소 시세 수신, 트레이딩 데몬, 장기 백그라운드 작업</span>
+            </div>
+            <span class="px-2 py-0.5 bg-purple-950 text-purple-300 rounded font-mono text-[9.5px] border border-purple-800 font-bold">Oracle Cloud &middot; Lightsail</span>
+          </div>
+
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800 flex items-center justify-between">
+            <div>
+              <strong class="text-white block text-[10.5px]">4. 데이터베이스 &middot; 인증 &middot; 스토리지</strong>
+              <span class="text-[9.5px] text-slate-400">PostgreSQL, OAuth 인증 세션, 유저 업로드 파일</span>
+            </div>
+            <span class="px-2 py-0.5 bg-amber-950 text-amber-300 rounded font-mono text-[9.5px] border border-amber-800 font-bold">Supabase BaaS</span>
+          </div>
+        </div>
+
+        <!-- 0-Won Blueprint Box -->
+        <div class="p-2 bg-sky-950/40 rounded border border-sky-800/50 text-[10px]">
+          <strong class="text-sky-300 block mb-0.5 font-mono">🏆 1인 창업자 추천 '0원 프로덕션 블루프린트':</strong>
+          <div class="text-slate-300 font-mono text-[9.5px] space-y-0.5">
+            <div>[UI] Vercel ➔ [API] GCP Cloud Run ➔ [DB] Supabase ➔ [Bot] Oracle VM</div>
+            <div class="text-emerald-400 font-bold">💰 월 유지비: $0 (월 트래픽 5만~10만 명까지 100% 무료 커버)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-sky-300 font-mono border-t border-slate-800 pt-1.5 flex items-center justify-between">
+        <span>✓ 단일 모놀리스 서버가 아닌, 기능별 최적 분업 아키텍처</span>
+        <span class="text-slate-500">Best Practice</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Free Tier Audit Table (6 cols) -->
+    <div class="col-span-6 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-purple-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">💰</span>
+            <span class="text-xs font-mono text-purple-400 font-bold uppercase">주요 클라우드 Free Tier 한도표 (상시 무료)</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-purple-300 bg-purple-950 px-2 py-0.5 rounded border border-purple-800">월 0원 한도</span>
+        </div>
+
+        <div class="space-y-1.5 text-[10.5px] font-mono mb-2">
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <div>
+              <span class="text-white font-bold">Vercel (Hobby)</span>
+              <span class="text-[9.5px] text-slate-400 block font-sans">대역폭 100GB/월 &middot; Edge Functions 100GB-hrs</span>
+            </div>
+            <span class="text-emerald-400 font-bold">평생 $0</span>
+          </div>
+
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <div>
+              <span class="text-white font-bold">GCP Cloud Run</span>
+              <span class="text-[9.5px] text-slate-400 block font-sans">요청 2,000,000회/월 &middot; 360,000 GiB-초 메모리</span>
+            </div>
+            <span class="text-emerald-400 font-bold">매월 $0</span>
+          </div>
+
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <div>
+              <span class="text-white font-bold">Supabase (Free)</span>
+              <span class="text-[9.5px] text-slate-400 block font-sans">PostgreSQL 500MB &middot; 50,000 MAU 인증 &middot; 1GB 파일</span>
+            </div>
+            <span class="text-emerald-400 font-bold">프로젝트 2개 $0</span>
+          </div>
+
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <div>
+              <span class="text-white font-bold">Oracle Cloud (Always Free)</span>
+              <span class="text-[9.5px] text-slate-400 block font-sans">4 ARM 코어 &middot; 24GB RAM &middot; 200GB SSD (상시 봇 최강)</span>
+            </div>
+            <span class="text-emerald-400 font-bold">평생 $0</span>
+          </div>
+        </div>
+
+        <!-- 3-Layer Safety Net Box -->
+        <div class="p-2 bg-amber-950/40 rounded border border-amber-800/50 text-[10px]">
+          <strong class="text-amber-300 block mb-0.5 font-mono">🚨 무료 티어 초과 방지 3중 안전망 (Safety Net):</strong>
+          <div class="text-slate-300 space-y-0.5 text-[9.5px]">
+            <div>&bull; <strong>Budget Alert $1:</strong> GCP/AWS 과금 알림 1달러 발생 즉시 이메일 발송</div>
+            <div>&bull; <strong>Spend Management:</strong> Vercel 한도 도달 시 인스턴스 자동 일시정지</div>
+            <div>&bull; <strong>Connection Pool:</strong> Supabase PgBouncer로 동시 연결 500 에러 원천 차단</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-purple-300 font-mono border-t border-slate-800 pt-1.5 flex items-center justify-between">
+        <span>⚠️ 필수 설정: Cloud Billing '예산 알림(Budget Alert: $1)' 등록</span>
+        <span class="text-slate-500">Zero Bill Safety</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-purple-400 font-bold">💡 실무 결론:</span>
+      <span class="text-slate-200">초기 서비스 런칭 시 <strong>'Vercel + Cloud Run + Supabase' 조합이면 월 트래픽 10만 명까지 단 1원도 내지 않고</strong> 상용 운영이 가능합니다.</span>
+    </div>
+    <span class="text-purple-400 font-bold text-[11px]">Slide 74</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 07-launch/06-cicd-concepts-and-github-actions.html -->
+<section class="slide flex flex-col justify-between" data-title="7.5 CI/CD 개념 &amp; GitHub Actions 실전 파이프라인">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.5 배포 자동화 파이프라인</span>
+      <span class="px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-600/50 text-sky-300 font-mono text-[11px] font-bold">
+        CONTINUOUS INTEGRATION &middot; CONTINUOUS DEPLOYMENT
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">CI/CD의 본질 &amp; GitHub Actions 자동 배포</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      "내 컴퓨터에서는 잘 도는데?"를 영원히 없앱니다. Git push 한 번으로 <strong>검증(CI) ➔ 빌드 ➔ 무중단 배포(CD)</strong>가 끝나는 자동화 게이트를 구축합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 my-auto">
+    
+    <!-- LEFT: CI/CD 개념 및 수동 배포의 위험 (5 cols) -->
+    <div class="col-span-5 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-rose-500 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">❌</span>
+            <span class="text-xs font-mono text-rose-400 font-bold uppercase">수동 배포의 비극 vs CI/CD</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">사람의 실수 차단</span>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-slate-300 mb-2">
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5 text-[10.5px]">⚠️ 로컬 수동 배포(FTP/SSH 직접 복사)의 위험</strong>
+            <span class="text-[10px] text-slate-400 leading-tight">빌드 산출물 누락, 로컬 환경 의존성 오염, 배포 중 서버 다운타임, 시크릿 키 유출 위험 상존.</span>
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-sky-400 block mb-0.5 text-[10.5px]">🔍 CI (지속적 통합 - Continuous Integration)</strong>
+            <span class="text-[10px] text-slate-400 leading-tight">푸시 즉시 클라우드 격리 환경에서 린트(Ruff/ESLint), 타입 검사, 유닛 테스트를 자동 통과해야만 브랜치 병합 허용.</span>
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-emerald-400 block mb-0.5 text-[10.5px]">🚀 CD (지속적 배포 - Continuous Deployment)</strong>
+            <span class="text-[10px] text-slate-400 leading-tight">CI 검증이 통과된 클린 코드만 운영 서버(Cloud Run, VM, Vercel)에 무중단 자동 릴리즈.</span>
+          </div>
+        </div>
+
+        <!-- 4-Stage Pipeline Diagram -->
+        <div class="p-2 bg-slate-950 rounded border border-slate-800 font-mono text-[9.5px] space-y-1">
+          <span class="text-sky-400 font-bold block">🔄 CI/CD 4단계 상태 전이 게이트:</span>
+          <div class="text-slate-300">[1. Push] Git commit ➔ GitHub 원격 저장소</div>
+          <div class="text-amber-300">[2. CI Gate] Ruff &amp; Pytest ➔ 실패 시 배포 중단!</div>
+          <div class="text-purple-300">[3. Build] 컨테이너 빌드 &amp; GHCR 이미지 태깅</div>
+          <div class="text-emerald-300">[4. CD Live] SSH 무중단 재기동 (./start.sh prod)</div>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-sky-400 font-mono border-t border-slate-800 pt-1.5 flex items-center justify-between">
+        <span>✓ "인간은 코드를 푸시하고, 배포는 기계가 수행한다"</span>
+        <span class="text-slate-500">Zero Human Error</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: 실전 GitHub Actions Workflow YAML (7 cols) -->
+    <div class="col-span-7 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">⚙️</span>
+            <span class="text-xs font-mono text-emerald-400 font-bold uppercase">실전 GitHub Actions : .github/workflows/deploy.yml</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">월 2,000분 무료 러너</span>
+        </div>
+
+        <!-- Code Block -->
+        <div class="bg-slate-950 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-0.5 text-slate-300 mb-2">
+          <div><span class="text-purple-400">name:</span> Production Deploy</div>
+          <div><span class="text-purple-400">on:</span> { push: { branches: [ <span class="text-emerald-300">'main'</span> ] } }</div>
+          <div class="text-purple-400">jobs:</div>
+          <div class="pl-2.5"><span class="text-sky-300">ci-test:</span> <span class="text-slate-500"># 1단계: 품질 검증</span></div>
+          <div class="pl-5">runs-on: ubuntu-latest</div>
+          <div class="pl-5">steps:</div>
+          <div class="pl-7">- uses: actions/checkout@v4</div>
+          <div class="pl-7">- run: <span class="text-amber-300">uv run ruff check &amp;&amp; uv run pytest -q</span></div>
+          <div class="pl-2.5"><span class="text-emerald-300">cd-deploy:</span> <span class="text-slate-500"># 2단계: 테스트 통과 시에만 배포</span></div>
+          <div class="pl-5">needs: ci-test</div>
+          <div class="pl-5">runs-on: ubuntu-latest</div>
+          <div class="pl-5">steps:</div>
+          <div class="pl-7">- uses: appleboy/ssh-action@v1.0.3</div>
+          <div class="pl-9">with:</div>
+          <div class="pl-11 text-slate-400">host: <span class="text-sky-300">${{ secrets.DEPLOY_HOST }}</span>, key: <span class="text-sky-300">${{ secrets.DEPLOY_SSH_KEY }}</span></div>
+          <div class="pl-11 text-emerald-300">script: "cd /app &amp;&amp; git pull &amp;&amp; ./start.sh prod"</div>
+        </div>
+
+        <!-- SSH Key & Secrets Setup Box -->
+        <div class="p-2 bg-slate-950 rounded border border-slate-800 font-mono text-[9.5px] space-y-0.5">
+          <span class="text-emerald-400 font-bold block">🔐 GitHub Secrets &amp; SSH Key 발급 가이드:</span>
+          <div class="text-slate-400">$ ssh-keygen -t ed25519 -C "deploy_runner" -f ~/.ssh/deploy_key</div>
+          <div class="text-slate-300">GitHub Settings &gt; Secrets: <span class="text-sky-300">DEPLOY_HOST</span>, <span class="text-sky-300">DEPLOY_SSH_KEY</span>, <span class="text-sky-300">DEPLOY_USER</span></div>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-emerald-400 font-mono border-t border-slate-800 pt-1.5 flex items-center justify-between">
+        <span>✓ GitHub Repository Secrets를 활용해 비밀번호&middot;SSH 키 완벽 은폐</span>
+        <span class="text-slate-500">Secret Safe</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">💡 실무 원칙:</span>
+      <span class="text-slate-200">배포 서버 접속 권한은 <strong>개인 비밀번호가 아닌 SSH 개인키를 GitHub Secrets에 등록</strong>하여 CI 러너만 접근하도록 엄격히 제한하십시오.</span>
+    </div>
+    <span class="text-sky-400 font-bold text-[11px]">Slide 75</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 07-launch/07-free-cicd-services.html -->
+<section class="slide flex flex-col justify-between" data-title="7.6 무료 &amp; 가성비 CI/CD 플랫폼 총정리">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.6 무료 &amp; 가성비 CI/CD 생태계</span>
+      <span class="px-2.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-600/50 text-emerald-300 font-mono text-[11px] font-bold">
+        FREE CI/CD ECOSYSTEM &middot; RUNNER AUDIT
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">무료 &amp; 가성비 CI/CD 서비스 총정리</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      빌드 요금 걱정 없이 1인 창업자와 바이브 코더가 <strong>무료 티어만으로 파이프라인을 구축</strong>할 수 있는 최적의 도구들을 비교합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (4 cols) -->
+  <div class="grid grid-cols-4 gap-3 my-auto">
+    
+    <!-- 1. GitHub Actions -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-sky-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">🐙</span>
+          <span class="text-[9.5px] font-mono text-sky-300 bg-sky-950 px-2 py-0.5 rounded border border-sky-800 font-bold">업계 표준 1위</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-1">GitHub Actions</h3>
+        <p class="text-xs text-slate-400 mb-2.5 leading-relaxed">
+          저장소 내장, 1만 개 이상의 마켓플레이스 액션으로 3분 만에 완성.
+        </p>
+
+        <div class="space-y-2 text-xs mb-2.5">
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <span class="text-slate-300 font-bold">Public 저장소</span>
+            <span class="text-emerald-400 font-bold font-mono">무제한 무료</span>
+          </div>
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <span class="text-slate-300 font-bold">Private 저장소</span>
+            <span class="text-sky-300 font-bold font-mono">월 2,000분 무료</span>
+          </div>
+        </div>
+
+        <!-- Workflow Snippet -->
+        <div class="bg-slate-950 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-0.5 text-slate-300 mb-2">
+          <div class="text-sky-300"># .github/workflows/ci.yml</div>
+          <div>runs-on: ubuntu-latest</div>
+          <div class="text-emerald-300">steps: [- uses: actions/checkout@v4]</div>
+        </div>
+
+        <div class="p-2 bg-sky-950/40 rounded border border-sky-800/40 text-[10.5px] text-sky-200">
+          ✓ SSH 키 &middot; Docker GHCR 연동이 가장 자연스러움
+        </div>
+      </div>
+
+      <div class="text-[10px] text-sky-400 font-mono border-t border-slate-800 pt-2 mt-2 flex items-center justify-between">
+        <span>🎯 범용 백엔드 &middot; 풀스택</span>
+        <span class="text-slate-500">Global Standard</span>
+      </div>
+    </div>
+
+    <!-- 2. Vercel / Cloudflare CI -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">⚡</span>
+          <span class="text-[9.5px] font-mono text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800 font-bold">Zero-Config</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-1">Vercel &middot; Cloudflare</h3>
+        <p class="text-xs text-slate-400 mb-2.5 leading-relaxed">
+          YAML 파일 없이 Git 푸시만 감지하여 빌드 &middot; 캐싱 &middot; 도메인 배포.
+        </p>
+
+        <div class="space-y-2 text-xs mb-2.5">
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <span class="text-slate-300 font-bold">Vercel 취미 플랜</span>
+            <span class="text-emerald-400 font-bold font-mono">월 100시간 무료</span>
+          </div>
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <span class="text-slate-300 font-bold">Cloudflare Pages</span>
+            <span class="text-emerald-400 font-bold font-mono">월 500회 빌드 무료</span>
+          </div>
+        </div>
+
+        <!-- Workflow Snippet -->
+        <div class="bg-slate-950 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-0.5 text-slate-300 mb-2">
+          <div class="text-emerald-300"># Git Branch 자동 바인딩:</div>
+          <div>main ➔ Production (도메인 연결)</div>
+          <div class="text-slate-400">feat/* ➔ Instant Preview URL</div>
+        </div>
+
+        <div class="p-2 bg-emerald-950/40 rounded border border-emerald-800/40 text-[10.5px] text-emerald-200">
+          ✓ 프론트엔드 빌드 속도 및 전 세계 CDN 캐싱 1위
+        </div>
+      </div>
+
+      <div class="text-[10px] text-emerald-400 font-mono border-t border-slate-800 pt-2 mt-2 flex items-center justify-between">
+        <span>🎯 정적 웹, SvelteKit, Next.js</span>
+        <span class="text-slate-500">Fastest Edge</span>
+      </div>
+    </div>
+
+    <!-- 3. GitLab CI/CD -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-amber-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">🦊</span>
+          <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950 px-2 py-0.5 rounded border border-amber-800 font-bold">엔터프라이즈</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-1">GitLab CI/CD</h3>
+        <p class="text-xs text-slate-400 mb-2.5 leading-relaxed">
+          복잡한 다단계 의존성 제어 및 내장 컨테이너 레지스트리 제공.
+        </p>
+
+        <div class="space-y-2 text-xs mb-2.5">
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <span class="text-slate-300 font-bold">공유 클라우드 러너</span>
+            <span class="text-amber-400 font-bold font-mono">월 400분 무료</span>
+          </div>
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <span class="text-slate-300 font-bold">자체 GitLab Runner</span>
+            <span class="text-emerald-400 font-bold font-mono">등록 무제한 무료</span>
+          </div>
+        </div>
+
+        <!-- Workflow Snippet -->
+        <div class="bg-slate-950 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-0.5 text-slate-300 mb-2">
+          <div class="text-amber-300"># .gitlab-ci.yml</div>
+          <div>stages: [test, build, deploy]</div>
+          <div class="text-slate-400">deploy: { stage: deploy, script: ... }</div>
+        </div>
+
+        <div class="p-2 bg-amber-950/40 rounded border border-amber-800/40 text-[10.5px] text-amber-200">
+          ✓ 사내 온프레미스 폐쇄망 구축에 최적
+        </div>
+      </div>
+
+      <div class="text-[10px] text-amber-400 font-mono border-t border-slate-800 pt-2 mt-2 flex items-center justify-between">
+        <span>🎯 자체 서버 보유팀 &middot; 사내망</span>
+        <span class="text-slate-500">Complex DAG</span>
+      </div>
+    </div>
+
+    <!-- 4. Self-Hosted Runner -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-purple-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">💻</span>
+          <span class="text-[9.5px] font-mono text-purple-300 bg-purple-950 px-2 py-0.5 rounded border border-purple-800 font-bold">무제한 $0</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-1">Self-Hosted Runner</h3>
+        <p class="text-xs text-slate-400 mb-2.5 leading-relaxed">
+          남는 PC나 저가 VPS를 러너 데몬으로 등록해 빌드 시간 제약 돌파.
+        </p>
+
+        <div class="space-y-2 text-xs mb-2.5">
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <span class="text-slate-300 font-bold">러너 사용 비용</span>
+            <span class="text-emerald-400 font-bold font-mono">완전 무료 ($0)</span>
+          </div>
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
+            <span class="text-slate-300 font-bold">대표 도구</span>
+            <span class="text-purple-300 font-bold font-mono">GH Runner, Woodpecker</span>
+          </div>
+        </div>
+
+        <!-- Workflow Snippet -->
+        <div class="bg-slate-950 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-0.5 text-slate-300 mb-2">
+          <div class="text-purple-300"># 러너 데몬 등록 &amp; 실행:</div>
+          <div>$ ./config.sh --url https://github.com/repo</div>
+          <div class="text-emerald-300">$ ./run.sh &amp; # 백그라운드 상시 수신</div>
+        </div>
+
+        <div class="p-2 bg-purple-950/40 rounded border border-purple-800/40 text-[10.5px] text-purple-200">
+          ✓ 로컬 Docker 캐시 재사용으로 빌드 5초 단축
+        </div>
+      </div>
+
+      <div class="text-[10px] text-purple-400 font-mono border-t border-slate-800 pt-2 mt-2 flex items-center justify-between">
+        <span>🎯 대규모 빌드 &middot; GPU 프로젝트</span>
+        <span class="text-slate-500">Unlimited Power</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-emerald-400 font-bold">💡 추천 전략:</span>
+      <span class="text-slate-200">기본적으로 <strong>GitHub Actions의 월 2,000분 무료 러너</strong>를 사용하고, 프론트는 <strong>Vercel 자동 빌드</strong>에 맡기는 것이 가장 깔끔합니다.</span>
+    </div>
+    <span class="text-emerald-400 font-bold text-[11px]">Slide 76</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 07-launch/08-hands-on-launch.html -->
+<section class="slide flex flex-col justify-between" data-title="7.7 실전 5분 실습: 0원에서 프로덕션까지 3단계">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.7 실전 5분 핸즈온</span>
+      <span class="px-2.5 py-0.5 rounded bg-amber-950/80 border border-amber-600/50 text-amber-300 font-mono text-[11px] font-bold">
+        HANDS-ON &middot; 3-STEP LAUNCH
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">실전 5분 실습 : 0원에서 상용 런칭까지</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      BaaS 인증, 결제 위젯, CI/CD 자동 배포 파이프라인을 3단계로 연결하여 실제 인터넷에 살아있는 서비스를 런칭합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (3 cols) -->
+  <div class="grid grid-cols-3 gap-3 my-auto">
+    
+    <!-- Step 1: Supabase Auth -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-sky-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-sky-400 font-bold uppercase">STEP 1. SNS 인증 연동</span>
+          <span class="text-[9px] font-mono text-sky-300 bg-sky-950 px-1.5 py-0.5 rounded border border-sky-800">소요 시간 2분</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">Supabase Auth &middot; RLS</h3>
+        <p class="text-[10px] text-slate-300 mb-2 leading-relaxed">
+          대시보드에서 SNS 프로바이더를 켜고 환경변수를 로컬과 Vercel에 주입합니다.
+        </p>
+
+        <!-- 1. Env Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9px] border border-slate-800 space-y-0.5 text-slate-300 mb-1.5">
+          <div class="text-slate-500"># 1. .env.dev 환경변수 등록</div>
+          <div>VITE_SUPABASE_URL="https://xxx.supabase.co"</div>
+          <div>VITE_SUPABASE_ANON_KEY="eyJhbGciOi..."</div>
+        </div>
+
+        <!-- 2. Code Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9px] border border-slate-800 space-y-0.5 text-slate-300 mb-1.5">
+          <div class="text-sky-300"># 2. 프론트엔드 로그인 호출:</div>
+          <div class="text-emerald-300">await supabase.auth.signInWithOAuth({</div>
+          <div class="text-slate-400 pl-2">provider: 'google', redirectTo: callbackUrl</div>
+          <div class="text-emerald-300">});</div>
+        </div>
+
+        <!-- 3. RLS DDL Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9px] border border-slate-800 space-y-0.5 text-purple-300 mb-1.5">
+          <div class="text-slate-500"># 3. PostgreSQL RLS 보안 활성화:</div>
+          <div>ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;</div>
+          <div>CREATE POLICY p1 ON profiles FOR ALL USING (auth.uid() = id);</div>
+        </div>
+
+        <!-- Verification Checklist -->
+        <div class="p-1.5 bg-slate-950 rounded border border-slate-800 text-[9px] font-mono space-y-0.5">
+          <span class="text-sky-400 font-bold block">✅ Step 1 검증:</span>
+          <div class="text-slate-300">[x] 구글 로그인 시 <code>auth.users</code> 행 자동 생성</div>
+          <div class="text-slate-300">[x] RLS 정책으로 타인 데이터 접근 100% 거절</div>
+        </div>
+      </div>
+
+      <div class="text-[9.5px] text-sky-400 font-mono border-t border-slate-800 pt-1.5 mt-2">
+        ✓ 1클릭으로 Google OAuth 인증 흐름 완성
+      </div>
+    </div>
+
+    <!-- Step 2: Payment Widget -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-blue-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-blue-400 font-bold uppercase">STEP 2. Toss 결제창 &middot; Footer</span>
+          <span class="text-[9px] font-mono text-blue-300 bg-blue-950 px-1.5 py-0.5 rounded border border-blue-800">소요 시간 2분</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">결제 위젯 &middot; 필수 약관</h3>
+        <p class="text-[10px] text-slate-300 mb-2 leading-relaxed">
+          토스페이먼츠 테스트 클라이언트 키를 연결하고 법적 필수 표기사항을 푸터에 배치합니다.
+        </p>
+
+        <!-- 1. Widget Code Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9px] border border-slate-800 space-y-0.5 text-slate-300 mb-1.5">
+          <div class="text-blue-300"># 1. Toss 결제 위젯 렌더링 &amp; 요청:</div>
+          <div class="text-slate-400">const widget = loadPaymentWidget(clientKey, customerKey);</div>
+          <div class="text-emerald-300">widget.renderPaymentMethods('#payment-methods', 29000);</div>
+          <div class="text-emerald-300">widget.requestPayment({ orderId, orderName: 'PRO 요금제' });</div>
+        </div>
+
+        <!-- 2. Server Confirm Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9px] border border-slate-800 space-y-0.5 text-slate-300 mb-1.5">
+          <div class="text-amber-300"># 2. 백엔드 결제 승인 API:</div>
+          <div class="text-slate-400">POST https://api.tosspayments.com/v1/payments/confirm</div>
+          <div class="text-emerald-300">headers: { Authorization: `Basic ${secretKeyBase64}` }</div>
+        </div>
+
+        <!-- 3. Legal Footer Box -->
+        <div class="p-1.5 bg-amber-950/40 rounded border border-amber-800/50 text-[9px] font-mono text-amber-200 mb-1.5">
+          <strong class="text-amber-300 block mb-0.5">⚖️ 3. Footer 필수 법적 고지 4요소:</strong>
+          <div>&bull; 약관: 이용약관, 개인정보처리방침, 환불/취소 정책</div>
+          <div>&bull; 사업자: 상호명, 대표자명, 등록번호, 통신판매번호</div>
+        </div>
+
+        <!-- Verification Checklist -->
+        <div class="p-1.5 bg-slate-950 rounded border border-slate-800 text-[9px] font-mono space-y-0.5">
+          <span class="text-blue-400 font-bold block">✅ Step 2 검증:</span>
+          <div class="text-slate-300">[x] 테스트 카드로 1,000원 결제 승인 200 OK</div>
+          <div class="text-slate-300">[x] PG 심사 필수 약관 링크 푸터 노출 확인</div>
+        </div>
+      </div>
+
+      <div class="text-[9.5px] text-blue-400 font-mono border-t border-slate-800 pt-1.5 mt-2">
+        ✓ PG사 심사 기준을 즉시 충족하는 결제창 완성
+      </div>
+    </div>
+
+    <!-- Step 3: CI/CD Deploy -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-emerald-400 font-bold uppercase">STEP 3. GitHub Actions 배포</span>
+          <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950 px-1.5 py-0.5 rounded border border-emerald-800">소요 시간 1분</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">Git Push ➔ 라이브 서빙</h3>
+        <p class="text-[10px] text-slate-300 mb-2 leading-relaxed">
+          GitHub Repository Settings에 시크릿을 등록하고 push하여 자동 배포를 확인합니다.
+        </p>
+
+        <!-- 1. Secrets Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9px] border border-slate-800 space-y-0.5 text-slate-300 mb-1.5">
+          <div class="text-slate-500"># 1. GitHub Secrets 등록:</div>
+          <div class="text-emerald-300">DEPLOY_HOST: "203.0.113.10"</div>
+          <div class="text-emerald-300">DEPLOY_SSH_KEY: "-----BEGIN OPENSSH PRIVATE KEY..."</div>
+          <div class="text-emerald-300">DEPLOY_USER: "ubuntu"</div>
+        </div>
+
+        <!-- 2. Workflow Trigger Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9px] border border-slate-800 space-y-0.5 text-slate-300 mb-1.5">
+          <div class="text-purple-300"># 2. .github/workflows/deploy.yml:</div>
+          <div class="text-slate-400">on: { push: { branches: [ 'main' ] } }</div>
+          <div class="text-emerald-300">script: "cd /app &amp;&amp; git pull &amp;&amp; ./start.sh prod"</div>
+        </div>
+
+        <!-- 3. Terminal Push Box -->
+        <div class="bg-slate-950 rounded p-1.5 font-mono text-[9px] border border-slate-800 space-y-0.5 text-slate-300 mb-1.5">
+          <div class="text-sky-300"># 3. 터미널 푸시 즉시 배포 트리거:</div>
+          <div class="text-slate-300">$ git add . &amp;&amp; git commit -m "launch"</div>
+          <div class="text-sky-300">$ git push origin main</div>
+        </div>
+
+        <!-- Verification Checklist -->
+        <div class="p-1.5 bg-slate-950 rounded border border-slate-800 text-[9px] font-mono space-y-0.5">
+          <span class="text-emerald-400 font-bold block">✅ Step 3 검증:</span>
+          <div class="text-slate-300">[x] GitHub Actions 워크플로우 통과 (✓ 녹색)</div>
+          <div class="text-slate-300">[x] 운영 서버 라이브 도메인 200 OK 접속 확인</div>
+        </div>
+      </div>
+
+      <div class="text-[9.5px] text-emerald-400 font-mono border-t border-slate-800 pt-1.5 mt-2">
+        ✓ 손 하나 대지 않고 프로덕션 무중단 릴리즈 완료
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-amber-400 font-bold">💡 실습 핵심:</span>
+      <span class="text-slate-200">로컬 터미널에서 서버에 직접 접속하지 마십시오. <strong>모든 인프라 변경과 배포는 Git Commit과 GitHub Actions</strong>를 통해서만 실행되어야 안전합니다.</span>
+    </div>
+    <span class="text-amber-400 font-bold text-[11px]">Slide 77</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 07-launch/09-chapter-summary.html -->
+<section class="slide flex flex-col justify-between" data-title="7.8 Chapter 07 핵심 요약: 런칭 4대 축 매트릭스">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.8 챕터 핵심 요약</span>
+      <span class="px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-600/50 text-sky-300 font-mono text-[11px] font-bold">
+        PRODUCTION CHECKLIST &middot; LAUNCH MATRIX
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">Chapter 07 핵심 요약 : 프로덕션 4대 방어선</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      "인증 &middot; 결제 &middot; 배포 &middot; CI/CD"의 4대 기둥을 견고히 세움으로써, 1인 개발자도 글로벌 상용 서비스를 안정적으로 운영할 수 있습니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (4 columns) -->
+  <div class="grid grid-cols-4 gap-3 my-auto">
+    
+    <!-- 1. Auth -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-sky-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">🔑</span>
+          <span class="text-[9.5px] font-mono text-sky-300 bg-sky-950 px-2 py-0.5 rounded border border-sky-800 font-bold">1. AUTH &amp; RLS</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-1">Supabase Auth</h3>
+        <p class="text-xs text-slate-400 mb-2.5">직접 구현을 배제하고 관리형 BaaS로 완전 격리.</p>
+
+        <div class="space-y-2 text-xs text-slate-300 mb-2.5">
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-white block mb-0.5">SNS OAuth 원클릭 활성화</strong>
+            구글 &middot; 카카오 5분 연동으로 복잡한 세션 로직 제거.
+          </div>
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-sky-300 block mb-0.5">Row Level Security (RLS)</strong>
+            <code>auth.uid() = user_id</code>로 DB 레벨에서 권한 격리.
+          </div>
+          <div class="p-2 bg-slate-950 rounded border border-slate-800 text-[11px] font-mono text-slate-300">
+            <strong class="text-sky-400 block mb-0.5 font-sans">📋 체크리스트:</strong>
+            <div>[x] SNS OAuth &middot; RLS 활성화</div>
+            <div>[x] JWT LocalStorage 저장 금지</div>
+          </div>
+        </div>
+
+        <!-- Anti-pattern Alert -->
+        <div class="p-2 bg-rose-950/40 rounded border border-rose-800/40 text-[10.5px] text-rose-300 font-mono">
+          ⚠️ 주의: JWT 시크릿을 프론트에 노출 시 전 유저 DB 탈취 위험
+        </div>
+      </div>
+      <div class="text-[10px] text-sky-400 font-mono border-t border-slate-800 pt-2 flex items-center justify-between mt-2">
+        <span>✓ 5만 MAU 평생 무료</span>
+        <span class="text-slate-500">Zero Auth Code</span>
+      </div>
+    </div>
+
+    <!-- 2. Billing -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-blue-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">💳</span>
+          <span class="text-[9.5px] font-mono text-blue-300 bg-blue-950 px-2 py-0.5 rounded border border-blue-800 font-bold">2. BILLING</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-1">Toss &middot; PayPal &middot; Stripe</h3>
+        <p class="text-xs text-slate-400 mb-2.5">위젯 SDK와 웹훅 기반의 안전한 3단계 수납 체계.</p>
+
+        <div class="space-y-2 text-xs text-slate-300 mb-2.5">
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-white block mb-0.5">결제 위젯 SDK 연동</strong>
+            카카오 &middot; 토스 &middot; 네이버페이 &middot; 해외카드 원클릭 지원.
+          </div>
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-blue-300 block mb-0.5">서버 Confirm &amp; Webhook</strong>
+            HMAC 서명 검증 및 orderId 멱등성으로 위조 차단.
+          </div>
+          <div class="p-2 bg-slate-950 rounded border border-slate-800 text-[11px] font-mono text-slate-300">
+            <strong class="text-blue-400 block mb-0.5 font-sans">📋 체크리스트:</strong>
+            <div>[x] 카드번호 저장 절대 금지(PG 위임)</div>
+            <div>[x] Footer 약관 3종 &middot; 사업자정보 명시</div>
+          </div>
+        </div>
+
+        <!-- Anti-pattern Alert -->
+        <div class="p-2 bg-rose-950/40 rounded border border-rose-800/40 text-[10.5px] text-rose-300 font-mono">
+          ⚠️ 주의: 프론트 성공 화면만 믿고 권한 부여 금지(Webhook 필수)
+        </div>
+      </div>
+      <div class="text-[10px] text-blue-400 font-mono border-t border-slate-800 pt-2 flex items-center justify-between mt-2">
+        <span>✓ PCI-DSS 규정 준수</span>
+        <span class="text-slate-500">Legal Ready</span>
+      </div>
+    </div>
+
+    <!-- 3. Hosting -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-purple-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">☁️</span>
+          <span class="text-[9.5px] font-mono text-purple-300 bg-purple-950 px-2 py-0.5 rounded border border-purple-800 font-bold">3. HOSTING</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-1">Vercel &middot; Cloud Run &middot; VM</h3>
+        <p class="text-xs text-slate-400 mb-2.5">성격별 분업(UI vs API vs 24/7 Bot) 최적화.</p>
+
+        <div class="space-y-2 text-xs text-slate-300 mb-2.5">
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-white block mb-0.5">Vercel (Frontend PaaS)</strong>
+            글로벌 엣지 CDN 캐싱 및 브랜치 프리뷰 URL.
+          </div>
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-purple-300 block mb-0.5">GCP Cloud Run &middot; VPS</strong>
+            API는 Scale-to-Zero($0), 봇은 상시 가동 VM(Podman).
+          </div>
+          <div class="p-2 bg-slate-950 rounded border border-slate-800 text-[11px] font-mono text-slate-300">
+            <strong class="text-purple-400 block mb-0.5 font-sans">📋 체크리스트:</strong>
+            <div>[x] Budget Alert $1 등록 (과금 방어)</div>
+            <div>[x] .env 파일 .gitignore 격리</div>
+          </div>
+        </div>
+
+        <!-- Anti-pattern Alert -->
+        <div class="p-2 bg-rose-950/40 rounded border border-rose-800/40 text-[10.5px] text-rose-300 font-mono">
+          ⚠️ 주의: 백엔드 API를 Vercel 서버리스에 올려 긴 폴링 금지
+        </div>
+      </div>
+      <div class="text-[10px] text-purple-400 font-mono border-t border-slate-800 pt-2 flex items-center justify-between mt-2">
+        <span>✓ 월 10만 트래픽까지 $0</span>
+        <span class="text-slate-500">Scale-to-Zero</span>
+      </div>
+    </div>
+
+    <!-- 4. CI/CD -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">🚀</span>
+          <span class="text-[9.5px] font-mono text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800 font-bold">4. CI/CD</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-1">GitHub Actions</h3>
+        <p class="text-xs text-slate-400 mb-2.5">푸시 즉시 테스트-빌드-배포 전 과정 자동화.</p>
+
+        <div class="space-y-2 text-xs text-slate-300 mb-2.5">
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-white block mb-0.5">CI 품질 게이트 (Lint &middot; Test)</strong>
+            Ruff, Pytest 통과 시에만 브랜치 병합 허용.
+          </div>
+          <div class="p-2.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-emerald-300 block mb-0.5">CD 무중단 자동 릴리즈</strong>
+            SSH Action + <code>./start.sh prod</code>로 30초 내 배포.
+          </div>
+          <div class="p-2 bg-slate-950 rounded border border-slate-800 text-[11px] font-mono text-slate-300">
+            <strong class="text-emerald-400 block mb-0.5 font-sans">📋 체크리스트:</strong>
+            <div>[x] SSH Key GitHub Secrets 등록</div>
+            <div>[x] 배포 스크립트 멱등성 검증</div>
+          </div>
+        </div>
+
+        <!-- Anti-pattern Alert -->
+        <div class="p-2 bg-rose-950/40 rounded border border-rose-800/40 text-[10.5px] text-rose-300 font-mono">
+          ⚠️ 주의: 배포 서버에 SSH 직접 접속해 소스 수정(`vim`) 금지
+        </div>
+      </div>
+      <div class="text-[10px] text-emerald-400 font-mono border-t border-slate-800 pt-2 flex items-center justify-between mt-2">
+        <span>✓ Git Push = Live</span>
+        <span class="text-slate-500">2,000 Min Free</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">🏁 Chapter 07 결론:</span>
+      <span class="text-slate-200">좋은 인프라는 개발자가 인프라를 생각하지 않게 만드는 것입니다. <strong>코드 작성에만 몰입하고, 나머지는 검증된 BaaS와 CI/CD에 위임</strong>하십시오.</span>
+    </div>
+    <span class="text-sky-400 font-bold text-[11px]">Slide 78</span>
   </div>
 </section>
 
