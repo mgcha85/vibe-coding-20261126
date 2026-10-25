@@ -1,0 +1,127 @@
+<section class="slide flex flex-col justify-between" data-title="4.3 문서 설계학 : SKILL.md vs REFERENCE.md">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.3 문서 아키텍처</span>
+      <span class="px-2.5 py-0.5 rounded bg-amber-950/80 border border-amber-600/50 text-amber-300 font-mono text-[11px] font-bold">
+        ON-DEMAND LOADING &middot; TOKEN OPTIMIZATION
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">문서 설계학 : SKILL.md vs REFERENCE.md 분리</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      모든 규칙을 하나의 파일에 다 넣으면 토큰이 폭발하고 인지 부하가 생깁니다. <strong>1단계 경량 실행 규칙</strong>과 <strong>2단계 심층 레퍼런스</strong>로 계층화해야 합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: SKILL.md Spec (6 cols) -->
+    <div class="col-span-6 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">📄</span>
+            <span class="text-[11px] font-mono text-amber-400 font-bold uppercase">Level 1 : SKILL.md (실행 헌법 &amp; 트리거)</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-800">Always Loaded on Trigger</span>
+        </div>
+
+        <p class="text-[11px] text-slate-300 mb-2">
+          에이전트가 스킬을 감지하는 순간 <strong>즉각 컨텍스트에 로드되는 핵심 강령</strong>입니다. 50~100줄 이내로 핵심 요약과 강제 사규만 기술합니다.
+        </p>
+
+        <!-- YAML Frontmatter & Body Code Box -->
+        <div class="p-2.5 rounded bg-slate-950 border border-slate-800 font-mono text-[10.5px] leading-relaxed text-slate-300">
+          <div class="text-indigo-400">---</div>
+          <div><strong class="text-sky-300">name</strong>: <span class="text-emerald-300">ui-tailwind-design</span></div>
+          <div><strong class="text-sky-300">description</strong>: <span class="text-slate-300">"Svelte 및 Tailwind CSS 컴포넌트 작성 시 16:9 다크 테마와 반응형 Bento 그리드를 강제 적용한다"</span></div>
+          <div class="text-indigo-400">---</div>
+          <div class="mt-1 text-slate-400"># 1. 디자인 강제 원칙 (Strict Rules)</div>
+          <div>- 배경은 항상 <code class="text-amber-300">bg-slate-950</code> 및 반투명 Bento 카드</div>
+          <div>- 복잡한 컴포넌트 작성 시 반드시 <code class="text-cyan-300">REFERENCE.md</code>를 읽고 시작할 것.</div>
+          <div class="mt-1 text-slate-400"># 2. 금지 사항 (Hard Guardrail)</div>
+          <div>- 인라인 스타일 작성 금지, 16:9 비율 왜곡 금지</div>
+        </div>
+
+        <div class="mt-2 space-y-1 text-[10.5px] text-slate-300">
+          <div class="flex items-center gap-1.5">
+            <span class="text-emerald-400">✓</span>
+            <span><strong>YAML Frontmatter 필수:</strong> <code class="text-sky-300 font-mono">name</code>과 <code class="text-sky-300 font-mono">description</code>이 에이전트의 트리거 지표</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-emerald-400">✓</span>
+            <span><strong>초경량 유지:</strong> 토큰 낭비를 막고 에이전트의 핵심 작업 지침만 전달</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-amber-950/40 border border-amber-800/40 text-[10px] font-mono text-amber-300">
+        ⚡ 역할: 에이전트가 "내가 지금 무엇을 지켜야 하는지" 즉각 행동 방향을 잡는 스위치
+      </div>
+    </div>
+
+    <!-- RIGHT: REFERENCE.md & Extended Docs (6 cols) -->
+    <div class="col-span-6 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">📑</span>
+            <span class="text-[11px] font-mono text-cyan-300 font-bold uppercase">Level 2 : REFERENCE.md (온디맨드 심층 문서)</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-cyan-300 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800">On-demand Reading Only</span>
+        </div>
+
+        <p class="text-[11px] text-slate-300 mb-2">
+          수백 줄의 API 명세, 색상표, 복잡한 DB 스키마, 체크리스트를 담는 <strong>외장 참고 도서관</strong>입니다. 에이전트가 <code class="text-cyan-300 font-mono">view_file</code>로 직접 열람합니다.
+        </p>
+
+        <!-- Document Examples Box -->
+        <div class="space-y-1.5 text-xs font-mono">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="flex items-center justify-between text-cyan-300 font-bold text-[11px] mb-0.5">
+              <span>📑 REFERENCE.md / CHEATSHEET.md</span>
+              <span class="text-[9px] text-slate-500 font-sans">디자인 토큰 &middot; 팔레트</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans">
+              Tailwind 색상 코드 Hex 매핑(#0f172a, #38bdf8), 폰트 스케일, 세부 아이콘 SVG 코드 보관.
+            </div>
+          </div>
+
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="flex items-center justify-between text-emerald-300 font-bold text-[11px] mb-0.5">
+              <span>📋 CHECKLIST.md / ALGORITHM.md</span>
+              <span class="text-[9px] text-slate-500 font-sans">단계별 검증표</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans">
+              배포 전 필수 점검 항목 20가지, RLS 보안 감사 체크리스트, 예외 케이스 처리 매뉴얼.
+            </div>
+          </div>
+
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="flex items-center justify-between text-purple-300 font-bold text-[11px] mb-0.5">
+              <span>🗄️ SCHEMA.md / API_CONTRACT.md</span>
+              <span class="text-[9px] text-slate-500 font-sans">스키마 명세서</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans">
+              수십 개 테이블의 PostgreSQL 컬럼 명세, 바이낸스 선물 WebSocket 메시지 규격.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-cyan-950/40 border border-cyan-800/40 text-[10px] font-mono text-cyan-300">
+        💡 경제학: 매 턴 읽으면 수만 토큰 낭비 ➔ 에이전트가 "필요할 때만 파일 읽기 도구"로 선택적 열람
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-amber-400 font-bold">📚 문서 2단계 분리 원칙:</span>
+      <span class="text-slate-200"><code class="text-amber-300 font-mono">SKILL.md</code>로 경량 라우팅하고, 대용량 지식은 <code class="text-cyan-300 font-mono">REFERENCE.md</code>로 외주화하여 토큰을 절약하십시오.</span>
+    </div>
+    <span class="text-amber-400 font-bold text-[11px]">Slide 42</span>
+  </div>
+</section>

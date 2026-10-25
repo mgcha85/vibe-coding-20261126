@@ -1,0 +1,134 @@
+<section class="slide flex flex-col justify-between" data-title="4.2 Skills 아키텍처 : 폴더 구조와 네이밍 전략">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.2 Skills 아키텍처</span>
+      <span class="px-2.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-700/50 text-indigo-300 font-mono text-[11px] font-bold">
+        FOLDER STRUCTURE &middot; NAMING CONVENTION
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">Skills 디렉토리 구조 &amp; 네이밍 규칙의 미학</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      스킬은 단순한 메모장이 아닙니다. 에이전트가 사용자의 작업 의도(Intent)를 감지하고 스스로 도구를 꺼내 들게 만드는 <strong>의도 기반 라우팅 시스템</strong>입니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: Folder Tree Visualization (5 cols) -->
+    <div class="col-span-5 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-[11px] font-mono text-cyan-300 font-bold uppercase">📂 표준 스킬 디렉토리 트리</span>
+          <span class="text-[9.5px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">.cursor/skills/</span>
+        </div>
+
+        <!-- Tree View with document icons -->
+        <div class="p-2.5 rounded bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto">
+          <div class="text-slate-400">📁 <span class="text-white font-bold">my-project/</span></div>
+          <div class="pl-3 text-slate-400">├── 📜 <span class="text-sky-300 font-bold">AGENTS.md</span> <span class="text-[10px] text-slate-500 font-sans">(매 턴 인덱스/헌법)</span></div>
+          <div class="pl-3 text-slate-400">├── 📂 <span class="text-indigo-300 font-bold">.cursor/skills/</span> <span class="text-[10px] text-slate-500 font-sans">(또는 .agents/skills)</span></div>
+          
+          <!-- UI Category -->
+          <div class="pl-6 text-emerald-400">├── 📁 <span class="font-bold text-emerald-300">ui-components/</span> <span class="text-[10px] text-emerald-400/80 font-sans">(프론트엔드 그룹)</span></div>
+          <div class="pl-9 text-slate-400">│   ├── 📄 <span class="text-amber-300">SKILL.md</span> <span class="text-[9.5px] text-slate-400 font-sans">(트리거 메타데이터 + 사규)</span></div>
+          <div class="pl-9 text-slate-400">│   └── 📑 <span class="text-slate-300">REFERENCE.md</span> <span class="text-[9.5px] text-slate-400 font-sans">(필요시 읽는 디자인 가이드)</span></div>
+          
+          <!-- UI Style/Tailwind -->
+          <div class="pl-6 text-emerald-400">├── 📁 <span class="font-bold text-emerald-300">ui-tailwind-design/</span></div>
+          <div class="pl-9 text-slate-400">│   └── 📄 <span class="text-amber-300">SKILL.md</span></div>
+          
+          <!-- Backend/Trading Category -->
+          <div class="pl-6 text-purple-400">├── 📁 <span class="font-bold text-purple-300">trading-db-schema/</span> <span class="text-[10px] text-purple-400/80 font-sans">(백엔드/도메인 그룹)</span></div>
+          <div class="pl-9 text-slate-400">│   ├── 📄 <span class="text-amber-300">SKILL.md</span></div>
+          <div class="pl-9 text-slate-400">│   └── 📑 <span class="text-slate-300">INDEX.md</span></div>
+          
+          <!-- Operations Category -->
+          <div class="pl-6 text-cyan-400">└── 📁 <span class="font-bold text-cyan-300">ops-deployment/</span> <span class="text-[10px] text-cyan-400/80 font-sans">(인프라/운영 그룹)</span></div>
+          <div class="pl-9 text-slate-400">    └── 📄 <span class="text-amber-300">SKILL.md</span></div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-indigo-950/40 border border-indigo-800/40 text-[10.5px] text-indigo-300 font-mono mt-2">
+        💡 <strong class="text-sky-300">심볼릭 링크 팁:</strong> <code class="text-amber-300">.cursor/skills</code> ↔ <code class="text-amber-300">.opencode/skills</code> ↔ <code class="text-amber-300">.agents/skills</code> 로 연결하면 어떤 툴에서도 단일 스킬 팩이 그대로 작동합니다.
+      </div>
+    </div>
+
+    <!-- RIGHT: Naming Convention Strategy (7 cols) -->
+    <div class="col-span-7 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-[11px] font-mono text-amber-400 font-bold uppercase">🏷️ Naming Prefix가 에이전트 라우팅을 좌우한다</span>
+          <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-800">Trigger Optimization</span>
+        </div>
+
+        <p class="text-[11.5px] text-slate-300 leading-relaxed mb-2.5">
+          에이전트는 사용자의 프롬프트에서 키워드를 파싱하여 매칭되는 스킬을 선택합니다. 폴더 이름과 스킬 이름에 <strong>명확한 도메인 접두사(Prefix)</strong>를 붙여야 에이전트가 혼란 없이 단번에 해당 스킬을 인지합니다.
+        </p>
+
+        <!-- Prefix Cards Grid -->
+        <div class="space-y-2 text-xs">
+          <!-- UI-* Group -->
+          <div class="p-2.5 rounded bg-emerald-950/30 border border-emerald-500/40">
+            <div class="flex items-center justify-between text-emerald-300 font-mono font-bold text-[11px] mb-1">
+              <span class="flex items-center gap-1.5">
+                <span class="px-1.5 py-0.5 bg-emerald-900/60 rounded text-emerald-200 border border-emerald-700">ui-*</span>
+                <span>프론트엔드 및 시각 디자인 그룹</span>
+              </span>
+              <span class="text-[9.5px] text-slate-400">Trigger: 버튼, 레이아웃, 모달, CSS</span>
+            </div>
+            <div class="text-[10.5px] text-slate-300">
+              <code class="text-emerald-300 font-mono">ui-components</code>, <code class="text-emerald-300 font-mono">ui-tailwind-design</code>, <code class="text-emerald-300 font-mono">uiux-governance</code><br>
+              <span class="text-slate-400">→ UI 요청 시 백엔드 린터나 DB 스키마가 끼어들지 않고 UI 디자인 사규만 깔끔하게 활성화.</span>
+            </div>
+          </div>
+
+          <!-- ops-* / deploy-* Group -->
+          <div class="p-2.5 rounded bg-cyan-950/30 border border-cyan-500/40">
+            <div class="flex items-center justify-between text-cyan-300 font-mono font-bold text-[11px] mb-1">
+              <span class="flex items-center gap-1.5">
+                <span class="px-1.5 py-0.5 bg-cyan-900/60 rounded text-cyan-200 border border-cyan-700">ops-*</span>
+                <span>인프라, CI/CD &amp; 배포 운영 그룹</span>
+              </span>
+              <span class="text-[9.5px] text-slate-400">Trigger: 배포, 포드맨, 깃허브 액션, 포트</span>
+            </div>
+            <div class="text-[10.5px] text-slate-300">
+              <code class="text-cyan-300 font-mono">ops-deployment</code>, <code class="text-cyan-300 font-mono">ops-podman-compose</code>, <code class="text-cyan-300 font-mono">ops-secrets-audit</code><br>
+              <span class="text-slate-400">→ 배포 명령어 입력 시 포트 충돌 체크, .env.prod 보안 검증 룰이 자동으로 가동.</span>
+            </div>
+          </div>
+
+          <!-- domain-* Group -->
+          <div class="p-2.5 rounded bg-purple-950/30 border border-purple-500/40">
+            <div class="flex items-center justify-between text-purple-300 font-mono font-bold text-[11px] mb-1">
+              <span class="flex items-center gap-1.5">
+                <span class="px-1.5 py-0.5 bg-purple-900/60 rounded text-purple-200 border border-purple-700">domain-*</span>
+                <span>핵심 비즈니스 &amp; 데이터 파이프라인 그룹</span>
+              </span>
+              <span class="text-[9.5px] text-slate-400">Trigger: 백테스트, 지표, 모델, 거래체결</span>
+            </div>
+            <div class="text-[10.5px] text-slate-300">
+              <code class="text-purple-300 font-mono">trading-db-schema</code>, <code class="text-purple-300 font-mono">btc-backtest-workflow</code>, <code class="text-purple-300 font-mono">prompt-drift-prevention</code><br>
+              <span class="text-slate-400">→ 금융 데이터 계약(/mnt/data/finance)과 지표 표준을 즉각 에이전트에 주입.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10.5px] font-mono text-slate-300 bg-slate-950 p-2 rounded border border-slate-800 flex items-center justify-between mt-2">
+        <span class="text-emerald-400 font-bold">✓ 네이밍 핵심:</span>
+        <span class="text-slate-300">"에이전트가 프롬프트 단어 하나만 보고도 즉시 폴더를 찾을 수 있도록 접두사를 구조화하라"</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-indigo-400 font-bold">📂 구조적 스킬 설계:</span>
+      <span class="text-slate-200">디렉토리 구조와 <code class="text-emerald-300 font-mono">ui-*</code> 프리픽스는 단순 정리가 아니라 <strong>AI 인지 라우팅의 핵심 지도</strong>입니다.</span>
+    </div>
+    <span class="text-indigo-400 font-bold text-[11px]">Slide 41</span>
+  </div>
+</section>
