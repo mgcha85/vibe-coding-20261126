@@ -3470,108 +3470,108 @@
       <!-- [COMPONENT] 03-language/04-language-matrix-verdict.html -->
 <section class="slide flex flex-col justify-between" data-title="3.3 정적 vs 동적 언어 심층 매트릭스 & 실전 전략">
   <!-- Header -->
-  <div class="mb-3">
+  <div class="mb-2">
     <div class="flex items-center justify-between">
       <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 03. 언어 &middot; 3.3 정밀 비교 매트릭스 &amp; 결론</span>
       <span class="px-2.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-700/50 text-indigo-300 font-mono text-[11px]">
         COMPARISON MATRIX
       </span>
     </div>
-    <h2 class="text-3xl font-black text-white mt-1">정적 언어 vs Python Quality Stack 심층 매트릭스</h2>
-    <p class="text-xs text-slate-300 mt-1">
+    <h2 class="text-3xl font-black text-white mt-0.5">정적 언어 vs Python Quality Stack 심층 매트릭스</h2>
+    <p class="text-xs text-slate-300 mt-0.5">
       타입 검증 시점부터 AI 자가치유까지, 바이브 코딩 환경에서의 실전 득실을 다각도로 비교합니다.
     </p>
   </div>
 
   <!-- Comparison Matrix Table -->
-  <div class="bento-tile p-4 bg-slate-900/95 border border-slate-700/70 shadow-2xl flex-1 flex flex-col justify-center my-1">
-    <table class="w-full text-left text-xs font-mono border-collapse">
+  <div class="bento-tile p-4 bg-slate-900/95 border border-slate-700/70 shadow-2xl flex-1 flex flex-col justify-around my-1.5">
+    <table class="w-full text-left font-mono border-collapse">
       <thead>
-        <tr class="border-b-2 border-slate-700 text-xs uppercase tracking-wider bg-slate-950/80">
-          <th class="py-3 px-4 text-slate-300 w-1/5 font-bold">평가 기준</th>
-          <th class="py-3 px-4 text-cyan-300 w-1/4 font-bold border-l border-slate-800">정적 언어 (TypeScript 등)</th>
-          <th class="py-3 px-4 text-rose-300 w-1/4 font-bold border-l border-slate-800">Python 단독 (Pure)</th>
-          <th class="py-3 px-4 text-emerald-300 w-3/10 font-bold border-l border-slate-800">Python + Quality Stack</th>
+        <tr class="border-b-2 border-slate-700 text-xs uppercase tracking-wider bg-slate-950/90">
+          <th class="py-3 px-5 text-slate-300 w-1/5 font-bold">평가 기준</th>
+          <th class="py-3 px-5 text-cyan-300 w-1/4 font-bold border-l border-slate-800">정적 언어 (TypeScript 등)</th>
+          <th class="py-3 px-5 text-rose-300 w-1/4 font-bold border-l border-slate-800">Python 단독 (Pure)</th>
+          <th class="py-3 px-5 text-emerald-300 w-3/10 font-bold border-l border-slate-800">Python + Quality Stack</th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-slate-800 text-[12px] leading-relaxed">
+      <tbody class="divide-y divide-slate-800/80 text-[12.5px] leading-relaxed">
         <!-- Row 1 -->
         <tr class="hover:bg-slate-800/40 transition-colors">
-          <td class="py-3 px-4 font-bold text-white bg-slate-950/40">
+          <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
             타입 검증 시점
-            <span class="block text-[10.5px] text-slate-400 font-sans font-normal">Feedback Loop Time</span>
+            <span class="block text-[11px] text-slate-400 font-sans font-normal">Feedback Loop Time</span>
           </td>
-          <td class="py-3 px-4 text-cyan-200 border-l border-slate-800 bg-cyan-950/20">
-            <span class="text-cyan-300 font-bold text-[12.5px]">⚡ 컴파일/트랜스파일 (0.1초)</span><br>
-            <span class="text-[11px] text-slate-300 font-sans">코드 작성 즉시 컴파일러가 실시간 인터럽트</span>
+          <td class="py-3.5 px-5 text-cyan-200 border-l border-slate-800 bg-cyan-950/20">
+            <span class="text-cyan-300 font-bold text-[13px]">⚡ 컴파일/트랜스파일 (0.1초)</span><br>
+            <span class="text-[11.5px] text-slate-300 font-sans">코드 작성 즉시 컴파일러가 실시간 인터럽트</span>
           </td>
-          <td class="py-3 px-4 text-rose-200 border-l border-slate-800 bg-rose-950/20">
-            <span class="text-rose-400 font-bold text-[12.5px]">💣 런타임 실행 시점 (지연 폭탄)</span><br>
-            <span class="text-[11px] text-slate-300 font-sans">배포 후 실제 호출 시점까지 에러 잠복</span>
+          <td class="py-3.5 px-5 text-rose-200 border-l border-slate-800 bg-rose-950/20">
+            <span class="text-rose-400 font-bold text-[13px]">💣 런타임 실행 시점 (지연 폭탄)</span><br>
+            <span class="text-[11.5px] text-slate-300 font-sans">배포 후 실제 호출 시점까지 에러 잠복</span>
           </td>
-          <td class="py-3 px-4 text-emerald-200 border-l border-slate-800 bg-emerald-950/20">
-            <span class="text-emerald-300 font-bold text-[12.5px]">⏱️ CI &middot; 린터 실행 시점</span><br>
-            <span class="text-[11px] text-slate-300 font-sans">uv / Ruff(수 ms) + Mypy(수 초) 추가 소요</span>
+          <td class="py-3.5 px-5 text-emerald-200 border-l border-slate-800 bg-emerald-950/20">
+            <span class="text-emerald-300 font-bold text-[13px]">⏱️ CI &middot; 린터 실행 시점</span><br>
+            <span class="text-[11.5px] text-slate-300 font-sans">uv / Ruff(수 ms) + Mypy(수 초) 추가 소요</span>
           </td>
         </tr>
 
         <!-- Row 2 -->
         <tr class="hover:bg-slate-800/40 transition-colors">
-          <td class="py-3 px-4 font-bold text-white bg-slate-950/40">
+          <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
             초기 프로토타이핑
-            <span class="block text-[10.5px] text-slate-400 font-sans font-normal">Fast Vibe Velocity</span>
+            <span class="block text-[11px] text-slate-400 font-sans font-normal">Fast Vibe Velocity</span>
           </td>
-          <td class="py-3 px-4 text-slate-200 border-l border-slate-800 bg-cyan-950/20">
-            <span class="text-amber-300 font-bold text-[12.5px]">인터페이스 &middot; 타입 선언 선행</span><br>
-            <span class="text-[11px] text-slate-300 font-sans">초기 규격 설계 필요 (규격 우선 주의)</span>
+          <td class="py-3.5 px-5 text-slate-200 border-l border-slate-800 bg-cyan-950/20">
+            <span class="text-amber-300 font-bold text-[13px]">인터페이스 &middot; 타입 선언 선행</span><br>
+            <span class="text-[11.5px] text-slate-300 font-sans">초기 규격 설계 필요 (규격 우선 주의)</span>
           </td>
-          <td class="py-3 px-4 text-emerald-200 border-l border-slate-800 bg-rose-950/20">
-            <span class="text-emerald-400 font-bold text-[12.5px]">🚀 가장 빠름 (High Velocity)</span><br>
-            <span class="text-[11px] text-slate-300 font-sans">아이디어 즉시 코딩 &middot; 단일 스크립트 작성</span>
+          <td class="py-3.5 px-5 text-emerald-200 border-l border-slate-800 bg-rose-950/20">
+            <span class="text-emerald-400 font-bold text-[13px]">🚀 가장 빠름 (High Velocity)</span><br>
+            <span class="text-[11.5px] text-slate-300 font-sans">아이디어 즉시 코딩 &middot; 단일 스크립트 작성</span>
           </td>
-          <td class="py-3 px-4 text-emerald-200 border-l border-slate-800 bg-emerald-950/20">
-            <span class="text-emerald-300 font-bold text-[12.5px]">⚖️ 점진적 유연성 (Gradual)</span><br>
-            <span class="text-[11px] text-slate-300 font-sans">핵심 모델(Pydantic)만 정의 후 점진 확장</span>
+          <td class="py-3.5 px-5 text-emerald-200 border-l border-slate-800 bg-emerald-950/20">
+            <span class="text-emerald-300 font-bold text-[13px]">⚖️ 점진적 유연성 (Gradual)</span><br>
+            <span class="text-[11.5px] text-slate-300 font-sans">핵심 모델(Pydantic)만 정의 후 점진 확장</span>
           </td>
         </tr>
 
         <!-- Row 3 -->
         <tr class="hover:bg-slate-800/40 transition-colors">
-          <td class="py-3 px-4 font-bold text-white bg-slate-950/40">
+          <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
             AI 자가치유 능력
-            <span class="block text-[10.5px] text-slate-400 font-sans font-normal">Self-Healing Agent</span>
+            <span class="block text-[11px] text-slate-400 font-sans font-normal">Self-Healing Agent</span>
           </td>
-          <td class="py-3 px-4 text-cyan-200 border-l border-slate-800 bg-cyan-950/20">
-            <span class="text-cyan-300 font-bold text-[12.5px]">🤖 극대화 (99% 자동 복구)</span><br>
-            <span class="text-[11px] text-slate-300 font-sans">컴파일러 Stderr 에러를 던지면 AI가 즉각 교정</span>
+          <td class="py-3.5 px-5 text-cyan-200 border-l border-slate-800 bg-cyan-950/20">
+            <span class="text-cyan-300 font-bold text-[13px]">🤖 극대화 (99% 자동 복구)</span><br>
+            <span class="text-[11.5px] text-slate-300 font-sans">컴파일러 Stderr 에러를 던지면 AI가 즉각 교정</span>
           </td>
-          <td class="py-3 px-4 text-rose-300 border-l border-slate-800 bg-rose-950/20">
-            <span class="text-rose-400 font-bold text-[12.5px]">❌ 극도로 취약</span><br>
-            <span class="text-[11px] text-slate-300 font-sans">런타임 재현 환경 &middot; 입력값 없으면 수정 불가</span>
+          <td class="py-3.5 px-5 text-rose-300 border-l border-slate-800 bg-rose-950/20">
+            <span class="text-rose-400 font-bold text-[13px]">❌ 극도로 취약</span><br>
+            <span class="text-[11.5px] text-slate-300 font-sans">런타임 재현 환경 &middot; 입력값 없으면 수정 불가</span>
           </td>
-          <td class="py-3 px-4 text-emerald-200 border-l border-slate-800 bg-emerald-950/20">
-            <span class="text-amber-300 font-bold text-[12.5px]">⚠️ 부분 보완 (양호)</span><br>
-            <span class="text-[11px] text-slate-300 font-sans">Ruff/Mypy/Pytest 출력 로그 피드백으로 보완</span>
+          <td class="py-3.5 px-5 text-emerald-200 border-l border-slate-800 bg-emerald-950/20">
+            <span class="text-amber-300 font-bold text-[13px]">⚠️ 부분 보완 (양호)</span><br>
+            <span class="text-[11.5px] text-slate-300 font-sans">Ruff/Mypy/Pytest 출력 로그 피드백으로 보완</span>
           </td>
         </tr>
 
         <!-- Row 4 -->
         <tr class="hover:bg-slate-800/40 transition-colors">
-          <td class="py-3 px-4 font-bold text-white bg-slate-950/40">
+          <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
             AI 생태계 접근성
-            <span class="block text-[10.5px] text-slate-400 font-sans font-normal">Ecosystem Reach</span>
+            <span class="block text-[11px] text-slate-400 font-sans font-normal">Ecosystem Reach</span>
           </td>
-          <td class="py-3 px-4 text-slate-300 border-l border-slate-800 bg-cyan-950/20">
-            <span class="text-slate-200 font-bold text-[12.5px]">간접 연동 (REST/SDK)</span><br>
-            <span class="text-[11px] text-slate-300 font-sans">모델 서빙 API 래퍼 위주 통신</span>
+          <td class="py-3.5 px-5 text-slate-300 border-l border-slate-800 bg-cyan-950/20">
+            <span class="text-slate-200 font-bold text-[13px]">간접 연동 (REST/SDK)</span><br>
+            <span class="text-[11.5px] text-slate-300 font-sans">모델 서빙 API 래퍼 위주 통신</span>
           </td>
-          <td class="py-3 px-4 text-emerald-200 border-l border-slate-800 bg-rose-950/20">
-            <span class="text-emerald-400 font-bold text-[12.5px]">👑 압도적 1위 (최신 AI 독점)</span><br>
-            <span class="text-[11px] text-slate-300 font-sans">모든 최신 LLM &middot; 프레임워크 1st party 독점</span>
+          <td class="py-3.5 px-5 text-emerald-200 border-l border-slate-800 bg-rose-950/20">
+            <span class="text-emerald-400 font-bold text-[13px]">👑 압도적 1위 (최신 AI 독점)</span><br>
+            <span class="text-[11.5px] text-slate-300 font-sans">모든 최신 LLM &middot; 프레임워크 1st party 독점</span>
           </td>
-          <td class="py-3 px-4 text-emerald-200 border-l border-slate-800 bg-emerald-950/20">
-            <span class="text-emerald-300 font-bold text-[12.5px]">👑 압도적 1위 + 안전망</span><br>
-            <span class="text-[11px] text-slate-300 font-sans">최신 생태계 100% 흡수 + 보조 도구로 방어선</span>
+          <td class="py-3.5 px-5 text-emerald-200 border-l border-slate-800 bg-emerald-950/20">
+            <span class="text-emerald-300 font-bold text-[13px]">👑 압도적 1위 + 안전망</span><br>
+            <span class="text-[11.5px] text-slate-300 font-sans">최신 생태계 100% 흡수 + 보조 도구로 방어선</span>
           </td>
         </tr>
       </tbody>
@@ -3579,20 +3579,20 @@
   </div>
 
   <!-- Bottom Recommendation: Dual-Stack Architecture -->
-  <div class="bento-tile p-3.5 bg-gradient-to-r from-slate-950 via-indigo-950/60 to-slate-950 border border-indigo-500/50 shadow-xl mt-2">
+  <div class="bento-tile p-3.5 bg-gradient-to-r from-slate-950 via-indigo-950/60 to-slate-950 border border-indigo-500/50 shadow-xl mt-1">
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-3">
         <span class="px-3 py-1 rounded bg-indigo-500/30 text-indigo-200 border border-indigo-400/50 font-mono text-xs font-bold shadow-md">
           🎯 실전 결론: Dual-Stack 전략
         </span>
         <span class="text-xs text-slate-200 font-sans">
-          "바이브 코딩 시대, Python은 만능이 아니라 <strong class="text-amber-300">도메인 특화 무기</strong>입니다."
+          "바이브 코딩 시대, Python은 만능이 아니라 <strong class="text-amber-300 font-bold">도메인 특화 무기</strong>입니다."
         </span>
       </div>
       <span class="text-amber-400 font-mono text-xs font-bold">Next: 바로바로 실습 ➔</span>
     </div>
 
-    <div class="grid grid-cols-2 gap-3 mt-2 text-[11.5px] font-mono">
+    <div class="grid grid-cols-2 gap-3 mt-2 text-[12px] font-mono">
       <div class="bg-slate-900/90 p-2.5 rounded-lg border border-cyan-700/50 text-slate-200">
         <strong class="text-cyan-300 block mb-1">1. 서비스 &middot; UI 레이어 (TypeScript 등 컴파일 언어)</strong>
         엄격한 컴파일러 하네스로 AI 자가치유 극대화, 런타임 크래시 0% 지향
@@ -3607,81 +3607,90 @@
 
       <!-- [COMPONENT] 03-language/05-hands-on-type-harness.html -->
 <section class="slide flex flex-col justify-between" data-title="3.4 실전 실습: 타입 하네스">
+  <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
       <div>
-        <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider">Chapter 03. 실전 실습 &middot; 3.4 컴파일러 하네스 구축</span>
-        <h2 class="text-3xl font-black text-white">실전 팁 &amp; 바로바로 실습 : 컴파일러 가드레일 주기</h2>
+        <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 03. 실전 실습 &middot; 3.4 컴파일러 하네스 구축</span>
+        <h2 class="text-3xl font-black text-white mt-0.5">실전 팁 &amp; 바로바로 실습 : 컴파일러 가드레일 주기</h2>
       </div>
-      <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/40 text-xs font-mono font-bold animate-pulse">
+      <span class="px-3.5 py-1.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/50 text-xs font-mono font-bold animate-pulse shadow-lg shadow-amber-500/20">
         ⏱️ 5분 실습 (Hands-on)
       </span>
     </div>
   </div>
 
-  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-auto">
+  <!-- Content Grid -->
+  <div class="grid grid-cols-12 gap-4 flex-1 items-stretch my-1.5">
     <!-- LEFT: Practical Vibe Coding Tips (5 cols) -->
-    <div class="col-span-5 bento-tile p-4 flex flex-col justify-between border-t-2 border-t-indigo-400 bg-slate-950/90">
+    <div class="col-span-5 bento-tile p-5 flex flex-col justify-between border-t-4 border-t-indigo-400 bg-slate-900/95 border border-slate-700/70 shadow-2xl">
       <div>
-        <span class="text-[10px] font-mono text-indigo-400 font-bold uppercase tracking-wider block mb-1">PRO-TIP 01</span>
-        <h3 class="text-base font-bold text-white mb-2">실전 팁 : 코드보다 '타입 규격'을 먼저 줘라</h3>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-indigo-400 font-bold uppercase tracking-wider">PRO-TIP 01</span>
+          <span class="text-[10px] font-mono text-indigo-300 bg-indigo-950 px-2 py-0.5 rounded border border-indigo-700/50">가장 중요한 원칙</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-3">실전 팁 : 코드보다 '타입 규격'을 먼저 줘라</h3>
         
-        <div class="space-y-2 text-xs text-slate-300 leading-relaxed">
-          <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
-            <strong class="text-sky-300 block mb-1">❌ 초보자의 실수:</strong>
-            "사용자 정보 받아서 DB에 넣고 결제 승인하는 API 만들어줘."<br>
-            <span class="text-slate-500 text-[11px]">➔ AI가 필드명 제멋대로 지음 (`user_id` vs `userId`, 환각 발생)</span>
+        <div class="space-y-3 text-xs leading-relaxed">
+          <div class="p-3 bg-slate-950/90 rounded-lg border border-rose-900/40">
+            <strong class="text-rose-400 block mb-1 text-[12px]">❌ 초보자의 실수:</strong>
+            <p class="text-slate-300">
+              "사용자 정보 받아서 DB에 넣고 결제 승인하는 API 만들어줘."
+            </p>
+            <span class="text-rose-300/80 text-[11px] block mt-1">➔ AI가 필드명 제멋대로 지음 (`user_id` vs `userId`, 환각 발생)</span>
           </div>
 
-          <div class="p-2.5 bg-slate-900 rounded border border-indigo-900/50">
-            <strong class="text-emerald-300 block mb-1">✅ 프로 바이브 코더의 비결:</strong>
-            "아래 <code>types.ts</code>의 인터페이스 규격을 100% 만족하도록 구현해. 작업 완료 후 반드시 <code>tsc --noEmit</code>을 실행해 에러가 0건일 때만 완료 보고해."
+          <div class="p-3 bg-slate-950/90 rounded-lg border border-emerald-900/50">
+            <strong class="text-emerald-400 block mb-1 text-[12px]">✅ 프로 바이브 코더의 비결:</strong>
+            <p class="text-slate-200 text-[11.5px]">
+              "아래 <code class="text-cyan-300 bg-slate-900 px-1 rounded">types.ts</code>의 인터페이스 규격을 100% 만족하도록 구현해. 작업 완료 후 반드시 <code class="text-cyan-300 bg-slate-900 px-1 rounded">tsc --noEmit</code>을 실행해 에러가 0건일 때만 완료 보고해."
+            </p>
           </div>
         </div>
       </div>
 
-      <div class="text-[10.5px] font-mono text-indigo-300 bg-indigo-950/60 p-2 rounded border border-indigo-800/40 mt-2">
-        💡 컴파일러가 에러를 뿜으면 AI가 스스로 고칩니다. 인간이 에러를 읽을 필요가 없습니다.
+      <div class="text-[11.5px] font-mono text-indigo-200 bg-indigo-950/70 p-3 rounded-lg border border-indigo-800/60 mt-3 shadow-inner">
+        💡 <strong>핵심 이점:</strong> 컴파일러가 Stderr 에러를 뿜으면 AI가 스스로 고칩니다. 인간이 에러를 읽고 디버깅할 필요가 없습니다.
       </div>
     </div>
 
     <!-- RIGHT: Immediate Hands-on Steps (7 cols) -->
-    <div class="col-span-7 bento-tile p-4 flex flex-col justify-between border-t-2 border-t-amber-400 bg-slate-950/90 shadow-xl">
+    <div class="col-span-7 bento-tile p-5 flex flex-col justify-between border-t-4 border-t-amber-400 bg-slate-900/95 border border-slate-700/70 shadow-2xl">
       <div>
-        <div class="flex items-center justify-between mb-1.5">
-          <span class="text-[10px] font-mono text-amber-400 font-bold uppercase tracking-wider">LIVE ACTION</span>
-          <span class="text-[10px] font-mono text-slate-400">노트북에서 지금 바로 따라 하세요</span>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider">LIVE ACTION</span>
+          <span class="text-[11px] font-mono text-slate-300 bg-slate-800 px-2 py-0.5 rounded border border-slate-700">노트북에서 지금 바로 따라 하세요</span>
         </div>
-        <h3 class="text-base font-bold text-white mb-2">실습 : 타입 정의 던지고 자가치유 시키기</h3>
+        <h3 class="text-lg font-bold text-white mb-3">실습 : 타입 정의 던지고 자가치유 시키기</h3>
 
-        <div class="space-y-2 text-xs font-mono">
+        <div class="space-y-2.5 text-xs font-mono">
           <!-- Step 1 -->
-          <div class="p-2 bg-slate-900 rounded border border-slate-800">
-            <div class="text-amber-300 font-bold mb-0.5">Step 1. 타입 인터페이스 선언 (`types.ts`)</div>
-            <div class="text-[10.5px] text-slate-400 overflow-x-auto">
+          <div class="p-2.5 bg-slate-950 rounded-lg border border-slate-800">
+            <div class="text-amber-300 font-bold mb-1 text-[11.5px]">Step 1. 타입 인터페이스 선언 (`types.ts`)</div>
+            <div class="text-[11px] text-cyan-300 bg-slate-900/80 p-2 rounded border border-slate-800 overflow-x-auto select-all">
               export interface PaymentOrder { id: string; amount: number; currency: 'KRW' | 'USD'; }
             </div>
           </div>
 
           <!-- Step 2 -->
-          <div class="p-2 bg-slate-900 rounded border border-slate-800">
-            <div class="text-amber-300 font-bold mb-0.5">Step 2. AI 프롬프트 입력 (그대로 복사)</div>
-            <div class="text-[10.5px] text-emerald-300 bg-slate-950 p-1.5 rounded border border-slate-800/80 select-all">
+          <div class="p-2.5 bg-slate-950 rounded-lg border border-slate-800">
+            <div class="text-amber-300 font-bold mb-1 text-[11.5px]">Step 2. AI 프롬프트 입력 (그대로 복사하여 에이전트에 전송)</div>
+            <div class="text-[11px] text-emerald-300 bg-slate-900/80 p-2 rounded border border-slate-800 select-all leading-relaxed">
               "types.ts의 PaymentOrder를 인자로 받아 유효성을 검증하는 processOrder 함수를 order.ts에 작성해. 함수 작성 후 터미널에서 npx tsc --noEmit 을 실행하고, 타입 에러가 발생하면 직접 수정하여 성공할 때까지 반복해."
             </div>
           </div>
 
           <!-- Step 3 -->
-          <div class="p-2 bg-slate-900 rounded border border-slate-800">
-            <div class="text-amber-300 font-bold mb-0.5">Step 3. 관전 포인트</div>
-            <div class="text-[10.5px] text-slate-300 font-sans">
-              AI가 환각으로 없는 필드를 쓰다가 ➔ <span class="text-rose-400 font-mono font-bold">tsc 에러</span>를 맞고 ➔ 스스로 코드를 고쳐 <span class="text-emerald-400 font-mono font-bold">0 errors</span>로 수렴하는 과정을 목격하세요!
+          <div class="p-2.5 bg-slate-950 rounded-lg border border-slate-800">
+            <div class="text-amber-300 font-bold mb-1 text-[11.5px]">Step 3. 관전 포인트</div>
+            <div class="text-[11px] text-slate-200 font-sans leading-relaxed">
+              AI가 환각으로 없는 필드를 쓰다가 ➔ <span class="text-rose-400 font-mono font-bold">tsc 에러</span>를 맞고 ➔ 스스로 코드를 고쳐 <span class="text-emerald-400 font-mono font-bold">0 errors</span>로 수렴하는 자가치유 과정을 직접 목격하세요!
             </div>
           </div>
         </div>
       </div>
 
-      <div class="flex items-center justify-between pt-2 border-t border-slate-800 text-[10px] font-mono text-amber-300 mt-2">
+      <div class="flex items-center justify-between pt-2.5 border-t border-slate-800 text-[11px] font-mono text-amber-300 mt-3">
         <span>✓ 실습 결과: 타입 검증 100% 통과된 무결점 코드 완성</span>
         <span class="text-slate-400">다음 챕터: 툴체인(Skills) ➔</span>
       </div>
@@ -3689,10 +3698,10 @@
   </div>
 
   <!-- Bottom Banner -->
-  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-200 border border-slate-700 bg-slate-900/95 mt-1">
     <div class="flex items-center gap-2">
       <span class="text-amber-400 font-bold">🚀 실습 테이크어웨이:</span>
-      <span class="text-slate-200">에이전트에게 최고의 프롬프트는 '친절한 한국어 설명'이 아니라 <strong>'엄격한 TypeScript 인터페이스'</strong>입니다.</span>
+      <span class="text-slate-200">에이전트에게 최고의 프롬프트는 '친절한 한국어 설명'이 아니라 <strong class="text-white">'엄격한 TypeScript 인터페이스'</strong>입니다.</span>
     </div>
     <span class="text-indigo-400 font-bold text-[11px]">Chapter 03 완료</span>
   </div>
