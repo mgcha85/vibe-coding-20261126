@@ -1,0 +1,188 @@
+<section class="slide flex flex-col justify-between" data-title="5.4 다중 세션 연속성 &amp; 모듈 분할 병렬 개발">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 05. 병렬화 &middot; 5.4 세션 연속성 &amp; 모듈 분할 개발</span>
+      <span class="px-2.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-600/50 text-emerald-300 font-mono text-[11px] font-bold">
+        PERSISTENT STATE &middot; MODULAR CONCURRENCY
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">다중 세션 연속성 &amp; 단일 프로젝트 모듈 분할 동시 개발</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      세션이 끊기거나 교체되어도 <strong>INTENT &middot; PLAN &middot; LESSON</strong>으로 작업을 100% 즉시 계승하며, <strong>하나의 프로젝트를 독립 모듈로 분할하여 동시에 가속 완성</strong>합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: 3-Anchor Session Handoff (5 cols) -->
+    <div class="col-span-5 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">📜</span>
+            <span class="text-[11px] font-mono text-amber-400 font-bold uppercase">3대 앵커 기반 무손실 세션 핸드오프</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">Amnesia Zero</span>
+        </div>
+
+        <p class="text-xs text-slate-400 mb-2 leading-relaxed">
+          대화창 컨텍스트가 만료되거나 세션을 이동해도, <strong>파일 시스템의 3대 문서</strong>가 프로젝트의 영구 두뇌(External Memory)가 됩니다.
+        </p>
+
+        <!-- 3 Anchor Cards -->
+        <div class="space-y-2">
+          <!-- INTENT.md -->
+          <div class="p-2.5 rounded bg-slate-950/90 border border-indigo-900/50 flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono text-xs font-bold text-indigo-400">🎯 INTENT.md (방향성 &middot; 불변 헌법)</span>
+              <span class="text-[9px] font-mono text-slate-400">"Why &amp; What"</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-snug">
+              프로젝트의 최종 목표, 아키텍처 원칙, 금지 규칙 정의. 세션이 리셋되어도 에이전트의 <strong>탈선(Prompt Drift)을 100% 원천 차단</strong>.
+            </p>
+          </div>
+
+          <!-- PLAN.md -->
+          <div class="p-2.5 rounded bg-slate-950/90 border border-sky-900/50 flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono text-xs font-bold text-sky-400">📋 PLAN.md (마일스톤 &middot; 진행도 SSOT)</span>
+              <span class="text-[9px] font-mono text-slate-400">"Where we are"</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-snug">
+              모듈별 완료/진행 중/잔여 태스크 실시간 추적. 새 세션이 열리자마자 체크리스트를 읽고 <strong>0초 만에 직전 작업 즉시 이어받기(Hot Handoff)</strong>.
+            </p>
+          </div>
+
+          <!-- LESSON_AND_LEARN.md -->
+          <div class="p-2.5 rounded bg-slate-950/90 border border-amber-900/50 flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono text-xs font-bold text-amber-400">💡 LESSON_AND_LEARN.md (집단 지성 오답노트)</span>
+              <span class="text-[9px] font-mono text-slate-400">"Troubleshooting"</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-snug">
+              세션 A가 겪은 라이브러리 충돌 및 컴파일 버그를 기록. <strong>세션 B&middot;C&middot;D는 동일한 삽질을 0초 만에 회피</strong>하는 에이전트 간 지식 전파.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-indigo-950/50 border border-indigo-800/40 text-[10.5px] font-mono text-indigo-300 mt-2 flex items-center justify-between">
+        <span>✓ 다중 세션 맥락 보존율: <strong>100%</strong></span>
+        <span class="text-emerald-400">No Memory Loss</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Modular Concurrency Visual (7 cols) -->
+    <div class="col-span-7 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">⚡</span>
+            <span class="text-[11px] font-mono text-emerald-400 font-bold uppercase">단일 프로젝트 4대 모듈 동시 개발 아키텍처</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-sky-400 bg-sky-950 px-2 py-0.5 rounded border border-sky-800">4x Accelerated Delivery</span>
+        </div>
+
+        <!-- Architectural Diagram Box -->
+        <div class="p-2.5 rounded bg-slate-950 border border-slate-800 mb-2">
+          <!-- Top Shared SSOT Bar -->
+          <div class="p-2 rounded bg-indigo-950/80 border border-indigo-500/60 text-center font-mono text-xs font-bold text-indigo-200 flex items-center justify-center gap-3 shadow">
+            <span>🏛️ 공유 앵커 상태 (Shared SSOT)</span>
+            <span class="text-slate-400">&middot;</span>
+            <span class="text-amber-300">INTENT.md</span>
+            <span class="text-slate-500">|</span>
+            <span class="text-sky-300">PLAN.md</span>
+            <span class="text-slate-500">|</span>
+            <span class="text-emerald-300">LESSON_AND_LEARN.md</span>
+          </div>
+
+          <!-- Downward Connection Streams -->
+          <div class="flex justify-around text-indigo-400 font-mono text-[10px] my-1">
+            <span>▼ (읽기/갱신)</span>
+            <span>▼ (오답 동기화)</span>
+            <span>▼ (목표 참조)</span>
+            <span>▼ (스펙 검증)</span>
+          </div>
+
+          <!-- 4 Parallel Modules (Concurrent Tracks) -->
+          <div class="grid grid-cols-4 gap-1.5 text-[9.5px] font-mono">
+            <!-- Track 1: Core Engine -->
+            <div class="p-2 rounded bg-purple-950/40 border border-purple-500/50 flex flex-col justify-between">
+              <div>
+                <div class="font-bold text-purple-300 mb-0.5">[세션 1: Engine]</div>
+                <div class="text-slate-400 text-[8.5px]">Rust / Go Core</div>
+                <div class="text-slate-300 mt-1">백테스트 &middot; 매칭 엔진</div>
+              </div>
+              <div class="text-emerald-400 font-bold mt-1.5 pt-1 border-t border-purple-900/60">cargo test ✅</div>
+            </div>
+
+            <!-- Track 2: API & Auth -->
+            <div class="p-2 rounded bg-sky-950/40 border border-sky-500/50 flex flex-col justify-between">
+              <div>
+                <div class="font-bold text-sky-300 mb-0.5">[세션 2: API/DB]</div>
+                <div class="text-slate-400 text-[8.5px]">Go / SQL Layer</div>
+                <div class="text-slate-300 mt-1">인증, 주문 API, 마이그</div>
+              </div>
+              <div class="text-emerald-400 font-bold mt-1.5 pt-1 border-t border-sky-900/60">go test ✅</div>
+            </div>
+
+            <!-- Track 3: Frontend UI -->
+            <div class="p-2 rounded bg-emerald-950/40 border border-emerald-500/50 flex flex-col justify-between">
+              <div>
+                <div class="font-bold text-emerald-300 mb-0.5">[세션 3: Frontend]</div>
+                <div class="text-slate-400 text-[8.5px]">Svelte + Tailwind</div>
+                <div class="text-slate-300 mt-1">실시간 반응형 대시보드</div>
+              </div>
+              <div class="text-emerald-400 font-bold mt-1.5 pt-1 border-t border-emerald-900/60">npm test ✅</div>
+            </div>
+
+            <!-- Track 4: E2E & Bench -->
+            <div class="p-2 rounded bg-amber-950/40 border border-amber-500/50 flex flex-col justify-between">
+              <div>
+                <div class="font-bold text-amber-300 mb-0.5">[세션 4: E2E/Bench]</div>
+                <div class="text-slate-400 text-[8.5px]">Python / Pytest</div>
+                <div class="text-slate-300 mt-1">통합 시나리오 &middot; 부하검증</div>
+              </div>
+              <div class="text-emerald-400 font-bold mt-1.5 pt-1 border-t border-amber-900/60">e2e 100% ✅</div>
+            </div>
+          </div>
+
+          <!-- Bottom Merge Arrow -->
+          <div class="mt-2 p-1.5 rounded bg-slate-900 border border-slate-700 text-center font-mono text-[10.5px] text-slate-200 flex items-center justify-center gap-2">
+            <span class="text-emerald-400 font-bold">🚀 인터페이스 계약(Contract) 기반 무충돌 통합</span>
+            <span class="text-slate-500">&rarr;</span>
+            <span class="text-sky-300 font-bold">원클릭 배포 완성</span>
+          </div>
+        </div>
+
+        <!-- Velocity & Risk Comparison -->
+        <div class="space-y-1.5 text-xs font-mono">
+          <div class="p-2 rounded bg-rose-950/30 border border-rose-900/40 flex items-center justify-between text-slate-300">
+            <span class="text-rose-400 font-bold">❌ 순차 직렬 개발 (1세션):</span>
+            <span class="text-[11px]">엔진(3일) &rarr; API(3일) &rarr; UI(3일) &rarr; E2E(3일) = <strong>총 12일 (세션 단절 시 기억상실)</strong></span>
+          </div>
+          <div class="p-2 rounded bg-emerald-950/30 border border-emerald-900/40 flex items-center justify-between text-slate-200">
+            <span class="text-emerald-400 font-bold">⚡ 모듈 병렬 개발 (4세션):</span>
+            <span class="text-[11px]">4개 모듈 동시 개발(3일) + 3대 앵커 실시간 동기화 = <strong>단 3일 만에 완성 (75% 시간 단축)</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-slate-950 border border-slate-800 text-[10px] font-mono text-slate-400 mt-2 flex items-center justify-between">
+        <span class="text-slate-300">💡 <strong>핵심 비결:</strong> 모듈 간 인터페이스(API/Type)를 초기에 정의해 두면, 각 에이전트는 서로를 방해하지 않고 전속력으로 달립니다.</span>
+        <span class="text-sky-400 font-bold">Zero Dependency Blocker</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-emerald-400 font-bold">🚀 모듈 분할과 앵커의 시너지:</span>
+      <span class="text-slate-200">3대 문서가 프로젝트의 기억을 보존하므로, <strong>수많은 에이전트에게 모듈을 쪼개어 맡겨도 완성 퀄리티와 일관성이 보장</strong>됩니다.</span>
+    </div>
+    <span class="text-emerald-400 font-bold text-[11px]">Slide 57</span>
+  </div>
+</section>
