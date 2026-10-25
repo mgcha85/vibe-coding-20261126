@@ -4,134 +4,152 @@
     <div class="flex items-center justify-between">
       <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.8 중앙 집중형 LLM-Wiki</span>
       <span class="px-2.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-700/50 text-indigo-300 font-mono text-[11px] font-bold">
-        MULTI-DEPTH &middot; SINGLE SOURCE OF TRUTH
+        MULTI-DEPTH &middot; 3-TIER MEMORY REFINEMENT
       </span>
     </div>
-    <h2 class="text-3xl font-black text-white mt-1">중앙 집중형 LLM-Wiki : 노하우 누적과 Multi-Depth 분할</h2>
+    <h2 class="text-3xl font-black text-white mt-1">중앙 집중형 LLM-Wiki : 3계층 정제 &amp; Multi-Depth 아키텍처</h2>
     <p class="text-xs text-slate-300 mt-1">
-      개별 레포에 스킬을 흩뿌려 두지 마십시오. 모든 프로젝트가 단 하나의 <strong>중앙 LLM-Wiki</strong>를 바라보게 만들어 개인과 팀의 엔지니어링 자산을 영구 축적합니다.
+      단순 폴더 트리 구조가 아닙니다. <strong>Raw(원천 자료) ➔ Schema(정제 규칙) ➔ Wiki(영속적 개념/결정/스킬)</strong>로 지식을 컴파일하여 전 프로젝트가 공유하는 고차원 인지 시스템입니다.
     </p>
   </div>
 
   <!-- Main Grid (12 cols) -->
   <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
     
-    <!-- LEFT: Central Hub Topology (5 cols) -->
+    <!-- LEFT: 3-Tier Compilation Pipeline & Hub-and-Spoke (5 cols) -->
     <div class="col-span-5 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-2">
-          <span class="text-[11px] font-mono text-cyan-300 font-bold uppercase">🌐 허브 앤 스포크 (Hub-and-Spoke) 구조</span>
-          <span class="text-[9.5px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Symlink / Submodule</span>
+          <span class="text-[11px] font-mono text-cyan-300 font-bold uppercase">⚙️ LLM-Wiki 3계층 컴파일 파이프라인</span>
+          <span class="text-[9.5px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">RAG 초월 지속 축적</span>
         </div>
 
-        <!-- Central Hub Diagram -->
-        <div class="p-2.5 rounded bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300">
-          <!-- Hub -->
-          <div class="p-2 rounded bg-indigo-950/60 border border-indigo-500/50 text-center shadow-lg mb-2">
-            <div class="text-indigo-200 font-bold text-[12px] flex items-center justify-center gap-1.5">
-              <span>🧠</span> <span>중앙 저장소: LLM-Wiki (harness-collection)</span>
+        <!-- 3-Tier Layered Box -->
+        <div class="space-y-1.5 text-xs font-mono">
+          <!-- Layer 1: Raw Sources -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="flex items-center justify-between text-slate-400 font-bold text-[10.5px]">
+              <span>📥 Layer 1. Raw Sources (불변 원본)</span>
+              <span class="text-[9px] bg-slate-800 px-1.5 py-0.2 rounded text-slate-300">Immutable</span>
             </div>
-            <div class="text-[10px] text-slate-300 mt-0.5 font-sans">
-              전사 공통 AGENTS.md &middot; 20+ Skills &middot; 누적 트러블슈팅
+            <div class="text-[9.5px] text-slate-400 font-sans mt-0.5">
+              <code class="text-slate-300 font-mono">/raw/</code> 논문, 거래소 API 문서, 회의록, 장애 로그 (AI 읽기 전용)
             </div>
           </div>
 
-          <!-- Connecting Arrows -->
-          <div class="flex items-center justify-around text-amber-400 text-[10px] my-1">
-            <span>↙ symlink</span>
-            <span>↓ symlink</span>
-            <span>↘ symlink</span>
+          <!-- Down Arrow with Ingestion -->
+          <div class="flex items-center justify-center gap-2 text-amber-400 text-[10px]">
+            <span>↓</span>
+            <span class="bg-amber-500/10 border border-amber-400/30 px-2 py-0.5 rounded font-bold">
+              🤖 AI 정제 &amp; 지식 인제스트 (Ingest / Lint)
+            </span>
+            <span>↓</span>
           </div>
 
-          <!-- Spokes -->
-          <div class="grid grid-cols-3 gap-1.5 text-center text-[10px]">
-            <div class="p-1.5 rounded bg-slate-900 border border-slate-800">
-              <div class="text-sky-300 font-bold">Project A</div>
-              <div class="text-slate-400 text-[9px]">Svelte 웹서비스</div>
+          <!-- Layer 2: Schema / Governance -->
+          <div class="p-2 rounded bg-sky-950/30 border border-sky-500/40">
+            <div class="flex items-center justify-between text-sky-300 font-bold text-[10.5px]">
+              <span>📜 Layer 2. Schema (정제 헌법)</span>
+              <span class="text-[9px] bg-sky-900/60 px-1.5 py-0.2 rounded text-sky-200">Rule of Law</span>
             </div>
-            <div class="p-1.5 rounded bg-slate-900 border border-slate-800">
-              <div class="text-emerald-300 font-bold">Project B</div>
-              <div class="text-slate-400 text-[9px]">Go 실시간 엔진</div>
+            <div class="text-[9.5px] text-slate-300 font-sans mt-0.5">
+              <code class="text-sky-300 font-mono">AGENTS.md</code> &middot; 템플릿(entity, decision) ➔ AI에게 위키 작성 규칙 강제
             </div>
-            <div class="p-1.5 rounded bg-slate-900 border border-slate-800">
-              <div class="text-purple-300 font-bold">Project C</div>
-              <div class="text-slate-400 text-[9px]">Python 백테스트</div>
+          </div>
+
+          <!-- Down Arrow -->
+          <div class="flex justify-center text-slate-500 text-xs">↓</div>
+
+          <!-- Layer 3: Compounding Wiki Base -->
+          <div class="p-2.5 rounded bg-indigo-950/40 border border-indigo-500/50 shadow-lg">
+            <div class="flex items-center justify-between text-indigo-300 font-bold text-[11px] mb-1">
+              <span>🧠 Layer 3. The Compounding Wiki</span>
+              <span class="text-[9px] bg-indigo-900/60 px-1.5 py-0.5 rounded text-emerald-400 font-bold">Persistent SSOT</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans leading-snug">
+              AI가 자동 상호참조(Cross-reference)하고 갱신하는 <strong>살아있는 지식 베이스</strong>.
             </div>
           </div>
         </div>
 
-        <div class="mt-2 space-y-1 text-[10.5px] text-slate-300 font-sans">
-          <div class="flex items-center gap-1.5">
-            <span class="text-emerald-400">✓</span>
-            <span><strong>지식의 단방향 축적:</strong> 한 프로젝트에서 겪은 버그 해결책이 위키에 기록되면 전 프로젝트 에이전트에 동시 반영.</span>
+        <!-- Hub and Spoke Sub-box -->
+        <div class="p-2 rounded bg-slate-950 border border-slate-800 mt-2 text-[10.5px] font-mono">
+          <div class="text-cyan-300 font-bold mb-1 flex items-center justify-between">
+            <span>🌐 Hub-and-Spoke 공유 연결</span>
+            <span class="text-[9px] text-slate-400">전 프로젝트 심볼릭 링크</span>
           </div>
-          <div class="flex items-center gap-1.5">
-            <span class="text-emerald-400">✓</span>
-            <span><strong>신규 프로젝트 1초 부트스트랩:</strong> 위키만 심볼릭 링크로 연결하면 즉시 시니어급 사규 탑재.</span>
+          <div class="grid grid-cols-3 gap-1 text-center text-[9px] text-slate-300">
+            <div class="bg-slate-900 p-1 rounded border border-slate-800">Project A (Web)</div>
+            <div class="bg-slate-900 p-1 rounded border border-slate-800">Project B (Go)</div>
+            <div class="bg-slate-900 p-1 rounded border border-slate-800">Project C (AI)</div>
           </div>
         </div>
       </div>
 
-      <div class="p-2 rounded bg-indigo-950/40 border border-indigo-800/40 text-[10.5px] font-mono text-indigo-300">
-        💡 "에이전트가 똑똑해지는 것이 아니라, <strong>중앙 위키에 누적된 내 하네스 자산</strong>이 에이전트를 천재로 만든다."
+      <div class="p-1.5 rounded bg-indigo-950/40 border border-indigo-800/40 text-[10px] font-mono text-indigo-300">
+        💡 RAG는 매번 제로베이스 검색하지만, <strong>LLM-Wiki는 지식이 누적 컴파일</strong>됩니다.
       </div>
     </div>
 
-    <!-- RIGHT: Multi-depth Decomposition & Conflict Resolution (7 cols) -->
+    <!-- RIGHT: Real World Multi-Depth Wiki Hierarchy (7 cols) -->
     <div class="col-span-7 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
       <div>
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-[11px] font-mono text-amber-400 font-bold uppercase">쪼갤수록 정교해지는 Multi-Depth 위키 구조</span>
-          <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950 px-2 py-0.5 rounded border border-amber-800">Decomposition Spec</span>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-[11px] font-mono text-amber-400 font-bold uppercase">📂 실전 Multi-Depth 위키 디렉토리 구조</span>
+          <span class="text-[9.5px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">harness-collection 실체</span>
         </div>
 
         <p class="text-[11px] text-slate-300 mb-2 leading-relaxed">
-          스킬이 비대해지면 문서끼리 <strong>상충(Conflict)</strong>하거나 <strong>토큰을 낭비</strong>하고 AI가 통제력을 잃습니다. 내용을 <strong>작은 원자 단위(Atomic)</strong>로 쪼개어 위키에 보관해야 합니다.
+          스킬이 비대해져 생기는 <strong>상충(Conflict)과 토큰 낭비</strong>를 막기 위해, 위키는 <strong>인덱스 &middot; 엔티티 &middot; 의사결정 &middot; 원자 스킬</strong>로 다층 분할(Multi-Depth)됩니다.
         </p>
 
-        <!-- Multi-depth Tree Visual Box -->
-        <div class="p-2.5 rounded bg-slate-950 border border-slate-800 font-mono text-[10.5px] leading-tight text-slate-300 space-y-1.5">
-          <div class="text-sky-300 font-bold">📂 llm-wiki/ (중앙 위키 저장소)</div>
+        <!-- Complex Multi-Depth Tree Visual Box -->
+        <div class="p-2.5 rounded bg-slate-950 border border-slate-800 font-mono text-[10.5px] leading-tight text-slate-300 space-y-1.5 overflow-x-auto">
+          <div class="text-sky-300 font-bold">📁 harness-collection/ (중앙 집중형 LLM-Wiki)</div>
           
-          <!-- Depth 1: Governance -->
+          <!-- Depth 1: Root Constitution & Index -->
           <div class="pl-3">
-            <span class="text-indigo-400">├── 📜 AGENTS.md</span> <span class="text-slate-500 font-sans text-[9.5px]">(최상위 헌법: 전사 보안 &middot; 배포 룰)</span>
+            <span class="text-indigo-400">├── 📜 AGENTS.md</span> <span class="text-slate-500 font-sans text-[9px]">(최상위 공통 헌법 &middot; 보안 &middot; 배포 계약)</span><br>
+            <span class="text-indigo-400">├── 📑 LESSON_AND_LEARN.md</span> <span class="text-slate-500 font-sans text-[9px]">(전사 공통 오답노트 &middot; 자가 치유)</span>
           </div>
 
-          <!-- Depth 2: Multi-depth Skills -->
+          <!-- Depth 2: Multi-Depth Wiki Knowledge Graph -->
           <div class="pl-3">
-            <span class="text-amber-400">├── 📂 skills/</span> <span class="text-slate-500 font-sans text-[9.5px]">(원자 단위로 쪼갠 스킬)</span>
+            <span class="text-emerald-400">├── 📂 wiki/</span> <span class="text-slate-400 font-sans text-[9px]">(지식 베이스 코어)</span>
           </div>
           <div class="pl-6 text-slate-300">
-            ├── 📁 <span class="text-emerald-300 font-bold">ui-components/</span> <span class="text-[9px] text-slate-500 font-sans">➔ 버튼, 폼, 모달 규격만 분리</span><br>
-            ├── 📁 <span class="text-emerald-300 font-bold">ui-tailwind/</span> <span class="text-[9px] text-slate-500 font-sans">➔ 16:9 다크 테마 색상 팔레트만 분리</span><br>
-            ├── 📁 <span class="text-cyan-300 font-bold">ops-docker/</span> <span class="text-[9px] text-slate-500 font-sans">➔ 컨테이너 빌드 &middot; 포트 충돌 방지</span><br>
-            └── 📁 <span class="text-cyan-300 font-bold">ops-ci-cd/</span> <span class="text-[9px] text-slate-500 font-sans">➔ 깃허브 액션 배포 스크립트</span>
+            ├── 📑 <span class="text-cyan-300 font-bold">index.md</span> <span class="text-[9px] text-slate-500 font-sans">➔ 위키 전체 카탈로그 (양방향 링크 [[...]] 인덱싱)</span><br>
+            ├── 📁 <span class="text-amber-300 font-bold">entities/</span> <span class="text-[9px] text-slate-500 font-sans">➔ 핵심 개념 &middot; 패턴 ([[backtesting-rules]], [[data-contract]])</span><br>
+            ├── 📁 <span class="text-rose-300 font-bold">decisions/</span> <span class="text-[9px] text-slate-500 font-sans">➔ 아키텍처 결정 &middot; 시행착오 ([[look-ahead-bias-fix]])</span><br>
+            └── 📁 <span class="text-purple-300 font-bold">_templates/</span> <span class="text-[9px] text-slate-500 font-sans">➔ 새 지식 인제스트용 표준 양식 (entity, decision)</span>
           </div>
 
-          <!-- Depth 3: Knowledge Library -->
+          <!-- Depth 3: Atomic Skills Partitioning -->
           <div class="pl-3">
-            <span class="text-purple-400">└── 📂 docs/ &middot; references/</span> <span class="text-slate-500 font-sans text-[9.5px]">(온디맨드 참조 도서관)</span>
+            <span class="text-amber-400">└── 📂 .cursor/skills/</span> <span class="text-slate-400 font-sans text-[9px]">(상충 제거를 위해 원자 단위로 잘게 쪼갠 스킬 팩)</span>
           </div>
           <div class="pl-6 text-slate-300">
-            ├── 📑 <span class="text-slate-200">API_CONTRACT.md</span> &middot; 📑 <span class="text-slate-200">DB_SCHEMA.md</span> &middot; 📑 <span class="text-slate-200">DESIGN_TOKENS.md</span>
+            ├── 📁 <span class="text-emerald-300">ui-components/</span> &middot; 📁 <span class="text-emerald-300">ui-tailwind/</span> <span class="text-[9px] text-slate-500 font-sans">(UI 그룹)</span><br>
+            ├── 📁 <span class="text-cyan-300">ops-deployment/</span> &middot; 📁 <span class="text-cyan-300">ops-podman/</span> <span class="text-[9px] text-slate-500 font-sans">(인프라 그룹)</span><br>
+            └── 📁 <span class="text-purple-300">trading-db-schema/</span> &middot; 📁 <span class="text-purple-300">wiki-management/</span> <span class="text-[9px] text-slate-500 font-sans">(도메인/위키관리)</span>
           </div>
         </div>
 
-        <div class="mt-2 grid grid-cols-2 gap-2 text-[10px]">
+        <!-- Conflict Resolution & Token Efficiency Callouts -->
+        <div class="grid grid-cols-2 gap-2 mt-2 text-[10px]">
           <div class="p-1.5 rounded bg-rose-950/30 border border-rose-800/40 text-slate-300">
-            <span class="text-rose-400 font-bold block mb-0.5">⚠️ 스킬이 뚱뚱할 때 (Monolithic):</span>
-            문서 길이 증가 ➔ 컨텍스트 낭비 ➔ 서로 다른 룰 충돌 ➔ AI 환각 발생.
+            <strong class="text-rose-400 block mb-0.5">⚠️ 스킬이 비대할 때 (Monolithic):</strong>
+            문서 길이 폭증 ➔ 규칙 상충(Tailwind 충돌 등) ➔ AI 지시 망각 및 환각.
           </div>
           <div class="p-1.5 rounded bg-emerald-950/30 border border-emerald-800/40 text-slate-300">
-            <span class="text-emerald-400 font-bold block mb-0.5">✅ 위키로 잘게 쪼갰을 때 (Atomic):</span>
-            필요한 모듈만 핀포인트 로드 ➔ 상충 제로 ➔ 토큰 절감 &middot; 통제력 100%.
+            <strong class="text-emerald-400 block mb-0.5">✅ 위키 Multi-Depth 분할 (Atomic):</strong>
+            <code class="text-cyan-300 font-mono">index.md</code>로 필요한 페이지만 열람 ➔ 상충 원천 차단 ➔ 토큰 절감 극대화.
           </div>
         </div>
       </div>
 
       <div class="p-1.5 rounded bg-amber-950/40 border border-amber-800/40 text-[10px] font-mono text-amber-300 mt-2">
-        🎯 핵심: 거대한 단일 문서 하나보다, <strong>잘 정돈된 Multi-Depth 위키</strong>가 AI에게 10배 명확합니다.
+        🎯 <strong>위키 관리 스킬(<code class="text-cyan-300">wiki-management</code>):</strong> 새 자료가 오면 AI가 스스로 위키 문서를 작성하고 index.md에 링크를 거는 자율 루프 가동.
       </div>
     </div>
   </div>
@@ -139,8 +157,8 @@
   <!-- Bottom Global Banner -->
   <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
     <div class="flex items-center gap-2">
-      <span class="text-indigo-400 font-bold">🧠 LLM-Wiki 철학:</span>
-      <span class="text-slate-200">스킬을 잘게 쪼개어 중앙 위키에 축적하고, 모든 레포가 이 단일 지식을 바라보게 하십시오.</span>
+      <span class="text-indigo-400 font-bold">🧠 LLM-Wiki 완성형:</span>
+      <span class="text-slate-200"><strong>Raw ➔ Schema ➔ Wiki(Entities/Decisions)</strong> 3계층과 <strong>원자 단위 Skills</strong> 분할로 상충 없는 영구 지식을 구축하십시오.</span>
     </div>
     <span class="text-indigo-400 font-bold text-[11px]">Slide 47</span>
   </div>
