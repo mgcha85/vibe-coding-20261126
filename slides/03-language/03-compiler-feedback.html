@@ -1,110 +1,139 @@
 <section class="slide flex flex-col justify-between" data-title="3.2 Python 동적 타이핑 함정과 Quality Stack">
-  <div class="mb-2">
-    <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider">Chapter 03. 언어 &middot; 3.2 런타임 지뢰밭 vs Quality Stack</span>
-    <h2 class="text-3xl font-black text-white">Python 동적 타이핑의 함정과 Quality Stack</h2>
-    <p class="text-xs text-slate-300 mt-0.5">
-      AI 시대, Python의 문법적 자유는 양날의 검입니다. <strong>Ruff &middot; Mypy &middot; Pytest</strong> 조합의 빛과 그림자를 분석합니다.
+  <!-- Header -->
+  <div class="mb-3">
+    <div class="flex items-center justify-between">
+      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 03. 언어 &middot; 3.2 런타임 지뢰밭 vs Quality Stack</span>
+      <span class="px-2.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-700/50 text-indigo-300 font-mono text-[11px]">
+        DILEMMA &middot; QUALITY STACK
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">Python 동적 타이핑의 함정과 Quality Stack</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      AI 시대, Python의 문법적 자유는 양날의 검입니다. <strong class="text-indigo-300">Ruff &middot; Mypy &middot; Pytest</strong> 조합의 빛과 그림자를 심층 분석합니다.
     </p>
   </div>
 
-  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch my-auto">
+  <!-- Main Bento Grid -->
+  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch my-1">
     <!-- LEFT: Python Quality Stack 장점 -->
-    <div class="bento-tile p-4 flex flex-col justify-between border-t-2 border-t-emerald-500 bg-slate-950/90">
+    <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-emerald-500 bg-slate-900/90 border border-slate-700/60 shadow-xl">
       <div>
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-xs font-mono text-emerald-400 font-bold uppercase">Quality Stack의 장점</span>
-          <span class="text-[10px] font-mono text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/50">생태계 &middot; 유연성 🛡️</span>
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wide">Quality Stack의 3대 강점</span>
+          </div>
+          <span class="text-[11px] font-mono font-bold text-emerald-300 bg-emerald-950/90 px-2.5 py-1 rounded border border-emerald-600/50">
+            생태계 &middot; 점진적 유연성 🛡️
+          </span>
         </div>
-        <h3 class="text-base font-bold text-white mb-2">Python + 보조 도구(Ruff/Mypy/Pytest)의 강점</h3>
+        <h3 class="text-lg font-bold text-white mb-3">Python + 보조 도구(Ruff/Mypy/uv)의 위력</h3>
         
-        <div class="space-y-2 text-xs text-slate-300 leading-relaxed">
-          <div class="p-2 bg-slate-900/90 rounded border border-slate-800">
-            <div class="flex items-center gap-1.5 text-emerald-300 font-bold text-[11px] mb-1">
-              <span>01. 점진적 타이핑(Gradual Typing)의 유연성</span>
+        <div class="space-y-2.5 text-xs">
+          <!-- Item 1 -->
+          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 hover:border-emerald-500/40 transition-colors">
+            <div class="flex items-center justify-between mb-1">
+              <strong class="text-emerald-300 text-[12.5px]">01. 점진적 타이핑(Gradual Typing)의 유연성</strong>
+              <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded">Fast Vibe</span>
             </div>
-            <p class="text-[11px] text-slate-400">
-              초기 프로토타이핑(Fast Vibe) 시 엄격한 타입 선언 없이 즉시 구현하고, 핵심 비즈니스 로직에만 <strong>Pydantic &middot; Type Hint</strong>를 점진 부여하여 속도와 안전성을 절충.
+            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+              초기 프로토타이핑은 스크립트로 극도로 빠르게 돌려보고(Fast Vibe), 검증된 핵심 로직에만 <strong>Pydantic 모델 &middot; Type Hint</strong>를 점진 적용해 유연성 극대화.
             </p>
           </div>
 
-          <div class="p-2 bg-slate-900/90 rounded border border-slate-800">
-            <div class="flex items-center gap-1.5 text-emerald-300 font-bold text-[11px] mb-1">
-              <span>02. 압도적인 AI &middot; ML 생태계 독점</span>
+          <!-- Item 2 -->
+          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 hover:border-emerald-500/40 transition-colors">
+            <div class="flex items-center justify-between mb-1">
+              <strong class="text-emerald-300 text-[12.5px]">02. 압도적인 AI &middot; ML 생태계 독점 (90%+)</strong>
+              <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded">Ecosystem King</span>
             </div>
-            <p class="text-[11px] text-slate-400">
-              PyTorch, Hugging Face, LangChain, vLLM 등 최신 AI 핵심 기술의 90% 이상이 Python 1st-party 라이브러리로 제공되어 대체 불가능한 연구&middot;통합 속도 보장.
+            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+              PyTorch, Hugging Face, LangChain, vLLM, DeepSpeed 등 최신 AI 코어 프레임워크가 Python 1st-party로만 출시되어 타 언어로 대체 불가.
             </p>
           </div>
 
-          <div class="p-2 bg-slate-900/90 rounded border border-slate-800">
-            <div class="flex items-center gap-1.5 text-emerald-300 font-bold text-[11px] mb-1">
-              <span>03. Rust 기반 차세대 툴체인의 극단적 성능</span>
+          <!-- Item 3 -->
+          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 hover:border-emerald-500/40 transition-colors">
+            <div class="flex items-center justify-between mb-1">
+              <strong class="text-emerald-300 text-[12.5px]">03. Rust 기반 차세대 툴체인의 극단적 속도</strong>
+              <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded">uv &middot; Ruff</span>
             </div>
-            <p class="text-[11px] text-slate-400">
-              <strong class="text-slate-200">uv</strong>(초고속 가상환경/패키지 매니저)와 <strong class="text-slate-200">Ruff</strong>(Rust 기반 린터/포맷터) 도입으로 기존 Flake8/Black 대비 10~100배 빠른 수 밀리초 피드백 달성.
+            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+              <strong class="text-cyan-300">uv</strong>(초고속 가상환경/패키징) + <strong class="text-cyan-300">Ruff</strong>(Rust 기반 린터) 도입으로 C/Rust급 <strong>수 밀리초(ms) 단위</strong> 실시간 피드백 루프 달성.
             </p>
           </div>
         </div>
       </div>
 
-      <div class="text-[10px] text-emerald-400 font-mono border-t border-slate-800/80 pt-1.5 mt-2 flex justify-between">
-        <span>✓ 결론: AI 코어 연구 및 빠른 아이디어 검증에 최적</span>
-        <span class="text-slate-500">Fast Prototyping</span>
+      <div class="text-[11px] text-emerald-300 font-mono bg-emerald-950/40 border border-emerald-800/40 px-3 py-1.5 rounded mt-3 flex items-center justify-between">
+        <span>✓ 결론: AI 모델링 &middot; 데이터 연구 &middot; 빠른 가설 검증에 압도적 최적</span>
+        <span class="font-bold">Fast R&amp;D</span>
       </div>
     </div>
 
     <!-- RIGHT: 치명적 단점 및 딜레마 -->
-    <div class="bento-tile p-4 flex flex-col justify-between border-t-2 border-t-rose-500 bg-slate-950/90">
+    <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-rose-500 bg-slate-900/90 border border-slate-700/60 shadow-xl">
       <div>
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-xs font-mono text-rose-400 font-bold uppercase">치명적 단점 &amp; 딜레마</span>
-          <span class="text-[10px] font-mono text-rose-300 bg-rose-950/80 px-2 py-0.5 rounded border border-rose-800/50">런타임 환각 지뢰밭 💣</span>
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-rose-400 animate-pulse"></span>
+            <span class="text-xs font-mono text-rose-400 font-bold uppercase tracking-wide">치명적 단점 &amp; 3대 딜레마</span>
+          </div>
+          <span class="text-[11px] font-mono font-bold text-rose-300 bg-rose-950/90 px-2.5 py-1 rounded border border-rose-600/50">
+            런타임 환각 지뢰밭 💣
+          </span>
         </div>
-        <h3 class="text-base font-bold text-white mb-2">에이전트 협업 시 발생하는 3대 병목</h3>
+        <h3 class="text-lg font-bold text-white mb-3">에이전트 협업 시 발생하는 치명적 병목</h3>
 
-        <div class="space-y-2 text-xs text-slate-300 leading-relaxed">
-          <div class="p-2 bg-slate-900/90 rounded border border-slate-800">
-            <div class="flex items-center gap-1.5 text-rose-300 font-bold text-[11px] mb-1">
-              <span>01. AI 환각(Hallucination)에 대한 즉각 제어력 부재</span>
+        <div class="space-y-2.5 text-xs">
+          <!-- Item 1 -->
+          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 hover:border-rose-500/40 transition-colors">
+            <div class="flex items-center justify-between mb-1">
+              <strong class="text-rose-300 text-[12.5px]">01. AI 환각(Hallucination)에 대한 즉각 제어력 부재</strong>
+              <span class="text-[10px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded">Silent Killer</span>
             </div>
-            <p class="text-[11px] text-slate-400">
-              신택스 에러가 없으면 AI는 완벽하다고 판단하고 종료. 컴파일러가 없어 배포 후 유저 실행 시점에야 <code class="text-rose-400">AttributeError</code>, <code class="text-rose-400">TypeError</code>로 폭발.
+            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+              신택스 에러만 없으면 AI는 완벽하다고 착각하고 종료. 컴파일러가 없어 배포 후 실사용 시점에 <code class="text-rose-300 bg-rose-950/80 px-1 rounded">AttributeError</code>, <code class="text-rose-300 bg-rose-950/80 px-1 rounded">TypeError</code>로 프로덕션 크래시.
             </p>
           </div>
 
-          <div class="p-2 bg-slate-900/90 rounded border border-slate-800">
-            <div class="flex items-center gap-1.5 text-rose-300 font-bold text-[11px] mb-1">
-              <span>02. 검증 파이프라인(Quality Stack) 설정 오버헤드</span>
+          <!-- Item 2 -->
+          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 hover:border-rose-500/40 transition-colors">
+            <div class="flex items-center justify-between mb-1">
+              <strong class="text-rose-300 text-[12.5px]">02. 검증 파이프라인(Quality Stack) 설정 오버헤드</strong>
+              <span class="text-[10px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded">Setup Burden</span>
             </div>
-            <p class="text-[11px] text-slate-400">
-              정적 언어와 달리 Ruff, Mypy, Pytest 등 도구를 수동으로 체이닝해야 하며, Mypy의 엄격 모드(`strict`) 설정 및 외부 서드파티 타입 스텁(`types-*`) 누락 시 검증 누수 발생.
+            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+              정적 언어와 달리 Ruff, Mypy, Pytest를 직접 체이닝해야 하며, Mypy 엄격 모드(`strict`) 설정 및 서드파티 타입 스텁(`types-*`) 누락 시 검증 공백 발생.
             </p>
           </div>
 
-          <div class="p-2 bg-slate-900/90 rounded border border-slate-800">
-            <div class="flex items-center gap-1.5 text-rose-300 font-bold text-[11px] mb-1">
-              <span>03. 프롬프트 토큰 &amp; 컨텍스트 윈도우 낭비</span>
+          <!-- Item 3 -->
+          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 hover:border-rose-500/40 transition-colors">
+            <div class="flex items-center justify-between mb-1">
+              <strong class="text-rose-300 text-[12.5px]">03. 프롬프트 토큰 &amp; 컨텍스트 윈도우 낭비</strong>
+              <span class="text-[10px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded">Token Drain</span>
             </div>
-            <p class="text-[11px] text-slate-400">
-              명확한 인터페이스가 없으면 LLM이 데이터 형태를 유추하느라 수천 토큰을 소모. AI에게 긴 설명 프롬프트를 작성해야 하므로 생산성 역전 현상 초래.
+            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+              명확한 타입 인터페이스가 없으면 LLM이 데이터 형태를 유추하느라 수천 토큰을 낭비. 한국어로 긴 장문 프롬프트를 쓰게 되어 본질적 생산성 저하.
             </p>
           </div>
         </div>
       </div>
 
-      <div class="text-[10px] text-rose-400 font-mono border-t border-slate-800/80 pt-1.5 mt-2 flex justify-between">
-        <span>⚠ 결론: 자동 하네스 없는 순수 Python은 AI 시대 최대의 런타임 리스크</span>
-        <span class="text-slate-500">Hallucination Risk</span>
+      <div class="text-[11px] text-rose-300 font-mono bg-rose-950/40 border border-rose-800/40 px-3 py-1.5 rounded mt-3 flex items-center justify-between">
+        <span>⚠ 경고: 자동 하네스 없는 순수 Python은 AI 시대 최대의 런타임 리스크</span>
+        <span class="font-bold">Fragile Runtime</span>
       </div>
     </div>
   </div>
 
   <!-- Bottom Takeaway -->
-  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-200 border border-slate-700 bg-slate-900/95 mt-2">
     <div class="flex items-center gap-2">
-      <span class="text-indigo-400 font-bold">💡 핵심 진단:</span>
-      <span class="text-slate-200">인간이 타이핑하던 시절의 '편리함'이, 에이전트가 코드를 쏟아내는 시대에는 <strong>'검증 지연의 저주'</strong>가 됩니다.</span>
+      <span class="text-amber-400 font-bold">💡 핵심 진단:</span>
+      <span>인간이 타이핑하던 시절의 '문법적 편리함'이, 에이전트가 코드를 쏟아내는 시대에는 <strong class="text-white">'검증 지연의 저주'</strong>가 됩니다.</span>
     </div>
-    <span class="text-amber-400 font-bold text-[11px]">Next: 정적 vs 동적 언어 매트릭스 ➔</span>
+    <span class="text-sky-400 font-bold text-[11px]">Next: 정적 vs 동적 언어 매트릭스 ➔</span>
   </div>
 </section>
