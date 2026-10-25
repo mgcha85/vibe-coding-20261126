@@ -1,0 +1,120 @@
+<section class="slide flex flex-col justify-between" data-title="3.8 전통적 정적 언어 3대장의 딜레마">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 03. 언어 &middot; 3.8 전통 정적 언어 분석</span>
+      <span class="px-2.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300 font-mono text-[11px] font-bold">
+        LEGACY STATIC TRIO
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">전통적 정적 언어 3대장의 딜레마 : C/C++ &middot; Java &middot; C#</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      각자의 고유 영역에서는 최강자이지만, <strong>AI 에이전트와 페어 프로그래밍을 할 때</strong>는 심각한 마찰을 드러냅니다.
+    </p>
+  </div>
+
+  <!-- 3 Columns Bento Grid -->
+  <div class="grid grid-cols-3 gap-3 flex-1 items-stretch my-1.5">
+    <!-- 1. C / C++ -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-rose-500 bg-slate-900/95 border border-slate-700/70 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono font-bold text-rose-400 uppercase tracking-wide">C / C++</span>
+          <span class="text-[9.5px] font-mono text-rose-300 bg-rose-950 px-1.5 py-0.5 rounded border border-rose-800">메모리 오염</span>
+        </div>
+        <h3 class="text-[13.5px] font-bold text-white mb-2">&ldquo;AI에게 총을 쥐여주고 내 발을 쏘게 만드는 꼴&rdquo;</h3>
+
+        <div class="space-y-2 text-xs">
+          <div class="p-2 rounded bg-slate-950/80 border border-slate-800">
+            <span class="text-emerald-400 font-bold text-[10.5px] block mb-0.5">✓ 핵심 장점</span>
+            <p class="text-slate-300 text-[10.5px] leading-relaxed">
+              극한의 런타임 성능, 하드웨어 직접 제어, AI 가속 엔진(vLLM, TensorRT, llama.cpp)의 실제 기반.
+            </p>
+          </div>
+
+          <div class="p-2 rounded bg-slate-950/80 border border-rose-900/40">
+            <span class="text-rose-400 font-bold text-[10.5px] block mb-0.5">⚠️ 바이브 코딩의 한계</span>
+            <p class="text-slate-300 text-[10.5px] leading-relaxed">
+              컴파일은 통과하지만 <strong>Null Pointer, Use-After-Free, 세그폴트(Segfault)</strong>가 런타임에 불규칙 폭발. AI 스스로 디버깅하기 극도로 위험.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-rose-950/40 border border-rose-800/40 text-[10.5px] font-mono text-rose-200 mt-2">
+        🎯 <strong>평가:</strong> AI 인프라 코어 전용. 일반 바이브 코딩 서비스용으로는 부적합.
+      </div>
+    </div>
+
+    <!-- 2. Java -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-amber-500 bg-slate-900/95 border border-slate-700/70 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wide">Java</span>
+          <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950 px-1.5 py-0.5 rounded border border-amber-800">토큰 질식</span>
+        </div>
+        <h3 class="text-[13.5px] font-bold text-white mb-2">&ldquo;AI 컨텍스트 윈도우를 질식시키는 장황함&rdquo;</h3>
+
+        <div class="space-y-2 text-xs">
+          <div class="p-2 rounded bg-slate-950/80 border border-slate-800">
+            <span class="text-emerald-400 font-bold text-[10.5px] block mb-0.5">✓ 핵심 장점</span>
+            <p class="text-slate-300 text-[10.5px] leading-relaxed">
+              방대한 엔터프라이즈 레거시 생태계, 엄격한 객체지향 규격, 안정성이 검증된 JVM 가비지 컬렉터.
+            </p>
+          </div>
+
+          <div class="p-2 rounded bg-slate-950/80 border border-amber-900/40">
+            <span class="text-amber-400 font-bold text-[10.5px] block mb-0.5">⚠️ 바이브 코딩의 한계</span>
+            <p class="text-slate-300 text-[10.5px] leading-relaxed">
+              수많은 <strong>AbstractFactoryBean, DTO, 계층형 위계</strong>로 몇 개 파일만 넣어도 AI 컨텍스트 폭발. 무거운 Gradle 빌드로 피드백 루프 지연.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-amber-950/40 border border-amber-800/40 text-[10.5px] font-mono text-amber-200 mt-2">
+        🎯 <strong>평가:</strong> 기존 엔터프라이즈 유지보수용. 민첩한 AI 네이티브 앱에는 비효율.
+      </div>
+    </div>
+
+    <!-- 3. C# -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-sky-500 bg-slate-900/95 border border-slate-700/70 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono font-bold text-sky-400 uppercase tracking-wide">C# (.NET)</span>
+          <span class="text-[9.5px] font-mono text-sky-300 bg-sky-950 px-1.5 py-0.5 rounded border border-sky-800">생태계 종속</span>
+        </div>
+        <h3 class="text-[13.5px] font-bold text-white mb-2">&ldquo;균형 잡힌 엔터프라이즈 카드, 그러나 생태계 한계&rdquo;</h3>
+
+        <div class="space-y-2 text-xs">
+          <div class="p-2 rounded bg-slate-950/80 border border-slate-800">
+            <span class="text-emerald-400 font-bold text-[10.5px] block mb-0.5">✓ 핵심 장점</span>
+            <p class="text-slate-300 text-[10.5px] leading-relaxed">
+              강력한 타입 시스템, 현대적 문법(C# 12+), .NET Core의 준수한 성능, Unity 게임 개발의 확고한 표준.
+            </p>
+          </div>
+
+          <div class="p-2 rounded bg-slate-950/80 border border-sky-900/40">
+            <span class="text-sky-400 font-bold text-[10.5px] block mb-0.5">⚠️ 바이브 코딩의 한계</span>
+            <p class="text-slate-300 text-[10.5px] leading-relaxed">
+              Java보다 유연해 AI 코드 품질은 우수하나, 오픈소스 AI 에이전트 생태계(Linux 컨테이너, Go/Rust/TS) 대비 <strong>라이브러리 가용성 2선</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-sky-950/40 border border-sky-800/40 text-[10.5px] font-mono text-sky-200 mt-2">
+        🎯 <strong>평가:</strong> 게임/MS 엔터프라이즈에선 유효. 범용 AI 바이브 코딩 표준으론 한계.
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Takeaway -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-200 border border-slate-700 bg-slate-900/95 mt-1">
+    <div class="flex items-center gap-2">
+      <span class="text-amber-400 font-bold">💡 통찰:</span>
+      <span>C++는 <strong>위험</strong>하고, Java는 <strong>무겁</strong>고, C#은 <strong>생태계</strong>가 아쉽습니다. 그렇다면 어떤 정적 언어를 써야 할까요?</span>
+    </div>
+    <span class="text-cyan-400 font-bold text-[11px]">Next: 3.9 Old Static vs Modern Static 비교 매트릭스 ➔</span>
+  </div>
+</section>

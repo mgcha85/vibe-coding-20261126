@@ -1,0 +1,130 @@
+<section class="slide flex flex-col justify-between" data-title="3.9 바이브 코딩 시대: Old vs Modern Static">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 03. 언어 &middot; 3.9 정적 언어 세대 비교</span>
+      <span class="px-2.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-700/50 text-indigo-300 font-mono text-[11px] font-bold">
+        OLD STATIC VS MODERN STATIC
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">바이브 코딩 시대 : &ldquo;Old Static&rdquo; vs &ldquo;Modern Static&rdquo;</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      정적 언어라고 다 같은 정적 언어가 아닙니다. 현대 AI 도구와 가장 잘 맞아떨어지는 언어군은 따로 존재합니다.
+    </p>
+  </div>
+
+  <!-- Main Comparison Matrix Table -->
+  <div class="bento-tile p-3.5 bg-slate-900/95 border border-slate-700/80 shadow-xl my-1">
+    <div class="flex items-center justify-between mb-2">
+      <span class="text-xs font-mono text-cyan-300 font-bold uppercase tracking-wider">GENERATION COMPARISON MATRIX &middot; 세대별 정적 언어 비교</span>
+      <span class="text-[10px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">6대 지표 비교</span>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse text-xs">
+        <thead>
+          <tr class="border-b border-slate-700 bg-slate-950/90 text-slate-300 font-mono text-[11px]">
+            <th class="py-2 px-3 font-semibold text-slate-400">언어군 구분</th>
+            <th class="py-2 px-3 font-semibold text-slate-300 border-l border-slate-800">대표 언어</th>
+            <th class="py-2 px-3 font-semibold text-slate-300 border-l border-slate-800">컴파일 &middot; 피드백 속도</th>
+            <th class="py-2 px-3 font-semibold text-slate-300 border-l border-slate-800">토큰 밀도 (간결성)</th>
+            <th class="py-2 px-3 font-semibold text-slate-300 border-l border-slate-800">메모리 안전성</th>
+            <th class="py-2 px-3 font-bold text-center text-amber-300 border-l border-slate-800">바이브 코딩 적합도</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800/80 text-[11px] text-slate-200">
+          <!-- Old Static -->
+          <tr class="hover:bg-slate-800/40 transition-colors">
+            <td class="py-2 px-3 font-bold text-rose-400 font-mono">
+              Old Static <span class="text-[10px] text-slate-400 block font-normal">(전통 네이티브)</span>
+            </td>
+            <td class="py-2 px-3 border-l border-slate-800 font-mono font-bold text-white">C &middot; C++</td>
+            <td class="py-2 px-3 border-l border-slate-800 text-slate-300">보통 ~ 느림 (헤더 링킹)</td>
+            <td class="py-2 px-3 border-l border-slate-800 text-rose-300">낮음 (포인터/헤더 관리)</td>
+            <td class="py-2 px-3 border-l border-slate-800 font-mono text-rose-400">❌ 위험 (UB, 메모리 누수)</td>
+            <td class="py-2 px-3 border-l border-slate-800 text-center">
+              <span class="px-2 py-0.5 rounded bg-rose-950 border border-rose-800 text-rose-300 font-bold text-[10.5px]">
+                하 (AI 엔진 코어 한정)
+              </span>
+            </td>
+          </tr>
+
+          <!-- Heavy Static -->
+          <tr class="hover:bg-slate-800/40 transition-colors">
+            <td class="py-2 px-3 font-bold text-amber-400 font-mono">
+              Heavy Static <span class="text-[10px] text-slate-400 block font-normal">(기업 엔터프라이즈)</span>
+            </td>
+            <td class="py-2 px-3 border-l border-slate-800 font-mono font-bold text-white">Java &middot; C#</td>
+            <td class="py-2 px-3 border-l border-slate-800 text-amber-300">느림 (Maven/Gradle 빌드)</td>
+            <td class="py-2 px-3 border-l border-slate-800 text-amber-300">낮음 (장황한 클래스 위계)</td>
+            <td class="py-2 px-3 border-l border-slate-800 font-mono text-amber-300">⚠️ 안전 (단, 힙/GC 부하)</td>
+            <td class="py-2 px-3 border-l border-slate-800 text-center">
+              <span class="px-2 py-0.5 rounded bg-amber-950 border border-amber-800 text-amber-300 font-bold text-[10.5px]">
+                중 (기존 레거시 연동)
+              </span>
+            </td>
+          </tr>
+
+          <!-- Modern Static -->
+          <tr class="bg-indigo-950/20 hover:bg-indigo-950/40 transition-colors border-t-2 border-indigo-500/50">
+            <td class="py-2.5 px-3 font-bold text-cyan-300 font-mono">
+              Modern Static <span class="text-[10px] text-emerald-400 block font-normal">(신흥 클라우드 네이티브)</span>
+            </td>
+            <td class="py-2.5 px-3 border-l border-slate-800 font-mono font-bold text-emerald-300">Go &middot; Rust &middot; TS</td>
+            <td class="py-2.5 px-3 border-l border-slate-800 text-emerald-300 font-bold">⚡ 초고속 (Go / TS)</td>
+            <td class="py-2.5 px-3 border-l border-slate-800 text-emerald-300 font-bold">🎯 높음 (간결한 struct/type)</td>
+            <td class="py-2.5 px-3 border-l border-slate-800 font-mono text-emerald-300 font-bold">✅ 안전 (소유권 / 정적 타입)</td>
+            <td class="py-2.5 px-3 border-l border-slate-800 text-center">
+              <span class="px-2.5 py-1 rounded bg-emerald-950 border border-emerald-600 text-emerald-300 font-bold text-[11px] shadow-sm">
+                최상 (바이브 코딩 최적화 👑)
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Bottom 2 Explanatory Bento Tiles -->
+  <div class="grid grid-cols-2 gap-3 flex-1 items-stretch my-1">
+    <!-- Left: 과거 정적 언어의 구조적 한계 -->
+    <div class="bento-tile p-3 bg-slate-900/95 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-1 text-[11px] font-mono text-slate-400">
+          <span class="font-bold text-rose-400">OLD &amp; HEAVY STATIC의 구조적 한계</span>
+          <span class="text-[10px] bg-slate-800 px-1.5 py-0.5 rounded">1990~2000년대 설계</span>
+        </div>
+        <p class="text-slate-300 text-[11px] leading-relaxed">
+          거대한 상속 계층, 헤더 파일 분리, 복잡한 링커, XML/Gradle 설정 파일 등은 <strong>인간 개발자의 분업</strong>을 위해 설계되었습니다. 하지만 AI 에이전트에게는 <strong>토큰 낭비와 불투명한 런타임</strong>이라는 이중고를 안깁니다.
+        </p>
+      </div>
+      <div class="text-[10.5px] font-mono text-rose-300 pt-1 border-t border-slate-800">
+        ➔ 결과: AI의 컨텍스트 윈도우 질식 &amp; 피드백 루프 단절
+      </div>
+    </div>
+
+    <!-- Right: Modern Static의 설계 철학 -->
+    <div class="bento-tile p-3 bg-slate-900/95 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-1 text-[11px] font-mono text-slate-400">
+          <span class="font-bold text-emerald-400">MODERN STATIC의 설계 혁신</span>
+          <span class="text-[10px] bg-emerald-950 px-1.5 py-0.5 rounded text-emerald-300 border border-emerald-800">2010년대 이후 설계</span>
+        </div>
+        <p class="text-slate-300 text-[11px] leading-relaxed">
+          <strong>Go의 초고속 단일패스 컴파일, Rust의 컴파일러 소유권 검증, TypeScript의 점진적 구조적 타이핑</strong>은 본래 인간의 생산성을 위해 등장했으나, 역설적으로 <strong>AI 에이전트의 초고속 자가치유(Self-healing)</strong>와 완벽히 맞아떨어졌습니다.
+        </p>
+      </div>
+      <div class="text-[10.5px] font-mono text-emerald-300 pt-1 border-t border-slate-800">
+        ➔ 결과: 최소 토큰으로 1초 내에 오류 교정 완료
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Banner -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-200 border border-slate-700 bg-slate-900/95 mt-1">
+    <div class="flex items-center gap-2">
+      <span class="text-amber-400 font-bold">🚀 핵심 기준:</span>
+      <span>바이브 코딩의 대안은 <strong>"컴파일러가 1초 내에 AI를 교정할 수 있는가"</strong>에 달려있습니다.</span>
+    </div>
+    <span class="text-cyan-400 font-bold text-[11px]">Next: 3.10 진짜 대안 언어의 3대 조건 ➔</span>
+  </div>
+</section>
