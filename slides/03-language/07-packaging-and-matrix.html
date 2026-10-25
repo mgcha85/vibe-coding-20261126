@@ -14,93 +14,93 @@
   </div>
 
   <!-- Top: Packaging & Distribution Comparison (2 cols) -->
-  <div class="grid grid-cols-2 gap-3.5 my-1">
+  <div class="grid grid-cols-2 gap-4 my-1.5">
     <!-- Python Packaging Hell -->
-    <div class="bento-tile p-3.5 bg-slate-900/95 border-t-2 border-t-rose-500 border border-slate-700/70 shadow-lg">
-      <div class="flex items-center justify-between mb-1.5">
+    <div class="bento-tile p-4 bg-slate-900/95 border-t-4 border-t-rose-500 border border-slate-700/70 shadow-xl">
+      <div class="flex items-center justify-between mb-2">
         <span class="text-xs font-mono text-rose-400 font-bold uppercase">Python의 배포 오버헤드</span>
-        <span class="text-[10px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">의존성 지옥 ⚠️</span>
+        <span class="text-[10px] font-mono text-rose-300 bg-rose-950 px-2.5 py-0.5 rounded border border-rose-800">의존성 지옥 ⚠️</span>
       </div>
-      <p class="text-[11.5px] text-slate-200 leading-relaxed">
-        <code class="text-rose-300 bg-slate-950 px-1 rounded">venv</code>, <code class="text-rose-300 bg-slate-950 px-1 rounded">conda</code>, C-extension 바이너리 호환성(<span class="text-rose-400">glibc 버전 불일치</span>), 수백 MB~수 GB에 달하는 무거운 Docker 이미지로 인해 <strong>AI 에이전트의 자율 배포 실패율 급증</strong>.
+      <p class="text-[12px] text-slate-200 leading-relaxed">
+        <code class="text-rose-300 bg-slate-950 px-1 rounded">venv</code>, <code class="text-rose-300 bg-slate-950 px-1 rounded">conda</code>, C-extension 바이너리 호환성(<span class="text-rose-400 font-bold">glibc 버전 불일치</span>), 수백 MB~수 GB의 거대한 Docker 이미지로 인해 <strong>AI 에이전트의 자율 배포 실패율 급증</strong>.
       </p>
     </div>
 
     <!-- Static Binary Simplicity -->
-    <div class="bento-tile p-3.5 bg-slate-900/95 border-t-2 border-t-emerald-400 border border-slate-700/70 shadow-lg">
-      <div class="flex items-center justify-between mb-1.5">
+    <div class="bento-tile p-4 bg-slate-900/95 border-t-4 border-t-emerald-400 border border-slate-700/70 shadow-xl">
+      <div class="flex items-center justify-between mb-2">
         <span class="text-xs font-mono text-emerald-400 font-bold uppercase">정적 컴파일 언어의 간결성</span>
-        <span class="text-[10px] font-mono text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">단일 바이너리 ⚡</span>
+        <span class="text-[10px] font-mono text-emerald-300 bg-emerald-950 px-2.5 py-0.5 rounded border border-emerald-800">단일 바이너리 ⚡</span>
       </div>
-      <p class="text-[11.5px] text-slate-200 leading-relaxed">
+      <p class="text-[12px] text-slate-200 leading-relaxed">
         Go/Rust는 의존성이 정적 링크된 <strong>수십 MB 단일 바이너리(Static Binary)</strong> 하나로 완결. <code class="text-cyan-300 bg-slate-950 px-1 rounded">FROM scratch</code> 수준의 초경량 컨테이너에 투척하여 <strong>Agentic Ops의 성공률 100% 보장</strong>.
       </p>
     </div>
   </div>
 
   <!-- Bottom: Summary Comparison Matrix Table -->
-  <div class="bento-tile p-3.5 bg-slate-900/95 border border-slate-700/70 shadow-xl flex-1 flex flex-col justify-around my-1">
+  <div class="bento-tile p-4 bg-slate-900/95 border border-slate-700/70 shadow-2xl flex-1 flex flex-col justify-around my-1.5">
     <table class="w-full text-left font-mono border-collapse">
       <thead>
         <tr class="border-b-2 border-slate-700 text-xs uppercase tracking-wider bg-slate-950/90">
-          <th class="py-2.5 px-4 text-slate-300 w-1/5 font-bold">비교 축</th>
-          <th class="py-2.5 px-4 text-rose-300 w-3/10 font-bold border-l border-slate-800">Python (동적 언어)</th>
-          <th class="py-2.5 px-4 text-cyan-300 w-3/10 font-bold border-l border-slate-800">정적/컴파일 언어 (Go, Rust, TS)</th>
-          <th class="py-2.5 px-4 text-amber-300 w-1/4 font-bold border-l border-slate-800">바이브 코딩 핵심 시사점</th>
+          <th class="py-3 px-5 text-slate-300 w-1/5 font-bold">비교 축</th>
+          <th class="py-3 px-5 text-rose-300 w-3/10 font-bold border-l border-slate-800">Python (동적 언어)</th>
+          <th class="py-3 px-5 text-cyan-300 w-3/10 font-bold border-l border-slate-800">정적/컴파일 언어 (Go, Rust, TS)</th>
+          <th class="py-3 px-5 text-amber-300 w-1/4 font-bold border-l border-slate-800">바이브 코딩 핵심 시사점</th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-slate-800/80 text-[12px] leading-relaxed">
+      <tbody class="divide-y divide-slate-800/80 text-[12.5px] leading-relaxed">
         <!-- Row 1 -->
         <tr class="hover:bg-slate-800/40 transition-colors">
-          <td class="py-2.5 px-4 font-bold text-white bg-slate-950/40">
+          <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
             토큰 효율성
-            <span class="block text-[10.5px] text-slate-400 font-sans font-normal">Context Window</span>
+            <span class="block text-[11px] text-slate-400 font-sans font-normal">Context Window</span>
           </td>
-          <td class="py-2.5 px-4 text-slate-300 border-l border-slate-800 bg-rose-950/10">
+          <td class="py-3.5 px-5 text-slate-300 border-l border-slate-800 bg-rose-950/10">
             런타임 맥락 파악 위해 <span class="text-rose-400 font-bold">수천 줄 코드 로드</span> 필요
           </td>
-          <td class="py-2.5 px-4 text-cyan-200 border-l border-slate-800 bg-cyan-950/20">
+          <td class="py-3.5 px-5 text-cyan-200 border-l border-slate-800 bg-cyan-950/20">
             <span class="text-cyan-300 font-bold">타입 &middot; 인터페이스만으로</span> 명확한 계약 전달
           </td>
-          <td class="py-2.5 px-4 text-emerald-300 border-l border-slate-800 bg-emerald-950/15">
-            <span class="font-bold">컨텍스트 비용 80% 절감</span><br>
-            <span class="text-[10.5px] text-slate-400 font-sans">Lost in the Middle 방지</span>
+          <td class="py-3.5 px-5 text-emerald-300 border-l border-slate-800 bg-emerald-950/15">
+            <span class="font-bold text-[13px]">컨텍스트 비용 80% 절감</span><br>
+            <span class="text-[11px] text-slate-400 font-sans">Lost in the Middle 방지</span>
           </td>
         </tr>
 
         <!-- Row 2 -->
         <tr class="hover:bg-slate-800/40 transition-colors">
-          <td class="py-2.5 px-4 font-bold text-white bg-slate-950/40">
+          <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
             대규모 리팩토링
-            <span class="block text-[10.5px] text-slate-400 font-sans font-normal">Codebase Scale</span>
+            <span class="block text-[11px] text-slate-400 font-sans font-normal">Codebase Scale</span>
           </td>
-          <td class="py-2.5 px-4 text-slate-300 border-l border-slate-800 bg-rose-950/10">
+          <td class="py-3.5 px-5 text-slate-300 border-l border-slate-800 bg-rose-950/10">
             잠재적 런타임 버그(<code class="text-rose-300 text-[11px]">AttributeError</code>) 위험 잠복
           </td>
-          <td class="py-2.5 px-4 text-cyan-200 border-l border-slate-800 bg-cyan-950/20">
+          <td class="py-3.5 px-5 text-cyan-200 border-l border-slate-800 bg-cyan-950/20">
             <span class="text-cyan-300 font-bold">컴파일러 기반 오류 추적</span> 및 일괄 자동 교정
           </td>
-          <td class="py-2.5 px-4 text-emerald-300 border-l border-slate-800 bg-emerald-950/15">
-            <span class="font-bold">코드 폭증 시대 유지보수성</span><br>
-            <span class="text-[10.5px] text-slate-400 font-sans">기술 부채 누적 원천 차단</span>
+          <td class="py-3.5 px-5 text-emerald-300 border-l border-slate-800 bg-emerald-950/15">
+            <span class="font-bold text-[13px]">코드 폭증 시대 유지보수성</span><br>
+            <span class="text-[11px] text-slate-400 font-sans">기술 부채 누적 원천 차단</span>
           </td>
         </tr>
 
         <!-- Row 3 -->
         <tr class="hover:bg-slate-800/40 transition-colors">
-          <td class="py-2.5 px-4 font-bold text-white bg-slate-950/40">
+          <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
             배포 &middot; 운영 간결성
-            <span class="block text-[10.5px] text-slate-400 font-sans font-normal">Agentic Deployment</span>
+            <span class="block text-[11px] text-slate-400 font-sans font-normal">Agentic Deployment</span>
           </td>
-          <td class="py-2.5 px-4 text-slate-300 border-l border-slate-800 bg-rose-950/10">
+          <td class="py-3.5 px-5 text-slate-300 border-l border-slate-800 bg-rose-950/10">
             무거운 런타임, 가상환경, C 바인딩 충돌 위험
           </td>
-          <td class="py-2.5 px-4 text-cyan-200 border-l border-slate-800 bg-cyan-950/20">
+          <td class="py-3.5 px-5 text-cyan-200 border-l border-slate-800 bg-cyan-950/20">
             <span class="text-cyan-300 font-bold">정적 단일 바이너리</span>, 수십 MB 초경량 이미지
           </td>
-          <td class="py-2.5 px-4 text-emerald-300 border-l border-slate-800 bg-emerald-950/15">
-            <span class="font-bold">AI 자율 배포(Agentic Ops) 최적화</span><br>
-            <span class="text-[10.5px] text-slate-400 font-sans">실패 없는 원클릭 릴리즈</span>
+          <td class="py-3.5 px-5 text-emerald-300 border-l border-slate-800 bg-emerald-950/15">
+            <span class="font-bold text-[13px]">AI 자율 배포(Agentic Ops) 최적화</span><br>
+            <span class="text-[11px] text-slate-400 font-sans">실패 없는 원클릭 릴리즈</span>
           </td>
         </tr>
       </tbody>
