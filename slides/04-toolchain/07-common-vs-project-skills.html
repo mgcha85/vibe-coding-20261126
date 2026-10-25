@@ -1,0 +1,124 @@
+<section class="slide flex flex-col justify-between" data-title="4.6 공통 Skills vs 프로젝트 특화: AGENTS.md와 PROJECT.md">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.6 스킬 계층 분리</span>
+      <span class="px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-600/50 text-sky-300 font-mono text-[11px] font-bold">
+        COMMON SKILLS &middot; PROJECT SPECIALIZATION
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">공통 모듈과 프로젝트 특화 : AGENTS.md vs PROJECT.md</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      모든 프로젝트에 똑같은 룰을 복붙하면 유지보수가 불가능해집니다. <strong>전사 공통 스킬</strong>과 <strong>도메인 특화 규칙</strong>을 깔끔히 분리해야 합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: Common Skills Architecture (6 cols) -->
+    <div class="col-span-6 bento-tile p-3 bg-slate-900/90 border-t-2 border-t-sky-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🌐</span>
+            <span class="text-[11px] font-mono text-sky-300 font-bold uppercase">전사 공통 모듈 (Global / Cross-Project)</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-sky-300 bg-sky-950 px-2 py-0.5 rounded border border-sky-800">Symlink &middot; Submodule</span>
+        </div>
+
+        <p class="text-[11px] text-slate-300 mb-2">
+          회사나 팀의 모든 레포지토리에서 100% 동일하게 공유되는 표준 거버넌스 문서와 범용 스킬 팩입니다.
+        </p>
+
+        <!-- Document Cards -->
+        <div class="space-y-1.5 text-xs font-mono">
+          <!-- AGENTS.md -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="flex items-center justify-between text-sky-300 font-bold text-[11px] mb-0.5">
+              <span>📜 AGENTS.md (공통 헌법)</span>
+              <span class="text-[9px] text-slate-400 font-sans">루트 심볼릭 링크</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans">
+              • .env 시크릿 관리, 배포 게이트, 커밋 컨벤션, 공통 파괴적 명령어 금지 룰.<br>
+              • 중앙 사규 저장소(<code class="text-sky-300">harness-collection</code>)에서 Git Submodule/심볼릭 링크로 연결.
+            </div>
+          </div>
+
+          <!-- Common Skills -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="flex items-center justify-between text-emerald-300 font-bold text-[11px] mb-0.5">
+              <span>📂 skills/ (공통 스킬 팩)</span>
+              <span class="text-[9px] text-slate-400 font-sans">범용 자동화</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans">
+              • <code class="text-emerald-300">uiux-governance</code>: 사내 공통 다크 테마/Tailwind 디자인 토큰.<br>
+              • <code class="text-emerald-300">deployment-operations</code>: podman-compose, CI/CD 공통 파이프라인.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-sky-950/40 border border-sky-800/40 text-[10.5px] font-mono text-sky-300">
+        💡 장점: 사내 코딩 컨벤션이나 보안 가이드가 바뀌면 중앙 레포 수정 하나로 모든 프로젝트에 즉시 동기화!
+      </div>
+    </div>
+
+    <!-- RIGHT: Project-Specific Specialization (6 cols) -->
+    <div class="col-span-6 bento-tile p-3 bg-slate-900/90 border-t-2 border-t-amber-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🎯</span>
+            <span class="text-[11px] font-mono text-amber-300 font-bold uppercase">프로젝트 특화 모듈 (Project-Specific)</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950 px-2 py-0.5 rounded border border-amber-800">Local Repository Only</span>
+        </div>
+
+        <p class="text-[11px] text-slate-300 mb-2">
+          해당 레포지토리 고유의 비즈니스 도메인, 데이터 스키마, 특화 파이프라인만 격리하여 기술하는 전용 문서입니다.
+        </p>
+
+        <!-- Document Cards -->
+        <div class="space-y-1.5 text-xs font-mono">
+          <!-- PROJECT.md -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="flex items-center justify-between text-amber-300 font-bold text-[11px] mb-0.5">
+              <span>📋 PROJECT.md (프로젝트 특화 정의서)</span>
+              <span class="text-[9px] text-slate-400 font-sans">도메인 전용</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans">
+              • 현재 시스템의 비즈니스 목표: "BTC 선물 5m L-shape 듀얼 볼린저밴드 전략".<br>
+              • 이 프로젝트만의 데이터 루트: <code class="text-amber-300">/mnt/data/finance</code>, 바이낸스 선물 API 명세.
+            </div>
+          </div>
+
+          <!-- Domain-specific Skills -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="flex items-center justify-between text-purple-300 font-bold text-[11px] mb-0.5">
+              <span>📂 skills/domain-* (도메인 특화 스킬)</span>
+              <span class="text-[9px] text-slate-400 font-sans">해당 레포 한정</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans">
+              • <code class="text-purple-300">trading-db-schema</code>: 이 프로젝트 전용 SQLite 테이블 DDL.<br>
+              • <code class="text-purple-300">btc-backtest-live-workflow</code>: 백테스트 결과를 Go 실시간 엔진으로 넘기는 체크포인트.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-amber-950/40 border border-amber-800/40 text-[10.5px] font-mono text-amber-300">
+        💡 분리 원칙: 공통 사규(AGENTS.md)를 더럽히지 않고, 각 프로젝트의 특수성을 독립적으로 보존!
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">🏛️ 2원화 설계:</span>
+      <span class="text-slate-200"><strong>AGENTS.md</strong>로 회사의 공통 뼈대를 세우고, <strong>PROJECT.md</strong>로 도메인의 살을 붙이십시오.</span>
+    </div>
+    <span class="text-sky-400 font-bold text-[11px]">Slide 45</span>
+  </div>
+</section>

@@ -144,7 +144,7 @@
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1v4m0-4h-4m4 4l-5-5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
           <span>전체화면 [F]</span>
         </button>
-        <span id="slideCounter" class="text-sky-400 font-bold font-mono">01 / 59</span>
+        <span id="slideCounter" class="text-sky-400 font-bold font-mono">01 / 61</span>
       </div>
     </header>
 
@@ -6082,7 +6082,255 @@
   </div>
 </section>
 
-      <!-- [COMPONENT] 04-toolchain/07-production-blueprint.html -->
+      <!-- [COMPONENT] 04-toolchain/07-common-vs-project-skills.html -->
+<section class="slide flex flex-col justify-between" data-title="4.6 공통 Skills vs 프로젝트 특화: AGENTS.md와 PROJECT.md">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.6 스킬 계층 분리</span>
+      <span class="px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-600/50 text-sky-300 font-mono text-[11px] font-bold">
+        COMMON SKILLS &middot; PROJECT SPECIALIZATION
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">공통 모듈과 프로젝트 특화 : AGENTS.md vs PROJECT.md</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      모든 프로젝트에 똑같은 룰을 복붙하면 유지보수가 불가능해집니다. <strong>전사 공통 스킬</strong>과 <strong>도메인 특화 규칙</strong>을 깔끔히 분리해야 합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: Common Skills Architecture (6 cols) -->
+    <div class="col-span-6 bento-tile p-3 bg-slate-900/90 border-t-2 border-t-sky-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🌐</span>
+            <span class="text-[11px] font-mono text-sky-300 font-bold uppercase">전사 공통 모듈 (Global / Cross-Project)</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-sky-300 bg-sky-950 px-2 py-0.5 rounded border border-sky-800">Symlink &middot; Submodule</span>
+        </div>
+
+        <p class="text-[11px] text-slate-300 mb-2">
+          회사나 팀의 모든 레포지토리에서 100% 동일하게 공유되는 표준 거버넌스 문서와 범용 스킬 팩입니다.
+        </p>
+
+        <!-- Document Cards -->
+        <div class="space-y-1.5 text-xs font-mono">
+          <!-- AGENTS.md -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="flex items-center justify-between text-sky-300 font-bold text-[11px] mb-0.5">
+              <span>📜 AGENTS.md (공통 헌법)</span>
+              <span class="text-[9px] text-slate-400 font-sans">루트 심볼릭 링크</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans">
+              • .env 시크릿 관리, 배포 게이트, 커밋 컨벤션, 공통 파괴적 명령어 금지 룰.<br>
+              • 중앙 사규 저장소(<code class="text-sky-300">harness-collection</code>)에서 Git Submodule/심볼릭 링크로 연결.
+            </div>
+          </div>
+
+          <!-- Common Skills -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="flex items-center justify-between text-emerald-300 font-bold text-[11px] mb-0.5">
+              <span>📂 skills/ (공통 스킬 팩)</span>
+              <span class="text-[9px] text-slate-400 font-sans">범용 자동화</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans">
+              • <code class="text-emerald-300">uiux-governance</code>: 사내 공통 다크 테마/Tailwind 디자인 토큰.<br>
+              • <code class="text-emerald-300">deployment-operations</code>: podman-compose, CI/CD 공통 파이프라인.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-sky-950/40 border border-sky-800/40 text-[10.5px] font-mono text-sky-300">
+        💡 장점: 사내 코딩 컨벤션이나 보안 가이드가 바뀌면 중앙 레포 수정 하나로 모든 프로젝트에 즉시 동기화!
+      </div>
+    </div>
+
+    <!-- RIGHT: Project-Specific Specialization (6 cols) -->
+    <div class="col-span-6 bento-tile p-3 bg-slate-900/90 border-t-2 border-t-amber-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🎯</span>
+            <span class="text-[11px] font-mono text-amber-300 font-bold uppercase">프로젝트 특화 모듈 (Project-Specific)</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950 px-2 py-0.5 rounded border border-amber-800">Local Repository Only</span>
+        </div>
+
+        <p class="text-[11px] text-slate-300 mb-2">
+          해당 레포지토리 고유의 비즈니스 도메인, 데이터 스키마, 특화 파이프라인만 격리하여 기술하는 전용 문서입니다.
+        </p>
+
+        <!-- Document Cards -->
+        <div class="space-y-1.5 text-xs font-mono">
+          <!-- PROJECT.md -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="flex items-center justify-between text-amber-300 font-bold text-[11px] mb-0.5">
+              <span>📋 PROJECT.md (프로젝트 특화 정의서)</span>
+              <span class="text-[9px] text-slate-400 font-sans">도메인 전용</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans">
+              • 현재 시스템의 비즈니스 목표: "BTC 선물 5m L-shape 듀얼 볼린저밴드 전략".<br>
+              • 이 프로젝트만의 데이터 루트: <code class="text-amber-300">/mnt/data/finance</code>, 바이낸스 선물 API 명세.
+            </div>
+          </div>
+
+          <!-- Domain-specific Skills -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="flex items-center justify-between text-purple-300 font-bold text-[11px] mb-0.5">
+              <span>📂 skills/domain-* (도메인 특화 스킬)</span>
+              <span class="text-[9px] text-slate-400 font-sans">해당 레포 한정</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans">
+              • <code class="text-purple-300">trading-db-schema</code>: 이 프로젝트 전용 SQLite 테이블 DDL.<br>
+              • <code class="text-purple-300">btc-backtest-live-workflow</code>: 백테스트 결과를 Go 실시간 엔진으로 넘기는 체크포인트.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-amber-950/40 border border-amber-800/40 text-[10.5px] font-mono text-amber-300">
+        💡 분리 원칙: 공통 사규(AGENTS.md)를 더럽히지 않고, 각 프로젝트의 특수성을 독립적으로 보존!
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">🏛️ 2원화 설계:</span>
+      <span class="text-slate-200"><strong>AGENTS.md</strong>로 회사의 공통 뼈대를 세우고, <strong>PROJECT.md</strong>로 도메인의 살을 붙이십시오.</span>
+    </div>
+    <span class="text-sky-400 font-bold text-[11px]">Slide 45</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 04-toolchain/08-context-retention-docs.html -->
+<section class="slide flex flex-col justify-between" data-title="4.7 Context 유지 3대장: LESSON_AND_LEARN · PLAN · INTENT">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.7 컨텍스트 영속성</span>
+      <span class="px-2.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-600/50 text-emerald-300 font-mono text-[11px] font-bold">
+        LONG-HORIZON CONTEXT &middot; STATE SYNCHRONIZATION
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">세션 변경과 망각을 이기는 3대 문서 아키텍처</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      새 대화창을 열 때마다 에이전트의 기억이 초기화되는 '컨텍스트 절벽(Context Cliff)'을 <strong>3대 상태 문서</strong>로 영구 극복합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid: 3 Pillars (12 cols) -->
+  <div class="grid grid-cols-3 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- Pillar 1: LESSON_AND_LEARN.md -->
+    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-rose-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🩹</span>
+            <span class="text-[11px] font-mono text-rose-300 font-bold uppercase">LESSON_AND_LEARN.md</span>
+          </div>
+          <span class="text-[9px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded border border-rose-800">Episodic Memory</span>
+        </div>
+
+        <div class="text-[11px] font-bold text-white mb-1.5">시행착오 &amp; 버그 해결 기록 (자가 치유)</div>
+        <p class="text-[10.5px] text-slate-300 leading-snug mb-2 font-sans">
+          동일한 버그로 에이전트가 삽질하고 토큰을 날리는 것을 방지하는 <strong>트러블슈팅 오답 노트</strong>입니다.
+        </p>
+
+        <!-- Template Box -->
+        <div class="p-2 rounded bg-slate-950 border border-slate-800 font-mono text-[9.5px] leading-relaxed text-slate-300">
+          <div class="text-rose-400 font-bold"># 트러블슈팅 템플릿</div>
+          <div>• <strong>증상:</strong> WebSocket 연결 시 403 에러</div>
+          <div>• <strong>원인:</strong> Binance API 헤더 시그니처 누락</div>
+          <div>• <strong>해결책:</strong> HMAC SHA256 타임스탬프 추가</div>
+          <div>• <strong>교훈:</strong> 이후 유사 요청 시 이 해결책 우선 적용</div>
+        </div>
+      </div>
+
+      <div class="p-1.5 rounded bg-rose-950/40 border border-rose-800/40 text-[9.5px] font-mono text-rose-300 mt-2">
+        ✓ 효과: "지난번에 고쳤던 버그를 새 세션에서 또 만났을 때 0초 만에 해결"
+      </div>
+    </div>
+
+    <!-- Pillar 2: PLAN.md -->
+    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-amber-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🗺️</span>
+            <span class="text-[11px] font-mono text-amber-300 font-bold uppercase">PLAN.md / ROADMAP.md</span>
+          </div>
+          <span class="text-[9px] font-mono text-amber-400 bg-amber-950 px-1.5 py-0.5 rounded border border-amber-800">State Machine</span>
+        </div>
+
+        <div class="text-[11px] font-bold text-white mb-1.5">작업 마일스톤 &amp; 체크리스트 (진행도 추적)</div>
+        <p class="text-[10.5px] text-slate-300 leading-snug mb-2 font-sans">
+          대화 세션이 끊겨도 에이전트가 "내가 어디까지 작업했는지" 즉시 복원하는 <strong>진행 상태 동기화 장치</strong>입니다.
+        </p>
+
+        <!-- Template Box -->
+        <div class="p-2 rounded bg-slate-950 border border-slate-800 font-mono text-[9.5px] leading-relaxed text-slate-300">
+          <div class="text-amber-400 font-bold"># 단계별 마일스톤 관리</div>
+          <div class="text-emerald-400">• [x] 1단계: DB 스키마 마이그레이션</div>
+          <div class="text-amber-300 font-bold">• [ ] 2단계: Fiber HTTP API 엔드포인트 구현 (진행중)</div>
+          <div class="text-slate-500">• [ ] 3단계: Svelte 프론트엔드 연동</div>
+          <div class="text-slate-500">• [ ] 4단계: Podman 컨테이너 배포</div>
+        </div>
+      </div>
+
+      <div class="p-1.5 rounded bg-amber-950/40 border border-amber-800/40 text-[9.5px] font-mono text-amber-300 mt-2">
+        ✓ 효과: 변경 시에만 체크박스를 갱신하여 최소 토큰으로 세션 이어가기
+      </div>
+    </div>
+
+    <!-- Pillar 3: INTENT.md -->
+    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-cyan-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🎯</span>
+            <span class="text-[11px] font-mono text-cyan-300 font-bold uppercase">INTENT.md / ADR.md</span>
+          </div>
+          <span class="text-[9px] font-mono text-cyan-400 bg-cyan-950 px-1.5 py-0.5 rounded border border-cyan-800">Semantic Memory</span>
+        </div>
+
+        <div class="text-[11px] font-bold text-white mb-1.5">초기 설계 의도 &amp; 아키텍처 결정(ADR)</div>
+        <p class="text-[10.5px] text-slate-300 leading-snug mb-2 font-sans">
+          "왜 우리가 Redis 대신 SQLite를 선택했는가?"와 같은 <strong>근본적인 기술적 의사결정 의도</strong>를 영속화합니다.
+        </p>
+
+        <!-- Template Box -->
+        <div class="p-2 rounded bg-slate-950 border border-slate-800 font-mono text-[9.5px] leading-relaxed text-slate-300">
+          <div class="text-cyan-400 font-bold"># 아키텍처 의사결정 (ADR)</div>
+          <div>• <strong>의사결정:</strong> 세션 스토리지로 SQLite 채택</div>
+          <div>• <strong>배경:</strong> 단일 노드 엣지 배포로 운영 복잡도 최소화</div>
+          <div>• <strong>경고:</strong> 에이전트가 멋대로 Redis/Kafka로 변경 금지!</div>
+        </div>
+      </div>
+
+      <div class="p-1.5 rounded bg-cyan-950/40 border border-cyan-800/40 text-[9.5px] font-mono text-cyan-300 mt-2">
+        ✓ 효과: 며칠 뒤 새 대화창에서도 아키텍처 의도가 왜곡되지 않고 유지
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-emerald-400 font-bold">💾 영속성 삼각편대:</span>
+      <span class="text-slate-200"><strong>LESSON</strong>(오답노트) + <strong>PLAN</strong>(체크리스트) + <strong>INTENT</strong>(설계의도)가 세션 변경 시 컨텍스트를 100% 지킵니다.</span>
+    </div>
+    <span class="text-emerald-400 font-bold text-[11px]">Slide 46</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 04-toolchain/09-production-blueprint.html -->
 <section class="slide flex flex-col justify-between" data-title="4.4 인지 아키텍처의 프로덕션 구현">
   <!-- Header -->
   <div class="mb-2">
@@ -6211,7 +6459,7 @@
   </div>
 </section>
 
-      <!-- [COMPONENT] 04-toolchain/08-hands-on-skills.html -->
+      <!-- [COMPONENT] 04-toolchain/10-hands-on-skills.html -->
 <section class="slide flex flex-col justify-between" data-title="4.5 실전 실습: AGENTS.md &amp; Skills 하네스">
   <!-- Header -->
   <div class="mb-2">
