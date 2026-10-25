@@ -1,0 +1,150 @@
+<section class="slide flex flex-col justify-between" data-title="6.5 소스트리 표준화 &amp; 원자적 함수 분할">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.5 코드 아키텍처 다이어트</span>
+      <span class="px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-600/50 text-sky-300 font-mono text-[11px] font-bold">
+        ATOMIC MODULARIZATION &middot; 200-LINE RULE
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">아키텍처 단위 토큰 다이어트 : 소스트리 표준화 &amp; 원자적 함수 분할</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      하나의 파일에 1,500줄을 몰아넣지 마십시오. <strong>200줄 이하 원자적 파일 분할</strong>과 <strong>30줄 순수 함수 표준화</strong>로 <strong>Diff 편집 토큰을 90% 절감</strong>합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: Monolithic File Nightmare (5 cols) -->
+    <div class="col-span-5 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">💀</span>
+            <span class="text-[11px] font-mono text-rose-400 font-bold uppercase">2,000줄 모놀리식 파일의 비극</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">Anti-Pattern</span>
+        </div>
+
+        <p class="text-xs text-slate-400 mb-2 leading-relaxed">
+          한 파일에 1,500~2,000줄 코드를 몰아넣으면, <strong>코드 5줄 고치려고 2,000줄 전체를 읽고 diff를 생성</strong>해야 합니다.
+        </p>
+
+        <!-- Monolithic Pitfall Box -->
+        <div class="p-2.5 rounded bg-slate-950 border border-rose-900/50 font-mono text-[10px] text-slate-300 mb-2 space-y-1">
+          <div class="text-rose-400 font-bold">📁 auth_monolith.go (1,850줄)</div>
+          <div class="text-slate-400 text-[9px] pl-2">├─ 토큰 발급 (200줄)</div>
+          <div class="text-slate-400 text-[9px] pl-2">├─ 비밀번호 해싱 &amp; 검증 (300줄)</div>
+          <div class="text-slate-400 text-[9px] pl-2">├─ HTTP 요청 핸들러 12개 (600줄)</div>
+          <div class="text-slate-400 text-[9px] pl-2">└─ SQL 쿼리 &amp; 트랜잭션 (750줄)</div>
+          <div class="text-rose-400 text-[9px] pt-1 border-t border-rose-950 font-bold">
+            🚨 오타 1줄 수정 = 20,000 토큰 증발 + 줄번호 착오 오류 폭증
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5">⚠️ Edit Conflict &amp; 린트 악순환:</strong>
+            파일이 길수록 AI가 변경 대상을 잘못 찾아 코드를 덮어쓰거나, 린트 오류를 잡으려다 다른 부분을 망가뜨리는 퇴행(Regression) 유발.
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-rose-950/40 border border-rose-800/40 text-[10px] font-mono text-rose-300 mt-2 flex items-center justify-between">
+        <span>✓ 500줄 초과 파일: <strong>AI 코딩의 적</strong></span>
+        <span class="text-rose-400">Refactor Now</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Atomic Standards (7 cols) -->
+    <div class="col-span-7 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">✂️</span>
+            <span class="text-[11px] font-mono text-sky-400 font-bold uppercase">소스트리 표준화 &amp; 200줄 원자 분할 규칙</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">95% Token Saved</span>
+        </div>
+
+        <!-- 2 Atomic Rules Grid -->
+        <div class="grid grid-cols-2 gap-2 mb-2 font-mono text-[10px]">
+          <!-- Rule 1: 200-Line File Rule -->
+          <div class="p-2.5 rounded bg-slate-950 border border-sky-900/50 flex flex-col justify-between">
+            <div>
+              <div class="text-sky-300 font-bold mb-1 flex items-center justify-between text-[10px]">
+                <span>1. 파일당 200줄 이하 엄수</span>
+                <span class="text-slate-500">Single Responsibility</span>
+              </div>
+              <div class="space-y-1 text-[9px] text-slate-300">
+                <div class="p-1 rounded bg-slate-900 border border-slate-800 text-sky-200">
+                  📄 <code class="font-bold">auth/jwt.go</code> (80줄) &middot; 토큰 전담
+                </div>
+                <div class="p-1 rounded bg-slate-900 border border-slate-800 text-sky-200">
+                  📄 <code class="font-bold">auth/handler.go</code> (110줄) &middot; 라우팅
+                </div>
+                <div class="p-1 rounded bg-slate-900 border border-slate-800 text-sky-200">
+                  📄 <code class="font-bold">auth/repository.go</code> (90줄) &middot; DB
+                </div>
+              </div>
+            </div>
+            <div class="text-[9px] text-emerald-400 mt-2 pt-1 border-t border-slate-800">
+              ✓ 수정 시 해당 파일 80줄만 로드 &rarr; 토큰 95% 절감!
+            </div>
+          </div>
+
+          <!-- Rule 2: 30-Line Pure Function -->
+          <div class="p-2.5 rounded bg-slate-950 border border-emerald-900/50 flex flex-col justify-between">
+            <div>
+              <div class="text-emerald-300 font-bold mb-1 flex items-center justify-between text-[10px]">
+                <span>2. 함수당 30줄 이하 순수화</span>
+                <span class="text-slate-500">Pure Function</span>
+              </div>
+              <div class="space-y-1 text-[9px] text-slate-300">
+                <div class="p-1 rounded bg-slate-900 border border-slate-800">
+                  • 1개 함수는 1가지 책임만 수행
+                </div>
+                <div class="p-1 rounded bg-slate-900 border border-slate-800">
+                  • 입출력이 명확한 결정론적 구조
+                </div>
+                <div class="p-1 rounded bg-slate-900 border border-slate-800">
+                  • 단위 테스트 작성이 극도로 용이
+                </div>
+              </div>
+            </div>
+            <div class="text-[9px] text-emerald-400 mt-2 pt-1 border-t border-slate-800">
+              ✓ AI의 코드 치환 성공률 100% 보장
+            </div>
+          </div>
+        </div>
+
+        <!-- Token Comparison Metrics -->
+        <div class="grid grid-cols-2 gap-2 text-xs font-mono">
+          <div class="p-2 rounded bg-rose-950/30 border border-rose-900/40 text-slate-300">
+            <span class="text-rose-400 font-bold block mb-0.5">❌ 모놀리식 파일 수정:</span>
+            <span class="text-[11px]">2,000줄 로드 + diff 연산 = <strong>15,000 토큰</strong></span>
+          </div>
+          <div class="p-2 rounded bg-emerald-950/30 border border-emerald-900/40 text-slate-200">
+            <span class="text-emerald-400 font-bold block mb-0.5">⚡ 원자적 파일 수정:</span>
+            <span class="text-[11px]">80줄 로드 + 10줄 diff = <strong>600 토큰 (96% 절감)</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-slate-950 border border-slate-800 text-[10px] font-mono text-slate-400 mt-2 flex items-center justify-between">
+        <span class="text-slate-300">💡 <strong>아키텍처가 곧 토큰이다:</strong> 코드를 잘게 쪼개는 것은 클린 코드일 뿐 아니라, AI API 요금을 1/20로 줄이는 최고의 경제학입니다.</span>
+        <span class="text-sky-400 font-bold">Clean Code = Cheap Code</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">✂️ 원자적 아키텍처의 위력:</span>
+      <span class="text-slate-200">파일을 200줄 이하로 쪼개는 순간, <strong>에이전트의 변경 오차는 0이 되고 입출력 토큰은 기하급수적으로 줄어듭니다</strong>.</span>
+    </div>
+    <span class="text-sky-400 font-bold text-[11px]">Slide 66</span>
+  </div>
+</section>

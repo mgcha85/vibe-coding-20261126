@@ -1,0 +1,119 @@
+<section class="slide flex flex-col justify-between" data-title="6.1 프롬프트 캐싱 &amp; 계층형 모델 라우팅">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.1 토큰 90% 절감 아키텍처</span>
+      <span class="px-2.5 py-0.5 rounded bg-cyan-950/80 border border-cyan-600/50 text-cyan-300 font-mono text-[11px] font-bold">
+        PROMPT CACHING &middot; MODEL ROUTING
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">Prompt Caching &amp; 계층형 모델 라우팅</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      컨텍스트 구조를 <strong>'고정 캐시 헤더 + 동적 바디'</strong>로 재설계하고, <strong>'두뇌(Pro) vs 손발(Flash)' 모델을 분리</strong>하여 비용을 수직 낙하시킵니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: Prompt Caching (6 cols) -->
+    <div class="col-span-6 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-cyan-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🔒</span>
+            <span class="text-xs font-mono text-cyan-400 font-bold uppercase">방어선 01 : Prompt Caching (KV-Cache)</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-cyan-300 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800">입력 토큰 80~90% 할인</span>
+        </div>
+
+        <div class="bg-slate-950 rounded p-2 font-mono text-[11px] border border-slate-800 space-y-1 mb-2.5">
+          <div class="p-2 bg-cyan-950/40 rounded border border-cyan-800/60 text-cyan-300">
+            <div class="font-bold flex items-center justify-between">
+              <span>🔒 [CACHED] 시스템 프롬프트 + AGENTS.md + types.ts</span>
+              <span class="text-[9px] bg-cyan-900/80 px-1.5 py-0.2 rounded text-cyan-200">30k 토큰</span>
+            </div>
+            <div class="text-[9.5px] text-emerald-400 font-bold mt-1">➔ 2번째 턴부터 90% 요금 감면 ($0.03 ➔ $0.003)</div>
+          </div>
+          <div class="p-2 bg-slate-900 rounded border border-slate-800 text-slate-300">
+            <div class="flex items-center justify-between">
+              <span>📝 [DYNAMIC] 이번 턴의 유저 요청 및 최근 코드 diff</span>
+              <span class="text-[9px] bg-slate-800 px-1.5 py-0.2 rounded text-slate-400">1k 토큰만 과금</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5">❌ 캐시를 깨뜨리는 실수:</strong>
+            프롬프트 맨 첫 줄에 "현재 시각: 14:05" 같은 가변 텍스트를 넣기 ➔ 매 턴마다 30k 토큰 전체가 신규 과금됨!
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-emerald-300 block mb-0.5">✅ 프로의 캐시 앵커링:</strong>
+            불변 규격(헌법, 규칙, API 명세)을 시스템 프롬프트 최상단에 고정하고, 질문은 맨 뒤에 덧붙여 캐시 적중률 98% 달성.
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-cyan-400 font-mono border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 50턴 장기 대화도 첫 턴 수준의 저렴한 비용 유지</span>
+        <span class="text-slate-500">Cache Hit Rate 98%</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Model Tiered Routing (6 cols) -->
+    <div class="col-span-6 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-indigo-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🧠</span>
+            <span class="text-xs font-mono text-indigo-400 font-bold uppercase">방어선 02 : 계층형 모델 라우팅 (Routing)</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-indigo-300 bg-indigo-950 px-2 py-0.5 rounded border border-indigo-800">Pro 1회 + Flash 100회</span>
+        </div>
+
+        <div class="bg-slate-950 rounded p-2 font-mono text-[11px] border border-slate-800 space-y-1.5 mb-2.5">
+          <div class="flex justify-between items-center p-2 bg-purple-950/40 rounded border border-purple-800/50 text-purple-300">
+            <div>
+              <span class="font-bold">🧠 두뇌 모델 (Opus / GPT-4o / Pro)</span>
+              <div class="text-[9.5px] text-slate-400">아키텍처 설계, 모듈 분할, 보안 감사</div>
+            </div>
+            <span class="text-[10px] font-bold text-purple-200 bg-purple-900/60 px-2 py-0.5 rounded">1회 호출 (고가치)</span>
+          </div>
+          <div class="flex justify-between items-center p-2 bg-indigo-950/40 rounded border border-indigo-800/50 text-indigo-300">
+            <div>
+              <span class="font-bold">⚡ 손발 모델 (Gemini 3.0 Flash / Sonnet)</span>
+              <div class="text-[9.5px] text-slate-400">코드 타이핑, 단위 테스트 50개 생성, 린트 교정</div>
+            </div>
+            <span class="text-[10px] font-bold text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">100회 호출 (초저가)</span>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-white block mb-0.5">단순 타이핑에 고가 모델 낭비 금지</strong>
+            오타 수정과 함수 구현에 최고가 모델을 쓰는 것은 낭비. Flash는 0.5초 만에 응답하여 생산성 5배 폭발.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-indigo-300 block mb-0.5">RULE[user_global] 8번과의 직결:</strong>
+            우리 헌법에도 "기본은 gemini-3.0-flash를 사용하고 GOOGLE_API_KEY를 둘 것"으로 비용을 완벽히 통제 중.
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-indigo-400 font-mono border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 월 100만 원 나오던 API 청구서가 월 7만 원으로 수직 낙하</span>
+        <span class="text-slate-500">Cost Reduced by 93%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-cyan-400 font-bold">💡 실무 원칙:</span>
+      <span class="text-slate-200">설계는 비싼 모델에게 1번 맡기고, <strong>코드 타이핑과 테스트는 가장 빠르고 저렴한 Flash 모델</strong>에게 100번 시키십시오.</span>
+    </div>
+    <span class="text-cyan-400 font-bold text-[11px]">Slide 62</span>
+  </div>
+</section>

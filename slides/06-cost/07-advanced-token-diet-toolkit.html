@@ -1,0 +1,118 @@
+<section class="slide flex flex-col justify-between" data-title="6.6 실전 토큰 다이어트 툴킷 : Grep &amp; 로그 Truncation">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.6 실전 토큰 세이빙 도구</span>
+      <span class="px-2.5 py-0.5 rounded bg-cyan-950/80 border border-cyan-600/50 text-cyan-300 font-mono text-[11px] font-bold">
+        SELECTIVE GREP &middot; LOG TRUNCATION &middot; REPOMIX
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">실전 토큰 다이어트 툴킷 : Ripgrep &amp; 에러 로그 Truncation</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      파일을 다 열어보지 말고 <strong>Grep으로 표적 타격</strong>하고, 실패 시 <strong>로그의 머리(Head)와 꼬리(Tail)만 주입</strong>하여 토큰 누수를 원천 봉쇄합니다.
+    </p>
+  </div>
+
+  <!-- 3 Column Bento Grid (12 cols) -->
+  <div class="grid grid-cols-3 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- Pillar 1: Ripgrep Selective Targeting -->
+    <div class="bento-tile p-3.5 bg-slate-900/90 border-t-2 border-t-cyan-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">🔍</span>
+          <span class="text-[9px] font-mono text-cyan-300 bg-cyan-950 px-1.5 py-0.5 rounded border border-cyan-800">1. TARGETED GREP</span>
+        </div>
+        <div class="text-cyan-400 font-bold font-mono text-sm mb-1.5">view_file 남발 금지</div>
+        
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5">❌ 나쁜 습관:</strong>
+            변수 하나 찾겠다고 500줄 파일 전체를 <code class="text-sky-300 font-mono">view_file</code>로 읽기 (매번 3,000 토큰 낭비).
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-emerald-300 block mb-0.5">⚡ 프로의 표적 타격:</strong>
+            <code class="text-cyan-300 font-mono">grep_search</code>로 매칭 라인과 전후 3줄(<code class="text-amber-300 font-mono">-C 3</code>)만 정확히 조회 (30 토큰으로 100배 압축!).
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-cyan-900/50 font-mono text-[10px] text-cyan-200">
+            <strong class="text-cyan-400 block mb-0.5">💻 실전 CLI 명령어:</strong>
+            $ rg -n -C 2 "func HandleAuth" internal/
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-cyan-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 파일 읽기 토큰 95% 절감</span>
+        <span class="text-slate-500">Selective Search</span>
+      </div>
+    </div>
+
+    <!-- Pillar 2: Log Head-Tail Truncation -->
+    <div class="bento-tile p-3.5 bg-slate-900/90 border-t-2 border-t-amber-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">✂️</span>
+          <span class="text-[9px] font-mono text-amber-300 bg-amber-950 px-1.5 py-0.5 rounded border border-amber-800">2. LOG TRUNCATION</span>
+        </div>
+        <div class="text-amber-300 font-bold font-mono text-sm mb-1.5">스택트레이스 다이어트</div>
+        
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5">❌ 수천 줄 에러 덤프:</strong>
+            테스트 실패 시 2,000줄의 라이브러리 내부 스택트레이스를 다 보내면 모델이 압사당함.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-amber-300 block mb-0.5">⚡ Head 15 + Tail 15 법칙:</strong>
+            에러의 원인이 적힌 최상단(Head 15줄)과 실제 실패 코드 라인(Tail 15줄)만 주입하고 중간 프레임워크 로그는 컷!
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-amber-900/50 font-mono text-[10px] text-amber-200">
+            <strong class="text-amber-400 block mb-0.5">💻 실전 파이프라인:</strong>
+            $ go test ./... 2&gt;&amp;1 | head -n 25
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-amber-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 컨텍스트 오염 원천 방지</span>
+        <span class="text-slate-500">Error Clarity</span>
+      </div>
+    </div>
+
+    <!-- Pillar 3: Repomix with Strict Ignores -->
+    <div class="bento-tile p-3.5 bg-slate-900/90 border-t-2 border-t-purple-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">📦</span>
+          <span class="text-[9px] font-mono text-purple-300 bg-purple-950 px-1.5 py-0.5 rounded border border-purple-800">3. REPOMIX IGNORE</span>
+        </div>
+        <div class="text-purple-300 font-bold font-mono text-sm mb-1.5">코드 팩 엄격 필터링</div>
+        
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5">❌ 락 파일 &amp; 에셋 참사:</strong>
+            <code class="text-rose-300 font-mono">package-lock.json</code> (5만 줄), 바이너리, SVG를 그대로 먹이면 100만 토큰 순삭.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-purple-300 block mb-0.5">⚡ .ignore 화이트리스트:</strong>
+            <code class="text-emerald-300 font-mono">repomix --ignore "*.lock,dist/*,assets/*"</code>로 순수 비즈니스 로직만 추출하여 토큰 85% 다이어트.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-purple-900/50 font-mono text-[10px] text-purple-200">
+            <strong class="text-purple-400 block mb-0.5">💻 repomix.config.json:</strong>
+            "ignore": { "patterns": ["*.lock", "dist/*"] }
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-purple-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 노이즈 0% 순수 코드 팩</span>
+        <span class="text-slate-500">Pure Context Pack</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-cyan-400 font-bold">🛠️ 실무 도구 테이크어웨이:</span>
+      <span class="text-slate-200"><strong>Grep 표적 타격 + 로그 Truncation + Repomix 필터링</strong>의 3종 도구로 매 턴 낭비되는 수만 토큰을 차단하십시오.</span>
+    </div>
+    <span class="text-cyan-400 font-bold text-[11px]">Slide 67</span>
+  </div>
+</section>

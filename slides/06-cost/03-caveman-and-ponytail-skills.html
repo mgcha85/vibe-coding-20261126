@@ -1,0 +1,140 @@
+<section class="slide flex flex-col justify-between" data-title="6.2 군더더기 &amp; 과잉 방지 : caveman &amp; ponytail">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.2 토큰 다이어트 스킬</span>
+      <span class="px-2.5 py-0.5 rounded bg-amber-950/80 border border-amber-600/50 text-amber-300 font-mono text-[11px] font-bold">
+        CAVEMAN &middot; PONYTAIL SKILLS
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">출력 다이어트 &amp; 과잉 방지 : caveman &amp; ponytail 스킬</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      AI의 공손한 미사여구를 쳐내는 <strong>caveman(출력 70% 삭감)</strong>과 주니어식 과잉 엔지니어링을 막는 <strong>ponytail(게으른 시니어 사다리)</strong>로 토큰 누수를 원천 봉쇄합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: caveman Skill (6 cols) -->
+    <div class="col-span-6 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-amber-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🦴</span>
+            <span class="text-xs font-mono text-amber-400 font-bold uppercase">caveman 스킬 : 출력 토큰(Output) 다이어트</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950 px-2 py-0.5 rounded border border-amber-800">Why use many token</span>
+        </div>
+
+        <p class="text-xs text-slate-400 mb-2 leading-relaxed">
+          "Certainly! I'd be happy to help..." 같은 공손한 인사말과 서술형 수식어는 <strong>출력 토큰을 낭비하고 개발자 읽기 피로만 유발</strong>합니다.
+        </p>
+
+        <!-- Before & After Comparison -->
+        <div class="space-y-1.5 font-mono text-[11px] mb-2.5">
+          <div class="p-2 rounded bg-rose-950/30 border border-rose-900/50 text-slate-300">
+            <div class="text-rose-400 font-bold text-[9.5px] mb-0.5">❌ 일반 AI 응답 (120 토큰 소모):</div>
+            <div class="text-[10px] text-slate-400 leading-snug font-sans">
+              "물론입니다! 문의주신 리액트 컴포넌트가 계속 리렌더링되는 원인은 내부에서 새로운 객체 참조를 생성하기 때문입니다. 이를 해결하려면..."
+            </div>
+          </div>
+
+          <div class="p-2 rounded bg-emerald-950/30 border border-emerald-800/60 text-slate-200">
+            <div class="text-emerald-400 font-bold text-[9.5px] mb-0.5">⚡ caveman 장착 응답 (22 토큰, 82% 삭감):</div>
+            <div class="text-[10.5px] text-emerald-300 leading-snug">
+              "인라인 객체 = 매 렌더마다 새 참조 생성 = 리렌더링. <code class="text-white font-bold">useMemo</code>로 래핑."
+            </div>
+          </div>
+        </div>
+
+        <!-- Rules & Levels -->
+        <div class="space-y-1 text-xs text-slate-300 font-sans">
+          <div class="p-1.5 rounded bg-slate-950 border border-slate-800 flex items-center justify-between">
+            <span><strong>보존 법칙:</strong> 코드, 에러 메시지, CLI 플래그, API 명칭은 100% 유지</span>
+            <span class="text-[9px] font-mono text-emerald-400">Code Intact</span>
+          </div>
+          <div class="p-1.5 rounded bg-slate-950 border border-slate-800 flex items-center justify-between text-[11px] font-mono">
+            <span class="text-amber-300">/caveman lite (문장 유지)</span>
+            <span class="text-sky-300">/caveman full (단문/키워드)</span>
+            <span class="text-purple-300">/caveman ultra (극단)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-amber-400 font-mono border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 출력 토큰 65~75% 절감 및 실시간 스트리밍 대기 단축</span>
+        <span class="text-slate-500">Zero LLM Slop</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: ponytail Skill (6 cols) -->
+    <div class="col-span-6 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-purple-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">👱</span>
+            <span class="text-xs font-mono text-purple-400 font-bold uppercase">ponytail 스킬 : 과잉 엔지니어링 박멸</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-purple-300 bg-purple-950 px-2 py-0.5 rounded border border-purple-800">Lazy Senior Mindset</span>
+        </div>
+
+        <p class="text-xs text-slate-400 mb-2 leading-relaxed">
+          AI는 날짜 선택기 하나 만드는데 새 npm 패키지 깔고 300줄 보일러플레이트를 짜려 합니다. <strong>가장 좋은 코드는 작성하지 않은 코드</strong>입니다.
+        </p>
+
+        <!-- Ladder of Laziness 7 Steps -->
+        <div class="bg-slate-950 rounded p-2 border border-slate-800 text-[10.5px] font-mono mb-2">
+          <div class="text-purple-300 font-bold text-[10px] mb-1.5 flex items-center justify-between">
+            <span>🪜 The Ladder of Laziness (게으른 시니어 사다리)</span>
+            <span class="text-slate-500">위에서 멈추기</span>
+          </div>
+          <div class="grid grid-cols-2 gap-1 text-[9.5px]">
+            <div class="p-1 rounded bg-slate-900 border border-slate-800 text-slate-300">
+              <span class="text-amber-400 font-bold">1. YAGNI:</span> 진짜 필요한가? (스킵)
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800 text-slate-300">
+              <span class="text-sky-400 font-bold">2. REUSE:</span> 레포 기존 코드 재사용
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800 text-slate-300">
+              <span class="text-emerald-400 font-bold">3. STD LIB:</span> 언어 표준 라이브러리
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800 text-slate-300">
+              <span class="text-cyan-400 font-bold">4. NATIVE:</span> 브라우저/OS 네이티브
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800 text-slate-300">
+              <span class="text-indigo-400 font-bold">5. DEPS:</span> 기존 설치된 패키지
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800 text-slate-300">
+              <span class="text-rose-400 font-bold">6. ONE-LINE:</span> 한 줄 구현 가능한가?
+            </div>
+          </div>
+          <div class="p-1 rounded bg-purple-950/60 border border-purple-800/50 text-center font-bold text-purple-200 mt-1">
+            ➔ 7단계: 위 조건 모두 실패할 때만 최소한의 신규 코드 작성!
+          </div>
+        </div>
+
+        <div class="space-y-1 text-xs text-slate-300 font-sans">
+          <div class="p-1.5 rounded bg-slate-950 border border-slate-800 flex items-center justify-between text-[11px] font-mono">
+            <span class="text-purple-300">/ponytail-review (오버엔지니어링 diff 제거)</span>
+            <span class="text-emerald-300">/ponytail-audit (기술부채 탐지)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-purple-400 font-mono border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 신규 의존성 0건 & 누적 컨텍스트 비대화 80% 사전 차단</span>
+        <span class="text-slate-500">Less Code, Less Tokens</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-amber-400 font-bold">🚀 출력과 생성의 다이어트:</span>
+      <span class="text-slate-200"><strong>caveman으로 AI의 입을 줄이고</strong>, <strong>ponytail로 AI의 손을 줄여</strong> 토큰과 코드베이스를 가볍게 유지하십시오.</span>
+    </div>
+    <span class="text-amber-400 font-bold text-[11px]">Slide 63</span>
+  </div>
+</section>

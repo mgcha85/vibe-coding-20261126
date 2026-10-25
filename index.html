@@ -144,7 +144,7 @@
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1v4m0-4h-4m4 4l-5-5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
           <span>전체화면 [F]</span>
         </button>
-        <span id="slideCounter" class="text-sky-400 font-bold font-mono">01 / 70</span>
+        <span id="slideCounter" class="text-sky-400 font-bold font-mono">01 / 76</span>
       </div>
     </header>
 
@@ -8125,112 +8125,852 @@
   <div class="max-w-3xl">
     <div class="flex items-center gap-2 mb-3">
       <span class="text-cyan-400 font-mono text-sm tracking-widest font-semibold px-3 py-1 rounded bg-cyan-500/10 border border-cyan-400/20">CHAPTER 06</span>
-      <span class="text-amber-300 font-mono text-xs px-2.5 py-1 rounded bg-amber-500/10 border border-amber-400/30 font-bold">🛠️ HANDS-ON WORKSHOP</span>
+      <span class="text-amber-300 font-mono text-xs px-2.5 py-1 rounded bg-amber-500/10 border border-amber-400/30 font-bold">💰 TOKEN ECONOMICS &amp; COST CUT</span>
     </div>
     <h2 class="text-4xl md:text-5xl font-black text-white mb-3">
-      비용 : 토큰 요금 80~90% 절감의 미학
+      비용 통제 : 토큰 요금 80~90% 절감의 미학
     </h2>
     <p class="text-lg text-slate-300 leading-relaxed mb-6">
-      바이브 코딩으로 신나게 서비스를 만들다가 월말에 수백 달러의 API 요금 청구서를 맞고 좌절하는 경우가 많습니다.<br>
-      <strong>Prompt Caching 아키텍처</strong>와 <strong>모델 계층 라우팅(Flash vs Pro)</strong>을 적용하여, 똑같은 품질의 코드를 1/10 비용으로 뽑아내는 토큰 경제학을 실습합니다.
+      바이브 코딩으로 신나게 프로토타입을 만들다가 월말에 수백 달러의 API 요금 청구서를 맞고 좌절하는 경우가 많습니다.<br>
+      단순한 프롬프트 단축을 넘어, <strong>프롬프트 캐싱 &middot; 모델 라우팅 &middot; caveman &middot; ponytail &middot; AST 스켈레톤 &middot; 불렛 압축 &middot; 원자적 소스트리</strong>로 무장하여 똑같은 퀄리티의 코드를 <strong>1/10 비용</strong>으로 뽑아내는 토큰 엔지니어링 5대 방어선을 구축합니다.
     </p>
-    <div class="flex items-center gap-3 text-xs font-mono text-slate-400">
+    <div class="flex flex-wrap items-center gap-2.5 text-xs font-mono text-slate-400">
       <span class="px-2.5 py-1 rounded bg-slate-800 text-cyan-300">#PromptCaching</span>
-      <span class="px-2.5 py-1 rounded bg-slate-800 text-cyan-300">#ModelRouting</span>
-      <span class="px-2.5 py-1 rounded bg-slate-800 text-cyan-300">#GeminiFlash</span>
-      <span class="px-2.5 py-1 rounded bg-amber-950/80 text-amber-300 border border-amber-800/50">#실습_비용최적화</span>
+      <span class="px-2.5 py-1 rounded bg-slate-800 text-indigo-300">#ModelRouting</span>
+      <span class="px-2.5 py-1 rounded bg-slate-800 text-amber-300">#Caveman &amp; Ponytail</span>
+      <span class="px-2.5 py-1 rounded bg-slate-800 text-emerald-300">#AST_Skeleton</span>
+      <span class="px-2.5 py-1 rounded bg-slate-800 text-purple-300">#BulletCompaction</span>
+      <span class="px-2.5 py-1 rounded bg-amber-950/80 text-amber-300 border border-amber-800/50">#실습_토큰다이어트</span>
     </div>
   </div>
 </section>
 
-      <!-- [COMPONENT] 06-cost/02-caching-routing.html -->
-<section class="slide flex flex-col justify-between" data-title="6.1 프롬프트 캐싱 & 모델 라우팅">
+      <!-- [COMPONENT] 06-cost/02-caching-and-routing.html -->
+<section class="slide flex flex-col justify-between" data-title="6.1 프롬프트 캐싱 &amp; 계층형 모델 라우팅">
+  <!-- Header -->
   <div class="mb-2">
-    <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider">Chapter 06. 비용 &middot; 6.1 토큰 90% 세이브 아키텍처</span>
-    <h2 class="text-3xl font-black text-white">Prompt Caching &amp; 계층형 모델 라우팅</h2>
-    <p class="text-xs text-slate-300 mt-0.5">
-      컨텍스트 구조를 '고정 헤더 + 동적 바디'로 재설계하면 매 턴마다 발생하는 토큰 비용이 극적으로 줄어듭니다.
+    <div class="flex items-center justify-between">
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.1 토큰 90% 절감 아키텍처</span>
+      <span class="px-2.5 py-0.5 rounded bg-cyan-950/80 border border-cyan-600/50 text-cyan-300 font-mono text-[11px] font-bold">
+        PROMPT CACHING &middot; MODEL ROUTING
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">Prompt Caching &amp; 계층형 모델 라우팅</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      컨텍스트 구조를 <strong>'고정 캐시 헤더 + 동적 바디'</strong>로 재설계하고, <strong>'두뇌(Pro) vs 손발(Flash)' 모델을 분리</strong>하여 비용을 수직 낙하시킵니다.
     </p>
   </div>
 
-  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch my-auto">
-    <!-- Pillar 1: Prompt Caching -->
-    <div class="bento-tile p-4 flex flex-col justify-between border-t-2 border-t-cyan-400 bg-slate-950/90">
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: Prompt Caching (6 cols) -->
+    <div class="col-span-6 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-cyan-400 bg-slate-900/90">
       <div>
         <div class="flex items-center justify-between mb-2">
-          <span class="text-xs font-mono text-cyan-400 font-bold uppercase">TECHNIQUE 01. PROMPT CACHING</span>
-          <span class="text-[10px] font-mono text-cyan-300 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800/50">입력 토큰 80~90% 할인</span>
-        </div>
-        <h3 class="text-base font-bold text-white mb-2">고정 컨텍스트를 캐시 라인 상단에 배치</h3>
-
-        <div class="bg-slate-900 rounded p-2.5 font-mono text-[11px] border border-slate-800 space-y-1 mb-2.5">
-          <div class="p-1.5 bg-cyan-950/40 rounded border border-cyan-800/60 text-cyan-300">
-            🔒 [CACHED] 시스템 프롬프트 + SKILLS.md + types.ts (30k 토큰)
-            <div class="text-[9.5px] text-emerald-400 font-bold mt-0.5">➔ 2번째 턴부터 90% 요금 감면 ($0.03 ➔ $0.003)</div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🔒</span>
+            <span class="text-xs font-mono text-cyan-400 font-bold uppercase">방어선 01 : Prompt Caching (KV-Cache)</span>
           </div>
-          <div class="p-1.5 bg-slate-950 rounded border border-slate-800 text-slate-300">
-            📝 [DYNAMIC] 이번 턴의 유저 요청 및 최근 diff (1k 토큰만 과금)
-          </div>
+          <span class="text-[9.5px] font-mono text-cyan-300 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800">입력 토큰 80~90% 할인</span>
         </div>
 
-        <ul class="text-xs text-slate-300 space-y-1.5 leading-relaxed">
-          <li>• <strong>프롬프트 순서의 중요성:</strong> 자주 바뀌는 내용(날짜, 질문)을 상단에 두면 캐시가 전부 깨집니다.</li>
-          <li>• <strong>캐시 친화적 배치:</strong> 불변 규격(규칙, API 문서)을 무조건 맨 앞에 고정하세요.</li>
-        </ul>
+        <div class="bg-slate-950 rounded p-2 font-mono text-[11px] border border-slate-800 space-y-1 mb-2.5">
+          <div class="p-2 bg-cyan-950/40 rounded border border-cyan-800/60 text-cyan-300">
+            <div class="font-bold flex items-center justify-between">
+              <span>🔒 [CACHED] 시스템 프롬프트 + AGENTS.md + types.ts</span>
+              <span class="text-[9px] bg-cyan-900/80 px-1.5 py-0.2 rounded text-cyan-200">30k 토큰</span>
+            </div>
+            <div class="text-[9.5px] text-emerald-400 font-bold mt-1">➔ 2번째 턴부터 90% 요금 감면 ($0.03 ➔ $0.003)</div>
+          </div>
+          <div class="p-2 bg-slate-900 rounded border border-slate-800 text-slate-300">
+            <div class="flex items-center justify-between">
+              <span>📝 [DYNAMIC] 이번 턴의 유저 요청 및 최근 코드 diff</span>
+              <span class="text-[9px] bg-slate-800 px-1.5 py-0.2 rounded text-slate-400">1k 토큰만 과금</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5">❌ 캐시를 깨뜨리는 실수:</strong>
+            프롬프트 맨 첫 줄에 "현재 시각: 14:05" 같은 가변 텍스트를 넣기 ➔ 매 턴마다 30k 토큰 전체가 신규 과금됨!
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-emerald-300 block mb-0.5">✅ 프로의 캐시 앵커링:</strong>
+            불변 규격(헌법, 규칙, API 명세)을 시스템 프롬프트 최상단에 고정하고, 질문은 맨 뒤에 덧붙여 캐시 적중률 98% 달성.
+          </div>
+        </div>
       </div>
-      <div class="text-[10px] text-cyan-400 font-mono border-t border-slate-800/80 pt-1.5 mt-2">
-        결과: 50턴 동안 대화해도 첫 턴 수준의 저렴한 비용 유지
+
+      <div class="text-[10px] text-cyan-400 font-mono border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 50턴 장기 대화도 첫 턴 수준의 저렴한 비용 유지</span>
+        <span class="text-slate-500">Cache Hit Rate 98%</span>
       </div>
     </div>
 
-    <!-- Pillar 2: Model Tiered Routing -->
-    <div class="bento-tile p-4 flex flex-col justify-between border-t-2 border-t-indigo-400 bg-slate-950/90">
+    <!-- RIGHT: Model Tiered Routing (6 cols) -->
+    <div class="col-span-6 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-indigo-400 bg-slate-900/90">
       <div>
         <div class="flex items-center justify-between mb-2">
-          <span class="text-xs font-mono text-indigo-400 font-bold uppercase">TECHNIQUE 02. MODEL ROUTING</span>
-          <span class="text-[10px] font-mono text-indigo-300 bg-indigo-950/80 px-2 py-0.5 rounded border border-indigo-800/50">Pro 1회 + Flash 100회</span>
-        </div>
-        <h3 class="text-base font-bold text-white mb-2">두뇌 모델 vs 손발 모델의 계층 분리</h3>
-
-        <div class="bg-slate-900 rounded p-2.5 font-mono text-[11px] border border-slate-800 space-y-1.5 mb-2.5">
-          <div class="flex justify-between items-center p-1.5 bg-purple-950/40 rounded border border-purple-800/50 text-purple-300">
-            <span>🧠 Pro Model (Opus / Pro)</span>
-            <span class="text-[10px] font-bold text-purple-200">기획 &middot; 아키텍처 설계 (1회)</span>
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🧠</span>
+            <span class="text-xs font-mono text-indigo-400 font-bold uppercase">방어선 02 : 계층형 모델 라우팅 (Routing)</span>
           </div>
-          <div class="flex justify-between items-center p-1.5 bg-indigo-950/40 rounded border border-indigo-800/50 text-indigo-300">
-            <span>⚡ Flash Model (3.0 Flash)</span>
-            <span class="text-[10px] font-bold text-emerald-400">코드 작성 &middot; 단위 테스트 (100회)</span>
-          </div>
+          <span class="text-[9.5px] font-mono text-indigo-300 bg-indigo-950 px-2 py-0.5 rounded border border-indigo-800">Pro 1회 + Flash 100회</span>
         </div>
 
-        <ul class="text-xs text-slate-300 space-y-1.5 leading-relaxed">
-          <li>• <strong>단순 구현의 낭비 방지:</strong> 오타 수정, 린트 교정에 최고가 모델을 쓰는 것은 돈 낭비입니다.</li>
-          <li>• <strong>속도 5배 향상:</strong> Flash 모델은 응답 속도가 0.5초 수준으로 생산성이 폭발합니다.</li>
-        </ul>
+        <div class="bg-slate-950 rounded p-2 font-mono text-[11px] border border-slate-800 space-y-1.5 mb-2.5">
+          <div class="flex justify-between items-center p-2 bg-purple-950/40 rounded border border-purple-800/50 text-purple-300">
+            <div>
+              <span class="font-bold">🧠 두뇌 모델 (Opus / GPT-4o / Pro)</span>
+              <div class="text-[9.5px] text-slate-400">아키텍처 설계, 모듈 분할, 보안 감사</div>
+            </div>
+            <span class="text-[10px] font-bold text-purple-200 bg-purple-900/60 px-2 py-0.5 rounded">1회 호출 (고가치)</span>
+          </div>
+          <div class="flex justify-between items-center p-2 bg-indigo-950/40 rounded border border-indigo-800/50 text-indigo-300">
+            <div>
+              <span class="font-bold">⚡ 손발 모델 (Gemini 3.0 Flash / Sonnet)</span>
+              <div class="text-[9.5px] text-slate-400">코드 타이핑, 단위 테스트 50개 생성, 린트 교정</div>
+            </div>
+            <span class="text-[10px] font-bold text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">100회 호출 (초저가)</span>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-white block mb-0.5">단순 타이핑에 고가 모델 낭비 금지</strong>
+            오타 수정과 함수 구현에 최고가 모델을 쓰는 것은 낭비. Flash는 0.5초 만에 응답하여 생산성 5배 폭발.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-indigo-300 block mb-0.5">RULE[user_global] 8번과의 직결:</strong>
+            우리 헌법에도 "기본은 gemini-3.0-flash를 사용하고 GOOGLE_API_KEY를 둘 것"으로 비용을 완벽히 통제 중.
+          </div>
+        </div>
       </div>
-      <div class="text-[10px] text-indigo-400 font-mono border-t border-slate-800/80 pt-1.5 mt-2">
-        결과: 월 100만 원 나오던 API 청구서가 월 7만 원으로 수직 낙하
+
+      <div class="text-[10px] text-indigo-400 font-mono border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 월 100만 원 나오던 API 청구서가 월 7만 원으로 수직 낙하</span>
+        <span class="text-slate-500">Cost Reduced by 93%</span>
       </div>
     </div>
   </div>
 
-  <!-- Bottom Banner -->
+  <!-- Bottom Global Banner -->
   <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
     <div class="flex items-center gap-2">
       <span class="text-cyan-400 font-bold">💡 실무 원칙:</span>
-      <span class="text-slate-200">설계는 비싼 모델(Pro)에게 1번 맡기고, <strong>코드 타이핑과 테스트는 가장 빠르고 싼 모델(Flash)</strong>에게 100번 시키세요.</span>
+      <span class="text-slate-200">설계는 비싼 모델에게 1번 맡기고, <strong>코드 타이핑과 테스트는 가장 빠르고 저렴한 Flash 모델</strong>에게 100번 시키십시오.</span>
     </div>
-    <span class="text-amber-400 font-bold text-[11px]">Next: 바로 실습해보기 ➔</span>
+    <span class="text-cyan-400 font-bold text-[11px]">Slide 62</span>
   </div>
 </section>
 
-      <!-- [COMPONENT] 06-cost/03-hands-on-cost-cut.html -->
-<section class="slide flex flex-col justify-between" data-title="6.2 실전 실습: 비용 최적화">
+      <!-- [COMPONENT] 06-cost/03-caveman-and-ponytail-skills.html -->
+<section class="slide flex flex-col justify-between" data-title="6.2 군더더기 &amp; 과잉 방지 : caveman &amp; ponytail">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.2 토큰 다이어트 스킬</span>
+      <span class="px-2.5 py-0.5 rounded bg-amber-950/80 border border-amber-600/50 text-amber-300 font-mono text-[11px] font-bold">
+        CAVEMAN &middot; PONYTAIL SKILLS
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">출력 다이어트 &amp; 과잉 방지 : caveman &amp; ponytail 스킬</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      AI의 공손한 미사여구를 쳐내는 <strong>caveman(출력 70% 삭감)</strong>과 주니어식 과잉 엔지니어링을 막는 <strong>ponytail(게으른 시니어 사다리)</strong>로 토큰 누수를 원천 봉쇄합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: caveman Skill (6 cols) -->
+    <div class="col-span-6 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-amber-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🦴</span>
+            <span class="text-xs font-mono text-amber-400 font-bold uppercase">caveman 스킬 : 출력 토큰(Output) 다이어트</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950 px-2 py-0.5 rounded border border-amber-800">Why use many token</span>
+        </div>
+
+        <p class="text-xs text-slate-400 mb-2 leading-relaxed">
+          "Certainly! I'd be happy to help..." 같은 공손한 인사말과 서술형 수식어는 <strong>출력 토큰을 낭비하고 개발자 읽기 피로만 유발</strong>합니다.
+        </p>
+
+        <!-- Before & After Comparison -->
+        <div class="space-y-1.5 font-mono text-[11px] mb-2.5">
+          <div class="p-2 rounded bg-rose-950/30 border border-rose-900/50 text-slate-300">
+            <div class="text-rose-400 font-bold text-[9.5px] mb-0.5">❌ 일반 AI 응답 (120 토큰 소모):</div>
+            <div class="text-[10px] text-slate-400 leading-snug font-sans">
+              "물론입니다! 문의주신 리액트 컴포넌트가 계속 리렌더링되는 원인은 내부에서 새로운 객체 참조를 생성하기 때문입니다. 이를 해결하려면..."
+            </div>
+          </div>
+
+          <div class="p-2 rounded bg-emerald-950/30 border border-emerald-800/60 text-slate-200">
+            <div class="text-emerald-400 font-bold text-[9.5px] mb-0.5">⚡ caveman 장착 응답 (22 토큰, 82% 삭감):</div>
+            <div class="text-[10.5px] text-emerald-300 leading-snug">
+              "인라인 객체 = 매 렌더마다 새 참조 생성 = 리렌더링. <code class="text-white font-bold">useMemo</code>로 래핑."
+            </div>
+          </div>
+        </div>
+
+        <!-- Rules & Levels -->
+        <div class="space-y-1 text-xs text-slate-300 font-sans">
+          <div class="p-1.5 rounded bg-slate-950 border border-slate-800 flex items-center justify-between">
+            <span><strong>보존 법칙:</strong> 코드, 에러 메시지, CLI 플래그, API 명칭은 100% 유지</span>
+            <span class="text-[9px] font-mono text-emerald-400">Code Intact</span>
+          </div>
+          <div class="p-1.5 rounded bg-slate-950 border border-slate-800 flex items-center justify-between text-[11px] font-mono">
+            <span class="text-amber-300">/caveman lite (문장 유지)</span>
+            <span class="text-sky-300">/caveman full (단문/키워드)</span>
+            <span class="text-purple-300">/caveman ultra (극단)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-amber-400 font-mono border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 출력 토큰 65~75% 절감 및 실시간 스트리밍 대기 단축</span>
+        <span class="text-slate-500">Zero LLM Slop</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: ponytail Skill (6 cols) -->
+    <div class="col-span-6 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-purple-400 bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">👱</span>
+            <span class="text-xs font-mono text-purple-400 font-bold uppercase">ponytail 스킬 : 과잉 엔지니어링 박멸</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-purple-300 bg-purple-950 px-2 py-0.5 rounded border border-purple-800">Lazy Senior Mindset</span>
+        </div>
+
+        <p class="text-xs text-slate-400 mb-2 leading-relaxed">
+          AI는 날짜 선택기 하나 만드는데 새 npm 패키지 깔고 300줄 보일러플레이트를 짜려 합니다. <strong>가장 좋은 코드는 작성하지 않은 코드</strong>입니다.
+        </p>
+
+        <!-- Ladder of Laziness 7 Steps -->
+        <div class="bg-slate-950 rounded p-2 border border-slate-800 text-[10.5px] font-mono mb-2">
+          <div class="text-purple-300 font-bold text-[10px] mb-1.5 flex items-center justify-between">
+            <span>🪜 The Ladder of Laziness (게으른 시니어 사다리)</span>
+            <span class="text-slate-500">위에서 멈추기</span>
+          </div>
+          <div class="grid grid-cols-2 gap-1 text-[9.5px]">
+            <div class="p-1 rounded bg-slate-900 border border-slate-800 text-slate-300">
+              <span class="text-amber-400 font-bold">1. YAGNI:</span> 진짜 필요한가? (스킵)
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800 text-slate-300">
+              <span class="text-sky-400 font-bold">2. REUSE:</span> 레포 기존 코드 재사용
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800 text-slate-300">
+              <span class="text-emerald-400 font-bold">3. STD LIB:</span> 언어 표준 라이브러리
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800 text-slate-300">
+              <span class="text-cyan-400 font-bold">4. NATIVE:</span> 브라우저/OS 네이티브
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800 text-slate-300">
+              <span class="text-indigo-400 font-bold">5. DEPS:</span> 기존 설치된 패키지
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800 text-slate-300">
+              <span class="text-rose-400 font-bold">6. ONE-LINE:</span> 한 줄 구현 가능한가?
+            </div>
+          </div>
+          <div class="p-1 rounded bg-purple-950/60 border border-purple-800/50 text-center font-bold text-purple-200 mt-1">
+            ➔ 7단계: 위 조건 모두 실패할 때만 최소한의 신규 코드 작성!
+          </div>
+        </div>
+
+        <div class="space-y-1 text-xs text-slate-300 font-sans">
+          <div class="p-1.5 rounded bg-slate-950 border border-slate-800 flex items-center justify-between text-[11px] font-mono">
+            <span class="text-purple-300">/ponytail-review (오버엔지니어링 diff 제거)</span>
+            <span class="text-emerald-300">/ponytail-audit (기술부채 탐지)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-purple-400 font-mono border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 신규 의존성 0건 & 누적 컨텍스트 비대화 80% 사전 차단</span>
+        <span class="text-slate-500">Less Code, Less Tokens</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-amber-400 font-bold">🚀 출력과 생성의 다이어트:</span>
+      <span class="text-slate-200"><strong>caveman으로 AI의 입을 줄이고</strong>, <strong>ponytail로 AI의 손을 줄여</strong> 토큰과 코드베이스를 가볍게 유지하십시오.</span>
+    </div>
+    <span class="text-amber-400 font-bold text-[11px]">Slide 63</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 06-cost/04-ast-skeleton-and-structural-context.html -->
+<section class="slide flex flex-col justify-between" data-title="6.3 AST 구조 &amp; Tree-sitter 스켈레톤 압축">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.3 구조적 컨텍스트 엔지니어링</span>
+      <span class="px-2.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-600/50 text-emerald-300 font-mono text-[11px] font-bold">
+        AST SKELETON &middot; TREE-SITTER &middot; AST-GREP
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">구문 기반 컨텍스트 압축 : AST 구조 &amp; Tree-sitter 스켈레톤</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      파일 전체(2,000줄)를 무식하게 읽히지 마십시오. <strong>AST(추상 구문 트리)로 함수 시그니처와 인터페이스만 추출</strong>하여 <strong>토큰을 98% 압축(10k ➔ 200 토큰)</strong>합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: AST Core Concept (5 cols) -->
+    <div class="col-span-5 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🌳</span>
+            <span class="text-[11px] font-mono text-emerald-400 font-bold uppercase">AST (추상 구문 트리) 구조의 본질</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-sky-400 bg-sky-950 px-2 py-0.5 rounded border border-sky-800">Syntax Tree</span>
+        </div>
+
+        <p class="text-xs text-slate-400 mb-2 leading-relaxed">
+          소스코드를 단순 텍스트 줄(Line)이 아닌, <strong>문법 계층(Class ➔ Method ➔ Params ➔ Body)의 트리 구조</strong>로 파싱하여 필요한 노드만 정밀 추출합니다.
+        </p>
+
+        <!-- AST Node Tree Diagram -->
+        <div class="p-2 rounded bg-slate-950 border border-slate-800 font-mono text-[10px] text-slate-300 mb-2 space-y-1">
+          <div class="text-indigo-300 font-bold">📁 Program (SourceFile)</div>
+          <div class="pl-2.5 text-sky-300">└─ 📦 ClassDeclaration: <code class="text-white">OrderService</code></div>
+          <div class="pl-5 text-emerald-300">├─ 🏷️ MethodSignature: <code class="text-amber-300">createOrder(...)</code> <span class="text-emerald-400 font-bold">[주입!]</span></div>
+          <div class="pl-8 text-slate-500 line-through">└─ 🚫 BlockBody { 150줄 내부 DB쿼리 } [생략!]</div>
+          <div class="pl-5 text-emerald-300">└─ 🏷️ MethodSignature: <code class="text-amber-300">cancelOrder(...)</code> <span class="text-emerald-400 font-bold">[주입!]</span></div>
+        </div>
+
+        <!-- 2 Core Tools -->
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-emerald-300 block mb-0.5">1. Tree-sitter:</strong>
+            에러가 있거나 미완성된 코드도 깨지지 않고 증분 파싱(Incremental Parsing)하는 고속 구문 엔진.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-cyan-300 block mb-0.5">2. ast-grep (sg 스킬):</strong>
+            정규식 대신 <code class="text-amber-300 font-mono">sg -p 'fn $NAME($$$ARGS)'</code> 패턴으로 함수 선언만 0초 만에 추출하는 에이전트 스킬.
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-emerald-950/50 border border-emerald-800/40 text-[10px] font-mono text-emerald-300 mt-2 flex items-center justify-between">
+        <span>✓ 내부 구현체 제거: <strong>-98% 토큰 압축</strong></span>
+        <span class="text-sky-300">Attention Focus</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Skeleton Folding Visualization (7 cols) -->
+    <div class="col-span-7 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🦴</span>
+            <span class="text-[11px] font-mono text-cyan-400 font-bold uppercase">Skeleton Folding : 10,000 토큰 ➔ 200 토큰 압축</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">98% Token Saved</span>
+        </div>
+
+        <!-- Before / After Code Box -->
+        <div class="grid grid-cols-2 gap-2 mb-2 font-mono text-[10px]">
+          <!-- Raw File -->
+          <div class="p-2 rounded bg-slate-950 border border-rose-900/40 flex flex-col justify-between">
+            <div>
+              <div class="text-rose-400 font-bold mb-1 flex items-center justify-between text-[9.5px]">
+                <span>❌ Naive Raw Code (2,000줄)</span>
+                <span class="bg-rose-950 px-1 rounded text-rose-300">10k Tokens</span>
+              </div>
+              <div class="text-slate-400 text-[9px] leading-tight space-y-0.5 opacity-70">
+                // 100줄의 import 및 내부 상태<br>
+                class OrderService {<br>
+                &nbsp;&nbsp;async createOrder(id, req) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;await db.raw('SELECT...');<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;for (let item of req.items) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 200줄의 장황한 유효성 검사<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (item.price &lt; 0) ...<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;// 수백 줄의 트랜잭션 롤백 로직<br>
+                &nbsp;&nbsp;}<br>
+                }
+              </div>
+            </div>
+            <div class="text-[9px] text-rose-400 mt-2 pt-1 border-t border-rose-950">
+              ⚠️ AI가 구현 세부사항에 질식하여 Attention 희석
+            </div>
+          </div>
+
+          <!-- Skeleton Code -->
+          <div class="p-2 rounded bg-slate-950 border border-emerald-800/60 flex flex-col justify-between">
+            <div>
+              <div class="text-emerald-400 font-bold mb-1 flex items-center justify-between text-[9.5px]">
+                <span>⚡ AST Skeleton (인터페이스만)</span>
+                <span class="bg-emerald-950 px-1 rounded text-emerald-300">200 Tokens</span>
+              </div>
+              <div class="text-emerald-300 text-[9px] leading-tight space-y-0.5">
+                <span class="text-slate-500">// AST로 추출된 공개 인터페이스 계약</span><br>
+                <span class="text-purple-300">export interface</span> <span class="text-white font-bold">OrderService</span> {<br>
+                &nbsp;&nbsp;<span class="text-sky-300">createOrder</span>(req: <span class="text-amber-300">OrderRequest</span>): <span class="text-emerald-300">Promise&lt;Result&gt;</span>;<br>
+                &nbsp;&nbsp;<span class="text-sky-300">cancelOrder</span>(orderId: <span class="text-amber-300">string</span>): <span class="text-emerald-300">Promise&lt;boolean&gt;</span>;<br>
+                &nbsp;&nbsp;<span class="text-sky-300">getStatus</span>(orderId: <span class="text-amber-300">string</span>): <span class="text-emerald-300">Promise&lt;Status&gt;</span>;<br>
+                }
+              </div>
+            </div>
+            <div class="text-[9px] text-emerald-400 mt-2 pt-1 border-t border-emerald-950">
+              ✓ AI는 메소드 명과 타입만 보고 100% 무오차 연동 구현!
+            </div>
+          </div>
+        </div>
+
+        <div class="p-2 rounded bg-indigo-950/40 border border-indigo-800/40 text-xs font-mono text-slate-200">
+          <div class="text-indigo-300 font-bold text-[10.5px] mb-1">🛠️ 실전 ast-grep 에이전트 스킬 활용 예시:</div>
+          <div class="text-[10px] text-slate-300 font-mono bg-slate-950 p-1.5 rounded border border-slate-800">
+            $ sg scan -p 'export function $NAME($$$ARGS): $TYPE { $$$ }' --json | jq '.[].signature'
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-slate-950 border border-slate-800 text-[10px] font-mono text-slate-400 mt-2 flex items-center justify-between">
+        <span class="text-slate-300">💡 <strong>원칙:</strong> 타 모듈 연동 시 내부 코드는 닫고, <strong>인터페이스 시그니처만 스켈레톤으로 주입</strong>하십시오.</span>
+        <span class="text-emerald-400 font-bold">1/50 Cost Cut</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-emerald-400 font-bold">🌿 AST 스켈레톤의 미학:</span>
+      <span class="text-slate-200">파일 전체를 무지성으로 읽히지 마십시오. <strong>시그니처만 추출해 주입하면 토큰 비용은 1/50로 줄고 모델의 이해도는 100% 상승</strong>합니다.</span>
+    </div>
+    <span class="text-emerald-400 font-bold text-[11px]">Slide 64</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 06-cost/05-multi-turn-bullet-compaction.html -->
+<section class="slide flex flex-col justify-between" data-title="6.4 멀티턴 토큰 폭증 제어 : Bullet Point 세션 압축">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.4 대화 이력 압축 기술</span>
+      <span class="px-2.5 py-0.5 rounded bg-purple-950/80 border border-purple-600/50 text-purple-300 font-mono text-[11px] font-bold">
+        BULLET COMPACTION &middot; SESSION CHECKPOINTING
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">멀티턴 대화 연속성 : Bullet Point 세션 압축 &amp; 체크포인팅</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      대화가 30턴 넘어가면 과거 대화 전체가 매 턴마다 누적 과금됩니다. <strong>대화 히스토리를 5~7개 고밀도 불렛 포인트로 압축</strong>하여 <strong>이차 곡선형 토큰 폭증을 영구 차단</strong>합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: Quadratic Token Explosion (5 cols) -->
+    <div class="col-span-5 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">📈</span>
+            <span class="text-[11px] font-mono text-rose-400 font-bold uppercase">이차 곡선형 토큰 누적의 저주 (Quadratic Explosion)</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">Cost Bleed</span>
+        </div>
+
+        <p class="text-xs text-slate-400 mb-2 leading-relaxed">
+          대화창을 끄지 않고 계속 쓰면, <strong>1턴부터 30턴까지의 모든 질문, 답변, 코드 diff가 매 턴마다 입력 토큰으로 재전송</strong>됩니다.
+        </p>
+
+        <!-- Curve Visual -->
+        <div class="p-2.5 rounded bg-slate-950 border border-slate-800 font-mono text-[10.5px] mb-2 space-y-1">
+          <div class="flex justify-between items-center text-slate-400">
+            <span>• 1턴 : 2,000 토큰</span>
+            <span class="text-slate-500">$0.003</span>
+          </div>
+          <div class="flex justify-between items-center text-slate-300">
+            <span>• 10턴 : 25,000 토큰 누적</span>
+            <span class="text-amber-400 font-bold">$0.04</span>
+          </div>
+          <div class="flex justify-between items-center text-amber-300">
+            <span>• 25턴 : 70,000 토큰 누적</span>
+            <span class="text-amber-400 font-bold">$0.11</span>
+          </div>
+          <div class="flex justify-between items-center text-rose-400 font-bold bg-rose-950/40 p-1 rounded border border-rose-800/60">
+            <span>• 40턴 : 130,000 토큰 (오타 하나 고치는데 $0.25!)</span>
+            <span>🚨 파산</span>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5">⚠️ Attention 오염 (Context Dilution):</strong>
+            수십 턴 전의 잡담과 이미 해결된 에러 로그 때문에 AI가 최근의 핵심 지시를 잊어버리는 환각(Hallucination) 유발.
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-rose-950/40 border border-rose-800/40 text-[10px] font-mono text-rose-300 mt-2 flex items-center justify-between">
+        <span>✓ 20턴 이상 대화창 유지: <strong>최악의 안티패턴</strong></span>
+        <span class="text-rose-400">Stop Chatting</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Bullet Point Compaction (7 cols) -->
+    <div class="col-span-7 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">📌</span>
+            <span class="text-[11px] font-mono text-purple-400 font-bold uppercase">Dense Bullet Point 압축 &amp; 세션 바통 터치</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">99.4% Token Saved</span>
+        </div>
+
+        <!-- 5-Bullet Checkpoint Card -->
+        <div class="p-2.5 rounded bg-slate-950 border border-purple-900/50 mb-2">
+          <div class="text-[10px] font-mono text-purple-300 font-bold mb-1.5 flex items-center justify-between">
+            <span>📋 /compact ➔ 고밀도 체크포인트 불렛 5선</span>
+            <span class="text-slate-400 text-[9px]">단 350 토큰으로 전 세션 완벽 복원</span>
+          </div>
+          
+          <div class="space-y-1 font-mono text-[9.5px] text-slate-300 leading-tight">
+            <div class="p-1 rounded bg-slate-900 border border-slate-800">
+              <span class="text-emerald-400 font-bold">• [완료 아키텍처]:</span> Go JWT 인증 미들웨어 &amp; Bearer 파싱 구현 완료 (<code class="text-sky-300">internal/auth/jwt.go</code>)
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800">
+              <span class="text-sky-400 font-bold">• [데이터베이스]:</span> migration_003 완료, orders 테이블 외래키 인덱스 추가 완료
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800">
+              <span class="text-amber-400 font-bold">• [현재 대기 태스크]:</span> POST /api/v1/orders 핸들러 작성 대기, 401 에러 케이스 처리 중
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800">
+              <span class="text-rose-400 font-bold">• [오답 오답노트]:</span> Redis TTL 3600초 미설정 시 캐시 오버플로우 발생 주의 (LESSON 기록됨)
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800">
+              <span class="text-purple-400 font-bold">• [다음 목표]:</span> E2E 결제 시나리오 통합 테스트 작성 및 패스
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric Comparison -->
+        <div class="grid grid-cols-2 gap-2 text-xs font-mono">
+          <div class="p-2 rounded bg-rose-950/30 border border-rose-900/40 text-slate-300">
+            <span class="text-rose-400 font-bold block mb-0.5">❌ 원시 누적 대화창:</span>
+            <span class="text-[11px]">65,000 토큰 (매 턴 $0.15 소모)</span>
+          </div>
+          <div class="p-2 rounded bg-emerald-950/30 border border-emerald-900/40 text-slate-200">
+            <span class="text-emerald-400 font-bold block mb-0.5">⚡ 5대 불렛 포인트:</span>
+            <span class="text-[11px]">350 토큰 (매 턴 $0.0008, <strong>99.4% 절감</strong>)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-slate-950 border border-slate-800 text-[10px] font-mono text-slate-400 mt-2 flex items-center justify-between">
+        <span class="text-slate-300">💡 <strong>실행 팁:</strong> 20턴이 넘으면 에이전트에게 <strong>"지금까지의 핵심 상태를 5개 불렛으로 요약하라"</strong> 명령 후 새 창에서 시작하세요.</span>
+        <span class="text-purple-400 font-bold">Session Handoff</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-purple-400 font-bold">🚀 멀티턴 압축의 핵심:</span>
+      <span class="text-slate-200">하나의 대화창을 붙잡고 늘어지지 마십시오. <strong>20턴마다 불렛 포인트로 압축해 새 세션으로 넘기는 것</strong>이 토큰을 99% 아끼는 비결입니다.</span>
+    </div>
+    <span class="text-purple-400 font-bold text-[11px]">Slide 65</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 06-cost/06-atomic-source-tree-standard.html -->
+<section class="slide flex flex-col justify-between" data-title="6.5 소스트리 표준화 &amp; 원자적 함수 분할">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.5 코드 아키텍처 다이어트</span>
+      <span class="px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-600/50 text-sky-300 font-mono text-[11px] font-bold">
+        ATOMIC MODULARIZATION &middot; 200-LINE RULE
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">아키텍처 단위 토큰 다이어트 : 소스트리 표준화 &amp; 원자적 함수 분할</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      하나의 파일에 1,500줄을 몰아넣지 마십시오. <strong>200줄 이하 원자적 파일 분할</strong>과 <strong>30줄 순수 함수 표준화</strong>로 <strong>Diff 편집 토큰을 90% 절감</strong>합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: Monolithic File Nightmare (5 cols) -->
+    <div class="col-span-5 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">💀</span>
+            <span class="text-[11px] font-mono text-rose-400 font-bold uppercase">2,000줄 모놀리식 파일의 비극</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">Anti-Pattern</span>
+        </div>
+
+        <p class="text-xs text-slate-400 mb-2 leading-relaxed">
+          한 파일에 1,500~2,000줄 코드를 몰아넣으면, <strong>코드 5줄 고치려고 2,000줄 전체를 읽고 diff를 생성</strong>해야 합니다.
+        </p>
+
+        <!-- Monolithic Pitfall Box -->
+        <div class="p-2.5 rounded bg-slate-950 border border-rose-900/50 font-mono text-[10px] text-slate-300 mb-2 space-y-1">
+          <div class="text-rose-400 font-bold">📁 auth_monolith.go (1,850줄)</div>
+          <div class="text-slate-400 text-[9px] pl-2">├─ 토큰 발급 (200줄)</div>
+          <div class="text-slate-400 text-[9px] pl-2">├─ 비밀번호 해싱 &amp; 검증 (300줄)</div>
+          <div class="text-slate-400 text-[9px] pl-2">├─ HTTP 요청 핸들러 12개 (600줄)</div>
+          <div class="text-slate-400 text-[9px] pl-2">└─ SQL 쿼리 &amp; 트랜잭션 (750줄)</div>
+          <div class="text-rose-400 text-[9px] pt-1 border-t border-rose-950 font-bold">
+            🚨 오타 1줄 수정 = 20,000 토큰 증발 + 줄번호 착오 오류 폭증
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5">⚠️ Edit Conflict &amp; 린트 악순환:</strong>
+            파일이 길수록 AI가 변경 대상을 잘못 찾아 코드를 덮어쓰거나, 린트 오류를 잡으려다 다른 부분을 망가뜨리는 퇴행(Regression) 유발.
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-rose-950/40 border border-rose-800/40 text-[10px] font-mono text-rose-300 mt-2 flex items-center justify-between">
+        <span>✓ 500줄 초과 파일: <strong>AI 코딩의 적</strong></span>
+        <span class="text-rose-400">Refactor Now</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Atomic Standards (7 cols) -->
+    <div class="col-span-7 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">✂️</span>
+            <span class="text-[11px] font-mono text-sky-400 font-bold uppercase">소스트리 표준화 &amp; 200줄 원자 분할 규칙</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">95% Token Saved</span>
+        </div>
+
+        <!-- 2 Atomic Rules Grid -->
+        <div class="grid grid-cols-2 gap-2 mb-2 font-mono text-[10px]">
+          <!-- Rule 1: 200-Line File Rule -->
+          <div class="p-2.5 rounded bg-slate-950 border border-sky-900/50 flex flex-col justify-between">
+            <div>
+              <div class="text-sky-300 font-bold mb-1 flex items-center justify-between text-[10px]">
+                <span>1. 파일당 200줄 이하 엄수</span>
+                <span class="text-slate-500">Single Responsibility</span>
+              </div>
+              <div class="space-y-1 text-[9px] text-slate-300">
+                <div class="p-1 rounded bg-slate-900 border border-slate-800 text-sky-200">
+                  📄 <code class="font-bold">auth/jwt.go</code> (80줄) &middot; 토큰 전담
+                </div>
+                <div class="p-1 rounded bg-slate-900 border border-slate-800 text-sky-200">
+                  📄 <code class="font-bold">auth/handler.go</code> (110줄) &middot; 라우팅
+                </div>
+                <div class="p-1 rounded bg-slate-900 border border-slate-800 text-sky-200">
+                  📄 <code class="font-bold">auth/repository.go</code> (90줄) &middot; DB
+                </div>
+              </div>
+            </div>
+            <div class="text-[9px] text-emerald-400 mt-2 pt-1 border-t border-slate-800">
+              ✓ 수정 시 해당 파일 80줄만 로드 &rarr; 토큰 95% 절감!
+            </div>
+          </div>
+
+          <!-- Rule 2: 30-Line Pure Function -->
+          <div class="p-2.5 rounded bg-slate-950 border border-emerald-900/50 flex flex-col justify-between">
+            <div>
+              <div class="text-emerald-300 font-bold mb-1 flex items-center justify-between text-[10px]">
+                <span>2. 함수당 30줄 이하 순수화</span>
+                <span class="text-slate-500">Pure Function</span>
+              </div>
+              <div class="space-y-1 text-[9px] text-slate-300">
+                <div class="p-1 rounded bg-slate-900 border border-slate-800">
+                  • 1개 함수는 1가지 책임만 수행
+                </div>
+                <div class="p-1 rounded bg-slate-900 border border-slate-800">
+                  • 입출력이 명확한 결정론적 구조
+                </div>
+                <div class="p-1 rounded bg-slate-900 border border-slate-800">
+                  • 단위 테스트 작성이 극도로 용이
+                </div>
+              </div>
+            </div>
+            <div class="text-[9px] text-emerald-400 mt-2 pt-1 border-t border-slate-800">
+              ✓ AI의 코드 치환 성공률 100% 보장
+            </div>
+          </div>
+        </div>
+
+        <!-- Token Comparison Metrics -->
+        <div class="grid grid-cols-2 gap-2 text-xs font-mono">
+          <div class="p-2 rounded bg-rose-950/30 border border-rose-900/40 text-slate-300">
+            <span class="text-rose-400 font-bold block mb-0.5">❌ 모놀리식 파일 수정:</span>
+            <span class="text-[11px]">2,000줄 로드 + diff 연산 = <strong>15,000 토큰</strong></span>
+          </div>
+          <div class="p-2 rounded bg-emerald-950/30 border border-emerald-900/40 text-slate-200">
+            <span class="text-emerald-400 font-bold block mb-0.5">⚡ 원자적 파일 수정:</span>
+            <span class="text-[11px]">80줄 로드 + 10줄 diff = <strong>600 토큰 (96% 절감)</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-slate-950 border border-slate-800 text-[10px] font-mono text-slate-400 mt-2 flex items-center justify-between">
+        <span class="text-slate-300">💡 <strong>아키텍처가 곧 토큰이다:</strong> 코드를 잘게 쪼개는 것은 클린 코드일 뿐 아니라, AI API 요금을 1/20로 줄이는 최고의 경제학입니다.</span>
+        <span class="text-sky-400 font-bold">Clean Code = Cheap Code</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">✂️ 원자적 아키텍처의 위력:</span>
+      <span class="text-slate-200">파일을 200줄 이하로 쪼개는 순간, <strong>에이전트의 변경 오차는 0이 되고 입출력 토큰은 기하급수적으로 줄어듭니다</strong>.</span>
+    </div>
+    <span class="text-sky-400 font-bold text-[11px]">Slide 66</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 06-cost/07-advanced-token-diet-toolkit.html -->
+<section class="slide flex flex-col justify-between" data-title="6.6 실전 토큰 다이어트 툴킷 : Grep &amp; 로그 Truncation">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.6 실전 토큰 세이빙 도구</span>
+      <span class="px-2.5 py-0.5 rounded bg-cyan-950/80 border border-cyan-600/50 text-cyan-300 font-mono text-[11px] font-bold">
+        SELECTIVE GREP &middot; LOG TRUNCATION &middot; REPOMIX
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">실전 토큰 다이어트 툴킷 : Ripgrep &amp; 에러 로그 Truncation</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      파일을 다 열어보지 말고 <strong>Grep으로 표적 타격</strong>하고, 실패 시 <strong>로그의 머리(Head)와 꼬리(Tail)만 주입</strong>하여 토큰 누수를 원천 봉쇄합니다.
+    </p>
+  </div>
+
+  <!-- 3 Column Bento Grid (12 cols) -->
+  <div class="grid grid-cols-3 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- Pillar 1: Ripgrep Selective Targeting -->
+    <div class="bento-tile p-3.5 bg-slate-900/90 border-t-2 border-t-cyan-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">🔍</span>
+          <span class="text-[9px] font-mono text-cyan-300 bg-cyan-950 px-1.5 py-0.5 rounded border border-cyan-800">1. TARGETED GREP</span>
+        </div>
+        <div class="text-cyan-400 font-bold font-mono text-sm mb-1.5">view_file 남발 금지</div>
+        
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5">❌ 나쁜 습관:</strong>
+            변수 하나 찾겠다고 500줄 파일 전체를 <code class="text-sky-300 font-mono">view_file</code>로 읽기 (매번 3,000 토큰 낭비).
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-emerald-300 block mb-0.5">⚡ 프로의 표적 타격:</strong>
+            <code class="text-cyan-300 font-mono">grep_search</code>로 매칭 라인과 전후 3줄(<code class="text-amber-300 font-mono">-C 3</code>)만 정확히 조회 (30 토큰으로 100배 압축!).
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-cyan-900/50 font-mono text-[10px] text-cyan-200">
+            <strong class="text-cyan-400 block mb-0.5">💻 실전 CLI 명령어:</strong>
+            $ rg -n -C 2 "func HandleAuth" internal/
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-cyan-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 파일 읽기 토큰 95% 절감</span>
+        <span class="text-slate-500">Selective Search</span>
+      </div>
+    </div>
+
+    <!-- Pillar 2: Log Head-Tail Truncation -->
+    <div class="bento-tile p-3.5 bg-slate-900/90 border-t-2 border-t-amber-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">✂️</span>
+          <span class="text-[9px] font-mono text-amber-300 bg-amber-950 px-1.5 py-0.5 rounded border border-amber-800">2. LOG TRUNCATION</span>
+        </div>
+        <div class="text-amber-300 font-bold font-mono text-sm mb-1.5">스택트레이스 다이어트</div>
+        
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5">❌ 수천 줄 에러 덤프:</strong>
+            테스트 실패 시 2,000줄의 라이브러리 내부 스택트레이스를 다 보내면 모델이 압사당함.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-amber-300 block mb-0.5">⚡ Head 15 + Tail 15 법칙:</strong>
+            에러의 원인이 적힌 최상단(Head 15줄)과 실제 실패 코드 라인(Tail 15줄)만 주입하고 중간 프레임워크 로그는 컷!
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-amber-900/50 font-mono text-[10px] text-amber-200">
+            <strong class="text-amber-400 block mb-0.5">💻 실전 파이프라인:</strong>
+            $ go test ./... 2&gt;&amp;1 | head -n 25
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-amber-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 컨텍스트 오염 원천 방지</span>
+        <span class="text-slate-500">Error Clarity</span>
+      </div>
+    </div>
+
+    <!-- Pillar 3: Repomix with Strict Ignores -->
+    <div class="bento-tile p-3.5 bg-slate-900/90 border-t-2 border-t-purple-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">📦</span>
+          <span class="text-[9px] font-mono text-purple-300 bg-purple-950 px-1.5 py-0.5 rounded border border-purple-800">3. REPOMIX IGNORE</span>
+        </div>
+        <div class="text-purple-300 font-bold font-mono text-sm mb-1.5">코드 팩 엄격 필터링</div>
+        
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5">❌ 락 파일 &amp; 에셋 참사:</strong>
+            <code class="text-rose-300 font-mono">package-lock.json</code> (5만 줄), 바이너리, SVG를 그대로 먹이면 100만 토큰 순삭.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-purple-300 block mb-0.5">⚡ .ignore 화이트리스트:</strong>
+            <code class="text-emerald-300 font-mono">repomix --ignore "*.lock,dist/*,assets/*"</code>로 순수 비즈니스 로직만 추출하여 토큰 85% 다이어트.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-purple-900/50 font-mono text-[10px] text-purple-200">
+            <strong class="text-purple-400 block mb-0.5">💻 repomix.config.json:</strong>
+            "ignore": { "patterns": ["*.lock", "dist/*"] }
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-purple-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 노이즈 0% 순수 코드 팩</span>
+        <span class="text-slate-500">Pure Context Pack</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-cyan-400 font-bold">🛠️ 실무 도구 테이크어웨이:</span>
+      <span class="text-slate-200"><strong>Grep 표적 타격 + 로그 Truncation + Repomix 필터링</strong>의 3종 도구로 매 턴 낭비되는 수만 토큰을 차단하십시오.</span>
+    </div>
+    <span class="text-cyan-400 font-bold text-[11px]">Slide 67</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 06-cost/08-hands-on-cost-cut.html -->
+<section class="slide flex flex-col justify-between" data-title="6.7 실전 실습 : caveman &amp; AST 스켈레톤 실습">
+  <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
       <div>
-        <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider">Chapter 06. 실전 실습 &middot; 6.2 토큰 다이어트 세팅</span>
-        <h2 class="text-3xl font-black text-white">실전 팁 &amp; 바로바로 실습 : 프롬프트 캐시 &amp; 모델 라우팅</h2>
+        <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 실전 실습 &middot; 6.7 토큰 다이어트 세팅</span>
+        <h2 class="text-3xl font-black text-white mt-1">실전 팁 &amp; 바로바로 실습 : caveman 장착 &amp; AST 스켈레톤 추출</h2>
       </div>
       <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/40 text-xs font-mono font-bold animate-pulse">
         ⏱️ 5분 실습 (Hands-on)
@@ -8242,24 +8982,24 @@
     <!-- LEFT: Tips (5 cols) -->
     <div class="col-span-5 bento-tile p-4 flex flex-col justify-between border-t-2 border-t-cyan-400 bg-slate-950/90">
       <div>
-        <span class="text-[10px] font-mono text-cyan-400 font-bold uppercase tracking-wider block mb-1">PRO-TIP 04</span>
-        <h3 class="text-base font-bold text-white mb-2">실전 팁 : 컨텍스트 오염과 캐시 미스 막기</h3>
+        <span class="text-[10px] font-mono text-cyan-400 font-bold uppercase tracking-wider block mb-1">PRO-TIP : TOKEN DISCIPLINE</span>
+        <h3 class="text-base font-bold text-white mb-2">실전 팁 : 미사여구 제거와 스켈레톤 습관</h3>
         
-        <div class="space-y-2 text-xs text-slate-300 leading-relaxed">
+        <div class="space-y-2 text-xs text-slate-300 leading-relaxed font-sans">
           <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
-            <strong class="text-sky-300 block mb-1">❌ 캐시를 깨뜨리는 실수:</strong>
-            프롬프트 맨 첫 줄에 "오늘 날짜: 2026-10-25" 같은 가변 텍스트를 넣기 ➔ 매번 3만 토큰 전체가 신규 과금됨!
+            <strong class="text-rose-400 block mb-1 font-bold">❌ 흔한 토큰 낭비:</strong>
+            "친절하게 설명해줘" 프롬프트 ➔ 300줄짜리 교과서식 설명이 출력되어 토큰과 시간 낭비.
           </div>
 
           <div class="p-2.5 bg-slate-900 rounded border border-cyan-900/50">
-            <strong class="text-emerald-300 block mb-1">✅ 프로 바이브 코더의 비결:</strong>
-            <code>AGENTS.md</code>와 공통 룰은 <strong>System Prompt의 최상단</strong>에 불변으로 박아두고, 유저 질문은 가장 끝에 붙입니다. (캐시 히트율 98% 달성)
+            <strong class="text-emerald-300 block mb-1 font-bold">✅ 프로 바이브 코더의 비결:</strong>
+            규칙에 <code class="text-amber-300 font-mono">caveman</code> 모드를 기본 탑재하고, 파일 전체를 열지 않고 <strong>타입 정의와 인터페이스만 추출</strong>하여 전달합니다.
           </div>
         </div>
       </div>
 
       <div class="text-[10.5px] font-mono text-cyan-300 bg-cyan-950/60 p-2 rounded border border-cyan-800/40 mt-2">
-        💡 우리 프로젝트 RULE[user_global] 8번에도 "기본은 gemini-3.0-flash를 사용할 것"으로 비용을 통제하고 있습니다.
+        💡 우리 프로젝트의 RULE[user_global] 8번에도 "기본은 gemini-3.0-flash를 사용할 것"으로 비용을 완벽히 통제하고 있습니다.
       </div>
     </div>
 
@@ -8268,41 +9008,41 @@
       <div>
         <div class="flex items-center justify-between mb-1.5">
           <span class="text-[10px] font-mono text-amber-400 font-bold uppercase tracking-wider">LIVE ACTION</span>
-          <span class="text-[10px] font-mono text-slate-400">설정 파일에서 지금 바로 확인하세요</span>
+          <span class="text-[10px] font-mono text-slate-400">설정 파일에서 지금 바로 적용해 보세요</span>
         </div>
-        <h3 class="text-base font-bold text-white mb-2">실습 : 하위 작업 모델을 Flash로 라우팅하기</h3>
+        <h3 class="text-base font-bold text-white mb-2">실습 : 1분 만에 토큰 다이어트 3단계 적용하기</h3>
 
         <div class="space-y-2 text-xs font-mono">
           <!-- Step 1 -->
           <div class="p-2 bg-slate-900 rounded border border-slate-800">
-            <div class="text-amber-300 font-bold mb-0.5">Step 1. 시스템 프롬프트 상단 캐시 앵커 고정</div>
-            <div class="text-[10px] text-slate-400">
-              [SYSTEM_PROMPT] (불변: 아키텍처 규칙, 코딩 컨벤션, SDK 인터페이스) ➔ 자동 캐싱
+            <div class="text-amber-300 font-bold mb-0.5">Step 1. .cursor/rules 또는 시스템 프롬프트에 caveman 장착</div>
+            <div class="text-[10.5px] text-emerald-300 bg-slate-950 p-1.5 rounded border border-slate-800/80">
+              # Rule: Cut conversational filler. Respond in terse, dense keyword bullets.<br>
+              # Keep all code, CLI flags, file paths 100% intact.
             </div>
           </div>
 
           <!-- Step 2 -->
           <div class="p-2 bg-slate-900 rounded border border-slate-800">
-            <div class="text-amber-300 font-bold mb-0.5">Step 2. 코드 타이핑 에이전트에 Flash 지정</div>
-            <div class="text-[10.5px] text-emerald-300 bg-slate-950 p-1.5 rounded border border-slate-800/80">
-              # 서브태스크 호출 시<br>
-              invoke_subagent(TypeName="coder", Model="flash", Prompt="단위 테스트 작성...")
+            <div class="text-amber-300 font-bold mb-0.5">Step 2. ast-grep 또는 Tree-sitter로 시그니처만 추출</div>
+            <div class="text-[10.5px] text-sky-300 bg-slate-950 p-1.5 rounded border border-slate-800/80">
+              $ sg -p 'export function $NAME($$$ARGS): $RET' src/service.ts
             </div>
           </div>
 
           <!-- Step 3 -->
           <div class="p-2 bg-slate-900 rounded border border-slate-800">
-            <div class="text-amber-300 font-bold mb-0.5">Step 3. 관전 포인트</div>
+            <div class="text-amber-300 font-bold mb-0.5">Step 3. 20턴 후 /compact 실행 후 새 창에서 이어하기</div>
             <div class="text-[10.5px] text-slate-300 font-sans">
-              Pro 대비 <span class="text-emerald-400 font-bold font-mono">비용 1/15, 속도 4배</span>로 단위 테스트 50개가 10초 만에 쏟아져 나오는 속도감을 체감하세요!
+              불렛 포인트 5선으로 압축된 체크포인트를 새 터미널/세션에 붙여넣고 즉시 바통 터치!
             </div>
           </div>
         </div>
       </div>
 
       <div class="flex items-center justify-between pt-2 border-t border-slate-800 text-[10px] font-mono text-amber-300 mt-2">
-        <span>✓ 실습 결과: 토큰 비용 85% 절감 및 실시간 개발 속도 확보</span>
-        <span class="text-slate-400">다음 챕터: 1시간 글로벌 런칭 ➔</span>
+        <span>✓ 실습 결과: 토큰 비용 85% 절감 및 실시간 개발 속도 4배 향상</span>
+        <span class="text-slate-400">Next: 6.8 챕터 총정리 ➔</span>
       </div>
     </div>
   </div>
@@ -8311,9 +9051,182 @@
   <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
     <div class="flex items-center gap-2">
       <span class="text-amber-400 font-bold">🚀 실습 테이크어웨이:</span>
-      <span class="text-slate-200">비용 최적화는 '돈을 아끼는 기술'이 아니라 <strong>'AI를 마음껏 무제한으로 굴릴 수 있게 만드는 원동력'</strong>입니다.</span>
+      <span class="text-slate-200">비용 최적화는 단순히 '돈을 아끼는 기술'이 아니라 <strong>'AI를 마음껏 무제한으로 굴릴 수 있게 만드는 원동력'</strong>입니다.</span>
     </div>
-    <span class="text-cyan-400 font-bold text-[11px]">Chapter 06 완료</span>
+    <span class="text-cyan-400 font-bold text-[11px]">Chapter 06 실습 &middot; Slide 68</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 06-cost/09-chapter-summary.html -->
+<section class="slide flex flex-col justify-between" data-title="Ch 06 요약 : 비용 통제 5대 방어선 완결">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.8 챕터 총정리</span>
+      <span class="px-2.5 py-0.5 rounded bg-cyan-950/80 border border-cyan-700/50 text-cyan-300 font-mono text-[11px] font-bold">
+        TOKEN DEFENSE MATRIX &middot; SUMMARY
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">Chapter 06 핵심 요약 : 비용 통제 5대 방어선 완성</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      단순한 절약이 아닙니다. <strong>캐싱 &middot; 라우팅 &middot; caveman/ponytail &middot; AST 스켈레톤 &middot; 불렛 압축</strong>으로 무제한 개발 속도를 확보하십시오.
+    </p>
+  </div>
+
+  <!-- 5 Column Summary Grid (12 cols approx / 5 cols equal) -->
+  <div class="grid grid-cols-5 gap-2.5 flex-1 items-stretch my-1">
+    
+    <!-- Card 1: Caching & Routing -->
+    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-cyan-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">🔒</span>
+          <span class="text-[9px] font-mono text-cyan-300 bg-cyan-950 px-1.5 py-0.5 rounded border border-cyan-800">1. CACHE &amp; ROUTE</span>
+        </div>
+        <div class="text-cyan-300 font-bold font-mono text-sm mb-1.5">캐싱 &middot; 모델 분리</div>
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-white block mb-0.5">Prompt Caching</strong>
+            불변 규격을 상단에 고정해 2번째 턴부터 입력 90% 할인.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-cyan-300 block mb-0.5">계층형 라우팅</strong>
+            설계는 Pro 1회, 단순 구현은 Flash 100회로 1/15 비용 실현.
+          </div>
+          <div class="p-1.5 rounded bg-slate-950 border border-cyan-900/50 text-[10px] text-cyan-200 font-mono">
+            💡 캐시 앵커링: 질문은 항상 맨 끝에 배치
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-cyan-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 비용 93% 삭감</span>
+        <span class="text-slate-500">KV-Cache</span>
+      </div>
+    </div>
+
+    <!-- Card 2: caveman & ponytail -->
+    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-amber-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">🦴</span>
+          <span class="text-[9px] font-mono text-amber-300 bg-amber-950 px-1.5 py-0.5 rounded border border-amber-800">2. FLUFF &amp; BLOAT</span>
+        </div>
+        <div class="text-amber-300 font-bold font-mono text-sm mb-1.5">caveman &middot; ponytail</div>
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-white block mb-0.5">caveman (출력 75% 컷)</strong>
+            공손한 미사여구와 인사말 제거, 핵심 키워드 단문 직격.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-amber-300 block mb-0.5">ponytail (과잉 방지)</strong>
+            게으른 시니어 사다리로 불필요한 패키지/보일러플레이트 차단.
+          </div>
+          <div class="p-1.5 rounded bg-slate-950 border border-amber-900/50 text-[10px] text-amber-200 font-mono">
+            💡 코드·CLI는 온전히 100% 보존
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-amber-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 출력 75% 절감</span>
+        <span class="text-slate-500">Zero Slop</span>
+      </div>
+    </div>
+
+    <!-- Card 3: AST Skeleton -->
+    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-emerald-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">🌳</span>
+          <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950 px-1.5 py-0.5 rounded border border-emerald-800">3. AST SKELETON</span>
+        </div>
+        <div class="text-emerald-300 font-bold font-mono text-sm mb-1.5">구문 스켈레톤</div>
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-white block mb-0.5">시그니처만 추출</strong>
+            내부 구현체(Body)를 닫고 인터페이스 계약만 프롬프트 주입.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-emerald-300 block mb-0.5">10k ➔ 200 토큰</strong>
+            Tree-sitter &amp; ast-grep으로 98% 토큰 압축 및 이해도 향상.
+          </div>
+          <div class="p-1.5 rounded bg-slate-950 border border-emerald-900/50 text-[10px] text-emerald-200 font-mono">
+            💡 sg 패턴으로 함수 원클릭 추출
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-emerald-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 98% 구문 압축</span>
+        <span class="text-slate-500">Tree-sitter</span>
+      </div>
+    </div>
+
+    <!-- Card 4: Bullet Compaction -->
+    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-purple-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">📌</span>
+          <span class="text-[9px] font-mono text-purple-300 bg-purple-950 px-1.5 py-0.5 rounded border border-purple-800">4. COMPACTION</span>
+        </div>
+        <div class="text-purple-300 font-bold font-mono text-sm mb-1.5">불렛 세션 압축</div>
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-white block mb-0.5">이차 곡선 누적 차단</strong>
+            30턴 넘어가며 눈덩이처럼 불어나는 과거 대화 이력 절단.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-purple-300 block mb-0.5">5대 불렛 포인트</strong>
+            /compact로 상태만 압축해 새 세션으로 0초 무손실 바통 터치.
+          </div>
+          <div class="p-1.5 rounded bg-slate-950 border border-purple-900/50 text-[10px] text-purple-200 font-mono">
+            💡 20턴 주기 세션 핸드오프
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-purple-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 99.4% 대화 절감</span>
+        <span class="text-slate-500">Checkpoint</span>
+      </div>
+    </div>
+
+    <!-- Card 5: Atomic Code -->
+    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-sky-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">✂️</span>
+          <span class="text-[9px] font-mono text-sky-300 bg-sky-950 px-1.5 py-0.5 rounded border border-sky-800">5. ATOMIC CODE</span>
+        </div>
+        <div class="text-sky-300 font-bold font-mono text-sm mb-1.5">원자적 소스트리</div>
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-white block mb-0.5">200줄 이하 파일</strong>
+            모놀리식 파일을 해체하여 diff 연산 대상 파일 크기 극소화.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-sky-300 block mb-0.5">30줄 순수 함수</strong>
+            결정론적 함수 분할로 AI의 수정 성공률 100% &amp; diff 토큰 95% 컷.
+          </div>
+          <div class="p-1.5 rounded bg-slate-950 border border-sky-900/50 text-[10px] text-sky-200 font-mono">
+            💡 Clean Code = Cheap Code
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-sky-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ diff 토큰 95% 절감</span>
+        <span class="text-slate-500">Atomic Code</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Transition Bar -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-200 border border-slate-700 bg-slate-900/95 my-1">
+    <div class="flex items-center gap-2">
+      <span class="text-cyan-400 font-bold">🏁 Chapter 06 결론:</span>
+      <span class="text-slate-200">비용 통제 5대 방어선이 갖춰졌습니다. 다음은 <strong>Vercel &middot; Supabase &middot; Stripe 기반 1시간 글로벌 런칭</strong>입니다.</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <span class="text-cyan-400 font-bold text-[11px]">Chapter 06 Complete &middot; Slide 69</span>
+      <span class="text-amber-400 font-bold">Next: Ch 07. 글로벌 런칭 ➔</span>
+    </div>
   </div>
 </section>
 

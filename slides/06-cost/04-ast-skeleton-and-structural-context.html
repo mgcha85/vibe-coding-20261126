@@ -1,0 +1,146 @@
+<section class="slide flex flex-col justify-between" data-title="6.3 AST 구조 &amp; Tree-sitter 스켈레톤 압축">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.3 구조적 컨텍스트 엔지니어링</span>
+      <span class="px-2.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-600/50 text-emerald-300 font-mono text-[11px] font-bold">
+        AST SKELETON &middot; TREE-SITTER &middot; AST-GREP
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">구문 기반 컨텍스트 압축 : AST 구조 &amp; Tree-sitter 스켈레톤</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      파일 전체(2,000줄)를 무식하게 읽히지 마십시오. <strong>AST(추상 구문 트리)로 함수 시그니처와 인터페이스만 추출</strong>하여 <strong>토큰을 98% 압축(10k ➔ 200 토큰)</strong>합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: AST Core Concept (5 cols) -->
+    <div class="col-span-5 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🌳</span>
+            <span class="text-[11px] font-mono text-emerald-400 font-bold uppercase">AST (추상 구문 트리) 구조의 본질</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-sky-400 bg-sky-950 px-2 py-0.5 rounded border border-sky-800">Syntax Tree</span>
+        </div>
+
+        <p class="text-xs text-slate-400 mb-2 leading-relaxed">
+          소스코드를 단순 텍스트 줄(Line)이 아닌, <strong>문법 계층(Class ➔ Method ➔ Params ➔ Body)의 트리 구조</strong>로 파싱하여 필요한 노드만 정밀 추출합니다.
+        </p>
+
+        <!-- AST Node Tree Diagram -->
+        <div class="p-2 rounded bg-slate-950 border border-slate-800 font-mono text-[10px] text-slate-300 mb-2 space-y-1">
+          <div class="text-indigo-300 font-bold">📁 Program (SourceFile)</div>
+          <div class="pl-2.5 text-sky-300">└─ 📦 ClassDeclaration: <code class="text-white">OrderService</code></div>
+          <div class="pl-5 text-emerald-300">├─ 🏷️ MethodSignature: <code class="text-amber-300">createOrder(...)</code> <span class="text-emerald-400 font-bold">[주입!]</span></div>
+          <div class="pl-8 text-slate-500 line-through">└─ 🚫 BlockBody { 150줄 내부 DB쿼리 } [생략!]</div>
+          <div class="pl-5 text-emerald-300">└─ 🏷️ MethodSignature: <code class="text-amber-300">cancelOrder(...)</code> <span class="text-emerald-400 font-bold">[주입!]</span></div>
+        </div>
+
+        <!-- 2 Core Tools -->
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-emerald-300 block mb-0.5">1. Tree-sitter:</strong>
+            에러가 있거나 미완성된 코드도 깨지지 않고 증분 파싱(Incremental Parsing)하는 고속 구문 엔진.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-cyan-300 block mb-0.5">2. ast-grep (sg 스킬):</strong>
+            정규식 대신 <code class="text-amber-300 font-mono">sg -p 'fn $NAME($$$ARGS)'</code> 패턴으로 함수 선언만 0초 만에 추출하는 에이전트 스킬.
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-emerald-950/50 border border-emerald-800/40 text-[10px] font-mono text-emerald-300 mt-2 flex items-center justify-between">
+        <span>✓ 내부 구현체 제거: <strong>-98% 토큰 압축</strong></span>
+        <span class="text-sky-300">Attention Focus</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Skeleton Folding Visualization (7 cols) -->
+    <div class="col-span-7 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🦴</span>
+            <span class="text-[11px] font-mono text-cyan-400 font-bold uppercase">Skeleton Folding : 10,000 토큰 ➔ 200 토큰 압축</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">98% Token Saved</span>
+        </div>
+
+        <!-- Before / After Code Box -->
+        <div class="grid grid-cols-2 gap-2 mb-2 font-mono text-[10px]">
+          <!-- Raw File -->
+          <div class="p-2 rounded bg-slate-950 border border-rose-900/40 flex flex-col justify-between">
+            <div>
+              <div class="text-rose-400 font-bold mb-1 flex items-center justify-between text-[9.5px]">
+                <span>❌ Naive Raw Code (2,000줄)</span>
+                <span class="bg-rose-950 px-1 rounded text-rose-300">10k Tokens</span>
+              </div>
+              <div class="text-slate-400 text-[9px] leading-tight space-y-0.5 opacity-70">
+                // 100줄의 import 및 내부 상태<br>
+                class OrderService {<br>
+                &nbsp;&nbsp;async createOrder(id, req) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;await db.raw('SELECT...');<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;for (let item of req.items) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 200줄의 장황한 유효성 검사<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (item.price &lt; 0) ...<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;// 수백 줄의 트랜잭션 롤백 로직<br>
+                &nbsp;&nbsp;}<br>
+                }
+              </div>
+            </div>
+            <div class="text-[9px] text-rose-400 mt-2 pt-1 border-t border-rose-950">
+              ⚠️ AI가 구현 세부사항에 질식하여 Attention 희석
+            </div>
+          </div>
+
+          <!-- Skeleton Code -->
+          <div class="p-2 rounded bg-slate-950 border border-emerald-800/60 flex flex-col justify-between">
+            <div>
+              <div class="text-emerald-400 font-bold mb-1 flex items-center justify-between text-[9.5px]">
+                <span>⚡ AST Skeleton (인터페이스만)</span>
+                <span class="bg-emerald-950 px-1 rounded text-emerald-300">200 Tokens</span>
+              </div>
+              <div class="text-emerald-300 text-[9px] leading-tight space-y-0.5">
+                <span class="text-slate-500">// AST로 추출된 공개 인터페이스 계약</span><br>
+                <span class="text-purple-300">export interface</span> <span class="text-white font-bold">OrderService</span> {<br>
+                &nbsp;&nbsp;<span class="text-sky-300">createOrder</span>(req: <span class="text-amber-300">OrderRequest</span>): <span class="text-emerald-300">Promise&lt;Result&gt;</span>;<br>
+                &nbsp;&nbsp;<span class="text-sky-300">cancelOrder</span>(orderId: <span class="text-amber-300">string</span>): <span class="text-emerald-300">Promise&lt;boolean&gt;</span>;<br>
+                &nbsp;&nbsp;<span class="text-sky-300">getStatus</span>(orderId: <span class="text-amber-300">string</span>): <span class="text-emerald-300">Promise&lt;Status&gt;</span>;<br>
+                }
+              </div>
+            </div>
+            <div class="text-[9px] text-emerald-400 mt-2 pt-1 border-t border-emerald-950">
+              ✓ AI는 메소드 명과 타입만 보고 100% 무오차 연동 구현!
+            </div>
+          </div>
+        </div>
+
+        <div class="p-2 rounded bg-indigo-950/40 border border-indigo-800/40 text-xs font-mono text-slate-200">
+          <div class="text-indigo-300 font-bold text-[10.5px] mb-1">🛠️ 실전 ast-grep 에이전트 스킬 활용 예시:</div>
+          <div class="text-[10px] text-slate-300 font-mono bg-slate-950 p-1.5 rounded border border-slate-800">
+            $ sg scan -p 'export function $NAME($$$ARGS): $TYPE { $$$ }' --json | jq '.[].signature'
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-slate-950 border border-slate-800 text-[10px] font-mono text-slate-400 mt-2 flex items-center justify-between">
+        <span class="text-slate-300">💡 <strong>원칙:</strong> 타 모듈 연동 시 내부 코드는 닫고, <strong>인터페이스 시그니처만 스켈레톤으로 주입</strong>하십시오.</span>
+        <span class="text-emerald-400 font-bold">1/50 Cost Cut</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-emerald-400 font-bold">🌿 AST 스켈레톤의 미학:</span>
+      <span class="text-slate-200">파일 전체를 무지성으로 읽히지 마십시오. <strong>시그니처만 추출해 주입하면 토큰 비용은 1/50로 줄고 모델의 이해도는 100% 상승</strong>합니다.</span>
+    </div>
+    <span class="text-emerald-400 font-bold text-[11px]">Slide 64</span>
+  </div>
+</section>

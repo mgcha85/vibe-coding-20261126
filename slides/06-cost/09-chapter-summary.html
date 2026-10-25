@@ -1,0 +1,171 @@
+<section class="slide flex flex-col justify-between" data-title="Ch 06 요약 : 비용 통제 5대 방어선 완결">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.8 챕터 총정리</span>
+      <span class="px-2.5 py-0.5 rounded bg-cyan-950/80 border border-cyan-700/50 text-cyan-300 font-mono text-[11px] font-bold">
+        TOKEN DEFENSE MATRIX &middot; SUMMARY
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">Chapter 06 핵심 요약 : 비용 통제 5대 방어선 완성</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      단순한 절약이 아닙니다. <strong>캐싱 &middot; 라우팅 &middot; caveman/ponytail &middot; AST 스켈레톤 &middot; 불렛 압축</strong>으로 무제한 개발 속도를 확보하십시오.
+    </p>
+  </div>
+
+  <!-- 5 Column Summary Grid (12 cols approx / 5 cols equal) -->
+  <div class="grid grid-cols-5 gap-2.5 flex-1 items-stretch my-1">
+    
+    <!-- Card 1: Caching & Routing -->
+    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-cyan-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">🔒</span>
+          <span class="text-[9px] font-mono text-cyan-300 bg-cyan-950 px-1.5 py-0.5 rounded border border-cyan-800">1. CACHE &amp; ROUTE</span>
+        </div>
+        <div class="text-cyan-300 font-bold font-mono text-sm mb-1.5">캐싱 &middot; 모델 분리</div>
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-white block mb-0.5">Prompt Caching</strong>
+            불변 규격을 상단에 고정해 2번째 턴부터 입력 90% 할인.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-cyan-300 block mb-0.5">계층형 라우팅</strong>
+            설계는 Pro 1회, 단순 구현은 Flash 100회로 1/15 비용 실현.
+          </div>
+          <div class="p-1.5 rounded bg-slate-950 border border-cyan-900/50 text-[10px] text-cyan-200 font-mono">
+            💡 캐시 앵커링: 질문은 항상 맨 끝에 배치
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-cyan-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 비용 93% 삭감</span>
+        <span class="text-slate-500">KV-Cache</span>
+      </div>
+    </div>
+
+    <!-- Card 2: caveman & ponytail -->
+    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-amber-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">🦴</span>
+          <span class="text-[9px] font-mono text-amber-300 bg-amber-950 px-1.5 py-0.5 rounded border border-amber-800">2. FLUFF &amp; BLOAT</span>
+        </div>
+        <div class="text-amber-300 font-bold font-mono text-sm mb-1.5">caveman &middot; ponytail</div>
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-white block mb-0.5">caveman (출력 75% 컷)</strong>
+            공손한 미사여구와 인사말 제거, 핵심 키워드 단문 직격.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-amber-300 block mb-0.5">ponytail (과잉 방지)</strong>
+            게으른 시니어 사다리로 불필요한 패키지/보일러플레이트 차단.
+          </div>
+          <div class="p-1.5 rounded bg-slate-950 border border-amber-900/50 text-[10px] text-amber-200 font-mono">
+            💡 코드·CLI는 온전히 100% 보존
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-amber-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 출력 75% 절감</span>
+        <span class="text-slate-500">Zero Slop</span>
+      </div>
+    </div>
+
+    <!-- Card 3: AST Skeleton -->
+    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-emerald-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">🌳</span>
+          <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950 px-1.5 py-0.5 rounded border border-emerald-800">3. AST SKELETON</span>
+        </div>
+        <div class="text-emerald-300 font-bold font-mono text-sm mb-1.5">구문 스켈레톤</div>
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-white block mb-0.5">시그니처만 추출</strong>
+            내부 구현체(Body)를 닫고 인터페이스 계약만 프롬프트 주입.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-emerald-300 block mb-0.5">10k ➔ 200 토큰</strong>
+            Tree-sitter &amp; ast-grep으로 98% 토큰 압축 및 이해도 향상.
+          </div>
+          <div class="p-1.5 rounded bg-slate-950 border border-emerald-900/50 text-[10px] text-emerald-200 font-mono">
+            💡 sg 패턴으로 함수 원클릭 추출
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-emerald-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 98% 구문 압축</span>
+        <span class="text-slate-500">Tree-sitter</span>
+      </div>
+    </div>
+
+    <!-- Card 4: Bullet Compaction -->
+    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-purple-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">📌</span>
+          <span class="text-[9px] font-mono text-purple-300 bg-purple-950 px-1.5 py-0.5 rounded border border-purple-800">4. COMPACTION</span>
+        </div>
+        <div class="text-purple-300 font-bold font-mono text-sm mb-1.5">불렛 세션 압축</div>
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-white block mb-0.5">이차 곡선 누적 차단</strong>
+            30턴 넘어가며 눈덩이처럼 불어나는 과거 대화 이력 절단.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-purple-300 block mb-0.5">5대 불렛 포인트</strong>
+            /compact로 상태만 압축해 새 세션으로 0초 무손실 바통 터치.
+          </div>
+          <div class="p-1.5 rounded bg-slate-950 border border-purple-900/50 text-[10px] text-purple-200 font-mono">
+            💡 20턴 주기 세션 핸드오프
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-purple-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 99.4% 대화 절감</span>
+        <span class="text-slate-500">Checkpoint</span>
+      </div>
+    </div>
+
+    <!-- Card 5: Atomic Code -->
+    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-sky-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">✂️</span>
+          <span class="text-[9px] font-mono text-sky-300 bg-sky-950 px-1.5 py-0.5 rounded border border-sky-800">5. ATOMIC CODE</span>
+        </div>
+        <div class="text-sky-300 font-bold font-mono text-sm mb-1.5">원자적 소스트리</div>
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-white block mb-0.5">200줄 이하 파일</strong>
+            모놀리식 파일을 해체하여 diff 연산 대상 파일 크기 극소화.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-sky-300 block mb-0.5">30줄 순수 함수</strong>
+            결정론적 함수 분할로 AI의 수정 성공률 100% &amp; diff 토큰 95% 컷.
+          </div>
+          <div class="p-1.5 rounded bg-slate-950 border border-sky-900/50 text-[10px] text-sky-200 font-mono">
+            💡 Clean Code = Cheap Code
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-sky-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ diff 토큰 95% 절감</span>
+        <span class="text-slate-500">Atomic Code</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Transition Bar -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-200 border border-slate-700 bg-slate-900/95 my-1">
+    <div class="flex items-center gap-2">
+      <span class="text-cyan-400 font-bold">🏁 Chapter 06 결론:</span>
+      <span class="text-slate-200">비용 통제 5대 방어선이 갖춰졌습니다. 다음은 <strong>Vercel &middot; Supabase &middot; Stripe 기반 1시간 글로벌 런칭</strong>입니다.</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <span class="text-cyan-400 font-bold text-[11px]">Chapter 06 Complete &middot; Slide 69</span>
+      <span class="text-amber-400 font-bold">Next: Ch 07. 글로벌 런칭 ➔</span>
+    </div>
+  </div>
+</section>

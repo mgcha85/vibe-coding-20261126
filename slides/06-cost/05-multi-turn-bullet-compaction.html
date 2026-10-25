@@ -1,0 +1,133 @@
+<section class="slide flex flex-col justify-between" data-title="6.4 멀티턴 토큰 폭증 제어 : Bullet Point 세션 압축">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.4 대화 이력 압축 기술</span>
+      <span class="px-2.5 py-0.5 rounded bg-purple-950/80 border border-purple-600/50 text-purple-300 font-mono text-[11px] font-bold">
+        BULLET COMPACTION &middot; SESSION CHECKPOINTING
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">멀티턴 대화 연속성 : Bullet Point 세션 압축 &amp; 체크포인팅</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      대화가 30턴 넘어가면 과거 대화 전체가 매 턴마다 누적 과금됩니다. <strong>대화 히스토리를 5~7개 고밀도 불렛 포인트로 압축</strong>하여 <strong>이차 곡선형 토큰 폭증을 영구 차단</strong>합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: Quadratic Token Explosion (5 cols) -->
+    <div class="col-span-5 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">📈</span>
+            <span class="text-[11px] font-mono text-rose-400 font-bold uppercase">이차 곡선형 토큰 누적의 저주 (Quadratic Explosion)</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">Cost Bleed</span>
+        </div>
+
+        <p class="text-xs text-slate-400 mb-2 leading-relaxed">
+          대화창을 끄지 않고 계속 쓰면, <strong>1턴부터 30턴까지의 모든 질문, 답변, 코드 diff가 매 턴마다 입력 토큰으로 재전송</strong>됩니다.
+        </p>
+
+        <!-- Curve Visual -->
+        <div class="p-2.5 rounded bg-slate-950 border border-slate-800 font-mono text-[10.5px] mb-2 space-y-1">
+          <div class="flex justify-between items-center text-slate-400">
+            <span>• 1턴 : 2,000 토큰</span>
+            <span class="text-slate-500">$0.003</span>
+          </div>
+          <div class="flex justify-between items-center text-slate-300">
+            <span>• 10턴 : 25,000 토큰 누적</span>
+            <span class="text-amber-400 font-bold">$0.04</span>
+          </div>
+          <div class="flex justify-between items-center text-amber-300">
+            <span>• 25턴 : 70,000 토큰 누적</span>
+            <span class="text-amber-400 font-bold">$0.11</span>
+          </div>
+          <div class="flex justify-between items-center text-rose-400 font-bold bg-rose-950/40 p-1 rounded border border-rose-800/60">
+            <span>• 40턴 : 130,000 토큰 (오타 하나 고치는데 $0.25!)</span>
+            <span>🚨 파산</span>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-slate-300 font-sans">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5">⚠️ Attention 오염 (Context Dilution):</strong>
+            수십 턴 전의 잡담과 이미 해결된 에러 로그 때문에 AI가 최근의 핵심 지시를 잊어버리는 환각(Hallucination) 유발.
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-rose-950/40 border border-rose-800/40 text-[10px] font-mono text-rose-300 mt-2 flex items-center justify-between">
+        <span>✓ 20턴 이상 대화창 유지: <strong>최악의 안티패턴</strong></span>
+        <span class="text-rose-400">Stop Chatting</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Bullet Point Compaction (7 cols) -->
+    <div class="col-span-7 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">📌</span>
+            <span class="text-[11px] font-mono text-purple-400 font-bold uppercase">Dense Bullet Point 압축 &amp; 세션 바통 터치</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">99.4% Token Saved</span>
+        </div>
+
+        <!-- 5-Bullet Checkpoint Card -->
+        <div class="p-2.5 rounded bg-slate-950 border border-purple-900/50 mb-2">
+          <div class="text-[10px] font-mono text-purple-300 font-bold mb-1.5 flex items-center justify-between">
+            <span>📋 /compact ➔ 고밀도 체크포인트 불렛 5선</span>
+            <span class="text-slate-400 text-[9px]">단 350 토큰으로 전 세션 완벽 복원</span>
+          </div>
+          
+          <div class="space-y-1 font-mono text-[9.5px] text-slate-300 leading-tight">
+            <div class="p-1 rounded bg-slate-900 border border-slate-800">
+              <span class="text-emerald-400 font-bold">• [완료 아키텍처]:</span> Go JWT 인증 미들웨어 &amp; Bearer 파싱 구현 완료 (<code class="text-sky-300">internal/auth/jwt.go</code>)
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800">
+              <span class="text-sky-400 font-bold">• [데이터베이스]:</span> migration_003 완료, orders 테이블 외래키 인덱스 추가 완료
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800">
+              <span class="text-amber-400 font-bold">• [현재 대기 태스크]:</span> POST /api/v1/orders 핸들러 작성 대기, 401 에러 케이스 처리 중
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800">
+              <span class="text-rose-400 font-bold">• [오답 오답노트]:</span> Redis TTL 3600초 미설정 시 캐시 오버플로우 발생 주의 (LESSON 기록됨)
+            </div>
+            <div class="p-1 rounded bg-slate-900 border border-slate-800">
+              <span class="text-purple-400 font-bold">• [다음 목표]:</span> E2E 결제 시나리오 통합 테스트 작성 및 패스
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric Comparison -->
+        <div class="grid grid-cols-2 gap-2 text-xs font-mono">
+          <div class="p-2 rounded bg-rose-950/30 border border-rose-900/40 text-slate-300">
+            <span class="text-rose-400 font-bold block mb-0.5">❌ 원시 누적 대화창:</span>
+            <span class="text-[11px]">65,000 토큰 (매 턴 $0.15 소모)</span>
+          </div>
+          <div class="p-2 rounded bg-emerald-950/30 border border-emerald-900/40 text-slate-200">
+            <span class="text-emerald-400 font-bold block mb-0.5">⚡ 5대 불렛 포인트:</span>
+            <span class="text-[11px]">350 토큰 (매 턴 $0.0008, <strong>99.4% 절감</strong>)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-slate-950 border border-slate-800 text-[10px] font-mono text-slate-400 mt-2 flex items-center justify-between">
+        <span class="text-slate-300">💡 <strong>실행 팁:</strong> 20턴이 넘으면 에이전트에게 <strong>"지금까지의 핵심 상태를 5개 불렛으로 요약하라"</strong> 명령 후 새 창에서 시작하세요.</span>
+        <span class="text-purple-400 font-bold">Session Handoff</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-purple-400 font-bold">🚀 멀티턴 압축의 핵심:</span>
+      <span class="text-slate-200">하나의 대화창을 붙잡고 늘어지지 마십시오. <strong>20턴마다 불렛 포인트로 압축해 새 세션으로 넘기는 것</strong>이 토큰을 99% 아끼는 비결입니다.</span>
+    </div>
+    <span class="text-purple-400 font-bold text-[11px]">Slide 65</span>
+  </div>
+</section>
