@@ -144,7 +144,7 @@
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1v4m0-4h-4m4 4l-5-5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
           <span>전체화면 [F]</span>
         </button>
-        <span id="slideCounter" class="text-sky-400 font-bold font-mono">01 / 40</span>
+        <span id="slideCounter" class="text-sky-400 font-bold font-mono">01 / 41</span>
       </div>
     </header>
 
@@ -3142,10 +3142,194 @@
   </div>
 </section>
 
-      <!-- [COMPONENT] 03-language/02-compiler-feedback.html -->
-<section class="slide flex flex-col justify-between" data-title="3.1 동적 vs 정적 언어">
+      <!-- [COMPONENT] 03-language/02-octoverse-chart.html -->
+<section class="slide flex flex-col justify-between" data-title="3.1 GitHub Octoverse 데이터 분석">
+  <div class="mb-1.5">
+    <div class="flex items-center justify-between">
+      <div>
+        <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider">Chapter 03. 언어 &middot; 3.1 GitHub Octoverse 공식 데이터</span>
+        <h2 class="text-3xl font-black text-white">최근 5개년 GitHub 언어 순위 변천 : 역대 최초 TypeScript 1위</h2>
+      </div>
+      <span class="px-2.5 py-0.5 rounded bg-sky-500/10 text-sky-300 border border-sky-400/30 text-[11px] font-mono font-bold">
+        📊 GitHub Octoverse Report
+      </span>
+    </div>
+    <p class="text-xs text-slate-300 mt-0.5">
+      AI 코딩 도구의 폭발적 보급 속에서, 개발 생태계는 '동적 타이핑'에서 <strong>'타입 안정성과 컴파일러 검증'</strong>으로 대이동했습니다.
+    </p>
+  </div>
+
+  <style>
+    @keyframes pulseGlow {
+      0%, 100% { filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.6)); }
+      50% { filter: drop-shadow(0 0 12px rgba(129, 140, 248, 0.9)); }
+    }
+    .ts-line-glow {
+      animation: pulseGlow 2.5s ease-in-out infinite;
+    }
+  </style>
+
+  <!-- Main Grid: Left 7 cols (5-Year Rank Bump Chart) + Right 5 cols (Growth Metrics) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-auto">
+    <!-- LEFT: 5-Year Ranking Bump Chart (7 cols) -->
+    <div class="col-span-7 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-sky-400 bg-slate-950/90 shadow-lg">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-[10px] font-mono text-sky-400 font-bold uppercase tracking-wider">5-YEAR RANKING TRAJECTORY (2021 ~ 2026)</span>
+          <span class="text-[9.5px] font-mono text-slate-400">기여자 활동(Active Contributors) 기준</span>
+        </div>
+
+        <!-- SVG Bump Chart -->
+        <div class="bg-slate-900/95 rounded-lg border border-slate-800 p-2 my-1">
+          <svg viewBox="0 0 420 180" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+            <!-- Year Columns Guides -->
+            <!-- 2021: x=60, 2022: x=140, 2023: x=220, 2024: x=300, 2026: x=380 -->
+            <line x1="60" y1="20" x2="60" y2="165" stroke="#334155" stroke-width="0.7" stroke-dasharray="2 2"/>
+            <line x1="140" y1="20" x2="140" y2="165" stroke="#334155" stroke-width="0.7" stroke-dasharray="2 2"/>
+            <line x1="220" y1="20" x2="220" y2="165" stroke="#334155" stroke-width="0.7" stroke-dasharray="2 2"/>
+            <line x1="300" y1="20" x2="300" y2="165" stroke="#334155" stroke-width="0.7" stroke-dasharray="2 2"/>
+            <line x1="380" y1="20" x2="380" y2="165" stroke="#334155" stroke-width="0.7" stroke-dasharray="2 2"/>
+
+            <!-- Year Labels -->
+            <text x="60" y="14" text-anchor="middle" fill="#94a3b8" font-size="8.5" font-family="JetBrains Mono" font-weight="bold">2021</text>
+            <text x="140" y="14" text-anchor="middle" fill="#94a3b8" font-size="8.5" font-family="JetBrains Mono" font-weight="bold">2022</text>
+            <text x="220" y="14" text-anchor="middle" fill="#94a3b8" font-size="8.5" font-family="JetBrains Mono" font-weight="bold">2023</text>
+            <text x="300" y="14" text-anchor="middle" fill="#94a3b8" font-size="8.5" font-family="JetBrains Mono" font-weight="bold">2024</text>
+            <text x="380" y="14" text-anchor="middle" fill="#38bdf8" font-size="9" font-family="JetBrains Mono" font-weight="black">2025~26</text>
+
+            <!-- Y-Axis Rank Labels (1st to 7th+) -->
+            <!-- 1st: y=32, 2nd: y=58, 3rd: y=84, 4th: y=110, 5th: y=132, 7th: y=156 -->
+            <text x="25" y="35" text-anchor="end" fill="#fbbf24" font-size="8" font-family="JetBrains Mono" font-weight="black">1위</text>
+            <text x="25" y="61" text-anchor="end" fill="#94a3b8" font-size="7.5" font-family="JetBrains Mono">2위</text>
+            <text x="25" y="87" text-anchor="end" fill="#94a3b8" font-size="7.5" font-family="JetBrains Mono">3위</text>
+            <text x="25" y="113" text-anchor="end" fill="#94a3b8" font-size="7.5" font-family="JetBrains Mono">4위</text>
+            <text x="25" y="135" text-anchor="end" fill="#64748b" font-size="7" font-family="JetBrains Mono">5위</text>
+            <text x="25" y="159" text-anchor="end" fill="#475569" font-size="6.5" font-family="JetBrains Mono">7위~</text>
+
+            <!-- Line: JavaScript (1 -> 1 -> 1 -> 2 -> 3) -->
+            <path d="M 60 32 L 140 32 L 220 32 L 300 58 L 380 84" fill="none" stroke="#facc15" stroke-width="2" stroke-opacity="0.7"/>
+            <circle cx="380" cy="84" r="3.5" fill="#facc15"/>
+            <text x="387" y="87" fill="#facc15" font-size="7" font-family="JetBrains Mono" font-weight="bold">JavaScript (3위)</text>
+
+            <!-- Line: Python (2 -> 2 -> 2 -> 1 -> 2) -->
+            <path d="M 60 58 L 140 58 L 220 58 L 300 32 L 380 58" fill="none" stroke="#34d399" stroke-width="2.2" stroke-opacity="0.85"/>
+            <circle cx="380" cy="58" r="3.5" fill="#34d399"/>
+            <text x="387" y="61" fill="#34d399" font-size="7.5" font-family="JetBrains Mono" font-weight="bold">Python (2위)</text>
+
+            <!-- Line: Java (3 -> 3 -> 4 -> 4 -> 4) -->
+            <path d="M 60 84 L 140 84 L 220 110 L 300 110 L 380 110" fill="none" stroke="#fb923c" stroke-width="1.2" stroke-opacity="0.5"/>
+            <text x="387" y="112" fill="#fb923c" font-size="6.5" font-family="JetBrains Mono">Java (4위)</text>
+
+            <!-- Line: C# & C++ (5, 6) -->
+            <path d="M 60 132 L 140 132 L 220 132 L 300 132 L 380 132" fill="none" stroke="#64748b" stroke-width="1" stroke-dasharray="2 2"/>
+            <text x="387" y="134" fill="#64748b" font-size="6" font-family="JetBrains Mono">C# (5위) / C++ (6위)</text>
+
+            <!-- Line: Go (10+ -> 10 -> 8 -> 7 -> 7) -->
+            <path d="M 60 168 L 140 162 L 220 156 L 300 152 L 380 152" fill="none" stroke="#06b6d4" stroke-width="1.3" stroke-dasharray="3 2"/>
+            <text x="387" y="154" fill="#06b6d4" font-size="6" font-family="JetBrains Mono">Go (7위) / Rust (9~10위)</text>
+
+            <!-- HERO LINE: TypeScript (4 -> 4 -> 3 -> 3 -> 1) -->
+            <path d="M 60 110 L 140 110 L 220 84 L 300 84 L 380 32" fill="none" stroke="#38bdf8" stroke-width="3.5" class="ts-line-glow"/>
+            <circle cx="60" cy="110" r="3.5" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+            <circle cx="140" cy="110" r="3.5" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+            <circle cx="220" cy="84" r="4" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+            <circle cx="300" cy="84" r="4" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+            <circle cx="380" cy="32" r="6" fill="#f59e0b" stroke="#ffffff" stroke-width="2"/>
+            
+            <!-- 1st Place Trophy Badge -->
+            <g transform="translate(355, 12)">
+              <rect width="60" height="15" rx="3" fill="#b45309" stroke="#f59e0b" stroke-width="1"/>
+              <text x="30" y="11" text-anchor="middle" fill="#ffffff" font-size="7" font-family="JetBrains Mono" font-weight="black">👑 TS 1위 탈환</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="text-[10px] text-slate-300 leading-snug">
+          10년 넘게 군림하던 <strong class="text-yellow-300">JavaScript가 3위로 하락</strong>하고, <strong class="text-sky-300">TypeScript가 4위 ➔ 1위(+3계단)</strong>로 수직 상승하여 GitHub 공식 최다 기여자 1위를 기록했습니다.
+        </div>
+      </div>
+
+      <div class="text-[9px] font-mono text-sky-300 border-t border-slate-800/80 pt-1 mt-1">
+        ✓ AI가 코드를 생산하면서 인간이 읽고 검증하기 쉬운 정적 타입 시스템으로 글로벌 수렴
+      </div>
+    </div>
+
+    <!-- RIGHT: Growth Numbers & Volume Comparison (5 cols) -->
+    <div class="col-span-5 flex flex-col justify-between gap-2">
+      <!-- Card 1: TypeScript Explosion -->
+      <div class="bento-tile p-3 border-t-2 border-t-sky-400 bg-slate-950/90 shadow-md">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[10px] font-mono text-sky-400 font-bold uppercase">#1 TYPESCRIPT METRICS</span>
+          <span class="text-[9px] font-mono text-sky-300 bg-sky-950/80 px-1.5 py-0.5 rounded border border-sky-800/50">역대 최초 1위</span>
+        </div>
+        <div class="flex items-baseline justify-between mb-1.5">
+          <div class="text-lg font-black text-white">약 263.6만 명</div>
+          <div class="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800/40">
+            YoY +66.63% ▲
+          </div>
+        </div>
+        <!-- Repo Volume Bar -->
+        <div class="space-y-1 text-[10px] font-mono text-slate-300">
+          <div class="flex justify-between">
+            <span class="text-slate-400">신규 레포지토리 수:</span>
+            <span class="text-sky-300 font-bold">539.4만 개 (+78.1% ▲)</span>
+          </div>
+          <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+            <div class="bg-gradient-to-r from-sky-500 to-indigo-500 h-1.5 rounded-full" style="width: 100%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Python (AI Boom) -->
+      <div class="bento-tile p-3 border-t-2 border-t-emerald-400 bg-slate-950/90 shadow-md">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[10px] font-mono text-emerald-400 font-bold uppercase">#2 PYTHON (AI INFRA)</span>
+          <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-800/50">AI 모델/노트북</span>
+        </div>
+        <div class="flex items-baseline justify-between mb-1.5">
+          <div class="text-lg font-black text-white">약 259.4만 명</div>
+          <div class="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800/40">
+            YoY +48.78% ▲
+          </div>
+        </div>
+        <div class="space-y-1 text-[10px] font-mono text-slate-300">
+          <div class="flex justify-between">
+            <span class="text-slate-400">Jupyter Notebooks:</span>
+            <span class="text-emerald-300 font-bold">+75.0% 급증 (AI 학습/연구)</span>
+          </div>
+          <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+            <div class="bg-emerald-500 h-1.5 rounded-full" style="width: 85%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Paradigm Transition Insight -->
+      <div class="bento-tile p-2.5 border border-indigo-900/60 bg-indigo-950/40">
+        <div class="text-[10px] font-bold text-indigo-300 mb-1 flex items-center gap-1.5">
+          <span>🎯 왜 이런 대이동이 일어났는가?</span>
+        </div>
+        <div class="text-[9.5px] text-slate-300 space-y-1 leading-relaxed">
+          <div>• <strong>JS ➔ TS 전환:</strong> AI가 코드를 짤 때 타입이 없으면 런타임 에러 추적이 불가능.</div>
+          <div>• <strong>Python의 분리:</strong> AI 모델 연구/학습은 Python, 실제 사용자 프로덕션 서비스는 TypeScript로 역할 분담 완료.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Takeaway Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">💡 데이터가 증명하는 결론:</span>
+      <span class="text-slate-200">AI 바이브 코딩 시대의 글로벌 표준은 '쉬운 문법(Python)'이 아니라 <strong>'철저한 타입 계약(TypeScript)'</strong>입니다.</span>
+    </div>
+    <span class="text-indigo-400 font-bold text-[11px]">3.2 컴파일러 피드백으로 연결 ➔</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 03-language/03-compiler-feedback.html -->
+<section class="slide flex flex-col justify-between" data-title="3.2 동적 vs 정적 언어">
   <div class="mb-2">
-    <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider">Chapter 03. 언어 &middot; 3.1 런타임 지뢰밭 vs 컴파일러</span>
+    <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider">Chapter 03. 언어 &middot; 3.2 런타임 지뢰밭 vs 컴파일러</span>
     <h2 class="text-3xl font-black text-white">Python의 동적 타이핑 함정 vs 컴파일러 하네스</h2>
     <p class="text-xs text-slate-300 mt-0.5">
       인간의 타이핑 수고를 덜어주던 동적 언어가, 에이전트 시대에는 <strong>'런타임 폭탄'</strong>으로 돌변합니다.
@@ -3222,12 +3406,12 @@
   </div>
 </section>
 
-      <!-- [COMPONENT] 03-language/03-hands-on-type-harness.html -->
-<section class="slide flex flex-col justify-between" data-title="3.2 실전 실습: 타입 하네스">
+      <!-- [COMPONENT] 03-language/04-hands-on-type-harness.html -->
+<section class="slide flex flex-col justify-between" data-title="3.3 실전 실습: 타입 하네스">
   <div class="mb-2">
     <div class="flex items-center justify-between">
       <div>
-        <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider">Chapter 03. 실전 실습 &middot; 3.2 컴파일러 하네스 구축</span>
+        <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider">Chapter 03. 실전 실습 &middot; 3.3 컴파일러 하네스 구축</span>
         <h2 class="text-3xl font-black text-white">실전 팁 &amp; 바로바로 실습 : 컴파일러 가드레일 주기</h2>
       </div>
       <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/40 text-xs font-mono font-bold animate-pulse">
