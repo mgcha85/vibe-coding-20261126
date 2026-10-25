@@ -1,0 +1,101 @@
+<section class="slide flex flex-col justify-between" data-title="3.5 토큰 경제학과 리팩토링 안전망">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 03. 언어 &middot; 3.5 에이전트 아키텍처 격차 (1)</span>
+      <span class="px-2.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-700/50 text-indigo-300 font-mono text-[11px] font-bold">
+        TOKEN ECONOMICS &middot; REFACTORING
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">토큰 경제학과 리팩토링 안전망 : 인지 부하 vs 코드 부채</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      AI 에이전트 협업 환경에서는 <strong>명확한 타입 계약</strong>이 LLM의 컨텍스트를 지키고, 대규모 리팩토링 시 코드 폭증의 붕괴를 막습니다.
+    </p>
+  </div>
+
+  <!-- 2 Columns Bento Grid -->
+  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch my-2">
+    <!-- LEFT: 토큰 경제학과 API 계약 -->
+    <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-sky-400 bg-slate-900/95 border border-slate-700/70 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-sky-400 font-bold uppercase tracking-wider">LOGIC 01</span>
+          <span class="text-[10.5px] font-mono text-sky-300 bg-sky-950 px-2.5 py-0.5 rounded border border-sky-800">컨텍스트 윈도우 경제학</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-2">인터페이스가 LLM의 인지 부하(Context Drift)를 줄인다</h3>
+
+        <div class="space-y-2.5 text-xs">
+          <!-- Python 한계 -->
+          <div class="p-3 bg-slate-950/90 rounded-lg border border-rose-900/40">
+            <strong class="text-rose-400 text-[12px] block mb-1">🐍 Python의 토큰 낭비와 환각 유발:</strong>
+            <p class="text-slate-300 text-[11.5px] leading-relaxed">
+              동적 언어는 객체의 형태(Shape)가 런타임에 결정되므로, AI가 데이터 구조를 파악하려면 <strong>호출 경로 전체(수백~수천 줄)를 컨텍스트에 로드</strong>해야 함.
+            </p>
+            <div class="text-[10.5px] text-rose-300/90 font-mono mt-1.5">
+              ➔ 토큰 소모 극대화 &amp; 긴 컨텍스트로 인한 <span class="underline">'Lost in the Middle'</span> 환각 빈발
+            </div>
+          </div>
+
+          <!-- 정적 언어 우위 -->
+          <div class="p-3 bg-slate-950/90 rounded-lg border border-emerald-900/40">
+            <strong class="text-emerald-400 text-[12px] block mb-1">⚡ 정적 언어(Go/TS/Rust)의 압도적 효율:</strong>
+            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+              명확한 <code class="text-cyan-300 bg-slate-900 px-1 rounded">interface</code>, <code class="text-cyan-300 bg-slate-900 px-1 rounded">struct</code> 정의 <strong>수십 줄만 컨텍스트에 주입</strong>하면 AI가 시스템의 경계와 제약 조건을 100% 완벽 이해.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Quote Banner -->
+      <div class="p-2.5 rounded bg-sky-950/70 border border-sky-800/60 font-mono text-[11px] text-sky-200 font-bold mt-2 shadow-inner">
+        💡 "정적 타입은 인간을 위한 문서일 뿐 아니라, <strong>AI를 위한 가장 압축률 높은 고밀도 프롬프트</strong>다."
+      </div>
+    </div>
+
+    <!-- RIGHT: 대규모 리팩토링과 코드 부채 -->
+    <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-amber-400 bg-slate-900/95 border border-slate-700/70 shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider">LOGIC 02</span>
+          <span class="text-[10.5px] font-mono text-amber-300 bg-amber-950 px-2.5 py-0.5 rounded border border-amber-800">코드 부채의 지연 폭발</span>
+        </div>
+        <h3 class="text-base font-bold text-white mb-2">AI가 쏟아낸 수만 줄의 코드, 6개월 뒤 누가 감당하는가?</h3>
+
+        <div class="space-y-2.5 text-xs">
+          <!-- Python 위험 -->
+          <div class="p-3 bg-slate-950/90 rounded-lg border border-rose-900/40">
+            <strong class="text-rose-400 text-[12px] block mb-1">💣 Python의 런타임 시한폭탄:</strong>
+            <p class="text-slate-300 text-[11.5px] leading-relaxed">
+              바이브 코딩으로 코드베이스가 10배 폭증한 상태에서 함수 시그니처를 수정할 때, 어디서 <code class="text-rose-300 bg-rose-950 px-1 rounded">AttributeError</code>나 <code class="text-rose-300 bg-rose-950 px-1 rounded">KeyError</code>가 터질지 런타임 전까지 알 수 없음.
+            </p>
+            <div class="text-[10.5px] text-rose-300/90 font-mono mt-1.5">
+              ➔ 테스트 커버리지가 100%가 아닌 이상 방대한 코드는 곧바로 치명적 부채로 전락
+            </div>
+          </div>
+
+          <!-- 정적 언어 안전망 -->
+          <div class="p-3 bg-slate-950/90 rounded-lg border border-emerald-900/40">
+            <strong class="text-emerald-400 text-[12px] block mb-1">🛡️ 컴파일러 기반의 일괄 교정:</strong>
+            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+              타입 시스템이 깨진 전역 위치의 리스트를 컴파일러가 0.1초 만에 Stderr로 출력. 에이전트에게 <strong>"컴파일 에러 23개 수정해"</strong>라고 던지면 안전하게 전역 수정 완결.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Quote Banner -->
+      <div class="p-2.5 rounded bg-amber-950/70 border border-amber-800/60 font-mono text-[11px] text-amber-200 font-bold mt-2 shadow-inner">
+        🛡️ "컴파일러는 AI가 코드를 마구 쏟아내는 시대에 <strong>유일하게 믿을 수 있는 24시간 안전 방파제</strong>다."
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Takeaway -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-200 border border-slate-700 bg-slate-900/95 mt-1">
+    <div class="flex items-center gap-2">
+      <span class="text-cyan-400 font-bold">🎯 핵심 인사이트:</span>
+      <span>인간이 읽기 위한 타입이 아닙니다. <strong>AI의 토큰 비용을 아끼고, 대규모 리팩토링을 자동화</strong>하기 위한 타입입니다.</span>
+    </div>
+    <span class="text-amber-400 font-bold text-[11px]">Next: 자율 배포(Agentic Ops) &amp; 종합 비교 매트릭스 ➔</span>
+  </div>
+</section>
