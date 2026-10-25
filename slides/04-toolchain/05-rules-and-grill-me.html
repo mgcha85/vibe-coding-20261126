@@ -1,0 +1,132 @@
+<section class="slide flex flex-col justify-between" data-title="4.4 Rules &amp; Grill-me : 능동적 정렬 메커니즘">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.4 Rules &amp; Grill-me</span>
+      <span class="px-2.5 py-0.5 rounded bg-rose-950/80 border border-rose-600/50 text-rose-300 font-mono text-[11px] font-bold">
+        GUARDRAILS &middot; INTERACTIVE ALIGNMENT
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">Rules 체계와 Grill-me : 맹종을 넘어선 능동적 정렬</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      사용자의 모호한 지시를 그대로 코딩하면 90% 확률로 엉뚱한 결과가 나옵니다. <strong>계층형 Rules</strong>로 제약을 걸고, <strong>/grill-me</strong>로 에이전트가 역질문하게 만들어야 합니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: Rules Hierarchy (5 cols) -->
+    <div class="col-span-5 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-[11px] font-mono text-sky-400 font-bold uppercase">🛡️ Rules 체계의 동작 원리</span>
+          <span class="text-[9.5px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Hierarchical Precedence</span>
+        </div>
+
+        <p class="text-[11px] text-slate-300 mb-2 leading-relaxed">
+          스킬이 <strong class="text-amber-300">"어떻게 작업할 것인가(How)"</strong>라면, 룰은 <strong class="text-rose-400">"무엇을 절대 넘지 말아야 하는가(Constraint)"</strong>입니다.
+        </p>
+
+        <!-- Rules Precedence Ladder -->
+        <div class="space-y-1.5 text-xs font-mono">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="flex items-center justify-between text-indigo-300 font-bold text-[11px] mb-0.5">
+              <span>1️⃣ Global Rules (~/.gemini/config, ~/.cursorrules)</span>
+            </div>
+            <div class="text-[10px] text-slate-400 font-sans">
+              개인 개발 환경 기본값: "모든 프로젝트에서 답변은 한국어, 불필요한 사과 금지"
+            </div>
+          </div>
+
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <div class="flex items-center justify-between text-sky-300 font-bold text-[11px] mb-0.5">
+              <span>2️⃣ Project Rules (.cursor/rules/*.md, .agents/rules/)</span>
+            </div>
+            <div class="text-[10px] text-slate-400 font-sans">
+              레포지토리 공통 규칙: "중요 정보는 .env 사용, 프론트엔드는 Svelte, 백엔드는 Go"
+            </div>
+          </div>
+
+          <div class="p-2 rounded bg-rose-950/30 border border-rose-500/40">
+            <div class="flex items-center justify-between text-rose-300 font-bold text-[11px] mb-0.5">
+              <span>3️⃣ Directory Rules (Local AGENTS.md / GEMINI.md)</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-sans">
+              특정 폴더 우선순위: <code class="text-rose-300">live-trading/</code> 내에서는 절대 백테스트 코드 수정 금지.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-sky-950/40 border border-sky-800/40 text-[10.5px] text-sky-300 font-mono mt-2">
+        💡 <strong class="text-amber-300">트리거 방식:</strong> <code class="text-emerald-300 font-bold">always_on</code>(무조건 주입)과 특정 파일 수정 시만 활성화되는 <code class="text-cyan-300 font-bold">glob_trigger</code>로 토큰 최적화.
+      </div>
+    </div>
+
+    <!-- RIGHT: /grill-me Interactive Alignment (7 cols) -->
+    <div class="col-span-7 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🔥</span>
+            <span class="text-[11px] font-mono text-amber-400 font-bold uppercase">/grill-me : 에이전트의 역질문 인터뷰</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">Anti-Yes-Man Mode</span>
+        </div>
+
+        <p class="text-[11.5px] text-slate-300 leading-relaxed mb-2.5">
+          바이브 코딩의 가장 큰 위험은 에이전트가 인간의 불완전한 프롬프트에 <strong>"네, 알겠습니다!"</strong>라며 섣불리 코드를 500줄 짜버리는 '예스맨 증후군(Yes-Man Syndrome)'입니다.
+        </p>
+
+        <!-- Comparison Cards: Blind Coding vs Grill-me -->
+        <div class="grid grid-cols-2 gap-2 text-xs mb-2">
+          <!-- Blind Coding -->
+          <div class="p-2.5 rounded bg-rose-950/20 border border-rose-800/40">
+            <div class="font-bold text-rose-300 text-[11px] mb-1 flex items-center gap-1">
+              <span>❌</span> <span>무지성 즉시 코딩 (Yes-Man)</span>
+            </div>
+            <div class="text-[10px] text-slate-300 space-y-1 font-sans">
+              <div>• "유저 인증 기능 만들어줘"</div>
+              <div class="text-rose-400">➔ 에이전트: "네!" (NextAuth 혼자 설치)</div>
+              <div>• 2시간 뒤: "Supabase 쓰기로 했는데 왜 마음대로 라이브러리를 바꿔?" ➔ 전면 롤백</div>
+            </div>
+          </div>
+
+          <!-- Grill-me Mode -->
+          <div class="p-2.5 rounded bg-emerald-950/20 border border-emerald-600/40">
+            <div class="font-bold text-emerald-300 text-[11px] mb-1 flex items-center gap-1">
+              <span>✅</span> <span>/grill-me 역질문 정렬</span>
+            </div>
+            <div class="text-[10px] text-slate-300 space-y-1 font-sans">
+              <div>• "유저 인증 기능 만들려고 해. <strong>/grill-me</strong>"</div>
+              <div class="text-emerald-300">➔ 에이전트: "인터뷰를 시작합니다. 1) JWT vs Session? 2) 소셜 로그인 포함? 3) RLS 정책은?"</div>
+              <div>• 3분 만에 아키텍처 의사결정 완료 ➔ 원샷 성공</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Setup snippet -->
+        <div class="p-2 rounded bg-slate-950 border border-slate-800 text-[10.5px] font-mono text-slate-300 leading-tight">
+          <div class="text-slate-400 font-bold mb-0.5">⚙️ 세팅 방법 (AGENTS.md 또는 .cursorrules):</div>
+          <div><code class="text-amber-300 font-bold">Rule:</code> "설계 결정을 내리기 전 모호한 점이 있다면 즉시 ask_question 도구로 역질문할 것."</div>
+          <div><code class="text-sky-300 font-bold">Slash Command:</code> <code class="text-emerald-300">/grill-me</code> 호출 시 기획 인터뷰 모드로 진입하여 3~5개 엣지 케이스 확인.</div>
+        </div>
+      </div>
+
+      <div class="text-[10.5px] font-mono text-slate-300 bg-indigo-950/40 p-2 rounded border border-indigo-800/40 flex items-center justify-between mt-2">
+        <span class="text-amber-300 font-bold">🎯 핵심 테이크어웨이:</span>
+        <span class="text-slate-300">"훌륭한 에이전트는 코드를 빨리 치는 에이전트가 아니라, <strong>질문으로 설계를 먼저 맞추는 에이전트</strong>다."</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-rose-400 font-bold">🛡️ Rules &amp; Grill-me:</span>
+      <span class="text-slate-200">에이전트에게 <strong>엄격한 제약(Rules)</strong>을 씌우고, <strong>역질문(/grill-me)</strong>을 유도하여 기획 드리프트를 원천 차단하십시오.</span>
+    </div>
+    <span class="text-rose-400 font-bold text-[11px]">Slide 43</span>
+  </div>
+</section>
