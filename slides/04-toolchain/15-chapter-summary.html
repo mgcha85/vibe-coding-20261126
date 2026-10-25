@@ -1,0 +1,135 @@
+<section class="slide flex flex-col justify-between" data-title="Ch 04 요약 : 툴체인 &amp; 하네스 체계 완결">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.13 챕터 총정리</span>
+      <span class="px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-600/50 text-sky-300 font-mono text-[11px] font-bold">
+        CHAPTER 04 SYNTHESIS &middot; TAKEAWAYS
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">Chapter 04 핵심 요약 : 도구와 기억의 인프라 체계</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      에이전트를 길들이는 비결은 프롬프트 작문술이 아닙니다. <strong>헌법(AGENTS), 절차(Skills), 규칙(Rules), 파이프라인(Hooks), 위키(Wiki)</strong>의 5대 인프라 결합입니다.
+    </p>
+  </div>
+
+  <!-- 4 Column Summary Grid (12 cols) -->
+  <div class="grid grid-cols-4 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- Card 1: 헌법 & 네이밍 -->
+    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-sky-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">📜</span>
+          <span class="text-[9px] font-mono text-sky-300 bg-sky-950 px-1.5 py-0.5 rounded border border-sky-800">1. CONSTITUTION</span>
+        </div>
+        <div class="text-sky-300 font-bold font-mono text-sm mb-1.5">AGENTS.md &middot; 네이밍</div>
+        
+        <div class="space-y-2 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-white block mb-0.5">Every-turn 자동 주입</strong>
+            매 턴마다 시스템 프롬프트 최상단에 강제 주입되어 AI의 환각과 탈선 원천 차단.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-emerald-300 block mb-0.5">도메인 접두사 (Prefix)</strong>
+            <code class="text-sky-300 font-mono">ui-*</code>, <code class="text-cyan-300 font-mono">ops-*</code> 명확한 폴더 네이밍으로 키워드 라우팅 정밀화.
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-sky-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 사규 강제</span>
+        <span class="text-slate-500">Zero Prompt Drift</span>
+      </div>
+    </div>
+
+    <!-- Card 2: 2단계 문서학 & 룰 -->
+    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-amber-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">📄</span>
+          <span class="text-[9px] font-mono text-amber-300 bg-amber-950 px-1.5 py-0.5 rounded border border-amber-800">2. DOCUMENTS</span>
+        </div>
+        <div class="text-amber-300 font-bold font-mono text-sm mb-1.5">SKILL vs REF &middot; Rules</div>
+        
+        <div class="space-y-2 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-white block mb-0.5">2단계 문서 계층화</strong>
+            <code class="text-amber-300 font-mono">SKILL.md</code>는 50줄 초경량 로드, 세부 명세는 <code class="text-cyan-300 font-mono">REFERENCE.md</code> 온디맨드 열람.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-rose-400 block mb-0.5">/grill-me 역질문</strong>
+            에이전트가 섣불리 코드를 짜지 않고 기획 인터뷰를 먼저 진행해 예스맨 증후군 타파.
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-amber-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 토큰 최적화</span>
+        <span class="text-slate-500">Intent Alignment</span>
+      </div>
+    </div>
+
+    <!-- Card 3: 훅 & 영속성 삼각편대 -->
+    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-emerald-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">🪝</span>
+          <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950 px-1.5 py-0.5 rounded border border-emerald-800">3. HOOKS &amp; STATE</span>
+        </div>
+        <div class="text-emerald-300 font-bold font-mono text-sm mb-1.5">Hooks &middot; 3대 문서</div>
+        
+        <div class="space-y-2 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-white block mb-0.5">물리적 실행 차단</strong>
+            PreToolUse로 파괴적 명령 차단, PostToolUse로 린터 가동, Stop Hook으로 품질 보증.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-cyan-300 block mb-0.5">영속성 삼각편대</strong>
+            <code class="text-rose-300">LESSON</code>(오답) + <code class="text-amber-300">PLAN</code>(상태) + <code class="text-cyan-300">INTENT</code>(의도)로 세션 단절 극복.
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-emerald-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 자동 가드레일</span>
+        <span class="text-slate-500">State Persistence</span>
+      </div>
+    </div>
+
+    <!-- Card 4: 위키 & 토큰 레버리지 -->
+    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-purple-400 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl">🧠</span>
+          <span class="text-[9px] font-mono text-purple-300 bg-purple-950 px-1.5 py-0.5 rounded border border-purple-800">4. WIKI &amp; CURATION</span>
+        </div>
+        <div class="text-purple-300 font-bold font-mono text-sm mb-1.5">LLM-Wiki &middot; 큐레이션</div>
+        
+        <div class="space-y-2 text-xs text-slate-300 font-sans leading-relaxed">
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-white block mb-0.5">중앙 위키 지식 누적</strong>
+            전 프로젝트가 단일 위키를 공유하며 Multi-Depth 원자 단위 분할로 스킬 상충 제거.
+          </div>
+          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+            <strong class="text-amber-300 block mb-0.5">개발 표준화 &amp; 원샷</strong>
+            내 아키텍처 취향을 표준화하여 <strong>"단 1줄 프롬프트로 완성형 소프트웨어"</strong> 달성.
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] font-mono text-purple-400 border-t border-slate-800 pt-2 flex items-center justify-between">
+        <span>✓ 10x 토큰 레버리지</span>
+        <span class="text-slate-500">One-Prompt Production</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Transition Bar -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-200 border border-slate-700 bg-slate-900/95 my-1">
+    <div class="flex items-center gap-2">
+      <span class="text-amber-400 font-bold">🏁 Chapter 04 결론:</span>
+      <span class="text-slate-200">에이전트 인프라 무장 완료. 다음은 <strong>Git Worktree를 통한 비동기 다중 에이전트 병렬 코딩</strong>입니다.</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <span class="text-indigo-400 font-bold text-[11px]">Chapter 04 Complete &middot; Slide 52</span>
+      <span class="text-amber-400 font-bold">Next: Ch 05. 병렬화 (Git Worktree) ➔</span>
+    </div>
+  </div>
+</section>
