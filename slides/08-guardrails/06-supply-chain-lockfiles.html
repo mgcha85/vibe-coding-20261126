@@ -1,0 +1,109 @@
+<section class="slide flex flex-col justify-between" data-title="8.5 공급망 보안 & Lockfile 무결성">
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-purple-400 font-mono text-xs uppercase tracking-wider font-semibold">Chapter 08. 가드레일 &middot; 8.5 소프트웨어 공급망 방어</span>
+      <span class="text-[11px] font-mono text-purple-300 bg-purple-950/80 px-2 py-0.5 rounded border border-purple-800/40">Lockfile &amp; Hash Verification</span>
+    </div>
+    <h2 class="text-2xl md:text-3xl font-black text-white mt-0.5">공급망 공격 방어: Lockfile 무결성 해시와 패키지 검증 자동화</h2>
+    <p class="text-xs text-slate-300 mt-0.5">
+      AI가 "이 패키지를 설치하면 해결됩니다"라고 할 때, 그 패키지가 실제로 존재하는지 악성코드인지 어떻게 확신하십니까?
+    </p>
+  </div>
+
+  <div class="grid grid-cols-3 gap-3.5 my-auto">
+    <!-- Pillar 1: Lockfile as Security Armor -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-purple-400 bg-slate-950/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-purple-400 font-bold uppercase">ARMOR 01. 해시 무결성</span>
+          <span class="text-[10px] font-mono text-purple-300 bg-purple-950/80 px-1.5 py-0.5 rounded border border-purple-800/40">SHA-256 고정</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">Lockfile: 보안 무결성 방패</h3>
+        <p class="text-[11.5px] text-slate-300 leading-relaxed mb-2">
+          단순한 버전 기록서가 아닙니다. 모든 패키지의 원본 바이너리 SHA-256 해시를 암호학적으로 고정하여 배포 시 변조를 100% 차단합니다.
+        </p>
+
+        <div class="bg-slate-900/90 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-1 mb-2">
+          <div class="text-slate-500"># 생태계별 표준 락파일 (Git 커밋 필수)</div>
+          <div class="text-emerald-300">&bull; Python: uv.lock (초고속 결정론적 빌드)</div>
+          <div class="text-sky-300">&bull; Node: pnpm-lock.yaml / package-lock.json</div>
+          <div class="text-amber-300">&bull; Rust: Cargo.lock (바이너리 일치 보장)</div>
+          <div class="text-rose-400 font-bold pt-0.5">⚠️ AI의 락파일 임의 삭제/재생성 절대 금지</div>
+        </div>
+
+        <ul class="text-[11px] text-slate-300 space-y-0.5 leading-normal">
+          <li>&bull; <strong class="text-white">CI 환경:</strong> <code class="font-mono text-emerald-300">npm ci</code> 또는 <code class="font-mono text-emerald-300">uv sync --frozen</code> 사용.</li>
+        </ul>
+      </div>
+      <div class="text-[10px] text-purple-400 font-mono border-t border-slate-800/80 pt-1 mt-2">
+        ✓ 락파일이 고정된 상태에서는 중간자 변조 공격(MITM) 무력화
+      </div>
+    </div>
+
+    <!-- Pillar 2: Pre-installation Verification -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-rose-500 bg-slate-950/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-rose-400 font-bold uppercase">ARMOR 02. 설치 전 검증</span>
+          <span class="text-[10px] font-mono text-rose-300 bg-rose-950/80 px-1.5 py-0.5 rounded border border-rose-800/40">Slopsquatting 차단</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">패키지 메타데이터 사전 스캔</h3>
+        <p class="text-[11.5px] text-slate-300 leading-relaxed mb-2">
+          AI가 추천한 패키지를 무작정 설치하기 전에, 공식 레지스트리(npm, PyPI)에서 <strong>생성일자와 다운로드 수</strong>를 조회하여 환각 공격을 걸러냅니다.
+        </p>
+
+        <div class="bg-slate-900/90 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-1 mb-2">
+          <div class="text-slate-500"># CLI 사전 조회 검증 스크립트</div>
+          <div class="text-slate-300">$ npm view &lt;package&gt; time.created</div>
+          <div class="text-slate-300">$ pip index versions &lt;package&gt;</div>
+          <div class="text-amber-300 pt-0.5">&gt; 등록된 지 30일 미만이거나 다운로드 100회 미만인 패키지는 설치 즉시 중단 경고!</div>
+        </div>
+
+        <ul class="text-[11px] text-slate-300 space-y-0.5 leading-normal">
+          <li>&bull; <strong class="text-white">자가 검증:</strong> "유명 라이브러리의 철자 변형인가? 공식 오너인가?" 확인.</li>
+        </ul>
+      </div>
+      <div class="text-[10px] text-rose-400 font-mono border-t border-slate-800/80 pt-1 mt-2">
+        ⚠️ AI가 만든 유령 패키지는 설치 명령 치는 순간 침투 완료
+      </div>
+    </div>
+
+    <!-- Pillar 3: Automated Dependency Audits -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-950/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-emerald-400 font-bold uppercase">ARMOR 03. 자동 취약점 감사</span>
+          <span class="text-[10px] font-mono text-emerald-300 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-800/40">Audit Automation</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">CVE 데이터베이스 자동 매핑</h3>
+        <p class="text-[11.5px] text-slate-300 leading-relaxed mb-2">
+          이미 알려진 보안 취약점(CVE)이 포함된 오래된 의존성을 AI가 가져다 쓰는 것을 방지하기 위해 정기 감사를 수행합니다.
+        </p>
+
+        <div class="bg-slate-900/90 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-1 mb-2">
+          <div class="text-slate-500"># 파이프라인 자동 감사 명령어</div>
+          <div class="text-emerald-300">$ uv pip check &amp;&amp; pip-audit</div>
+          <div class="text-sky-300">$ npm audit --audit-level=high</div>
+          <div class="text-amber-300">$ cargo audit</div>
+          <div class="text-slate-400 pt-0.5">&gt; High/Critical 취약점 발견 시 CI Fail</div>
+        </div>
+
+        <ul class="text-[11px] text-slate-300 space-y-0.5 leading-normal">
+          <li>&bull; <strong class="text-white">Dependabot:</strong> 주 1회 보안 패치 PR 자동 생성 연동.</li>
+        </ul>
+      </div>
+      <div class="text-[10px] text-emerald-400 font-mono border-t border-slate-800/80 pt-1 mt-2">
+        ✓ 과거 취약점이 포함된 레거시 의존성의 프로덕션 유입 방지
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Takeaway -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 bg-slate-900/80">
+    <div class="flex items-center gap-2">
+      <span class="text-purple-400 font-bold">🛡️ 공급망 철칙:</span>
+      <span class="text-slate-200">"새로운 패키지 추가는 '인간의 명시적 승인'을 거치고, 배포는 오직 'Lockfile 무결성 해시'를 통해서만 수행한다."</span>
+    </div>
+    <span class="text-slate-500 font-bold text-[11px]">Slide 84</span>
+  </div>
+</section>

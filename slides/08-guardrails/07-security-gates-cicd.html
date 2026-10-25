@@ -1,0 +1,99 @@
+<section class="slide flex flex-col justify-between" data-title="8.6 CI/CD 4중 보안 게이트 파이프라인">
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-rose-400 font-mono text-xs uppercase tracking-wider font-semibold">Chapter 08. 가드레일 &middot; 8.6 자동화 보안 게이트</span>
+      <span class="text-[11px] font-mono text-rose-300 bg-rose-950/80 px-2 py-0.5 rounded border border-rose-800/40">CI/CD Security Gate</span>
+    </div>
+    <h2 class="text-2xl md:text-3xl font-black text-white mt-0.5">CI/CD 4중 보안 게이트: PR 머지 전 자동 검증 파이프라인</h2>
+    <p class="text-xs text-slate-300 mt-0.5">
+      AI가 수백 줄을 쏟아내는 시대에 인간의 눈(Code Review)만으로는 보안 취약점을 다 잡을 수 없습니다. 기계가 먼저 걸러야 합니다.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-4 gap-3 my-auto">
+    <!-- Gate 1: Gitleaks -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-amber-400 bg-slate-950/90">
+      <div>
+        <div class="text-[11px] font-mono text-amber-400 font-bold mb-1">GATE 01. SECRET SCAN</div>
+        <h3 class="text-sm font-bold text-white mb-1">Gitleaks 액션</h3>
+        <p class="text-[11px] text-slate-300 leading-relaxed mb-2">
+          커밋 및 PR의 모든 변경 사항(Diff)에서 정규식과 엔트로피를 대조하여 150+종의 API 키 및 비밀번호를 감지합니다.
+        </p>
+        <div class="bg-slate-900 rounded p-1.5 font-mono text-[9px] border border-slate-800 text-slate-300 mb-2">
+          - uses: gitleaks/gitleaks-action@v2<br>
+          &nbsp;&nbsp;env:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        </div>
+      </div>
+      <div class="text-[10px] text-amber-400 font-mono border-t border-slate-800/80 pt-1">
+        ✓ 키 유출 감지 즉시 빌드 취소
+      </div>
+    </div>
+
+    <!-- Gate 2: SAST (Ruff/Semgrep) -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-sky-400 bg-slate-950/90">
+      <div>
+        <div class="text-[11px] font-mono text-sky-400 font-bold mb-1">GATE 02. CODE SAST</div>
+        <h3 class="text-sm font-bold text-white mb-1">Ruff / Semgrep</h3>
+        <p class="text-[11px] text-slate-300 leading-relaxed mb-2">
+          소스 코드 정적 분석으로 SQL 인젝션, 위험한 <code class="font-mono text-rose-300">exec/eval</code>, 안전하지 않은 CORS, 하드코딩된 암호화 키를 자동 적발합니다.
+        </p>
+        <div class="bg-slate-900 rounded p-1.5 font-mono text-[9px] border border-slate-800 text-slate-300 mb-2">
+          # Bandit 보안 규칙 검사<br>
+          uv run ruff check --select S .<br>
+          semgrep scan --config auto
+        </div>
+      </div>
+      <div class="text-[10px] text-sky-400 font-mono border-t border-slate-800/80 pt-1">
+        ✓ OWASP Top 10 패턴 탐지
+      </div>
+    </div>
+
+    <!-- Gate 3: DB RLS Linter -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-950/90">
+      <div>
+        <div class="text-[11px] font-mono text-emerald-400 font-bold mb-1">GATE 03. DB RLS LINT</div>
+        <h3 class="text-sm font-bold text-white mb-1">Supabase DB Lint</h3>
+        <p class="text-[11px] text-slate-300 leading-relaxed mb-2">
+          새로 추가된 마이그레이션 SQL 파일에서 RLS 활성화 여부와 정책 누락 여부를 스키마 레벨에서 정밀 검증합니다.
+        </p>
+        <div class="bg-slate-900 rounded p-1.5 font-mono text-[9px] border border-slate-800 text-slate-300 mb-2">
+          # RLS 정책 누락 여부 검사<br>
+          supabase db lint<br>
+          # pgTAP 회귀 테스트 자동 구동
+        </div>
+      </div>
+      <div class="text-[10px] text-emerald-400 font-mono border-t border-slate-800/80 pt-1">
+        ✓ 정책 누락 DDL 통과 원천 거절
+      </div>
+    </div>
+
+    <!-- Gate 4: Dependency Review -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-purple-400 bg-slate-950/90">
+      <div>
+        <div class="text-[11px] font-mono text-purple-400 font-bold mb-1">GATE 04. DEPENDENCY</div>
+        <h3 class="text-sm font-bold text-white mb-1">Dependency Review</h3>
+        <p class="text-[11px] text-slate-300 leading-relaxed mb-2">
+          새롭게 PR에 추가된 라이브러리가 취약점 DB(Advisory)에 등재되어 있는지, 라이선스 위반이 없는지 감시합니다.
+        </p>
+        <div class="bg-slate-900 rounded p-1.5 font-mono text-[9px] border border-slate-800 text-slate-300 mb-2">
+          - uses: actions/dependency-review-action@v4<br>
+          &nbsp;&nbsp;with:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;fail-on-severity: high
+        </div>
+      </div>
+      <div class="text-[10px] text-purple-400 font-mono border-t border-slate-800/80 pt-1">
+        ✓ 취약 패키지 머지 차단
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Takeaway -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 bg-slate-900/80">
+    <div class="flex items-center gap-2">
+      <span class="text-rose-400 font-bold">🛡️ CI/CD 게이트 철칙:</span>
+      <span class="text-slate-200">"4대 보안 게이트 중 단 하나라도 붉은 불(Fail)이 들어오면 <code class="bg-slate-800 px-1 py-0.5 rounded text-rose-300">Merge</code> 버튼은 영구 비활성화된다."</span>
+    </div>
+    <span class="text-slate-500 font-bold text-[11px]">Slide 85</span>
+  </div>
+</section>

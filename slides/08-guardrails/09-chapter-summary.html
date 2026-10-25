@@ -1,0 +1,108 @@
+<section class="slide flex flex-col justify-between" data-title="8.8 Chapter 08 핵심 요약 & 5중 방어 매트릭스">
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-rose-400 font-mono text-xs uppercase tracking-wider font-semibold">Chapter 08. 가드레일 &middot; 8.8 챕터 핵심 요약</span>
+      <span class="text-[11px] font-mono text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/40">5-Layer Defense Matrix</span>
+    </div>
+    <h2 class="text-2xl md:text-3xl font-black text-white mt-0.5">Chapter 08 핵심 요약: 5중 심층 방어 매트릭스 &amp; 배포 전 체크리스트</h2>
+    <p class="text-xs text-slate-300 mt-0.5">
+      가드레일 없는 바이브 코딩은 러시안 룰렛입니다. 5중 방어선이 구축되어야만 안심하고 AI에게 코딩을 위임할 수 있습니다.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-2 gap-3.5 my-auto">
+    <!-- Left: 5-Layer Defense Matrix -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-rose-500 bg-slate-950/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-rose-400 font-bold uppercase">DEFENSE-IN-DEPTH MATRIX</span>
+          <span class="text-[10px] font-mono text-slate-400">5중 심층 방어선</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-2">계층별 보안 가드레일 아키텍처</h3>
+
+        <div class="space-y-1.5 font-mono text-[10.5px]">
+          <div class="flex items-center justify-between p-1.5 rounded bg-slate-900 border border-slate-800">
+            <span class="text-slate-400">L1. 프롬프트 계층</span>
+            <span class="text-rose-300 font-bold">간접 인젝션 격리 &amp; AGENTS.md 헌법</span>
+          </div>
+          <div class="flex items-center justify-between p-1.5 rounded bg-slate-900 border border-slate-800">
+            <span class="text-slate-400">L2. 에이전트 계층</span>
+            <span class="text-sky-300 font-bold">도커 샌드박스 + 3단계 권한 게이트</span>
+          </div>
+          <div class="flex items-center justify-between p-1.5 rounded bg-slate-900 border border-slate-800">
+            <span class="text-slate-400">L3. 공급망 계층</span>
+            <span class="text-purple-300 font-bold">Lockfile 해시 고정 &amp; Slopsquatting 사전조회</span>
+          </div>
+          <div class="flex items-center justify-between p-1.5 rounded bg-slate-900 border border-slate-800">
+            <span class="text-slate-400">L4. 코드/시크릿</span>
+            <span class="text-amber-300 font-bold">Gitleaks 커밋 차단 &amp; SAST(Ruff/Semgrep)</span>
+          </div>
+          <div class="flex items-center justify-between p-1.5 rounded bg-slate-900 border border-slate-800">
+            <span class="text-slate-400">L5. DB/클라우드</span>
+            <span class="text-emerald-300 font-bold">Supabase RLS FOR ALL &amp; Budget Alert $1</span>
+          </div>
+        </div>
+      </div>
+      <div class="text-[10px] text-emerald-400 font-mono border-t border-slate-800/80 pt-1 mt-2">
+        ✓ 어느 한 계층이 뚫려도 다음 계층이 피해를 원천 차단
+      </div>
+    </div>
+
+    <!-- Right: Pre-flight Checklist & Anti-patterns -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-950/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-emerald-400 font-bold uppercase">PRE-FLIGHT CHECKLIST</span>
+          <span class="text-[10px] font-mono text-emerald-300 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-800/40">배포 전 최종 결재</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-2">프로덕션 배포 전 6대 확인 목록</h3>
+
+        <div class="bg-slate-900/90 rounded p-2 text-[11px] text-slate-300 space-y-1 font-mono border border-slate-800 mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-emerald-400">☑</span>
+            <span>.env* 파일이 .gitignore에 포함되어 있는가?</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-emerald-400">☑</span>
+            <span>프론트 번들에 민감 시크릿 접두사가 없는가?</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-emerald-400">☑</span>
+            <span>모든 신규 DB 테이블에 ENABLE RLS가 켜졌는가?</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-emerald-400">☑</span>
+            <span>RLS 정책이 SELECT/INSERT/UPDATE 모두 보호하는가?</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-emerald-400">☑</span>
+            <span>신규 패키지가 환각이 아니며 Lockfile이 고정되었는가?</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-emerald-400">☑</span>
+            <span>Gitleaks &amp; CI/CD 보안 파이프라인이 통과했는가?</span>
+          </div>
+        </div>
+
+        <div class="bg-rose-950/30 border border-rose-800/40 rounded p-1.5 text-[10px] text-rose-300">
+          🚨 <strong>절대 금지 3대 안티패턴:</strong><br>
+          1. 터미널 전체 자동 승인(YOLO 모드) 켜두기<br>
+          2. RLS 에러 뜬다고 프론트엔드에 service_role 키 넣기<br>
+          3. AI가 지어낸 pip/npm 패키지 확인 없이 바로 설치하기
+        </div>
+      </div>
+      <div class="text-[10px] text-rose-400 font-mono border-t border-slate-800/80 pt-1 mt-2">
+        ⚠️ 위 6개 체크리스트 통과 전까지 프로덕션 머지 금지
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Takeaway -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 bg-slate-900/80">
+    <div class="flex items-center gap-2">
+      <span class="text-emerald-400 font-bold">🛡️ 엔지니어의 최종 책임:</span>
+      <span class="text-slate-200">"AI가 10배 빠르게 코드를 짤 때, 엔지니어의 존재 이유는 '가드레일을 세우고 안전을 보증하는 것'이다."</span>
+    </div>
+    <span class="text-purple-400 font-bold text-[11px]">Chapter 08 완료</span>
+  </div>
+</section>

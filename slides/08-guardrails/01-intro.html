@@ -1,21 +1,46 @@
 <section class="slide justify-center" data-title="Ch 08. 가드레일 인트로">
-  <div class="max-w-3xl">
+  <div class="max-w-4xl mx-auto my-auto">
     <div class="flex items-center gap-2 mb-3">
-      <span class="text-emerald-400 font-mono text-sm tracking-widest font-semibold px-3 py-1 rounded bg-emerald-500/10 border border-emerald-400/20">CHAPTER 08</span>
-      <span class="text-rose-400 font-mono text-xs px-2.5 py-1 rounded bg-rose-500/10 border border-rose-400/30 font-bold">🛡️ PRODUCTION SECURITY</span>
+      <span class="text-rose-400 font-mono text-sm tracking-widest font-semibold px-3 py-1 rounded bg-rose-500/10 border border-rose-400/20">CHAPTER 08</span>
+      <span class="text-emerald-400 font-mono text-xs px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-400/30 font-bold">🛡️ ZERO TRUST GUARDRAILS</span>
     </div>
-    <h2 class="text-4xl md:text-5xl font-black text-white mb-3">
-      가드레일 : RLS 누수 방지 &amp; 민감정보 격리
+    <h2 class="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
+      가드레일 : <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-amber-300 to-emerald-400">데이터 누수 방지 &amp; 민감정보 격리</span>
     </h2>
-    <p class="text-lg text-slate-300 leading-relaxed mb-6">
-      AI는 동작하는 코드는 기가 막히게 작성하지만, <strong>보안 정책(RLS, 시크릿 키 관리)</strong>을 스스로 챙기지 못합니다.<br>
-      한 줄의 누락으로 고객 전원의 개인정보가 노출되는 대참사를 원천 차단하는 제로 트러스트 보안 가드레일을 구축합니다.
+    <p class="text-base text-slate-300 leading-relaxed mb-6">
+      AI는 동작하는 기능을 가장 빠르게 찍어내지만, <strong>보안 맥락(RLS 권한 검증, 시크릿 키 은닉, 공급망 신뢰)</strong>을 스스로 챙기지 못합니다.<br>
+      단 한 줄의 누락으로 고객 전원의 개인정보가 노출되고, 단 한 번의 커밋 실수로 클라우드 계정이 털리는 대참사를 원천 차단하는 <strong>5중 심층 방어(Defense-in-Depth) 가드레일</strong>을 구축합니다.
     </p>
+
+    <div class="grid grid-cols-4 gap-3 mb-6">
+      <div class="bento-tile p-3 border-t-2 border-t-rose-400 bg-slate-950/80">
+        <div class="text-xs font-mono text-rose-400 font-bold mb-1">01. DATA LEAK</div>
+        <div class="text-sm font-bold text-white mb-0.5">DB RLS 누수 차단</div>
+        <div class="text-[11px] text-slate-400">클라이언트 직접 쿼리 시 전 고객 DB 털림 방지</div>
+      </div>
+      <div class="bento-tile p-3 border-t-2 border-t-amber-400 bg-slate-950/80">
+        <div class="text-xs font-mono text-amber-400 font-bold mb-1">02. SECRET LEAK</div>
+        <div class="text-sm font-bold text-white mb-0.5">시크릿 3중 격리</div>
+        <div class="text-[11px] text-slate-400">.env Git 유출 및 프론트엔드 번들 노출 원천 봉쇄</div>
+      </div>
+      <div class="bento-tile p-3 border-t-2 border-t-sky-400 bg-slate-950/80">
+        <div class="text-xs font-mono text-sky-400 font-bold mb-1">03. AGENT CONTROL</div>
+        <div class="text-sm font-bold text-white mb-0.5">샌드박스 &amp; 승인권</div>
+        <div class="text-[11px] text-slate-400">YOLO 모드 파괴적 쉘 명령(rm -rf, DB Drop) 격리</div>
+      </div>
+      <div class="bento-tile p-3 border-t-2 border-t-emerald-400 bg-slate-950/80">
+        <div class="text-xs font-mono text-emerald-400 font-bold mb-1">04. SUPPLY CHAIN</div>
+        <div class="text-sm font-bold text-white mb-0.5">환각 패키지 방어</div>
+        <div class="text-[11px] text-slate-400">Slopsquatting 가짜 패키지 &amp; Lockfile 무결성 검증</div>
+      </div>
+    </div>
+
     <div class="flex items-center gap-3 text-xs font-mono text-slate-400">
-      <span class="px-2.5 py-1 rounded bg-slate-800 text-emerald-300">#RowLevelSecurity</span>
-      <span class="px-2.5 py-1 rounded bg-slate-800 text-emerald-300">#SecretIsolation</span>
-      <span class="px-2.5 py-1 rounded bg-slate-800 text-emerald-300">#ZeroTrustGuardrail</span>
-      <span class="px-2.5 py-1 rounded bg-rose-950/80 text-rose-300 border border-rose-800/50">#보안게이트</span>
+      <span class="px-2.5 py-1 rounded bg-slate-900 text-rose-300 border border-rose-800/40">#RowLevelSecurity</span>
+      <span class="px-2.5 py-1 rounded bg-slate-900 text-amber-300 border border-amber-800/40">#SecretScanning</span>
+      <span class="px-2.5 py-1 rounded bg-slate-900 text-sky-300 border border-sky-800/40">#AgentSandboxing</span>
+      <span class="px-2.5 py-1 rounded bg-slate-900 text-emerald-300 border border-emerald-800/40">#SlopsquattingDefense</span>
+      <span class="px-2.5 py-1 rounded bg-purple-950/80 text-purple-300 border border-purple-800/50">#SecurityGate</span>
     </div>
   </div>
 </section>

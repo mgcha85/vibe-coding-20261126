@@ -1,0 +1,110 @@
+<section class="slide flex flex-col justify-between" data-title="8.7 실전 5분 실습: 4대 보안 가드레일 이식">
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-emerald-400 font-mono text-xs uppercase tracking-wider font-semibold">Chapter 08. 가드레일 &middot; 8.7 실전 5분 실습</span>
+      <span class="text-[11px] font-mono text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/40">Hands-on Security Setup</span>
+    </div>
+    <h2 class="text-2xl md:text-3xl font-black text-white mt-0.5">내 프로젝트에 4대 보안 가드레일 즉시 이식하기</h2>
+    <p class="text-xs text-slate-300 mt-0.5">
+      오늘 개발 중인 프로젝트에 아래 3단계 설정을 적용하면, AI와의 협업 중 발생할 수 있는 보안 사고의 99%를 원천 차단합니다.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-3 gap-3.5 my-auto">
+    <!-- Step 1: Pre-commit Gitleaks -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-amber-400 bg-slate-950/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-amber-400 font-bold uppercase">STEP 01. 커밋 방패</span>
+          <span class="text-[10px] font-mono text-amber-300 bg-amber-950/80 px-1.5 py-0.5 rounded border border-amber-800/40">Gitleaks 1분 세팅</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">Pre-commit 훅 즉시 활성화</h3>
+        <p class="text-[11px] text-slate-300 leading-relaxed mb-2">
+          시크릿이 담긴 코드가 로컬에서 Git 커밋되는 순간을 물리적으로 거절하는 훅을 설치합니다.
+        </p>
+
+        <div class="bg-slate-900/90 rounded p-2 font-mono text-[9.5px] border border-slate-800 space-y-1 mb-2">
+          <div class="text-slate-500"># 1. pre-commit 도구 설치</div>
+          <div class="text-emerald-300">uv add --dev pre-commit</div>
+          <div class="text-slate-500"># 2. .pre-commit-config.yaml 생성</div>
+          <div class="text-sky-300">cat &lt;&lt; 'EOF' &gt; .pre-commit-config.yaml</div>
+          <div class="text-slate-300">repos:</div>
+          <div class="text-slate-300">&nbsp;&nbsp;- repo: https://github.com/gitleaks/gitleaks</div>
+          <div class="text-slate-300">&nbsp;&nbsp;&nbsp;&nbsp;rev: v8.18.2</div>
+          <div class="text-slate-300">&nbsp;&nbsp;&nbsp;&nbsp;hooks: [{ id: gitleaks }]</div>
+          <div class="text-sky-300">EOF</div>
+          <div class="text-slate-500"># 3. 훅 등록</div>
+          <div class="text-amber-300">uv run pre-commit install</div>
+        </div>
+      </div>
+      <div class="text-[10px] text-amber-400 font-mono border-t border-slate-800/80 pt-1 mt-2">
+        ✓ 이후 모든 git commit 시 자동 시크릿 검사 수행
+      </div>
+    </div>
+
+    <!-- Step 2: Supabase RLS Template -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-950/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-emerald-400 font-bold uppercase">STEP 02. DB 불변 템플릿</span>
+          <span class="text-[10px] font-mono text-emerald-300 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-800/40">RLS 표준 DDL</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">테이블 DDL 표준 스니펫 주입</h3>
+        <p class="text-[11px] text-slate-300 leading-relaxed mb-2">
+          새 테이블을 생성할 때 AI에게 무조건 포함시키도록 요구하는 불변의 SQL 골격입니다.
+        </p>
+
+        <div class="bg-slate-900/90 rounded p-2 font-mono text-[9.5px] border border-slate-800 space-y-0.5 mb-2">
+          <div class="text-slate-500">-- AI에게 테이블 생성 시 강제할 템플릿</div>
+          <div class="text-slate-300">CREATE TABLE user_items (</div>
+          <div class="text-slate-300">&nbsp;&nbsp;id uuid PRIMARY KEY DEFAULT gen_random_uuid(),</div>
+          <div class="text-slate-300">&nbsp;&nbsp;user_id uuid REFERENCES auth.users NOT NULL,</div>
+          <div class="text-slate-300">&nbsp;&nbsp;payload jsonb DEFAULT '{}'::jsonb</div>
+          <div class="text-slate-300">);</div>
+          <div class="text-emerald-400 font-bold">ALTER TABLE user_items ENABLE ROW LEVEL SECURITY;</div>
+          <div class="text-sky-300 font-bold">CREATE POLICY "User items isolation" ON user_items</div>
+          <div class="text-sky-300">&nbsp;&nbsp;FOR ALL USING (auth.uid() = user_id)</div>
+          <div class="text-sky-300">&nbsp;&nbsp;WITH CHECK (auth.uid() = user_id);</div>
+        </div>
+      </div>
+      <div class="text-[10px] text-emerald-400 font-mono border-t border-slate-800/80 pt-1 mt-2">
+        ✓ 유저 간 데이터 침범 100% 원천 봉쇄
+      </div>
+    </div>
+
+    <!-- Step 3: AGENTS.md Security Rules -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-sky-400 bg-slate-950/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-sky-400 font-bold uppercase">STEP 03. 에이전트 헌법</span>
+          <span class="text-[10px] font-mono text-sky-300 bg-sky-950/80 px-1.5 py-0.5 rounded border border-sky-800/40">AGENTS.md 규칙</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">보안 룰셋(Security Rules) 못 박기</h3>
+        <p class="text-[11px] text-slate-300 leading-relaxed mb-2">
+          프로젝트 루트의 <code class="font-mono text-sky-300">AGENTS.md</code>에 아래 보안 조항을 추가하여 AI의 탈선을 방지합니다.
+        </p>
+
+        <div class="bg-slate-900/90 rounded p-2 font-mono text-[9.5px] border border-slate-800 space-y-0.5 mb-2">
+          <div class="text-slate-500">## Security Rules (MANDATORY)</div>
+          <div class="text-rose-400 font-bold">1. NEVER output or log secrets (.env).</div>
+          <div class="text-rose-400 font-bold">2. NEVER execute 'rm -rf' or destructive shell.</div>
+          <div class="text-amber-300">3. NEVER add unverified dependencies; check registry first.</div>
+          <div class="text-emerald-300">4. ALWAYS use parameterized queries &amp; RLS policies.</div>
+          <div class="text-sky-300">5. ALWAYS run 'uv sync --frozen' or locked installs.</div>
+        </div>
+      </div>
+      <div class="text-[10px] text-sky-400 font-mono border-t border-slate-800/80 pt-1 mt-2">
+        ✓ 에이전트가 코드를 짜기 전 매 턴마다 강제 상기
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Takeaway -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 bg-slate-900/80">
+    <div class="flex items-center gap-2">
+      <span class="text-emerald-400 font-bold">🛡️ 5분 적용 결과:</span>
+      <span class="text-slate-200">개발자의 추가 코딩 없이, 설정 파일 3개만으로 프로덕션 엔터프라이즈급 보안 가드레일 완성.</span>
+    </div>
+    <span class="text-slate-500 font-bold text-[11px]">Slide 86</span>
+  </div>
+</section>

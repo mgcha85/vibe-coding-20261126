@@ -1,0 +1,117 @@
+<section class="slide flex flex-col justify-between" data-title="8.2 DB RLS 누수 방지 & 3대 함정">
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-emerald-400 font-mono text-xs uppercase tracking-wider font-semibold">Chapter 08. 가드레일 &middot; 8.2 데이터베이스 권한 격리</span>
+      <span class="text-[11px] font-mono text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/40">PostgreSQL / Supabase RLS</span>
+    </div>
+    <h2 class="text-2xl md:text-3xl font-black text-white mt-0.5">RLS(Row Level Security) 누수 방지: 3대 치명적 함정과 방어 DDL</h2>
+    <p class="text-xs text-slate-300 mt-0.5">
+      BaaS 환경에서는 프론트엔드가 DB에 직접 쿼리를 날립니다. 백엔드 방화벽이 없으므로 DB 자체에 방패를 씌워야 합니다.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-3 gap-3.5 my-auto">
+    <!-- Pitfall 1: RLS Disabled Default -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-rose-500 bg-slate-950/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-rose-400 font-bold uppercase">PITFALL 01. 비활성화 기본값</span>
+          <span class="text-[10px] font-mono text-rose-300 bg-rose-950/80 px-1.5 py-0.5 rounded border border-rose-800/40">기본 공개 위험</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">ENABLE RLS 누락의 참사</h3>
+        <p class="text-[11.5px] text-slate-300 leading-relaxed mb-2">
+          PostgreSQL은 테이블 생성 시 RLS가 <strong>기본적으로 OFF</strong> 상태입니다. AI에게 그냥 테이블을 만들라고 하면 누락되어 <code class="font-mono text-rose-300">anon</code> 키로 전 고객 데이터 조회가 열립니다.
+        </p>
+
+        <div class="bg-slate-900/90 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-1 mb-2">
+          <div class="text-slate-500">-- ❌ AI가 흔히 짜는 취약한 SQL</div>
+          <div class="text-rose-300">CREATE TABLE profiles ( id uuid, ... );</div>
+          <div class="text-slate-500">-- ✅ 필수 1줄: RLS 강제 활성화</div>
+          <div class="text-emerald-300 font-bold">ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;</div>
+        </div>
+
+        <ul class="text-[11px] text-slate-300 space-y-0.5 leading-normal">
+          <li>&bull; <strong class="text-white">결과:</strong> RLS 활성화 없이는 아무리 복잡한 정책을 써도 0% 적용.</li>
+          <li>&bull; <strong class="text-emerald-400">규칙:</strong> 모든 DDL 마이그레이션 끝에 ENABLE RLS 필수 강제.</li>
+        </ul>
+      </div>
+      <div class="text-[10px] text-rose-400 font-mono border-t border-slate-800/80 pt-1 mt-2">
+        ⚠️ RLS 누락 시 브라우저 콘솔에서 전체 DB 덤프 가능
+      </div>
+    </div>
+
+    <!-- Pitfall 2: Partial Policies -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-amber-400 bg-slate-950/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-amber-400 font-bold uppercase">PITFALL 02. 반쪽짜리 정책</span>
+          <span class="text-[10px] font-mono text-amber-300 bg-amber-950/80 px-1.5 py-0.5 rounded border border-amber-800/40">CRUD 누락</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">SELECT만 막고 UPDATE 방치</h3>
+        <p class="text-[11.5px] text-slate-300 leading-relaxed mb-2">
+          AI는 종종 <code class="font-mono text-amber-300">FOR SELECT</code> 정책만 달랑 작성합니다. 이 경우 인증된 사용자가 타인의 결제 금액이나 상태를 <code class="font-mono text-rose-300">UPDATE</code> 해버리는 권한 상승 버그가 발생합니다.
+        </p>
+
+        <div class="bg-slate-900/90 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-0.5 mb-2">
+          <div class="text-slate-500">-- ❌ 타인 프로필 변조 가능 구멍</div>
+          <div class="text-slate-400">CREATE POLICY p1 ON users FOR SELECT...</div>
+          <div class="text-slate-500">-- ✅ CRUD 전체 격리 (INSERT, UPDATE, DELETE)</div>
+          <div class="text-emerald-300 font-bold">CREATE POLICY p_all ON orders FOR ALL</div>
+          <div class="text-emerald-300 pl-2">USING (auth.uid() = user_id)</div>
+          <div class="text-emerald-300 pl-2">WITH CHECK (auth.uid() = user_id);</div>
+        </div>
+
+        <ul class="text-[11px] text-slate-300 space-y-0.5 leading-normal">
+          <li>&bull; <strong class="text-white">USING vs CHECK:</strong> 읽기/삭제 조건(USING)과 쓰기/수정 조건(WITH CHECK) 동시 검증.</li>
+        </ul>
+      </div>
+      <div class="text-[10px] text-amber-400 font-mono border-t border-slate-800/80 pt-1 mt-2">
+        ⚠️ FOR ALL 정책으로 4대 작업(CRUD) 완전 격리 필수
+      </div>
+    </div>
+
+    <!-- Pitfall 3: Service Role Key in Frontend -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-purple-400 bg-slate-950/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-purple-400 font-bold uppercase">PITFALL 03. 키 오남용</span>
+          <span class="text-[10px] font-mono text-purple-300 bg-purple-950/80 px-1.5 py-0.5 rounded border border-purple-800/40">Superuser 유출</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">Service Role Key 프론트 번들링</h3>
+        <p class="text-[11.5px] text-slate-300 leading-relaxed mb-2">
+          AI가 RLS 권한 에러를 만나면, 원인을 해결하는 대신 <strong>모든 RLS를 우회(Bypass)하는 마스터 키</strong>인 <code class="font-mono text-purple-300">service_role</code> 키를 클라이언트에 주입해버립니다.
+        </p>
+
+        <div class="bg-slate-900/90 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-1 mb-2">
+          <div class="flex justify-between items-center text-slate-300">
+            <span>Client 번들</span>
+            <span class="text-emerald-400 font-bold">anon key만 허용 (RLS 작동)</span>
+          </div>
+          <div class="flex justify-between items-center text-slate-300">
+            <span>Server / Admin</span>
+            <span class="text-rose-400 font-bold">service_role (절대 노출 금지)</span>
+          </div>
+          <div class="text-[9.5px] text-rose-300 pt-0.5">
+            🚨 service_role 노출 시 RLS가 100% 무력화되어 관리자 권한 탈취!
+          </div>
+        </div>
+
+        <ul class="text-[11px] text-slate-300 space-y-0.5 leading-normal">
+          <li>&bull; <strong class="text-white">규칙:</strong> 프론트엔드는 반드시 <code class="font-mono text-emerald-300">anon key</code> + 유저 JWT 세션으로만 접속.</li>
+        </ul>
+      </div>
+      <div class="text-[10px] text-purple-400 font-mono border-t border-slate-800/80 pt-1 mt-2">
+        ⚠️ service_role 키는 오직 백엔드 서버 환경변수에만 존재해야 함
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Takeaway -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 bg-slate-900/80">
+    <div class="flex items-center gap-2">
+      <span class="text-emerald-400 font-bold">🛡️ DB 가드레일 골든 룰:</span>
+      <span class="text-slate-200">"테이블 생성 시 <code class="bg-slate-800 px-1 py-0.5 rounded text-emerald-300">ENABLE RLS</code>와 <code class="bg-slate-800 px-1 py-0.5 rounded text-emerald-300">auth.uid() = user_id</code> 정책이 없으면 CI 파이프라인에서 커밋 거부."</span>
+    </div>
+    <span class="text-slate-500 font-bold text-[11px]">Slide 81</span>
+  </div>
+</section>

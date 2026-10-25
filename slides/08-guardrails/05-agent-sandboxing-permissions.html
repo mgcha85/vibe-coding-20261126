@@ -1,0 +1,116 @@
+<section class="slide flex flex-col justify-between" data-title="8.4 에이전트 샌드박스 & 권한 통제">
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-semibold">Chapter 08. 가드레일 &middot; 8.4 에이전트 런타임 제어</span>
+      <span class="text-[11px] font-mono text-sky-300 bg-sky-950/80 px-2 py-0.5 rounded border border-sky-800/40">Sandbox &amp; Permission Gate</span>
+    </div>
+    <h2 class="text-2xl md:text-3xl font-black text-white mt-0.5">에이전트 실행 격리: 샌드박스(Sandbox)와 3단계 권한 게이트</h2>
+    <p class="text-xs text-slate-300 mt-0.5">
+      AI 에이전트에게 내 호스트 OS의 루트(Root) 터미널을 열어주는 것은 낯선 외주 개발자에게 집 열쇠를 통째로 건네는 것과 같습니다.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-3 gap-3.5 my-auto">
+    <!-- Pillar 1: Bare-metal vs Sandbox -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-rose-500 bg-slate-950/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-rose-400 font-bold uppercase">LEVEL 01. 격리 아키텍처</span>
+          <span class="text-[10px] font-mono text-rose-300 bg-rose-950/80 px-1.5 py-0.5 rounded border border-rose-800/40">호스트 보호</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">컨테이너 기반 샌드박스 격리</h3>
+        <p class="text-[11.5px] text-slate-300 leading-relaxed mb-2">
+          에이전트가 실행하는 모든 쉘 커맨드는 호스트 PC가 아니라 <strong>도커(Docker) 컨테이너 또는 마이크로VM</strong> 내부에서만 돌도록 가둡니다.
+        </p>
+
+        <div class="bg-slate-900/90 rounded p-2 font-mono text-[10px] border border-slate-800 space-y-1 mb-2">
+          <div class="text-slate-500"># 격리 샌드박스 실행 제약 3대 원칙</div>
+          <div class="text-emerald-400">1. 파일 마운트: 현재 작업 디렉토리만 마운트</div>
+          <div class="text-sky-300">2. 네트워크 제한: 로컬 사내 인트라넷 차단</div>
+          <div class="text-rose-400">3. Non-root 유저: sudo 권한 원천 박탈</div>
+        </div>
+
+        <ul class="text-[11px] text-slate-300 space-y-0.5 leading-normal">
+          <li>&bull; <strong class="text-white">효과:</strong> AI가 실수로 <code class="font-mono text-rose-300">rm -rf /</code>를 쳐도 샌드박스 컨테이너만 죽고 호스트는 100% 안전.</li>
+        </ul>
+      </div>
+      <div class="text-[10px] text-rose-400 font-mono border-t border-slate-800/80 pt-1 mt-2">
+        ✓ 내 맥북/PC의 홈 디렉토리(~/.ssh, 키체인) 접근 원천 봉쇄
+      </div>
+    </div>
+
+    <!-- Pillar 2: 3-Tier Command Permission Gate -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-sky-400 bg-slate-950/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-sky-400 font-bold uppercase">LEVEL 02. 명령어 3단계 분류</span>
+          <span class="text-[10px] font-mono text-sky-300 bg-sky-950/80 px-1.5 py-0.5 rounded border border-sky-800/40">권한 등급제</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">안전 / 민감 / 파괴적 커맨드 통제</h3>
+        <p class="text-[11.5px] text-slate-300 leading-relaxed mb-2">
+          모든 명령을 일괄 허용하거나 일괄 차단하지 않고, 위험도에 따라 3단계로 차등 제어하여 <strong>개발 속도와 안전의 균형</strong>을 잡습니다.
+        </p>
+
+        <div class="bg-slate-900/90 rounded p-2 font-mono text-[9.5px] border border-slate-800 space-y-1 mb-2">
+          <div class="flex justify-between items-center text-slate-300">
+            <span class="text-emerald-400 font-bold">🟢 Safe (자동 승인)</span>
+            <span class="text-slate-400">ls, git status, cargo check</span>
+          </div>
+          <div class="flex justify-between items-center text-slate-300">
+            <span class="text-amber-400 font-bold">🟡 Sensitive (네트워크)</span>
+            <span class="text-slate-400">curl, uv pip install, git fetch</span>
+          </div>
+          <div class="flex justify-between items-center text-slate-300">
+            <span class="text-rose-400 font-bold">🔴 Destructive (결재)</span>
+            <span class="text-rose-300">rm, drop, kill, git push --force</span>
+          </div>
+        </div>
+
+        <ul class="text-[11px] text-slate-300 space-y-0.5 leading-normal">
+          <li>&bull; <strong class="text-white">Human-in-the-Loop:</strong> 빨간색 등급은 인간의 명시적 클릭(승인) 없이는 실행 중단.</li>
+        </ul>
+      </div>
+      <div class="text-[10px] text-sky-400 font-mono border-t border-slate-800/80 pt-1 mt-2">
+        ✓ 일상적 조회는 0초 통과, 치명적 변경은 브레이크 작동
+      </div>
+    </div>
+
+    <!-- Pillar 3: Behavioral Rules Injection -->
+    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-950/90">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-emerald-400 font-bold uppercase">LEVEL 03. 룰셋 주입</span>
+          <span class="text-[10px] font-mono text-emerald-300 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-800/40">AGENTS.md 규칙</span>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1">에이전트 행동 지침(Guardrail Rules)</h3>
+        <p class="text-[11.5px] text-slate-300 leading-relaxed mb-2">
+          에이전트의 뇌(LLM)에 프로젝트 착수 전부터 "절대 하지 말아야 할 행위"를 불변의 시스템 규칙으로 못 박아둡니다.
+        </p>
+
+        <div class="bg-slate-900/90 rounded p-2 font-mono text-[9.5px] border border-slate-800 space-y-0.5 mb-2">
+          <div class="text-slate-500"># AGENTS.md / .cursorrules 보안 규칙</div>
+          <div class="text-rose-300 font-bold">- NEVER edit .env files directly.</div>
+          <div class="text-rose-300 font-bold">- NEVER run git push with --force.</div>
+          <div class="text-amber-300">- ASK before adding external dependencies.</div>
+          <div class="text-emerald-300">- ALWAYS verify DB migration with RLS.</div>
+        </div>
+
+        <ul class="text-[11px] text-slate-300 space-y-0.5 leading-normal">
+          <li>&bull; <strong class="text-white">컨텍스트 고정:</strong> 모델이 딴짓을 하려 할 때마다 룰이 강력한 억제력 발휘.</li>
+        </ul>
+      </div>
+      <div class="text-[10px] text-emerald-400 font-mono border-t border-slate-800/80 pt-1 mt-2">
+        ✓ 프롬프트 단계(뇌)와 런타임 단계(손)의 2중 통제선 구축
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Takeaway -->
+  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 bg-slate-900/80">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-400 font-bold">🛡️ 권한의 대원칙:</span>
+      <span class="text-slate-200">"에이전트에게 필요한 것은 '무제한 권한'이 아니라 '작업 목적에 꼭 맞는 최소 권한(Least Privilege)'뿐이다."</span>
+    </div>
+    <span class="text-slate-500 font-bold text-[11px]">Slide 83</span>
+  </div>
+</section>
