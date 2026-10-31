@@ -1,0 +1,46 @@
+# .github/workflows/security-gates.yml
+name: Security & Quality Gates
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+
+jobs:
+  security-audit:
+    name: 4-Tier Automated Security Gates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Gate 1: Secret Leaks Scanning
+      - name: Gate 1 - Gitleaks Secret Scanner
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Gate 2: SAST Code Vulnerability Scan
+      - name: Gate 2 - SAST Vulnerability Analysis (Ruff Bandit Rules)
+        run: |
+          pip install ruff
+          ruff check --select S . || echo "::warning::Security warnings detected in Python code"
+
+      # Gate 3: Dependency Security Review (on Pull Requests)
+      - name: Gate 3 - Dependency Security Review
+        if: github.event_name == 'pull_request'
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: high
+
+      # Gate 4: Verify No Untracked .env Files
+      - name: Gate 4 - Ensure .env is never tracked in Git
+        run: |
+          if git ls-files | grep -E '^\.env(\..+)?$'; then
+            echo "::error::CRITICAL: Tracked .env file detected in Git repository!"
+            exit 1
+          fi
+          echo "Verified: No .env secret files tracked in Git."

@@ -1,0 +1,27 @@
+# ==============================================================================
+# .env.example (Committed to Git)
+# DUMMY TEMPLATE ONLY - NEVER PUT REAL PRODUCTION KEYS OR SECRETS HERE
+# ==============================================================================
+
+# Application Environment (dev | prod)
+APP_ENV=dev
+PORT=8080
+
+# Supabase BaaS Configuration
+# PUBLIC / CLIENT KEYS (Safe to expose if RLS is enabled):
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-ref.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+# PRIVATE BACKEND KEYS (NEVER PREFIX WITH NEXT_PUBLIC_ OR VITE_):
+SUPABASE_SERVICE_ROLE_KEY=ey_never_expose_this_to_frontend...
+
+# Payment Gateways (Toss / Stripe / PayPal)
+# CLIENT KEYS (Publicly visible in browser):
+VITE_TOSS_CLIENT_KEY=test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq
+# SECRET KEYS (Backend API Only):
+TOSS_SECRET_KEY=test_sk_Z1aOwRO7kgmg0W0k6q8rLzN97Eoq
+STRIPE_SECRET_KEY=sk_test_replace_with_backend_only_key
+
+# AI LLM Provider Keys (Backend / Agent API Only)
+GOOGLE_API_KEY=AIzaSy_dummy_key_replace_in_local_env
+ANTHROPIC_API_KEY=sk-ant-api03-dummy_key_replace
