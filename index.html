@@ -144,7 +144,7 @@
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1v4m0-4h-4m4 4l-5-5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
           <span>전체화면 [F]</span>
         </button>
-        <span id="slideCounter" class="text-sky-400 font-bold font-mono">01 / 89</span>
+        <span id="slideCounter" class="text-sky-400 font-bold font-mono">01 / 90</span>
       </div>
     </header>
 
@@ -8266,12 +8266,205 @@
   </div>
 </section>
 
-      <!-- [COMPONENT] 06-cost/03-caveman-and-ponytail-skills.html -->
-<section class="slide flex flex-col justify-between" data-title="6.2 군더더기 &amp; 과잉 방지 : caveman &amp; ponytail">
+      <!-- [COMPONENT] 06-cost/03-context-window-assembly.html -->
+<section class="slide flex flex-col justify-between" data-title="6.2 토큰의 실체 : 컨텍스트 윈도우 조립 파이프라인">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
-      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.2 토큰 다이어트 스킬</span>
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.2 토큰의 실체와 프롬프트 조립 구조</span>
+      <span class="px-2.5 py-0.5 rounded bg-cyan-950/80 border border-cyan-600/50 text-cyan-300 font-mono text-[11px] font-bold">
+        CONTEXT WINDOW ASSEMBLY &middot; TOKEN PIPELINE
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">토큰의 실체 : 1개 빈 문서에 조립되는 5대 컨텍스트 파이프라인</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      LLM은 이전 대화를 스스로 기억하지 못하는 완전한 <strong>상태 비저장(Stateless)</strong> 엔진입니다. 매 턴마다 <strong>'단 하나의 빈 문서'</strong>에 헌법, 규칙, 스킬, 압축 이력, 질문이 실시간으로 조립되어 API로 전송됩니다.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+    
+    <!-- LEFT: 5 Source Building Blocks (5 cols) -->
+    <div class="col-span-5 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-[11px] font-mono text-cyan-400 font-bold uppercase">📦 5대 독립 원천 자산 (Sources)</span>
+          <span class="text-[9.5px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Modular Inputs</span>
+        </div>
+
+        <div class="space-y-1.5 text-xs font-mono">
+          <!-- Block 1: AGENTS.md -->
+          <div class="p-2 rounded bg-slate-950 border border-sky-500/40 flex items-center justify-between group hover:border-sky-400 transition-colors">
+            <div class="flex items-center gap-2">
+              <span class="text-base">📜</span>
+              <div>
+                <div class="text-sky-300 font-bold text-[11px]">1. AGENTS.md</div>
+                <div class="text-[10px] text-slate-400">프로젝트 헌법, 아키텍처, 데이터 계약</div>
+              </div>
+            </div>
+            <span class="text-[10px] text-sky-400 font-bold">불변 헌법 ➔</span>
+          </div>
+
+          <!-- Block 2: rules -->
+          <div class="p-2 rounded bg-slate-950 border border-amber-500/40 flex items-center justify-between group hover:border-amber-400 transition-colors">
+            <div class="flex items-center gap-2">
+              <span class="text-base">⚖️</span>
+              <div>
+                <div class="text-amber-300 font-bold text-[11px]">2. rules (.cursorrules)</div>
+                <div class="text-[10px] text-slate-400">개발자 행동 지침, .env 보호, 코딩 컨벤션</div>
+              </div>
+            </div>
+            <span class="text-[10px] text-amber-400 font-bold">시스템 규칙 ➔</span>
+          </div>
+
+          <!-- Block 3: Loaded Skills -->
+          <div class="p-2 rounded bg-slate-950 border border-emerald-500/40 flex items-center justify-between group hover:border-emerald-400 transition-colors">
+            <div class="flex items-center gap-2">
+              <span class="text-base">🧩</span>
+              <div>
+                <div class="text-emerald-300 font-bold text-[11px]">3. Triggered Skills</div>
+                <div class="text-[10px] text-slate-400">호출된 SKILL.md만 선별 로드 (Lazy-loaded)</div>
+              </div>
+            </div>
+            <span class="text-[10px] text-emerald-400 font-bold">선택 주입 ➔</span>
+          </div>
+
+          <!-- Block 4: Compacted History -->
+          <div class="p-2 rounded bg-slate-950 border border-purple-500/40 flex items-center justify-between group hover:border-purple-400 transition-colors">
+            <div class="flex items-center gap-2">
+              <span class="text-base">🗜️</span>
+              <div>
+                <div class="text-purple-300 font-bold text-[11px]">4. Compacted History</div>
+                <div class="text-[10px] text-slate-400">이전 턴 요약본 (불렛 포인트 &amp; 세션 요약)</div>
+              </div>
+            </div>
+            <span class="text-[10px] text-purple-400 font-bold">압축 이력 ➔</span>
+          </div>
+
+          <!-- Block 5: Current Question -->
+          <div class="p-2 rounded bg-slate-950 border border-rose-500/40 flex items-center justify-between group hover:border-rose-400 transition-colors">
+            <div class="flex items-center gap-2">
+              <span class="text-base">💬</span>
+              <div>
+                <div class="text-rose-300 font-bold text-[11px]">5. Current Turn (질문+로그)</div>
+                <div class="text-[10px] text-slate-400">이번 턴 프롬프트 + 터미널 에러/코드 diff</div>
+              </div>
+            </div>
+            <span class="text-[10px] text-rose-400 font-bold">동적 꼬리 ➔</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-slate-950 border border-slate-800 text-[10.5px] text-slate-300 leading-snug mt-2">
+        💡 <strong class="text-cyan-300">토큰의 진실:</strong> 5개 자산이 각각 존재하는 것이 아니라, 에이전트 런타임이 하나의 거대한 텍스트 스트림으로 <strong>단일 합성</strong>하여 LLM 엔드포인트로 보냅니다.
+      </div>
+    </div>
+
+    <!-- RIGHT: The Assembled Single Document (7 cols) -->
+    <div class="col-span-7 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">📄</span>
+            <span class="text-[11px] font-mono text-white font-bold uppercase">The Assembled Context Window (1회 API 요청 전문)</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">Prompt Caching Boundary</span>
+        </div>
+
+        <!-- Document Metaphor Box -->
+        <div class="rounded-lg bg-slate-950 border-2 border-slate-700 p-2.5 font-mono text-[10.5px] space-y-2 shadow-2xl relative">
+          
+          <!-- Section 1: Cached System Header (90% Discount) -->
+          <div class="p-2 rounded bg-cyan-950/40 border border-cyan-500/50 relative">
+            <div class="flex items-center justify-between text-cyan-300 font-bold text-[10.5px] mb-1">
+              <span class="flex items-center gap-1">🔒 [1. CACHED PREFIX] 시스템 헌법 및 도구 스키마</span>
+              <span class="text-[9px] bg-cyan-900/80 px-1.5 py-0.2 rounded text-cyan-200">KV-Cache 적중 (90% OFF)</span>
+            </div>
+            <div class="text-[9.5px] text-slate-400 space-y-0.5">
+              <div>&lt;system&gt; You are Antigravity / Claude Code agent... &lt;/system&gt;</div>
+              <div class="text-sky-300">&lt;constitution&gt; AGENTS.md : Data /mnt/data/finance, uv sync... &lt;/constitution&gt;</div>
+              <div class="text-amber-300">&lt;rules&gt; .cursorrules : NEVER commit .env, use Svelte/Go... &lt;/rules&gt;</div>
+            </div>
+            <div class="absolute -right-2 top-2 translate-x-full hidden xl:block">
+              <span class="text-[9px] text-cyan-400 font-bold bg-slate-900 border border-cyan-800 px-1 py-0.5 rounded">고정 앵커</span>
+            </div>
+          </div>
+
+          <!-- Boundary Indicator Line -->
+          <div class="flex items-center gap-2 text-[9px] text-cyan-400 font-mono py-0.5">
+            <div class="flex-1 border-t border-dashed border-cyan-500/60"></div>
+            <span class="bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-500/40 text-cyan-300 font-bold">
+              ⚡ 캐시 분할선 (이후 블록만 동적 연산)
+            </span>
+            <div class="flex-1 border-t border-dashed border-cyan-500/60"></div>
+          </div>
+
+          <!-- Section 2: Selected Skills & Working Context -->
+          <div class="p-2 rounded bg-emerald-950/30 border border-emerald-500/40">
+            <div class="flex items-center justify-between text-emerald-300 font-bold text-[10.5px] mb-1">
+              <span class="flex items-center gap-1">🧩 [2. DYNAMIC SKILLS] 활성화된 절차 지식</span>
+              <span class="text-[9px] text-emerald-400 bg-emerald-950 px-1.5 py-0.2 rounded">필요 시만 주입</span>
+            </div>
+            <div class="text-[9.5px] text-slate-300">
+              &lt;active_skill name="slide-deck-engineering"&gt;<br>
+              &nbsp;&nbsp;16:9 다크 Bento 테마 규칙, SVG 스트림 패턴 명세서 주입...<br>
+              &lt;/active_skill&gt;
+            </div>
+          </div>
+
+          <!-- Section 3: Compacted Conversation History -->
+          <div class="p-2 rounded bg-purple-950/30 border border-purple-500/40">
+            <div class="flex items-center justify-between text-purple-300 font-bold text-[10.5px] mb-1">
+              <span class="flex items-center gap-1">🗜️ [3. COMPACTED HISTORY] 세션 요약 불렛</span>
+              <span class="text-[9px] text-purple-300 bg-purple-950 px-1.5 py-0.2 rounded">토큰 85% 압축</span>
+            </div>
+            <div class="text-[9.5px] text-slate-300 leading-tight">
+              &lt;context_summary&gt;<br>
+              &nbsp;&bull; Slide 61~62 구축 완료 (Prompt Caching &amp; Routing 전략 반영)<br>
+              &nbsp;&bull; 사용자 피드백: "토큰 동작 원리 조립 다이어그램 추가 요청"<br>
+              &lt;/context_summary&gt;
+            </div>
+          </div>
+
+          <!-- Section 4: Current Turn Payload -->
+          <div class="p-2 rounded bg-rose-950/30 border border-rose-500/50">
+            <div class="flex items-center justify-between text-rose-300 font-bold text-[10.5px] mb-1">
+              <span class="flex items-center gap-1">💬 [4. ACTIVE TURN] 이번 턴의 실행 단위</span>
+              <span class="text-[9px] text-rose-300 bg-rose-950 px-1.5 py-0.2 rounded">정가 과금 (1k~2k)</span>
+            </div>
+            <div class="text-[9.5px] text-slate-200">
+              &lt;user_request&gt; "62페이지 다음에 컨텍스트 조립 해부 슬라이드 추가해줘" &lt;/user_request&gt;<br>
+              &lt;tool_observation&gt; build.py stdout: 89 slides compiled successfully &lt;/tool_observation&gt;
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="p-2 rounded bg-indigo-950/40 border border-indigo-800/40 text-[10.5px] font-mono text-indigo-300 flex items-center justify-between mt-2">
+        <span>💡 <strong class="text-white">비용 통제의 황금률:</strong> 헌법(1)은 상단에 고정해 캐시로 먹고, 이력(3)은 불렛으로 줄이며, 질문(4)만 맨 끝에 붙인다.</span>
+        <span class="text-emerald-400 font-bold text-[10px]">Cost -85%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+    <div class="flex items-center gap-2">
+      <span class="text-cyan-400 font-bold">📜 토큰 동작의 본질:</span>
+      <span class="text-slate-200">에이전트의 기억은 마법이 아니라, 매 턴마다 <strong>'1장의 빈 문서에 헌법 + 스킬 + 압축 이력 + 질문을 모듈러 합성'</strong>하는 파이프라인입니다.</span>
+    </div>
+    <span class="text-cyan-400 font-bold text-[11px]">Slide 63</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 06-cost/04-caveman-and-ponytail-skills.html -->
+<section class="slide flex flex-col justify-between" data-title="6.3 군더더기 &amp; 과잉 방지 : caveman &amp; ponytail">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.3 토큰 다이어트 스킬</span>
       <span class="px-2.5 py-0.5 rounded bg-amber-950/80 border border-amber-600/50 text-amber-300 font-mono text-[11px] font-bold">
         CAVEMAN &middot; PONYTAIL SKILLS
       </span>
@@ -8404,16 +8597,16 @@
       <span class="text-amber-400 font-bold">🚀 출력과 생성의 다이어트:</span>
       <span class="text-slate-200"><strong>caveman으로 AI의 입을 줄이고</strong>, <strong>ponytail로 AI의 손을 줄여</strong> 토큰과 코드베이스를 가볍게 유지하십시오.</span>
     </div>
-    <span class="text-amber-400 font-bold text-[11px]">Slide 63</span>
+    <span class="text-amber-400 font-bold text-[11px]">Slide 64</span>
   </div>
 </section>
 
-      <!-- [COMPONENT] 06-cost/04-ast-skeleton-and-structural-context.html -->
-<section class="slide flex flex-col justify-between" data-title="6.3 AST 구조 &amp; Tree-sitter 스켈레톤 압축">
+      <!-- [COMPONENT] 06-cost/05-ast-skeleton-and-structural-context.html -->
+<section class="slide flex flex-col justify-between" data-title="6.4 AST 구조 &amp; Tree-sitter 스켈레톤 압축">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
-      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.3 구조적 컨텍스트 엔지니어링</span>
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.4 구조적 컨텍스트 엔지니어링</span>
       <span class="px-2.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-600/50 text-emerald-300 font-mono text-[11px] font-bold">
         AST SKELETON &middot; TREE-SITTER &middot; AST-GREP
       </span>
@@ -8552,16 +8745,16 @@
       <span class="text-emerald-400 font-bold">🌿 AST 스켈레톤의 미학:</span>
       <span class="text-slate-200">파일 전체를 무지성으로 읽히지 마십시오. <strong>시그니처만 추출해 주입하면 토큰 비용은 1/50로 줄고 모델의 이해도는 100% 상승</strong>합니다.</span>
     </div>
-    <span class="text-emerald-400 font-bold text-[11px]">Slide 64</span>
+    <span class="text-emerald-400 font-bold text-[11px]">Slide 65</span>
   </div>
 </section>
 
-      <!-- [COMPONENT] 06-cost/05-multi-turn-bullet-compaction.html -->
-<section class="slide flex flex-col justify-between" data-title="6.4 멀티턴 토큰 폭증 제어 : Bullet Point 세션 압축">
+      <!-- [COMPONENT] 06-cost/06-multi-turn-bullet-compaction.html -->
+<section class="slide flex flex-col justify-between" data-title="6.5 멀티턴 토큰 폭증 제어 : Bullet Point 세션 압축">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
-      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.4 대화 이력 압축 기술</span>
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.5 대화 이력 압축 기술</span>
       <span class="px-2.5 py-0.5 rounded bg-purple-950/80 border border-purple-600/50 text-purple-300 font-mono text-[11px] font-bold">
         BULLET COMPACTION &middot; SESSION CHECKPOINTING
       </span>
@@ -8687,16 +8880,16 @@
       <span class="text-purple-400 font-bold">🚀 멀티턴 압축의 핵심:</span>
       <span class="text-slate-200">하나의 대화창을 붙잡고 늘어지지 마십시오. <strong>20턴마다 불렛 포인트로 압축해 새 세션으로 넘기는 것</strong>이 토큰을 99% 아끼는 비결입니다.</span>
     </div>
-    <span class="text-purple-400 font-bold text-[11px]">Slide 65</span>
+    <span class="text-purple-400 font-bold text-[11px]">Slide 66</span>
   </div>
 </section>
 
-      <!-- [COMPONENT] 06-cost/06-atomic-source-tree-standard.html -->
-<section class="slide flex flex-col justify-between" data-title="6.5 소스트리 표준화 &amp; 원자적 함수 분할">
+      <!-- [COMPONENT] 06-cost/07-atomic-source-tree-standard.html -->
+<section class="slide flex flex-col justify-between" data-title="6.6 소스트리 표준화 &amp; 원자적 함수 분할">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
-      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.5 코드 아키텍처 다이어트</span>
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.6 코드 아키텍처 다이어트</span>
       <span class="px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-600/50 text-sky-300 font-mono text-[11px] font-bold">
         ATOMIC MODULARIZATION &middot; 200-LINE RULE
       </span>
@@ -8839,16 +9032,16 @@
       <span class="text-sky-400 font-bold">✂️ 원자적 아키텍처의 위력:</span>
       <span class="text-slate-200">파일을 200줄 이하로 쪼개는 순간, <strong>에이전트의 변경 오차는 0이 되고 입출력 토큰은 기하급수적으로 줄어듭니다</strong>.</span>
     </div>
-    <span class="text-sky-400 font-bold text-[11px]">Slide 66</span>
+    <span class="text-sky-400 font-bold text-[11px]">Slide 67</span>
   </div>
 </section>
 
-      <!-- [COMPONENT] 06-cost/07-advanced-token-diet-toolkit.html -->
-<section class="slide flex flex-col justify-between" data-title="6.6 실전 토큰 다이어트 툴킷 : Grep &amp; 로그 Truncation">
+      <!-- [COMPONENT] 06-cost/08-advanced-token-diet-toolkit.html -->
+<section class="slide flex flex-col justify-between" data-title="6.7 실전 토큰 다이어트 툴킷 : Grep &amp; 로그 Truncation">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
-      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.6 실전 토큰 세이빙 도구</span>
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.7 실전 토큰 세이빙 도구</span>
       <span class="px-2.5 py-0.5 rounded bg-cyan-950/80 border border-cyan-600/50 text-cyan-300 font-mono text-[11px] font-bold">
         SELECTIVE GREP &middot; LOG TRUNCATION &middot; REPOMIX
       </span>
@@ -8959,17 +9152,17 @@
       <span class="text-cyan-400 font-bold">🛠️ 실무 도구 테이크어웨이:</span>
       <span class="text-slate-200"><strong>Grep 표적 타격 + 로그 Truncation + Repomix 필터링</strong>의 3종 도구로 매 턴 낭비되는 수만 토큰을 차단하십시오.</span>
     </div>
-    <span class="text-cyan-400 font-bold text-[11px]">Slide 67</span>
+    <span class="text-cyan-400 font-bold text-[11px]">Slide 68</span>
   </div>
 </section>
 
-      <!-- [COMPONENT] 06-cost/08-hands-on-cost-cut.html -->
-<section class="slide flex flex-col justify-between" data-title="6.7 실전 실습 : caveman &amp; AST 스켈레톤 실습">
+      <!-- [COMPONENT] 06-cost/09-hands-on-cost-cut.html -->
+<section class="slide flex flex-col justify-between" data-title="6.8 실전 실습 : caveman &amp; AST 스켈레톤 실습">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
       <div>
-        <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 실전 실습 &middot; 6.7 토큰 다이어트 세팅</span>
+        <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 실전 실습 &middot; 6.8 토큰 다이어트 세팅</span>
         <h2 class="text-3xl font-black text-white mt-1">실전 팁 &amp; 바로바로 실습 : caveman 장착 &amp; AST 스켈레톤 추출</h2>
       </div>
       <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/40 text-xs font-mono font-bold animate-pulse">
@@ -9053,16 +9246,16 @@
       <span class="text-amber-400 font-bold">🚀 실습 테이크어웨이:</span>
       <span class="text-slate-200">비용 최적화는 단순히 '돈을 아끼는 기술'이 아니라 <strong>'AI를 마음껏 무제한으로 굴릴 수 있게 만드는 원동력'</strong>입니다.</span>
     </div>
-    <span class="text-cyan-400 font-bold text-[11px]">Chapter 06 실습 &middot; Slide 68</span>
+    <span class="text-cyan-400 font-bold text-[11px]">Chapter 06 실습 &middot; Slide 69</span>
   </div>
 </section>
 
-      <!-- [COMPONENT] 06-cost/09-chapter-summary.html -->
+      <!-- [COMPONENT] 06-cost/10-chapter-summary.html -->
 <section class="slide flex flex-col justify-between" data-title="Ch 06 요약 : 비용 통제 5대 방어선 완결">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
-      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.8 챕터 총정리</span>
+      <span class="text-cyan-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 비용 &middot; 6.9 챕터 총정리</span>
       <span class="px-2.5 py-0.5 rounded bg-cyan-950/80 border border-cyan-700/50 text-cyan-300 font-mono text-[11px] font-bold">
         TOKEN DEFENSE MATRIX &middot; SUMMARY
       </span>
@@ -9224,7 +9417,7 @@
       <span class="text-slate-200">비용 통제 5대 방어선이 갖춰졌습니다. 다음은 <strong>Vercel &middot; Supabase &middot; Stripe 기반 1시간 글로벌 런칭</strong>입니다.</span>
     </div>
     <div class="flex items-center gap-3">
-      <span class="text-cyan-400 font-bold text-[11px]">Chapter 06 Complete &middot; Slide 69</span>
+      <span class="text-cyan-400 font-bold text-[11px]">Chapter 06 Complete &middot; Slide 70</span>
       <span class="text-amber-400 font-bold">Next: Ch 07. 글로벌 런칭 ➔</span>
     </div>
   </div>
@@ -9394,7 +9587,7 @@
       <span class="text-sky-400 font-bold">💡 바이브 코딩 실전 팁:</span>
       <span class="text-slate-200">AI에게 <em>"인증 백엔드를 짜달라"</em>고 하지 말고, <strong>"Supabase Auth SDK를 사용해 SNS 로그인 버튼 및 보호 라우트를 작성해달라"</strong>고 지시하십시오.</span>
     </div>
-    <span class="text-sky-400 font-bold text-[11px]">Slide 71</span>
+    <span class="text-sky-400 font-bold text-[11px]">Slide 72</span>
   </div>
 </section>
 
@@ -9517,7 +9710,7 @@
       <span class="text-blue-400 font-bold">💡 실무 원칙:</span>
       <span class="text-slate-200">결제 완료 처리는 <strong>브라우저 프론트엔드가 아닌, PG사 Webhook 비동기 콜백</strong>에서 DB 트랜잭션으로 처리해야 유저가 창을 닫아도 안전합니다.</span>
     </div>
-    <span class="text-blue-400 font-bold text-[11px]">Slide 72</span>
+    <span class="text-blue-400 font-bold text-[11px]">Slide 73</span>
   </div>
 </section>
 
@@ -9667,7 +9860,7 @@
       <span class="text-emerald-400 font-bold">💡 아키텍처 공식:</span>
       <span class="text-slate-200">프론트는 <strong>Vercel</strong>, 간헐적 API는 <strong>GCP Cloud Run</strong>, 24시간 실시간 데몬/봇은 <strong>VPS(Podman)</strong>가 최적의 분업 조합입니다.</span>
     </div>
-    <span class="text-emerald-400 font-bold text-[11px]">Slide 73</span>
+    <span class="text-emerald-400 font-bold text-[11px]">Slide 74</span>
   </div>
 </section>
 
@@ -9820,7 +10013,7 @@
       <span class="text-purple-400 font-bold">💡 실무 결론:</span>
       <span class="text-slate-200">초기 서비스 런칭 시 <strong>'Vercel + Cloud Run + Supabase' 조합이면 월 트래픽 10만 명까지 단 1원도 내지 않고</strong> 상용 운영이 가능합니다.</span>
     </div>
-    <span class="text-purple-400 font-bold text-[11px]">Slide 74</span>
+    <span class="text-purple-400 font-bold text-[11px]">Slide 75</span>
   </div>
 </section>
 
@@ -9937,7 +10130,7 @@
       <span class="text-sky-400 font-bold">💡 실무 원칙:</span>
       <span class="text-slate-200">배포 서버 접속 권한은 <strong>개인 비밀번호가 아닌 SSH 개인키를 GitHub Secrets에 등록</strong>하여 CI 러너만 접근하도록 엄격히 제한하십시오.</span>
     </div>
-    <span class="text-sky-400 font-bold text-[11px]">Slide 75</span>
+    <span class="text-sky-400 font-bold text-[11px]">Slide 76</span>
   </div>
 </section>
 
@@ -10131,7 +10324,7 @@
       <span class="text-emerald-400 font-bold">💡 추천 전략:</span>
       <span class="text-slate-200">기본적으로 <strong>GitHub Actions의 월 2,000분 무료 러너</strong>를 사용하고, 프론트는 <strong>Vercel 자동 빌드</strong>에 맡기는 것이 가장 깔끔합니다.</span>
     </div>
-    <span class="text-emerald-400 font-bold text-[11px]">Slide 76</span>
+    <span class="text-emerald-400 font-bold text-[11px]">Slide 77</span>
   </div>
 </section>
 
@@ -10302,7 +10495,7 @@
       <span class="text-amber-400 font-bold">💡 실습 핵심:</span>
       <span class="text-slate-200">로컬 터미널에서 서버에 직접 접속하지 마십시오. <strong>모든 인프라 변경과 배포는 Git Commit과 GitHub Actions</strong>를 통해서만 실행되어야 안전합니다.</span>
     </div>
-    <span class="text-amber-400 font-bold text-[11px]">Slide 77</span>
+    <span class="text-amber-400 font-bold text-[11px]">Slide 78</span>
   </div>
 </section>
 
@@ -10480,7 +10673,7 @@
       <span class="text-sky-400 font-bold">🏁 Chapter 07 결론:</span>
       <span class="text-slate-200">좋은 인프라는 개발자가 인프라를 생각하지 않게 만드는 것입니다. <strong>코드 작성에만 몰입하고, 나머지는 검증된 BaaS와 CI/CD에 위임</strong>하십시오.</span>
     </div>
-    <span class="text-sky-400 font-bold text-[11px]">Slide 78</span>
+    <span class="text-sky-400 font-bold text-[11px]">Slide 79</span>
   </div>
 </section>
 
@@ -10640,7 +10833,7 @@
       <span class="text-rose-400 font-bold">🛡️ 제로 트러스트 원칙:</span>
       <span class="text-slate-200">"AI가 짠 코드는 물론, AI의 도구 실행 행위 자체도 악성 침투 가능성을 전제하고 통제해야 한다."</span>
     </div>
-    <span class="text-slate-500 font-bold text-[11px]">Slide 80</span>
+    <span class="text-slate-500 font-bold text-[11px]">Slide 81</span>
   </div>
 </section>
 
@@ -10759,7 +10952,7 @@
       <span class="text-emerald-400 font-bold">🛡️ DB 가드레일 골든 룰:</span>
       <span class="text-slate-200">"테이블 생성 시 <code class="bg-slate-800 px-1 py-0.5 rounded text-emerald-300">ENABLE RLS</code>와 <code class="bg-slate-800 px-1 py-0.5 rounded text-emerald-300">auth.uid() = user_id</code> 정책이 없으면 CI 파이프라인에서 커밋 거부."</span>
     </div>
-    <span class="text-slate-500 font-bold text-[11px]">Slide 81</span>
+    <span class="text-slate-500 font-bold text-[11px]">Slide 82</span>
   </div>
 </section>
 
@@ -10882,7 +11075,7 @@
       <span class="text-amber-400 font-bold">🛡️ 시크릿 철칙:</span>
       <span class="text-slate-200">"클라이언트 코드에는 오직 퍼블릭 식별자만, 결제 및 AI 모델 호출은 전용 백엔드 API에서만 수행한다."</span>
     </div>
-    <span class="text-slate-500 font-bold text-[11px]">Slide 82</span>
+    <span class="text-slate-500 font-bold text-[11px]">Slide 83</span>
   </div>
 </section>
 
@@ -11000,7 +11193,7 @@
       <span class="text-sky-400 font-bold">🛡️ 권한의 대원칙:</span>
       <span class="text-slate-200">"에이전트에게 필요한 것은 '무제한 권한'이 아니라 '작업 목적에 꼭 맞는 최소 권한(Least Privilege)'뿐이다."</span>
     </div>
-    <span class="text-slate-500 font-bold text-[11px]">Slide 83</span>
+    <span class="text-slate-500 font-bold text-[11px]">Slide 84</span>
   </div>
 </section>
 
@@ -11111,7 +11304,7 @@
       <span class="text-purple-400 font-bold">🛡️ 공급망 철칙:</span>
       <span class="text-slate-200">"새로운 패키지 추가는 '인간의 명시적 승인'을 거치고, 배포는 오직 'Lockfile 무결성 해시'를 통해서만 수행한다."</span>
     </div>
-    <span class="text-slate-500 font-bold text-[11px]">Slide 84</span>
+    <span class="text-slate-500 font-bold text-[11px]">Slide 85</span>
   </div>
 </section>
 
@@ -11212,7 +11405,7 @@
       <span class="text-rose-400 font-bold">🛡️ CI/CD 게이트 철칙:</span>
       <span class="text-slate-200">"4대 보안 게이트 중 단 하나라도 붉은 불(Fail)이 들어오면 <code class="bg-slate-800 px-1 py-0.5 rounded text-rose-300">Merge</code> 버튼은 영구 비활성화된다."</span>
     </div>
-    <span class="text-slate-500 font-bold text-[11px]">Slide 85</span>
+    <span class="text-slate-500 font-bold text-[11px]">Slide 86</span>
   </div>
 </section>
 
@@ -11324,7 +11517,7 @@
       <span class="text-emerald-400 font-bold">🛡️ 5분 적용 결과:</span>
       <span class="text-slate-200">개발자의 추가 코딩 없이, 설정 파일 3개만으로 프로덕션 엔터프라이즈급 보안 가드레일 완성.</span>
     </div>
-    <span class="text-slate-500 font-bold text-[11px]">Slide 86</span>
+    <span class="text-slate-500 font-bold text-[11px]">Slide 87</span>
   </div>
 </section>
 
@@ -11434,7 +11627,7 @@
       <span class="text-emerald-400 font-bold">🛡️ 엔지니어의 최종 책임:</span>
       <span class="text-slate-200">"AI가 10배 빠르게 코드를 짤 때, 엔지니어의 존재 이유는 '가드레일을 세우고 안전을 보증하는 것'이다."</span>
     </div>
-    <span class="text-purple-400 font-bold text-[11px]">Chapter 08 완료</span>
+    <span class="text-purple-400 font-bold text-[11px]">Chapter 08 완료 &middot; Slide 88</span>
   </div>
 </section>
 
