@@ -99,12 +99,12 @@
       border: 1px solid #E5E7EB;
       border-radius: 0.875rem;
       box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
-      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
     .bento-tile:hover {
-      border-color: #2D9BB2;
-      box-shadow: 0 4px 14px -2px rgba(45, 155, 178, 0.15);
-      background: #FFFFFF;
+      background: #FFFFFF !important;
+      border-color: #E5E7EB !important;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04) !important;
+      transform: none !important;
     }
 
     .badge-glow {
@@ -251,6 +251,23 @@
     .slide-viewport .bg-indigo-950\/40 {
       background-color: rgba(45, 155, 178, 0.08) !important;
       border-color: rgba(45, 155, 178, 0.25) !important;
+    }
+
+    /* ==========================================================================
+       ELIMINATE ALL HOVER & DARK-MODE EFFECTS
+       Ensures elements inside slides never darken or revert to dark styles on hover
+       ========================================================================== */
+    #slidesWrapper tr:hover,
+    #slidesWrapper [class*="hover:bg-"]:hover,
+    #slidesWrapper [class*="hover:bg-slate"]:hover,
+    #slidesWrapper [class*="hover:bg-dark"]:hover,
+    #slidesWrapper [class*="hover:bg-indigo"]:hover,
+    #slidesWrapper [class*="hover:bg-purple"]:hover {
+      background-color: transparent !important;
+    }
+
+    #slidesWrapper [class*="hover:border-"]:hover {
+      border-color: inherit !important;
     }
   </style>
 </head>
@@ -2359,7 +2376,7 @@
         </thead>
         <tbody class="divide-y divide-slate-800/50 font-mono text-[9.5px]">
           <!-- Row 1 -->
-          <tr class="hover:bg-slate-900/40 transition-colors">
+          <tr class="transition-colors">
             <td class="py-1.5 px-2 font-bold text-sky-400">1. 개발 방식</td>
             <td class="py-1.5 px-2 text-slate-300 bg-amber-950/10 font-sans">
               말 몇 마디로 1시간 만에 SaaS·게임 완성
@@ -2369,7 +2386,7 @@
             </td>
           </tr>
           <!-- Row 2 -->
-          <tr class="hover:bg-slate-900/40 transition-colors">
+          <tr class="transition-colors">
             <td class="py-1.5 px-2 font-bold text-sky-400">2. 백엔드 구축</td>
             <td class="py-1.5 px-2 text-slate-300 bg-amber-950/10 font-sans">
               "DB와 로그인 서버 전부 짜줘" 하면 완성
@@ -2379,7 +2396,7 @@
             </td>
           </tr>
           <!-- Row 3 -->
-          <tr class="hover:bg-slate-900/40 transition-colors">
+          <tr class="transition-colors">
             <td class="py-1.5 px-2 font-bold text-sky-400">3. 언어 선택</td>
             <td class="py-1.5 px-2 text-slate-300 bg-amber-950/10 font-sans">
               AI가 가장 잘 아는 언어니까 <strong class="text-amber-300">Python</strong> 최고
@@ -2389,7 +2406,7 @@
             </td>
           </tr>
           <!-- Row 4 -->
-          <tr class="hover:bg-slate-900/40 transition-colors">
+          <tr class="transition-colors">
             <td class="py-1.5 px-2 font-bold text-sky-400">4. 비용 / 지연</td>
             <td class="py-1.5 px-2 text-slate-300 bg-amber-950/10 font-sans">
               월 $20 구독료면 무제한 앱 개발
@@ -2399,7 +2416,7 @@
             </td>
           </tr>
           <!-- Row 5 -->
-          <tr class="hover:bg-slate-900/40 transition-colors">
+          <tr class="transition-colors">
             <td class="py-1.5 px-2 font-bold text-sky-400">5. 보안 / 운영</td>
             <td class="py-1.5 px-2 text-slate-300 bg-amber-950/10 font-sans">
               AI가 안전한 프로덕션을 자동 구축
@@ -2409,7 +2426,7 @@
             </td>
           </tr>
           <!-- Row 6 -->
-          <tr class="hover:bg-slate-900/40 transition-colors">
+          <tr class="transition-colors">
             <td class="py-1.5 px-2 font-bold text-sky-400">6. 작업 흐름</td>
             <td class="py-1.5 px-2 text-slate-300 bg-amber-950/10 font-sans">
               단일 채팅창에 기획부터 배포까지 요청
@@ -3061,7 +3078,7 @@
           
           <!-- Google Flow Generated Scene 1: Architecture Blueprint & Flow -->
           <div class="relative rounded-lg overflow-hidden border border-sky-900/60 my-1.5 h-24 group bg-slate-900 shadow-inner">
-            <img src="./slides/02-essence/assets/competency_01_architecture.png" alt="Architecture Blueprint" class="w-full h-full object-cover object-top brightness-90 group-hover:scale-105 group-hover:brightness-100 transition-all duration-300" />
+            <img src="./slides/02-essence/assets/competency_01_architecture.png" alt="Architecture Blueprint" class="w-full h-full object-cover object-top transition-all duration-300" />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-1.5">
               <div class="text-[8px] font-mono text-sky-300 leading-tight drop-shadow">
                 📐 거시 청사진 경계선(Boundary) 위에서만 AI가 모듈을 조립하도록 통제
@@ -3089,7 +3106,7 @@
 
           <!-- Google Flow Generated Scene 3: Skills Guidance Rail & Zero Drift -->
           <div class="relative rounded-lg overflow-hidden border border-purple-900/60 my-1.5 h-24 group bg-slate-900 shadow-inner">
-            <img src="./slides/02-essence/assets/competency_03_specification.png" alt="Skills Guidance Rail" class="w-full h-full object-cover object-center brightness-90 group-hover:scale-105 group-hover:brightness-100 transition-all duration-300" />
+            <img src="./slides/02-essence/assets/competency_03_specification.png" alt="Skills Guidance Rail" class="w-full h-full object-cover object-center transition-all duration-300" />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-1.5">
               <div class="text-[8px] font-mono text-purple-300 leading-tight drop-shadow">
                 📄 Skills·Rules 레이저 가이드 레일 위를 표류(Drift) 없이 질주하는 AI
@@ -3179,7 +3196,7 @@
 
           <!-- Google Flow Generated Scene 2: TDD Test Harness & Self-Healing Loop -->
           <div class="relative rounded-lg overflow-hidden border border-indigo-900/60 my-1.5 h-24 group bg-slate-900 shadow-inner">
-            <img src="./slides/02-essence/assets/competency_02_harness.png" alt="TDD Test Harness Loop" class="w-full h-full object-cover object-center brightness-90 group-hover:scale-105 group-hover:brightness-100 transition-all duration-300" />
+            <img src="./slides/02-essence/assets/competency_02_harness.png" alt="TDD Test Harness Loop" class="w-full h-full object-cover object-center transition-all duration-300" />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-1.5">
               <div class="text-[8px] font-mono text-indigo-300 leading-tight drop-shadow">
                 ⚡ TDD 관문(Scan·Gate)에 부딪힌 AI가 Stderr 피드백 루프로 자가치유
@@ -3207,7 +3224,7 @@
 
           <!-- Google Flow Generated Scene 4: Security Shield & Threat Defense -->
           <div class="relative rounded-lg overflow-hidden border border-emerald-900/60 my-1.5 h-24 group bg-slate-900 shadow-inner">
-            <img src="./slides/02-essence/assets/competency_04_security.png" alt="Security Energy Shield" class="w-full h-full object-cover object-bottom brightness-90 group-hover:scale-105 group-hover:brightness-100 transition-all duration-300" />
+            <img src="./slides/02-essence/assets/competency_04_security.png" alt="Security Energy Shield" class="w-full h-full object-cover object-bottom transition-all duration-300" />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-1.5">
               <div class="text-[8px] font-mono text-emerald-300 leading-tight drop-shadow">
                 🛡️ 엔지니어 관제 콘솔의 통제 하에 전개되는 다층 제로 트러스트 쉴드
@@ -3581,7 +3598,7 @@
       </thead>
       <tbody class="divide-y divide-slate-800/80 text-[12.5px] leading-relaxed">
         <!-- Row 1 -->
-        <tr class="hover:bg-slate-800/40 transition-colors">
+        <tr class="transition-colors">
           <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
             코드 작성 속도
             <span class="block text-[11px] text-slate-400 font-sans font-normal">Coding Velocity</span>
@@ -3601,7 +3618,7 @@
         </tr>
 
         <!-- Row 2 -->
-        <tr class="hover:bg-slate-800/40 transition-colors">
+        <tr class="transition-colors">
           <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
             디버깅 &amp; 검증 루프
             <span class="block text-[11px] text-slate-400 font-sans font-normal">Verification Loop</span>
@@ -3621,7 +3638,7 @@
         </tr>
 
         <!-- Row 3 -->
-        <tr class="hover:bg-slate-800/40 transition-colors">
+        <tr class="transition-colors">
           <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
             실행 성능 (Throughput)
             <span class="block text-[11px] text-slate-400 font-sans font-normal">Runtime Throughput</span>
@@ -3641,7 +3658,7 @@
         </tr>
 
         <!-- Row 4 -->
-        <tr class="hover:bg-slate-800/40 transition-colors">
+        <tr class="transition-colors">
           <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
             메모리 &amp; 인프라 비용
             <span class="block text-[11px] text-slate-400 font-sans font-normal">Infra &amp; Cloud Cost</span>
@@ -3806,7 +3823,7 @@
 
         <div class="space-y-2 text-xs">
           <!-- 1. Latency Amplification -->
-          <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 hover:border-rose-900/40 transition-colors">
+          <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 transition-colors">
             <div class="flex items-center justify-between text-rose-300 font-bold text-[11px] mb-0.5">
               <span>01. 에이전트 다단계 체인 지연</span>
               <span class="text-[9.5px] font-mono bg-rose-950 px-1 py-0.5 rounded">10~30회 연속</span>
@@ -3817,7 +3834,7 @@
           </div>
 
           <!-- 2. Concurrency & GIL -->
-          <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 hover:border-amber-900/40 transition-colors">
+          <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 transition-colors">
             <div class="flex items-center justify-between text-amber-300 font-bold text-[11px] mb-0.5">
               <span>02. GIL 제약과 동시성 메모리 낭비</span>
               <span class="text-[9.5px] font-mono bg-amber-950 px-1 py-0.5 rounded">멀티코어 불능</span>
@@ -3828,7 +3845,7 @@
           </div>
 
           <!-- 3. Infra Cost -->
-          <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 hover:border-cyan-900/40 transition-colors">
+          <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 transition-colors">
             <div class="flex items-center justify-between text-cyan-300 font-bold text-[11px] mb-0.5">
               <span>03. 클라우드 인프라 비용 폭증</span>
               <span class="text-[9.5px] font-mono bg-cyan-950 px-1 py-0.5 rounded">비용의 나비효과</span>
@@ -4013,7 +4030,7 @@
       </thead>
       <tbody class="divide-y divide-slate-800/80 text-[12.5px] leading-relaxed">
         <!-- Row 1 -->
-        <tr class="hover:bg-slate-800/40 transition-colors">
+        <tr class="transition-colors">
           <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
             토큰 효율성
             <span class="block text-[11px] text-slate-400 font-sans font-normal">Context Window</span>
@@ -4031,7 +4048,7 @@
         </tr>
 
         <!-- Row 2 -->
-        <tr class="hover:bg-slate-800/40 transition-colors">
+        <tr class="transition-colors">
           <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
             대규모 리팩토링
             <span class="block text-[11px] text-slate-400 font-sans font-normal">Codebase Scale</span>
@@ -4049,7 +4066,7 @@
         </tr>
 
         <!-- Row 3 -->
-        <tr class="hover:bg-slate-800/40 transition-colors">
+        <tr class="transition-colors">
           <td class="py-3.5 px-5 font-bold text-white bg-slate-950/40">
             배포 &middot; 운영 간결성
             <span class="block text-[11px] text-slate-400 font-sans font-normal">Agentic Deployment</span>
@@ -4344,7 +4361,7 @@
         </thead>
         <tbody class="divide-y divide-slate-800/80 text-[11px] text-slate-200">
           <!-- Old Static -->
-          <tr class="hover:bg-slate-800/40 transition-colors">
+          <tr class="transition-colors">
             <td class="py-2 px-3 font-bold text-rose-400 font-mono">
               Old Static <span class="text-[10px] text-slate-400 block font-normal">(전통 네이티브)</span>
             </td>
@@ -4360,7 +4377,7 @@
           </tr>
 
           <!-- Heavy Static -->
-          <tr class="hover:bg-slate-800/40 transition-colors">
+          <tr class="transition-colors">
             <td class="py-2 px-3 font-bold text-amber-400 font-mono">
               Heavy Static <span class="text-[10px] text-slate-400 block font-normal">(기업 엔터프라이즈)</span>
             </td>
@@ -4376,7 +4393,7 @@
           </tr>
 
           <!-- Modern Static -->
-          <tr class="bg-indigo-950/20 hover:bg-indigo-950/40 transition-colors border-t-2 border-indigo-500/50">
+          <tr class="bg-indigo-950/20 transition-colors border-t-2 border-indigo-500/50">
             <td class="py-2.5 px-3 font-bold text-cyan-300 font-mono">
               Modern Static <span class="text-[10px] text-emerald-400 block font-normal">(신흥 클라우드 네이티브)</span>
             </td>
@@ -4598,7 +4615,7 @@
             </thead>
             <tbody class="divide-y divide-slate-800/80 text-[10.5px] text-slate-200 font-mono">
               <!-- GitHub 기여자 순위 -->
-              <tr class="hover:bg-slate-800/30">
+              <tr class="">
                 <td rowspan="2" class="py-1.5 px-2 font-sans font-bold text-slate-300 border-b border-slate-800">GitHub<br>기여자 순위</td>
                 <td class="py-1.5 px-2 border-l border-slate-800 text-sky-300 font-bold">Go</td>
                 <td class="py-1.5 px-2 border-l border-slate-800 text-center text-slate-400">10위권 밖</td>
@@ -4608,7 +4625,7 @@
                 <td class="py-1.5 px-2 border-l border-slate-800 text-center font-bold text-sky-300">7위</td>
                 <td class="py-1.5 px-2 border-l border-slate-800 font-sans text-slate-300">7위권 안착 (안정적 볼륨)</td>
               </tr>
-              <tr class="hover:bg-slate-800/30 border-b border-slate-800">
+              <tr class="border-b border-slate-800">
                 <td class="py-1.5 px-2 border-l border-slate-800 text-rose-300 font-bold">Rust</td>
                 <td class="py-1.5 px-2 border-l border-slate-800 text-center text-slate-400">20위권</td>
                 <td class="py-1.5 px-2 border-l border-slate-800 text-center">19위</td>
@@ -4619,7 +4636,7 @@
               </tr>
 
               <!-- 글로벌 활성 개발자 수 -->
-              <tr class="hover:bg-slate-800/30">
+              <tr class="">
                 <td rowspan="2" class="py-1.5 px-2 font-sans font-bold text-slate-300 border-b border-slate-800">글로벌 활성<br>개발자 수</td>
                 <td class="py-1.5 px-2 border-l border-slate-800 text-sky-300 font-bold">Go</td>
                 <td class="py-1.5 px-2 border-l border-slate-800 text-center">270만</td>
@@ -4629,7 +4646,7 @@
                 <td class="py-1.5 px-2 border-l border-slate-800 text-center font-bold text-sky-300">530만</td>
                 <td class="py-1.5 px-2 border-l border-slate-800 font-sans text-slate-300">연평균 +15~20% 안정적 순증</td>
               </tr>
-              <tr class="hover:bg-slate-800/30 border-b border-slate-800">
+              <tr class="border-b border-slate-800">
                 <td class="py-1.5 px-2 border-l border-slate-800 text-rose-300 font-bold">Rust</td>
                 <td class="py-1.5 px-2 border-l border-slate-800 text-center">130만</td>
                 <td class="py-1.5 px-2 border-l border-slate-800 text-center">180만</td>
@@ -4640,7 +4657,7 @@
               </tr>
 
               <!-- 신규 레포 연간 증가율 -->
-              <tr class="hover:bg-slate-800/30">
+              <tr class="">
                 <td rowspan="2" class="py-1.5 px-2 font-sans font-bold text-slate-300">신규 레포<br>연간 증가율</td>
                 <td class="py-1.5 px-2 border-l border-slate-800 text-sky-300 font-bold">Go</td>
                 <td class="py-1.5 px-2 border-l border-slate-800 text-center">+22%</td>
@@ -4650,7 +4667,7 @@
                 <td class="py-1.5 px-2 border-l border-slate-800 text-center font-bold text-sky-300">+24%</td>
                 <td class="py-1.5 px-2 border-l border-slate-800 font-sans text-slate-300">클라우드 마이크로서비스 표준</td>
               </tr>
-              <tr class="hover:bg-slate-800/30">
+              <tr class="">
                 <td class="py-1.5 px-2 border-l border-slate-800 text-rose-300 font-bold">Rust</td>
                 <td class="py-1.5 px-2 border-l border-slate-800 text-center">+36%</td>
                 <td class="py-1.5 px-2 border-l border-slate-800 text-center">+40%</td>
@@ -4934,7 +4951,7 @@
         
         <div class="space-y-2.5 text-xs">
           <!-- Item 1 -->
-          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 hover:border-emerald-500/40 transition-colors">
+          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
             <div class="flex items-center justify-between mb-1">
               <strong class="text-emerald-300 text-[12.5px]">01. 점진적 타이핑(Gradual Typing)의 유연성</strong>
               <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded">Fast Vibe</span>
@@ -4945,7 +4962,7 @@
           </div>
 
           <!-- Item 2 -->
-          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 hover:border-emerald-500/40 transition-colors">
+          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
             <div class="flex items-center justify-between mb-1">
               <strong class="text-emerald-300 text-[12.5px]">02. 압도적인 AI &middot; ML 생태계 독점 (90%+)</strong>
               <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded">Ecosystem King</span>
@@ -4956,7 +4973,7 @@
           </div>
 
           <!-- Item 3 -->
-          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 hover:border-emerald-500/40 transition-colors">
+          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
             <div class="flex items-center justify-between mb-1">
               <strong class="text-emerald-300 text-[12.5px]">03. Rust 기반 차세대 툴체인의 극단적 속도</strong>
               <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded">uv &middot; Ruff</span>
@@ -4990,7 +5007,7 @@
 
         <div class="space-y-2.5 text-xs">
           <!-- Item 1 -->
-          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 hover:border-rose-500/40 transition-colors">
+          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
             <div class="flex items-center justify-between mb-1">
               <strong class="text-rose-300 text-[12.5px]">01. AI 환각에 대한 런타임 참사 방어</strong>
               <span class="text-[10px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded">Mypy Strict</span>
@@ -5001,7 +5018,7 @@
           </div>
 
           <!-- Item 2 -->
-          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 hover:border-rose-500/40 transition-colors">
+          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
             <div class="flex items-center justify-between mb-1">
               <strong class="text-rose-300 text-[12.5px]">02. 파이프라인 자동화로 오버헤드 상쇄</strong>
               <span class="text-[10px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded">Pre-commit</span>
@@ -5012,7 +5029,7 @@
           </div>
 
           <!-- Item 3 -->
-          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 hover:border-rose-500/40 transition-colors">
+          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
             <div class="flex items-center justify-between mb-1">
               <strong class="text-rose-300 text-[12.5px]">03. Pydantic으로 토큰 낭비와 환각 차단</strong>
               <span class="text-[10px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded">Structured Input</span>
@@ -5179,7 +5196,7 @@
         <!-- 3 Core Domains -->
         <div class="space-y-2 text-xs">
           <!-- 1. 최신 LLM / 멀티모달 연구 -->
-          <div class="p-2.5 bg-slate-950/85 rounded-lg border border-slate-800 hover:border-emerald-700/40 transition-colors">
+          <div class="p-2.5 bg-slate-950/85 rounded-lg border border-slate-800 transition-colors">
             <div class="flex items-center justify-between mb-1">
               <strong class="text-emerald-300 text-[11.5px]">01. 최신 LLM 연구 &amp; 모델 서빙 코어</strong>
               <span class="text-[9.5px] font-mono text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded">Day 0 Paper</span>
@@ -5190,7 +5207,7 @@
           </div>
 
           <!-- 2. 비정형 EDA 및 특화 데이터 파이프라인 -->
-          <div class="p-2.5 bg-slate-950/85 rounded-lg border border-slate-800 hover:border-emerald-700/40 transition-colors">
+          <div class="p-2.5 bg-slate-950/85 rounded-lg border border-slate-800 transition-colors">
             <div class="flex items-center justify-between mb-1">
               <strong class="text-emerald-300 text-[11.5px]">02. 비정형 데이터 분석 &amp; EDA 파이프라인</strong>
               <span class="text-[9.5px] font-mono text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded">Polars &middot; DuckDB</span>
@@ -5201,7 +5218,7 @@
           </div>
 
           <!-- 3. PoC 및 1인 해커톤 -->
-          <div class="p-2.5 bg-slate-950/85 rounded-lg border border-slate-800 hover:border-emerald-700/40 transition-colors">
+          <div class="p-2.5 bg-slate-950/85 rounded-lg border border-slate-800 transition-colors">
             <div class="flex items-center justify-between mb-1">
               <strong class="text-emerald-300 text-[11.5px]">03. 초고속 PoC &amp; 1인 해커톤 단계</strong>
               <span class="text-[9.5px] font-mono text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded">Gradio &middot; Streamlit</span>
@@ -5237,7 +5254,7 @@
         <!-- 3 Core Domains -->
         <div class="space-y-2 text-xs">
           <!-- 1. AI 에이전트 오케스트레이션 & LLM 게이트웨이 -->
-          <div class="p-2.5 bg-slate-950/85 rounded-lg border border-slate-800 hover:border-cyan-700/40 transition-colors">
+          <div class="p-2.5 bg-slate-950/85 rounded-lg border border-slate-800 transition-colors">
             <div class="flex items-center justify-between mb-1">
               <strong class="text-cyan-300 text-[11.5px]">01. AI 에이전트 오케스트레이션 &amp; LLM 게이트웨이</strong>
               <span class="text-[9.5px] font-mono text-cyan-300 bg-cyan-950 px-1.5 py-0.5 rounded border border-cyan-800">Go / Rust</span>
@@ -5248,7 +5265,7 @@
           </div>
 
           <!-- 2. 복잡한 도메인 규칙 / B2B SaaS 백엔드 -->
-          <div class="p-2.5 bg-slate-950/85 rounded-lg border border-slate-800 hover:border-cyan-700/40 transition-colors">
+          <div class="p-2.5 bg-slate-950/85 rounded-lg border border-slate-800 transition-colors">
             <div class="flex items-center justify-between mb-1">
               <strong class="text-cyan-300 text-[11.5px]">02. 도메인 규칙이 복잡한 웹 서비스 &amp; B2B SaaS</strong>
               <span class="text-[9.5px] font-mono text-cyan-300 bg-cyan-950 px-1.5 py-0.5 rounded border border-cyan-800">TypeScript / Go</span>
@@ -5259,7 +5276,7 @@
           </div>
 
           <!-- 3. 풀스택 프론트엔드 및 AI 연동 인터페이스 -->
-          <div class="p-2.5 bg-slate-950/85 rounded-lg border border-slate-800 hover:border-cyan-700/40 transition-colors">
+          <div class="p-2.5 bg-slate-950/85 rounded-lg border border-slate-800 transition-colors">
             <div class="flex items-center justify-between mb-1">
               <strong class="text-cyan-300 text-[11.5px]">03. 풀스택 프론트엔드 &amp; AI 연동 인터페이스</strong>
               <span class="text-[9.5px] font-mono text-cyan-300 bg-cyan-950 px-1.5 py-0.5 rounded border border-cyan-800">TypeScript</span>
@@ -5324,7 +5341,7 @@
           </tr>
         </thead>
         <tbody class="divide-y divide-slate-800/80 text-[11px] text-slate-200">
-          <tr class="hover:bg-slate-800/40 transition-colors">
+          <tr class="transition-colors">
             <td class="py-1.5 px-3 font-mono font-semibold text-slate-400">추천 언어 스택</td>
             <td class="py-1.5 px-3 border-l border-slate-800/80 font-mono text-emerald-300">
               <strong>Python</strong> (+ uv, Ruff, Pytest, Pydantic)
@@ -5333,7 +5350,7 @@
               <strong>Go &middot; TypeScript &middot; Rust</strong>
             </td>
           </tr>
-          <tr class="hover:bg-slate-800/40 transition-colors">
+          <tr class="transition-colors">
             <td class="py-1.5 px-3 font-mono font-semibold text-slate-400">주요 적용 레이어</td>
             <td class="py-1.5 px-3 border-l border-slate-800/80">
               AI/ML 모델링, 비정형 데이터 전처리, 알고리즘 PoC, EDA
@@ -5342,7 +5359,7 @@
               AI 게이트웨이, 분산 인프라, B2B 비즈니스 로직, 풀스택 웹
             </td>
           </tr>
-          <tr class="hover:bg-slate-800/40 transition-colors">
+          <tr class="transition-colors">
             <td class="py-1.5 px-3 font-mono font-semibold text-slate-400">바이브 코딩 상호작용</td>
             <td class="py-1.5 px-3 border-l border-slate-800/80 text-emerald-200">
               AI에게 <strong>유연하고 창의적인 탐색 로직</strong> 작성 지시
@@ -5351,7 +5368,7 @@
               AI에게 <strong>명확한 타입 계약(Contract) &amp; 컴파일 자가치유</strong> 강제
             </td>
           </tr>
-          <tr class="hover:bg-slate-800/40 transition-colors">
+          <tr class="transition-colors">
             <td class="py-1.5 px-3 font-mono font-semibold text-slate-400">주요 병목 지점</td>
             <td class="py-1.5 px-3 border-l border-slate-800/80">
               "최신 AI 라이브러리 지원 여부 &amp; 실험 속도"
@@ -5360,7 +5377,7 @@
               "시스템 신뢰성, 동시성 처리량, 인프라 비용 절감"
             </td>
           </tr>
-          <tr class="hover:bg-slate-800/40 transition-colors">
+          <tr class="transition-colors">
             <td class="py-1.5 px-3 font-mono font-semibold text-slate-400">최종 결과물 형태</td>
             <td class="py-1.5 px-3 border-l border-slate-800/80 font-mono text-slate-300">
               스크립트, 노트북, 가벼운 단일 마이크로서비스
@@ -7834,25 +7851,25 @@
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-800 text-[10.5px] text-slate-200">
-              <tr class="hover:bg-slate-800/40 transition-colors">
+              <tr class="transition-colors">
                 <td class="py-1.5 px-2.5 font-mono font-bold text-white">git worktree</td>
                 <td class="py-1.5 px-2.5 border-l border-slate-800 text-sky-300">디렉터리 (네이티브)</td>
                 <td class="py-1.5 px-2.5 border-l border-slate-800">일반 멀티 브랜치 개발</td>
                 <td class="py-1.5 px-2.5 border-l border-slate-800 font-sans">별도 도구 불필요, 모든 IDE 즉시 지원</td>
               </tr>
-              <tr class="hover:bg-slate-800/40 transition-colors">
+              <tr class="transition-colors">
                 <td class="py-1.5 px-2.5 font-mono font-bold text-amber-300">hedr / 러너</td>
                 <td class="py-1.5 px-2.5 border-l border-slate-800 text-amber-300">워크트리 + 프로세스</td>
                 <td class="py-1.5 px-2.5 border-l border-slate-800">다중 CLI 에이전트 동시 제어</td>
                 <td class="py-1.5 px-2.5 border-l border-slate-800 font-sans">에이전트 세션 유지, .env 동기화 자동화</td>
               </tr>
-              <tr class="hover:bg-slate-800/40 transition-colors">
+              <tr class="transition-colors">
                 <td class="py-1.5 px-2.5 font-mono font-bold text-emerald-300">DevContainer</td>
                 <td class="py-1.5 px-2.5 border-l border-slate-800 text-emerald-300">OS / 컨테이너 격리</td>
                 <td class="py-1.5 px-2.5 border-l border-slate-800">DB/네트워크 의존성 작업</td>
                 <td class="py-1.5 px-2.5 border-l border-slate-800 font-sans">포트 충돌 방지, 호스트 시스템 오염 0%</td>
               </tr>
-              <tr class="hover:bg-slate-800/40 transition-colors">
+              <tr class="transition-colors">
                 <td class="py-1.5 px-2.5 font-mono font-bold text-purple-300">Tmux / Zellij</td>
                 <td class="py-1.5 px-2.5 border-l border-slate-800 text-purple-300">터미널 멀티플렉싱</td>
                 <td class="py-1.5 px-2.5 border-l border-slate-800">백그라운드 에이전트 관제</td>
@@ -8645,7 +8662,7 @@
 
         <div class="space-y-1.5 text-xs font-mono">
           <!-- Block 1: AGENTS.md -->
-          <div class="p-2 rounded bg-slate-950 border border-sky-500/40 flex items-center justify-between group hover:border-sky-400 transition-colors">
+          <div class="p-2 rounded bg-slate-950 border border-sky-500/40 flex items-center justify-between group transition-colors">
             <div class="flex items-center gap-2">
               <span class="text-base">📜</span>
               <div>
@@ -8657,7 +8674,7 @@
           </div>
 
           <!-- Block 2: rules -->
-          <div class="p-2 rounded bg-slate-950 border border-amber-500/40 flex items-center justify-between group hover:border-amber-400 transition-colors">
+          <div class="p-2 rounded bg-slate-950 border border-amber-500/40 flex items-center justify-between group transition-colors">
             <div class="flex items-center gap-2">
               <span class="text-base">⚖️</span>
               <div>
@@ -8669,7 +8686,7 @@
           </div>
 
           <!-- Block 3: Loaded Skills -->
-          <div class="p-2 rounded bg-slate-950 border border-emerald-500/40 flex items-center justify-between group hover:border-emerald-400 transition-colors">
+          <div class="p-2 rounded bg-slate-950 border border-emerald-500/40 flex items-center justify-between group transition-colors">
             <div class="flex items-center gap-2">
               <span class="text-base">🧩</span>
               <div>
@@ -8681,7 +8698,7 @@
           </div>
 
           <!-- Block 4: Compacted History -->
-          <div class="p-2 rounded bg-slate-950 border border-purple-500/40 flex items-center justify-between group hover:border-purple-400 transition-colors">
+          <div class="p-2 rounded bg-slate-950 border border-purple-500/40 flex items-center justify-between group transition-colors">
             <div class="flex items-center gap-2">
               <span class="text-base">🗜️</span>
               <div>
@@ -8693,7 +8710,7 @@
           </div>
 
           <!-- Block 5: Current Question -->
-          <div class="p-2 rounded bg-slate-950 border border-rose-500/40 flex items-center justify-between group hover:border-rose-400 transition-colors">
+          <div class="p-2 rounded bg-slate-950 border border-rose-500/40 flex items-center justify-between group transition-colors">
             <div class="flex items-center gap-2">
               <span class="text-base">💬</span>
               <div>

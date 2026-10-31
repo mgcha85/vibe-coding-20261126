@@ -99,12 +99,12 @@
       border: 1px solid #E5E7EB;
       border-radius: 0.875rem;
       box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
-      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
     .bento-tile:hover {
-      border-color: #2D9BB2;
-      box-shadow: 0 4px 14px -2px rgba(45, 155, 178, 0.15);
-      background: #FFFFFF;
+      background: #FFFFFF !important;
+      border-color: #E5E7EB !important;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04) !important;
+      transform: none !important;
     }
 
     .badge-glow {
@@ -251,6 +251,23 @@
     .slide-viewport .bg-indigo-950\/40 {
       background-color: rgba(45, 155, 178, 0.08) !important;
       border-color: rgba(45, 155, 178, 0.25) !important;
+    }
+
+    /* ==========================================================================
+       ELIMINATE ALL HOVER & DARK-MODE EFFECTS
+       Ensures elements inside slides never darken or revert to dark styles on hover
+       ========================================================================== */
+    #slidesWrapper tr:hover,
+    #slidesWrapper [class*="hover:bg-"]:hover,
+    #slidesWrapper [class*="hover:bg-slate"]:hover,
+    #slidesWrapper [class*="hover:bg-dark"]:hover,
+    #slidesWrapper [class*="hover:bg-indigo"]:hover,
+    #slidesWrapper [class*="hover:bg-purple"]:hover {
+      background-color: transparent !important;
+    }
+
+    #slidesWrapper [class*="hover:border-"]:hover {
+      border-color: inherit !important;
     }
   </style>
 </head>
