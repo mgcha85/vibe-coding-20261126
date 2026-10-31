@@ -19,15 +19,19 @@
           },
           colors: {
             brand: {
-              400: '#38bdf8',
-              500: '#0ea5e9',
-              600: '#0284c7',
+              400: '#3DB4CD',
+              500: '#2D9BB2',
+              600: '#1F7B8E',
             },
-            dark: {
-              950: '#030712',
-              900: '#070d1a',
-              850: '#0c1527',
-              800: '#111f38',
+            academic: {
+              teal: '#2D9BB2',
+              purple: '#554596',
+              charcoal: '#1A1A1A',
+              slate: '#374151',
+              muted: '#64748B',
+              bg: '#F8F9FA',
+              card: '#FFFFFF',
+              border: '#E5E7EB',
             }
           }
         }
@@ -36,8 +40,8 @@
   </script>
   <style>
     body {
-      background-color: #030712;
-      color: #f3f4f6;
+      background-color: #EDF0F2;
+      color: #1A1A1A;
       margin: 0;
       padding: 0;
       overflow: hidden;
@@ -50,18 +54,19 @@
       user-select: none;
     }
 
-    /* 16:9 Presentation Stage */
+    /* 16:9 Presentation Stage - Modern Editorial & Academic Insight */
     .slide-viewport {
       position: relative;
       width: 100vw;
       height: 56.25vw; /* 16:9 */
       max-height: 100vh;
       max-width: 177.78vh; /* 16:9 */
-      box-shadow: 0 25px 70px -15px rgba(0, 0, 0, 0.8), 0 0 50px rgba(14, 165, 233, 0.12);
-      background: radial-gradient(circle at 10% 10%, #0d1a33 0%, #060b17 65%, #030712 100%);
+      box-shadow: 0 25px 70px -15px rgba(0, 0, 0, 0.08), 0 0 1px 1px rgba(0, 0, 0, 0.04);
+      background: radial-gradient(circle at 10% 10%, #FFFFFF 0%, #F8F9FA 65%, #F1F3F5 100%);
       border-radius: 12px;
       overflow: hidden;
-      border: 1px solid rgba(56, 189, 248, 0.2);
+      border: 1px solid #E2E8F0;
+      color: #1A1A1A;
     }
 
     .slide {
@@ -88,34 +93,164 @@
       transform: scale(1);
     }
 
-    /* Bento Tile Style */
+    /* Bento Tile Style - Whitepaper Clean Card */
     .bento-tile {
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
       border-radius: 0.875rem;
-      transition: border-color 0.2s ease, background 0.2s ease;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
     .bento-tile:hover {
-      border-color: rgba(56, 189, 248, 0.35);
-      background: rgba(20, 32, 58, 0.75);
+      border-color: #2D9BB2;
+      box-shadow: 0 4px 14px -2px rgba(45, 155, 178, 0.15);
+      background: #FFFFFF;
     }
 
     .badge-glow {
-      box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
+      box-shadow: 0 0 16px rgba(45, 155, 178, 0.15);
     }
 
     /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); }
-    ::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.3); border-radius: 3px; }
+    ::-webkit-scrollbar-track { background: #F1F3F5; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
 
     @keyframes pulseGlow {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.7; }
+      0%, 100% { opacity: 0.15; }
+      50% { opacity: 0.35; }
     }
     .ambient-glow {
       animation: pulseGlow 5s infinite ease-in-out;
+    }
+
+    /* ==========================================================================
+       MODERN EDITORIAL & ACADEMIC INSIGHT SYSTEM OVERRIDES
+       Calibrates all slides to clean whitepaper/journal tone
+       ========================================================================== */
+    .slide-viewport .text-white { color: #1A1A1A !important; }
+    .slide-viewport .text-slate-100 { color: #1A1A1A !important; }
+    .slide-viewport .text-slate-200 { color: #2D3748 !important; }
+    .slide-viewport .text-slate-300 { color: #374151 !important; }
+    .slide-viewport .text-slate-400 { color: #64748B !important; }
+    .slide-viewport .text-slate-500 { color: #94A3B8 !important; }
+
+    /* Point Duotone Accents: Academic Teal (#2D9BB2) & Purple (#554596) */
+    .slide-viewport .text-sky-300,
+    .slide-viewport .text-sky-400,
+    .slide-viewport .text-cyan-300,
+    .slide-viewport .text-cyan-400,
+    .slide-viewport .text-cyan-200\/90,
+    .slide-viewport .text-sky-200\/90 { color: #1B7385 !important; }
+
+    .slide-viewport .text-indigo-300,
+    .slide-viewport .text-indigo-400,
+    .slide-viewport .text-purple-300,
+    .slide-viewport .text-purple-400 { color: #403375 !important; }
+
+    /* Status Accents (Calibrated for whitepaper contrast) */
+    .slide-viewport .text-emerald-300,
+    .slide-viewport .text-emerald-400 { color: #047857 !important; }
+    .slide-viewport .text-amber-300,
+    .slide-viewport .text-amber-400 { color: #B45309 !important; }
+    .slide-viewport .text-rose-300,
+    .slide-viewport .text-rose-400 { color: #BE123C !important; }
+
+    /* Card Backgrounds & Surfaces */
+    .slide-viewport .bg-slate-900,
+    .slide-viewport .bg-slate-950,
+    .slide-viewport .bg-slate-900\/60,
+    .slide-viewport .bg-slate-900\/70,
+    .slide-viewport .bg-slate-900\/80,
+    .slide-viewport .bg-slate-900\/90,
+    .slide-viewport .bg-slate-950\/60,
+    .slide-viewport .bg-slate-950\/70,
+    .slide-viewport .bg-slate-950\/80,
+    .slide-viewport .bg-slate-950\/90 {
+      background-color: #FFFFFF !important;
+    }
+
+    .slide-viewport .bg-dark-950,
+    .slide-viewport .bg-dark-900,
+    .slide-viewport .bg-dark-850 {
+      background-color: #F8F9FA !important;
+    }
+
+    /* Soft Duotone & Semantic Tint Containers */
+    .slide-viewport [class*="bg-sky-950"],
+    .slide-viewport [class*="bg-cyan-950"],
+    .slide-viewport [class*="bg-sky-500/"],
+    .slide-viewport [class*="bg-cyan-500/"] {
+      background-color: rgba(45, 155, 178, 0.08) !important;
+    }
+
+    .slide-viewport [class*="bg-indigo-950"],
+    .slide-viewport [class*="bg-purple-950"],
+    .slide-viewport [class*="bg-indigo-500/"],
+    .slide-viewport [class*="bg-purple-500/"] {
+      background-color: rgba(85, 69, 150, 0.08) !important;
+    }
+
+    .slide-viewport [class*="bg-emerald-950"],
+    .slide-viewport [class*="bg-emerald-500/"] {
+      background-color: rgba(5, 150, 105, 0.08) !important;
+    }
+
+    .slide-viewport [class*="bg-amber-950"],
+    .slide-viewport [class*="bg-amber-500/"] {
+      background-color: rgba(217, 119, 6, 0.08) !important;
+    }
+
+    .slide-viewport [class*="bg-rose-950"],
+    .slide-viewport [class*="bg-rose-500/"] {
+      background-color: rgba(220, 38, 38, 0.08) !important;
+    }
+
+    /* Clean Editorial Borders */
+    .slide-viewport .border-slate-800,
+    .slide-viewport .border-slate-800\/60,
+    .slide-viewport .border-slate-800\/80,
+    .slide-viewport .border-slate-700,
+    .slide-viewport .border-slate-700\/50,
+    .slide-viewport .border-slate-700\/60 {
+      border-color: #E2E8F0 !important;
+    }
+
+    .slide-viewport .border-sky-400\/20,
+    .slide-viewport .border-sky-400\/30,
+    .slide-viewport .border-sky-500\/30,
+    .slide-viewport .border-sky-600\/50,
+    .slide-viewport .border-sky-800,
+    .slide-viewport .border-cyan-400\/20,
+    .slide-viewport .border-cyan-400\/30,
+    .slide-viewport .border-cyan-500\/30,
+    .slide-viewport .border-cyan-600\/50,
+    .slide-viewport .border-cyan-800\/40 {
+      border-color: rgba(45, 155, 178, 0.35) !important;
+    }
+
+    .slide-viewport .border-indigo-400\/20,
+    .slide-viewport .border-indigo-400\/30,
+    .slide-viewport .border-indigo-500\/30,
+    .slide-viewport .border-indigo-700\/50,
+    .slide-viewport .border-purple-600\/50,
+    .slide-viewport .border-purple-800 {
+      border-color: rgba(85, 69, 150, 0.35) !important;
+    }
+
+    /* Code Tags & Snippets */
+    .slide-viewport code {
+      background-color: #F1F5F9 !important;
+      color: #403375 !important;
+      border: 1px solid #E2E8F0;
+      border-radius: 0.25rem;
+    }
+
+    /* Key Takeaway bar */
+    .slide-viewport .bg-cyan-950\/40,
+    .slide-viewport .bg-indigo-950\/40 {
+      background-color: rgba(45, 155, 178, 0.08) !important;
+      border-color: rgba(45, 155, 178, 0.25) !important;
     }
   </style>
 </head>
@@ -124,27 +259,27 @@
   <!-- 16:9 Presentation Viewport -->
   <div class="slide-viewport relative flex flex-col justify-between" id="presentationContainer">
 
-    <!-- Ambient Gradient Backdrops -->
-    <div class="absolute -top-36 -right-36 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none ambient-glow"></div>
-    <div class="absolute -bottom-36 -left-36 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none ambient-glow"></div>
+    <!-- Ambient Subtle Tints -->
+    <div class="absolute -top-36 -right-36 w-96 h-96 bg-[#2D9BB2]/5 rounded-full blur-3xl pointer-events-none ambient-glow"></div>
+    <div class="absolute -bottom-36 -left-36 w-96 h-96 bg-[#554596]/5 rounded-full blur-3xl pointer-events-none ambient-glow"></div>
 
     <!-- Global Header -->
-    <header class="absolute top-0 left-0 right-0 h-14 px-10 flex items-center justify-between text-xs font-mono text-slate-400 z-20 border-b border-slate-800/60 bg-dark-900/50 backdrop-blur-md">
+    <header class="absolute top-0 left-0 right-0 h-14 px-10 flex items-center justify-between text-xs font-mono text-slate-500 z-20 border-b border-slate-200/80 bg-white/80 backdrop-blur-md">
       <div class="flex items-center gap-3">
-        <span id="chapterBadge" class="px-2.5 py-0.5 rounded-full bg-slate-500/15 text-slate-300 font-bold border border-slate-400/30 transition-all duration-200">INTRO · 오프닝</span>
-        <span class="text-slate-600">|</span>
-        <span class="text-slate-300 font-medium">말이 코드가 되는 시대 : 바이브 코딩(Vibe Coding)</span>
+        <span id="chapterBadge" class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 font-bold border border-slate-300 transition-all duration-200">INTRO · 오프닝</span>
+        <span class="text-slate-300">|</span>
+        <span class="text-slate-700 font-medium tracking-tight">말이 코드가 되는 시대 : 바이브 코딩(Vibe Coding)</span>
       </div>
       <div class="flex items-center gap-4">
-        <button id="tocBtn" class="hover:text-sky-400 flex items-center gap-1.5 transition-colors px-2.5 py-1 rounded bg-slate-800/60 border border-slate-700/60 text-slate-300">
+        <button id="tocBtn" class="hover:text-[#2D9BB2] flex items-center gap-1.5 transition-colors px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200/80 border border-slate-200 text-slate-700 font-medium">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
           <span>목차 [M]</span>
         </button>
-        <button id="fullscreenBtn" class="hover:text-sky-400 flex items-center gap-1.5 transition-colors px-2.5 py-1 rounded bg-slate-800/60 border border-slate-700/60 text-slate-300">
+        <button id="fullscreenBtn" class="hover:text-[#2D9BB2] flex items-center gap-1.5 transition-colors px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200/80 border border-slate-200 text-slate-700 font-medium">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1v4m0-4h-4m4 4l-5-5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
           <span>전체화면 [F]</span>
         </button>
-        <span id="slideCounter" class="text-sky-400 font-bold font-mono">01 / {{TOTAL_SLIDES}}</span>
+        <span id="slideCounter" class="text-[#2D9BB2] font-bold font-mono">01 / {{TOTAL_SLIDES}}</span>
       </div>
     </header>
 
@@ -154,45 +289,45 @@
     </main>
 
     <!-- Global Footer Controls -->
-    <footer class="absolute bottom-0 left-0 right-0 h-12 px-8 flex items-center justify-between text-xs text-slate-400 z-20 border-t border-slate-800/60 bg-dark-900/60 backdrop-blur-sm">
+    <footer class="absolute bottom-0 left-0 right-0 h-12 px-8 flex items-center justify-between text-xs text-slate-500 z-20 border-t border-slate-200/80 bg-white/85 backdrop-blur-sm">
       <div class="flex items-center gap-2">
-        <span class="text-[11px] text-slate-500 font-mono">단축키: ← 이전 | → / Space 다음 | F 전체화면 | M 목차</span>
+        <span class="text-[11px] text-slate-400 font-mono">단축키: ← 이전 | → / Space 다음 | F 전체화면 | M 목차</span>
       </div>
 
       <!-- Navigation buttons -->
       <div class="flex items-center gap-3">
-        <button id="prevBtn" class="px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors flex items-center gap-1 border border-slate-700">
+        <button id="prevBtn" class="px-3 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors flex items-center gap-1 border border-slate-300 font-medium">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
           <span>이전</span>
         </button>
-        <button id="nextBtn" class="px-4 py-1 rounded bg-sky-600 hover:bg-sky-500 text-white font-semibold transition-colors flex items-center gap-1 shadow-lg shadow-sky-600/30">
+        <button id="nextBtn" class="px-4 py-1 rounded bg-[#2D9BB2] hover:bg-[#258296] text-white font-semibold transition-colors flex items-center gap-1 shadow-sm">
           <span>다음</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
         </button>
       </div>
 
       <!-- Progress bar -->
-      <div class="w-32 bg-slate-800 h-1.5 rounded-full overflow-hidden border border-slate-700/50">
-        <div id="progressBar" class="bg-gradient-to-r from-sky-400 to-indigo-500 h-full w-0 transition-all duration-300"></div>
+      <div class="w-32 bg-slate-200 h-1.5 rounded-full overflow-hidden border border-slate-300/50">
+        <div id="progressBar" class="bg-gradient-to-r from-[#2D9BB2] to-[#554596] h-full w-0 transition-all duration-300"></div>
       </div>
     </footer>
 
     <!-- Table of Contents Modal -->
-    <div id="tocModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-200">
-      <div class="bento-tile max-w-3xl w-full p-6 max-h-[85vh] flex flex-col border border-sky-500/30 shadow-2xl">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+    <div id="tocModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-200">
+      <div class="bento-tile max-w-3xl w-full p-6 max-h-[85vh] flex flex-col border border-slate-300 bg-[#F8F9FA] shadow-2xl">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-200 mb-4">
           <div class="flex items-center gap-3">
-            <h3 class="text-lg font-bold text-white flex items-center gap-2">
-              <span class="text-sky-400 font-mono">📑</span> 전체 목차 (Curriculum Index)
+            <h3 class="text-lg font-bold text-[#1A1A1A] flex items-center gap-2">
+              <span class="text-[#2D9BB2] font-mono">📑</span> 전체 목차 (Curriculum Index)
             </h3>
-            <span class="text-xs text-slate-400 font-mono">총 {{TOTAL_SLIDES}}개 슬라이드</span>
+            <span class="text-xs text-slate-500 font-mono">총 {{TOTAL_SLIDES}}개 슬라이드</span>
           </div>
           <div class="flex items-center gap-3">
-            <button id="toggleAllTocBtn" class="text-xs px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center gap-1.5 transition-colors">
+            <button id="toggleAllTocBtn" class="text-xs px-2.5 py-1 rounded bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 flex items-center gap-1.5 transition-colors font-medium">
               <svg id="toggleAllIcon" class="w-3.5 h-3.5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
               <span id="toggleAllText">모두 접기</span>
             </button>
-            <button id="closeTocBtn" class="text-slate-400 hover:text-white p-1">
+            <button id="closeTocBtn" class="text-slate-400 hover:text-slate-700 p-1">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
           </div>
@@ -240,7 +375,7 @@
       const currentSlideEl = slides[currentSlide];
       if (currentSlideEl && chapterBadge) {
         const badgeText = currentSlideEl.getAttribute('data-chapter-badge') || 'VIBE CODING';
-        const badgeColor = currentSlideEl.getAttribute('data-chapter-color') || 'bg-sky-500/15 text-sky-300 border-sky-400/30';
+        const badgeColor = currentSlideEl.getAttribute('data-chapter-color') || 'bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30';
         chapterBadge.textContent = badgeText;
         chapterBadge.className = `px-2.5 py-0.5 rounded-full font-bold border transition-all duration-200 ${badgeColor}`;
       }
@@ -261,11 +396,11 @@
       document.querySelectorAll('.toc-slide-item').forEach((item) => {
         const itemIdx = parseInt(item.getAttribute('data-slide-index'), 10);
         if (itemIdx === currentSlide) {
-          item.classList.add('bg-sky-500/20', 'text-sky-200', 'border-sky-500/40', 'font-semibold');
-          item.classList.remove('text-slate-300', 'border-transparent');
+          item.classList.add('bg-[#2D9BB2]/10', 'text-[#1B7385]', 'border-[#2D9BB2]/40', 'font-semibold');
+          item.classList.remove('text-slate-700', 'border-transparent');
         } else {
-          item.classList.remove('bg-sky-500/20', 'text-sky-200', 'border-sky-500/40', 'font-semibold');
-          item.classList.add('text-slate-300', 'border-transparent');
+          item.classList.remove('bg-[#2D9BB2]/10', 'text-[#1B7385]', 'border-[#2D9BB2]/40', 'font-semibold');
+          item.classList.add('text-slate-700', 'border-transparent');
         }
       });
     }
@@ -307,8 +442,8 @@
       const chapterId = slide.getAttribute('data-chapter-id') || 'misc';
       const chapterBadge = slide.getAttribute('data-chapter-badge') || 'CHAPTER';
       const chapterTitle = slide.getAttribute('data-chapter-title') || chapterBadge;
-      const chapterColor = slide.getAttribute('data-chapter-color') || 'bg-sky-500/15 text-sky-300 border-sky-400/30';
-      const chapterAccent = slide.getAttribute('data-chapter-accent') || 'text-sky-400';
+      const chapterColor = slide.getAttribute('data-chapter-color') || 'bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30';
+      const chapterAccent = slide.getAttribute('data-chapter-accent') || 'text-[#2D9BB2]';
       const slideTitle = slide.getAttribute('data-title') || `Slide ${idx + 1}`;
 
       if (!currentChapterGroup || currentChapterGroup.id !== chapterId) {
@@ -335,11 +470,11 @@
 
     chapters.forEach((ch) => {
       const chapterCard = document.createElement('div');
-      chapterCard.className = 'bento-tile p-3 bg-slate-900/70 border border-slate-800/80 rounded-xl overflow-hidden transition-all';
+      chapterCard.className = 'bento-tile p-3 bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm transition-all';
 
       // Depth 1 Header
       const header = document.createElement('div');
-      header.className = 'flex items-center justify-between cursor-pointer select-none p-1.5 rounded-lg hover:bg-slate-800/60 transition-colors';
+      header.className = 'flex items-center justify-between cursor-pointer select-none p-1.5 rounded-lg hover:bg-slate-50 transition-colors';
 
       const firstSlideNum = String(ch.slides[0].index + 1).padStart(2, '0');
       const lastSlideNum = String(ch.slides[ch.slides.length - 1].index + 1).padStart(2, '0');
@@ -351,17 +486,17 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
           <span class="px-2 py-0.5 rounded text-[11px] font-bold font-mono border ${ch.color}">${ch.badge}</span>
-          <span class="font-bold text-white text-sm tracking-tight">${ch.title}</span>
+          <span class="font-bold text-[#1A1A1A] text-sm tracking-tight">${ch.title}</span>
         </div>
         <div class="flex items-center gap-2">
-          <span class="text-xs font-mono text-slate-400 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/50">${ch.slides.length} slides</span>
-          <span class="text-[11px] font-mono text-slate-500">${rangeStr}</span>
+          <span class="text-xs font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">${ch.slides.length} slides</span>
+          <span class="text-[11px] font-mono text-slate-400">${rangeStr}</span>
         </div>
       `;
 
       // Depth 2 Slides List (Default: Expanded)
       const body = document.createElement('div');
-      body.className = 'chapter-body mt-2.5 pt-2 border-t border-slate-800/60 space-y-1 pl-4';
+      body.className = 'chapter-body mt-2.5 pt-2 border-t border-slate-200/80 space-y-1 pl-4';
 
       const chevron = header.querySelector('.chevron-icon');
       chapterBodies.push(body);
@@ -383,14 +518,14 @@
 
       ch.slides.forEach((s) => {
         const item = document.createElement('div');
-        item.className = 'toc-slide-item px-3 py-1.5 rounded-lg hover:bg-slate-800/80 cursor-pointer flex items-center justify-between text-slate-300 transition-colors border border-transparent hover:border-slate-700/60';
+        item.className = 'toc-slide-item px-3 py-1.5 rounded-lg hover:bg-slate-100 cursor-pointer flex items-center justify-between text-slate-700 transition-colors border border-transparent hover:border-slate-300';
         item.setAttribute('data-slide-index', s.index);
         item.innerHTML = `
           <span class="flex items-center gap-2.5 truncate">
             <span class="font-mono text-xs ${ch.accent} font-bold">${String(s.index + 1).padStart(2, '0')}</span>
-            <span class="text-xs truncate">${s.title}</span>
+            <span class="text-xs truncate text-slate-800">${s.title}</span>
           </span>
-          <span class="text-[10px] text-slate-500 font-mono ml-2 shrink-0">#${s.index + 1}</span>
+          <span class="text-[10px] text-slate-400 font-mono ml-2 shrink-0">#${s.index + 1}</span>
         `;
         item.addEventListener('click', (e) => {
           e.stopPropagation();

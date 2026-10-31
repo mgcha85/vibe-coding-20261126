@@ -19,15 +19,19 @@
           },
           colors: {
             brand: {
-              400: '#38bdf8',
-              500: '#0ea5e9',
-              600: '#0284c7',
+              400: '#3DB4CD',
+              500: '#2D9BB2',
+              600: '#1F7B8E',
             },
-            dark: {
-              950: '#030712',
-              900: '#070d1a',
-              850: '#0c1527',
-              800: '#111f38',
+            academic: {
+              teal: '#2D9BB2',
+              purple: '#554596',
+              charcoal: '#1A1A1A',
+              slate: '#374151',
+              muted: '#64748B',
+              bg: '#F8F9FA',
+              card: '#FFFFFF',
+              border: '#E5E7EB',
             }
           }
         }
@@ -36,8 +40,8 @@
   </script>
   <style>
     body {
-      background-color: #030712;
-      color: #f3f4f6;
+      background-color: #EDF0F2;
+      color: #1A1A1A;
       margin: 0;
       padding: 0;
       overflow: hidden;
@@ -50,18 +54,19 @@
       user-select: none;
     }
 
-    /* 16:9 Presentation Stage */
+    /* 16:9 Presentation Stage - Modern Editorial & Academic Insight */
     .slide-viewport {
       position: relative;
       width: 100vw;
       height: 56.25vw; /* 16:9 */
       max-height: 100vh;
       max-width: 177.78vh; /* 16:9 */
-      box-shadow: 0 25px 70px -15px rgba(0, 0, 0, 0.8), 0 0 50px rgba(14, 165, 233, 0.12);
-      background: radial-gradient(circle at 10% 10%, #0d1a33 0%, #060b17 65%, #030712 100%);
+      box-shadow: 0 25px 70px -15px rgba(0, 0, 0, 0.08), 0 0 1px 1px rgba(0, 0, 0, 0.04);
+      background: radial-gradient(circle at 10% 10%, #FFFFFF 0%, #F8F9FA 65%, #F1F3F5 100%);
       border-radius: 12px;
       overflow: hidden;
-      border: 1px solid rgba(56, 189, 248, 0.2);
+      border: 1px solid #E2E8F0;
+      color: #1A1A1A;
     }
 
     .slide {
@@ -88,34 +93,164 @@
       transform: scale(1);
     }
 
-    /* Bento Tile Style */
+    /* Bento Tile Style - Whitepaper Clean Card */
     .bento-tile {
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
       border-radius: 0.875rem;
-      transition: border-color 0.2s ease, background 0.2s ease;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
     .bento-tile:hover {
-      border-color: rgba(56, 189, 248, 0.35);
-      background: rgba(20, 32, 58, 0.75);
+      border-color: #2D9BB2;
+      box-shadow: 0 4px 14px -2px rgba(45, 155, 178, 0.15);
+      background: #FFFFFF;
     }
 
     .badge-glow {
-      box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
+      box-shadow: 0 0 16px rgba(45, 155, 178, 0.15);
     }
 
     /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); }
-    ::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.3); border-radius: 3px; }
+    ::-webkit-scrollbar-track { background: #F1F3F5; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
 
     @keyframes pulseGlow {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.7; }
+      0%, 100% { opacity: 0.15; }
+      50% { opacity: 0.35; }
     }
     .ambient-glow {
       animation: pulseGlow 5s infinite ease-in-out;
+    }
+
+    /* ==========================================================================
+       MODERN EDITORIAL & ACADEMIC INSIGHT SYSTEM OVERRIDES
+       Calibrates all slides to clean whitepaper/journal tone
+       ========================================================================== */
+    .slide-viewport .text-white { color: #1A1A1A !important; }
+    .slide-viewport .text-slate-100 { color: #1A1A1A !important; }
+    .slide-viewport .text-slate-200 { color: #2D3748 !important; }
+    .slide-viewport .text-slate-300 { color: #374151 !important; }
+    .slide-viewport .text-slate-400 { color: #64748B !important; }
+    .slide-viewport .text-slate-500 { color: #94A3B8 !important; }
+
+    /* Point Duotone Accents: Academic Teal (#2D9BB2) & Purple (#554596) */
+    .slide-viewport .text-sky-300,
+    .slide-viewport .text-sky-400,
+    .slide-viewport .text-cyan-300,
+    .slide-viewport .text-cyan-400,
+    .slide-viewport .text-cyan-200\/90,
+    .slide-viewport .text-sky-200\/90 { color: #1B7385 !important; }
+
+    .slide-viewport .text-indigo-300,
+    .slide-viewport .text-indigo-400,
+    .slide-viewport .text-purple-300,
+    .slide-viewport .text-purple-400 { color: #403375 !important; }
+
+    /* Status Accents (Calibrated for whitepaper contrast) */
+    .slide-viewport .text-emerald-300,
+    .slide-viewport .text-emerald-400 { color: #047857 !important; }
+    .slide-viewport .text-amber-300,
+    .slide-viewport .text-amber-400 { color: #B45309 !important; }
+    .slide-viewport .text-rose-300,
+    .slide-viewport .text-rose-400 { color: #BE123C !important; }
+
+    /* Card Backgrounds & Surfaces */
+    .slide-viewport .bg-slate-900,
+    .slide-viewport .bg-slate-950,
+    .slide-viewport .bg-slate-900\/60,
+    .slide-viewport .bg-slate-900\/70,
+    .slide-viewport .bg-slate-900\/80,
+    .slide-viewport .bg-slate-900\/90,
+    .slide-viewport .bg-slate-950\/60,
+    .slide-viewport .bg-slate-950\/70,
+    .slide-viewport .bg-slate-950\/80,
+    .slide-viewport .bg-slate-950\/90 {
+      background-color: #FFFFFF !important;
+    }
+
+    .slide-viewport .bg-dark-950,
+    .slide-viewport .bg-dark-900,
+    .slide-viewport .bg-dark-850 {
+      background-color: #F8F9FA !important;
+    }
+
+    /* Soft Duotone & Semantic Tint Containers */
+    .slide-viewport [class*="bg-sky-950"],
+    .slide-viewport [class*="bg-cyan-950"],
+    .slide-viewport [class*="bg-sky-500/"],
+    .slide-viewport [class*="bg-cyan-500/"] {
+      background-color: rgba(45, 155, 178, 0.08) !important;
+    }
+
+    .slide-viewport [class*="bg-indigo-950"],
+    .slide-viewport [class*="bg-purple-950"],
+    .slide-viewport [class*="bg-indigo-500/"],
+    .slide-viewport [class*="bg-purple-500/"] {
+      background-color: rgba(85, 69, 150, 0.08) !important;
+    }
+
+    .slide-viewport [class*="bg-emerald-950"],
+    .slide-viewport [class*="bg-emerald-500/"] {
+      background-color: rgba(5, 150, 105, 0.08) !important;
+    }
+
+    .slide-viewport [class*="bg-amber-950"],
+    .slide-viewport [class*="bg-amber-500/"] {
+      background-color: rgba(217, 119, 6, 0.08) !important;
+    }
+
+    .slide-viewport [class*="bg-rose-950"],
+    .slide-viewport [class*="bg-rose-500/"] {
+      background-color: rgba(220, 38, 38, 0.08) !important;
+    }
+
+    /* Clean Editorial Borders */
+    .slide-viewport .border-slate-800,
+    .slide-viewport .border-slate-800\/60,
+    .slide-viewport .border-slate-800\/80,
+    .slide-viewport .border-slate-700,
+    .slide-viewport .border-slate-700\/50,
+    .slide-viewport .border-slate-700\/60 {
+      border-color: #E2E8F0 !important;
+    }
+
+    .slide-viewport .border-sky-400\/20,
+    .slide-viewport .border-sky-400\/30,
+    .slide-viewport .border-sky-500\/30,
+    .slide-viewport .border-sky-600\/50,
+    .slide-viewport .border-sky-800,
+    .slide-viewport .border-cyan-400\/20,
+    .slide-viewport .border-cyan-400\/30,
+    .slide-viewport .border-cyan-500\/30,
+    .slide-viewport .border-cyan-600\/50,
+    .slide-viewport .border-cyan-800\/40 {
+      border-color: rgba(45, 155, 178, 0.35) !important;
+    }
+
+    .slide-viewport .border-indigo-400\/20,
+    .slide-viewport .border-indigo-400\/30,
+    .slide-viewport .border-indigo-500\/30,
+    .slide-viewport .border-indigo-700\/50,
+    .slide-viewport .border-purple-600\/50,
+    .slide-viewport .border-purple-800 {
+      border-color: rgba(85, 69, 150, 0.35) !important;
+    }
+
+    /* Code Tags & Snippets */
+    .slide-viewport code {
+      background-color: #F1F5F9 !important;
+      color: #403375 !important;
+      border: 1px solid #E2E8F0;
+      border-radius: 0.25rem;
+    }
+
+    /* Key Takeaway bar */
+    .slide-viewport .bg-cyan-950\/40,
+    .slide-viewport .bg-indigo-950\/40 {
+      background-color: rgba(45, 155, 178, 0.08) !important;
+      border-color: rgba(45, 155, 178, 0.25) !important;
     }
   </style>
 </head>
@@ -124,63 +259,63 @@
   <!-- 16:9 Presentation Viewport -->
   <div class="slide-viewport relative flex flex-col justify-between" id="presentationContainer">
 
-    <!-- Ambient Gradient Backdrops -->
-    <div class="absolute -top-36 -right-36 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none ambient-glow"></div>
-    <div class="absolute -bottom-36 -left-36 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none ambient-glow"></div>
+    <!-- Ambient Subtle Tints -->
+    <div class="absolute -top-36 -right-36 w-96 h-96 bg-[#2D9BB2]/5 rounded-full blur-3xl pointer-events-none ambient-glow"></div>
+    <div class="absolute -bottom-36 -left-36 w-96 h-96 bg-[#554596]/5 rounded-full blur-3xl pointer-events-none ambient-glow"></div>
 
     <!-- Global Header -->
-    <header class="absolute top-0 left-0 right-0 h-14 px-10 flex items-center justify-between text-xs font-mono text-slate-400 z-20 border-b border-slate-800/60 bg-dark-900/50 backdrop-blur-md">
+    <header class="absolute top-0 left-0 right-0 h-14 px-10 flex items-center justify-between text-xs font-mono text-slate-500 z-20 border-b border-slate-200/80 bg-white/80 backdrop-blur-md">
       <div class="flex items-center gap-3">
-        <span id="chapterBadge" class="px-2.5 py-0.5 rounded-full bg-slate-500/15 text-slate-300 font-bold border border-slate-400/30 transition-all duration-200">INTRO · 오프닝</span>
-        <span class="text-slate-600">|</span>
-        <span class="text-slate-300 font-medium">말이 코드가 되는 시대 : 바이브 코딩(Vibe Coding)</span>
+        <span id="chapterBadge" class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 font-bold border border-slate-300 transition-all duration-200">INTRO · 오프닝</span>
+        <span class="text-slate-300">|</span>
+        <span class="text-slate-700 font-medium tracking-tight">말이 코드가 되는 시대 : 바이브 코딩(Vibe Coding)</span>
       </div>
       <div class="flex items-center gap-4">
-        <button id="tocBtn" class="hover:text-sky-400 flex items-center gap-1.5 transition-colors px-2.5 py-1 rounded bg-slate-800/60 border border-slate-700/60 text-slate-300">
+        <button id="tocBtn" class="hover:text-[#2D9BB2] flex items-center gap-1.5 transition-colors px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200/80 border border-slate-200 text-slate-700 font-medium">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
           <span>목차 [M]</span>
         </button>
-        <button id="fullscreenBtn" class="hover:text-sky-400 flex items-center gap-1.5 transition-colors px-2.5 py-1 rounded bg-slate-800/60 border border-slate-700/60 text-slate-300">
+        <button id="fullscreenBtn" class="hover:text-[#2D9BB2] flex items-center gap-1.5 transition-colors px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200/80 border border-slate-200 text-slate-700 font-medium">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1v4m0-4h-4m4 4l-5-5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
           <span>전체화면 [F]</span>
         </button>
-        <span id="slideCounter" class="text-sky-400 font-bold font-mono">01 / 91</span>
+        <span id="slideCounter" class="text-[#2D9BB2] font-bold font-mono">01 / 91</span>
       </div>
     </header>
 
     <!-- Slides Wrapper (Injected from slides/ component files) -->
     <main class="relative w-full h-full pt-14 pb-12 flex-1 overflow-hidden" id="slidesWrapper">
       <!-- [COMPONENT] 00-intro/01-cover.html -->
-<section class="slide active justify-center items-center text-center relative" data-title="타이틀" data-chapter-id="intro" data-chapter-badge="INTRO · 오프닝" data-chapter-title="Intro. 오프닝 & 커리큘럼 로드맵" data-chapter-color="bg-slate-500/15 text-slate-300 border-slate-400/30" data-chapter-accent="text-slate-400">
-  <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-500/15 border border-sky-400/30 text-sky-300 text-xs font-semibold tracking-wider uppercase mb-6 badge-glow">
-    <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+<section class="slide active justify-center items-center text-center relative" data-title="타이틀" data-chapter-id="intro" data-chapter-badge="INTRO · 오프닝" data-chapter-title="Intro. 오프닝 & 커리큘럼 로드맵" data-chapter-color="bg-slate-100 text-slate-700 border-slate-300" data-chapter-accent="text-slate-600">
+  <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#2D9BB2]/10 border border-[#2D9BB2]/30 text-[#1B7385] text-xs font-bold tracking-wider uppercase mb-6 shadow-sm">
+    <span class="w-2 h-2 rounded-full bg-[#2D9BB2] animate-ping"></span>
     한국지능시스템학회 2026 추계학술대회 TUTORIAL
   </div>
-  <h1 class="text-5xl md:text-6xl font-black tracking-tight text-white mb-4 leading-tight">
+  <h1 class="text-5xl md:text-6xl font-black tracking-tight text-[#1A1A1A] mb-4 leading-tight">
     말이 코드가 되는 시대
   </h1>
-  <p class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-sky-400 via-indigo-300 to-cyan-300 bg-clip-text text-transparent mb-8">
+  <p class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#2D9BB2] via-[#554596] to-[#1B7385] bg-clip-text text-transparent mb-8">
     바이브 코딩(Vibe Coding)의 이상과 현실, 그리고 프로덕션 엔지니어링
   </p>
 
   <div class="grid grid-cols-3 gap-6 max-w-4xl w-full text-left mt-2">
-    <div class="bento-tile p-4 border-l-4 border-l-sky-500">
-      <span class="text-xs text-slate-400 block font-mono">일시</span>
-      <span class="text-sm font-semibold text-slate-100">2026. 11. 26 (목) 13:00 ~ 16:00 (3시간)</span>
+    <div class="bento-tile p-4 border-l-4 border-l-[#2D9BB2] shadow-sm">
+      <span class="text-xs text-slate-500 block font-mono">일시</span>
+      <span class="text-sm font-semibold text-[#1A1A1A]">2026. 11. 26 (목) 13:00 ~ 16:00 (3시간)</span>
     </div>
-    <div class="bento-tile p-4 border-l-4 border-l-indigo-500">
-      <span class="text-xs text-slate-400 block font-mono">장소</span>
-      <span class="text-sm font-semibold text-slate-100">김포대학교 글로벌캠퍼스 211-B호</span>
+    <div class="bento-tile p-4 border-l-4 border-l-[#554596] shadow-sm">
+      <span class="text-xs text-slate-500 block font-mono">장소</span>
+      <span class="text-sm font-semibold text-[#1A1A1A]">김포대학교 글로벌캠퍼스 211-B호</span>
     </div>
-    <div class="bento-tile p-4 border-l-4 border-l-cyan-500">
-      <span class="text-xs text-slate-400 block font-mono">강사</span>
-      <span class="text-sm font-semibold text-slate-100">차민규 AI Engineer (LG AI & Big Data)</span>
+    <div class="bento-tile p-4 border-l-4 border-l-[#2D9BB2] shadow-sm">
+      <span class="text-xs text-slate-500 block font-mono">강사</span>
+      <span class="text-sm font-semibold text-[#1A1A1A]">차민규 AI Engineer (LG AI & Big Data)</span>
     </div>
   </div>
 </section>
 
       <!-- [COMPONENT] 00-intro/02-speaker.html -->
-<section class="slide" data-title="강사 소개" data-chapter-id="intro" data-chapter-badge="INTRO · 오프닝" data-chapter-title="Intro. 오프닝 & 커리큘럼 로드맵" data-chapter-color="bg-slate-500/15 text-slate-300 border-slate-400/30" data-chapter-accent="text-slate-400">
+<section class="slide" data-title="강사 소개" data-chapter-id="intro" data-chapter-badge="INTRO · 오프닝" data-chapter-title="Intro. 오프닝 & 커리큘럼 로드맵" data-chapter-color="bg-slate-100 text-slate-700 border-slate-300" data-chapter-accent="text-slate-600">
   <div class="mb-4">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Speaker Introduction</span>
     <h2 class="text-3xl font-black text-white">강사 소개</h2>
@@ -232,7 +367,7 @@
 </section>
 
       <!-- [COMPONENT] 00-intro/03-roadmap.html -->
-<section class="slide" data-title="3시간 로드맵" data-chapter-id="intro" data-chapter-badge="INTRO · 오프닝" data-chapter-title="Intro. 오프닝 & 커리큘럼 로드맵" data-chapter-color="bg-slate-500/15 text-slate-300 border-slate-400/30" data-chapter-accent="text-slate-400">
+<section class="slide" data-title="3시간 로드맵" data-chapter-id="intro" data-chapter-badge="INTRO · 오프닝" data-chapter-title="Intro. 오프닝 & 커리큘럼 로드맵" data-chapter-color="bg-slate-100 text-slate-700 border-slate-300" data-chapter-accent="text-slate-600">
   <div class="mb-4">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Course Schedule</span>
     <h2 class="text-3xl font-black text-white">3시간 튜토리얼 로드맵 (총 180분)</h2>
@@ -316,7 +451,7 @@
 </section>
 
       <!-- [COMPONENT] 00-intro/04-agenda.html -->
-<section class="slide" data-title="전체 아젠다" data-chapter-id="intro" data-chapter-badge="INTRO · 오프닝" data-chapter-title="Intro. 오프닝 & 커리큘럼 로드맵" data-chapter-color="bg-slate-500/15 text-slate-300 border-slate-400/30" data-chapter-accent="text-slate-400">
+<section class="slide" data-title="전체 아젠다" data-chapter-id="intro" data-chapter-badge="INTRO · 오프닝" data-chapter-title="Intro. 오프닝 & 커리큘럼 로드맵" data-chapter-color="bg-slate-100 text-slate-700 border-slate-300" data-chapter-accent="text-slate-600">
   <div class="mb-4">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Curriculum Index</span>
     <h2 class="text-3xl font-black text-white">강의 세부 내용 아젠다 (Chapter 01 ~ 08)</h2>
@@ -382,7 +517,7 @@
 </section>
 
       <!-- [COMPONENT] 01-lineage/01-intro.html -->
-<section class="slide flex flex-col justify-between" data-title="Ch 01. 계보 인트로" data-chapter-id="ch01" data-chapter-badge="CHAPTER 01 · 계보" data-chapter-title="Ch 01. 계보 : 챗봇에서 자율 에이전트까지" data-chapter-color="bg-sky-500/15 text-sky-300 border-sky-400/30" data-chapter-accent="text-sky-400">
+<section class="slide flex flex-col justify-between" data-title="Ch 01. 계보 인트로" data-chapter-id="ch01" data-chapter-badge="CHAPTER 01 · 계보" data-chapter-title="Ch 01. 계보 : 챗봇에서 자율 에이전트까지" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <div>
     <span class="text-sky-400 font-mono text-xs tracking-widest font-semibold px-2.5 py-1 rounded bg-sky-500/10 border border-sky-400/20">CHAPTER 01 · HISTORICAL LINEAGE</span>
     <h2 class="text-3xl md:text-4xl font-black text-white mt-2.5 mb-2">
@@ -492,7 +627,7 @@
 </section>
 
       <!-- [COMPONENT] 01-lineage/02-prompt-fall.html -->
-<section class="slide" data-title="1.1 프롬프트 종말과 ReAct" data-chapter-id="ch01" data-chapter-badge="CHAPTER 01 · 계보" data-chapter-title="Ch 01. 계보 : 챗봇에서 자율 에이전트까지" data-chapter-color="bg-sky-500/15 text-sky-300 border-sky-400/30" data-chapter-accent="text-sky-400">
+<section class="slide" data-title="1.1 프롬프트 종말과 ReAct" data-chapter-id="ch01" data-chapter-badge="CHAPTER 01 · 계보" data-chapter-title="Ch 01. 계보 : 챗봇에서 자율 에이전트까지" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <div class="mb-3">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
     <h2 class="text-3xl font-black text-white">1.1 프롬프트의 종말과 ReAct 패러다임</h2>
@@ -676,7 +811,7 @@
 </section>
 
       <!-- [COMPONENT] 01-lineage/03-autogpt-failure.html -->
-<section class="slide" data-title="1.2 AutoGPT의 태동과 좌절" data-chapter-id="ch01" data-chapter-badge="CHAPTER 01 · 계보" data-chapter-title="Ch 01. 계보 : 챗봇에서 자율 에이전트까지" data-chapter-color="bg-sky-500/15 text-sky-300 border-sky-400/30" data-chapter-accent="text-sky-400">
+<section class="slide" data-title="1.2 AutoGPT의 태동과 좌절" data-chapter-id="ch01" data-chapter-badge="CHAPTER 01 · 계보" data-chapter-title="Ch 01. 계보 : 챗봇에서 자율 에이전트까지" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <div class="mb-3">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
     <h2 class="text-3xl font-black text-white">1.2 AutoGPT(2023.03)의 등장과 Monolithic의 좌절</h2>
@@ -891,7 +1026,7 @@
 </section>
 
       <!-- [COMPONENT] 01-lineage/04-academic-papers.html -->
-<section class="slide" data-title="1.3 2023~2024 학술 연구 대폭발" data-chapter-id="ch01" data-chapter-badge="CHAPTER 01 · 계보" data-chapter-title="Ch 01. 계보 : 챗봇에서 자율 에이전트까지" data-chapter-color="bg-sky-500/15 text-sky-300 border-sky-400/30" data-chapter-accent="text-sky-400">
+<section class="slide" data-title="1.3 2023~2024 학술 연구 대폭발" data-chapter-id="ch01" data-chapter-badge="CHAPTER 01 · 계보" data-chapter-title="Ch 01. 계보 : 챗봇에서 자율 에이전트까지" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <div class="mb-2.5">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
     <h2 class="text-3xl font-black text-white">1.3 2023년 하반기 ~ 2024년 학술 연구 대폭발 : Multi-Agent & CoALA</h2>
@@ -1088,7 +1223,7 @@
 </section>
 
       <!-- [COMPONENT] 01-lineage/05-swebench-feedback.html -->
-<section class="slide" data-title="1.4 SWE-bench & 2025 추론 혁신" data-chapter-id="ch01" data-chapter-badge="CHAPTER 01 · 계보" data-chapter-title="Ch 01. 계보 : 챗봇에서 자율 에이전트까지" data-chapter-color="bg-sky-500/15 text-sky-300 border-sky-400/30" data-chapter-accent="text-sky-400">
+<section class="slide" data-title="1.4 SWE-bench & 2025 추론 혁신" data-chapter-id="ch01" data-chapter-badge="CHAPTER 01 · 계보" data-chapter-title="Ch 01. 계보 : 챗봇에서 자율 에이전트까지" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <div class="mb-3">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
     <h2 class="text-3xl font-black text-white">1.4 SWE-bench와 2025년 추론 모델(Test-Time Compute) 혁신</h2>
@@ -1222,7 +1357,7 @@
 </section>
 
       <!-- [COMPONENT] 01-lineage/06-two-camps.html -->
-<section class="slide" data-title="1.5 Outer-Inner Loop & 2대 진영" data-chapter-id="ch01" data-chapter-badge="CHAPTER 01 · 계보" data-chapter-title="Ch 01. 계보 : 챗봇에서 자율 에이전트까지" data-chapter-color="bg-sky-500/15 text-sky-300 border-sky-400/30" data-chapter-accent="text-sky-400">
+<section class="slide" data-title="1.5 Outer-Inner Loop & 2대 진영" data-chapter-id="ch01" data-chapter-badge="CHAPTER 01 · 계보" data-chapter-title="Ch 01. 계보 : 챗봇에서 자율 에이전트까지" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <div class="mb-2.5">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
     <h2 class="text-3xl font-black text-white">1.5 2026 에이전트 아키텍처 : Outer-Inner Loop와 2대 진영</h2>
@@ -1338,7 +1473,7 @@
 </section>
 
       <!-- [COMPONENT] 02-essence/01-intro.html -->
-<section class="slide justify-center" data-title="Ch 02. 본질 인트로" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-cyan-500/15 text-cyan-300 border-cyan-400/30" data-chapter-accent="text-cyan-400">
+<section class="slide justify-center" data-title="Ch 02. 본질 인트로" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <div class="max-w-3xl">
     <span class="text-sky-400 font-mono text-sm tracking-widest font-semibold px-3 py-1 rounded bg-sky-500/10 border border-sky-400/20">CHAPTER 02</span>
     <h2 class="text-4xl md:text-5xl font-black text-white mt-4 mb-3">
@@ -1358,7 +1493,7 @@
 </section>
 
       <!-- [COMPONENT] 02-essence/02-karpathy.html -->
-<section class="slide flex flex-col justify-between" data-title="2.1 Karpathy와 프로젝트 합성" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-cyan-500/15 text-cyan-300 border-cyan-400/30" data-chapter-accent="text-cyan-400">
+<section class="slide flex flex-col justify-between" data-title="2.1 Karpathy와 프로젝트 합성" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <div class="mb-1">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
     <h2 class="text-3xl font-black text-white">2.1 바이브 코딩 : 챗봇 스니펫에서 '자율 프로젝트 합성'으로</h2>
@@ -1706,7 +1841,7 @@
 </section>
 
       <!-- [COMPONENT] 02-essence/03-intent-mechanism.html -->
-<section class="slide flex flex-col justify-between" data-title="2.2 말이 코드가 되는 메커니즘" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-cyan-500/15 text-cyan-300 border-cyan-400/30" data-chapter-accent="text-cyan-400">
+<section class="slide flex flex-col justify-between" data-title="2.2 말이 코드가 되는 메커니즘" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <div class="mb-2">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
     <h2 class="text-3xl font-black text-white">2.2 소프트웨어 추상화 계층의 대전환 : 말이 코드가 되는 원리</h2>
@@ -1930,7 +2065,7 @@
 </section>
 
       <!-- [COMPONENT] 02-essence/04-vibe-architecture.html -->
-<section class="slide flex flex-col justify-between" data-title="2.3 바이브 코딩 아키텍처 원리" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-cyan-500/15 text-cyan-300 border-cyan-400/30" data-chapter-accent="text-cyan-400">
+<section class="slide flex flex-col justify-between" data-title="2.3 바이브 코딩 아키텍처 원리" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <div class="mb-2">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
     <h2 class="text-3xl font-black text-white">2.3 바이브 코딩의 런타임 아키텍처 : LLM Server(뇌)와 Local Client(손·발)</h2>
@@ -2197,7 +2332,7 @@
 </section>
 
       <!-- [COMPONENT] 02-essence/05-reality-check-overview.html -->
-<section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (1) 6대 대비표" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-cyan-500/15 text-cyan-300 border-cyan-400/30" data-chapter-accent="text-cyan-400">
+<section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (1) 6대 대비표" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <div class="mb-1.5">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
     <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : 한눈에 보는 6대 착각과 프로덕션 현실</h2>
@@ -2377,7 +2512,7 @@
 </section>
 
       <!-- [COMPONENT] 02-essence/06-reality-check-complexity-baas.html -->
-<section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (2) 복잡계 & BaaS" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-cyan-500/15 text-cyan-300 border-cyan-400/30" data-chapter-accent="text-cyan-400">
+<section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (2) 복잡계 & BaaS" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <div class="mb-1.5">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
     <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : ① 자연어의 한계 vs ② BaaS 레고 블록 전략</h2>
@@ -2607,7 +2742,7 @@
 </section>
 
       <!-- [COMPONENT] 02-essence/07-reality-check-language-token.html -->
-<section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (3) 언어 & 토큰 비용" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-cyan-500/15 text-cyan-300 border-cyan-400/30" data-chapter-accent="text-cyan-400">
+<section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (3) 언어 & 토큰 비용" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <div class="mb-1.5">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
     <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : ③ Python의 맹점 vs ④ 토큰 요금 폭탄(Tokenpocalypse)</h2>
@@ -2741,7 +2876,7 @@
 </section>
 
       <!-- [COMPONENT] 02-essence/08-reality-check-security-engineer.html -->
-<section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (4) 보안 & 엔지니어의 역할" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-cyan-500/15 text-cyan-300 border-cyan-400/30" data-chapter-accent="text-cyan-400">
+<section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (4) 보안 & 엔지니어의 역할" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <div class="mb-1.5">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
     <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : ⑤ 치명적 보안 누수(RLS)와 엔지니어의 존재 이유</h2>
@@ -2870,7 +3005,7 @@
 </section>
 
       <!-- [COMPONENT] 02-essence/09-competencies.html -->
-<section class="slide flex flex-col justify-between" data-title="2.5 4대 핵심 역량" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-cyan-500/15 text-cyan-300 border-cyan-400/30" data-chapter-accent="text-cyan-400">
+<section class="slide flex flex-col justify-between" data-title="2.5 4대 핵심 역량" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <div class="mb-1.5">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
     <h2 class="text-3xl font-black text-white">2.5 2026 바이브 코더의 4대 핵심 역량 : 코더에서 '시스템 지휘자'로</h2>
@@ -3102,7 +3237,7 @@
 </section>
 
       <!-- [COMPONENT] 02-essence/10-intermission.html -->
-<section class="slide justify-center items-center text-center" data-title="중간 휴식 1" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-cyan-500/15 text-cyan-300 border-cyan-400/30" data-chapter-accent="text-cyan-400">
+<section class="slide justify-center items-center text-center" data-title="중간 휴식 1" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <div class="bento-tile p-10 max-w-xl border-amber-500/30">
     <div class="text-5xl mb-4">☕</div>
     <span class="text-xs font-mono font-bold px-3 py-1 rounded bg-amber-500/20 text-amber-300 uppercase tracking-widest">Intermission 1</span>
@@ -3120,7 +3255,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/01-intro.html -->
-<section class="slide justify-center" data-title="Ch 03. 언어 인트로" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide justify-center" data-title="Ch 03. 언어 인트로" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <div class="max-w-3xl">
     <div class="flex items-center gap-2 mb-3">
       <span class="text-indigo-400 font-mono text-sm tracking-widest font-semibold px-3 py-1 rounded bg-indigo-500/10 border border-indigo-400/20">CHAPTER 03</span>
@@ -3143,7 +3278,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/02-octoverse-chart.html -->
-<section class="slide flex flex-col justify-between" data-title="3.1 GitHub Octoverse 데이터 분석" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide flex flex-col justify-between" data-title="3.1 GitHub Octoverse 데이터 분석" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <div class="mb-1.5">
     <div class="flex items-center justify-between">
       <div>
@@ -3327,7 +3462,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/03-tradeoff-collapse.html -->
-<section class="slide flex flex-col justify-between" data-title="3.2 패러다임의 붕괴: 생산성 환상의 종말" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide flex flex-col justify-between" data-title="3.2 패러다임의 붕괴: 생산성 환상의 종말" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -3418,7 +3553,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/04-productivity-vs-performance.html -->
-<section class="slide flex flex-col justify-between" data-title="3.3 생산성 평준화 vs 성능 격차 비교 매트릭스" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide flex flex-col justify-between" data-title="3.3 생산성 평준화 vs 성능 격차 비교 매트릭스" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -3539,7 +3674,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/05-why-performance-matters.html -->
-<section class="slide flex flex-col justify-between" data-title="3.4 AI 시대, 왜 성능 단점이 더 치명적인가?" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide flex flex-col justify-between" data-title="3.4 AI 시대, 왜 성능 단점이 더 치명적인가?" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -3722,7 +3857,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/06-token-refactoring-gap.html -->
-<section class="slide flex flex-col justify-between" data-title="3.5 토큰 경제학과 리팩토링 안전망" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide flex flex-col justify-between" data-title="3.5 토큰 경제학과 리팩토링 안전망" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -3825,7 +3960,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/07-packaging-and-matrix.html -->
-<section class="slide flex flex-col justify-between" data-title="3.6 자율 배포(Agentic Ops)와 종합 비교 매트릭스" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide flex flex-col justify-between" data-title="3.6 자율 배포(Agentic Ops)와 종합 비교 매트릭스" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -3945,7 +4080,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/08-trap-of-static-types.html -->
-<section class="slide flex flex-col justify-between" data-title="3.7 도발적 질문: 정적 타입 = AI 친화적?" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide flex flex-col justify-between" data-title="3.7 도발적 질문: 정적 타입 = AI 친화적?" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -4052,7 +4187,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/09-legacy-static-dilemma.html -->
-<section class="slide flex flex-col justify-between" data-title="3.8 전통적 정적 언어 3대장의 딜레마" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide flex flex-col justify-between" data-title="3.8 전통적 정적 언어 3대장의 딜레마" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -4174,7 +4309,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/10-old-vs-modern-matrix.html -->
-<section class="slide flex flex-col justify-between" data-title="3.9 바이브 코딩 시대: Old vs Modern Static" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide flex flex-col justify-between" data-title="3.9 바이브 코딩 시대: Old vs Modern Static" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -4306,7 +4441,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/11-modern-static-conditions.html -->
-<section class="slide flex flex-col justify-between" data-title="3.10 진짜 대안 언어의 3대 조건" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide flex flex-col justify-between" data-title="3.10 진짜 대안 언어의 3대 조건" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -4402,7 +4537,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/12-go-vs-rust-data.html -->
-<section class="slide flex flex-col justify-between" data-title="3.11 Go vs Rust 5개년 성장 궤적 비교" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide flex flex-col justify-between" data-title="3.11 Go vs Rust 5개년 성장 궤적 비교" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -4558,7 +4693,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/13-go-vs-rust-structural-drivers.html -->
-<section class="slide flex flex-col justify-between" data-title="3.12 구조적 변화 요인 &amp; AI 분업화" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide flex flex-col justify-between" data-title="3.12 구조적 변화 요인 &amp; AI 분업화" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -4664,7 +4799,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/14-python-real-weapon.html -->
-<section class="slide flex flex-col justify-between" data-title="3.13 현실적 반론과 진짜 무기: C-Extension" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide flex flex-col justify-between" data-title="3.13 현실적 반론과 진짜 무기: C-Extension" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -4766,7 +4901,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/15-quality-stack-harness.html -->
-<section class="slide flex flex-col justify-between" data-title="3.14 Python을 살리는 유일한 길: Quality Stack" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide flex flex-col justify-between" data-title="3.14 Python을 살리는 유일한 길: Quality Stack" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -4907,7 +5042,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/16-hands-on-type-harness.html -->
-<section class="slide flex flex-col justify-between" data-title="3.15 실전 실습: 컴파일러 하네스 구축" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide flex flex-col justify-between" data-title="3.15 실전 실습: 컴파일러 하네스 구축" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -5009,7 +5144,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/17-battlegrounds-by-domain.html -->
-<section class="slide flex flex-col justify-between" data-title="3.16 언어군별 최적의 전장: 실무 영역별 격돌" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide flex flex-col justify-between" data-title="3.16 언어군별 최적의 전장: 실무 영역별 격돌" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -5154,7 +5289,7 @@
 </section>
 
       <!-- [COMPONENT] 03-language/18-architecture-matrix-and-conclusion.html -->
-<section class="slide flex flex-col justify-between" data-title="3.17 실전 선택 가이드 &amp; 아키텍처 분업론" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-indigo-500/15 text-indigo-300 border-indigo-400/30" data-chapter-accent="text-indigo-400">
+<section class="slide flex flex-col justify-between" data-title="3.17 실전 선택 가이드 &amp; 아키텍처 분업론" data-chapter-id="ch03" data-chapter-badge="CHAPTER 03 · 언어" data-chapter-title="Ch 03. 언어 : Python은 최적인가 (Go/Rust/TS)" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -5331,7 +5466,7 @@
 </section>
 
       <!-- [COMPONENT] 04-toolchain/01-intro.html -->
-<section class="slide justify-center" data-title="Ch 04. 툴체인 인트로" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-blue-500/15 text-blue-300 border-blue-400/30" data-chapter-accent="text-blue-400">
+<section class="slide justify-center" data-title="Ch 04. 툴체인 인트로" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <div class="max-w-3xl">
     <span class="text-sky-400 font-mono text-sm tracking-widest font-semibold px-3 py-1 rounded bg-sky-500/10 border border-sky-400/20">CHAPTER 04</span>
     <h2 class="text-4xl md:text-5xl font-black text-white mt-4 mb-3">
@@ -5351,7 +5486,7 @@
 </section>
 
       <!-- [COMPONENT] 04-toolchain/02-agents-md-index.html -->
-<section class="slide flex flex-col justify-between" data-title="4.1 AGENTS.md : 프로젝트 헌법과 주입 메커니즘" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-blue-500/15 text-blue-300 border-blue-400/30" data-chapter-accent="text-blue-400">
+<section class="slide flex flex-col justify-between" data-title="4.1 AGENTS.md : 프로젝트 헌법과 주입 메커니즘" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -5535,7 +5670,7 @@
 </section>
 
       <!-- [COMPONENT] 04-toolchain/03-skills-naming-structure.html -->
-<section class="slide flex flex-col justify-between" data-title="4.2 Skills 아키텍처 : 폴더 구조와 네이밍 전략" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-blue-500/15 text-blue-300 border-blue-400/30" data-chapter-accent="text-blue-400">
+<section class="slide flex flex-col justify-between" data-title="4.2 Skills 아키텍처 : 폴더 구조와 네이밍 전략" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -5671,7 +5806,7 @@
 </section>
 
       <!-- [COMPONENT] 04-toolchain/04-skill-vs-reference-docs.html -->
-<section class="slide flex flex-col justify-between" data-title="4.3 문서 설계학 : SKILL.md vs REFERENCE.md" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-blue-500/15 text-blue-300 border-blue-400/30" data-chapter-accent="text-blue-400">
+<section class="slide flex flex-col justify-between" data-title="4.3 문서 설계학 : SKILL.md vs REFERENCE.md" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -5800,7 +5935,7 @@
 </section>
 
       <!-- [COMPONENT] 04-toolchain/05-rules-and-grill-me.html -->
-<section class="slide flex flex-col justify-between" data-title="4.4 Rules &amp; Grill-me : 능동적 정렬 메커니즘" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-blue-500/15 text-blue-300 border-blue-400/30" data-chapter-accent="text-blue-400">
+<section class="slide flex flex-col justify-between" data-title="4.4 Rules &amp; Grill-me : 능동적 정렬 메커니즘" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -5934,7 +6069,7 @@
 </section>
 
       <!-- [COMPONENT] 04-toolchain/06-lifecycle-hooks.html -->
-<section class="slide flex flex-col justify-between" data-title="4.5 Lifecycle Hooks : 자동 가드레일 &amp; 검증 자동화" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-blue-500/15 text-blue-300 border-blue-400/30" data-chapter-accent="text-blue-400">
+<section class="slide flex flex-col justify-between" data-title="4.5 Lifecycle Hooks : 자동 가드레일 &amp; 검증 자동화" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -6083,7 +6218,7 @@
 </section>
 
       <!-- [COMPONENT] 04-toolchain/07-common-vs-project-skills.html -->
-<section class="slide flex flex-col justify-between" data-title="4.6 공통 Skills vs 프로젝트 특화: AGENTS.md와 PROJECT.md" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-blue-500/15 text-blue-300 border-blue-400/30" data-chapter-accent="text-blue-400">
+<section class="slide flex flex-col justify-between" data-title="4.6 공통 Skills vs 프로젝트 특화: AGENTS.md와 PROJECT.md" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -6209,7 +6344,7 @@
 </section>
 
       <!-- [COMPONENT] 04-toolchain/08-context-retention-docs.html -->
-<section class="slide flex flex-col justify-between" data-title="4.7 Context 유지 3대장: LESSON_AND_LEARN · PLAN · INTENT" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-blue-500/15 text-blue-300 border-blue-400/30" data-chapter-accent="text-blue-400">
+<section class="slide flex flex-col justify-between" data-title="4.7 Context 유지 3대장: LESSON_AND_LEARN · PLAN · INTENT" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -6331,7 +6466,7 @@
 </section>
 
       <!-- [COMPONENT] 04-toolchain/09-llm-wiki-architecture.html -->
-<section class="slide flex flex-col justify-between" data-title="4.8 중앙 집중형 LLM-Wiki 아키텍처" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-blue-500/15 text-blue-300 border-blue-400/30" data-chapter-accent="text-blue-400">
+<section class="slide flex flex-col justify-between" data-title="4.8 중앙 집중형 LLM-Wiki 아키텍처" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -6498,7 +6633,7 @@
 </section>
 
       <!-- [COMPONENT] 04-toolchain/10-token-leverage-and-workflow.html -->
-<section class="slide flex flex-col justify-between" data-title="4.9 토큰 레버리지 &amp; 신규 프로젝트 부트스트랩" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-blue-500/15 text-blue-300 border-blue-400/30" data-chapter-accent="text-blue-400">
+<section class="slide flex flex-col justify-between" data-title="4.9 토큰 레버리지 &amp; 신규 프로젝트 부트스트랩" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -6634,7 +6769,7 @@
 </section>
 
       <!-- [COMPONENT] 04-toolchain/11-personal-standards-and-curation.html -->
-<section class="slide flex flex-col justify-between" data-title="4.10 개발 표준화 &amp; Skills 큐레이션" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-blue-500/15 text-blue-300 border-blue-400/30" data-chapter-accent="text-blue-400">
+<section class="slide flex flex-col justify-between" data-title="4.10 개발 표준화 &amp; Skills 큐레이션" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -6757,7 +6892,7 @@
 </section>
 
       <!-- [COMPONENT] 04-toolchain/12-production-blueprint.html -->
-<section class="slide flex flex-col justify-between" data-title="4.11 인지 아키텍처의 프로덕션 구현" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-blue-500/15 text-blue-300 border-blue-400/30" data-chapter-accent="text-blue-400">
+<section class="slide flex flex-col justify-between" data-title="4.11 인지 아키텍처의 프로덕션 구현" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -6886,7 +7021,7 @@
 </section>
 
       <!-- [COMPONENT] 04-toolchain/13-ai-browser-aside-ego-lite.html -->
-<section class="slide flex flex-col justify-between" data-title="4.12 AI 브라우저 : Aside vs ego-lite 비교 분석" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-blue-500/15 text-blue-300 border-blue-400/30" data-chapter-accent="text-blue-400">
+<section class="slide flex flex-col justify-between" data-title="4.12 AI 브라우저 : Aside vs ego-lite 비교 분석" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -7101,7 +7236,7 @@
 </section>
 
       <!-- [COMPONENT] 04-toolchain/14-hands-on-skills.html -->
-<section class="slide flex flex-col justify-between" data-title="4.13 실전 실습: AGENTS.md &amp; Skills 하네스" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-blue-500/15 text-blue-300 border-blue-400/30" data-chapter-accent="text-blue-400">
+<section class="slide flex flex-col justify-between" data-title="4.13 실전 실습: AGENTS.md &amp; Skills 하네스" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -7198,7 +7333,7 @@
 </section>
 
       <!-- [COMPONENT] 04-toolchain/15-chapter-summary.html -->
-<section class="slide flex flex-col justify-between" data-title="Ch 04 요약 : 툴체인 &amp; 하네스 체계 완결" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-blue-500/15 text-blue-300 border-blue-400/30" data-chapter-accent="text-blue-400">
+<section class="slide flex flex-col justify-between" data-title="Ch 04 요약 : 툴체인 &amp; 하네스 체계 완결" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -7335,7 +7470,7 @@
 </section>
 
       <!-- [COMPONENT] 05-parallel/01-intro.html -->
-<section class="slide justify-center" data-title="Ch 05. 병렬화 인트로" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-purple-500/15 text-purple-300 border-purple-400/30" data-chapter-accent="text-purple-400">
+<section class="slide justify-center" data-title="Ch 05. 병렬화 인트로" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <div class="max-w-3xl">
     <div class="flex items-center gap-2 mb-3">
       <span class="text-indigo-400 font-mono text-sm tracking-widest font-semibold px-3 py-1 rounded bg-indigo-500/10 border border-indigo-400/20">CHAPTER 05</span>
@@ -7358,7 +7493,7 @@
 </section>
 
       <!-- [COMPONENT] 05-parallel/02-async-human.html -->
-<section class="slide flex flex-col justify-between" data-title="5.1 비동기 인간 : 단일 에이전트의 병목 탈피" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-purple-500/15 text-purple-300 border-purple-400/30" data-chapter-accent="text-purple-400">
+<section class="slide flex flex-col justify-between" data-title="5.1 비동기 인간 : 단일 에이전트의 병목 탈피" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -7480,7 +7615,7 @@
 </section>
 
       <!-- [COMPONENT] 05-parallel/03-git-worktree-infrastructure.html -->
-<section class="slide flex flex-col justify-between" data-title="5.2 격리 기술의 핵심 : git worktree" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-purple-500/15 text-purple-300 border-purple-400/30" data-chapter-accent="text-purple-400">
+<section class="slide flex flex-col justify-between" data-title="5.2 격리 기술의 핵심 : git worktree" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -7616,7 +7751,7 @@
 </section>
 
       <!-- [COMPONENT] 05-parallel/04-parallel-orchestrators.html -->
-<section class="slide flex flex-col justify-between" data-title="5.3 병렬 오케스트레이션 도구 : hedr &amp; 격리 스택" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-purple-500/15 text-purple-300 border-purple-400/30" data-chapter-accent="text-purple-400">
+<section class="slide flex flex-col justify-between" data-title="5.3 병렬 오케스트레이션 도구 : hedr &amp; 격리 스택" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -7750,7 +7885,7 @@
 </section>
 
       <!-- [COMPONENT] 05-parallel/05-multi-session-and-modular-concurrency.html -->
-<section class="slide flex flex-col justify-between" data-title="5.4 다중 세션 연속성 &amp; 모듈 분할 병렬 개발" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-purple-500/15 text-purple-300 border-purple-400/30" data-chapter-accent="text-purple-400">
+<section class="slide flex flex-col justify-between" data-title="5.4 다중 세션 연속성 &amp; 모듈 분할 병렬 개발" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -7940,7 +8075,7 @@
 </section>
 
       <!-- [COMPONENT] 05-parallel/06-one-person-four-agents-pipeline.html -->
-<section class="slide flex flex-col justify-between" data-title="5.5 실전 워크플로 : 1인 4 에이전트 파이프라인" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-purple-500/15 text-purple-300 border-purple-400/30" data-chapter-accent="text-purple-400">
+<section class="slide flex flex-col justify-between" data-title="5.5 실전 워크플로 : 1인 4 에이전트 파이프라인" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -8092,7 +8227,7 @@
 </section>
 
       <!-- [COMPONENT] 05-parallel/07-hands-on-worktree-parallel.html -->
-<section class="slide flex flex-col justify-between" data-title="5.6 실전 실습 : Worktree로 2명 동시 지휘" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-purple-500/15 text-purple-300 border-purple-400/30" data-chapter-accent="text-purple-400">
+<section class="slide flex flex-col justify-between" data-title="5.6 실전 실습 : Worktree로 2명 동시 지휘" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -8187,7 +8322,7 @@
 </section>
 
       <!-- [COMPONENT] 05-parallel/08-chapter-summary.html -->
-<section class="slide flex flex-col justify-between" data-title="Ch 05 요약 : 다중 에이전트 병렬화 완결" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-purple-500/15 text-purple-300 border-purple-400/30" data-chapter-accent="text-purple-400">
+<section class="slide flex flex-col justify-between" data-title="Ch 05 요약 : 다중 에이전트 병렬화 완결" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -8336,7 +8471,7 @@
 </section>
 
       <!-- [COMPONENT] 06-cost/01-intro.html -->
-<section class="slide justify-center" data-title="Ch 06. 비용 인트로" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-emerald-500/15 text-emerald-300 border-emerald-400/30" data-chapter-accent="text-emerald-400">
+<section class="slide justify-center" data-title="Ch 06. 비용 인트로" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <div class="max-w-3xl">
     <div class="flex items-center gap-2 mb-3">
       <span class="text-cyan-400 font-mono text-sm tracking-widest font-semibold px-3 py-1 rounded bg-cyan-500/10 border border-cyan-400/20">CHAPTER 06</span>
@@ -8361,7 +8496,7 @@
 </section>
 
       <!-- [COMPONENT] 06-cost/02-caching-and-routing.html -->
-<section class="slide flex flex-col justify-between" data-title="6.1 프롬프트 캐싱 &amp; 계층형 모델 라우팅" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-emerald-500/15 text-emerald-300 border-emerald-400/30" data-chapter-accent="text-emerald-400">
+<section class="slide flex flex-col justify-between" data-title="6.1 프롬프트 캐싱 &amp; 계층형 모델 라우팅" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -8482,7 +8617,7 @@
 </section>
 
       <!-- [COMPONENT] 06-cost/03-context-window-assembly.html -->
-<section class="slide flex flex-col justify-between" data-title="6.2 토큰의 실체 : 컨텍스트 윈도우 조립 파이프라인" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-emerald-500/15 text-emerald-300 border-emerald-400/30" data-chapter-accent="text-emerald-400">
+<section class="slide flex flex-col justify-between" data-title="6.2 토큰의 실체 : 컨텍스트 윈도우 조립 파이프라인" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -8675,7 +8810,7 @@
 </section>
 
       <!-- [COMPONENT] 06-cost/04-caveman-and-ponytail-skills.html -->
-<section class="slide flex flex-col justify-between" data-title="6.3 군더더기 &amp; 과잉 방지 : caveman &amp; ponytail" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-emerald-500/15 text-emerald-300 border-emerald-400/30" data-chapter-accent="text-emerald-400">
+<section class="slide flex flex-col justify-between" data-title="6.3 군더더기 &amp; 과잉 방지 : caveman &amp; ponytail" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -8817,7 +8952,7 @@
 </section>
 
       <!-- [COMPONENT] 06-cost/05-ast-skeleton-and-structural-context.html -->
-<section class="slide flex flex-col justify-between" data-title="6.4 AST 구조 &amp; Tree-sitter 스켈레톤 압축" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-emerald-500/15 text-emerald-300 border-emerald-400/30" data-chapter-accent="text-emerald-400">
+<section class="slide flex flex-col justify-between" data-title="6.4 AST 구조 &amp; Tree-sitter 스켈레톤 압축" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -8965,7 +9100,7 @@
 </section>
 
       <!-- [COMPONENT] 06-cost/06-multi-turn-bullet-compaction.html -->
-<section class="slide flex flex-col justify-between" data-title="6.5 멀티턴 토큰 폭증 제어 : Bullet Point 세션 압축" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-emerald-500/15 text-emerald-300 border-emerald-400/30" data-chapter-accent="text-emerald-400">
+<section class="slide flex flex-col justify-between" data-title="6.5 멀티턴 토큰 폭증 제어 : Bullet Point 세션 압축" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -9100,7 +9235,7 @@
 </section>
 
       <!-- [COMPONENT] 06-cost/07-atomic-source-tree-standard.html -->
-<section class="slide flex flex-col justify-between" data-title="6.6 소스트리 표준화 &amp; 원자적 함수 분할" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-emerald-500/15 text-emerald-300 border-emerald-400/30" data-chapter-accent="text-emerald-400">
+<section class="slide flex flex-col justify-between" data-title="6.6 소스트리 표준화 &amp; 원자적 함수 분할" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -9252,7 +9387,7 @@
 </section>
 
       <!-- [COMPONENT] 06-cost/08-advanced-token-diet-toolkit.html -->
-<section class="slide flex flex-col justify-between" data-title="6.7 실전 토큰 다이어트 툴킷 : Grep &amp; 로그 Truncation" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-emerald-500/15 text-emerald-300 border-emerald-400/30" data-chapter-accent="text-emerald-400">
+<section class="slide flex flex-col justify-between" data-title="6.7 실전 토큰 다이어트 툴킷 : Grep &amp; 로그 Truncation" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -9372,7 +9507,7 @@
 </section>
 
       <!-- [COMPONENT] 06-cost/09-hands-on-cost-cut.html -->
-<section class="slide flex flex-col justify-between" data-title="6.8 실전 실습 : caveman &amp; AST 스켈레톤 실습" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-emerald-500/15 text-emerald-300 border-emerald-400/30" data-chapter-accent="text-emerald-400">
+<section class="slide flex flex-col justify-between" data-title="6.8 실전 실습 : caveman &amp; AST 스켈레톤 실습" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -9466,7 +9601,7 @@
 </section>
 
       <!-- [COMPONENT] 06-cost/10-chapter-summary.html -->
-<section class="slide flex flex-col justify-between" data-title="Ch 06 요약 : 비용 통제 5대 방어선 완결" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-emerald-500/15 text-emerald-300 border-emerald-400/30" data-chapter-accent="text-emerald-400">
+<section class="slide flex flex-col justify-between" data-title="Ch 06 요약 : 비용 통제 5대 방어선 완결" data-chapter-id="ch06" data-chapter-badge="CHAPTER 06 · 비용" data-chapter-title="Ch 06. 비용 : 토큰 요금 80~90% 절감" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -9639,7 +9774,7 @@
 </section>
 
       <!-- [COMPONENT] 07-launch/01-intro.html -->
-<section class="slide justify-center" data-title="Ch 07. 런칭 인트로" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-amber-500/15 text-amber-300 border-amber-400/30" data-chapter-accent="text-amber-400">
+<section class="slide justify-center" data-title="Ch 07. 런칭 인트로" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <div class="max-w-3xl">
     <div class="flex items-center gap-2 mb-3">
       <span class="text-sky-400 font-mono text-sm tracking-widest font-semibold px-3 py-1 rounded bg-sky-500/10 border border-sky-400/20">CHAPTER 07</span>
@@ -9664,7 +9799,7 @@
 </section>
 
       <!-- [COMPONENT] 07-launch/02-auth-sns-supabase.html -->
-<section class="slide flex flex-col justify-between" data-title="7.1 SNS 로그인 &amp; BaaS 인증: Supabase Auth" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-amber-500/15 text-amber-300 border-amber-400/30" data-chapter-accent="text-amber-400">
+<section class="slide flex flex-col justify-between" data-title="7.1 SNS 로그인 &amp; BaaS 인증: Supabase Auth" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -9807,7 +9942,7 @@
 </section>
 
       <!-- [COMPONENT] 07-launch/03-payment-toss-paypal.html -->
-<section class="slide flex flex-col justify-between" data-title="7.2 결제 연동 실전: Toss Payments &amp; PayPal" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-amber-500/15 text-amber-300 border-amber-400/30" data-chapter-accent="text-amber-400">
+<section class="slide flex flex-col justify-between" data-title="7.2 결제 연동 실전: Toss Payments &amp; PayPal" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -9930,7 +10065,7 @@
 </section>
 
       <!-- [COMPONENT] 07-launch/04-deployment-architectures.html -->
-<section class="slide flex flex-col justify-between" data-title="7.3 배포 인프라 3대 패러다임 비교: Cloud Run vs Vercel vs VM" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-amber-500/15 text-amber-300 border-amber-400/30" data-chapter-accent="text-amber-400">
+<section class="slide flex flex-col justify-between" data-title="7.3 배포 인프라 3대 패러다임 비교: Cloud Run vs Vercel vs VM" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -10080,7 +10215,7 @@
 </section>
 
       <!-- [COMPONENT] 07-launch/05-free-tier-and-fit-guide.html -->
-<section class="slide flex flex-col justify-between" data-title="7.4 앱 유형별 최적 배포처 &amp; Free Tier 완전 분석" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-amber-500/15 text-amber-300 border-amber-400/30" data-chapter-accent="text-amber-400">
+<section class="slide flex flex-col justify-between" data-title="7.4 앱 유형별 최적 배포처 &amp; Free Tier 완전 분석" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -10233,7 +10368,7 @@
 </section>
 
       <!-- [COMPONENT] 07-launch/06-cicd-concepts-and-github-actions.html -->
-<section class="slide flex flex-col justify-between" data-title="7.5 CI/CD 개념 &amp; GitHub Actions 실전 파이프라인" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-amber-500/15 text-amber-300 border-amber-400/30" data-chapter-accent="text-amber-400">
+<section class="slide flex flex-col justify-between" data-title="7.5 CI/CD 개념 &amp; GitHub Actions 실전 파이프라인" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -10350,7 +10485,7 @@
 </section>
 
       <!-- [COMPONENT] 07-launch/07-free-cicd-services.html -->
-<section class="slide flex flex-col justify-between" data-title="7.6 무료 &amp; 가성비 CI/CD 플랫폼 총정리" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-amber-500/15 text-amber-300 border-amber-400/30" data-chapter-accent="text-amber-400">
+<section class="slide flex flex-col justify-between" data-title="7.6 무료 &amp; 가성비 CI/CD 플랫폼 총정리" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -10544,7 +10679,7 @@
 </section>
 
       <!-- [COMPONENT] 07-launch/08-hands-on-launch.html -->
-<section class="slide flex flex-col justify-between" data-title="7.7 실전 5분 실습: 0원에서 프로덕션까지 3단계" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-amber-500/15 text-amber-300 border-amber-400/30" data-chapter-accent="text-amber-400">
+<section class="slide flex flex-col justify-between" data-title="7.7 실전 5분 실습: 0원에서 프로덕션까지 3단계" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -10715,7 +10850,7 @@
 </section>
 
       <!-- [COMPONENT] 07-launch/09-chapter-summary.html -->
-<section class="slide flex flex-col justify-between" data-title="7.8 Chapter 07 핵심 요약: 런칭 4대 축 매트릭스" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-amber-500/15 text-amber-300 border-amber-400/30" data-chapter-accent="text-amber-400">
+<section class="slide flex flex-col justify-between" data-title="7.8 Chapter 07 핵심 요약: 런칭 4대 축 매트릭스" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
@@ -10893,7 +11028,7 @@
 </section>
 
       <!-- [COMPONENT] 08-guardrails/01-intro.html -->
-<section class="slide justify-center" data-title="Ch 08. 가드레일 인트로" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-rose-500/15 text-rose-300 border-rose-400/30" data-chapter-accent="text-rose-400">
+<section class="slide justify-center" data-title="Ch 08. 가드레일 인트로" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-[#BE123C]/10 text-[#BE123C] border-[#BE123C]/30" data-chapter-accent="text-[#BE123C]">
   <div class="max-w-4xl mx-auto my-auto">
     <div class="flex items-center gap-2 mb-3">
       <span class="text-rose-400 font-mono text-sm tracking-widest font-semibold px-3 py-1 rounded bg-rose-500/10 border border-rose-400/20">CHAPTER 08</span>
@@ -10941,7 +11076,7 @@
 </section>
 
       <!-- [COMPONENT] 08-guardrails/02-dark-side-ai-vulnerabilities.html -->
-<section class="slide flex flex-col justify-between" data-title="8.1 AI 보안 맹점 & 신종 위협 3대장" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-rose-500/15 text-rose-300 border-rose-400/30" data-chapter-accent="text-rose-400">
+<section class="slide flex flex-col justify-between" data-title="8.1 AI 보안 맹점 & 신종 위협 3대장" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-[#BE123C]/10 text-[#BE123C] border-[#BE123C]/30" data-chapter-accent="text-[#BE123C]">
   <div class="mb-2">
     <div class="flex items-center justify-between">
       <span class="text-rose-400 font-mono text-xs uppercase tracking-wider font-semibold">Chapter 08. 가드레일 &middot; 8.1 AI 생성 코드의 보안 맹점</span>
@@ -11053,7 +11188,7 @@
 </section>
 
       <!-- [COMPONENT] 08-guardrails/03-database-rls-pitfalls.html -->
-<section class="slide flex flex-col justify-between" data-title="8.2 DB RLS 누수 방지 & 3대 함정" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-rose-500/15 text-rose-300 border-rose-400/30" data-chapter-accent="text-rose-400">
+<section class="slide flex flex-col justify-between" data-title="8.2 DB RLS 누수 방지 & 3대 함정" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-[#BE123C]/10 text-[#BE123C] border-[#BE123C]/30" data-chapter-accent="text-[#BE123C]">
   <div class="mb-2">
     <div class="flex items-center justify-between">
       <span class="text-emerald-400 font-mono text-xs uppercase tracking-wider font-semibold">Chapter 08. 가드레일 &middot; 8.2 데이터베이스 권한 격리</span>
@@ -11172,7 +11307,7 @@
 </section>
 
       <!-- [COMPONENT] 08-guardrails/04-secret-management-lifecycle.html -->
-<section class="slide flex flex-col justify-between" data-title="8.3 시크릿 격리 & 환경변수 관리" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-rose-500/15 text-rose-300 border-rose-400/30" data-chapter-accent="text-rose-400">
+<section class="slide flex flex-col justify-between" data-title="8.3 시크릿 격리 & 환경변수 관리" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-[#BE123C]/10 text-[#BE123C] border-[#BE123C]/30" data-chapter-accent="text-[#BE123C]">
   <div class="mb-2">
     <div class="flex items-center justify-between">
       <span class="text-amber-400 font-mono text-xs uppercase tracking-wider font-semibold">Chapter 08. 가드레일 &middot; 8.3 민감정보 및 API 키 격리</span>
@@ -11295,7 +11430,7 @@
 </section>
 
       <!-- [COMPONENT] 08-guardrails/05-agent-sandboxing-permissions.html -->
-<section class="slide flex flex-col justify-between" data-title="8.4 에이전트 샌드박스 & 권한 통제" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-rose-500/15 text-rose-300 border-rose-400/30" data-chapter-accent="text-rose-400">
+<section class="slide flex flex-col justify-between" data-title="8.4 에이전트 샌드박스 & 권한 통제" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-[#BE123C]/10 text-[#BE123C] border-[#BE123C]/30" data-chapter-accent="text-[#BE123C]">
   <div class="mb-2">
     <div class="flex items-center justify-between">
       <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-semibold">Chapter 08. 가드레일 &middot; 8.4 에이전트 런타임 제어</span>
@@ -11413,7 +11548,7 @@
 </section>
 
       <!-- [COMPONENT] 08-guardrails/06-supply-chain-lockfiles.html -->
-<section class="slide flex flex-col justify-between" data-title="8.5 공급망 보안 & Lockfile 무결성" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-rose-500/15 text-rose-300 border-rose-400/30" data-chapter-accent="text-rose-400">
+<section class="slide flex flex-col justify-between" data-title="8.5 공급망 보안 & Lockfile 무결성" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-[#BE123C]/10 text-[#BE123C] border-[#BE123C]/30" data-chapter-accent="text-[#BE123C]">
   <div class="mb-2">
     <div class="flex items-center justify-between">
       <span class="text-purple-400 font-mono text-xs uppercase tracking-wider font-semibold">Chapter 08. 가드레일 &middot; 8.5 소프트웨어 공급망 방어</span>
@@ -11524,7 +11659,7 @@
 </section>
 
       <!-- [COMPONENT] 08-guardrails/07-security-gates-cicd.html -->
-<section class="slide flex flex-col justify-between" data-title="8.6 CI/CD 4중 보안 게이트 파이프라인" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-rose-500/15 text-rose-300 border-rose-400/30" data-chapter-accent="text-rose-400">
+<section class="slide flex flex-col justify-between" data-title="8.6 CI/CD 4중 보안 게이트 파이프라인" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-[#BE123C]/10 text-[#BE123C] border-[#BE123C]/30" data-chapter-accent="text-[#BE123C]">
   <div class="mb-2">
     <div class="flex items-center justify-between">
       <span class="text-rose-400 font-mono text-xs uppercase tracking-wider font-semibold">Chapter 08. 가드레일 &middot; 8.6 자동화 보안 게이트</span>
@@ -11625,7 +11760,7 @@
 </section>
 
       <!-- [COMPONENT] 08-guardrails/08-hands-on-guardrails.html -->
-<section class="slide flex flex-col justify-between" data-title="8.7 실전 5분 실습: 4대 보안 가드레일 이식" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-rose-500/15 text-rose-300 border-rose-400/30" data-chapter-accent="text-rose-400">
+<section class="slide flex flex-col justify-between" data-title="8.7 실전 5분 실습: 4대 보안 가드레일 이식" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-[#BE123C]/10 text-[#BE123C] border-[#BE123C]/30" data-chapter-accent="text-[#BE123C]">
   <div class="mb-2">
     <div class="flex items-center justify-between">
       <span class="text-emerald-400 font-mono text-xs uppercase tracking-wider font-semibold">Chapter 08. 가드레일 &middot; 8.7 실전 5분 실습</span>
@@ -11737,7 +11872,7 @@
 </section>
 
       <!-- [COMPONENT] 08-guardrails/09-chapter-summary.html -->
-<section class="slide flex flex-col justify-between" data-title="8.8 Chapter 08 핵심 요약 & 5중 방어 매트릭스" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-rose-500/15 text-rose-300 border-rose-400/30" data-chapter-accent="text-rose-400">
+<section class="slide flex flex-col justify-between" data-title="8.8 Chapter 08 핵심 요약 & 5중 방어 매트릭스" data-chapter-id="ch08" data-chapter-badge="CHAPTER 08 · 가드레일" data-chapter-title="Ch 08. 가드레일 : RLS 누수 & 보안 가드레일" data-chapter-color="bg-[#BE123C]/10 text-[#BE123C] border-[#BE123C]/30" data-chapter-accent="text-[#BE123C]">
   <div class="mb-2">
     <div class="flex items-center justify-between">
       <span class="text-rose-400 font-mono text-xs uppercase tracking-wider font-semibold">Chapter 08. 가드레일 &middot; 8.8 챕터 핵심 요약</span>
@@ -11847,7 +11982,7 @@
 </section>
 
       <!-- [COMPONENT] 99-summary/01-summary.html -->
-<section class="slide" data-title="Part 1 & 4.1 핵심 요약" data-chapter-id="summary" data-chapter-badge="WRAP-UP · 총정리" data-chapter-title="Wrap-up : 전체 핵심 요약 & 엔지니어의 미래" data-chapter-color="bg-violet-500/15 text-violet-300 border-violet-400/30" data-chapter-accent="text-violet-400">
+<section class="slide" data-title="Part 1 & 4.1 핵심 요약" data-chapter-id="summary" data-chapter-badge="WRAP-UP · 총정리" data-chapter-title="Wrap-up : 전체 핵심 요약 & 엔지니어의 미래" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <div class="mb-4">
     <span class="text-emerald-400 font-mono text-xs uppercase tracking-wider">Milestone Summary</span>
     <h2 class="text-3xl font-black text-white">Part 1 및 4.1 핵심 요약 (Key Takeaways)</h2>
@@ -11889,7 +12024,7 @@
 </section>
 
       <!-- [COMPONENT] 99-summary/02-next-preview.html -->
-<section class="slide justify-center items-center text-center relative" data-title="다음 세션 예고" data-chapter-id="summary" data-chapter-badge="WRAP-UP · 총정리" data-chapter-title="Wrap-up : 전체 핵심 요약 & 엔지니어의 미래" data-chapter-color="bg-violet-500/15 text-violet-300 border-violet-400/30" data-chapter-accent="text-violet-400">
+<section class="slide justify-center items-center text-center relative" data-title="다음 세션 예고" data-chapter-id="summary" data-chapter-badge="WRAP-UP · 총정리" data-chapter-title="Wrap-up : 전체 핵심 요약 & 엔지니어의 미래" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/15 border border-indigo-400/30 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-4">
     Up Next : Part 2 & Part 3
   </div>
@@ -11926,45 +12061,45 @@
     </main>
 
     <!-- Global Footer Controls -->
-    <footer class="absolute bottom-0 left-0 right-0 h-12 px-8 flex items-center justify-between text-xs text-slate-400 z-20 border-t border-slate-800/60 bg-dark-900/60 backdrop-blur-sm">
+    <footer class="absolute bottom-0 left-0 right-0 h-12 px-8 flex items-center justify-between text-xs text-slate-500 z-20 border-t border-slate-200/80 bg-white/85 backdrop-blur-sm">
       <div class="flex items-center gap-2">
-        <span class="text-[11px] text-slate-500 font-mono">단축키: ← 이전 | → / Space 다음 | F 전체화면 | M 목차</span>
+        <span class="text-[11px] text-slate-400 font-mono">단축키: ← 이전 | → / Space 다음 | F 전체화면 | M 목차</span>
       </div>
 
       <!-- Navigation buttons -->
       <div class="flex items-center gap-3">
-        <button id="prevBtn" class="px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors flex items-center gap-1 border border-slate-700">
+        <button id="prevBtn" class="px-3 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors flex items-center gap-1 border border-slate-300 font-medium">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
           <span>이전</span>
         </button>
-        <button id="nextBtn" class="px-4 py-1 rounded bg-sky-600 hover:bg-sky-500 text-white font-semibold transition-colors flex items-center gap-1 shadow-lg shadow-sky-600/30">
+        <button id="nextBtn" class="px-4 py-1 rounded bg-[#2D9BB2] hover:bg-[#258296] text-white font-semibold transition-colors flex items-center gap-1 shadow-sm">
           <span>다음</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
         </button>
       </div>
 
       <!-- Progress bar -->
-      <div class="w-32 bg-slate-800 h-1.5 rounded-full overflow-hidden border border-slate-700/50">
-        <div id="progressBar" class="bg-gradient-to-r from-sky-400 to-indigo-500 h-full w-0 transition-all duration-300"></div>
+      <div class="w-32 bg-slate-200 h-1.5 rounded-full overflow-hidden border border-slate-300/50">
+        <div id="progressBar" class="bg-gradient-to-r from-[#2D9BB2] to-[#554596] h-full w-0 transition-all duration-300"></div>
       </div>
     </footer>
 
     <!-- Table of Contents Modal -->
-    <div id="tocModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-200">
-      <div class="bento-tile max-w-3xl w-full p-6 max-h-[85vh] flex flex-col border border-sky-500/30 shadow-2xl">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+    <div id="tocModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-200">
+      <div class="bento-tile max-w-3xl w-full p-6 max-h-[85vh] flex flex-col border border-slate-300 bg-[#F8F9FA] shadow-2xl">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-200 mb-4">
           <div class="flex items-center gap-3">
-            <h3 class="text-lg font-bold text-white flex items-center gap-2">
-              <span class="text-sky-400 font-mono">📑</span> 전체 목차 (Curriculum Index)
+            <h3 class="text-lg font-bold text-[#1A1A1A] flex items-center gap-2">
+              <span class="text-[#2D9BB2] font-mono">📑</span> 전체 목차 (Curriculum Index)
             </h3>
-            <span class="text-xs text-slate-400 font-mono">총 91개 슬라이드</span>
+            <span class="text-xs text-slate-500 font-mono">총 91개 슬라이드</span>
           </div>
           <div class="flex items-center gap-3">
-            <button id="toggleAllTocBtn" class="text-xs px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center gap-1.5 transition-colors">
+            <button id="toggleAllTocBtn" class="text-xs px-2.5 py-1 rounded bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 flex items-center gap-1.5 transition-colors font-medium">
               <svg id="toggleAllIcon" class="w-3.5 h-3.5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
               <span id="toggleAllText">모두 접기</span>
             </button>
-            <button id="closeTocBtn" class="text-slate-400 hover:text-white p-1">
+            <button id="closeTocBtn" class="text-slate-400 hover:text-slate-700 p-1">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
           </div>
@@ -12012,7 +12147,7 @@
       const currentSlideEl = slides[currentSlide];
       if (currentSlideEl && chapterBadge) {
         const badgeText = currentSlideEl.getAttribute('data-chapter-badge') || 'VIBE CODING';
-        const badgeColor = currentSlideEl.getAttribute('data-chapter-color') || 'bg-sky-500/15 text-sky-300 border-sky-400/30';
+        const badgeColor = currentSlideEl.getAttribute('data-chapter-color') || 'bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30';
         chapterBadge.textContent = badgeText;
         chapterBadge.className = `px-2.5 py-0.5 rounded-full font-bold border transition-all duration-200 ${badgeColor}`;
       }
@@ -12033,11 +12168,11 @@
       document.querySelectorAll('.toc-slide-item').forEach((item) => {
         const itemIdx = parseInt(item.getAttribute('data-slide-index'), 10);
         if (itemIdx === currentSlide) {
-          item.classList.add('bg-sky-500/20', 'text-sky-200', 'border-sky-500/40', 'font-semibold');
-          item.classList.remove('text-slate-300', 'border-transparent');
+          item.classList.add('bg-[#2D9BB2]/10', 'text-[#1B7385]', 'border-[#2D9BB2]/40', 'font-semibold');
+          item.classList.remove('text-slate-700', 'border-transparent');
         } else {
-          item.classList.remove('bg-sky-500/20', 'text-sky-200', 'border-sky-500/40', 'font-semibold');
-          item.classList.add('text-slate-300', 'border-transparent');
+          item.classList.remove('bg-[#2D9BB2]/10', 'text-[#1B7385]', 'border-[#2D9BB2]/40', 'font-semibold');
+          item.classList.add('text-slate-700', 'border-transparent');
         }
       });
     }
@@ -12079,8 +12214,8 @@
       const chapterId = slide.getAttribute('data-chapter-id') || 'misc';
       const chapterBadge = slide.getAttribute('data-chapter-badge') || 'CHAPTER';
       const chapterTitle = slide.getAttribute('data-chapter-title') || chapterBadge;
-      const chapterColor = slide.getAttribute('data-chapter-color') || 'bg-sky-500/15 text-sky-300 border-sky-400/30';
-      const chapterAccent = slide.getAttribute('data-chapter-accent') || 'text-sky-400';
+      const chapterColor = slide.getAttribute('data-chapter-color') || 'bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30';
+      const chapterAccent = slide.getAttribute('data-chapter-accent') || 'text-[#2D9BB2]';
       const slideTitle = slide.getAttribute('data-title') || `Slide ${idx + 1}`;
 
       if (!currentChapterGroup || currentChapterGroup.id !== chapterId) {
@@ -12107,11 +12242,11 @@
 
     chapters.forEach((ch) => {
       const chapterCard = document.createElement('div');
-      chapterCard.className = 'bento-tile p-3 bg-slate-900/70 border border-slate-800/80 rounded-xl overflow-hidden transition-all';
+      chapterCard.className = 'bento-tile p-3 bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm transition-all';
 
       // Depth 1 Header
       const header = document.createElement('div');
-      header.className = 'flex items-center justify-between cursor-pointer select-none p-1.5 rounded-lg hover:bg-slate-800/60 transition-colors';
+      header.className = 'flex items-center justify-between cursor-pointer select-none p-1.5 rounded-lg hover:bg-slate-50 transition-colors';
 
       const firstSlideNum = String(ch.slides[0].index + 1).padStart(2, '0');
       const lastSlideNum = String(ch.slides[ch.slides.length - 1].index + 1).padStart(2, '0');
@@ -12123,17 +12258,17 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
           <span class="px-2 py-0.5 rounded text-[11px] font-bold font-mono border ${ch.color}">${ch.badge}</span>
-          <span class="font-bold text-white text-sm tracking-tight">${ch.title}</span>
+          <span class="font-bold text-[#1A1A1A] text-sm tracking-tight">${ch.title}</span>
         </div>
         <div class="flex items-center gap-2">
-          <span class="text-xs font-mono text-slate-400 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/50">${ch.slides.length} slides</span>
-          <span class="text-[11px] font-mono text-slate-500">${rangeStr}</span>
+          <span class="text-xs font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">${ch.slides.length} slides</span>
+          <span class="text-[11px] font-mono text-slate-400">${rangeStr}</span>
         </div>
       `;
 
       // Depth 2 Slides List (Default: Expanded)
       const body = document.createElement('div');
-      body.className = 'chapter-body mt-2.5 pt-2 border-t border-slate-800/60 space-y-1 pl-4';
+      body.className = 'chapter-body mt-2.5 pt-2 border-t border-slate-200/80 space-y-1 pl-4';
 
       const chevron = header.querySelector('.chevron-icon');
       chapterBodies.push(body);
@@ -12155,14 +12290,14 @@
 
       ch.slides.forEach((s) => {
         const item = document.createElement('div');
-        item.className = 'toc-slide-item px-3 py-1.5 rounded-lg hover:bg-slate-800/80 cursor-pointer flex items-center justify-between text-slate-300 transition-colors border border-transparent hover:border-slate-700/60';
+        item.className = 'toc-slide-item px-3 py-1.5 rounded-lg hover:bg-slate-100 cursor-pointer flex items-center justify-between text-slate-700 transition-colors border border-transparent hover:border-slate-300';
         item.setAttribute('data-slide-index', s.index);
         item.innerHTML = `
           <span class="flex items-center gap-2.5 truncate">
             <span class="font-mono text-xs ${ch.accent} font-bold">${String(s.index + 1).padStart(2, '0')}</span>
-            <span class="text-xs truncate">${s.title}</span>
+            <span class="text-xs truncate text-slate-800">${s.title}</span>
           </span>
-          <span class="text-[10px] text-slate-500 font-mono ml-2 shrink-0">#${s.index + 1}</span>
+          <span class="text-[10px] text-slate-400 font-mono ml-2 shrink-0">#${s.index + 1}</span>
         `;
         item.addEventListener('click', (e) => {
           e.stopPropagation();
