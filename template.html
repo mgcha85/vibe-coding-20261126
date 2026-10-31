@@ -131,7 +131,7 @@
     <!-- Global Header -->
     <header class="absolute top-0 left-0 right-0 h-14 px-10 flex items-center justify-between text-xs font-mono text-slate-400 z-20 border-b border-slate-800/60 bg-dark-900/50 backdrop-blur-md">
       <div class="flex items-center gap-3">
-        <span class="px-2.5 py-0.5 rounded-full bg-sky-500/15 text-sky-300 font-bold border border-sky-400/30">KIIS 2026 TUTORIAL</span>
+        <span id="chapterBadge" class="px-2.5 py-0.5 rounded-full bg-slate-500/15 text-slate-300 font-bold border border-slate-400/30 transition-all duration-200">INTRO · 오프닝</span>
         <span class="text-slate-600">|</span>
         <span class="text-slate-300 font-medium">말이 코드가 되는 시대 : 바이브 코딩(Vibe Coding)</span>
       </div>
@@ -179,17 +179,26 @@
 
     <!-- Table of Contents Modal -->
     <div id="tocModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-200">
-      <div class="bento-tile max-w-2xl w-full p-6 max-h-[85vh] flex flex-col border border-sky-500/30 shadow-2xl">
+      <div class="bento-tile max-w-3xl w-full p-6 max-h-[85vh] flex flex-col border border-sky-500/30 shadow-2xl">
         <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
-          <h3 class="text-lg font-bold text-white flex items-center gap-2">
-            <span class="text-sky-400 font-mono">📑</span> 슬라이드 전체 목차 (Cover ~ 4.1)
-          </h3>
-          <button id="closeTocBtn" class="text-slate-400 hover:text-white p-1">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-          </button>
+          <div class="flex items-center gap-3">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <span class="text-sky-400 font-mono">📑</span> 전체 목차 (Curriculum Index)
+            </h3>
+            <span class="text-xs text-slate-400 font-mono">총 {{TOTAL_SLIDES}}개 슬라이드</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <button id="toggleAllTocBtn" class="text-xs px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center gap-1.5 transition-colors">
+              <svg id="toggleAllIcon" class="w-3.5 h-3.5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+              <span id="toggleAllText">모두 접기</span>
+            </button>
+            <button id="closeTocBtn" class="text-slate-400 hover:text-white p-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+          </div>
         </div>
-        <div id="tocList" class="overflow-y-auto space-y-1.5 pr-2 flex-1 text-sm">
-          <!-- Dynamically populated -->
+        <div id="tocList" class="overflow-y-auto space-y-3 pr-2 flex-1 text-sm">
+          <!-- Dynamically populated with Depth 1 (Chapters) & Depth 2 (Slides) -->
         </div>
       </div>
     </div>
@@ -207,6 +216,10 @@
     const closeTocBtn = document.getElementById('closeTocBtn');
     const tocList = document.getElementById('tocList');
     const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const chapterBadge = document.getElementById('chapterBadge');
+    const toggleAllTocBtn = document.getElementById('toggleAllTocBtn');
+    const toggleAllIcon = document.getElementById('toggleAllIcon');
+    const toggleAllText = document.getElementById('toggleAllText');
 
     let currentSlide = 0;
     const totalSlides = slides.length;
@@ -224,6 +237,14 @@
 
       currentSlide = index;
 
+      const currentSlideEl = slides[currentSlide];
+      if (currentSlideEl && chapterBadge) {
+        const badgeText = currentSlideEl.getAttribute('data-chapter-badge') || 'VIBE CODING';
+        const badgeColor = currentSlideEl.getAttribute('data-chapter-color') || 'bg-sky-500/15 text-sky-300 border-sky-400/30';
+        chapterBadge.textContent = badgeText;
+        chapterBadge.className = `px-2.5 py-0.5 rounded-full font-bold border transition-all duration-200 ${badgeColor}`;
+      }
+
       const currentStr = String(currentSlide + 1).padStart(2, '0');
       const totalStr = String(totalSlides).padStart(2, '0');
       slideCounter.textContent = `${currentStr} / ${totalStr}`;
@@ -235,6 +256,18 @@
       prevBtn.style.opacity = currentSlide === 0 ? '0.4' : '1';
       nextBtn.disabled = currentSlide === totalSlides - 1;
       nextBtn.style.opacity = currentSlide === totalSlides - 1 ? '0.4' : '1';
+
+      // Update active highlight in TOC if rendered
+      document.querySelectorAll('.toc-slide-item').forEach((item) => {
+        const itemIdx = parseInt(item.getAttribute('data-slide-index'), 10);
+        if (itemIdx === currentSlide) {
+          item.classList.add('bg-sky-500/20', 'text-sky-200', 'border-sky-500/40', 'font-semibold');
+          item.classList.remove('text-slate-300', 'border-transparent');
+        } else {
+          item.classList.remove('bg-sky-500/20', 'text-sky-200', 'border-sky-500/40', 'font-semibold');
+          item.classList.add('text-slate-300', 'border-transparent');
+        }
+      });
     }
 
     function prevSlide() { if (currentSlide > 0) updateSlide(currentSlide - 1); }
@@ -266,29 +299,159 @@
     }
     fullscreenBtn.addEventListener('click', toggleFullscreen);
 
-    // Build Table of Contents
+    // Build 2-Depth Table of Contents (Depth 1: Chapters, Depth 2: Slides)
+    const chapters = [];
+    let currentChapterGroup = null;
+
     slides.forEach((slide, idx) => {
-      const title = slide.getAttribute('data-title') || `Slide ${idx + 1}`;
-      const item = document.createElement('div');
-      item.className = 'px-3 py-2 rounded-lg hover:bg-slate-800 cursor-pointer flex items-center justify-between text-slate-300 transition-colors border border-transparent hover:border-slate-700';
-      item.innerHTML = `
-        <span class="flex items-center gap-2">
-          <span class="font-mono text-xs text-sky-400 font-bold">${String(idx + 1).padStart(2, '0')}</span>
-          <span>${title}</span>
-        </span>
-        <span class="text-xs text-slate-500 font-mono">#${idx + 1}</span>
-      `;
-      item.addEventListener('click', () => {
-        updateSlide(idx);
-        toggleToc(false);
+      const chapterId = slide.getAttribute('data-chapter-id') || 'misc';
+      const chapterBadge = slide.getAttribute('data-chapter-badge') || 'CHAPTER';
+      const chapterTitle = slide.getAttribute('data-chapter-title') || chapterBadge;
+      const chapterColor = slide.getAttribute('data-chapter-color') || 'bg-sky-500/15 text-sky-300 border-sky-400/30';
+      const chapterAccent = slide.getAttribute('data-chapter-accent') || 'text-sky-400';
+      const slideTitle = slide.getAttribute('data-title') || `Slide ${idx + 1}`;
+
+      if (!currentChapterGroup || currentChapterGroup.id !== chapterId) {
+        currentChapterGroup = {
+          id: chapterId,
+          badge: chapterBadge,
+          title: chapterTitle,
+          color: chapterColor,
+          accent: chapterAccent,
+          slides: []
+        };
+        chapters.push(currentChapterGroup);
+      }
+
+      currentChapterGroup.slides.push({
+        index: idx,
+        title: slideTitle,
       });
-      tocList.appendChild(item);
     });
+
+    let allExpanded = true;
+    const chapterBodies = [];
+    const chevronIcons = [];
+
+    chapters.forEach((ch) => {
+      const chapterCard = document.createElement('div');
+      chapterCard.className = 'bento-tile p-3 bg-slate-900/70 border border-slate-800/80 rounded-xl overflow-hidden transition-all';
+
+      // Depth 1 Header
+      const header = document.createElement('div');
+      header.className = 'flex items-center justify-between cursor-pointer select-none p-1.5 rounded-lg hover:bg-slate-800/60 transition-colors';
+
+      const firstSlideNum = String(ch.slides[0].index + 1).padStart(2, '0');
+      const lastSlideNum = String(ch.slides[ch.slides.length - 1].index + 1).padStart(2, '0');
+      const rangeStr = ch.slides.length > 1 ? `#${firstSlideNum} ~ #${lastSlideNum}` : `#${firstSlideNum}`;
+
+      header.innerHTML = `
+        <div class="flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-slate-400 transition-transform duration-200 transform rotate-0 chevron-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+          <span class="px-2 py-0.5 rounded text-[11px] font-bold font-mono border ${ch.color}">${ch.badge}</span>
+          <span class="font-bold text-white text-sm tracking-tight">${ch.title}</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-mono text-slate-400 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/50">${ch.slides.length} slides</span>
+          <span class="text-[11px] font-mono text-slate-500">${rangeStr}</span>
+        </div>
+      `;
+
+      // Depth 2 Slides List (Default: Expanded)
+      const body = document.createElement('div');
+      body.className = 'chapter-body mt-2.5 pt-2 border-t border-slate-800/60 space-y-1 pl-4';
+
+      const chevron = header.querySelector('.chevron-icon');
+      chapterBodies.push(body);
+      chevronIcons.push(chevron);
+
+      // Toggle expand/collapse on header click
+      header.addEventListener('click', () => {
+        const isHidden = body.classList.contains('hidden');
+        if (isHidden) {
+          body.classList.remove('hidden');
+          chevron.classList.remove('-rotate-90');
+          chevron.classList.add('rotate-0');
+        } else {
+          body.classList.add('hidden');
+          chevron.classList.remove('rotate-0');
+          chevron.classList.add('-rotate-90');
+        }
+      });
+
+      ch.slides.forEach((s) => {
+        const item = document.createElement('div');
+        item.className = 'toc-slide-item px-3 py-1.5 rounded-lg hover:bg-slate-800/80 cursor-pointer flex items-center justify-between text-slate-300 transition-colors border border-transparent hover:border-slate-700/60';
+        item.setAttribute('data-slide-index', s.index);
+        item.innerHTML = `
+          <span class="flex items-center gap-2.5 truncate">
+            <span class="font-mono text-xs ${ch.accent} font-bold">${String(s.index + 1).padStart(2, '0')}</span>
+            <span class="text-xs truncate">${s.title}</span>
+          </span>
+          <span class="text-[10px] text-slate-500 font-mono ml-2 shrink-0">#${s.index + 1}</span>
+        `;
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          updateSlide(s.index);
+          toggleToc(false);
+        });
+        body.appendChild(item);
+      });
+
+      chapterCard.appendChild(header);
+      chapterCard.appendChild(body);
+      tocList.appendChild(chapterCard);
+    });
+
+    // Toggle All Expand / Collapse
+    if (toggleAllTocBtn) {
+      toggleAllTocBtn.addEventListener('click', () => {
+        allExpanded = !allExpanded;
+        chapterBodies.forEach(b => {
+          if (allExpanded) {
+            b.classList.remove('hidden');
+          } else {
+            b.classList.add('hidden');
+          }
+        });
+        chevronIcons.forEach(icon => {
+          if (allExpanded) {
+            icon.classList.remove('-rotate-90');
+            icon.classList.add('rotate-0');
+          } else {
+            icon.classList.remove('rotate-0');
+            icon.classList.add('-rotate-90');
+          }
+        });
+        toggleAllText.textContent = allExpanded ? '모두 접기' : '모두 펼치기';
+        if (toggleAllIcon) {
+          toggleAllIcon.classList.toggle('rotate-180', !allExpanded);
+        }
+      });
+    }
 
     function toggleToc(show) {
       if (show) {
         tocModal.classList.remove('hidden');
-        setTimeout(() => tocModal.classList.remove('opacity-0'), 10);
+        setTimeout(() => {
+          tocModal.classList.remove('opacity-0');
+          const activeItem = tocList.querySelector(`.toc-slide-item[data-slide-index="${currentSlide}"]`);
+          if (activeItem) {
+            const parentBody = activeItem.closest('.chapter-body');
+            if (parentBody && parentBody.classList.contains('hidden')) {
+              parentBody.classList.remove('hidden');
+              const header = parentBody.previousElementSibling;
+              const chevron = header ? header.querySelector('.chevron-icon') : null;
+              if (chevron) {
+                chevron.classList.remove('-rotate-90');
+                chevron.classList.add('rotate-0');
+              }
+            }
+            activeItem.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
+        }, 10);
       } else {
         tocModal.classList.add('opacity-0');
         setTimeout(() => tocModal.classList.add('hidden'), 200);
