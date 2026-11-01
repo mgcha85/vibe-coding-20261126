@@ -7,141 +7,32 @@
         PARALLEL MATRIX &middot; SUMMARY
       </span>
     </div>
-    <h2 class="text-3xl font-black text-white mt-1">Chapter 05 핵심 요약 : 1인 지휘 오케스트레이션 완성</h2>
+    <h2 class="text-3xl font-black text-white mt-1">Chapter 05 핵심 요약 : 개발 생산성을 극대화하는 4가지 혁신</h2>
     <p class="text-xs text-slate-300 mt-1">
-      개발자의 정체성은 '코더'가 아니라 <strong>여러 에이전트에게 격리된 룸을 배정하고 결과를 지휘하는 오케스트라 지휘자</strong>입니다.
+      개발자의 정체성은 단순 '코더'가 아닙니다. <strong>비동기 인간 &middot; git worktree &middot; DevContainer &middot; 모듈 병렬화 파이프라인</strong>으로 4배의 생산성을 달성하십시오.
     </p>
   </div>
 
-  <!-- 4 Column Summary Grid (12 cols) -->
-  <div class="grid grid-cols-4 gap-3 flex-1 items-stretch my-1">
-    
-    <!-- Card 1 -->
-    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-rose-400 flex flex-col justify-between">
-      <div>
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-2xl">⏳</span>
-          <span class="text-[9px] font-mono text-rose-300 bg-rose-950 px-1.5 py-0.5 rounded border border-rose-800">1. BOTTLENECK</span>
-        </div>
-        <div class="text-rose-400 font-bold font-mono text-sm mb-1.5">비동기 인간 (Async)</div>
-        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <strong class="text-white block mb-0.5">단일 대화창 탈피</strong>
-            AI가 코드 타이핑하는 것을 지켜보는 것은 가장 치명적인 생산성 낭비.
-          </div>
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <strong class="text-rose-300 block mb-0.5">추론 레이턴시 100% 은폐</strong>
-            에이전트 A가 생각하는 2분 동안, 인간은 B의 프롬프트를 투척.
-          </div>
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <strong class="text-amber-300 block mb-0.5">지휘자로의 역할 전이</strong>
-            타이핑 노동자에서 4명 주니어를 지휘하는 아키텍트로 전환.
-          </div>
-        </div>
-      </div>
-      <div class="text-[10px] font-mono text-rose-400 border-t border-slate-800 pt-2 flex items-center justify-between">
-        <span>✓ 대기 0초 실현</span>
-        <span class="text-slate-500">Latency Hiding</span>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-sky-400 flex flex-col justify-between">
-      <div>
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-2xl">🌿</span>
-          <span class="text-[9px] font-mono text-sky-300 bg-sky-950 px-1.5 py-0.5 rounded border border-sky-800">2. WORKTREE</span>
-        </div>
-        <div class="text-sky-300 font-bold font-mono text-sm mb-1.5">git worktree 인프라</div>
-        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <strong class="text-white block mb-0.5">물리 파일 분리</strong>
-            동일 저장소에서 여러 브랜치를 별도 물리 폴더로 1초 만에 체크아웃.
-          </div>
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <strong class="text-sky-300 block mb-0.5">Race Condition 0%</strong>
-            파일 덮어쓰기 충돌 및 <code class="text-amber-300 font-mono">index.lock</code> 에러를 원천 박멸.
-          </div>
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <strong class="text-emerald-300 block mb-0.5">90% 디스크/네트워크 절약</strong>
-            중복 클론 없이 단 하나의 <code class="text-sky-300 font-mono">.git</code> 메타데이터를 완벽 공유.
-          </div>
-        </div>
-      </div>
-      <div class="text-[10px] font-mono text-sky-400 border-t border-slate-800 pt-2 flex items-center justify-between">
-        <span>✓ 충돌 0% 격리</span>
-        <span class="text-slate-500">Zero Race Condition</span>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-emerald-400 flex flex-col justify-between">
-      <div>
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-2xl">🎛️</span>
-          <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950 px-1.5 py-0.5 rounded border border-emerald-800">3. RUNNER</span>
-        </div>
-        <div class="text-emerald-300 font-bold font-mono text-sm mb-1.5">hedr &middot; DevContainer</div>
-        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <strong class="text-white block mb-0.5">선언적 워크스페이스 러너</strong>
-            CLI 한 줄로 브랜치 생성, 환경변수 주입, 백그라운드 에이전트 바인딩.
-          </div>
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <strong class="text-emerald-300 block mb-0.5">DevContainer OS 격리</strong>
-            로컬 포트 충돌 및 DB 마이그레이션 오염을 컨테이너 레벨에서 방지.
-          </div>
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <strong class="text-cyan-300 block mb-0.5">중앙 대시보드 관제</strong>
-            working/done/blocked 상태를 단일 터미널에서 모니터링.
-          </div>
-        </div>
-      </div>
-      <div class="text-[10px] font-mono text-emerald-400 border-t border-slate-800 pt-2 flex items-center justify-between">
-        <span>✓ 런타임 완전 보호</span>
-        <span class="text-slate-500">Full Sandboxing</span>
-      </div>
-    </div>
-
-    <!-- Card 4 -->
-    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-amber-400 flex flex-col justify-between">
-      <div>
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-2xl">🚀</span>
-          <span class="text-[9px] font-mono text-amber-300 bg-amber-950 px-1.5 py-0.5 rounded border border-amber-800">4. PIPELINE &amp; SSOT</span>
-        </div>
-        <div class="text-amber-300 font-bold font-mono text-sm mb-1.5">모듈 병렬 &middot; 세션 연속성</div>
-        <div class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <strong class="text-white block mb-0.5">3대 앵커 무손실 계승</strong>
-            <code class="text-amber-300 font-mono">INTENT&middot;PLAN&middot;LESSON</code>으로 세션 교체 시에도 0초 작업 복원.
-          </div>
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <strong class="text-emerald-300 block mb-0.5">단일 프로젝트 모듈 분할</strong>
-            Engine &middot; API &middot; UI &middot; E2E를 4개 독립 트랙으로 동시 착수.
-          </div>
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <strong class="text-sky-300 block mb-0.5">Self-healing &amp; 빠른 릴리즈</strong>
-            테스트 통과까지 자가 치유 후 5분 검토 머지 ➔ 75% 시간 단축.
-          </div>
-        </div>
-      </div>
-      <div class="text-[10px] font-mono text-amber-400 border-t border-slate-800 pt-2 flex items-center justify-between">
-        <span>✓ 4배 동시 생산성</span>
-        <span class="text-slate-500">Multi-Session Continuous</span>
-      </div>
+  <!-- Main Body: Image Container -->
+  <div class="flex-1 flex items-center justify-center min-h-0 my-1">
+    <div class="bento-tile p-2 bg-white border border-slate-200 shadow-sm flex items-center justify-center">
+      <img 
+        src="./slides/05-parallel/assets/four_innovations_workflow.jpg" 
+        alt="개발 생산성을 극대화하는 4가지 혁신 인포그래픽" 
+        class="max-h-[440px] w-auto object-contain rounded-lg"
+      />
     </div>
   </div>
 
   <!-- Bottom Transition Bar -->
-  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-200 border border-slate-700 bg-slate-900/95 my-1">
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-700 border border-slate-200 bg-white">
     <div class="flex items-center gap-2">
-      <span class="text-amber-400 font-bold">🏁 Chapter 05 결론:</span>
-      <span class="text-slate-200">이제 다중 에이전트 동시 운용이 가능해졌습니다. 다음은 <strong>토큰 요금을 80~90% 절감하는 비용 통제학</strong>입니다.</span>
+      <span class="text-indigo-700 font-bold">🏁 Chapter 05 결론:</span>
+      <span class="text-slate-800">다중 에이전트 동시 운용 체계가 완성되었습니다. 다음은 <strong>토큰 요금을 80~90% 절감하는 비용 통제학</strong>입니다.</span>
     </div>
     <div class="flex items-center gap-3">
-      <span class="text-indigo-400 font-bold text-[11px]">Chapter 05 Complete &middot; Slide 60</span>
-      <span class="text-amber-400 font-bold">Next: Ch 06. 비용 통제 (Cost Cut) ➔</span>
+      <span class="text-indigo-700 font-bold text-[11px]">Slide 60 &middot; Chapter 05 Complete</span>
+      <span class="text-amber-700 font-bold">Next: Ch 06. 비용 통제 (Cost Cut) ➔</span>
     </div>
   </div>
 </section>
