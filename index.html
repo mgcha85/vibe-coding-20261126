@@ -357,7 +357,7 @@
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1v4m0-4h-4m4 4l-5-5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
           <span>전체화면 [F]</span>
         </button>
-        <span id="slideCounter" class="text-[#2D9BB2] font-bold font-mono">01 / 91</span>
+        <span id="slideCounter" class="text-[#2D9BB2] font-bold font-mono">01 / 90</span>
       </div>
     </header>
 
@@ -7587,228 +7587,13 @@
   </div>
 </section>
 
-      <!-- [COMPONENT] 04-toolchain/13-ai-browser-aside-ego-lite.html -->
-<section class="slide flex flex-col justify-between" data-title="4.12 AI 브라우저 : Aside vs ego-lite 비교 분석" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
-  <!-- Header -->
-  <div class="mb-2">
-    <div class="flex items-center justify-between">
-      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.12 웹 에이전트 인프라</span>
-      <span class="px-2.5 py-0.5 rounded bg-cyan-950/80 border border-cyan-600/50 text-cyan-300 font-mono text-[11px] font-bold">
-        AI-FIRST BROWSER RUNTIME &middot; ASIDE vs EGO-LITE
-      </span>
-    </div>
-    <h2 class="text-3xl font-black text-white mt-1">AI 브라우저 패러다임 : Aside vs ego-lite 비교 분석</h2>
-    <p class="text-xs text-slate-300 mt-1">
-      단순 챗봇 검색이나 빈 샌드박스를 넘어, 개발자의 <strong>로그인 세션과 권한을 상속</strong>받아 실제 웹 대시보드(Supabase, Stripe, AWS)를 백그라운드에서 직접 조작하는 차세대 브라우저 아키텍처입니다.
-    </p>
-  </div>
-
-  <!-- Main Layout: 2 Tier (Top 3 Paradigm comparison, Bottom 2 Tool Deep-dive) -->
-  <div class="flex flex-col gap-3 flex-1 my-1">
-    
-    <!-- Top Row: 3 Paradigm Evolution (12 cols) -->
-    <div class="grid grid-cols-3 gap-3">
-      
-      <!-- 1. 기존 일반 브라우저 -->
-      <div class="bento-tile p-3 bg-slate-900/80 border-t-2 border-t-slate-500 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-xs font-bold text-slate-300 flex items-center gap-1.5">
-              <span class="text-sm">🌐</span> 기존 일반 브라우저
-            </span>
-            <span class="text-[9px] font-mono text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded">Chrome / Safari</span>
-          </div>
-          <div class="text-[11px] text-slate-400 mb-2 leading-relaxed">
-            인간의 시각 렌더링 및 수동 마우스/키보드 클릭에만 최적화된 단일 사용자 GUI
-          </div>
-          <ul class="text-[10.5px] text-slate-400 space-y-1">
-            <li class="flex items-start gap-1">
-              <span class="text-rose-400 font-bold">&times;</span>
-              <span><strong>에이전트 제어 불가:</strong> 외부 AI가 세션이나 내부 탭을 조작할 공식 통로 부재</span>
-            </li>
-            <li class="flex items-start gap-1">
-              <span class="text-rose-400 font-bold">&times;</span>
-              <span><strong>수동 복붙 병목:</strong> 개발자가 직접 콘솔 로그나 문서를 긁어서 프롬프트에 투척</span>
-            </li>
-          </ul>
-        </div>
-        <div class="mt-2 pt-1.5 border-t border-slate-800 text-[10px] font-mono text-slate-500">
-          통제 주체: 100% 인간 수동 조작
-        </div>
-      </div>
-
-      <!-- 2. 헤드리스 자동화 -->
-      <div class="bento-tile p-3 bg-slate-900/80 border-t-2 border-t-amber-500 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-xs font-bold text-amber-300 flex items-center gap-1.5">
-              <span class="text-sm">🤖</span> 기존 헤드리스 자동화
-            </span>
-            <span class="text-[9px] font-mono text-amber-400 bg-amber-950/80 px-1.5 py-0.5 rounded border border-amber-800/40">Playwright / Puppeteer</span>
-          </div>
-          <div class="text-[11px] text-slate-400 mb-2 leading-relaxed">
-            E2E 테스트 목적의 완전 격리된 일회성 클린 샌드박스 인스턴스
-          </div>
-          <ul class="text-[10.5px] text-slate-300 space-y-1">
-            <li class="flex items-start gap-1">
-              <span class="text-rose-400 font-bold">&times;</span>
-              <span><strong>로그인/2FA 장벽:</strong> 쿠키·세션이 없어 Google SSO, OTP, Captcha에서 100% 좌절</span>
-            </li>
-            <li class="flex items-start gap-1">
-              <span class="text-rose-400 font-bold">&times;</span>
-              <span><strong>토큰·레이턴시 폭증:</strong> 매 액션마다 CLI를 거치며 거대한 HTML/DOM 왕복 오버헤드</span>
-            </li>
-          </ul>
-        </div>
-        <div class="mt-2 pt-1.5 border-t border-slate-800 text-[10px] font-mono text-amber-400/80">
-          통제 주체: 단절된 스크립트 (세션 없음)
-        </div>
-      </div>
-
-      <!-- 3. AI 에이전트 브라우저 -->
-      <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-cyan-400 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-xs font-bold text-cyan-300 flex items-center gap-1.5">
-              <span class="text-sm">⚡</span> 차세대 AI 에이전트 브라우저
-            </span>
-            <span class="text-[9px] font-mono text-cyan-400 bg-cyan-950/80 px-1.5 py-0.5 rounded border border-cyan-800/40">Aside &amp; ego-lite</span>
-          </div>
-          <div class="text-[11px] text-slate-300 mb-2 leading-relaxed">
-            인간과 에이전트가 <strong>하나의 브라우저에서 공존</strong>하며 권한을 상속하는 하이브리드 아키텍처
-          </div>
-          <ul class="text-[10.5px] text-cyan-200/90 space-y-1">
-            <li class="flex items-start gap-1">
-              <span class="text-emerald-400 font-bold">&#10003;</span>
-              <span><strong>로그인 세션 상속:</strong> Chrome 프로필을 승계해 <strong>로그인된 채로</strong> 대시보드 즉각 제어</span>
-            </li>
-            <li class="flex items-start gap-1">
-              <span class="text-emerald-400 font-bold">&#10003;</span>
-              <span><strong>작업 공간 격리:</strong> 인간의 서핑 탭을 방해하지 않고 백그라운드 독립 공간에서 수행</span>
-            </li>
-          </ul>
-        </div>
-        <div class="mt-2 pt-1.5 border-t border-slate-800 text-[10px] font-mono text-cyan-400 font-bold">
-          통제 주체: 인간 세션 + 에이전트 자율 백그라운드
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Bottom Row: Aside vs ego-lite Deep Dive (2 cols) -->
-    <div class="grid grid-cols-2 gap-3 flex-1 items-stretch">
-      
-      <!-- Aside Deep-dive -->
-      <div class="bento-tile p-3.5 bg-slate-900/90 border-l-4 border-l-sky-500 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between mb-2">
-            <div class="flex items-center gap-2">
-              <span class="text-base font-bold text-white">🧭 Aside</span>
-              <span class="text-[10px] font-mono bg-sky-950 text-sky-300 px-2 py-0.5 rounded border border-sky-800 font-bold">YC S24 &middot; General Browser Agent</span>
-            </div>
-            <span class="text-[11px] text-slate-400 font-mono">Chromium-based</span>
-          </div>
-          <div class="text-xs text-sky-200/90 font-medium mb-2.5">
-            "자동 웹 업무 수행 + 로컬 마크다운 기억(Aside Memory)의 결합"
-          </div>
-          
-          <div class="space-y-2 text-xs">
-            <div class="p-2 rounded bg-slate-950/70 border border-slate-800">
-              <strong class="text-sky-300 block mb-0.5 text-[11px]">🎯 Direct Browser Automation</strong>
-              <span class="text-slate-300 text-[11px] leading-relaxed">
-                자연어 지시로 다단계 웹 폼 작성, 관리자 대시보드 검증, 복합 검색 및 크로스 사이트 데이터 추출을 자율적으로 완수.
-              </span>
-            </div>
-
-            <div class="p-2 rounded bg-slate-950/70 border border-slate-800">
-              <strong class="text-indigo-300 block mb-0.5 text-[11px]">🧠 Aside Memory (로컬 마크다운 영속화)</strong>
-              <span class="text-slate-300 text-[11px] leading-relaxed">
-                방문한 웹페이지와 문제 해결 맥락을 기기 로컬에 마크다운으로 자동 인덱싱 &rarr; <em>"지난주 OAuth 401 해결 문서 찾아줘"</em> 자연어 시맨틱 인출.
-              </span>
-            </div>
-
-            <div class="p-2 rounded bg-slate-950/70 border border-slate-800">
-              <strong class="text-cyan-300 block mb-0.5 text-[11px]">🔌 확장성 &amp; 연동</strong>
-              <span class="text-slate-300 text-[11px] leading-relaxed">
-                Claude Code, Cursor, 터미널 CLI와 상호 작용 가능하며 비개발자 업무 자동화부터 개발자 기술 리서치까지 폭넓은 지원.
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-2.5 pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] font-mono">
-          <span class="text-slate-400">주요 강점: <strong>브라우징 지식의 로컬 메모리화 &amp; 멀티모달 자율 조작</strong></span>
-          <span class="text-sky-400 font-bold">비정형 리서치 최적</span>
-        </div>
-      </div>
-
-      <!-- ego-lite Deep-dive -->
-      <div class="bento-tile p-3.5 bg-slate-900/90 border-l-4 border-l-cyan-400 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between mb-2">
-            <div class="flex items-center gap-2">
-              <span class="text-base font-bold text-white">🚀 ego-lite</span>
-              <span class="text-[10px] font-mono bg-cyan-950 text-cyan-300 px-2 py-0.5 rounded border border-cyan-800 font-bold">Citro Labs &middot; Developer-First Agentic Browser</span>
-            </div>
-            <span class="text-[11px] text-slate-400 font-mono">Lightweight Chromium</span>
-          </div>
-          <div class="text-xs text-cyan-200/90 font-medium mb-2.5">
-            "Task Spaces 물리 격리 + 초저토큰 CDP 직결 제어 런타임"
-          </div>
-
-          <div class="space-y-2 text-xs">
-            <div class="p-2 rounded bg-slate-950/70 border border-slate-800">
-              <strong class="text-cyan-300 block mb-0.5 text-[11px]">🛡️ Isolated Task Spaces (제로 탭 오염)</strong>
-              <span class="text-slate-300 text-[11px] leading-relaxed">
-                개발자가 서핑 중인 활성 탭을 1초도 뺏지 않음. 에이전트 전용 백그라운드 Space에서 독립 탭을 열어 스크래핑/테스트 수행.
-              </span>
-            </div>
-
-            <div class="p-2 rounded bg-slate-950/70 border border-slate-800">
-              <strong class="text-emerald-300 block mb-0.5 text-[11px]">⚡ CDP &amp; Direct JS Execution (초저토큰)</strong>
-              <span class="text-slate-300 text-[11px] leading-relaxed">
-                비효율적인 CLI 턴 왕복을 배제하고 Chrome DevTools Protocol(CDP)과 내장 JavaScript 헬퍼로 브라우징 루틴을 최소 토큰에 초고속 실행.
-              </span>
-            </div>
-
-            <div class="p-2 rounded bg-slate-950/70 border border-slate-800">
-              <strong class="text-purple-300 block mb-0.5 text-[11px]">📦 Agent Skill 원터치 연동</strong>
-              <span class="text-slate-300 text-[11px] leading-relaxed">
-                <code class="text-amber-300 font-mono">npx skills add citrolabs/ego-lite</code> 명령 한 줄로 Claude Code, Cursor, Codex 환경에 에이전트 브라우저 즉시 바인딩.
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-2.5 pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] font-mono">
-          <span class="text-slate-400">주요 강점: <strong>개발자 탭 무간섭 &middot; CDP 고속 제어 &middot; 스킬 생태계 직결</strong></span>
-          <span class="text-cyan-400 font-bold">바이브 코딩 런타임 최적</span>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- Footer Key Takeaway -->
-  <div class="p-2.5 rounded-lg bg-cyan-950/40 border border-cyan-500/30 flex items-center justify-between text-xs mt-1">
-    <div class="flex items-center gap-2">
-      <span class="text-amber-400 font-bold flex items-center gap-1">💡 KEY TAKEAWAY</span>
-      <span class="text-slate-200">
-        바이브 코딩의 실행 영역은 로컬 터미널에 머물지 않습니다. AI 브라우저는 <strong>인증된 클라우드 콘솔(Supabase, Stripe, AWS)</strong>과 로컬 에이전트를 연결하는 <strong>차세대 웹 액션 하네스(Web Action Harness)</strong>입니다.
-      </span>
-    </div>
-    <span class="text-[11px] font-mono text-cyan-300 shrink-0 ml-3 font-semibold">Aside (리서치/메모리) &middot; ego-lite (개발자 격리 런타임)</span>
-  </div>
-</section>
-
-      <!-- [COMPONENT] 04-toolchain/14-hands-on-skills.html -->
-<section class="slide flex flex-col justify-between" data-title="4.13 실전 실습: AGENTS.md &amp; Skills 하네스" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
+      <!-- [COMPONENT] 04-toolchain/13-hands-on-skills.html -->
+<section class="slide flex flex-col justify-between" data-title="4.12 실전 실습: AGENTS.md &amp; Skills 하네스" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
       <div>
-        <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 실전 실습 &middot; 4.13 하네스 구축</span>
+        <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 실전 실습 &middot; 4.12 하네스 구축</span>
         <h2 class="text-3xl font-black text-white mt-1">실전 팁 &amp; 바로바로 실습 : 나만의 에이전트 사규 심기</h2>
       </div>
       <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/40 text-xs font-mono font-bold animate-pulse">
@@ -7895,16 +7680,16 @@
       <span class="text-amber-400 font-bold">🚀 실습 테이크어웨이:</span>
       <span class="text-slate-200">에이전트를 길들이는 최고봉은 프롬프트 엔지니어링이 아니라 <strong>'스킬 문서 체계화(Harness Engineering)'</strong>입니다.</span>
     </div>
-    <span class="text-indigo-400 font-bold text-[11px]">Chapter 04 완료 &middot; Slide 51</span>
+    <span class="text-indigo-400 font-bold text-[11px]">Slide 51</span>
   </div>
 </section>
 
-      <!-- [COMPONENT] 04-toolchain/15-chapter-summary.html -->
+      <!-- [COMPONENT] 04-toolchain/14-chapter-summary.html -->
 <section class="slide flex flex-col justify-between" data-title="Ch 04 요약 : 툴체인 &amp; 하네스 체계 완결" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
-      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.14 챕터 총정리</span>
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.13 챕터 총정리</span>
       <span class="px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-600/50 text-sky-300 font-mono text-[11px] font-bold">
         CHAPTER 04 SYNTHESIS &middot; TAKEAWAYS
       </span>
@@ -11731,7 +11516,7 @@
             <h3 class="text-lg font-bold text-[#1A1A1A] flex items-center gap-2">
               <span class="text-[#2D9BB2] font-mono">📑</span> 전체 목차 (Curriculum Index)
             </h3>
-            <span class="text-xs text-slate-500 font-mono">총 91개 슬라이드</span>
+            <span class="text-xs text-slate-500 font-mono">총 90개 슬라이드</span>
           </div>
           <div class="flex items-center gap-3">
             <button id="toggleAllTocBtn" class="text-xs px-2.5 py-1 rounded bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 flex items-center gap-1.5 transition-colors font-medium">
