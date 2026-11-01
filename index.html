@@ -6408,15 +6408,15 @@
       <!-- [COMPONENT] 04-toolchain/07-common-vs-project-skills.html -->
 <section class="slide flex flex-col justify-between" data-title="4.6 공통 Skills vs 프로젝트 특화: AGENTS.md와 PROJECT.md" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
-  <div class="mb-2">
+  <div class="mb-1.5">
     <div class="flex items-center justify-between">
-      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.6 스킬 계층 분리</span>
-      <span class="px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-600/50 text-sky-300 font-mono text-[11px] font-bold">
+      <span class="text-sky-600 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.6 스킬 계층 분리</span>
+      <span class="px-2.5 py-0.5 rounded bg-sky-50 border border-sky-300 text-sky-800 font-mono text-[11px] font-bold">
         COMMON SKILLS &middot; PROJECT SPECIALIZATION
       </span>
     </div>
-    <h2 class="text-3xl font-black text-white mt-1">공통 모듈과 프로젝트 특화 : AGENTS.md vs PROJECT.md</h2>
-    <p class="text-xs text-slate-300 mt-1">
+    <h2 class="text-3xl font-black text-slate-900 mt-1">공통 모듈과 프로젝트 특화 : AGENTS.md vs PROJECT.md</h2>
+    <p class="text-xs text-slate-600 mt-0.5">
       모든 프로젝트에 똑같은 룰을 복붙하면 유지보수가 불가능해집니다. <strong>전사 공통 스킬</strong>과 <strong>도메인 특화 규칙</strong>을 깔끔히 분리해야 합니다.
     </p>
   </div>
@@ -6425,109 +6425,250 @@
   <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
     
     <!-- LEFT: Common Skills Architecture (6 cols) -->
-    <div class="col-span-6 bento-tile p-3 bg-slate-900/90 border-t-2 border-t-sky-400 flex flex-col justify-between">
+    <div class="col-span-6 bento-tile p-3 bg-white border border-slate-200 border-t-4 border-t-sky-500 shadow-md flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center gap-1.5">
             <span class="text-base">🌐</span>
-            <span class="text-[11px] font-mono text-sky-300 font-bold uppercase">전사 공통 모듈 (Global / Cross-Project)</span>
+            <span class="text-[11px] font-mono text-sky-700 font-bold uppercase">전사 공통 모듈 (Global / Cross-Project)</span>
           </div>
-          <span class="text-[9.5px] font-mono text-sky-300 bg-sky-950 px-2 py-0.5 rounded border border-sky-800">Symlink &middot; Submodule</span>
+          <span class="text-[9.5px] font-mono text-sky-800 bg-sky-50 px-2 py-0.5 rounded border border-sky-200 font-bold">Symlink &middot; Submodule</span>
         </div>
 
-        <p class="text-[11px] text-slate-300 mb-2">
+        <p class="text-[11px] text-slate-600 mb-2 leading-relaxed">
           회사나 팀의 모든 레포지토리에서 100% 동일하게 공유되는 표준 거버넌스 문서와 범용 스킬 팩입니다.
         </p>
 
         <!-- Document Cards -->
         <div class="space-y-1.5 text-xs font-mono">
           <!-- AGENTS.md -->
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <div class="flex items-center justify-between text-sky-300 font-bold text-[11px] mb-0.5">
+          <div class="p-2.5 rounded bg-slate-50 border border-slate-200">
+            <div class="flex items-center justify-between text-sky-700 font-bold text-[11px] mb-0.5">
               <span>📜 AGENTS.md (공통 헌법)</span>
-              <span class="text-[9px] text-slate-400 font-sans">루트 심볼릭 링크</span>
+              <span class="text-[9.5px] text-slate-500 font-sans">루트 심볼릭 링크</span>
             </div>
-            <div class="text-[10px] text-slate-300 font-sans">
+            <div class="text-[10px] text-slate-600 font-sans leading-relaxed">
               • .env 시크릿 관리, 배포 게이트, 커밋 컨벤션, 공통 파괴적 명령어 금지 룰.<br>
-              • 중앙 사규 저장소(<code class="text-sky-300">harness-collection</code>)에서 Git Submodule/심볼릭 링크로 연결.
+              • 중앙 사규 저장소(<code class="text-sky-700 font-mono font-bold bg-sky-100/60 px-1 py-0.2 rounded">harness-collection</code>)에서 Git Submodule/심볼릭 링크로 연결.
             </div>
           </div>
 
           <!-- Common Skills -->
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <div class="flex items-center justify-between text-emerald-300 font-bold text-[11px] mb-0.5">
+          <div class="p-2.5 rounded bg-slate-50 border border-slate-200">
+            <div class="flex items-center justify-between text-emerald-700 font-bold text-[11px] mb-0.5">
               <span>📂 skills/ (공통 스킬 팩)</span>
-              <span class="text-[9px] text-slate-400 font-sans">범용 자동화</span>
+              <span class="text-[9.5px] text-slate-500 font-sans">범용 자동화</span>
             </div>
-            <div class="text-[10px] text-slate-300 font-sans">
-              • <code class="text-emerald-300">uiux-governance</code>: 사내 공통 다크 테마/Tailwind 디자인 토큰.<br>
-              • <code class="text-emerald-300">deployment-operations</code>: podman-compose, CI/CD 공통 파이프라인.
+            <div class="text-[10px] text-slate-600 font-sans leading-relaxed">
+              • <code class="text-emerald-700 font-mono font-bold bg-emerald-100/60 px-1 py-0.2 rounded">uiux-governance</code>: 사내 공통 디자인 시스템/Tailwind 색상 토큰.<br>
+              • <code class="text-emerald-700 font-mono font-bold bg-emerald-100/60 px-1 py-0.2 rounded">deployment-operations</code>: podman-compose, CI/CD 공통 파이프라인.
             </div>
           </div>
         </div>
       </div>
 
-      <div class="p-2 rounded bg-sky-950/40 border border-sky-800/40 text-[10.5px] font-mono text-sky-300">
-        💡 장점: 사내 코딩 컨벤션이나 보안 가이드가 바뀌면 중앙 레포 수정 하나로 모든 프로젝트에 즉시 동기화!
+      <div class="p-2 rounded bg-sky-50 border border-sky-200 text-[10.5px] font-mono text-sky-900 leading-snug">
+        💡 <strong class="text-sky-800">중앙 집중식 장점:</strong> 사내 코딩 컨벤션이나 보안 가이드가 바뀌면 중앙 레포 수정 하나로 모든 프로젝트에 즉시 동기화!
       </div>
     </div>
 
     <!-- RIGHT: Project-Specific Specialization (6 cols) -->
-    <div class="col-span-6 bento-tile p-3 bg-slate-900/90 border-t-2 border-t-amber-400 flex flex-col justify-between">
+    <div class="col-span-6 bento-tile p-3 bg-white border border-slate-200 border-t-4 border-t-amber-500 shadow-md flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center gap-1.5">
             <span class="text-base">🎯</span>
-            <span class="text-[11px] font-mono text-amber-300 font-bold uppercase">프로젝트 특화 모듈 (Project-Specific)</span>
+            <span class="text-[11px] font-mono text-amber-700 font-bold uppercase">프로젝트 특화 모듈 (Project-Specific)</span>
           </div>
-          <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950 px-2 py-0.5 rounded border border-amber-800">Local Repository Only</span>
+          <span class="text-[9.5px] font-mono text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 font-bold">Local Repository Only</span>
         </div>
 
-        <p class="text-[11px] text-slate-300 mb-2">
+        <p class="text-[11px] text-slate-600 mb-2 leading-relaxed">
           해당 레포지토리 고유의 비즈니스 도메인, 데이터 스키마, 특화 파이프라인만 격리하여 기술하는 전용 문서입니다.
         </p>
 
         <!-- Document Cards -->
         <div class="space-y-1.5 text-xs font-mono">
-          <!-- PROJECT.md -->
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <div class="flex items-center justify-between text-amber-300 font-bold text-[11px] mb-0.5">
-              <span>📋 PROJECT.md (프로젝트 특화 정의서)</span>
-              <span class="text-[9px] text-slate-400 font-sans">도메인 전용</span>
+          <!-- PROJECT.md (Clickable trigger for sample modal) -->
+          <div 
+            onclick="openProjectModal(event)" 
+            class="p-2.5 rounded bg-amber-50/70 border-2 border-amber-300 hover:border-amber-500 hover:bg-amber-100/70 transition-all cursor-pointer shadow-xs group"
+            title="클릭하여 주식 퀀트 PROJECT.md 실전 예제 열람"
+          >
+            <div class="flex items-center justify-between text-amber-800 font-bold text-[11px] mb-0.5">
+              <span class="flex items-center gap-1.5">
+                <span class="group-hover:scale-110 transition-transform">📋</span>
+                <span class="font-bold underline decoration-amber-400 underline-offset-2">PROJECT.md (프로젝트 특화 정의서)</span>
+              </span>
+              <span class="text-[9.5px] font-mono bg-amber-600 text-white px-2 py-0.5 rounded shadow-xs font-bold flex items-center gap-1">
+                <span>🔍 클릭: 예시 보기</span>
+              </span>
             </div>
-            <div class="text-[10px] text-slate-300 font-sans">
-              • 현재 시스템의 비즈니스 목표: "BTC 선물 5m L-shape 듀얼 볼린저밴드 전략".<br>
-              • 이 프로젝트만의 데이터 루트: <code class="text-amber-300">/mnt/data/finance</code>, 바이낸스 선물 API 명세.
+            <div class="text-[10px] text-slate-700 font-sans leading-relaxed">
+              • 현재 시스템의 비즈니스 목표: <strong>"미국 대형 기술주 &amp; KOSPI 1m/5m VWAP 모멘텀 돌파 전략"</strong><br>
+              • 이 프로젝트만의 데이터 계약: <code class="text-amber-800 font-mono font-bold bg-amber-100 px-1 py-0.2 rounded">/data/stock_market</code>, 증권사 실시간 Open API 명세.
             </div>
           </div>
 
           <!-- Domain-specific Skills -->
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <div class="flex items-center justify-between text-purple-300 font-bold text-[11px] mb-0.5">
+          <div class="p-2.5 rounded bg-slate-50 border border-slate-200">
+            <div class="flex items-center justify-between text-purple-700 font-bold text-[11px] mb-0.5">
               <span>📂 skills/domain-* (도메인 특화 스킬)</span>
-              <span class="text-[9px] text-slate-400 font-sans">해당 레포 한정</span>
+              <span class="text-[9.5px] text-slate-500 font-sans">해당 레포 한정</span>
             </div>
-            <div class="text-[10px] text-slate-300 font-sans">
-              • <code class="text-purple-300">trading-db-schema</code>: 이 프로젝트 전용 SQLite 테이블 DDL.<br>
-              • <code class="text-purple-300">btc-backtest-live-workflow</code>: 백테스트 결과를 Go 실시간 엔진으로 넘기는 체크포인트.
+            <div class="text-[10px] text-slate-600 font-sans leading-relaxed">
+              • <code class="text-purple-700 font-mono font-bold bg-purple-100/60 px-1 py-0.2 rounded">stock-db-schema</code>: 주식 일봉/분봉 틱 데이터 및 수정주가 보정 SQLite DDL.<br>
+              • <code class="text-purple-700 font-mono font-bold bg-purple-100/60 px-1 py-0.2 rounded">stock-backtest-live-workflow</code>: 퀀트 백테스트 검증 결과를 Go 실시간 주문 집행 엔진으로 연계.
             </div>
           </div>
         </div>
       </div>
 
-      <div class="p-2 rounded bg-amber-950/40 border border-amber-800/40 text-[10.5px] font-mono text-amber-300">
-        💡 분리 원칙: 공통 사규(AGENTS.md)를 더럽히지 않고, 각 프로젝트의 특수성을 독립적으로 보존!
+      <div class="p-2 rounded bg-amber-50 border border-amber-200 text-[10.5px] font-mono text-amber-800 leading-snug">
+        💡 <strong class="text-amber-700">도메인 격리 원칙:</strong> 공통 사규(AGENTS.md)를 더럽히지 않고, 각 프로젝트의 특수성을 독립적으로 보존!
       </div>
     </div>
   </div>
 
-  <!-- Bottom Global Banner -->
-  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
-    <div class="flex items-center gap-2">
-      <span class="text-sky-400 font-bold">🏛️ 2원화 설계:</span>
-      <span class="text-slate-200"><strong>AGENTS.md</strong>로 회사의 공통 뼈대를 세우고, <strong>PROJECT.md</strong>로 도메인의 살을 붙이십시오.</span>
+  <!-- Fullscreen Modal for PROJECT.md Stock Quant Production Example (Light Editorial Theme) -->
+  <div 
+    id="project-modal" 
+    class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm hidden flex items-center justify-center p-6 transition-all"
+    onclick="closeProjectModal(event)"
+  >
+    <div 
+      class="relative max-w-4xl w-full max-h-[88vh] flex flex-col bg-white border border-slate-300 rounded-xl overflow-hidden shadow-2xl" 
+      onclick="event.stopPropagation()"
+    >
+      <!-- Modal Header (Editorial Light Window) -->
+      <div class="flex items-center justify-between px-5 py-3 bg-slate-100/90 border-b border-slate-200 shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-1.5">
+            <span class="w-3 h-3 rounded-full bg-rose-400 inline-block border border-rose-500/30"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-400 inline-block border border-amber-500/30"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block border border-emerald-500/30"></span>
+          </div>
+          <span class="text-sm font-mono font-bold text-slate-800 flex items-center gap-1.5">
+            <span>📋</span> PROJECT.md &middot; 미국 대형 기술주 &amp; KOSPI 주식 퀀트 실전 정의서 (Domain SSOT)
+          </span>
+          <span class="text-[10px] font-mono text-amber-800 bg-amber-100/80 px-2 py-0.5 rounded border border-amber-300 font-bold">
+            주식 도메인 특화
+          </span>
+        </div>
+        <button 
+          onclick="closeProjectModal()" 
+          class="px-2.5 py-1 bg-white hover:bg-slate-200 text-slate-700 border border-slate-300 rounded text-xs font-mono font-bold transition-all shadow-sm cursor-pointer"
+        >
+          ✕ 닫기 (ESC)
+        </button>
+      </div>
+
+      <!-- Modal Body (Editorial Light Theme Code View) -->
+      <div class="flex-1 overflow-y-auto p-5 bg-slate-50/70 font-mono text-xs text-slate-800 leading-relaxed space-y-3.5">
+        <!-- 1. Strategy Domain & Target Universe -->
+        <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+          <div class="text-sky-800 font-bold text-sm mb-1.5 flex items-center gap-2">
+            <span># 1. Project Mission &amp; Equity Strategy Scope</span>
+          </div>
+          <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
+            - <strong>Primary Goal:</strong> 미국 S&amp;P500/나스닥100 대형 기술주 및 KOSPI200 주도주 대상 실시간 퀀트 알고리즘 트레이딩 파이프라인.<br>
+            - <strong>Core Strategy:</strong> 1분봉/5분봉 가격 모멘텀 돌파 + 거래량 가중 평균가(VWAP) 밴드 회귀 하이브리드 전략.<br>
+            - <strong>Execution Stack Split:</strong><br>
+            &nbsp;&nbsp;• <strong>Research &amp; Backtest:</strong> Python 3.12 (Polars 벡터 연산, 파라미터 그리드 탐색, 슬리피지/수수료 시뮬레이션)<br>
+            &nbsp;&nbsp;• <strong>Live Trading Engine:</strong> Go 1.23 (초저지연 실시간 시세 파싱, 호가 잔량 불균형 감시, 주문 집행 엔진)<br>
+            &nbsp;&nbsp;• <strong>Monitoring Frontend:</strong> Svelte + Tailwind CSS (실시간 체결 및 포지션 PnL 대시보드)
+          </p>
+        </div>
+
+        <!-- 2. Stock Data Contract -->
+        <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+          <div class="text-amber-800 font-bold text-sm mb-1.5 flex items-center gap-2">
+            <span># 2. Equity Data Contract &amp; Hive Partition</span>
+          </div>
+          <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
+            - <strong>Market Data Root:</strong> <code class="text-amber-800 bg-amber-100/80 px-1.5 py-0.5 rounded border border-amber-300 font-mono font-bold">/data/stock_market</code> (절대경로 엄수; 임의 변경 금지)<br>
+            - <strong>Partition Layout:</strong> <code class="text-slate-700 bg-slate-100 px-1 py-0.2 rounded font-mono">/data/stock_market/ticks/market={US|KR}/symbol={TICKER}/dt=YYYY-MM-DD/</code><br>
+            - <strong>Corporate Actions Invariant:</strong> 주식 액면분할, 무상증자, 배당락 이벤트 시 수정주가(Adjusted Close) 계산 모듈을 거쳐 백테스트 데이터 정합성 보장.<br>
+            - <strong>Broker API:</strong> 국내 주식 한국투자증권(KIS) Open API + 해외 주식 Interactive Brokers(IBKR) REST/WebSocket 연동
+          </p>
+        </div>
+
+        <!-- 3. Risk Management & Execution Rules -->
+        <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+          <div class="text-emerald-800 font-bold text-sm mb-1.5 flex items-center gap-2">
+            <span># 3. Risk Management &amp; Circuit Breakers</span>
+          </div>
+          <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
+            - <strong>포지션 사이징:</strong> 단일 주식 종목당 전체 운용 자산의 최대 10% 이내 엄수.<br>
+            - <strong>손절 및 익절 규칙:</strong> 진입가 대비 -1.8% 도달 시 즉시 시장가 손절(Stop-Loss), +3.5% 도달 시 50% 분할 익절 후 트레일링 스탑 활성화.<br>
+            - <strong>일간 최대 손실 제한(Daily MDD):</strong> 당일 누적 손실 -3.0% 도달 시 전 포지션 즉시 시장가 청산 및 당일 신규 진입 전면 중단(Circuit Breaker).<br>
+            - <strong>체결 슬리피지 통제:</strong> 매수/매도 5단계 호가 잔량 비율(Order Book Imbalance)이 1.5배 이상 유리할 때만 주문 제출.
+          </p>
+        </div>
+
+        <!-- 4. Research to Production Checkpoint -->
+        <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+          <div class="text-purple-800 font-bold text-sm mb-1.5 flex items-center gap-2">
+            <span># 4. Backtest-to-Live Handoff Protocol</span>
+          </div>
+          <p class="text-slate-700 text-[11px] mb-1 leading-relaxed font-sans">
+            - <strong>배포 승인 기준:</strong> 최근 3년(2023~2026) 백테스트 결과 샤프비율 &gt; 1.8, 승률 &gt; 54%, 거래당 기댓값(왕복 0.1% 수수료/슬리피지 차감 후) 양수 보장.<br>
+            - <strong>전략 파라미터 고정:</strong> Python 연구 단계에서 검증된 파라미터는 <code class="text-purple-800 bg-purple-50 px-1 py-0.2 rounded border border-purple-200 font-mono">config/strategy_params.json</code>으로 추출되어 Go 엔진 런타임에 주입.<br>
+            - <strong>텔레그램 체결 알림:</strong> 주문 생성, 정정, 체결(`open -&gt; close`) 발생 시 텔레그램 봇으로 실시간 손익 및 슬리피지 보고 전송.
+          </p>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-5 py-2.5 bg-slate-100 border-t border-slate-200 text-xs font-mono text-slate-600 flex items-center justify-between shrink-0">
+        <span class="flex items-center gap-1.5 text-slate-700">
+          <span>💡</span> <span>공통 헌법(AGENTS.md) 아래에 각 도메인의 핵심 비즈니스 규칙(PROJECT.md)이 완벽히 독립 보존됩니다.</span>
+        </span>
+        <button 
+          onclick="closeProjectModal()" 
+          class="px-3 py-1 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded text-xs font-mono transition-all shadow cursor-pointer"
+        >
+          확인 완료 (ESC)
+        </button>
+      </div>
     </div>
-    <span class="text-sky-400 font-bold text-[11px]">Slide 45</span>
+  </div>
+
+  <script>
+    function openProjectModal(e) {
+      if (e) e.stopPropagation();
+      const modal = document.getElementById("project-modal");
+      if (!modal) return;
+      if (modal.parentElement !== document.body) {
+        document.body.appendChild(modal);
+      }
+      modal.classList.remove("hidden");
+    }
+
+    function closeProjectModal(e) {
+      if (e && e.target !== e.currentTarget && e.target.tagName !== "BUTTON") return;
+      const modal = document.getElementById("project-modal");
+      if (modal) modal.classList.add("hidden");
+    }
+
+    document.addEventListener("keydown", function(ev) {
+      if (ev.key === "Escape") {
+        const modal = document.getElementById("project-modal");
+        if (modal && !modal.classList.contains("hidden")) {
+          closeProjectModal();
+          ev.stopPropagation();
+        }
+      }
+    });
+  </script>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-700 border border-slate-200 bg-white">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-600 font-bold">🏛️ 2원화 설계:</span>
+      <span class="text-slate-700"><strong>AGENTS.md</strong>로 회사의 공통 뼈대를 세우고, <strong>PROJECT.md</strong>로 도메인의 살을 붙이십시오.</span>
+    </div>
+    <span class="text-sky-600 font-bold text-[11px]">Slide 45</span>
   </div>
 </section>
 
