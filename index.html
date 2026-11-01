@@ -2512,16 +2512,62 @@
         <span class="text-[9px] text-amber-400 bg-amber-950/60 px-1.5 py-0.5 rounded">빙산의 일각</span>
       </div>
 
-      <!-- Iceberg Autoplay Video -->
-      <div class="relative w-full flex-1 flex items-center justify-center rounded-lg overflow-hidden border border-slate-200/80 bg-slate-950/5 my-auto h-[270px] max-h-[270px]">
-        <video src="./slides/02-essence/assets/iceberg_reality.mp4" autoplay loop muted playsinline class="w-full h-full object-contain max-h-[265px] rounded"></video>
+      <!-- Iceberg Interactive Video/Image Container -->
+      <div 
+        id="iceberg-media-container"
+        class="relative w-full flex-1 flex items-center justify-center rounded-lg overflow-hidden border border-slate-200/80 bg-slate-950/5 my-auto h-[270px] max-h-[270px] cursor-pointer group select-none"
+        onclick="toggleIcebergMedia()"
+        title="클릭하여 고화질 정밀 인포그래픽 / 비디오 전환"
+      >
+        <!-- Autoplay Video View -->
+        <video 
+          id="iceberg-video" 
+          src="./slides/02-essence/assets/iceberg_reality.mp4" 
+          autoplay loop muted playsinline 
+          class="w-full h-full object-contain max-h-[265px] rounded transition-opacity duration-300"
+        ></video>
+
+        <!-- High-Res Infographic Image View (Initially Hidden) -->
+        <img 
+          id="iceberg-image" 
+          src="./slides/02-essence/assets/professional_painting.jpg" 
+          alt="The Vibe Coding Iceberg - 프로덕션 현실 90%" 
+          class="hidden w-full h-full object-contain max-h-[265px] rounded transition-opacity duration-300"
+        />
+
+        <!-- Click Helper Floating Badge -->
+        <div class="absolute bottom-2 right-2 bg-slate-900/80 hover:bg-slate-900 text-sky-300 border border-sky-500/40 px-2 py-0.5 rounded text-[9px] font-mono flex items-center gap-1 shadow backdrop-blur-sm transition-all pointer-events-none">
+          <span id="iceberg-mode-badge">🔍 클릭: 상세도 보기</span>
+        </div>
       </div>
 
-      <div class="text-[9.5px] text-center font-mono text-slate-500 border-t border-slate-800/80 pt-1 mt-1">
-        수면 아래를 통제하는 자만이 프로덕션을 런칭합니다.
+      <div class="text-[9.5px] text-center font-mono text-slate-500 border-t border-slate-800/80 pt-1 mt-1 flex items-center justify-between px-1">
+        <span>수면 아래를 통제하는 자만이 프로덕션을 런칭합니다.</span>
+        <span class="text-[8.5px] text-sky-400 font-bold">화면 클릭 ⇄ 인포그래픽</span>
       </div>
     </div>
   </div>
+
+  <script>
+    function toggleIcebergMedia() {
+      const vid = document.getElementById('iceberg-video');
+      const img = document.getElementById('iceberg-image');
+      const badge = document.getElementById('iceberg-mode-badge');
+      if (!vid || !img) return;
+
+      if (img.classList.contains('hidden')) {
+        img.classList.remove('hidden');
+        vid.classList.add('hidden');
+        vid.pause();
+        if (badge) badge.textContent = '🎬 클릭: 비디오 보기';
+      } else {
+        img.classList.add('hidden');
+        vid.classList.remove('hidden');
+        vid.play().catch(() => {});
+        if (badge) badge.textContent = '🔍 클릭: 상세도 보기';
+      }
+    }
+  </script>
 
   <!-- Bottom Global Takeaway Banner -->
   <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-1">
