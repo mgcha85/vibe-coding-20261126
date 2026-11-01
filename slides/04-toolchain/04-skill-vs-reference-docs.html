@@ -1,14 +1,14 @@
 <section class="slide flex flex-col justify-between" data-title="4.3 문서 설계학 : SKILL.md vs REFERENCE.md">
   <!-- Header -->
-  <div class="mb-2">
+  <div class="mb-1.5">
     <div class="flex items-center justify-between">
-      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.3 문서 아키텍처</span>
-      <span class="px-2.5 py-0.5 rounded bg-amber-950/80 border border-amber-600/50 text-amber-300 font-mono text-[11px] font-bold">
+      <span class="text-sky-600 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.3 문서 아키텍처</span>
+      <span class="px-2.5 py-0.5 rounded bg-amber-50 border border-amber-300 text-amber-800 font-mono text-[11px] font-bold">
         ON-DEMAND LOADING &middot; TOKEN OPTIMIZATION
       </span>
     </div>
-    <h2 class="text-3xl font-black text-white mt-1">문서 설계학 : SKILL.md vs REFERENCE.md 분리</h2>
-    <p class="text-xs text-slate-300 mt-1">
+    <h2 class="text-3xl font-black text-slate-900 mt-1">문서 설계학 : SKILL.md vs REFERENCE.md 분리</h2>
+    <p class="text-xs text-slate-600 mt-0.5">
       모든 규칙을 하나의 파일에 다 넣으면 토큰이 폭발하고 인지 부하가 생깁니다. <strong>1단계 경량 실행 규칙</strong>과 <strong>2단계 심층 레퍼런스</strong>로 계층화해야 합니다.
     </p>
   </div>
@@ -17,110 +17,466 @@
   <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
     
     <!-- LEFT: SKILL.md Spec (6 cols) -->
-    <div class="col-span-6 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+    <div class="col-span-6 bento-tile p-3 bg-white border border-slate-200 shadow-md flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center gap-1.5">
             <span class="text-base">📄</span>
-            <span class="text-[11px] font-mono text-amber-400 font-bold uppercase">Level 1 : SKILL.md (실행 헌법 &amp; 트리거)</span>
+            <span class="text-[11px] font-mono text-amber-700 font-bold uppercase">Level 1 : SKILL.md (실행 헌법 &amp; 트리거)</span>
           </div>
-          <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-800">Always Loaded on Trigger</span>
+          <span class="text-[9.5px] font-mono text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 font-bold">Always Loaded on Trigger</span>
         </div>
 
-        <p class="text-[11px] text-slate-300 mb-2">
+        <p class="text-[11px] text-slate-600 mb-2 leading-relaxed">
           에이전트가 스킬을 감지하는 순간 <strong>즉각 컨텍스트에 로드되는 핵심 강령</strong>입니다. 50~100줄 이내로 핵심 요약과 강제 사규만 기술합니다.
         </p>
 
         <!-- YAML Frontmatter & Body Code Box -->
-        <div class="p-2.5 rounded bg-slate-950 border border-slate-800 font-mono text-[10.5px] leading-relaxed text-slate-300">
-          <div class="text-indigo-400">---</div>
-          <div><strong class="text-sky-300">name</strong>: <span class="text-emerald-300">uiux-governance</span></div>
-          <div><strong class="text-sky-300">description</strong>: <span class="text-slate-300">"Enterprise UI/UX Design System SSoT. Enforces icon-first status, auto-collapse, panel scrolling, and thin chrome."</span></div>
-          <div class="text-indigo-400">---</div>
-          <div class="mt-1 text-slate-400"># 1. 핵심 철학 (3 Core Principles)</div>
-          <div>- Unified Experience, Approach with One-Click, Catch on One-Page</div>
-          <div class="mt-1 text-slate-400"># 2. 10대 상시 상호작용 표준 (Always UX Patterns)</div>
-          <div>- 아이콘 우선(Icon-First), 인라인 액션, 완료 시 자동 접힘, 패널 스크롤 강제</div>
+        <div class="p-2.5 rounded bg-slate-50 border border-slate-200 font-mono text-[10.5px] leading-relaxed text-slate-800">
+          <div class="text-slate-400">---</div>
+          <div><strong class="text-sky-700">name</strong>: <span class="text-emerald-700 font-bold">uiux-governance</span></div>
+          <div><strong class="text-sky-700">description</strong>: <span class="text-slate-600">"Enterprise UI/UX Design System SSoT. Enforces icon-first status, auto-collapse, panel scrolling, and thin chrome."</span></div>
+          <div class="text-slate-400">---</div>
+          <div class="mt-1.5 text-slate-500 font-bold"># 1. 핵심 철학 (3 Core Principles)</div>
+          <div class="text-slate-700">- Unified Experience, Approach with One-Click, Catch on One-Page</div>
+          <div class="mt-1.5 text-slate-500 font-bold"># 2. 10대 상시 상호작용 표준 (Always UX Patterns)</div>
+          <div class="text-slate-700">- 아이콘 우선(Icon-First), 인라인 액션, 완료 시 자동 접힘, 패널 스크롤 강제</div>
         </div>
 
-        <div class="mt-2 space-y-1 text-[10.5px] text-slate-300">
+        <div class="mt-2 space-y-1 text-[10.5px] text-slate-700">
           <div class="flex items-center gap-1.5">
-            <span class="text-emerald-400">✓</span>
-            <span><strong>YAML Frontmatter 필수:</strong> <code class="text-sky-300 font-mono">name</code>과 <code class="text-sky-300 font-mono">description</code>이 에이전트의 트리거 지표</span>
+            <span class="text-emerald-600 font-bold">✓</span>
+            <span><strong>YAML Frontmatter 필수:</strong> <code class="text-sky-700 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 font-mono">name</code>과 <code class="text-sky-700 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 font-mono">description</code>이 에이전트의 트리거 지표</span>
           </div>
           <div class="flex items-center gap-1.5">
-            <span class="text-emerald-400">✓</span>
+            <span class="text-emerald-600 font-bold">✓</span>
             <span><strong>초경량 유지:</strong> 토큰 낭비를 막고 에이전트의 핵심 작업 지침만 전달</span>
           </div>
         </div>
       </div>
 
-      <div class="p-2 rounded bg-amber-950/40 border border-amber-800/40 text-[10px] font-mono text-amber-300">
-        ⚡ 역할: 에이전트가 "내가 지금 무엇을 지켜야 하는지" 즉각 행동 방향을 잡는 스위치
+      <div class="p-2 rounded bg-amber-50 border border-amber-200 text-[10.5px] font-mono text-amber-800 leading-snug">
+        ⚡ <strong>핵심 역할:</strong> 에이전트가 "내가 지금 무엇을 지켜야 하는지" 즉각 행동 방향을 잡는 스위치
       </div>
     </div>
 
     <!-- RIGHT: REFERENCE.md & Extended Docs (6 cols) -->
-    <div class="col-span-6 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+    <div class="col-span-6 bento-tile p-3 bg-white border border-slate-200 shadow-md flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center gap-1.5">
             <span class="text-base">📑</span>
-            <span class="text-[11px] font-mono text-cyan-300 font-bold uppercase">Level 2 : REFERENCE.md (온디맨드 심층 문서)</span>
+            <span class="text-[11px] font-mono text-sky-700 font-bold uppercase">Level 2 : REFERENCE.md (온디맨드 심층 문서)</span>
           </div>
-          <span class="text-[9.5px] font-mono text-cyan-300 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800">On-demand Reading Only</span>
+          <span class="text-[9.5px] font-mono text-sky-800 bg-sky-50 px-2 py-0.5 rounded border border-sky-200 font-bold">On-demand Reading Only</span>
         </div>
 
-        <p class="text-[11px] text-slate-300 mb-2">
-          수백 줄의 API 명세, 색상표, 복잡한 DB 스키마, 체크리스트를 담는 <strong>외장 참고 도서관</strong>입니다. 에이전트가 <code class="text-cyan-300 font-mono">view_file</code>로 직접 열람합니다.
+        <p class="text-[11px] text-slate-600 mb-2 leading-relaxed">
+          수백 줄의 API 명세, 색상표, 복잡한 DB 스키마, 체크리스트를 담는 <strong>외장 참고 도서관</strong>입니다. 에이전트가 <code class="text-sky-700 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 font-mono">view_file</code>로 필요할 때만 열람합니다. <span class="text-amber-700 font-bold">(※ 각 파일명을 클릭하면 실제 예제 확인)</span>
         </p>
 
-        <!-- Document Examples Box -->
+        <!-- 6 Document Interactive Cards -->
         <div class="space-y-1.5 text-xs font-mono">
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <div class="flex items-center justify-between text-cyan-300 font-bold text-[11px] mb-0.5">
-              <span>📑 REFERENCE.md / CHEATSHEET.md</span>
-              <span class="text-[9px] text-slate-500 font-sans">디자인 토큰 &middot; 팔레트</span>
+          <!-- Pair 1: REFERENCE.md & CHEATSHEET.md -->
+          <div class="p-2 rounded bg-slate-50 border border-slate-200 hover:border-sky-300 transition-colors">
+            <div class="flex items-center justify-between mb-1">
+              <div class="flex items-center gap-1.5">
+                <span 
+                  onclick="openDocModal('reference')" 
+                  class="cursor-pointer font-bold text-[11px] text-sky-700 bg-sky-100/80 hover:bg-sky-200 hover:text-sky-900 px-1.5 py-0.5 rounded border border-sky-300 transition-all shadow-xs flex items-center gap-1"
+                  title="클릭하여 REFERENCE.md 예제 열람"
+                >
+                  <span>📑</span> <span>REFERENCE.md</span>
+                </span>
+                <span class="text-slate-400">/</span>
+                <span 
+                  onclick="openDocModal('cheatsheet')" 
+                  class="cursor-pointer font-bold text-[11px] text-sky-700 bg-sky-100/80 hover:bg-sky-200 hover:text-sky-900 px-1.5 py-0.5 rounded border border-sky-300 transition-all shadow-xs flex items-center gap-1"
+                  title="클릭하여 CHEATSHEET.md 예제 열람"
+                >
+                  <span>⚡</span> <span>CHEATSHEET.md</span>
+                </span>
+              </div>
+              <span class="text-[9px] text-slate-500 font-sans">디자인 토큰 &middot; 명령어 치트키</span>
             </div>
-            <div class="text-[10px] text-slate-300 font-sans">
-              Tailwind 색상 코드 Hex 매핑(#0f172a, #38bdf8), 폰트 스케일, 세부 아이콘 SVG 코드 보관.
+            <div class="text-[10px] text-slate-600 font-sans leading-tight">
+              Tailwind 색상 팔레트 Hex 매핑(#0f172a), 폰트 스케일 및 CLI 툴체인(uv, ruff, go test) 단축키 보관.
             </div>
           </div>
 
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <div class="flex items-center justify-between text-emerald-300 font-bold text-[11px] mb-0.5">
-              <span>📋 CHECKLIST.md / ALGORITHM.md</span>
-              <span class="text-[9px] text-slate-500 font-sans">단계별 검증표</span>
+          <!-- Pair 2: CHECKLIST.md & ALGORITHM.md -->
+          <div class="p-2 rounded bg-slate-50 border border-slate-200 hover:border-emerald-300 transition-colors">
+            <div class="flex items-center justify-between mb-1">
+              <div class="flex items-center gap-1.5">
+                <span 
+                  onclick="openDocModal('checklist')" 
+                  class="cursor-pointer font-bold text-[11px] text-emerald-700 bg-emerald-100/80 hover:bg-emerald-200 hover:text-emerald-900 px-1.5 py-0.5 rounded border border-emerald-300 transition-all shadow-xs flex items-center gap-1"
+                  title="클릭하여 CHECKLIST.md 예제 열람"
+                >
+                  <span>📋</span> <span>CHECKLIST.md</span>
+                </span>
+                <span class="text-slate-400">/</span>
+                <span 
+                  onclick="openDocModal('algorithm')" 
+                  class="cursor-pointer font-bold text-[11px] text-emerald-700 bg-emerald-100/80 hover:bg-emerald-200 hover:text-emerald-900 px-1.5 py-0.5 rounded border border-emerald-300 transition-all shadow-xs flex items-center gap-1"
+                  title="클릭하여 ALGORITHM.md 예제 열람"
+                >
+                  <span>📐</span> <span>ALGORITHM.md</span>
+                </span>
+              </div>
+              <span class="text-[9px] text-slate-500 font-sans">검증 체크 &middot; 수식 알고리즘</span>
             </div>
-            <div class="text-[10px] text-slate-300 font-sans">
-              배포 전 필수 점검 항목 20가지, RLS 보안 감사 체크리스트, 예외 케이스 처리 매뉴얼.
+            <div class="text-[10px] text-slate-600 font-sans leading-tight">
+              배포 전 10대 프로덕션 릴리스 게이트, RLS 보안 점검표 및 추천 감쇠 수식·의사코드 명세.
             </div>
           </div>
 
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <div class="flex items-center justify-between text-purple-300 font-bold text-[11px] mb-0.5">
-              <span>🗄️ SCHEMA.md / API_CONTRACT.md</span>
-              <span class="text-[9px] text-slate-500 font-sans">스키마 명세서</span>
+          <!-- Pair 3: SCHEMA.md & API_CONTRACT.md -->
+          <div class="p-2 rounded bg-slate-50 border border-slate-200 hover:border-purple-300 transition-colors">
+            <div class="flex items-center justify-between mb-1">
+              <div class="flex items-center gap-1.5">
+                <span 
+                  onclick="openDocModal('schema')" 
+                  class="cursor-pointer font-bold text-[11px] text-purple-700 bg-purple-100/80 hover:bg-purple-200 hover:text-purple-900 px-1.5 py-0.5 rounded border border-purple-300 transition-all shadow-xs flex items-center gap-1"
+                  title="클릭하여 SCHEMA.md 예제 열람"
+                >
+                  <span>🗄️</span> <span>SCHEMA.md</span>
+                </span>
+                <span class="text-slate-400">/</span>
+                <span 
+                  onclick="openDocModal('api_contract')" 
+                  class="cursor-pointer font-bold text-[11px] text-purple-700 bg-purple-100/80 hover:bg-purple-200 hover:text-purple-900 px-1.5 py-0.5 rounded border border-purple-300 transition-all shadow-xs flex items-center gap-1"
+                  title="클릭하여 API_CONTRACT.md 예제 열람"
+                >
+                  <span>🔌</span> <span>API_CONTRACT.md</span>
+                </span>
+              </div>
+              <span class="text-[9px] text-slate-500 font-sans">DB 스키마 &middot; 인터페이스 규격</span>
             </div>
-            <div class="text-[10px] text-slate-300 font-sans">
-              수십 개 테이블의 PostgreSQL 컬럼 명세, 바이낸스 선물 WebSocket 메시지 규격.
+            <div class="text-[10px] text-slate-600 font-sans leading-tight">
+              PostgreSQL DDL 및 Row-Level Security 격리 정책, gRPC Protocol Buffers 및 REST 규격 정의.
             </div>
           </div>
         </div>
       </div>
 
-      <div class="p-2 rounded bg-cyan-950/40 border border-cyan-800/40 text-[10px] font-mono text-cyan-300">
-        💡 경제학: 매 턴 읽으면 수만 토큰 낭비 ➔ 에이전트가 "필요할 때만 파일 읽기 도구"로 선택적 열람
+      <div class="p-2 rounded bg-sky-50 border border-sky-200 text-[10.5px] font-mono text-sky-900 leading-snug">
+        💡 <strong class="text-sky-800">경제학적 효과:</strong> 매 턴 주입하면 수만 토큰 낭비 ➔ 에이전트가 "필요할 때만 파일 읽기 도구"로 선택적 열람하여 컨텍스트 보존.
       </div>
     </div>
   </div>
 
-  <!-- Bottom Global Banner -->
-  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
-    <div class="flex items-center gap-2">
-      <span class="text-amber-400 font-bold">📚 문서 2단계 분리 원칙:</span>
-      <span class="text-slate-200"><code class="text-amber-300 font-mono">SKILL.md</code>로 경량 라우팅하고, 대용량 지식은 <code class="text-cyan-300 font-mono">REFERENCE.md</code>로 외주화하여 토큰을 절약하십시오.</span>
+  <!-- Fullscreen Modal for 6 Extended Docs Production Examples (Light Editorial Theme) -->
+  <div 
+    id="docs-modal" 
+    class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm hidden flex items-center justify-center p-6 transition-all"
+    onclick="closeDocModal(event)"
+  >
+    <div 
+      class="relative max-w-4xl w-full max-h-[88vh] flex flex-col bg-white border border-slate-300 rounded-xl overflow-hidden shadow-2xl" 
+      onclick="event.stopPropagation()"
+    >
+      <!-- Modal Header (Editorial Light Window) -->
+      <div class="px-5 py-3 bg-slate-100/90 border-b border-slate-200 shrink-0">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-3">
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-3 rounded-full bg-rose-400 inline-block border border-rose-500/30"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-400 inline-block border border-amber-500/30"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block border border-emerald-500/30"></span>
+            </div>
+            <span class="text-sm font-mono font-bold text-slate-800 flex items-center gap-1.5">
+              <span>📑</span> Level 2 심층 레퍼런스 문서 실전 예제 (SSOT Reference Library)
+            </span>
+            <span class="text-[10px] font-mono text-sky-800 bg-sky-100/80 px-2 py-0.5 rounded border border-sky-300 font-bold">
+              On-Demand Reading Only
+            </span>
+          </div>
+          <button 
+            onclick="closeDocModal()" 
+            class="px-2.5 py-1 bg-white hover:bg-slate-200 text-slate-700 border border-slate-300 rounded text-xs font-mono font-bold transition-all shadow-sm cursor-pointer"
+          >
+            ✕ 닫기 (ESC)
+          </button>
+        </div>
+
+        <!-- 6 Tabs -->
+        <div class="flex items-center gap-1.5 overflow-x-auto pb-0.5 pt-1 text-xs font-mono border-t border-slate-200">
+          <button onclick="switchDocTab('reference')" id="tab-btn-reference" class="doc-tab-btn px-2.5 py-1 rounded font-bold border transition-all cursor-pointer">📑 REFERENCE.md</button>
+          <button onclick="switchDocTab('cheatsheet')" id="tab-btn-cheatsheet" class="doc-tab-btn px-2.5 py-1 rounded font-bold border transition-all cursor-pointer">⚡ CHEATSHEET.md</button>
+          <button onclick="switchDocTab('checklist')" id="tab-btn-checklist" class="doc-tab-btn px-2.5 py-1 rounded font-bold border transition-all cursor-pointer">📋 CHECKLIST.md</button>
+          <button onclick="switchDocTab('algorithm')" id="tab-btn-algorithm" class="doc-tab-btn px-2.5 py-1 rounded font-bold border transition-all cursor-pointer">📐 ALGORITHM.md</button>
+          <button onclick="switchDocTab('schema')" id="tab-btn-schema" class="doc-tab-btn px-2.5 py-1 rounded font-bold border transition-all cursor-pointer">🗄️ SCHEMA.md</button>
+          <button onclick="switchDocTab('api_contract')" id="tab-btn-api_contract" class="doc-tab-btn px-2.5 py-1 rounded font-bold border transition-all cursor-pointer">🔌 API_CONTRACT.md</button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Editorial Light Theme View) -->
+      <div class="flex-1 overflow-y-auto p-5 bg-slate-50/70 font-mono text-xs text-slate-800 leading-relaxed">
+        
+        <!-- 1. REFERENCE.md Panel -->
+        <div id="doc-panel-reference" class="doc-panel space-y-3">
+          <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-sky-800 font-bold text-sm"># REFERENCE.md &middot; Enterprise UI/UX Design System Tokens</span>
+              <span class="text-[10px] bg-sky-50 text-sky-800 px-2 py-0.5 rounded border border-sky-200">Design SSoT</span>
+            </div>
+            <p class="text-slate-600 text-[11px] mb-2 font-sans">
+              에이전트가 프론트엔드 UI를 작성할 때 색상, 여백, 폰트 스케일을 임의로 만들지 못하도록 단일 진실 공급원으로 강제하는 명세입니다.
+            </p>
+            <div class="bg-slate-50 p-2.5 rounded border border-slate-200 space-y-1.5 text-[10.5px]">
+              <div><strong class="text-sky-700">## Color Palette Hex Map</strong></div>
+              <div class="text-slate-700">• Primary Sky: <code class="bg-sky-100 text-sky-900 px-1 py-0.2 rounded font-bold">#0284C7</code> (Tailwind sky-600) &middot; CTA, Accent, Active State</div>
+              <div class="text-slate-700">• Surface Canvas: <code class="bg-slate-100 text-slate-900 px-1 py-0.2 rounded font-bold">#F8FAFC</code> (slate-50) &middot; Main Screen Background</div>
+              <div class="text-slate-700">• Card Background: <code class="bg-white text-slate-900 px-1 py-0.2 rounded font-bold border border-slate-300">#FFFFFF</code> &middot; Bento Grid Elevation Tile</div>
+              <div class="text-slate-700">• Border Subtle: <code class="bg-slate-100 text-slate-900 px-1 py-0.2 rounded font-bold">#E2E8F0</code> (slate-200) &middot; Clean Grid Dividers</div>
+              <div class="text-slate-700">• Danger / Stop: <code class="bg-rose-100 text-rose-900 px-1 py-0.2 rounded font-bold">#E11D48</code> (rose-600) &middot; Destructive Guard</div>
+              <div class="mt-2"><strong class="text-sky-700">## Typography Scale &amp; Font Weights</strong></div>
+              <div class="text-slate-700">• Display Header: 28px / 32px Line-height &middot; Font-black (900) &middot; slate-900</div>
+              <div class="text-slate-700">• Bento Subtitle: 12px / 16px &middot; Font-bold (700) &middot; uppercase font-mono tracking-wider</div>
+              <div class="text-slate-700">• Body Copy: 11px / 16px &middot; Regular (400) &middot; text-slate-600 font-sans</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. CHEATSHEET.md Panel -->
+        <div id="doc-panel-cheatsheet" class="doc-panel hidden space-y-3">
+          <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-amber-800 font-bold text-sm"># CHEATSHEET.md &middot; Agent Runtime CLI &amp; Verification Cheatsheet</span>
+              <span class="text-[10px] bg-amber-50 text-amber-800 px-2 py-0.5 rounded border border-amber-200">Dev CLI SSoT</span>
+            </div>
+            <p class="text-slate-600 text-[11px] mb-2 font-sans">
+              에이전트가 어떤 빌드 도구나 검증 명령어를 호출해야 할지 즉각 복사/실행할 수 있는 명령어 집합입니다.
+            </p>
+            <div class="bg-slate-50 p-2.5 rounded border border-slate-200 space-y-2 text-[10.5px]">
+              <div>
+                <div class="text-amber-700 font-bold">## 1. Python Environment &amp; Quality Control</div>
+                <div class="text-slate-700">uv sync                          # lockfile 기반 의존성 완벽 동기화</div>
+                <div class="text-slate-700">uv run ruff check src/ --fix     # PEP-8 린트 및 AST 자동 수정</div>
+                <div class="text-slate-700">uv run pytest -q tests/          # 단위 테스트 초고속 검증 (Silent mode)</div>
+              </div>
+              <div class="pt-1 border-t border-slate-200">
+                <div class="text-sky-700 font-bold">## 2. Go Runtime &amp; Race Condition Auditing</div>
+                <div class="text-slate-700">golangci-lint run ./...          # 엄격한 멀티 린터 정적 분석</div>
+                <div class="text-slate-700">go test -race -v ./cmd/...       # 런타임 데이터 레이스 100% 감지</div>
+                <div class="text-slate-700">go build -o bin/engine ./cmd/    # 무의존성 경량 바이너리 컴파일</div>
+              </div>
+              <div class="pt-1 border-t border-slate-200">
+                <div class="text-emerald-700 font-bold">## 3. Container Orchestration &amp; Daemon Control</div>
+                <div class="text-slate-700">podman-compose -f compose.dev.yml up -d      # 데브 컨테이너 백그라운드 구동</div>
+                <div class="text-slate-700">podman logs -f --tail 100 engine-daemon     # 실시간 에이전트 로그 스트리밍</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. CHECKLIST.md Panel -->
+        <div id="doc-panel-checklist" class="doc-panel hidden space-y-3">
+          <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-emerald-800 font-bold text-sm"># CHECKLIST.md &middot; Production 10-Gate Deployment Checklist</span>
+              <span class="text-[10px] bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded border border-emerald-200">Release Gate</span>
+            </div>
+            <p class="text-slate-600 text-[11px] mb-2 font-sans">
+              에이전트가 "배포 완료되었습니다"라고 보고하기 전, 스스로 통과해야 하는 10가지 필수 검증 체크리스트입니다.
+            </p>
+            <div class="bg-slate-50 p-2.5 rounded border border-slate-200 space-y-1.5 text-[10.5px]">
+              <div class="flex items-center gap-2 text-slate-800">
+                <input type="checkbox" checked disabled class="accent-emerald-600">
+                <span><strong>[Gate 1] Secret Isolation:</strong> <code class="font-bold text-rose-700">.env</code> 및 API 토큰이 Git에 커밋되지 않았는가? (gitleaks 통과)</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-800">
+                <input type="checkbox" checked disabled class="accent-emerald-600">
+                <span><strong>[Gate 2] Absolute Path:</strong> <code class="font-bold text-amber-700">/data/corpus</code> 절대경로 외 임의의 로컬/상대경로 참조가 없는가?</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-800">
+                <input type="checkbox" checked disabled class="accent-emerald-600">
+                <span><strong>[Gate 3] RLS Security Audit:</strong> 모든 신규 PostgreSQL 테이블에 Row Level Security 활성화 완료</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-800">
+                <input type="checkbox" checked disabled class="accent-emerald-600">
+                <span><strong>[Gate 4] Concurrency Race Test:</strong> Go 백엔드에 <code class="font-bold text-sky-700">go test -race</code> 실행 시 0 Warning 통과</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-800">
+                <input type="checkbox" checked disabled class="accent-emerald-600">
+                <span><strong>[Gate 5] Graceful Shutdown:</strong> SIGTERM 수신 시 진행 중인 작업을 5초 내 정상 드레인하는가?</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-800">
+                <input type="checkbox" checked disabled class="accent-emerald-600">
+                <span><strong>[Gate 6] LESSON_AND_LEARN:</strong> 발생했던 트러블슈팅 및 버그 원인이 마크다운에 문서화되었는가?</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. ALGORITHM.md Panel -->
+        <div id="doc-panel-algorithm" class="doc-panel hidden space-y-3">
+          <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-indigo-800 font-bold text-sm"># ALGORITHM.md &middot; Real-time Hybrid Ranking &amp; Decay Scoring</span>
+              <span class="text-[10px] bg-indigo-50 text-indigo-800 px-2 py-0.5 rounded border border-indigo-200">Math &amp; Logic</span>
+            </div>
+            <p class="text-slate-600 text-[11px] mb-2 font-sans">
+              에이전트가 추천·검색 알고리즘을 코딩할 때 임의로 가중치를 변경하지 않도록 수식과 시간 감쇠 상수를 명시한 문서입니다.
+            </p>
+            <div class="bg-slate-50 p-2.5 rounded border border-slate-200 space-y-2 text-[10.5px]">
+              <div>
+                <strong class="text-indigo-700">## 1. Hybrid Score Formulation</strong>
+                <div class="p-2 bg-white rounded border border-slate-300 font-mono text-indigo-900 mt-1 font-bold">
+                  Score(d, q, t) = α &middot; CosineSim(E_q, E_d) + (1-α) &middot; Quality(d) &middot; exp(-λ &middot; Δt)
+                </div>
+              </div>
+              <div class="text-slate-700 space-y-0.5">
+                <div>• <code class="text-indigo-700 font-bold">α = 0.65</code> : 벡터 임베딩 유사도 반영 가중치</div>
+                <div>• <code class="text-indigo-700 font-bold">λ = 0.048</code> : 반감기 14.4시간 기준 시간 감쇠 계수 (Time-decay factor)</div>
+                <div>• <code class="text-indigo-700 font-bold">Δt</code> : 현재 시각과 문서 생성 시각의 차이 (단위: Hours)</div>
+              </div>
+              <div class="pt-1 border-t border-slate-200">
+                <strong class="text-indigo-700">## 2. Latency Budget &amp; SLA Contract</strong>
+                <div class="text-slate-700">• Max Candidate Heap Size: <code class="bg-slate-200 px-1 rounded font-bold">K = 250</code></div>
+                <div class="text-slate-700">• P99 Latency SLA: <strong>&lt; 12.5ms</strong> (5,000 QPS 동시 요청 환경 기준)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. SCHEMA.md Panel -->
+        <div id="doc-panel-schema" class="doc-panel hidden space-y-3">
+          <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-purple-800 font-bold text-sm"># SCHEMA.md &middot; PostgreSQL DDL &amp; Strict RLS Policies</span>
+              <span class="text-[10px] bg-purple-50 text-purple-800 px-2 py-0.5 rounded border border-purple-200">Database DDL</span>
+            </div>
+            <p class="text-slate-600 text-[11px] mb-2 font-sans">
+              데이터베이스 테이블 컬럼명, 외래키, 인덱스 및 테넌트 데이터 격리를 위한 RLS 보안 정책 SSoT 문서입니다.
+            </p>
+            <div class="bg-slate-50 p-2.5 rounded border border-slate-200 space-y-2 text-[10.5px]">
+              <div>
+                <strong class="text-purple-700">-- Table Definition (Workspaces &amp; Agent Logs)</strong>
+                <div class="p-2 bg-white rounded border border-slate-300 font-mono text-slate-800 mt-1 leading-relaxed">
+                  <span class="text-purple-700 font-bold">CREATE TABLE</span> agent_execution_logs (<br>
+                  &nbsp;&nbsp;id <span class="text-sky-700 font-bold">UUID PRIMARY KEY DEFAULT</span> gen_random_uuid(),<br>
+                  &nbsp;&nbsp;workspace_id <span class="text-sky-700 font-bold">UUID NOT NULL REFERENCES</span> workspaces(id),<br>
+                  &nbsp;&nbsp;agent_role <span class="text-sky-700 font-bold">VARCHAR(64) NOT NULL</span>,<br>
+                  &nbsp;&nbsp;prompt_tokens <span class="text-sky-700 font-bold">INTEGER DEFAULT</span> 0,<br>
+                  &nbsp;&nbsp;created_at <span class="text-sky-700 font-bold">TIMESTAMPTZ DEFAULT</span> clock_timestamp()<br>
+                  );
+                </div>
+              </div>
+              <div class="pt-1 border-t border-slate-200">
+                <strong class="text-purple-700">-- Row Level Security (Tenant Isolation)</strong>
+                <div class="p-2 bg-white rounded border border-slate-300 font-mono text-slate-800 mt-1 leading-relaxed">
+                  <span class="text-purple-700 font-bold">ALTER TABLE</span> agent_execution_logs <span class="text-purple-700 font-bold">ENABLE ROW LEVEL SECURITY</span>;<br>
+                  <span class="text-purple-700 font-bold">CREATE POLICY</span> tenant_isolation <span class="text-purple-700 font-bold">ON</span> agent_execution_logs<br>
+                  &nbsp;&nbsp;<span class="text-purple-700 font-bold">USING</span> (workspace_id = current_setting('app.workspace_id')::uuid);
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. API_CONTRACT.md Panel -->
+        <div id="doc-panel-api_contract" class="doc-panel hidden space-y-3">
+          <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-sky-800 font-bold text-sm"># API_CONTRACT.md &middot; Protocol Buffers &amp; REST Interface</span>
+              <span class="text-[10px] bg-sky-50 text-sky-800 px-2 py-0.5 rounded border border-sky-200">API Contract</span>
+            </div>
+            <p class="text-slate-600 text-[11px] mb-2 font-sans">
+              마이크로서비스 간 통신에 쓰이는 gRPC Proto 정의와 외부 연동용 REST JSON 스키마를 고정하는 문서입니다.
+            </p>
+            <div class="bg-slate-50 p-2.5 rounded border border-slate-200 space-y-2 text-[10.5px]">
+              <div>
+                <strong class="text-sky-700">// gRPC Interface: recommendation.proto</strong>
+                <div class="p-2 bg-white rounded border border-slate-300 font-mono text-slate-800 mt-1 leading-relaxed">
+                  <span class="text-sky-700 font-bold">syntax</span> = "proto3";<br>
+                  <span class="text-sky-700 font-bold">service</span> RecommendationEngine {<br>
+                  &nbsp;&nbsp;<span class="text-sky-700 font-bold">rpc</span> StreamCandidates(CandidateQuery) <span class="text-sky-700 font-bold">returns</span> (CandidateResult);<br>
+                  &nbsp;&nbsp;<span class="text-sky-700 font-bold">rpc</span> HealthCheck(PingRequest) <span class="text-sky-700 font-bold">returns</span> (PongResponse);<br>
+                  }
+                </div>
+              </div>
+              <div class="pt-1 border-t border-slate-200">
+                <strong class="text-sky-700">// REST Endpoint: POST /api/v1/recommendations/eval</strong>
+                <div class="p-2 bg-white rounded border border-slate-300 font-mono text-slate-800 mt-1 leading-relaxed">
+                  <strong>Headers:</strong> Authorization: Bearer &lt;JWT&gt;, X-Workspace-ID: &lt;UUID&gt;<br>
+                  <strong>Response 200:</strong> { "status": "success", "latency_ms": 8.4, "items": [...] }<br>
+                  <strong>Response 429:</strong> { "error": "RATE_LIMIT_EXCEEDED", "retry_after_sec": 3 }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-5 py-2.5 bg-slate-100 border-t border-slate-200 text-xs font-mono text-slate-600 flex items-center justify-between shrink-0">
+        <span class="flex items-center gap-1.5 text-slate-700">
+          <span>💡</span> <span>에이전트는 이 문서들을 항상 기억하지 않고, 작업 시 <code class="bg-white px-1 py-0.2 rounded border border-slate-300 font-bold text-sky-700">view_file</code>로 읽어 토큰을 절약합니다.</span>
+        </span>
+        <button 
+          onclick="closeDocModal()" 
+          class="px-3 py-1 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded text-xs font-mono transition-all shadow cursor-pointer"
+        >
+          확인 완료 (ESC)
+        </button>
+      </div>
     </div>
-    <span class="text-amber-400 font-bold text-[11px]">Slide 42</span>
+  </div>
+
+  <script>
+    function switchDocTab(docId) {
+      const tabs = ['reference', 'cheatsheet', 'checklist', 'algorithm', 'schema', 'api_contract'];
+      tabs.forEach(function(t) {
+        const btn = document.getElementById('tab-btn-' + t);
+        const panel = document.getElementById('doc-panel-' + t);
+        if (btn && panel) {
+          if (t === docId) {
+            btn.className = "doc-tab-btn px-2.5 py-1 rounded font-bold border transition-all cursor-pointer bg-sky-600 text-white border-sky-600 shadow-sm";
+            panel.classList.remove('hidden');
+          } else {
+            btn.className = "doc-tab-btn px-2.5 py-1 rounded font-bold border transition-all cursor-pointer bg-white text-slate-600 border-slate-300 hover:bg-slate-100";
+            panel.classList.add('hidden');
+          }
+        }
+      });
+    }
+
+    function openDocModal(docId) {
+      const modal = document.getElementById("docs-modal");
+      if (!modal) return;
+      if (modal.parentElement !== document.body) {
+        document.body.appendChild(modal);
+      }
+      switchDocTab(docId || 'reference');
+      modal.classList.remove("hidden");
+    }
+
+    function closeDocModal(e) {
+      if (e && e.target !== e.currentTarget && e.target.tagName !== "BUTTON") return;
+      const modal = document.getElementById("docs-modal");
+      if (modal) modal.classList.add("hidden");
+    }
+
+    document.addEventListener("keydown", function(ev) {
+      if (ev.key === "Escape") {
+        const modal = document.getElementById("docs-modal");
+        if (modal && !modal.classList.contains("hidden")) {
+          closeDocModal();
+          ev.stopPropagation();
+        }
+      }
+    });
+  </script>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-700 border border-slate-200 bg-white">
+    <div class="flex items-center gap-2">
+      <span class="text-amber-700 font-bold">📚 문서 2단계 분리 원칙:</span>
+      <span class="text-slate-700"><code class="text-amber-800 bg-amber-50 px-1 py-0.2 rounded border border-amber-200 font-mono">SKILL.md</code>로 경량 라우팅하고, 대용량 지식은 <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 font-mono">REFERENCE.md</code>로 외주화하여 토큰을 절약하십시오.</span>
+    </div>
+    <span class="text-amber-700 font-bold text-[11px]">Slide 42</span>
   </div>
 </section>

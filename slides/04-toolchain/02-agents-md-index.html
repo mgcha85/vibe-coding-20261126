@@ -32,7 +32,7 @@
               <span class="text-base">💬</span>
               <div>
                 <div class="text-slate-800 font-bold text-[11px]">User Prompt (질문/지시)</div>
-                <div class="text-[10px] text-slate-500">"백테스트 결과 페이지 배포해줘"</div>
+                <div class="text-[10px] text-slate-500">"추천 파이프라인 배포해줘"</div>
               </div>
             </div>
             <span class="text-[10px] text-sky-700 bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200 font-bold">Turn Start</span>
@@ -130,12 +130,12 @@
             <span>📑</span>
             <span>AGENTS.md에 반드시 기술해야 하는 4대 핵심 계약</span>
           </div>
-          <button 
+          <span 
             onclick="openAgentsModal(event)" 
             class="text-[10px] font-mono text-sky-700 bg-sky-50 hover:bg-sky-100 px-2 py-0.5 rounded border border-sky-300 font-bold flex items-center gap-1 shadow-sm transition-all cursor-pointer"
           >
             <span>📜</span> 실제 예시 전문 보기 ➔
-          </button>
+          </span>
         </div>
 
         <div class="grid grid-cols-2 gap-2 text-xs">
@@ -153,7 +153,7 @@
             </div>
           </div>
 
-          <!-- Pillar 2 (Changed from /mnt/data/finance to /data/corpus) -->
+          <!-- Pillar 2 (/data/corpus) -->
           <div 
             onclick="openAgentsModal(event)" 
             class="p-2 rounded bg-slate-50 border border-slate-200 cursor-pointer hover:border-amber-400 hover:bg-amber-50/50 transition-all"
@@ -205,64 +205,64 @@
     </div>
   </div>
 
-  <!-- Fullscreen Modal for AGENTS.md Production Example -->
+  <!-- Fullscreen Modal for AGENTS.md Production Example (Matching Light Theme Tone & Manner) -->
   <div 
     id="agents-modal" 
-    class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-6 transition-all"
+    class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm hidden flex items-center justify-center p-6 transition-all"
     onclick="closeAgentsModal(event)"
   >
     <div 
-      class="relative max-w-4xl w-full max-h-[88vh] flex flex-col bg-slate-900 border border-slate-700 rounded-xl overflow-hidden shadow-2xl" 
+      class="relative max-w-4xl w-full max-h-[88vh] flex flex-col bg-white border border-slate-300 rounded-xl overflow-hidden shadow-2xl" 
       onclick="event.stopPropagation()"
     >
-      <!-- Modal Header (Mac Style Window) -->
-      <div class="flex items-center justify-between px-4 py-3 bg-slate-950 border-b border-slate-800 shrink-0">
+      <!-- Modal Header (Editorial Light Window) -->
+      <div class="flex items-center justify-between px-5 py-3 bg-slate-100/90 border-b border-slate-200 shrink-0">
         <div class="flex items-center gap-3">
           <div class="flex items-center gap-1.5">
-            <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
-            <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-            <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-rose-400 inline-block border border-rose-500/30"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-400 inline-block border border-amber-500/30"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block border border-emerald-500/30"></span>
           </div>
-          <span class="text-sm font-mono font-bold text-sky-400 flex items-center gap-1.5">
+          <span class="text-sm font-mono font-bold text-slate-800 flex items-center gap-1.5">
             <span>📜</span> AGENTS.md &middot; 실전 프로덕션 아키텍처 예시 (SSOT Sample)
           </span>
-          <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">
+          <span class="text-[10px] font-mono text-emerald-800 bg-emerald-100/80 px-2 py-0.5 rounded border border-emerald-300 font-bold">
             실전 헌법 표준
           </span>
         </div>
         <button 
           onclick="closeAgentsModal()" 
-          class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 rounded text-xs font-mono font-bold transition-all shadow cursor-pointer"
+          class="px-2.5 py-1 bg-white hover:bg-slate-200 text-slate-700 border border-slate-300 rounded text-xs font-mono font-bold transition-all shadow-sm cursor-pointer"
         >
           ✕ 닫기 (ESC)
         </button>
       </div>
 
-      <!-- Modal Body (Code View) -->
-      <div class="flex-1 overflow-y-auto p-4 bg-slate-950 font-mono text-xs text-slate-200 leading-relaxed space-y-4">
+      <!-- Modal Body (Editorial Light Theme Code View) -->
+      <div class="flex-1 overflow-y-auto p-5 bg-slate-50/70 font-mono text-xs text-slate-800 leading-relaxed space-y-3.5">
         <!-- 1. Mission & Scope -->
-        <div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800">
-          <div class="text-sky-400 font-bold text-sm mb-1.5 flex items-center gap-2">
+        <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+          <div class="text-sky-800 font-bold text-sm mb-1.5 flex items-center gap-2">
             <span># 1. Mission &amp; Architecture Scope</span>
           </div>
-          <p class="text-slate-300 text-[11px] mb-2 leading-relaxed">
+          <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
             - <strong>Primary Goal:</strong> 대규모 트래픽 환경의 실시간 데이터 인텔리전스 및 추천 엔진 파이프라인 구축.<br>
             - <strong>Language Stack Split:</strong><br>
             &nbsp;&nbsp;• <strong>Research &amp; AI Brain:</strong> Python 3.12 (모델 실험, 임베딩 벡터화, EDA)<br>
             &nbsp;&nbsp;• <strong>Live Runtime Engine:</strong> Go 1.23 (초고속 gRPC 게이트웨이, Zero-Crash 24/7 스트리밍 파이프라인)<br>
             &nbsp;&nbsp;• <strong>Frontend UI:</strong> SvelteKit + Tailwind CSS (실시간 관제 대시보드)<br>
-            - <strong>Core Outputs:</strong> <code class="text-cyan-300">src/engine/</code> (Go 모듈), <code class="text-emerald-300">src/ai_model/</code> (Python 패키지), <code class="text-amber-300">artifacts/reports/</code>
+            - <strong>Core Outputs:</strong> <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 font-mono">src/engine/</code> (Go 모듈), <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200 font-mono">src/ai_model/</code> (Python 패키지), <code class="text-amber-800 bg-amber-50 px-1 py-0.2 rounded border border-amber-200 font-mono">artifacts/reports/</code>
           </p>
         </div>
 
         <!-- 2. Data Contract -->
-        <div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800">
-          <div class="text-amber-400 font-bold text-sm mb-1.5 flex items-center gap-2">
+        <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+          <div class="text-amber-800 font-bold text-sm mb-1.5 flex items-center gap-2">
             <span># 2. Data Contract (데이터 계약 &amp; 절대경로 엄수)</span>
           </div>
-          <p class="text-slate-300 text-[11px] mb-2 leading-relaxed">
-            - <strong>Root Data Path:</strong> <code class="text-amber-300 bg-amber-950/60 px-1.5 py-0.5 rounded border border-amber-800/50">/data/corpus</code> (절대경로 원칙; 임의의 상대경로나 /tmp 변조 엄금)<br>
-            - <strong>Storage Layout:</strong> Hive Partition 구조 준수 (<code class="text-slate-300">/data/corpus/events/dt=YYYY-MM-DD/hh=HH/</code>)<br>
+          <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
+            - <strong>Root Data Path:</strong> <code class="text-amber-800 bg-amber-100/80 px-1.5 py-0.5 rounded border border-amber-300 font-mono font-bold">/data/corpus</code> (절대경로 원칙; 임의의 상대경로나 /tmp 변조 엄금)<br>
+            - <strong>Storage Layout:</strong> Hive Partition 구조 준수 (<code class="text-slate-700 bg-slate-100 px-1 py-0.2 rounded font-mono">/data/corpus/events/dt=YYYY-MM-DD/hh=HH/</code>)<br>
             - <strong>Agent Protocol:</strong><br>
             &nbsp;&nbsp;• 데이터 스키마 또는 파티션 컬럼을 임의로 변경하지 않고 사전문서와 일치시킬 것<br>
             &nbsp;&nbsp;• 대용량 쿼리는 DuckDB / Polars 벡터화 엔진을 사용하여 메모리 OOM 방지
@@ -270,44 +270,44 @@
         </div>
 
         <!-- 3. Quality & Build Gates -->
-        <div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800">
-          <div class="text-emerald-400 font-bold text-sm mb-1.5 flex items-center gap-2">
+        <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+          <div class="text-emerald-800 font-bold text-sm mb-1.5 flex items-center gap-2">
             <span># 3. Quality &amp; Build Gates (품질 검증 관문)</span>
           </div>
-          <p class="text-slate-300 text-[11px] mb-2 leading-relaxed">
+          <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
             - <strong>Python Quality Gates:</strong><br>
-            &nbsp;&nbsp;• 패키지 의존성 동기화: <code class="text-emerald-300">uv sync</code><br>
-            &nbsp;&nbsp;• 린트 &amp; 정적 검사: <code class="text-emerald-300">uv run ruff check src/ tests/</code><br>
-            &nbsp;&nbsp;• 자동화 단위 테스트: <code class="text-emerald-300">uv run pytest -q tests/</code><br>
+            &nbsp;&nbsp;• 패키지 의존성 동기화: <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200 font-mono">uv sync</code><br>
+            &nbsp;&nbsp;• 린트 &amp; 정적 검사: <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200 font-mono">uv run ruff check src/ tests/</code><br>
+            &nbsp;&nbsp;• 자동화 단위 테스트: <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200 font-mono">uv run pytest -q tests/</code><br>
             - <strong>Go Quality Gates:</strong><br>
-            &nbsp;&nbsp;• 빌드 및 린트: <code class="text-cyan-300">golangci-lint run ./...</code><br>
-            &nbsp;&nbsp;• 동시성 레이스 검사: <code class="text-cyan-300">go test -race -v ./...</code><br>
+            &nbsp;&nbsp;• 빌드 및 린트: <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 font-mono">golangci-lint run ./...</code><br>
+            &nbsp;&nbsp;• 동시성 레이스 검사: <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 font-mono">go test -race -v ./...</code><br>
             - <strong>Verification Rule:</strong> 모든 PR 및 코드 변경 전 린트와 테스트가 100% 통과(Exit Code 0)해야만 작업 완료를 선언한다.
           </p>
         </div>
 
         <!-- 4. Safe Change & Operations -->
-        <div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800">
-          <div class="text-purple-400 font-bold text-sm mb-1.5 flex items-center gap-2">
+        <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+          <div class="text-purple-800 font-bold text-sm mb-1.5 flex items-center gap-2">
             <span># 4. Safe Change Policy &amp; Operations</span>
           </div>
-          <p class="text-slate-300 text-[11px] mb-1 leading-relaxed">
-            - <strong>파괴적 Git 행위 엄금:</strong> <code class="text-rose-400">git push --force</code>, <code class="text-rose-400">git reset --hard</code> 금지<br>
-            - <strong>시크릿 3계층 격리:</strong> API 키 및 DB 패스워드는 <code class="text-amber-300">.env.dev</code> / <code class="text-amber-300">.env.prod</code> 에만 기록하고 Git 커밋 절대 금지<br>
-            - <strong>컨테이너 배포:</strong> <code class="text-sky-300">podman-compose up -d</code> 로 무중단 서비스 롤아웃<br>
-            - <strong>트러블슈팅 아카이빙:</strong> 복잡한 버그나 설계 변경 발생 시 <code class="text-indigo-300">LESSON_AND_LEARN.md</code>에 원인과 해결책을 필히 기록
+          <p class="text-slate-700 text-[11px] mb-1 leading-relaxed font-sans">
+            - <strong>파괴적 Git 행위 엄금:</strong> <code class="text-rose-700 bg-rose-50 px-1 py-0.2 rounded border border-rose-200 font-mono font-bold">git push --force</code>, <code class="text-rose-700 bg-rose-50 px-1 py-0.2 rounded border border-rose-200 font-mono font-bold">git reset --hard</code> 금지<br>
+            - <strong>시크릿 3계층 격리:</strong> API 키 및 DB 패스워드는 <code class="text-amber-800 bg-amber-50 px-1 py-0.2 rounded border border-amber-200 font-mono">.env.dev</code> / <code class="text-amber-800 bg-amber-50 px-1 py-0.2 rounded border border-amber-200 font-mono">.env.prod</code> 에만 기록하고 Git 커밋 절대 금지<br>
+            - <strong>컨테이너 배포:</strong> <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 font-mono">podman-compose up -d</code> 로 무중단 서비스 롤아웃<br>
+            - <strong>트러블슈팅 아카이빙:</strong> 복잡한 버그나 설계 변경 발생 시 <code class="text-indigo-800 bg-indigo-50 px-1 py-0.2 rounded border border-indigo-200 font-mono font-bold">LESSON_AND_LEARN.md</code>에 원인과 해결책을 필히 기록
           </p>
         </div>
       </div>
 
       <!-- Modal Footer -->
-      <div class="px-4 py-2.5 bg-slate-950 border-t border-slate-800 text-xs font-mono text-slate-400 flex items-center justify-between shrink-0">
-        <span class="flex items-center gap-1.5 text-slate-300">
+      <div class="px-5 py-2.5 bg-slate-100 border-t border-slate-200 text-xs font-mono text-slate-600 flex items-center justify-between shrink-0">
+        <span class="flex items-center gap-1.5 text-slate-700">
           <span>💡</span> <span>모든 AI 에이전트는 작업 시작 전 위 헌법을 읽고 절대 벗어나지 않습니다.</span>
         </span>
         <button 
           onclick="closeAgentsModal()" 
-          class="px-3 py-1 bg-sky-900/60 hover:bg-sky-800 text-sky-200 border border-sky-600 rounded text-xs font-mono font-bold transition-all shadow cursor-pointer"
+          class="px-3 py-1 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded text-xs font-mono transition-all shadow cursor-pointer"
         >
           확인 완료 (ESC)
         </button>
