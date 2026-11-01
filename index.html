@@ -6675,16 +6675,16 @@
       <!-- [COMPONENT] 04-toolchain/08-context-retention-docs.html -->
 <section class="slide flex flex-col justify-between" data-title="4.7 Context 유지 3대장: LESSON_AND_LEARN · PLAN · INTENT" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
-  <div class="mb-2">
+  <div class="mb-1.5">
     <div class="flex items-center justify-between">
-      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.7 컨텍스트 영속성</span>
-      <span class="px-2.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-600/50 text-emerald-300 font-mono text-[11px] font-bold">
+      <span class="text-sky-600 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.7 컨텍스트 영속성</span>
+      <span class="px-2.5 py-0.5 rounded bg-emerald-50 border border-emerald-300 text-emerald-800 font-mono text-[11px] font-bold">
         LONG-HORIZON CONTEXT &middot; STATE SYNCHRONIZATION
       </span>
     </div>
-    <h2 class="text-3xl font-black text-white mt-1">세션 변경과 망각을 이기는 3대 문서 아키텍처</h2>
-    <p class="text-xs text-slate-300 mt-1">
-      새 대화창을 열 때마다 에이전트의 기억이 초기화되는 '컨텍스트 절벽(Context Cliff)'을 <strong>3대 상태 문서</strong>로 영구 극복합니다.
+    <h2 class="text-3xl font-black text-slate-900 mt-1">세션 변경과 망각을 이기는 3대 문서 아키텍처</h2>
+    <p class="text-xs text-slate-600 mt-0.5">
+      새 대화창을 열 때마다 에이전트의 기억이 초기화되는 '컨텍스트 절벽(Context Cliff)'을 <strong>3대 상태 문서</strong>로 영구 극복합니다. <span class="text-amber-700 font-bold">(※ 각 파일명을 클릭하면 실전 예제 확인)</span>
     </p>
   </div>
 
@@ -6692,105 +6692,435 @@
   <div class="grid grid-cols-3 gap-3 flex-1 items-stretch my-1">
     
     <!-- Pillar 1: LESSON_AND_LEARN.md -->
-    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-rose-400 flex flex-col justify-between">
+    <div class="bento-tile p-3 bg-white border border-slate-200 border-t-4 border-t-rose-500 shadow-md flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center gap-1.5">
-            <span class="text-base">🩹</span>
-            <span class="text-[11px] font-mono text-rose-300 font-bold uppercase">LESSON_AND_LEARN.md</span>
+            <span 
+              onclick="openContextDocModal('lesson')" 
+              class="cursor-pointer font-bold text-[11px] text-rose-700 bg-rose-50 hover:bg-rose-100 hover:text-rose-900 px-1.5 py-0.5 rounded border border-rose-300 transition-all shadow-xs flex items-center gap-1 group"
+              title="클릭하여 LESSON_AND_LEARN.md 예제 열람"
+            >
+              <span class="group-hover:scale-110 transition-transform">🩹</span>
+              <span class="underline decoration-rose-300 underline-offset-2">LESSON_AND_LEARN.md</span>
+            </span>
           </div>
-          <span class="text-[9px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded border border-rose-800">Episodic Memory</span>
+          <span class="text-[9.5px] font-mono text-rose-800 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200 font-bold">Episodic Memory</span>
         </div>
 
-        <div class="text-[11px] font-bold text-white mb-1.5">시행착오 &amp; 버그 해결 기록 (자가 치유)</div>
-        <p class="text-[10.5px] text-slate-300 leading-snug mb-2 font-sans">
+        <div class="text-[11px] font-bold text-slate-900 mb-1">시행착오 &amp; 버그 해결 기록 (자가 치유)</div>
+        <p class="text-[10.5px] text-slate-600 leading-relaxed mb-2 font-sans">
           동일한 버그로 에이전트가 삽질하고 토큰을 날리는 것을 방지하는 <strong>트러블슈팅 오답 노트</strong>입니다.
         </p>
 
-        <!-- Template Box -->
-        <div class="p-2 rounded bg-slate-950 border border-slate-800 font-mono text-[9.5px] leading-relaxed text-slate-300">
-          <div class="text-rose-400 font-bold"># 트러블슈팅 템플릿</div>
-          <div>• <strong>증상:</strong> WebSocket 연결 시 403 에러</div>
-          <div>• <strong>원인:</strong> Binance API 헤더 시그니처 누락</div>
-          <div>• <strong>해결책:</strong> HMAC SHA256 타임스탬프 추가</div>
-          <div>• <strong>교훈:</strong> 이후 유사 요청 시 이 해결책 우선 적용</div>
+        <!-- Template Box (Clickable) -->
+        <div 
+          onclick="openContextDocModal('lesson')" 
+          class="p-2.5 rounded bg-slate-50 border border-slate-200 hover:border-rose-300 hover:bg-rose-50/40 transition-all cursor-pointer font-mono text-[9.5px] leading-relaxed text-slate-700 shadow-xs"
+          title="클릭하여 상세 예제 확인"
+        >
+          <div class="flex items-center justify-between text-rose-700 font-bold mb-1">
+            <span># 실전 트러블슈팅 기록 예시</span>
+            <span class="text-[9px] text-rose-600 bg-rose-100/70 px-1 rounded">클릭: 전문 보기</span>
+          </div>
+          <div>• <strong>증상:</strong> KIS 주식 호가 웹소켓 403 Forbidden 에러</div>
+          <div>• <strong>원인:</strong> 장중 OAuth2 토큰 만료 및 동시성 Lock 부재</div>
+          <div>• <strong>해결:</strong> 만료 15분 전 백그라운드 선제 갱신 루틴 추가</div>
+          <div>• <strong>교훈:</strong> 실시간 스트리밍은 사전 토큰 갱신 필수 설계</div>
         </div>
       </div>
 
-      <div class="p-1.5 rounded bg-rose-950/40 border border-rose-800/40 text-[9.5px] font-mono text-rose-300 mt-2">
-        ✓ 효과: "지난번에 고쳤던 버그를 새 세션에서 또 만났을 때 0초 만에 해결"
+      <div class="p-1.5 rounded bg-rose-50 border border-rose-200 text-[10px] font-mono text-rose-800 mt-2 leading-snug">
+        ✓ <strong>효과:</strong> 지난번에 고친 버그를 새 세션에서 또 만났을 때 0초 만에 해결
       </div>
     </div>
 
-    <!-- Pillar 2: PLAN.md -->
-    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-amber-400 flex flex-col justify-between">
+    <!-- Pillar 2: PLAN.md & ROADMAP.md -->
+    <div class="bento-tile p-3 bg-white border border-slate-200 border-t-4 border-t-amber-500 shadow-md flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-2">
-          <div class="flex items-center gap-1.5">
-            <span class="text-base">🗺️</span>
-            <span class="text-[11px] font-mono text-amber-300 font-bold uppercase">PLAN.md / ROADMAP.md</span>
+          <div class="flex items-center gap-1">
+            <span 
+              onclick="openContextDocModal('plan')" 
+              class="cursor-pointer font-bold text-[10.5px] text-amber-800 bg-amber-50 hover:bg-amber-100 px-1.5 py-0.5 rounded border border-amber-300 transition-all shadow-xs flex items-center gap-0.5 group"
+              title="클릭하여 PLAN.md 예제 열람"
+            >
+              <span class="group-hover:scale-110 transition-transform">🗺️</span>
+              <span class="underline decoration-amber-400 underline-offset-2">PLAN.md</span>
+            </span>
+            <span class="text-slate-400">/</span>
+            <span 
+              onclick="openContextDocModal('roadmap')" 
+              class="cursor-pointer font-bold text-[10.5px] text-amber-800 bg-amber-50 hover:bg-amber-100 px-1.5 py-0.5 rounded border border-amber-300 transition-all shadow-xs flex items-center gap-0.5 group"
+              title="클릭하여 ROADMAP.md 예제 열람"
+            >
+              <span class="group-hover:scale-110 transition-transform">🧭</span>
+              <span class="underline decoration-amber-400 underline-offset-2">ROADMAP.md</span>
+            </span>
           </div>
-          <span class="text-[9px] font-mono text-amber-400 bg-amber-950 px-1.5 py-0.5 rounded border border-amber-800">State Machine</span>
+          <span class="text-[9.5px] font-mono text-amber-800 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200 font-bold">State Machine</span>
         </div>
 
-        <div class="text-[11px] font-bold text-white mb-1.5">작업 마일스톤 &amp; 체크리스트 (진행도 추적)</div>
-        <p class="text-[10.5px] text-slate-300 leading-snug mb-2 font-sans">
+        <div class="text-[11px] font-bold text-slate-900 mb-1">작업 마일스톤 &amp; 체크리스트 (진행도 추적)</div>
+        <p class="text-[10.5px] text-slate-600 leading-relaxed mb-2 font-sans">
           대화 세션이 끊겨도 에이전트가 "내가 어디까지 작업했는지" 즉시 복원하는 <strong>진행 상태 동기화 장치</strong>입니다.
         </p>
 
-        <!-- Template Box -->
-        <div class="p-2 rounded bg-slate-950 border border-slate-800 font-mono text-[9.5px] leading-relaxed text-slate-300">
-          <div class="text-amber-400 font-bold"># 단계별 마일스톤 관리</div>
-          <div class="text-emerald-400">• [x] 1단계: DB 스키마 마이그레이션</div>
-          <div class="text-amber-300 font-bold">• [ ] 2단계: Fiber HTTP API 엔드포인트 구현 (진행중)</div>
-          <div class="text-slate-500">• [ ] 3단계: Svelte 프론트엔드 연동</div>
-          <div class="text-slate-500">• [ ] 4단계: Podman 컨테이너 배포</div>
+        <!-- Template Box (Clickable) -->
+        <div 
+          onclick="openContextDocModal('plan')" 
+          class="p-2.5 rounded bg-slate-50 border border-slate-200 hover:border-amber-300 hover:bg-amber-50/40 transition-all cursor-pointer font-mono text-[9.5px] leading-relaxed text-slate-700 shadow-xs"
+          title="클릭하여 상세 예제 확인"
+        >
+          <div class="flex items-center justify-between text-amber-700 font-bold mb-1">
+            <span># 단계별 마일스톤 체크리스트</span>
+            <span class="text-[9px] text-amber-700 bg-amber-100/70 px-1 rounded">클릭: 전문 보기</span>
+          </div>
+          <div class="text-emerald-700 font-semibold">• [x] Phase 1: Polars 1분봉 수정주가 팩터 연산 엔진</div>
+          <div class="text-emerald-700 font-semibold">• [x] Phase 2: KIS/IBKR 웹소켓 시세 수신 링버퍼</div>
+          <div class="text-amber-800 font-bold">• [&gt;] Phase 3: 호가 불균형 1.5배 필터 주문 집행 (75%)</div>
+          <div class="text-slate-500">• [ ] Phase 4: Svelte 실시간 체결 대시보드 연동</div>
         </div>
       </div>
 
-      <div class="p-1.5 rounded bg-amber-950/40 border border-amber-800/40 text-[9.5px] font-mono text-amber-300 mt-2">
-        ✓ 효과: 변경 시에만 체크박스를 갱신하여 최소 토큰으로 세션 이어가기
+      <div class="p-1.5 rounded bg-amber-50 border border-amber-200 text-[10px] font-mono text-amber-800 mt-2 leading-snug">
+        ✓ <strong>효과:</strong> 변경 시에만 체크박스를 갱신하여 최소 토큰으로 세션 이어가기
       </div>
     </div>
 
-    <!-- Pillar 3: INTENT.md -->
-    <div class="bento-tile p-3 bg-slate-900/90 border-t-2 border-t-cyan-400 flex flex-col justify-between">
+    <!-- Pillar 3: INTENT.md & ADR.md -->
+    <div class="bento-tile p-3 bg-white border border-slate-200 border-t-4 border-t-sky-500 shadow-md flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-2">
-          <div class="flex items-center gap-1.5">
-            <span class="text-base">🎯</span>
-            <span class="text-[11px] font-mono text-cyan-300 font-bold uppercase">INTENT.md / ADR.md</span>
+          <div class="flex items-center gap-1">
+            <span 
+              onclick="openContextDocModal('intent')" 
+              class="cursor-pointer font-bold text-[10.5px] text-sky-800 bg-sky-50 hover:bg-sky-100 px-1.5 py-0.5 rounded border border-sky-300 transition-all shadow-xs flex items-center gap-0.5 group"
+              title="클릭하여 INTENT.md 예제 열람"
+            >
+              <span class="group-hover:scale-110 transition-transform">🎯</span>
+              <span class="underline decoration-sky-400 underline-offset-2">INTENT.md</span>
+            </span>
+            <span class="text-slate-400">/</span>
+            <span 
+              onclick="openContextDocModal('adr')" 
+              class="cursor-pointer font-bold text-[10.5px] text-sky-800 bg-sky-50 hover:bg-sky-100 px-1.5 py-0.5 rounded border border-sky-300 transition-all shadow-xs flex items-center gap-0.5 group"
+              title="클릭하여 ADR.md 예제 열람"
+            >
+              <span class="group-hover:scale-110 transition-transform">🏛️</span>
+              <span class="underline decoration-sky-400 underline-offset-2">ADR.md</span>
+            </span>
           </div>
-          <span class="text-[9px] font-mono text-cyan-400 bg-cyan-950 px-1.5 py-0.5 rounded border border-cyan-800">Semantic Memory</span>
+          <span class="text-[9.5px] font-mono text-sky-800 bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200 font-bold">Semantic Memory</span>
         </div>
 
-        <div class="text-[11px] font-bold text-white mb-1.5">초기 설계 의도 &amp; 아키텍처 결정(ADR)</div>
-        <p class="text-[10.5px] text-slate-300 leading-snug mb-2 font-sans">
+        <div class="text-[11px] font-bold text-slate-900 mb-1">초기 설계 의도 &amp; 아키텍처 결정 (ADR)</div>
+        <p class="text-[10.5px] text-slate-600 leading-relaxed mb-2 font-sans">
           "왜 우리가 Redis 대신 SQLite를 선택했는가?"와 같은 <strong>근본적인 기술적 의사결정 의도</strong>를 영속화합니다.
         </p>
 
-        <!-- Template Box -->
-        <div class="p-2 rounded bg-slate-950 border border-slate-800 font-mono text-[9.5px] leading-relaxed text-slate-300">
-          <div class="text-cyan-400 font-bold"># 아키텍처 의사결정 (ADR)</div>
-          <div>• <strong>의사결정:</strong> 세션 스토리지로 SQLite 채택</div>
-          <div>• <strong>배경:</strong> 단일 노드 엣지 배포로 운영 복잡도 최소화</div>
-          <div>• <strong>경고:</strong> 에이전트가 멋대로 Redis/Kafka로 변경 금지!</div>
+        <!-- Template Box (Clickable) -->
+        <div 
+          onclick="openContextDocModal('adr')" 
+          class="p-2.5 rounded bg-slate-50 border border-slate-200 hover:border-sky-300 hover:bg-sky-50/40 transition-all cursor-pointer font-mono text-[9.5px] leading-relaxed text-slate-700 shadow-xs"
+          title="클릭하여 상세 예제 확인"
+        >
+          <div class="flex items-center justify-between text-sky-700 font-bold mb-1">
+            <span># 아키텍처 결정 레코드 (ADR-007)</span>
+            <span class="text-[9px] text-sky-700 bg-sky-100/70 px-1 rounded">클릭: 전문 보기</span>
+          </div>
+          <div>• <strong>의사결정:</strong> 실시간 틱 저장소로 SQLite WAL 모드 채택</div>
+          <div>• <strong>배경:</strong> 단일 노드 엣지 배포로 서버 운영 복잡도 최소화</div>
+          <div>• <strong>성능:</strong> 초당 35,000건 삽입 처리 및 무의존성 단일 파일</div>
+          <div>• <strong>경고:</strong> 에이전트가 멋대로 Redis/Kafka 데몬 추가 금지</div>
         </div>
       </div>
 
-      <div class="p-1.5 rounded bg-cyan-950/40 border border-cyan-800/40 text-[9.5px] font-mono text-cyan-300 mt-2">
-        ✓ 효과: 며칠 뒤 새 대화창에서도 아키텍처 의도가 왜곡되지 않고 유지
+      <div class="p-1.5 rounded bg-sky-50 border border-sky-200 text-[10px] font-mono text-sky-800 mt-2 leading-snug">
+        ✓ <strong>효과:</strong> 며칠 뒤 새 대화창에서도 아키텍처 의도가 왜곡되지 않고 유지
       </div>
     </div>
   </div>
 
-  <!-- Bottom Global Banner -->
-  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
-    <div class="flex items-center gap-2">
-      <span class="text-emerald-400 font-bold">💾 영속성 삼각편대:</span>
-      <span class="text-slate-200"><strong>LESSON</strong>(오답노트) + <strong>PLAN</strong>(체크리스트) + <strong>INTENT</strong>(설계의도)가 세션 변경 시 컨텍스트를 100% 지킵니다.</span>
+  <!-- Fullscreen Modal for 5 Context Retention Docs (Light Editorial Theme) -->
+  <div 
+    id="context-docs-modal" 
+    class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm hidden flex items-center justify-center p-6 transition-all"
+    onclick="closeContextDocModal(event)"
+  >
+    <div 
+      class="relative max-w-4xl w-full max-h-[88vh] flex flex-col bg-white border border-slate-300 rounded-xl overflow-hidden shadow-2xl" 
+      onclick="event.stopPropagation()"
+    >
+      <!-- Modal Header (Editorial Light Window) -->
+      <div class="px-5 py-3 bg-slate-100/90 border-b border-slate-200 shrink-0">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-3">
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-3 rounded-full bg-rose-400 inline-block border border-rose-500/30"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-400 inline-block border border-amber-500/30"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block border border-emerald-500/30"></span>
+            </div>
+            <span class="text-sm font-mono font-bold text-slate-800 flex items-center gap-1.5">
+              <span>📑</span> 컨텍스트 영속성 5대 상태 문서 실전 예제 (Long-Horizon SSoT Library)
+            </span>
+            <span class="text-[10px] font-mono text-emerald-800 bg-emerald-100/80 px-2 py-0.5 rounded border border-emerald-300 font-bold">
+              망각 방지 SSoT
+            </span>
+          </div>
+          <button 
+            onclick="closeContextDocModal()" 
+            class="px-2.5 py-1 bg-white hover:bg-slate-200 text-slate-700 border border-slate-300 rounded text-xs font-mono font-bold transition-all shadow-sm cursor-pointer"
+          >
+            ✕ 닫기 (ESC)
+          </button>
+        </div>
+
+        <!-- 5 Tabs -->
+        <div class="flex items-center gap-1.5 overflow-x-auto pb-0.5 pt-1 text-xs font-mono border-t border-slate-200">
+          <button onclick="switchContextTab('lesson')" id="ctx-tab-btn-lesson" class="ctx-tab-btn px-2.5 py-1 rounded font-bold border transition-all cursor-pointer">🩹 LESSON_AND_LEARN.md</button>
+          <button onclick="switchContextTab('plan')" id="ctx-tab-btn-plan" class="ctx-tab-btn px-2.5 py-1 rounded font-bold border transition-all cursor-pointer">🗺️ PLAN.md</button>
+          <button onclick="switchContextTab('roadmap')" id="ctx-tab-btn-roadmap" class="ctx-tab-btn px-2.5 py-1 rounded font-bold border transition-all cursor-pointer">🧭 ROADMAP.md</button>
+          <button onclick="switchContextTab('intent')" id="ctx-tab-btn-intent" class="ctx-tab-btn px-2.5 py-1 rounded font-bold border transition-all cursor-pointer">🎯 INTENT.md</button>
+          <button onclick="switchContextTab('adr')" id="ctx-tab-btn-adr" class="ctx-tab-btn px-2.5 py-1 rounded font-bold border transition-all cursor-pointer">🏛️ ADR.md</button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Editorial Light Theme View) -->
+      <div class="flex-1 overflow-y-auto p-5 bg-slate-50/70 font-mono text-xs text-slate-800 leading-relaxed">
+        
+        <!-- 1. LESSON_AND_LEARN.md Panel -->
+        <div id="ctx-doc-panel-lesson" class="ctx-doc-panel space-y-3">
+          <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-rose-800 font-bold text-sm"># LESSON_AND_LEARN.md &middot; 실전 트러블슈팅 오답 노트 (자가 치유 기록)</span>
+              <span class="text-[10px] bg-rose-50 text-rose-800 px-2 py-0.5 rounded border border-rose-200">Episodic Memory</span>
+            </div>
+            <p class="text-slate-600 text-[11px] mb-2 font-sans">
+              에이전트가 문제를 해결한 후 원인과 해법을 기록하여, 다음 세션에서 동일한 버그로 토큰을 낭비하지 않도록 방지하는 오답 노트입니다.
+            </p>
+            <div class="bg-slate-50 p-3 rounded border border-slate-200 space-y-2 text-[10.5px]">
+              <div>
+                <strong class="text-rose-700 font-bold">## [Issue #24] 장 초반 09:00 주식 호가 수신 중 WebSocket 403 에러 발생</strong>
+              </div>
+              <div class="text-slate-700 space-y-1">
+                <div>• <strong>증상 (Symptom):</strong> 장 시작 09:00 동시호가 급증 시 증권사 실시간 웹소켓 세션이 끊기고 403 Forbidden 에러 반복.</div>
+                <div>• <strong>원인 분석 (Root Cause):</strong> 한국투자증권(KIS) OAuth2 액세스 토큰의 유효기간(24시간) 만료 시 자동 재발급 메커니즘 부재 및 만료 시점에 다중 고루틴이 동시 재발급을 요청하면서 Rate Limit 초과.</div>
+                <div>• <strong>근본 해결책 (Fix):</strong></div>
+                <div class="pl-3 border-l-2 border-rose-300 text-slate-800">
+                  1) Go 엔진 내 <code class="bg-rose-100 text-rose-900 px-1 py-0.2 rounded font-bold">TokenManager</code> 싱글톤 구현: 만료 15분 전 백그라운드 선제 갱신<br>
+                  2) <code class="bg-rose-100 text-rose-900 px-1 py-0.2 rounded font-bold">sync.RWMutex</code>를 적용하여 갱신 중 들어오는 웹소켓 요청을 안전하게 대기 큐잉
+                </div>
+                <div>• <strong>검증 (Verification):</strong> 토큰 만료 가상 주입 테스트(<code class="bg-slate-200 px-1 rounded">go test -v -run TestTokenAutoRefresh</code>) 100% 통과 확인.</div>
+                <div>• <strong>교훈 (Rule for Agent):</strong> "인증 토큰 기반 실시간 스트리밍은 단순 만료 후 재시도가 아닌, 사전 백그라운드 갱신과 동시성 Lock을 필수로 설계할 것."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. PLAN.md Panel -->
+        <div id="ctx-doc-panel-plan" class="ctx-doc-panel hidden space-y-3">
+          <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-amber-800 font-bold text-sm"># PLAN.md &middot; 마일스톤 단계별 구현 체크리스트 (State Machine)</span>
+              <span class="text-[10px] bg-amber-50 text-amber-800 px-2 py-0.5 rounded border border-amber-200">State SSoT</span>
+            </div>
+            <p class="text-slate-600 text-[11px] mb-2 font-sans">
+              대화창을 닫거나 세션이 만료되어도 에이전트가 "내가 어디까지 코딩했는지" 1초 만에 파악할 수 있는 작업 체크리스트입니다.
+            </p>
+            <div class="bg-slate-50 p-3 rounded border border-slate-200 space-y-2 text-[10.5px]">
+              <div>
+                <strong class="text-amber-700 font-bold">## 현재 목표: 주식 1분봉 VWAP 모멘텀 엔진 실시간 연동 (v1.4.0)</strong>
+              </div>
+              <div class="space-y-1.5 text-slate-800">
+                <div class="flex items-center gap-2">
+                  <span class="text-emerald-600 font-bold">✓ [x]</span>
+                  <span class="line-through text-slate-400">Phase 1: Polars 기반 1분봉/5분봉 수정주가 팩터 계산 엔진 구축</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-emerald-600 font-bold">✓ [x]</span>
+                  <span class="line-through text-slate-400">Phase 2: KIS/IBKR WebSocket 시세 수신 파서 및 동시성 링버퍼 구현</span>
+                </div>
+                <div class="flex items-center gap-2 bg-amber-100/60 p-1.5 rounded border border-amber-300">
+                  <span class="text-amber-800 font-bold">⚡ [&gt;]</span>
+                  <span class="text-amber-900 font-bold">Phase 3: 호가 불균형(Order Book Imbalance) 1.5배 필터링 및 주문 엔진 연동 (진행 중 - 75%)</span>
+                </div>
+                <div class="pl-6 space-y-0.5 text-slate-700">
+                  <div>- [x] 5단계 매수/매도 호가 잔량 델타 계산기 (<code class="bg-slate-200 px-1 rounded">internal/detector/imbalance.go</code>)</div>
+                  <div>- [&gt;] 시장가/지정가 분할 주문 집행기 구현 중 (<code class="bg-slate-200 px-1 rounded">internal/executor/order.go:L84</code>)</div>
+                  <div>- [ ] 체결 확인 수신 및 SQLite 트랜잭션 기록</div>
+                </div>
+                <div class="flex items-center gap-2 text-slate-500">
+                  <span>☐ [ ]</span>
+                  <span>Phase 4: Svelte 프론트엔드 포지션/PnL 실시간 웹소켓 스트리밍 UI 연동</span>
+                </div>
+                <div class="flex items-center gap-2 text-slate-500">
+                  <span>☐ [ ]</span>
+                  <span>Phase 5: Podman 컨테이너 패키징 및 CI/CD 무중단 롤아웃</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. ROADMAP.md Panel -->
+        <div id="ctx-doc-panel-roadmap" class="ctx-doc-panel hidden space-y-3">
+          <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-amber-800 font-bold text-sm"># ROADMAP.md &middot; 중장기 제품 아키텍처 및 릴리스 로드맵</span>
+              <span class="text-[10px] bg-amber-50 text-amber-800 px-2 py-0.5 rounded border border-amber-200">Long-term Vision</span>
+            </div>
+            <p class="text-slate-600 text-[11px] mb-2 font-sans">
+              에이전트가 눈앞의 단기 작업에 매몰되어 전체 시스템의 중장기 설계 방향성을 훼손하지 않도록 가이드하는 로드맵 문서입니다.
+            </p>
+            <div class="bg-slate-50 p-3 rounded border border-slate-200 space-y-2 text-[10.5px]">
+              <div>
+                <strong class="text-amber-700 font-bold">## 2026 주식 퀀트 플랫폼 진화 로드맵</strong>
+              </div>
+              <div class="space-y-2 text-slate-700">
+                <div>
+                  <div class="font-bold text-emerald-800">Q1. Core Reliability &amp; Single-Node Zero-Crash (완료)</div>
+                  <div class="text-[10px] pl-3">• Go 기반 실시간 체결 엔진 및 SQLite WAL 틱 저장소 구축<br>• 10대 배포 승인 게이트(CHECKLIST.md) 및 RLS 보안 격리 완료</div>
+                </div>
+                <div class="pt-1 border-t border-slate-200">
+                  <div class="font-bold text-amber-800">Q2. Scalability &amp; Multi-Market Universe (진행 중)</div>
+                  <div class="text-[10px] pl-3">• KOSPI200 외 S&amp;P500 미국 주식 유니버스 실시간 수집 확장<br>• 분산 틱 수집기 클러스터 (Go Raft 합의 기반 이중화 이중 채널)</div>
+                </div>
+                <div class="pt-1 border-t border-slate-200">
+                  <div class="font-bold text-slate-600">Q3. Autonomous Intelligence &amp; Event-Driven AI (예정)</div>
+                  <div class="text-[10px] pl-3">• 기업 실적 공시(DART/EDGAR) 실시간 LLM 감성 분석 시그널 연계<br>• 멀티 에이전트 자동 리밸런싱 및 카나리 롤백 오케스트레이션</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. INTENT.md Panel -->
+        <div id="ctx-doc-panel-intent" class="ctx-doc-panel hidden space-y-3">
+          <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-sky-800 font-bold text-sm"># INTENT.md &middot; 핵심 제품 철학 &amp; 비기능적 요구사항 (Intent SSoT)</span>
+              <span class="text-[10px] bg-sky-50 text-sky-800 px-2 py-0.5 rounded border border-sky-200">Design Intent</span>
+            </div>
+            <p class="text-slate-600 text-[11px] mb-2 font-sans">
+              "왜 시스템이 이렇게 만들어졌는가"를 정의하여, 에이전트가 리팩토링 중 핵심 철학을 임의로 훼손하거나 불필요한 복잡성을 도입하는 것을 차단합니다.
+            </p>
+            <div class="bg-slate-50 p-3 rounded border border-slate-200 space-y-2 text-[10.5px]">
+              <div>
+                <strong class="text-sky-700 font-bold">## 1. 근본 설계 철학 (Core Design Invariants)</strong>
+                <div class="text-slate-700 mt-1 space-y-1">
+                  <div>• <strong>Zero-External DB Dependency:</strong> 중앙 집중형 무거운 DB 대신 SQLite + Parquet 조합을 고수하여 단일 바이너리 엣지 구동 지원.</div>
+                  <div>• <strong>Strict Separation of Brain &amp; Muscle:</strong> Python(연구/전략 연산)과 Go(실시간 체결/네트워크 I/O)의 역할을 절대 단일 언어로 합치지 않는다.</div>
+                </div>
+              </div>
+              <div class="pt-1 border-t border-slate-200">
+                <strong class="text-rose-700 font-bold">## 2. 금기 사항 (Anti-Patterns / Forbidden Actions)</strong>
+                <div class="text-slate-700 mt-1 space-y-1">
+                  <div>• <strong>하드코딩 금지:</strong> 전략 수식이나 손절 수치를 Go 엔진 소스에 직접 쓰지 말고 항상 <code class="bg-slate-200 px-1 rounded">config/strategy_params.json</code>을 통해 주입할 것.</div>
+                  <div>• <strong>모의검증 없는 실주문 엄금:</strong> 단위 테스트와 백테스트 3개년 슬리피지 검증 전에는 실계좌 주문 루틴을 활성화하지 말 것 (<code class="bg-slate-200 px-1 rounded">DRY_RUN=true</code> 유지).</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. ADR.md Panel -->
+        <div id="ctx-doc-panel-adr" class="ctx-doc-panel hidden space-y-3">
+          <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-sky-800 font-bold text-sm"># ADR.md &middot; Architectural Decision Records (아키텍처 의사결정 기록)</span>
+              <span class="text-[10px] bg-sky-50 text-sky-800 px-2 py-0.5 rounded border border-sky-200">Architectural SSoT</span>
+            </div>
+            <p class="text-slate-600 text-[11px] mb-2 font-sans">
+              주요 기술적 선택의 배경, 대안 평가, 채택 이유와 결과를 공식 문서로 박제하여 미래의 개발자와 에이전트가 뒤엎지 못하게 합니다.
+            </p>
+            <div class="bg-slate-50 p-3 rounded border border-slate-200 space-y-2 text-[10.5px]">
+              <div>
+                <strong class="text-sky-700 font-bold">## ADR-007: 실시간 틱 데이터 스토리지로 SQLite WAL 모드 채택</strong>
+                <div class="text-[10px] text-slate-500 font-mono">Status: Accepted &middot; Date: 2026-03-15</div>
+              </div>
+              <div class="text-slate-700 space-y-1">
+                <div>• <strong>Context (문제 상황):</strong> 초당 수천 건의 주식 틱 데이터와 5단계 호가 잔량을 로컬에 초저지연 영속화해야 함. Redis나 PostgreSQL 데몬을 띄우면 메모리 오버헤드와 배포 복잡도 급증.</div>
+                <div>• <strong>Decision (결정 사항):</strong> Go 내장 임베디드 SQLite에 <code class="bg-sky-100 text-sky-900 px-1 py-0.2 rounded font-bold">PRAGMA journal_mode=WAL</code> 및 <code class="bg-sky-100 text-sky-900 px-1 py-0.2 rounded font-bold">PRAGMA synchronous=NORMAL</code> 적용.</div>
+                <div>• <strong>Consequences (결과 및 트레이드오프):</strong></div>
+                <div class="pl-3 border-l-2 border-sky-300 text-slate-800">
+                  - <strong>장점:</strong> 단일 노드에서 초당 35,000건 삽입 처리 달성, 추가 인프라 데몬 0개, 단일 파일 복사로 백업 완료.<br>
+                  - <strong>제약:</strong> 동시 쓰기는 싱글 스레드로 제한되므로 Go 채널 기반 단일 워커 큐 패턴 준수 필수.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-5 py-2.5 bg-slate-100 border-t border-slate-200 text-xs font-mono text-slate-600 flex items-center justify-between shrink-0">
+        <span class="flex items-center gap-1.5 text-slate-700">
+          <span>💡</span> <span>세션이 끊겨도 이 5대 문서를 읽은 에이전트는 0초 만에 이전 맥락을 100% 복원합니다.</span>
+        </span>
+        <button 
+          onclick="closeContextDocModal()" 
+          class="px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded text-xs font-mono transition-all shadow cursor-pointer"
+        >
+          확인 완료 (ESC)
+        </button>
+      </div>
     </div>
-    <span class="text-emerald-400 font-bold text-[11px]">Slide 46</span>
+  </div>
+
+  <script>
+    function switchContextTab(docId) {
+      const tabs = ['lesson', 'plan', 'roadmap', 'intent', 'adr'];
+      tabs.forEach(function(t) {
+        const btn = document.getElementById('ctx-tab-btn-' + t);
+        const panel = document.getElementById('ctx-doc-panel-' + t);
+        if (btn && panel) {
+          if (t === docId) {
+            btn.className = "ctx-tab-btn px-2.5 py-1 rounded font-bold border transition-all cursor-pointer bg-emerald-600 text-white border-emerald-600 shadow-sm";
+            panel.classList.remove('hidden');
+          } else {
+            btn.className = "ctx-tab-btn px-2.5 py-1 rounded font-bold border transition-all cursor-pointer bg-white text-slate-600 border-slate-300 hover:bg-slate-100";
+            panel.classList.add('hidden');
+          }
+        }
+      });
+    }
+
+    function openContextDocModal(docId) {
+      const modal = document.getElementById("context-docs-modal");
+      if (!modal) return;
+      if (modal.parentElement !== document.body) {
+        document.body.appendChild(modal);
+      }
+      switchContextTab(docId || 'lesson');
+      modal.classList.remove("hidden");
+    }
+
+    function closeContextDocModal(e) {
+      if (e && e.target !== e.currentTarget && e.target.tagName !== "BUTTON") return;
+      const modal = document.getElementById("context-docs-modal");
+      if (modal) modal.classList.add("hidden");
+    }
+
+    document.addEventListener("keydown", function(ev) {
+      if (ev.key === "Escape") {
+        const modal = document.getElementById("context-docs-modal");
+        if (modal && !modal.classList.contains("hidden")) {
+          closeContextDocModal();
+          ev.stopPropagation();
+        }
+      }
+    });
+  </script>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-700 border border-slate-200 bg-white">
+    <div class="flex items-center gap-2">
+      <span class="text-emerald-600 font-bold">💾 영속성 삼각편대:</span>
+      <span class="text-slate-700"><strong>LESSON</strong>(오답노트) + <strong>PLAN</strong>(체크리스트) + <strong>INTENT</strong>(설계의도)가 세션 변경 시 컨텍스트를 100% 지킵니다.</span>
+    </div>
+    <span class="text-emerald-600 font-bold text-[11px]">Slide 46</span>
   </div>
 </section>
 
