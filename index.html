@@ -2739,31 +2739,29 @@
     <!-- Card 1: Complexity Wall & Context Drift Image -->
     <div class="bento-tile p-3 flex flex-col justify-between border-l-4 border-l-amber-500 bg-slate-950/90 shadow-xl">
       <div>
-        <div class="flex items-center justify-between mb-1">
-          <span class="text-xs font-mono text-amber-400 font-bold">쟁점 ① COMPLEXITY WALL</span>
-          <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/40">자연어의 한계</span>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-mono text-amber-400 font-black tracking-wide">쟁점 ① COMPLEXITY WALL</span>
+          <span class="text-[10px] font-mono text-amber-300 bg-amber-950/70 px-2 py-0.5 rounded border border-amber-800/50 font-bold">자연어의 한계</span>
         </div>
-        <h3 class="text-base font-bold text-white mb-1.5">'말만 하면 된다'는 환상 vs 복잡계의 벽</h3>
 
         <!-- Complexity Wall Translating Image -->
         <div class="w-full rounded-lg overflow-hidden border border-slate-700/60 shadow-md flex items-center justify-center bg-white my-auto p-1">
-          <img src="./slides/02-essence/assets/complexity_wall_translating.jpg" alt="'말만 하면 끝'이라는 환상 vs. 복잡한 시스템의 장벽" class="w-full h-auto max-h-[280px] object-contain rounded" />
+          <img src="./slides/02-essence/assets/complexity_wall_translating.jpg" alt="'말만 하면 끝'이라는 환상 vs. 복잡한 시스템의 장벽" class="w-full h-auto max-h-[305px] object-contain rounded" />
         </div>
       </div>
     </div>
 
     <!-- Card 2: BaaS Lego Assembly Architecture -->
-    <div class="bento-tile p-3.5 flex flex-col justify-between border-l-4 border-l-emerald-500 bg-slate-950/90 shadow-xl">
+    <div class="bento-tile p-3 flex flex-col justify-between border-l-4 border-l-emerald-500 bg-slate-950/90 shadow-xl">
       <div>
-        <div class="flex items-center justify-between mb-1.5">
-          <span class="text-xs font-mono text-emerald-400 font-bold">쟁점 ② ARCHITECTURE STRATEGY</span>
-          <span class="text-[9.5px] font-mono text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/40">현실적 해법</span>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-mono text-emerald-400 font-black tracking-wide">쟁점 ② ARCHITECTURE STRATEGY</span>
+          <span class="text-[10px] font-mono text-emerald-300 bg-emerald-950/70 px-2 py-0.5 rounded border border-emerald-800/50 font-bold">현실적 해법</span>
         </div>
-        <h3 class="text-base font-bold text-white mb-1.5">바닥부터 구축 vs 현대 BaaS 레고 블록 조립</h3>
 
         <!-- BaaS Lego Block Assembly Strategy Image -->
         <div class="w-full rounded-lg overflow-hidden border border-slate-700/60 shadow-md flex items-center justify-center bg-white my-auto p-1">
-          <img src="./slides/02-essence/assets/baas_lego_block_assembly.jpg" alt="바닥부터 구축 vs 현대 BaaS 레고 블록 조립" class="w-full h-auto max-h-[280px] object-contain rounded" />
+          <img src="./slides/02-essence/assets/baas_lego_block_assembly.jpg" alt="바닥부터 구축 vs 현대 BaaS 레고 블록 조립" class="w-full h-auto max-h-[305px] object-contain rounded" />
         </div>
       </div>
     </div>
@@ -2780,124 +2778,88 @@
 </section>
 
       <!-- [COMPONENT] 02-essence/07-reality-check-language-token.html -->
-<section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (3) 언어 & 토큰 비용" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
+<section class="slide flex flex-col justify-between" data-title="2.4 이상과 현실 (3) 토큰 비용 & 탐색 세금" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <div class="mb-1.5">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
-    <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : ③ Python의 맹점 vs ④ 토큰 요금 폭탄(Tokenpocalypse)</h2>
+    <h2 class="text-3xl font-black text-white">2.4 이상과 현실 (Reality Check) : ③ 토큰 요금 폭탄(Tokenpocalypse)과 탐색 세금</h2>
     <p class="text-xs text-slate-300 mt-0.5">
-      AI 시대에 소멸한 Python의 생산성 장점과, 에이전트의 무차별 컨텍스트 탐색이 부르는 <strong>청구서 폭탄의 실체</strong>:
+      "월 $20이면 무제한 개발"이라는 대중적 환상 뒤에 숨겨진 <strong>에이전트 무차별 파일 탐색 세금(Exploration Tax)과 필수 엔지니어링 방어책</strong>:
     </p>
   </div>
 
   <!-- Dual Bento Card Stage with Visual Diagrams -->
   <div class="grid grid-cols-2 gap-3.5 flex-1 items-stretch my-auto">
-    <!-- Card 1: Language Paradox & Compiler Loop SVG -->
-    <div class="bento-tile p-3.5 flex flex-col justify-between border-l-4 border-l-sky-500 bg-slate-950/90 shadow-xl">
+    <!-- Card 1: Tokenpocalypse Visual Graphic -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-l-4 border-l-red-500 bg-slate-950/90 shadow-xl">
       <div>
-        <div class="flex items-center justify-between mb-1.5">
-          <span class="text-xs font-mono text-sky-400 font-bold">쟁점 ③ LANGUAGE PARADOX</span>
-          <span class="text-[9.5px] font-mono text-sky-300 bg-sky-950/60 px-2 py-0.5 rounded border border-sky-800/40">언어의 역설</span>
-        </div>
-        <h3 class="text-base font-bold text-white mb-1">Python의 맹점 vs 정적 타이핑의 귀환</h3>
-
-        <!-- New Core Insight Callout: Productivity Advantage Vanished -->
-        <div class="p-2 bg-slate-900/90 rounded border border-slate-800 text-[10px] text-slate-300 mb-2 leading-relaxed">
-          <strong class="text-amber-300">💡 왜 지금 Python의 장점이 사라졌는가?</strong><br>
-          과거 인간 개발자에게 Python은 <em>'성능을 크게 희생하는 대신 인간의 타이핑 생산성을 높여준 언어'</em>였습니다. 하지만 <strong>AI가 코딩하는 시대에는 AI에게 문법 난이도 차이가 없어 Python의 유일한 비교우위(생산성)가 소멸</strong>하고, <strong class="text-red-300">'동적 런타임 에러와 성능 저하'</strong>라는 치명적 페널티만 고스란히 남았습니다.
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-mono text-red-400 font-black tracking-wide">쟁점 ③ TOKENPOCALYPSE</span>
+          <span class="text-[10px] font-mono text-red-300 bg-red-950/70 px-2 py-0.5 rounded border border-red-800/50 font-bold">비용의 현실</span>
         </div>
 
-        <!-- Feedback Loop Comparison SVG -->
-        <div class="bg-slate-900/90 rounded border border-slate-800 p-2 mb-2">
-          <div class="flex items-center justify-between text-[9px] font-mono mb-1">
-            <span class="text-slate-400 font-bold">에이전트 피드백 루프의 극명한 차이</span>
-            <span class="text-sky-300">Self-Healing 성패</span>
-          </div>
-          <svg viewBox="0 0 380 75" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-            <!-- Left: Python Broken Loop -->
-            <g transform="translate(10, 5)">
-              <rect width="170" height="65" rx="5" fill="#450a0a" fill-opacity="0.3" stroke="#ef4444" stroke-width="0.9"/>
-              <text x="85" y="14" text-anchor="middle" fill="#fca5a5" font-size="7.5" font-family="JetBrains Mono" font-weight="bold">❌ Python (단절된 피드백 루프)</text>
-              <text x="12" y="30" fill="#cbd5e1" font-size="6.5">코드 생성 ➔ 런타임 AttributeError</text>
-              <text x="12" y="44" fill="#f87171" font-size="6.5">침묵하는 크래시 ➔ 원인 파악 불가</text>
-              <rect x="10" y="50" width="150" height="11" rx="2" fill="#7f1d1d"/>
-              <text x="85" y="58" text-anchor="middle" fill="#fee2e2" font-size="6" font-family="JetBrains Mono">에이전트 추측 환각 &amp; 무한 루프</text>
-            </g>
-
-            <!-- Right: TS/Rust Closed Loop -->
-            <g transform="translate(200, 5)">
-              <rect width="170" height="65" rx="5" fill="#064e3b" fill-opacity="0.3" stroke="#10b981" stroke-width="0.9"/>
-              <text x="85" y="14" text-anchor="middle" fill="#6ee7b7" font-size="7.5" font-family="JetBrains Mono" font-weight="bold">✅ TS / Rust (완결된 피드백 루프)</text>
-              <text x="12" y="30" fill="#cbd5e1" font-size="6.5">코드 생성 ➔ 컴파일러 ($ tsc, cargo)</text>
-              <text x="12" y="44" fill="#34d399" font-size="6.5">Line 42: Type mismatch 명확한 피드백</text>
-              <rect x="10" y="50" width="150" height="11" rx="2" fill="#065f46"/>
-              <text x="85" y="58" text-anchor="middle" fill="#d1fae5" font-size="6" font-family="JetBrains Mono">원샷 자가 치유(Self-Healing) 성공</text>
-            </g>
-          </svg>
+        <!-- Tokenpocalypse Visualizing Image -->
+        <div class="w-full rounded-lg overflow-hidden border border-slate-700/60 shadow-md flex items-center justify-center bg-white my-auto p-1">
+          <img src="./slides/02-essence/assets/visualizing_language_feedback.jpg" alt="공짜 점심은 없다 : 요금 폭탄(Tokenpocalypse)" class="w-full h-auto max-h-[305px] object-contain rounded" />
         </div>
-      </div>
-
-      <div class="text-[10px] text-sky-300 font-mono border-t border-slate-800/80 pt-1.5 mt-1 flex items-center justify-between">
-        <span>"컴파일러 피드백이 있어야 에이전트가 완벽히 자가 치유한다"</span>
-        <span class="text-sky-400 font-bold">Chapter 05 언어 편 상세 ➔</span>
       </div>
     </div>
 
-    <!-- Card 2: Token Economics & Exploration Tax Chart -->
-    <div class="bento-tile p-3.5 flex flex-col justify-between border-l-4 border-l-amber-500 bg-slate-950/90 shadow-xl">
+    <!-- Card 2: Exploration Tax & Token Architecture Deep-Dive -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-l-4 border-l-amber-500 bg-slate-950/90 shadow-xl">
       <div>
         <div class="flex items-center justify-between mb-1.5">
-          <span class="text-xs font-mono text-amber-400 font-bold">쟁점 ④ TOKEN ECONOMICS</span>
-          <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/40">토큰 경제학</span>
-        </div>
-        <h3 class="text-base font-bold text-white mb-1">공짜 점심은 없다 : 요금 폭탄(Tokenpocalypse)</h3>
-
-        <!-- Exploration Tax Pie/Bar Visual SVG -->
-        <div class="bg-slate-900/90 rounded border border-slate-800 p-2 mb-2">
-          <div class="flex items-center justify-between text-[9px] font-mono mb-1">
-            <span class="text-amber-400 font-bold">에이전트 토큰 소모 분석 (Exploration Tax의 실체)</span>
-            <span class="text-red-400">일 $50~100 요금의 주범</span>
-          </div>
-          <svg viewBox="0 0 380 75" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-            <!-- Full Bar Container -->
-            <rect x="10" y="15" width="360" height="20" rx="4" fill="#1e293b"/>
-
-            <!-- Segment 1: Exploration Tax (70%) -->
-            <rect x="10" y="15" width="252" height="20" rx="4" fill="#ef4444"/>
-            <text x="136" y="28" text-anchor="middle" fill="#ffffff" font-size="7.5" font-family="JetBrains Mono" font-weight="black">파일 탐색 비용 (Exploration Tax) 70%</text>
-
-            <!-- Segment 2: Actual Code Gen (15%) -->
-            <rect x="262" y="15" width="54" height="20" fill="#10b981"/>
-            <text x="289" y="28" text-anchor="middle" fill="#ffffff" font-size="7" font-family="JetBrains Mono" font-weight="bold">코드 15%</text>
-
-            <!-- Segment 3: Overhead (15%) -->
-            <rect x="316" y="15" width="54" height="20" rx="4" fill="#6366f1"/>
-            <text x="343" y="28" text-anchor="middle" fill="#ffffff" font-size="7" font-family="JetBrains Mono" font-weight="bold">오버헤드</text>
-
-            <!-- Solution Callout Row Below -->
-            <g transform="translate(10, 43)">
-              <rect width="360" height="26" rx="4" fill="#022c22" stroke="#10b981" stroke-width="0.8"/>
-              <text x="12" y="12" fill="#34d399" font-size="7" font-weight="bold" font-family="JetBrains Mono">
-                ⚡ 필수 엔지니어링 돌파구 (비용 80~90% 절감 솔루션):
-              </text>
-              <text x="12" y="22" fill="#a7f3d0" font-size="6.5" font-family="JetBrains Mono">
-                1) Prompt Caching (90% 비용 컷)  2) AST Repo Map 압축  3) 계층형 모델 라우팅
-              </text>
-            </g>
-          </svg>
+          <span class="text-sm font-mono text-amber-400 font-black tracking-wide">쟁점 ④ EXPLORATION TAX & ARCHITECTURE</span>
+          <span class="text-[10px] font-mono text-amber-300 bg-amber-950/70 px-2 py-0.5 rounded border border-amber-800/50 font-bold">비용 통제 엔지니어링</span>
         </div>
 
-        <div class="space-y-1 text-xs text-slate-300">
-          <div class="p-1.5 bg-red-950/20 rounded border border-red-900/40 text-[10px]">
-            <strong class="text-red-300">🚨 무차별 파일 읽기 폭탄:</strong> 에이전트가 파일 위치를 몰라 200k 토큰을 통째로 쏟아부으며 하루에만 수십 달러의 API 요금이 누적됩니다.
+        <!-- 3 Core Engineering Defense Layers -->
+        <div class="space-y-2 mt-1">
+          <!-- Item 1: Exploration Tax Problem -->
+          <div class="p-2 bg-red-950/30 rounded border border-red-900/40 text-xs">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-bold text-red-300 flex items-center gap-1.5">
+                <span>🔥</span>
+                <span>탐색 세금(Exploration Tax 70%)의 치명적 메커니즘</span>
+              </span>
+              <span class="text-[9px] font-mono text-red-400 bg-red-950/80 px-1.5 py-0.2 rounded border border-red-800/50">누적 누수</span>
+            </div>
+            <p class="text-[10px] text-slate-300 leading-relaxed">
+              에이전트는 정답 파일 1개를 찾기 위해 저장소 전체를 무차별 `grep`/`cat`합니다. 질문 1번에 200k 토큰이 소모되며, 10턴만 오가도 <strong>하루 $50~100 청구서 폭탄</strong>이 발생합니다.
+            </p>
           </div>
-          <div class="p-1.5 bg-amber-950/20 rounded border border-amber-900/40 text-[10px]">
-            <strong class="text-amber-300">✅ 토큰 통제력:</strong> 캐시 적중률(Hit Rate)을 90% 이상 유지하고, 심볼 그래프로 필요한 함수만 주입해야 지속 가능한 비즈니스가 됩니다.
+
+          <!-- Item 2: Prompt Caching -->
+          <div class="p-2 bg-amber-950/25 rounded border border-amber-900/40 text-xs">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-bold text-amber-300 flex items-center gap-1.5">
+                <span>⚡</span>
+                <span>Prompt Caching : 90% 요금 삭감의 핵심 열쇠</span>
+              </span>
+              <span class="text-[9px] font-mono text-emerald-400 bg-emerald-950/80 px-1.5 py-0.2 rounded border border-emerald-800/50">비용 1/10</span>
+            </div>
+            <p class="text-[10px] text-slate-300 leading-relaxed">
+              자주 변하지 않는 규칙(`AGENTS.md`), 스킬 명세, 레포 뼈대를 프롬프트 접두어에 고정하여 <strong>캐시 적중률(Cache Hit Rate)을 90% 이상</strong> 유지해야 상용화가 가능합니다.
+            </p>
+          </div>
+
+          <!-- Item 3: AST Skeleton & Routing -->
+          <div class="p-2 bg-emerald-950/25 rounded border border-emerald-900/40 text-xs">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-bold text-emerald-300 flex items-center gap-1.5">
+                <span>📦</span>
+                <span>AST 심볼 압축 & 계층형 모델 라우팅</span>
+              </span>
+              <span class="text-[9px] font-mono text-sky-400 bg-sky-950/80 px-1.5 py-0.2 rounded border border-sky-800/50">컨텍스트 다이어트</span>
+            </div>
+            <p class="text-[10px] text-slate-300 leading-relaxed">
+              전체 코드를 다 밀어 넣지 않고 <strong>함수 시그니처(AST Repo Map)만 제공</strong>하며, 단순 탐색은 Flash 모델(경량), 최종 합성은 Pro 모델(추론)로 분리 라우팅합니다.
+            </p>
           </div>
         </div>
       </div>
 
       <div class="text-[10px] text-amber-300 font-mono border-t border-slate-800/80 pt-1.5 mt-1 flex items-center justify-between">
-        <span>"토큰 아키텍처 없는 바이브 코딩은 적자 기업을 낳는다"</span>
+        <span>"토큰 아키텍처 없는 바이브 코딩은 필연적으로 적자 비즈니스를 낳는다"</span>
         <span class="text-sky-400 font-bold">Chapter 06 비용 편 상세 ➔</span>
       </div>
     </div>
@@ -2907,9 +2869,9 @@
   <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-1">
     <div class="flex items-center gap-2">
       <span class="text-sky-400 font-bold">📌 Takeaway:</span>
-      <span>언어는 <strong>'컴파일러 피드백을 통한 에이전트 완결성'</strong>이 기준이어야 하며, <strong>'토큰 비용 통제력'</strong>이 비즈니스의 생사를 가릅니다.</span>
+      <span>월 $20 구독료의 환상을 넘어, <strong>'Prompt Caching + AST Repo Map'으로 토큰 탐색 세금을 통제하는 엔지니어</strong>만이 지속 가능한 서비스를 런칭합니다.</span>
     </div>
-    <span class="text-purple-400 font-bold text-[11px]">자가 치유 &amp; 비용 통제</span>
+    <span class="text-amber-400 font-bold text-[11px]">토큰 경제학 &amp; 비용 통제</span>
   </div>
 </section>
 
