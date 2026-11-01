@@ -3531,54 +3531,13 @@
       </div>
     </div>
 
-    <!-- RIGHT: AI 에이전트 루프에서 왜 치명적인가? (5 cols) -->
-    <div class="col-span-5 bento-tile p-4 flex flex-col justify-between bg-slate-900/95 border border-slate-700/80 shadow-xl">
-      <div>
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-xs font-mono text-rose-400 font-bold uppercase tracking-wider">AMPLIFICATION IN VIBE CODING</span>
-          <span class="text-[10px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">3대 증폭 효과</span>
-        </div>
-        <h3 class="text-sm font-bold text-white mb-2.5">작은 인터프리터 오버헤드가 눈덩이로 커지는 이유</h3>
-
-        <div class="space-y-2 text-xs">
-          <!-- 1. Latency Amplification -->
-          <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 transition-colors">
-            <div class="flex items-center justify-between text-rose-300 font-bold text-[11px] mb-0.5">
-              <span>01. 에이전트 다단계 체인 지연</span>
-              <span class="text-[9.5px] font-mono bg-rose-950 px-1 py-0.5 rounded">10~30회 연속</span>
-            </div>
-            <p class="text-slate-300 text-[10.5px] leading-relaxed">
-              도구 호출(Tool Call)과 JSON 직렬화가 30회 반복되면, <strong>순수 Python 파싱 오버헤드만 1~3초 누적</strong>되어 사용자 체감 UX 마비.
-            </p>
-          </div>
-
-          <!-- 2. Concurrency & GIL -->
-          <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 transition-colors">
-            <div class="flex items-center justify-between text-amber-300 font-bold text-[11px] mb-0.5">
-              <span>02. GIL 제약과 동시성 메모리 낭비</span>
-              <span class="text-[9.5px] font-mono bg-amber-950 px-1 py-0.5 rounded">멀티코어 불능</span>
-            </div>
-            <p class="text-slate-300 text-[10.5px] leading-relaxed">
-              GIL로 인해 단일 프로세스에서 멀티코어를 못 써서 프로세스 복제(Fork) 필수. 1만 개 동시 연결 시 <strong>Go는 20MB, Python은 수 GB RAM</strong> 폭발.
-            </p>
-          </div>
-
-          <!-- 3. Infra Cost -->
-          <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 transition-colors">
-            <div class="flex items-center justify-between text-cyan-300 font-bold text-[11px] mb-0.5">
-              <span>03. 클라우드 인프라 비용 폭증</span>
-              <span class="text-[9.5px] font-mono bg-cyan-950 px-1 py-0.5 rounded">비용의 나비효과</span>
-            </div>
-            <p class="text-slate-300 text-[10.5px] leading-relaxed">
-              쿠버네티스 Pod가 수십 배 증설되어 월 수천만 원 인프라 손실. <strong>Go/Rust 전환 시 즉시 70~80% 인프라 비용 절감</strong>.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="p-2 rounded bg-rose-950/50 border border-rose-800/50 text-[10.5px] font-mono text-rose-200 mt-2">
-        💥 <strong>결론:</strong> 에이전트 시대에 런타임 성능은 '단순 속도'가 아니라 <strong>'서비스 생존 마진'</strong>입니다.
-      </div>
+    <!-- RIGHT: AI 에이전트 루프에서 왜 치명적인가? (Amplification in Vibe Coding) -->
+    <div class="col-span-5 bento-tile p-1.5 flex items-center justify-center border border-slate-200 shadow-xl overflow-hidden bg-white">
+      <img 
+        src="./slides/03-language/assets/amplification_in_vibe_coding.jpg" 
+        alt="작은 인터프리터 오버헤드가 눈덩이처럼 커지는 이유 - AMPLIFICATION IN VIBE CODING" 
+        class="w-full h-full object-contain rounded-lg max-h-[420px]" 
+      />
     </div>
   </div>
 
