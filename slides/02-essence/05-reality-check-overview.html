@@ -9,101 +9,32 @@
 
   <!-- Main Layout: 6-Dimension Table (Left 7) + Iceberg Infographic (Right 5) -->
   <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-auto">
-    <!-- Left: 6-Dimension Contrast Matrix Table -->
-    <div class="col-span-7 bento-tile p-2.5 border border-slate-800 bg-slate-950/90 flex flex-col justify-between">
-      <table class="w-full text-left border-collapse">
-        <thead>
-          <tr class="border-b border-slate-800 text-[10px] font-mono">
-            <th class="py-1 px-1.5 text-slate-400 w-[15%] uppercase">핵심 차원</th>
-            <th class="py-1 px-1.5 text-amber-300 w-[42%] bg-amber-950/30 rounded-l border-l border-amber-800/40 font-bold">
-              대중이 꿈꾸는 이상 (The Illusion)
-            </th>
-            <th class="py-1 px-1.5 text-rose-300 w-[43%] bg-rose-950/30 rounded-r border-l border-rose-800/40 font-bold">
-              프로덕션 현장의 현실 (The Reality)
-            </th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-slate-800/50 font-mono text-[9px]">
-          <!-- Row 1 -->
-          <tr class="transition-colors">
-            <td class="py-1.5 px-1.5 font-bold text-sky-400">1. 개발 방식</td>
-            <td class="py-1.5 px-1.5 text-slate-300 bg-amber-950/10 font-sans">
-              말 몇 마디로 1시간 만에 SaaS·게임 완성
-            </td>
-            <td class="py-1.5 px-1.5 text-rose-200 bg-rose-950/10 font-sans">
-              파일 20개 넘어가면 AI 기억 상실 &amp; <strong class="text-rose-400 font-mono">컨텍스트 표류</strong> 발생
-            </td>
-          </tr>
-          <!-- Row 2 -->
-          <tr class="transition-colors">
-            <td class="py-1.5 px-1.5 font-bold text-sky-400">2. 백엔드 구축</td>
-            <td class="py-1.5 px-1.5 text-slate-300 bg-amber-950/10 font-sans">
-              "DB와 로그인 서버 전부 짜줘" 하면 완성
-            </td>
-            <td class="py-1.5 px-1.5 text-rose-200 bg-rose-950/10 font-sans">
-              바닥부터 짜면 설계 파탄. <strong class="text-emerald-300 font-mono">BaaS 레고 조립</strong> 필수
-            </td>
-          </tr>
-          <!-- Row 3 -->
-          <tr class="transition-colors">
-            <td class="py-1.5 px-1.5 font-bold text-sky-400">3. 언어 선택</td>
-            <td class="py-1.5 px-1.5 text-slate-300 bg-amber-950/10 font-sans">
-              AI가 가장 잘 아는 언어니까 <strong class="text-amber-300">Python</strong> 최고
-            </td>
-            <td class="py-1.5 px-1.5 text-rose-200 bg-rose-950/10 font-sans">
-              동적 런타임 에러 지옥. <strong class="text-sky-300 font-mono">TS/Rust 컴파일러</strong> 피드백 압도적
-            </td>
-          </tr>
-          <!-- Row 4 -->
-          <tr class="transition-colors">
-            <td class="py-1.5 px-1.5 font-bold text-sky-400">4. 비용 / 지연</td>
-            <td class="py-1.5 px-1.5 text-slate-300 bg-amber-950/10 font-sans">
-              월 $20 구독료면 무제한 앱 개발
-            </td>
-            <td class="py-1.5 px-1.5 text-rose-200 bg-rose-950/10 font-sans">
-              무차별 탐색으로 <strong class="text-amber-400 font-mono">하루 $50~100 요금 폭탄(Tokenpocalypse)</strong>
-            </td>
-          </tr>
-          <!-- Row 5 -->
-          <tr class="transition-colors">
-            <td class="py-1.5 px-1.5 font-bold text-sky-400">5. 보안 / 운영</td>
-            <td class="py-1.5 px-1.5 text-slate-300 bg-amber-950/10 font-sans">
-              AI가 안전한 프로덕션을 자동 구축
-            </td>
-            <td class="py-1.5 px-1.5 text-rose-200 bg-rose-950/10 font-sans">
-              에러 끄려다 <strong class="text-red-400 font-mono">RLS 전면 개방(USING true)</strong> 전 고객 DB 유출
-            </td>
-          </tr>
-          <!-- Row 6 -->
-          <tr class="transition-colors">
-            <td class="py-1.5 px-1.5 font-bold text-sky-400">6. 작업 흐름</td>
-            <td class="py-1.5 px-1.5 text-slate-300 bg-amber-950/10 font-sans">
-              단일 채팅창에 기획부터 배포까지 요청
-            </td>
-            <td class="py-1.5 px-1.5 text-rose-200 bg-rose-950/10 font-sans">
-              직렬 병목. <strong class="text-purple-300 font-mono">Git Worktree</strong> 다중 에이전트 병렬화 필수
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
+    <!-- Left: 6-Dimension Contrast Matrix Table (Replaced by Infographic Image) -->
+    <div class="col-span-7 bento-tile p-2 border border-slate-200 bg-white flex flex-col justify-between overflow-hidden shadow-sm">
+      <div class="w-full flex-1 flex items-center justify-center overflow-hidden rounded-lg bg-slate-50/50">
+        <img 
+          src="./slides/02-essence/assets/illusion_vs_reality_table.jpg" 
+          alt="AI 개발: 대중의 이상 vs 실제 현실 (The Illusion vs. The Reality) 6대 대비표" 
+          class="w-full h-auto max-h-[365px] object-contain rounded-lg"
+        />
+      </div>
       <!-- Bottom Mini Takeaway -->
-      <div class="mt-1 p-1 bg-slate-900/80 rounded border border-slate-800 text-[9.5px] font-mono text-slate-300 flex items-center justify-between">
+      <div class="mt-1.5 p-1 bg-slate-50 rounded border border-slate-200 text-[9.5px] font-mono text-slate-700 flex items-center justify-between">
         <span>💡 AI는 첫 80%의 토이를 5분에 만듭니다. 그러나 <strong>나머지 20%의 프로덕션 엔지니어링</strong>이 성패를 가릅니다.</span>
       </div>
     </div>
 
     <!-- Right: The Vibe Coding Iceberg Infographic (Col-span 5: Maximum Available Width & Height) -->
-    <div class="col-span-5 bento-tile p-2 border border-slate-800 bg-slate-950/90 flex flex-col justify-between overflow-hidden relative shadow-lg">
-      <div class="text-[10.5px] font-mono font-bold text-sky-400 flex items-center justify-between border-b border-slate-800/80 pb-1 mb-1">
+    <div class="col-span-5 bento-tile p-2 border border-slate-200 bg-white flex flex-col justify-between overflow-hidden relative shadow-sm">
+      <div class="text-[10.5px] font-mono font-bold text-sky-700 flex items-center justify-between border-b border-slate-200 pb-1 mb-1">
         <div class="flex items-center gap-1.5">
           <span>THE VIBE ICEBERG</span>
-          <span class="text-[8.5px] text-amber-400 bg-amber-950/60 px-1.5 py-0.2 rounded">빙산의 일각</span>
+          <span class="text-[8.5px] text-amber-800 bg-amber-100 border border-amber-300 px-1.5 py-0.2 rounded font-bold">빙산의 일각</span>
         </div>
         <!-- Lightbox Fullscreen Open Button -->
         <button 
           onclick="openIcebergModal(event)" 
-          class="text-[9px] bg-sky-900/40 hover:bg-sky-800/60 text-sky-300 border border-sky-500/50 px-2 py-0.5 rounded flex items-center gap-1 transition-all"
+          class="text-[9px] bg-sky-100 hover:bg-sky-200 text-sky-800 border border-sky-300 px-2 py-0.5 rounded flex items-center gap-1 transition-all"
           title="화면 가득 채워 크게 보기"
         >
           <span>⛶ 전체 화면 확대</span>
@@ -113,7 +44,7 @@
       <!-- Iceberg Interactive Video/Image Container (Fills available vertical height: 310px) -->
       <div 
         id="iceberg-media-container"
-        class="relative w-full flex-1 flex items-center justify-center rounded-lg overflow-hidden border border-slate-700/60 bg-black/40 my-auto h-[310px] max-h-[315px] cursor-pointer group select-none shadow-inner"
+        class="relative w-full flex-1 flex items-center justify-center rounded-lg overflow-hidden border border-slate-200 bg-slate-900 my-auto h-[320px] max-h-[325px] cursor-pointer group select-none shadow-inner"
         onclick="toggleIcebergMedia()"
         title="클릭하여 고화질 정밀 인포그래픽 / 비디오 전환 (또는 우상단 ⛶ 확대)"
       >
@@ -122,7 +53,7 @@
           id="iceberg-video" 
           src="./slides/02-essence/assets/iceberg_reality.mp4" 
           autoplay loop muted playsinline 
-          class="w-full h-full object-contain max-h-[310px] rounded transition-all duration-200"
+          class="w-full h-full object-contain max-h-[320px] rounded transition-all duration-200"
         ></video>
 
         <!-- High-Res Infographic Image View (Initially Hidden) -->
@@ -130,7 +61,7 @@
           id="iceberg-image" 
           src="./slides/02-essence/assets/professional_painting.jpg" 
           alt="The Vibe Coding Iceberg - 프로덕션 현실 90%" 
-          class="hidden w-full h-full object-contain max-h-[310px] rounded transition-all duration-200"
+          class="hidden w-full h-full object-contain max-h-[320px] rounded transition-all duration-200"
         />
 
         <!-- Click Helper Floating Badges -->
@@ -142,9 +73,9 @@
         </div>
       </div>
 
-      <div class="text-[9.5px] text-center font-mono text-slate-400 border-t border-slate-800/80 pt-1 mt-1 flex items-center justify-between px-1">
+      <div class="text-[9.5px] text-center font-mono text-slate-500 border-t border-slate-200 pt-1 mt-1 flex items-center justify-between px-1">
         <span>수면 아래를 통제하는 자만이 프로덕션을 런칭합니다.</span>
-        <span class="text-[8.5px] text-sky-400 font-bold">클릭: 비디오 ⇄ 이미지</span>
+        <span class="text-[8.5px] text-sky-600 font-bold">클릭: 비디오 ⇄ 이미지</span>
       </div>
     </div>
   </div>
