@@ -130,44 +130,71 @@
        ========================================================================== */
     .slide-viewport .text-white { color: #1A1A1A !important; }
     .slide-viewport .text-slate-100 { color: #1A1A1A !important; }
-    .slide-viewport .text-slate-200 { color: #2D3748 !important; }
-    .slide-viewport .text-slate-300 { color: #374151 !important; }
-    .slide-viewport .text-slate-400 { color: #64748B !important; }
-    .slide-viewport .text-slate-500 { color: #94A3B8 !important; }
+    .slide-viewport .text-slate-200 { color: #1E293B !important; }
+    .slide-viewport .text-slate-300 { color: #334155 !important; }
+    .slide-viewport .text-slate-400 { color: #475569 !important; }
+    .slide-viewport .text-slate-500 { color: #475569 !important; }
+    .slide-viewport .text-slate-600 { color: #334155 !important; }
 
     /* Point Duotone Accents: Academic Teal (#2D9BB2) & Purple (#554596) */
-    .slide-viewport .text-sky-300,
-    .slide-viewport .text-sky-400,
-    .slide-viewport .text-cyan-300,
-    .slide-viewport .text-cyan-400,
-    .slide-viewport .text-cyan-200\/90,
-    .slide-viewport .text-sky-200\/90 { color: #1B7385 !important; }
+    .slide-viewport [class*="text-sky-200"],
+    .slide-viewport [class*="text-sky-300"],
+    .slide-viewport [class*="text-sky-400"],
+    .slide-viewport [class*="text-cyan-200"],
+    .slide-viewport [class*="text-cyan-300"],
+    .slide-viewport [class*="text-cyan-400"] { color: #0E7490 !important; }
 
-    .slide-viewport .text-indigo-300,
-    .slide-viewport .text-indigo-400,
-    .slide-viewport .text-purple-300,
-    .slide-viewport .text-purple-400 { color: #403375 !important; }
+    .slide-viewport [class*="text-indigo-200"],
+    .slide-viewport [class*="text-indigo-300"],
+    .slide-viewport [class*="text-indigo-400"],
+    .slide-viewport [class*="text-purple-200"],
+    .slide-viewport [class*="text-purple-300"],
+    .slide-viewport [class*="text-purple-400"] { color: #554596 !important; }
 
-    /* Status Accents (Calibrated for whitepaper contrast) */
-    .slide-viewport .text-emerald-300,
-    .slide-viewport .text-emerald-400 { color: #047857 !important; }
-    .slide-viewport .text-amber-300,
-    .slide-viewport .text-amber-400 { color: #B45309 !important; }
-    .slide-viewport .text-rose-300,
-    .slide-viewport .text-rose-400 { color: #BE123C !important; }
+    /* Status Accents (Calibrated for whitepaper high contrast) */
+    .slide-viewport [class*="text-emerald-200"],
+    .slide-viewport [class*="text-emerald-300"],
+    .slide-viewport [class*="text-emerald-400"] { color: #047857 !important; }
+
+    .slide-viewport [class*="text-amber-200"],
+    .slide-viewport [class*="text-amber-300"],
+    .slide-viewport [class*="text-amber-400"],
+    .slide-viewport .text-yellow-300 { color: #B45309 !important; }
+
+    .slide-viewport [class*="text-rose-200"],
+    .slide-viewport [class*="text-rose-300"],
+    .slide-viewport [class*="text-rose-400"],
+    .slide-viewport [class*="text-red-200"],
+    .slide-viewport [class*="text-red-300"],
+    .slide-viewport [class*="text-red-400"] { color: #BE123C !important; }
+
+    .slide-viewport [class*="text-blue-300"],
+    .slide-viewport [class*="text-blue-400"] { color: #1D4ED8 !important; }
 
     /* Card Backgrounds & Surfaces */
+    .slide-viewport .bg-slate-800,
+    .slide-viewport .bg-slate-800\/80,
     .slide-viewport .bg-slate-900,
     .slide-viewport .bg-slate-950,
     .slide-viewport .bg-slate-900\/60,
     .slide-viewport .bg-slate-900\/70,
     .slide-viewport .bg-slate-900\/80,
     .slide-viewport .bg-slate-900\/90,
+    .slide-viewport .bg-slate-900\/95,
     .slide-viewport .bg-slate-950\/60,
     .slide-viewport .bg-slate-950\/70,
     .slide-viewport .bg-slate-950\/80,
+    .slide-viewport .bg-slate-950\/85,
     .slide-viewport .bg-slate-950\/90 {
       background-color: #FFFFFF !important;
+    }
+
+    /* Clean Pill / Badge Chips */
+    .slide-viewport span.bg-slate-800,
+    .slide-viewport span[class*="bg-slate-800"] {
+      background-color: #F1F5F9 !important;
+      border: 1px solid #CBD5E1 !important;
+      color: #334155 !important;
     }
 
     .slide-viewport .bg-dark-950,
@@ -202,8 +229,42 @@
     }
 
     .slide-viewport [class*="bg-rose-950"],
-    .slide-viewport [class*="bg-rose-500/"] {
+    .slide-viewport [class*="bg-rose-500/"],
+    .slide-viewport [class*="bg-red-950"],
+    .slide-viewport [class*="bg-red-500/"] {
       background-color: rgba(220, 38, 38, 0.08) !important;
+    }
+
+    .slide-viewport [class*="bg-blue-950"],
+    .slide-viewport [class*="bg-blue-500/"] {
+      background-color: rgba(29, 78, 216, 0.08) !important;
+    }
+
+    .slide-viewport [class*="border-rose-800"],
+    .slide-viewport [class*="border-rose-900"],
+    .slide-viewport [class*="border-red-800"],
+    .slide-viewport [class*="border-red-900"] {
+      border-color: rgba(220, 38, 38, 0.25) !important;
+    }
+
+    .slide-viewport [class*="border-amber-800"],
+    .slide-viewport [class*="border-amber-900"] {
+      border-color: rgba(217, 119, 6, 0.25) !important;
+    }
+
+    .slide-viewport [class*="border-emerald-800"],
+    .slide-viewport [class*="border-emerald-900"] {
+      border-color: rgba(5, 150, 105, 0.25) !important;
+    }
+
+    .slide-viewport [class*="border-blue-800"],
+    .slide-viewport [class*="border-blue-900"] {
+      border-color: rgba(29, 78, 216, 0.25) !important;
+    }
+
+    .slide-viewport [class*="divide-slate-800"],
+    .slide-viewport [class*="divide-slate-700"] {
+      border-color: #E2E8F0 !important;
     }
 
     /* Clean Editorial Borders */
@@ -296,7 +357,7 @@
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1v4m0-4h-4m4 4l-5-5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
           <span>전체화면 [F]</span>
         </button>
-        <span id="slideCounter" class="text-[#2D9BB2] font-bold font-mono">01 / 91</span>
+        <span id="slideCounter" class="text-[#2D9BB2] font-bold font-mono">01 / 92</span>
       </div>
     </header>
 
@@ -5859,14 +5920,13 @@
         <!-- YAML Frontmatter & Body Code Box -->
         <div class="p-2.5 rounded bg-slate-950 border border-slate-800 font-mono text-[10.5px] leading-relaxed text-slate-300">
           <div class="text-indigo-400">---</div>
-          <div><strong class="text-sky-300">name</strong>: <span class="text-emerald-300">ui-tailwind-design</span></div>
-          <div><strong class="text-sky-300">description</strong>: <span class="text-slate-300">"Svelte 및 Tailwind CSS 컴포넌트 작성 시 16:9 다크 테마와 반응형 Bento 그리드를 강제 적용한다"</span></div>
+          <div><strong class="text-sky-300">name</strong>: <span class="text-emerald-300">uiux-governance</span></div>
+          <div><strong class="text-sky-300">description</strong>: <span class="text-slate-300">"Enterprise UI/UX Design System SSoT. Enforces icon-first status, auto-collapse, panel scrolling, and thin chrome."</span></div>
           <div class="text-indigo-400">---</div>
-          <div class="mt-1 text-slate-400"># 1. 디자인 강제 원칙 (Strict Rules)</div>
-          <div>- 배경은 항상 <code class="text-amber-300">bg-slate-950</code> 및 반투명 Bento 카드</div>
-          <div>- 복잡한 컴포넌트 작성 시 반드시 <code class="text-cyan-300">REFERENCE.md</code>를 읽고 시작할 것.</div>
-          <div class="mt-1 text-slate-400"># 2. 금지 사항 (Hard Guardrail)</div>
-          <div>- 인라인 스타일 작성 금지, 16:9 비율 왜곡 금지</div>
+          <div class="mt-1 text-slate-400"># 1. 핵심 철학 (3 Core Principles)</div>
+          <div>- Unified Experience, Approach with One-Click, Catch on One-Page</div>
+          <div class="mt-1 text-slate-400"># 2. 10대 상시 상호작용 표준 (Always UX Patterns)</div>
+          <div>- 아이콘 우선(Icon-First), 인라인 액션, 완료 시 자동 접힘, 패널 스크롤 강제</div>
         </div>
 
         <div class="mt-2 space-y-1 text-[10.5px] text-slate-300">
@@ -9798,16 +9858,16 @@
       <span class="text-emerald-300 font-mono text-xs px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-400/30 font-bold">🚀 LAUNCH &amp; PRODUCTION INFRA</span>
     </div>
     <h2 class="text-4xl md:text-5xl font-black text-white mb-3">
-      런칭 : 인증 &middot; 결제 &middot; 배포 &middot; CI/CD의 완성
+      런칭 : 인증 &middot; 결제 &middot; 거버넌스 &middot; 배포 &middot; CI/CD의 완성
     </h2>
     <p class="text-lg text-slate-300 leading-relaxed mb-6">
-      AI가 코드를 완성했다고 프로젝트가 끝난 것이 아닙니다. 진짜 엔지니어링은 <strong>유저를 받고(SNS 로그인), 돈을 벌고(Toss &middot; PayPal 결제), 안정적으로 서빙하며(Vercel &middot; Cloud Run &middot; VM), 변경 사항을 자동 배포(GitHub Actions)</strong>할 수 있을 때 완성됩니다.<br>
+      AI가 코드를 완성했다고 프로젝트가 끝난 것이 아닙니다. 진짜 엔지니어링은 <strong>유저를 받고(SNS 로그인), 결제를 붙이며(Toss &middot; PayPal), 인터페이스를 통제하고(UI/UX Governance SSoT), 안정적으로 서빙하며(Vercel &middot; Cloud Run), 변경 사항을 자동 배포(GitHub Actions)</strong>할 수 있을 때 완성됩니다.<br>
       0원으로 시작하여 상용 프로덕션 수준까지 확장 가능한 실전 런칭 아키텍처를 마스터합니다.
     </p>
     <div class="flex flex-wrap items-center gap-2.5 text-xs font-mono text-slate-400">
       <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300">#Supabase_Auth</span>
       <span class="px-2.5 py-1 rounded bg-slate-800 text-blue-300">#TossPayments</span>
-      <span class="px-2.5 py-1 rounded bg-slate-800 text-indigo-300">#PayPal</span>
+      <span class="px-2.5 py-1 rounded bg-slate-800 text-[#0E7490] font-bold">#UIUX_Governance_SSoT</span>
       <span class="px-2.5 py-1 rounded bg-slate-800 text-emerald-300">#CloudRun_vs_Vercel</span>
       <span class="px-2.5 py-1 rounded bg-slate-800 text-purple-300">#FreeTier_Guide</span>
       <span class="px-2.5 py-1 rounded bg-sky-950/80 text-sky-300 border border-sky-800/50 font-bold">#GitHub_Actions_CICD</span>
@@ -10081,12 +10141,231 @@
   </div>
 </section>
 
-      <!-- [COMPONENT] 07-launch/04-deployment-architectures.html -->
-<section class="slide flex flex-col justify-between" data-title="7.3 배포 인프라 3대 패러다임 비교: Cloud Run vs Vercel vs VM" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
+      <!-- [COMPONENT] 07-launch/04-uiux-governance-ssot.html -->
+<section class="slide flex flex-col justify-between" data-title="7.3 프로덕션 UI/UX 거버넌스 (SSoT) : 3대 철학과 10대 상호작용 표준" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
-      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.3 클라우드 인프라 아키텍처 비교</span>
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.3 클라이언트 거버넌스</span>
+      <span class="px-2.5 py-0.5 rounded bg-blue-950/80 border border-blue-600/50 text-blue-300 font-mono text-[11px] font-bold">
+        UI/UX GOVERNANCE &middot; SSOT &middot; 10 ALWAYS PATTERNS
+      </span>
+    </div>
+    <h2 class="text-3xl font-black text-white mt-1">프로덕션 UI/UX 거버넌스 : AI의 프론트엔드 난개발을 통제하는 SSoT</h2>
+    <p class="text-xs text-slate-300 mt-1">
+      AI 에이전트에게 프론트엔드 개발을 맡길 때 발생하는 디자인 파편화와 화면 난개발을 차단하는 <strong>Single Source of Truth (SSoT)</strong> 표준 체계.
+    </p>
+  </div>
+
+  <!-- Main Grid (12 cols) -->
+  <div class="grid grid-cols-12 gap-3 my-auto">
+    
+    <!-- LEFT: 3대 붕괴 & 3대 핵심 철학 (4 cols) -->
+    <div class="col-span-4 flex flex-col gap-2.5">
+      
+      <!-- Top Card: AI UI 3대 붕괴 현상 -->
+      <div class="bento-tile p-3 border-t-2 border-t-rose-500 bg-slate-900/90 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-rose-400 font-bold uppercase">⚠️ Vibe Coding UI 3대 붕괴</span>
+          <span class="text-[9.5px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">에이전트 한계</span>
+        </div>
+        <div class="space-y-1.5 text-[10.5px]">
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-rose-300 block mb-0.5 font-mono">1. 디자인 토큰 파편화</strong>
+            <span class="text-slate-300">화면마다 마진, 버튼 크기, 폰트, 상태 컬러가 제각각 생성되어 조잡한 느낌 가중.</span>
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-rose-300 block mb-0.5 font-mono">2. 거대 폼 방치 &amp; 맥락 소실</strong>
+            <span class="text-slate-300">설정이 끝나도 수십 개 입력창이 그대로 남아있고, 화면을 이동하며 작업 맥락 파탄.</span>
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-rose-300 block mb-0.5 font-mono">3. 브라우저 스크롤 붕괴</strong>
+            <span class="text-slate-300">창 전체 스크롤이 생겨 헤더와 내비가 밀려 올라가고, 비동기 로딩 시 깜빡임 발생.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Card: 3대 핵심 철학 -->
+      <div class="bento-tile p-3 border-t-2 border-t-sky-500 bg-slate-900/90 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-sky-400 font-bold uppercase">🎯 3대 핵심 철학 (Core Principles)</span>
+          <span class="text-[9.5px] font-mono text-sky-300 bg-sky-950 px-2 py-0.5 rounded border border-sky-800">SSoT 원칙</span>
+        </div>
+        <div class="space-y-1.5 text-[10.5px]">
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-sky-300 block mb-0.5">① Unified Experience (일관된 경험)</strong>
+            <span class="text-slate-300">모든 화면 컴포넌트, 색상, 상태를 단일 토큰 체계(SSoT)로 일원화.</span>
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-sky-300 block mb-0.5">② Approach with One-Click (원클릭 접근)</strong>
+            <span class="text-slate-300">목적 액션까지 클릭 뎁스 최소화, 필드 옆 인라인 액션 적극 배치.</span>
+          </div>
+          <div class="p-1.5 bg-slate-950 rounded border border-slate-800">
+            <strong class="text-sky-300 block mb-0.5">③ Catch on One-Page (원페이지 종결)</strong>
+            <span class="text-slate-300">화면 이동 없이 패널 분할과 독립 스크롤로 단일 뷰 내 업무 종결.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: 10대 상시 상호작용 표준 (Always UX Patterns) (8 cols) -->
+    <div class="col-span-8 bento-tile p-3.5 flex flex-col justify-between border-t-2 border-t-[#2D9BB2] bg-slate-900/90">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-base">📐</span>
+            <span class="text-xs font-mono text-[#2D9BB2] font-bold uppercase">10대 상시 상호작용 표준 (10 Always UX Interaction Patterns)</span>
+          </div>
+          <span class="text-[9.5px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded border border-slate-300">
+            Do vs Don't 표준 규격
+          </span>
+        </div>
+
+        <!-- 10대 패턴 그리드 -->
+        <div class="grid grid-cols-2 gap-2 text-[10px]">
+          
+          <!-- Pattern 1 -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800 space-y-0.5">
+            <div class="flex items-center justify-between font-bold">
+              <span class="text-[#2D9BB2]">1. 아이콘 우선 (Icon-First Status)</span>
+              <span class="text-emerald-400 font-mono text-[9px]">DO</span>
+            </div>
+            <p class="text-slate-300 text-[9.5px] leading-tight">
+              연결/정상 상태는 긴 텍스트 배지 나열 대신 <strong>컬러 아이콘 칩 + 툴팁</strong>으로 간결화.
+            </p>
+          </div>
+
+          <!-- Pattern 2 -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800 space-y-0.5">
+            <div class="flex items-center justify-between font-bold">
+              <span class="text-[#2D9BB2]">2. 인라인 액션 (Inline Actions)</span>
+              <span class="text-emerald-400 font-mono text-[9px]">DO</span>
+            </div>
+            <p class="text-slate-300 text-[9.5px] leading-tight">
+              필드 아래 별도 버튼 행 금지. 인풋/셀렉트 우측에 <strong>복사·새로고침 인라인 아이콘</strong> 배치.
+            </p>
+          </div>
+
+          <!-- Pattern 3 -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800 space-y-0.5">
+            <div class="flex items-center justify-between font-bold">
+              <span class="text-[#2D9BB2]">3. 완료 시 자동 접힘 (Auto-Collapse)</span>
+              <span class="text-emerald-400 font-mono text-[9px]">DO</span>
+            </div>
+            <p class="text-slate-300 text-[9.5px] leading-tight">
+              설정 완료 후 거대한 입력 폼 방치 금지. <strong>Accordion 요약 카드</strong>로 자동 전환.
+            </p>
+          </div>
+
+          <!-- Pattern 4 -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800 space-y-0.5">
+            <div class="flex items-center justify-between font-bold">
+              <span class="text-[#2D9BB2]">4. 패널 단위 독립 스크롤 (Panel Scroll)</span>
+              <span class="text-emerald-400 font-mono text-[9px]">DO</span>
+            </div>
+            <p class="text-slate-300 text-[9.5px] leading-tight">
+              창 전체 스크롤 금지. <code>h-screen overflow-hidden</code> 셸 고정 후 <strong>패널 내부 스크롤</strong>.
+            </p>
+          </div>
+
+          <!-- Pattern 5 -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800 space-y-0.5">
+            <div class="flex items-center justify-between font-bold">
+              <span class="text-[#2D9BB2]">5. 얇은 크롬 (Thin Chrome)</span>
+              <span class="text-emerald-400 font-mono text-[9px]">DO</span>
+            </div>
+            <p class="text-slate-300 text-[9.5px] leading-tight">
+              장황한 상단 배너 금지. 헤더는 <strong>48~56px 단일 행</strong>으로 최소화하여 업무 공간 극대화.
+            </p>
+          </div>
+
+          <!-- Pattern 6 -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800 space-y-0.5">
+            <div class="flex items-center justify-between font-bold">
+              <span class="text-[#2D9BB2]">6. 전제조건 액션 게이트 (Action Gating)</span>
+              <span class="text-emerald-400 font-mono text-[9px]">DO</span>
+            </div>
+            <p class="text-slate-300 text-[9.5px] leading-tight">
+              미완성 상태 클릭 후 alert 금지. 필수 조건 미충족 시 버튼 <strong>disabled + 사유 툴팁</strong> 제공.
+            </p>
+          </div>
+
+          <!-- Pattern 7 -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800 space-y-0.5">
+            <div class="flex items-center justify-between font-bold">
+              <span class="text-[#2D9BB2]">7. 작업 이력 영속성 (History Persistence)</span>
+              <span class="text-emerald-400 font-mono text-[9px]">DO</span>
+            </div>
+            <p class="text-slate-300 text-[9.5px] leading-tight">
+              새로고침 시 초기화 금지. 최근 조회, 탭, 입력값은 <strong>로컬/세션 스토리지에 복원</strong> 유지.
+            </p>
+          </div>
+
+          <!-- Pattern 8 -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800 space-y-0.5">
+            <div class="flex items-center justify-between font-bold">
+              <span class="text-[#2D9BB2]">8. 기본 언어 한국어 (Korean Default)</span>
+              <span class="text-emerald-400 font-mono text-[9px]">DO</span>
+            </div>
+            <p class="text-slate-300 text-[9.5px] leading-tight">
+              불필요한 영어 남발("Pending", "Success") 금지. <strong>"대기 중", "정상 연결"</strong> 등 한국어 표준.
+            </p>
+          </div>
+
+          <!-- Pattern 9 -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800 space-y-0.5">
+            <div class="flex items-center justify-between font-bold">
+              <span class="text-[#2D9BB2]">9. 초기 번쩍임 방지 (No Premature Flash)</span>
+              <span class="text-emerald-400 font-mono text-[9px]">DO</span>
+            </div>
+            <p class="text-slate-300 text-[9.5px] leading-tight">
+              로딩 0.5초 동안 "데이터 없음" 문구 깜빡임 방지. <strong>Skeleton UI</strong> 또는 로딩 가드 적용.
+            </p>
+          </div>
+
+          <!-- Pattern 10 -->
+          <div class="p-2 rounded bg-slate-950 border border-slate-800 space-y-0.5">
+            <div class="flex items-center justify-between font-bold">
+              <span class="text-[#2D9BB2]">10. 외부 클릭 자동 닫기 (Click-Outside)</span>
+              <span class="text-emerald-400 font-mono text-[9px]">DO</span>
+            </div>
+            <p class="text-slate-300 text-[9.5px] leading-tight">
+              드롭다운/팝오버는 문서 외부 영역 클릭 시 <strong>자동으로 닫히는 리스너</strong> 필수 구현.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Bottom Pipeline Banner -->
+      <div class="mt-2.5 p-2 bg-slate-950 rounded border border-[#2D9BB2]/30 flex items-center justify-between text-[10.5px]">
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 rounded bg-[#2D9BB2]/15 text-[#0E7490] font-bold font-mono text-[9.5px]">에이전트 주입</span>
+          <span class="text-slate-300">
+            <code>.agents/skills/uiux-governance/SKILL.md</code>를 에이전트에게 주입하면 <strong>프론트엔드 UI 난개발을 100% 방지</strong>
+          </span>
+        </div>
+        <span class="text-xs font-mono text-[#554596] font-bold">SSoT 가드레일 확립 ➔</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer Tip -->
+  <div class="mt-1 flex items-center justify-between text-[10.5px] text-slate-400 font-mono border-t border-slate-800 pt-1.5">
+    <span>💡 Vibe Coding 프론트엔드는 기능 구현보다 "10대 상호작용 표준"을 AI에게 강제하는 SSoT 규칙이 완성도를 결정합니다.</span>
+    <span class="text-emerald-400 font-bold">✓ Enterprise UI Quality Gate</span>
+  </div>
+</section>
+
+      <!-- [COMPONENT] 07-launch/05-deployment-architectures.html -->
+<section class="slide flex flex-col justify-between" data-title="7.4 배포 인프라 3대 패러다임 비교: Cloud Run vs Vercel vs VM" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
+  <!-- Header -->
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.4 클라우드 인프라 아키텍처 비교</span>
       <span class="px-2.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-600/50 text-emerald-300 font-mono text-[11px] font-bold">
         VERCEL vs CLOUD RUN vs CLOUD VM
       </span>
@@ -10231,12 +10510,12 @@
   </div>
 </section>
 
-      <!-- [COMPONENT] 07-launch/05-free-tier-and-fit-guide.html -->
-<section class="slide flex flex-col justify-between" data-title="7.4 앱 유형별 최적 배포처 &amp; Free Tier 완전 분석" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
+      <!-- [COMPONENT] 07-launch/06-free-tier-and-fit-guide.html -->
+<section class="slide flex flex-col justify-between" data-title="7.5 앱 유형별 최적 배포처 &amp; Free Tier 완전 분석" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
-      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.4 앱 유형별 매핑 &amp; 비용 0원 가이드</span>
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.5 앱 유형별 매핑 &amp; 비용 0원 가이드</span>
       <span class="px-2.5 py-0.5 rounded bg-purple-950/80 border border-purple-600/50 text-purple-300 font-mono text-[11px] font-bold">
         APP FIT MATRIX &middot; FREE TIER AUDIT
       </span>
@@ -10384,12 +10663,12 @@
   </div>
 </section>
 
-      <!-- [COMPONENT] 07-launch/06-cicd-concepts-and-github-actions.html -->
-<section class="slide flex flex-col justify-between" data-title="7.5 CI/CD 개념 &amp; GitHub Actions 실전 파이프라인" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
+      <!-- [COMPONENT] 07-launch/07-cicd-concepts-and-github-actions.html -->
+<section class="slide flex flex-col justify-between" data-title="7.6 CI/CD 개념 &amp; GitHub Actions 실전 파이프라인" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
-      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.5 배포 자동화 파이프라인</span>
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.6 배포 자동화 파이프라인</span>
       <span class="px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-600/50 text-sky-300 font-mono text-[11px] font-bold">
         CONTINUOUS INTEGRATION &middot; CONTINUOUS DEPLOYMENT
       </span>
@@ -10501,12 +10780,12 @@
   </div>
 </section>
 
-      <!-- [COMPONENT] 07-launch/07-free-cicd-services.html -->
-<section class="slide flex flex-col justify-between" data-title="7.6 무료 &amp; 가성비 CI/CD 플랫폼 총정리" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
+      <!-- [COMPONENT] 07-launch/08-free-cicd-services.html -->
+<section class="slide flex flex-col justify-between" data-title="7.7 무료 &amp; 가성비 CI/CD 플랫폼 총정리" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
-      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.6 무료 &amp; 가성비 CI/CD 생태계</span>
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.7 무료 &amp; 가성비 CI/CD 생태계</span>
       <span class="px-2.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-600/50 text-emerald-300 font-mono text-[11px] font-bold">
         FREE CI/CD ECOSYSTEM &middot; RUNNER AUDIT
       </span>
@@ -10695,12 +10974,12 @@
   </div>
 </section>
 
-      <!-- [COMPONENT] 07-launch/08-hands-on-launch.html -->
-<section class="slide flex flex-col justify-between" data-title="7.7 실전 5분 실습: 0원에서 프로덕션까지 3단계" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
+      <!-- [COMPONENT] 07-launch/09-hands-on-launch.html -->
+<section class="slide flex flex-col justify-between" data-title="7.8 실전 5분 실습: 0원에서 프로덕션까지 3단계" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
-      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.7 실전 5분 핸즈온</span>
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.8 실전 5분 핸즈온</span>
       <span class="px-2.5 py-0.5 rounded bg-amber-950/80 border border-amber-600/50 text-amber-300 font-mono text-[11px] font-bold">
         HANDS-ON &middot; 3-STEP LAUNCH
       </span>
@@ -10866,12 +11145,12 @@
   </div>
 </section>
 
-      <!-- [COMPONENT] 07-launch/09-chapter-summary.html -->
-<section class="slide flex flex-col justify-between" data-title="7.8 Chapter 07 핵심 요약: 런칭 4대 축 매트릭스" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
+      <!-- [COMPONENT] 07-launch/10-chapter-summary.html -->
+<section class="slide flex flex-col justify-between" data-title="7.9 Chapter 07 핵심 요약: 런칭 4대 축 매트릭스" data-chapter-id="ch07" data-chapter-badge="CHAPTER 07 · 런칭" data-chapter-title="Ch 07. 런칭 : 인증 · 결제 · 배포 · CI/CD" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
-      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.8 챕터 핵심 요약</span>
+      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 07. 런칭 &middot; 7.9 챕터 핵심 요약</span>
       <span class="px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-600/50 text-sky-300 font-mono text-[11px] font-bold">
         PRODUCTION CHECKLIST &middot; LAUNCH MATRIX
       </span>
@@ -12109,7 +12388,7 @@
             <h3 class="text-lg font-bold text-[#1A1A1A] flex items-center gap-2">
               <span class="text-[#2D9BB2] font-mono">📑</span> 전체 목차 (Curriculum Index)
             </h3>
-            <span class="text-xs text-slate-500 font-mono">총 91개 슬라이드</span>
+            <span class="text-xs text-slate-500 font-mono">총 92개 슬라이드</span>
           </div>
           <div class="flex items-center gap-3">
             <button id="toggleAllTocBtn" class="text-xs px-2.5 py-1 rounded bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 flex items-center gap-1.5 transition-colors font-medium">
