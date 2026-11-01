@@ -2087,56 +2087,59 @@
     </svg>
   </div>
 
-  <!-- 3 Explanatory Insight Cards -->
+  <!-- 3 Explanatory Insight Cards (Interactive Hover-Zoom & Polish) -->
   <div class="grid grid-cols-3 gap-3">
     <!-- Card 1 -->
-    <div class="bento-tile p-3 border-t-2 border-t-slate-500 flex flex-col justify-between">
+    <div class="bento-tile p-3 border-t-2 border-t-slate-500 flex flex-col justify-between transition-all duration-300 ease-out transform hover:-translate-y-1.5 hover:scale-[1.03] hover:shadow-2xl hover:border-t-sky-400 hover:bg-slate-900/95 cursor-pointer group z-10">
       <div>
         <div class="flex items-center justify-between mb-1">
-          <span class="text-xs font-mono font-bold text-slate-300">STEP 1. 과거의 추상화</span>
-          <span class="text-[10px] text-slate-500 font-mono">1차 혁명</span>
+          <span class="text-xs font-mono font-bold text-slate-300 group-hover:text-sky-300 transition-colors">STEP 1. 과거의 추상화</span>
+          <span class="text-[10px] text-slate-500 font-mono group-hover:text-sky-400">1차 혁명</span>
         </div>
-        <h4 class="text-xs font-bold text-white mb-1">인간과 바이너리 사이의 '언어'</h4>
-        <p class="text-[11px] text-slate-300 leading-relaxed">
+        <h4 class="text-xs font-bold text-white mb-1 group-hover:text-sky-100 transition-colors">인간과 바이너리 사이의 '언어'</h4>
+        <p class="text-[11px] text-slate-300 leading-relaxed group-hover:text-slate-100 transition-colors">
           사람이 0과 1의 전기 신호를 직접 다룰 수 없어, 기계와 소통하기 위해 C·Python·Rust 등 <strong>프로그래밍 언어와 컴파일러</strong>라는 번역 계층을 쌓았습니다.
         </p>
       </div>
-      <div class="text-[10px] text-slate-400 font-mono border-t border-slate-800 pt-1 mt-1">
-        기계 제어를 위한 인간 친화적 문법화
+      <div class="text-[10px] text-slate-400 font-mono border-t border-slate-800 pt-1 mt-1 group-hover:border-sky-500/40 group-hover:text-sky-300 transition-colors flex items-center justify-between">
+        <span>기계 제어를 위한 인간 친화적 문법화</span>
+        <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[9px] text-sky-400">확대 🔍</span>
       </div>
     </div>
 
     <!-- Card 2 -->
-    <div class="bento-tile p-3 border-t-2 border-t-purple-500 flex flex-col justify-between">
+    <div class="bento-tile p-3 border-t-2 border-t-purple-500 flex flex-col justify-between transition-all duration-300 ease-out transform hover:-translate-y-1.5 hover:scale-[1.03] hover:shadow-2xl hover:border-t-purple-400 hover:bg-slate-900/95 cursor-pointer group z-10">
       <div>
         <div class="flex items-center justify-between mb-1">
-          <span class="text-xs font-mono font-bold text-purple-300">STEP 2. 2026 바이브 코딩</span>
+          <span class="text-xs font-mono font-bold text-purple-300 group-hover:text-purple-200 transition-colors">STEP 2. 2026 바이브 코딩</span>
           <span class="text-[10px] text-purple-400 font-mono">2차 적층 혁명</span>
         </div>
-        <h4 class="text-xs font-bold text-white mb-1">사람 앞에 쌓인 'AI 에이전트' 계층</h4>
-        <p class="text-[11px] text-slate-300 leading-relaxed">
+        <h4 class="text-xs font-bold text-white mb-1 group-hover:text-purple-100 transition-colors">사람 앞에 쌓인 'AI 에이전트' 계층</h4>
+        <p class="text-[11px] text-slate-300 leading-relaxed group-hover:text-slate-100 transition-colors">
           이제 사람이 신택스(문법)를 직접 타이핑하지 않고, <strong>사람 바로 앞에 AI 에이전트가 붙어 자연어 의도(Intent)를 소스 코드로 실시간 번역</strong>합니다.
         </p>
       </div>
-      <div class="text-[10px] text-purple-300 font-mono border-t border-slate-800 pt-1 mt-1">
-        "말(Natural Language)이 코드가 되는 원리"
+      <div class="text-[10px] text-purple-300 font-mono border-t border-slate-800 pt-1 mt-1 group-hover:border-purple-500/40 group-hover:text-purple-200 transition-colors flex items-center justify-between">
+        <span>"말(Natural Language)이 코드가 되는 원리"</span>
+        <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[9px] text-purple-300">확대 🔍</span>
       </div>
     </div>
 
     <!-- Card 3 -->
-    <div class="bento-tile p-3 border-t-2 border-t-sky-500 flex flex-col justify-between">
+    <div class="bento-tile p-3 border-t-2 border-t-sky-500 flex flex-col justify-between transition-all duration-300 ease-out transform hover:-translate-y-1.5 hover:scale-[1.03] hover:shadow-2xl hover:border-t-emerald-400 hover:bg-slate-900/95 cursor-pointer group z-10">
       <div>
         <div class="flex items-center justify-between mb-1">
-          <span class="text-xs font-mono font-bold text-sky-300">STEP 3. 개발자의 역할 이동</span>
-          <span class="text-[10px] text-sky-400 font-mono">Role Shift</span>
+          <span class="text-xs font-mono font-bold text-sky-300 group-hover:text-emerald-300 transition-colors">STEP 3. 개발자의 역할 이동</span>
+          <span class="text-[10px] text-sky-400 font-mono group-hover:text-emerald-400">Role Shift</span>
         </div>
-        <h4 class="text-xs font-bold text-white mb-1">타이피스트에서 '아키텍트'로 승격</h4>
-        <p class="text-[11px] text-slate-300 leading-relaxed">
+        <h4 class="text-xs font-bold text-white mb-1 group-hover:text-emerald-100 transition-colors">타이피스트에서 '아키텍트'로 승격</h4>
+        <p class="text-[11px] text-slate-300 leading-relaxed group-hover:text-slate-100 transition-colors">
           개발자의 핵심 역량은 세부 문법 암기에서 <strong>고수준 의도(Intent) 명세, 시스템 인터페이스 설계, 그리고 컴파일·테스트 검증 게이트 통제</strong>로 전환됩니다.
         </p>
       </div>
-      <div class="text-[10px] text-sky-300 font-mono border-t border-slate-800 pt-1 mt-1">
-        코드 작성자 ➔ 시스템 감독자(Supervisor)
+      <div class="text-[10px] text-sky-300 font-mono border-t border-slate-800 pt-1 mt-1 group-hover:border-emerald-500/40 group-hover:text-emerald-300 transition-colors flex items-center justify-between">
+        <span>코드 작성자 ➔ 시스템 감독자(Supervisor)</span>
+        <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[9px] text-emerald-400">확대 🔍</span>
       </div>
     </div>
   </div>
@@ -2733,57 +2736,19 @@
 
   <!-- Dual Bento Card Stage with Visual Diagrams -->
   <div class="grid grid-cols-2 gap-3.5 flex-1 items-stretch my-auto">
-    <!-- Card 1: Complexity Wall & Context Drift Decay Graph -->
-    <div class="bento-tile p-3.5 flex flex-col justify-between border-l-4 border-l-amber-500 bg-slate-950/90 shadow-xl">
+    <!-- Card 1: Complexity Wall & Context Drift Image -->
+    <div class="bento-tile p-3 flex flex-col justify-between border-l-4 border-l-amber-500 bg-slate-950/90 shadow-xl">
       <div>
-        <div class="flex items-center justify-between mb-1.5">
+        <div class="flex items-center justify-between mb-1">
           <span class="text-xs font-mono text-amber-400 font-bold">쟁점 ① COMPLEXITY WALL</span>
           <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/40">자연어의 한계</span>
         </div>
         <h3 class="text-base font-bold text-white mb-1.5">'말만 하면 된다'는 환상 vs 복잡계의 벽</h3>
 
-        <!-- Context Drift Decay SVG Mini Graph -->
-        <div class="bg-slate-900/90 rounded border border-slate-800 p-2 mb-2">
-          <div class="flex items-center justify-between text-[9px] font-mono mb-1">
-            <span class="text-slate-400 font-bold">세션 장기화에 따른 기억력 붕괴 (Context Drift)</span>
-            <span class="text-red-400">파일 20개+ 위험 구간</span>
-          </div>
-          <svg viewBox="0 0 380 75" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-            <!-- Grid Lines -->
-            <line x1="30" y1="10" x2="370" y2="10" stroke="#334155" stroke-width="0.5" stroke-dasharray="2 2"/>
-            <line x1="30" y1="40" x2="370" y2="40" stroke="#334155" stroke-width="0.5" stroke-dasharray="2 2"/>
-            <line x1="30" y1="65" x2="370" y2="65" stroke="#475569" stroke-width="0.8"/>
-            <line x1="30" y1="5" x2="30" y2="65" stroke="#475569" stroke-width="0.8"/>
-
-            <!-- Axis Labels -->
-            <text x="25" y="14" text-anchor="end" fill="#94a3b8" font-size="6.5" font-family="JetBrains Mono">100%</text>
-            <text x="25" y="66" text-anchor="end" fill="#94a3b8" font-size="6.5" font-family="JetBrains Mono">0%</text>
-            <text x="35" y="73" fill="#64748b" font-size="6.5" font-family="JetBrains Mono">파일 1개 (단순 토이)</text>
-            <text x="180" y="73" fill="#f59e0b" font-size="6.5" font-family="JetBrains Mono">파일 15개</text>
-            <text x="310" y="73" fill="#ef4444" font-size="6.5" font-family="JetBrains Mono">파일 30개+ (복잡계)</text>
-
-            <!-- Curve 1: Retention Decay (Green to Red) -->
-            <path d="M 30 15 Q 160 20, 240 50 T 370 63" fill="none" stroke="#10b981" stroke-width="2"/>
-            <text x="90" y="24" fill="#34d399" font-size="7" font-weight="bold" font-family="JetBrains Mono">AI 설계 기억력 (급격 추락 📉)</text>
-
-            <!-- Curve 2: Hallucination & Overwrite Risk (Red Line) -->
-            <path d="M 30 62 Q 180 58, 250 30 T 370 12" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="3 2"/>
-            <text x="235" y="22" fill="#f87171" font-size="7" font-weight="bold" font-family="JetBrains Mono">코드 덮어쓰기·환각 위험 (급상승 📈)</text>
-          </svg>
+        <!-- Complexity Wall Translating Image -->
+        <div class="w-full rounded-lg overflow-hidden border border-slate-700/60 shadow-md flex items-center justify-center bg-white my-auto p-1">
+          <img src="./slides/02-essence/assets/complexity_wall_translating.jpg" alt="'말만 하면 끝'이라는 환상 vs. 복잡한 시스템의 장벽" class="w-full h-auto max-h-[280px] object-contain rounded" />
         </div>
-
-        <div class="space-y-1.5 text-xs text-slate-300">
-          <div class="p-1.5 bg-red-950/20 rounded border border-red-900/40 text-[10.5px]">
-            <strong class="text-red-300">🚨 상태·네트워크 복잡계:</strong> 1개 파일 토이는 작동하지만, 실제 유저 상태 동기화, 트랜잭션 롤백, 네트워크 재시도 앞에서는 자연어 프롬프트만으로 통제 불가.
-          </div>
-          <div class="p-1.5 bg-red-950/20 rounded border border-red-900/40 text-[10.5px]">
-            <strong class="text-red-300">🚨 컨텍스트 오염 (Drift):</strong> 세션이 길어지면 앞선 아키텍처 결정을 망각하고 기존 코드를 덮어써 버리는 치명적 퇴행 발생.
-          </div>
-        </div>
-      </div>
-
-      <div class="text-[10px] text-slate-400 font-mono border-t border-slate-800/80 pt-1.5 mt-1">
-        "자연어는 모호성을 허용하지만, 컴퓨터 런타임은 단 1비트의 모호성도 용납하지 않는다."
       </div>
     </div>
 
