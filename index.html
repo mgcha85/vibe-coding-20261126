@@ -5149,15 +5149,15 @@
       <!-- [COMPONENT] 04-toolchain/02-agents-md-index.html -->
 <section class="slide flex flex-col justify-between" data-title="4.1 AGENTS.md : 프로젝트 헌법과 주입 메커니즘" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
-  <div class="mb-2">
+  <div class="mb-1.5">
     <div class="flex items-center justify-between">
-      <span class="text-sky-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.1 AGENTS.md 인덱스 헌법</span>
-      <span class="px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-600/50 text-sky-300 font-mono text-[11px] font-bold">
+      <span class="text-sky-600 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.1 AGENTS.md 인덱스 헌법</span>
+      <span class="px-2.5 py-0.5 rounded bg-sky-50 border border-sky-300 text-sky-800 font-mono text-[11px] font-bold">
         EVERY-TURN INJECTION &middot; SYSTEM OF RECORD
       </span>
     </div>
-    <h2 class="text-3xl font-black text-white mt-1">AGENTS.md : 매 턴(Every-turn) 주입되는 프로젝트 헌법</h2>
-    <p class="text-xs text-slate-300 mt-1">
+    <h2 class="text-3xl font-black text-slate-900 mt-1">AGENTS.md : 매 턴(Every-turn) 주입되는 프로젝트 헌법</h2>
+    <p class="text-xs text-slate-600 mt-0.5">
       매번 대화창에 장황한 지시를 복사해 넣지 마십시오. 루트의 <strong>AGENTS.md</strong>는 에이전트와 주고받는 모든 턴(Turn)마다 최상단에 자동 주입되는 단일 진실 공급원(SSOT)입니다.
     </p>
   </div>
@@ -5166,146 +5166,180 @@
   <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
     
     <!-- LEFT: Every-turn Injection Pipeline (5 cols) -->
-    <div class="col-span-5 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+    <div class="col-span-5 bento-tile p-3 bg-white border border-slate-200 shadow-md flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-2">
-          <span class="text-[11px] font-mono text-amber-400 font-bold uppercase">⚡ 매 턴 자동 주입 메커니즘</span>
-          <span class="text-[9.5px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Prompt Pipeline</span>
+          <span class="text-[11px] font-mono text-amber-600 font-bold uppercase">⚡ 매 턴 자동 주입 메커니즘</span>
+          <span class="text-[9.5px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Prompt Pipeline</span>
         </div>
 
         <!-- Visual Flow Stream -->
-        <div class="space-y-2 text-xs font-mono">
+        <div class="space-y-1.5 text-xs font-mono">
           <!-- Step 1: User Input -->
-          <div class="p-2 rounded bg-slate-950 border border-slate-800 flex items-center justify-between">
+          <div class="p-2 rounded bg-slate-50 border border-slate-200 flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="text-base">💬</span>
               <div>
-                <div class="text-slate-200 font-bold text-[11px]">User Prompt (질문/지시)</div>
-                <div class="text-[10px] text-slate-400">"백테스트 결과 페이지 배포해줘"</div>
+                <div class="text-slate-800 font-bold text-[11px]">User Prompt (질문/지시)</div>
+                <div class="text-[10px] text-slate-500">"백테스트 결과 페이지 배포해줘"</div>
               </div>
             </div>
-            <span class="text-[10px] text-sky-400 bg-sky-950/60 px-1.5 py-0.5 rounded border border-sky-800">Turn Start</span>
+            <span class="text-[10px] text-sky-700 bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200 font-bold">Turn Start</span>
           </div>
 
           <!-- Down Arrow with Injection indicator -->
-          <div class="flex items-center justify-center gap-2 text-amber-400 text-[10.5px]">
+          <div class="flex items-center justify-center gap-2 text-amber-600 text-[10.5px]">
             <span>↓</span>
-            <span class="bg-amber-500/10 border border-amber-400/30 px-2 py-0.5 rounded text-[10px] font-bold">
+            <span class="bg-amber-50 border border-amber-300 text-amber-800 px-2 py-0.5 rounded text-[10px] font-bold">
               🚀 시스템 레이어 자동 프리펜드 (Every Turn)
             </span>
             <span>↓</span>
           </div>
 
-          <!-- Step 2: Injected AGENTS.md Constitution -->
-          <div class="p-2.5 rounded bg-sky-950/40 border border-sky-500/50 shadow-lg">
-            <div class="flex items-center justify-between text-sky-300 font-bold text-[11.5px] mb-1">
+          <!-- Step 2: Injected AGENTS.md Constitution (Clickable to open sample modal) -->
+          <div 
+            onclick="openAgentsModal(event)" 
+            class="p-2.5 rounded bg-sky-50/90 border-2 border-sky-400 shadow-md cursor-pointer hover:bg-sky-100 hover:border-sky-500 hover:shadow-xl transition-all group"
+            title="클릭하여 실제 AGENTS.md 예시 전문 보기"
+          >
+            <div class="flex items-center justify-between text-sky-900 font-bold text-[11.5px] mb-1">
               <div class="flex items-center gap-1.5">
-                <span class="text-base">📜</span>
-                <span>/AGENTS.md (프로젝트 헌법)</span>
+                <span class="text-base group-hover:scale-110 transition-transform">📜</span>
+                <span class="text-sky-950 font-black">/AGENTS.md (프로젝트 헌법)</span>
               </div>
-              <span class="text-[9.5px] font-mono bg-sky-900/60 px-1.5 py-0.5 rounded text-sky-200">100% Guaranteed</span>
+              <span class="text-[9.5px] font-mono bg-sky-600 text-white px-2 py-0.5 rounded shadow-sm font-bold flex items-center gap-1">
+                <span>🔍 클릭: 예시 보기</span>
+              </span>
             </div>
-            <ul class="text-[10.5px] text-slate-300 space-y-0.5 list-disc list-inside font-sans">
+            <ul class="text-[10.5px] text-slate-700 space-y-0.5 list-disc list-inside font-sans">
               <li>미션 &amp; 스코프 (Mission &amp; Scope)</li>
-              <li>데이터 계약 (/mnt/data/finance 보존)</li>
-              <li>빌드 &amp; 품질 게이트 (<code class="font-mono text-sky-300">uv sync</code>, 린터, 테스트)</li>
-              <li>배포 &amp; 운영 규칙 (<code class="font-mono text-amber-300">podman-compose</code>, 포트)</li>
+              <li>데이터 계약 (<code class="text-amber-800 bg-amber-100/70 px-1 py-0.2 rounded border border-amber-200 font-mono">/data/corpus</code> 보존)</li>
+              <li>빌드 &amp; 품질 게이트 (<code class="font-mono text-sky-700 bg-sky-100 px-1 py-0.2 rounded">uv sync</code>, 린터, 테스트)</li>
+              <li>배포 &amp; 운영 규칙 (<code class="font-mono text-amber-700 bg-amber-100 px-1 py-0.2 rounded">podman-compose</code>, 포트)</li>
             </ul>
           </div>
 
           <!-- Down Arrow -->
-          <div class="flex justify-center text-slate-500 text-xs">↓</div>
+          <div class="flex justify-center text-slate-400 text-xs">↓</div>
 
           <!-- Step 3: LLM Context Assembly -->
-          <div class="p-2 rounded bg-indigo-950/40 border border-indigo-500/40 flex items-center justify-between">
+          <div class="p-2 rounded bg-indigo-50 border border-indigo-200 flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="text-base">🧠</span>
               <div>
-                <div class="text-indigo-200 font-bold text-[11px]">LLM 인지 컨텍스트 결합</div>
-                <div class="text-[10px] text-slate-300">System Rules + Skills Index + History + Intent</div>
+                <div class="text-indigo-900 font-bold text-[11px]">LLM 인지 컨텍스트 결합</div>
+                <div class="text-[10px] text-slate-600">System Rules + Skills Index + History + Intent</div>
               </div>
             </div>
-            <span class="text-[10px] text-emerald-400 font-bold">탈선 방지</span>
+            <span class="text-[10px] text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 font-bold">탈선 방지</span>
           </div>
         </div>
       </div>
 
-      <div class="p-2 rounded bg-slate-950 border border-slate-800 text-[10.5px] text-slate-300 leading-snug mt-2">
-        💡 <strong class="text-amber-300">핵심 원리:</strong> 개발자가 매번 사규를 기억시킬 필요 없이, 런타임 툴 하네스가 에이전트의 모든 의사결정 앞에 헌법을 강제 바인딩합니다.
+      <div class="p-2 rounded bg-slate-50 border border-slate-200 text-[10.5px] text-slate-700 leading-snug mt-2">
+        💡 <strong class="text-amber-700">핵심 원리:</strong> 개발자가 매번 사규를 기억시킬 필요 없이, 런타임 툴 하네스가 에이전트의 모든 의사결정 앞에 헌법을 강제 바인딩합니다.
       </div>
     </div>
 
     <!-- RIGHT: Tool Ecosystem & Constitution Anatomy (7 cols) -->
-    <div class="col-span-7 bento-tile p-3 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+    <div class="col-span-7 bento-tile p-3 bg-white border border-slate-200 shadow-md flex flex-col justify-between">
       <div>
         <!-- Multi-App Ecosystem Row -->
         <div class="flex items-center justify-between mb-2">
-          <span class="text-[11px] font-mono text-sky-400 font-bold uppercase">🌐 어떤 도구를 써도 하나의 헌법으로 통일</span>
-          <span class="text-[9.5px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">Symlink / Direct Binding</span>
+          <span class="text-[11px] font-mono text-sky-700 font-bold uppercase">🌐 어떤 도구를 써도 하나의 헌법으로 통일</span>
+          <span class="text-[9.5px] font-mono text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-semibold">Symlink / Direct Binding</span>
         </div>
 
         <div class="grid grid-cols-4 gap-2 mb-3 text-center">
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+          <div class="p-2 rounded bg-slate-50 border border-slate-200">
             <div class="text-sm mb-0.5">⚡</div>
-            <div class="font-mono text-[11px] font-bold text-sky-300">Cursor</div>
-            <div class="text-[9px] font-mono text-slate-400">.cursor/</div>
+            <div class="font-mono text-[11px] font-bold text-sky-700">Cursor</div>
+            <div class="text-[9px] font-mono text-slate-500">.cursor/</div>
           </div>
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+          <div class="p-2 rounded bg-slate-50 border border-slate-200">
             <div class="text-sm mb-0.5">🤖</div>
-            <div class="font-mono text-[11px] font-bold text-amber-300">Claude Code</div>
-            <div class="text-[9px] font-mono text-slate-400">.claude/ &middot; CLAUDE.md</div>
+            <div class="font-mono text-[11px] font-bold text-amber-700">Claude Code</div>
+            <div class="text-[9px] font-mono text-slate-500">.claude/ &middot; CLAUDE.md</div>
           </div>
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+          <div class="p-2 rounded bg-slate-50 border border-slate-200">
             <div class="text-sm mb-0.5">🪐</div>
-            <div class="font-mono text-[11px] font-bold text-indigo-300">OpenCode</div>
-            <div class="text-[9px] font-mono text-slate-400">.opencode/</div>
+            <div class="font-mono text-[11px] font-bold text-indigo-700">OpenCode</div>
+            <div class="text-[9px] font-mono text-slate-500">.opencode/</div>
           </div>
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
+          <div class="p-2 rounded bg-slate-50 border border-slate-200">
             <div class="text-sm mb-0.5">🧠</div>
-            <div class="font-mono text-[11px] font-bold text-cyan-300">Codex / Agent</div>
-            <div class="text-[9px] font-mono text-slate-400">.codex/ &middot; .agents/</div>
+            <div class="font-mono text-[11px] font-bold text-cyan-700">Codex / Agent</div>
+            <div class="text-[9px] font-mono text-slate-500">.codex/ &middot; .agents/</div>
           </div>
         </div>
 
-        <!-- AGENTS.md 4 Core Pillars -->
-        <div class="text-[11px] font-mono text-slate-300 font-bold mb-1.5 flex items-center gap-1.5">
-          <span>📑</span>
-          <span>AGENTS.md에 반드시 기술해야 하는 4대 핵심 계약</span>
+        <!-- AGENTS.md 4 Core Pillars Header -->
+        <div class="flex items-center justify-between mb-1.5">
+          <div class="text-[11px] font-mono text-slate-800 font-bold flex items-center gap-1.5">
+            <span>📑</span>
+            <span>AGENTS.md에 반드시 기술해야 하는 4대 핵심 계약</span>
+          </div>
+          <button 
+            onclick="openAgentsModal(event)" 
+            class="text-[10px] font-mono text-sky-700 bg-sky-50 hover:bg-sky-100 px-2 py-0.5 rounded border border-sky-300 font-bold flex items-center gap-1 shadow-sm transition-all cursor-pointer"
+          >
+            <span>📜</span> 실제 예시 전문 보기 ➔
+          </button>
         </div>
 
         <div class="grid grid-cols-2 gap-2 text-xs">
-          <div class="p-2 rounded bg-slate-950/80 border border-slate-800">
-            <div class="text-sky-300 font-bold text-[11px] mb-0.5 flex items-center gap-1">
+          <!-- Pillar 1 -->
+          <div 
+            onclick="openAgentsModal(event)" 
+            class="p-2 rounded bg-slate-50 border border-slate-200 cursor-pointer hover:border-sky-400 hover:bg-sky-50/50 transition-all"
+            title="클릭하여 예시 확인"
+          >
+            <div class="text-sky-700 font-bold text-[11px] mb-0.5 flex items-center gap-1">
               <span>1️⃣</span> <span>Mission &amp; Scope</span>
             </div>
-            <div class="text-[10px] text-slate-300">
-              프로젝트의 목표, 언어 스택 분업(Python 백테스트 vs Go 실시간 엔진), 산출물 저장 위치 정의.
+            <div class="text-[10px] text-slate-600 leading-snug">
+              프로젝트의 목표, 언어 스택 분업(Python AI 코어 vs Go 게이트웨이), 산출물 저장 위치 정의.
             </div>
           </div>
 
-          <div class="p-2 rounded bg-slate-950/80 border border-slate-800">
-            <div class="text-amber-300 font-bold text-[11px] mb-0.5 flex items-center gap-1">
+          <!-- Pillar 2 (Changed from /mnt/data/finance to /data/corpus) -->
+          <div 
+            onclick="openAgentsModal(event)" 
+            class="p-2 rounded bg-slate-50 border border-slate-200 cursor-pointer hover:border-amber-400 hover:bg-amber-50/50 transition-all"
+            title="클릭하여 예시 확인"
+          >
+            <div class="text-amber-700 font-bold text-[11px] mb-0.5 flex items-center gap-1">
               <span>2️⃣</span> <span>Data Contract (데이터 계약)</span>
             </div>
-            <div class="text-[10px] text-slate-300">
-              절대경로 원칙(<code class="text-amber-200">/mnt/data/finance</code>), 임의의 데이터 폴더 오염 방지 및 Hive 파티션 보존.
+            <div class="text-[10px] text-slate-600 leading-snug">
+              절대경로 원칙(<code class="text-amber-800 bg-amber-100/70 px-1 py-0.2 rounded border border-amber-200 font-mono">/data/corpus</code>), 임의의 데이터 폴더 오염 방지 및 파티션 보존.
             </div>
           </div>
 
-          <div class="p-2 rounded bg-slate-950/80 border border-slate-800">
-            <div class="text-emerald-300 font-bold text-[11px] mb-0.5 flex items-center gap-1">
+          <!-- Pillar 3 -->
+          <div 
+            onclick="openAgentsModal(event)" 
+            class="p-2 rounded bg-slate-50 border border-slate-200 cursor-pointer hover:border-emerald-400 hover:bg-emerald-50/50 transition-all"
+            title="클릭하여 예시 확인"
+          >
+            <div class="text-emerald-700 font-bold text-[11px] mb-0.5 flex items-center gap-1">
               <span>3️⃣</span> <span>Quality &amp; Build Gates</span>
             </div>
-            <div class="text-[10px] text-slate-300">
-              <code class="text-emerald-200">uv sync</code>, 린터 및 테스트 통과 의무화, 작업 전후 검증 커맨드 표준화.
+            <div class="text-[10px] text-slate-600 leading-snug">
+              <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded font-mono">uv sync</code>, 린터 및 테스트 통과 의무화, 작업 전후 검증 커맨드 표준화.
             </div>
           </div>
 
-          <div class="p-2 rounded bg-slate-950/80 border border-slate-800">
-            <div class="text-purple-300 font-bold text-[11px] mb-0.5 flex items-center gap-1">
+          <!-- Pillar 4 -->
+          <div 
+            onclick="openAgentsModal(event)" 
+            class="p-2 rounded bg-slate-50 border border-slate-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/50 transition-all"
+            title="클릭하여 예시 확인"
+          >
+            <div class="text-purple-700 font-bold text-[11px] mb-0.5 flex items-center gap-1">
               <span>4️⃣</span> <span>Safe Change &amp; Operations</span>
             </div>
-            <div class="text-[10px] text-slate-300">
+            <div class="text-[10px] text-slate-600 leading-snug">
               파괴적 git 명령어 금지, .env 파일 커밋 엄금, 최소 단위 수정 및 LESSON_AND_LEARN 기록 의무.
             </div>
           </div>
@@ -5313,20 +5347,158 @@
       </div>
 
       <!-- Real world symlink quote -->
-      <div class="p-2 rounded bg-indigo-950/40 border border-indigo-800/40 text-[10.5px] font-mono text-indigo-300 flex items-center justify-between mt-2">
-        <span>🔗 실무 꿀팁: <code class="text-amber-300">ln -s AGENTS.md CLAUDE.md</code> 로 어떤 툴에서도 동일 사규 유지</span>
-        <span class="text-slate-400 text-[10px]">Zero Discrepancy</span>
+      <div class="p-2 rounded bg-indigo-50 border border-indigo-200 text-[10.5px] font-mono text-indigo-900 flex items-center justify-between mt-2">
+        <span>🔗 실무 꿀팁: <code class="text-amber-800 bg-amber-100 px-1 py-0.5 rounded font-bold">ln -s AGENTS.md CLAUDE.md</code> 로 어떤 툴에서도 동일 사규 유지</span>
+        <span class="text-slate-500 text-[10px]">Zero Discrepancy</span>
       </div>
     </div>
   </div>
 
-  <!-- Bottom Global Banner -->
-  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
-    <div class="flex items-center gap-2">
-      <span class="text-sky-400 font-bold">📜 AGENTS.md 원칙:</span>
-      <span class="text-slate-200">에이전트에게 매번 사정하지 말고, <strong>매 턴 강제 주입되는 프로젝트 헌법</strong>으로 통제하십시오.</span>
+  <!-- Fullscreen Modal for AGENTS.md Production Example -->
+  <div 
+    id="agents-modal" 
+    class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-6 transition-all"
+    onclick="closeAgentsModal(event)"
+  >
+    <div 
+      class="relative max-w-4xl w-full max-h-[88vh] flex flex-col bg-slate-900 border border-slate-700 rounded-xl overflow-hidden shadow-2xl" 
+      onclick="event.stopPropagation()"
+    >
+      <!-- Modal Header (Mac Style Window) -->
+      <div class="flex items-center justify-between px-4 py-3 bg-slate-950 border-b border-slate-800 shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-1.5">
+            <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+          </div>
+          <span class="text-sm font-mono font-bold text-sky-400 flex items-center gap-1.5">
+            <span>📜</span> AGENTS.md &middot; 실전 프로덕션 아키텍처 예시 (SSOT Sample)
+          </span>
+          <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">
+            실전 헌법 표준
+          </span>
+        </div>
+        <button 
+          onclick="closeAgentsModal()" 
+          class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 rounded text-xs font-mono font-bold transition-all shadow cursor-pointer"
+        >
+          ✕ 닫기 (ESC)
+        </button>
+      </div>
+
+      <!-- Modal Body (Code View) -->
+      <div class="flex-1 overflow-y-auto p-4 bg-slate-950 font-mono text-xs text-slate-200 leading-relaxed space-y-4">
+        <!-- 1. Mission & Scope -->
+        <div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800">
+          <div class="text-sky-400 font-bold text-sm mb-1.5 flex items-center gap-2">
+            <span># 1. Mission &amp; Architecture Scope</span>
+          </div>
+          <p class="text-slate-300 text-[11px] mb-2 leading-relaxed">
+            - <strong>Primary Goal:</strong> 대규모 트래픽 환경의 실시간 데이터 인텔리전스 및 추천 엔진 파이프라인 구축.<br>
+            - <strong>Language Stack Split:</strong><br>
+            &nbsp;&nbsp;• <strong>Research &amp; AI Brain:</strong> Python 3.12 (모델 실험, 임베딩 벡터화, EDA)<br>
+            &nbsp;&nbsp;• <strong>Live Runtime Engine:</strong> Go 1.23 (초고속 gRPC 게이트웨이, Zero-Crash 24/7 스트리밍 파이프라인)<br>
+            &nbsp;&nbsp;• <strong>Frontend UI:</strong> SvelteKit + Tailwind CSS (실시간 관제 대시보드)<br>
+            - <strong>Core Outputs:</strong> <code class="text-cyan-300">src/engine/</code> (Go 모듈), <code class="text-emerald-300">src/ai_model/</code> (Python 패키지), <code class="text-amber-300">artifacts/reports/</code>
+          </p>
+        </div>
+
+        <!-- 2. Data Contract -->
+        <div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800">
+          <div class="text-amber-400 font-bold text-sm mb-1.5 flex items-center gap-2">
+            <span># 2. Data Contract (데이터 계약 &amp; 절대경로 엄수)</span>
+          </div>
+          <p class="text-slate-300 text-[11px] mb-2 leading-relaxed">
+            - <strong>Root Data Path:</strong> <code class="text-amber-300 bg-amber-950/60 px-1.5 py-0.5 rounded border border-amber-800/50">/data/corpus</code> (절대경로 원칙; 임의의 상대경로나 /tmp 변조 엄금)<br>
+            - <strong>Storage Layout:</strong> Hive Partition 구조 준수 (<code class="text-slate-300">/data/corpus/events/dt=YYYY-MM-DD/hh=HH/</code>)<br>
+            - <strong>Agent Protocol:</strong><br>
+            &nbsp;&nbsp;• 데이터 스키마 또는 파티션 컬럼을 임의로 변경하지 않고 사전문서와 일치시킬 것<br>
+            &nbsp;&nbsp;• 대용량 쿼리는 DuckDB / Polars 벡터화 엔진을 사용하여 메모리 OOM 방지
+          </p>
+        </div>
+
+        <!-- 3. Quality & Build Gates -->
+        <div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800">
+          <div class="text-emerald-400 font-bold text-sm mb-1.5 flex items-center gap-2">
+            <span># 3. Quality &amp; Build Gates (품질 검증 관문)</span>
+          </div>
+          <p class="text-slate-300 text-[11px] mb-2 leading-relaxed">
+            - <strong>Python Quality Gates:</strong><br>
+            &nbsp;&nbsp;• 패키지 의존성 동기화: <code class="text-emerald-300">uv sync</code><br>
+            &nbsp;&nbsp;• 린트 &amp; 정적 검사: <code class="text-emerald-300">uv run ruff check src/ tests/</code><br>
+            &nbsp;&nbsp;• 자동화 단위 테스트: <code class="text-emerald-300">uv run pytest -q tests/</code><br>
+            - <strong>Go Quality Gates:</strong><br>
+            &nbsp;&nbsp;• 빌드 및 린트: <code class="text-cyan-300">golangci-lint run ./...</code><br>
+            &nbsp;&nbsp;• 동시성 레이스 검사: <code class="text-cyan-300">go test -race -v ./...</code><br>
+            - <strong>Verification Rule:</strong> 모든 PR 및 코드 변경 전 린트와 테스트가 100% 통과(Exit Code 0)해야만 작업 완료를 선언한다.
+          </p>
+        </div>
+
+        <!-- 4. Safe Change & Operations -->
+        <div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800">
+          <div class="text-purple-400 font-bold text-sm mb-1.5 flex items-center gap-2">
+            <span># 4. Safe Change Policy &amp; Operations</span>
+          </div>
+          <p class="text-slate-300 text-[11px] mb-1 leading-relaxed">
+            - <strong>파괴적 Git 행위 엄금:</strong> <code class="text-rose-400">git push --force</code>, <code class="text-rose-400">git reset --hard</code> 금지<br>
+            - <strong>시크릿 3계층 격리:</strong> API 키 및 DB 패스워드는 <code class="text-amber-300">.env.dev</code> / <code class="text-amber-300">.env.prod</code> 에만 기록하고 Git 커밋 절대 금지<br>
+            - <strong>컨테이너 배포:</strong> <code class="text-sky-300">podman-compose up -d</code> 로 무중단 서비스 롤아웃<br>
+            - <strong>트러블슈팅 아카이빙:</strong> 복잡한 버그나 설계 변경 발생 시 <code class="text-indigo-300">LESSON_AND_LEARN.md</code>에 원인과 해결책을 필히 기록
+          </p>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-4 py-2.5 bg-slate-950 border-t border-slate-800 text-xs font-mono text-slate-400 flex items-center justify-between shrink-0">
+        <span class="flex items-center gap-1.5 text-slate-300">
+          <span>💡</span> <span>모든 AI 에이전트는 작업 시작 전 위 헌법을 읽고 절대 벗어나지 않습니다.</span>
+        </span>
+        <button 
+          onclick="closeAgentsModal()" 
+          class="px-3 py-1 bg-sky-900/60 hover:bg-sky-800 text-sky-200 border border-sky-600 rounded text-xs font-mono font-bold transition-all shadow cursor-pointer"
+        >
+          확인 완료 (ESC)
+        </button>
+      </div>
     </div>
-    <span class="text-sky-400 font-bold text-[11px]">Slide 40</span>
+  </div>
+
+  <script>
+    function openAgentsModal(e) {
+      if (e) e.stopPropagation();
+      const modal = document.getElementById("agents-modal");
+      if (!modal) return;
+      if (modal.parentElement !== document.body) {
+        document.body.appendChild(modal);
+      }
+      modal.classList.remove("hidden");
+    }
+
+    function closeAgentsModal(e) {
+      if (e && e.target !== e.currentTarget && e.target.tagName !== "BUTTON") return;
+      const modal = document.getElementById("agents-modal");
+      if (modal) modal.classList.add("hidden");
+    }
+
+    document.addEventListener("keydown", function(ev) {
+      if (ev.key === "Escape") {
+        const modal = document.getElementById("agents-modal");
+        if (modal && !modal.classList.contains("hidden")) {
+          closeAgentsModal();
+          ev.stopPropagation();
+        }
+      }
+    });
+  </script>
+
+  <!-- Bottom Global Banner -->
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-700 border border-slate-200 bg-white">
+    <div class="flex items-center gap-2">
+      <span class="text-sky-600 font-bold">📜 AGENTS.md 원칙:</span>
+      <span class="text-slate-700">에이전트에게 매번 사정하지 말고, <strong>매 턴 강제 주입되는 프로젝트 헌법</strong>으로 통제하십시오.</span>
+    </div>
+    <span class="text-sky-600 font-bold text-[11px]">Slide 40</span>
   </div>
 </section>
 
