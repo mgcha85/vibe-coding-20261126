@@ -17,118 +17,161 @@
   <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
     
     <!-- LEFT: Why git checkout fails (5 cols) -->
-    <div class="col-span-5 bento-tile p-3.5 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+    <div class="col-span-5 bento-tile p-3.5 bg-white border border-slate-200 flex flex-col justify-between shadow-sm">
       <div>
         <div class="flex items-center justify-between mb-2">
-          <span class="text-[11px] font-mono text-rose-400 font-bold uppercase">❌ 왜 git checkout/switch로는 불가능한가?</span>
-          <span class="text-[9.5px] font-mono text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">Collision Alert</span>
+          <span class="text-[11px] font-mono text-rose-700 font-bold uppercase tracking-wide">❌ 왜 git checkout/switch로는 불가능한가?</span>
+          <span class="text-[9.5px] font-mono text-rose-800 bg-rose-50 px-2.5 py-0.5 rounded-full border border-rose-300 font-bold">Collision Alert</span>
         </div>
 
-        <p class="text-[11px] text-slate-300 mb-2 leading-relaxed">
+        <p class="text-[11px] text-slate-600 mb-2 leading-relaxed">
           동일한 로컬 작업 폴더에서 2개 이상의 에이전트를 돌리면 발생하는 참사:
         </p>
 
         <!-- Friction List -->
         <div class="space-y-1.5 text-xs font-mono">
-          <div class="p-2 rounded bg-rose-950/30 border border-rose-800/40">
-            <div class="text-rose-300 font-bold text-[10.5px]">1. 파일 쓰기 충돌 (File Clobbering)</div>
-            <div class="text-[10px] text-slate-300 font-sans mt-0.5">
+          <div class="p-2 rounded-lg bg-rose-50/80 border border-rose-200/90">
+            <div class="text-rose-900 font-bold text-[10.5px]">1. 파일 쓰기 충돌 (File Clobbering)</div>
+            <div class="text-[10px] text-slate-700 font-sans mt-0.5">
               에이전트 A가 고치는 파일 위에 에이전트 B가 중간 코드를 덮어써서 파괴.
             </div>
           </div>
 
-          <div class="p-2 rounded bg-rose-950/30 border border-rose-800/40">
-            <div class="text-rose-300 font-bold text-[10.5px]">2. 락 파일 &amp; 빌드 캐시 오염</div>
-            <div class="text-[10px] text-slate-300 font-sans mt-0.5">
-              <code class="text-rose-300">node_modules</code>, <code class="text-rose-300">target/</code>, <code class="text-rose-300">.git/index.lock</code> 충돌로 빌드 즉각 크래시.
+          <div class="p-2 rounded-lg bg-rose-50/80 border border-rose-200/90">
+            <div class="text-rose-900 font-bold text-[10.5px]">2. 락 파일 &amp; 빌드 캐시 오염</div>
+            <div class="text-[10px] text-slate-700 font-sans mt-0.5">
+              <code class="text-rose-800 bg-rose-100/70 px-1 py-0.2 rounded font-mono font-bold">node_modules</code>, <code class="text-rose-800 bg-rose-100/70 px-1 py-0.2 rounded font-mono font-bold">target/</code>, <code class="text-rose-800 bg-rose-100/70 px-1 py-0.2 rounded font-mono font-bold">.git/index.lock</code> 충돌로 빌드 즉각 크래시.
             </div>
           </div>
 
-          <div class="p-2 rounded bg-rose-950/30 border border-rose-800/40">
-            <div class="text-rose-300 font-bold text-[10.5px]">3. 개발자 락아웃 (Developer Lockout)</div>
-            <div class="text-[10px] text-slate-300 font-sans mt-0.5">
+          <div class="p-2 rounded-lg bg-rose-50/80 border border-rose-200/90">
+            <div class="text-rose-900 font-bold text-[10.5px]">3. 개발자 락아웃 (Developer Lockout)</div>
+            <div class="text-[10px] text-slate-700 font-sans mt-0.5">
               에이전트가 2분간 수정 중일 때 다른 브랜치로 switch조차 못 하고 손 묶임.
             </div>
           </div>
         </div>
       </div>
 
-      <div class="p-2 rounded bg-slate-950 border border-slate-800 text-[10px] font-mono text-slate-400">
-        ➔ 해결책: <strong>디스크 용량 낭비 없이 물리 폴더만 N개로 쪼개는 git worktree</strong>
+      <div class="p-2 rounded-lg bg-emerald-50/90 border border-emerald-300/80 text-[10.5px] font-mono text-emerald-950 font-medium flex items-center gap-1.5">
+        <span class="text-emerald-600 font-bold text-xs">➔</span>
+        <span>해결책: <strong>디스크 용량 낭비 없이 물리 폴더만 N개로 쪼개는 git worktree</strong></span>
       </div>
     </div>
 
     <!-- RIGHT: git worktree Architecture & CLI (7 cols) -->
-    <div class="col-span-7 bento-tile p-3.5 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+    <div class="col-span-7 bento-tile p-3.5 bg-white border border-slate-200 flex flex-col justify-between shadow-sm">
       <div>
         <div class="flex items-center justify-between mb-2">
-          <span class="text-[11px] font-mono text-sky-400 font-bold uppercase">⚡ git worktree 동작 원리와 3대 워크스페이스</span>
-          <span class="text-[9.5px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">Shared .git Database</span>
+          <span class="text-[11px] font-mono text-sky-700 font-bold uppercase tracking-wide">⚡ git worktree 동작 원리와 3대 워크스페이스</span>
+          <span class="text-[9.5px] font-mono text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-300 font-bold">Shared .git Database</span>
         </div>
 
-        <!-- SVG Architecture Diagram -->
-        <div class="bg-slate-950 rounded-lg p-2 border border-slate-800 mb-2">
-          <svg viewBox="0 0 420 95" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+        <!-- SVG Architecture Diagram (High Contrast Editorial Theme) -->
+        <div class="rounded-xl p-2.5 bg-slate-50 border border-slate-200 mb-2 shadow-sm">
+          <svg viewBox="0 0 450 102" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
             <!-- Central .git database -->
-            <rect x="10" y="20" width="105" height="55" rx="5" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
-            <text x="62" y="42" text-anchor="middle" fill="#ffffff" font-size="10" font-family="JetBrains Mono" font-weight="bold">Single .git</text>
-            <text x="62" y="58" text-anchor="middle" fill="#a5b4fc" font-size="7.5">커밋/브랜치 1벌 공유</text>
+            <rect x="8" y="16" width="118" height="70" rx="8" fill="#1E1B4B" stroke="#4F46E5" stroke-width="1.5"/>
+            <!-- Git Header Pill -->
+            <rect x="20" y="24" width="94" height="18" rx="4" fill="#312E81"/>
+            <text x="67" y="37" text-anchor="middle" fill="#FFFFFF" font-size="10.5" font-family="JetBrains Mono, monospace" font-weight="bold">Single .git</text>
+            <text x="67" y="59" text-anchor="middle" fill="#E0E7FF" font-size="8" font-family="Pretendard, sans-serif" font-weight="bold">커밋 · 브랜치 1벌</text>
+            <text x="67" y="73" text-anchor="middle" fill="#A5B4FC" font-size="7.5" font-family="Pretendard, sans-serif">오브젝트 DB 100% 공유</text>
 
             <!-- Connecting dashed lines -->
-            <path d="M 115 32 L 165 18" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 2"/>
-            <path d="M 115 47 L 165 47" stroke="#34d399" stroke-width="1.5" stroke-dasharray="3 2"/>
-            <path d="M 115 62 L 165 76" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <path d="M 126 33 C 142 33, 148 20, 162 20" stroke="#0284C7" stroke-width="1.8" stroke-dasharray="3 2"/>
+            <circle cx="162" cy="20" r="2.5" fill="#0284C7"/>
+
+            <path d="M 126 51 C 142 51, 148 51, 162 51" stroke="#059669" stroke-width="1.8" stroke-dasharray="3 2"/>
+            <circle cx="162" cy="51" r="2.5" fill="#059669"/>
+
+            <path d="M 126 69 C 142 69, 148 82, 162 82" stroke="#7C3AED" stroke-width="1.8" stroke-dasharray="3 2"/>
+            <circle cx="162" cy="82" r="2.5" fill="#7C3AED"/>
 
             <!-- Worktree 1 -->
-            <g transform="translate(165, 5)">
-              <rect width="245" height="25" rx="4" fill="#0369a1" fill-opacity="0.25" stroke="#38bdf8" stroke-width="1"/>
-              <text x="8" y="16" fill="#38bdf8" font-size="8.5" font-family="JetBrains Mono" font-weight="bold">📁 ../wt-auth</text>
-              <text x="110" y="16" fill="#bae6fd" font-size="7.5">🤖 Agent A: 인증 서비스 (Go/JWT)</text>
+            <g transform="translate(166, 6)">
+              <rect width="276" height="28" rx="6" fill="#F0F9FF" stroke="#0284C7" stroke-width="1.2"/>
+              <!-- Folder badge -->
+              <rect x="5" y="4.5" width="82" height="19" rx="4" fill="#E0F2FE" stroke="#BAE6FD" stroke-width="0.8"/>
+              <text x="46" y="17.5" text-anchor="middle" fill="#0369A1" font-size="8.5" font-family="JetBrains Mono, monospace" font-weight="bold">📁 ../wt-auth</text>
+              <!-- Agent & Role Text with tspan -->
+              <text x="94" y="17.5" font-size="8" font-family="Pretendard, sans-serif">
+                <tspan fill="#0F172A" font-weight="bold">🤖 Agent A : </tspan>
+                <tspan fill="#0369A1" font-weight="600">인증 (Go/JWT)</tspan>
+              </text>
+              <!-- Branch pill -->
+              <rect x="214" y="5.5" width="56" height="17" rx="3.5" fill="#0284C7"/>
+              <text x="242" y="17.5" text-anchor="middle" fill="#FFFFFF" font-size="7" font-family="JetBrains Mono, monospace" font-weight="bold">feat/auth</text>
             </g>
 
             <!-- Worktree 2 -->
-            <g transform="translate(165, 35)">
-              <rect width="245" height="25" rx="4" fill="#064e3b" fill-opacity="0.25" stroke="#34d399" stroke-width="1"/>
-              <text x="8" y="16" fill="#34d399" font-size="8.5" font-family="JetBrains Mono" font-weight="bold">📁 ../wt-billing</text>
-              <text x="110" y="16" fill="#a7f3d0" font-size="7.5">🤖 Agent B: 결제 모듈 (Stripe)</text>
+            <g transform="translate(166, 37)">
+              <rect width="276" height="28" rx="6" fill="#F0FDF4" stroke="#059669" stroke-width="1.2"/>
+              <!-- Folder badge -->
+              <rect x="5" y="4.5" width="82" height="19" rx="4" fill="#DCFCE7" stroke="#BBF7D0" stroke-width="0.8"/>
+              <text x="46" y="17.5" text-anchor="middle" fill="#047857" font-size="8.5" font-family="JetBrains Mono, monospace" font-weight="bold">📁 ../wt-billing</text>
+              <!-- Agent & Role Text with tspan -->
+              <text x="94" y="17.5" font-size="8" font-family="Pretendard, sans-serif">
+                <tspan fill="#0F172A" font-weight="bold">🤖 Agent B : </tspan>
+                <tspan fill="#047857" font-weight="600">결제 (Stripe)</tspan>
+              </text>
+              <!-- Branch pill -->
+              <rect x="214" y="5.5" width="56" height="17" rx="3.5" fill="#059669"/>
+              <text x="242" y="17.5" text-anchor="middle" fill="#FFFFFF" font-size="7" font-family="JetBrains Mono, monospace" font-weight="bold">feat/billing</text>
             </g>
 
             <!-- Worktree 3 -->
-            <g transform="translate(165, 65)">
-              <rect width="245" height="25" rx="4" fill="#581c87" fill-opacity="0.25" stroke="#c084fc" stroke-width="1"/>
-              <text x="8" y="16" fill="#c084fc" font-size="8.5" font-family="JetBrains Mono" font-weight="bold">📁 ../wt-e2e</text>
-              <text x="110" y="16" fill="#e9d5ff" font-size="7.5">🤖 Agent C: E2E 통합 테스트</text>
+            <g transform="translate(166, 68)">
+              <rect width="276" height="28" rx="6" fill="#FAF5FF" stroke="#7C3AED" stroke-width="1.2"/>
+              <!-- Folder badge -->
+              <rect x="5" y="4.5" width="82" height="19" rx="4" fill="#F3E8FF" stroke="#E9D5FF" stroke-width="0.8"/>
+              <text x="46" y="17.5" text-anchor="middle" fill="#6D28D9" font-size="8.5" font-family="JetBrains Mono, monospace" font-weight="bold">📁 ../wt-e2e</text>
+              <!-- Agent & Role Text with tspan -->
+              <text x="94" y="17.5" font-size="8" font-family="Pretendard, sans-serif">
+                <tspan fill="#0F172A" font-weight="bold">🤖 Agent C : </tspan>
+                <tspan fill="#6D28D9" font-weight="600">E2E 통합 테스트</tspan>
+              </text>
+              <!-- Branch pill -->
+              <rect x="214" y="5.5" width="56" height="17" rx="3.5" fill="#7C3AED"/>
+              <text x="242" y="17.5" text-anchor="middle" fill="#FFFFFF" font-size="7" font-family="JetBrains Mono, monospace" font-weight="bold">test/e2e</text>
             </g>
           </svg>
         </div>
 
-        <!-- CLI Command Box -->
-        <div class="p-2 rounded bg-slate-950 border border-slate-800 font-mono text-[10px] leading-relaxed text-slate-300">
-          <div class="text-slate-400 font-bold mb-0.5"># 메인 저장소에서 단 1초 만에 격리 작업실 생성:</div>
-          <div><code class="text-sky-300">git worktree add ../wt-auth -b feat/auth-service</code></div>
-          <div><code class="text-emerald-300">git worktree add ../wt-billing -b feat/billing-stripe</code></div>
-          <div><code class="text-purple-300">git worktree add ../wt-e2e -b test/e2e-pipeline</code></div>
+        <!-- CLI Command Box (Realistic High-Contrast Terminal) -->
+        <div style="background-color: #0F172A !important;" class="p-2.5 rounded-lg border border-slate-700/80 font-mono text-[10.5px] leading-relaxed shadow-sm">
+          <div class="flex items-center justify-between mb-1">
+            <span style="color: #94A3B8 !important;" class="font-bold text-[9.5px]"># 메인 저장소에서 단 1초 만에 격리 작업실 생성:</span>
+            <div class="flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-rose-500/80 inline-block"></span>
+              <span class="w-2 h-2 rounded-full bg-amber-500/80 inline-block"></span>
+              <span class="w-2 h-2 rounded-full bg-emerald-500/80 inline-block"></span>
+            </div>
+          </div>
+          <div><span style="color: #38BDF8 !important;" class="font-bold">git worktree add</span> <span style="color: #F8FAFC !important;" class="font-bold">../wt-auth</span> <span style="color: #7DD3FC !important;">-b feat/auth-service</span></div>
+          <div><span style="color: #34D399 !important;" class="font-bold">git worktree add</span> <span style="color: #F8FAFC !important;" class="font-bold">../wt-billing</span> <span style="color: #A7F3D0 !important;">-b feat/billing-stripe</span></div>
+          <div><span style="color: #C084FC !important;" class="font-bold">git worktree add</span> <span style="color: #F8FAFC !important;" class="font-bold">../wt-e2e</span> <span style="color: #E9D5FF !important;">-b test/e2e-pipeline</span></div>
         </div>
       </div>
 
       <!-- 2 Key Benefits -->
       <div class="grid grid-cols-2 gap-2 mt-2 text-[10px] font-mono">
-        <div class="p-1.5 bg-indigo-950/40 rounded border border-indigo-800/40 text-indigo-300">
-          ✓ 디스크 용량 90% 절약 (.git 중복 클론 없음)
+        <div class="p-1.5 bg-indigo-50/90 rounded-lg border border-indigo-200/80 text-indigo-900 font-semibold flex items-center gap-1.5">
+          <span class="text-indigo-600 font-bold">✓</span> 디스크 용량 90% 절약 (.git 중복 클론 없음)
         </div>
-        <div class="p-1.5 bg-emerald-950/40 rounded border border-emerald-800/40 text-emerald-300">
-          ✓ 완전한 파일 격리 ➔ Cursor/VSCode N개 창 동시 실행
+        <div class="p-1.5 bg-emerald-50/90 rounded-lg border border-emerald-200/80 text-emerald-900 font-semibold flex items-center gap-1.5">
+          <span class="text-emerald-600 font-bold">✓</span> 완전한 파일 격리 ➔ N개 독립 IDE 동시 구동
         </div>
       </div>
     </div>
   </div>
 
   <!-- Bottom Global Banner -->
-  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-700 border border-slate-200 bg-white">
     <div class="flex items-center gap-2">
-      <span class="text-sky-400 font-bold">🌿 Git Worktree의 미학:</span>
-      <span class="text-slate-200">중복 클론 없이 <strong>완벽히 격리된 물리 디렉토리</strong>를 에이전트마다 배정하십시오.</span>
+      <span class="text-sky-700 font-bold">🌿 Git Worktree의 미학:</span>
+      <span class="text-slate-800">중복 클론 없이 <strong>완벽히 격리된 물리 디렉토리</strong>를 에이전트마다 배정하십시오.</span>
     </div>
-    <span class="text-sky-400 font-bold text-[11px]">Slide 55</span>
+    <span class="text-sky-700 font-bold text-[11px]">Slide 56</span>
   </div>
 </section>
