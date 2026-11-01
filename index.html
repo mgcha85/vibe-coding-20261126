@@ -2943,228 +2943,27 @@
 
       <!-- [COMPONENT] 02-essence/09-competencies.html -->
 <section class="slide flex flex-col justify-between" data-title="2.5 4대 핵심 역량" data-chapter-id="ch02" data-chapter-badge="CHAPTER 02 · 본질" data-chapter-title="Ch 02. 본질 : 바이브 코딩이란 무엇인가" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
-  <div class="mb-1.5">
+  <div class="mb-1">
     <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 02. 본질</span>
     <h2 class="text-3xl font-black text-white">2.5 2026 바이브 코더의 4대 핵심 역량 : 코더에서 '시스템 지휘자'로</h2>
     <p class="text-xs text-slate-300 mt-0.5">
-      문법을 손으로 타이핑하던 시대는 끝났습니다. 이제 엔지니어는 <strong>관제탑에서 4대 가드레일을 쥐고 에이전트를 지휘</strong>합니다:
+      문법을 손으로 타이핑하던 시대의 종말 — <strong>시스템 관제탑에서 AI 에이전트를 지휘하기 위한 필수 프레임워크</strong>:
     </p>
   </div>
 
-  <style>
-    @keyframes radarSweep {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .animate-radar {
-      animation: radarSweep 6s linear infinite;
-      transform-origin: center;
-    }
-    @keyframes coreGlow {
-      0%, 100% { filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.4)); }
-      50% { filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.8)); }
-    }
-    .cockpit-glow {
-      animation: coreGlow 3s ease-in-out infinite;
-    }
-    @keyframes loopFlowDash {
-      to { stroke-dashoffset: -16; }
-    }
-    .flow-dash {
-      stroke-dasharray: 4 3;
-      animation: loopFlowDash 1.2s linear infinite;
-    }
-    @keyframes shieldPulse {
-      0%, 100% { filter: drop-shadow(0 0 4px rgba(52, 211, 153, 0.5)); }
-      50% { filter: drop-shadow(0 0 12px rgba(52, 211, 153, 0.9)); }
-    }
-    .shield-glow {
-      animation: shieldPulse 2s ease-in-out infinite;
-    }
-  </style>
-
-  <!-- Central Cockpit Hub Layout (Left 5 + Center 2 + Right 5) -->
-  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-auto">
-    <!-- LEFT COLUMN: 01. Architecture & 03. Precision (5 cols) -->
-    <div class="col-span-5 flex flex-col justify-between gap-2.5">
-      <!-- 01. Architecture Literacy Card -->
-      <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-sky-400 bg-slate-950/90 shadow-lg">
-        <div>
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] font-mono text-sky-400 font-bold uppercase tracking-wider">01 / SYSTEM LITERACY</span>
-            <span class="text-[9px] font-mono text-sky-300 bg-sky-950/80 px-1.5 py-0.5 rounded border border-sky-800/50">설계도 &amp; 레일</span>
-          </div>
-          <h3 class="text-sm font-bold text-white mb-0.5">아키텍처 문해력 (Blueprint &amp; Highway)</h3>
-          
-          <!-- Google Flow Generated Scene 1: Architecture Blueprint & Flow -->
-          <div class="relative rounded-lg overflow-hidden border border-sky-900/60 my-1.5 h-24 group bg-slate-900 shadow-inner">
-            <img src="./slides/02-essence/assets/competency_01_architecture.png" alt="Architecture Blueprint" class="w-full h-full object-cover object-top transition-all duration-300" />
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-1.5">
-              <div class="text-[8px] font-mono text-sky-300 leading-tight drop-shadow">
-                📐 거시 청사진 경계선(Boundary) 위에서만 AI가 모듈을 조립하도록 통제
-              </div>
-            </div>
-          </div>
-
-          <p class="text-[10.5px] text-slate-300 leading-snug">
-            AI에게 무작정 코딩을 시키지 않고, <strong>데이터 흐름과 컴포넌트 경계선(UI ⇄ Edge ⇄ DB)</strong>을 지도처럼 설계도로 먼저 통제하는 역량.
-          </p>
-        </div>
-        <div class="text-[9.5px] text-sky-300 font-mono border-t border-slate-800/80 pt-1 mt-1">
-          ✓ 신택스 암기보다 시스템 구조 설계 능력이 우선
-        </div>
-      </div>
-
-      <!-- 03. Specification Precision Card -->
-      <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-purple-400 bg-slate-950/90 shadow-lg">
-        <div>
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] font-mono text-purple-400 font-bold uppercase tracking-wider">03 / AMBIGUITY ELIMINATION</span>
-            <span class="text-[9px] font-mono text-purple-300 bg-purple-950/80 px-1.5 py-0.5 rounded border border-purple-800/50">문서 표지판</span>
-          </div>
-          <h3 class="text-sm font-bold text-white mb-0.5">명세 정밀도 (Guided Roadway with Skills)</h3>
-
-          <!-- Google Flow Generated Scene 3: Skills Guidance Rail & Zero Drift -->
-          <div class="relative rounded-lg overflow-hidden border border-purple-900/60 my-1.5 h-24 group bg-slate-900 shadow-inner">
-            <img src="./slides/02-essence/assets/competency_03_specification.png" alt="Skills Guidance Rail" class="w-full h-full object-cover object-center transition-all duration-300" />
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-1.5">
-              <div class="text-[8px] font-mono text-purple-300 leading-tight drop-shadow">
-                📄 Skills·Rules 레이저 가이드 레일 위를 표류(Drift) 없이 질주하는 AI
-              </div>
-            </div>
-          </div>
-
-          <p class="text-[10.5px] text-slate-300 leading-snug">
-            막연한 프롬프트 대신, <strong>Skills 문서와 인터페이스 규격(Harness)</strong>을 길잡이 표지판으로 꽂아 AI 환각과 표류를 원천 차단하는 소통력.
-          </p>
-        </div>
-        <div class="text-[9.5px] text-purple-300 font-mono border-t border-slate-800/80 pt-1 mt-1">
-          ✓ 명세가 정밀할수록 AI의 성공률은 100%로 수렴
-        </div>
-      </div>
-    </div>
-
-    <!-- CENTER COLUMN: Central Cockpit Command Hub (2 cols) -->
-    <div class="col-span-2 bento-tile p-2.5 border-2 border-indigo-500/60 bg-slate-950 flex flex-col items-center justify-between cockpit-glow relative overflow-hidden shadow-2xl">
-      <!-- Top Title -->
-      <div class="text-center">
-        <span class="text-[9px] font-mono text-indigo-300 bg-indigo-950/80 px-2 py-0.5 rounded border border-indigo-700/50 uppercase font-bold">
-          COMMAND COCKPIT
-        </span>
-        <div class="text-xs font-black text-white mt-1">관제탑 코어</div>
-      </div>
-
-      <!-- Radar & Conductor SVG Illustration -->
-      <div class="relative w-full flex items-center justify-center my-auto">
-        <svg viewBox="0 0 140 140" class="w-full max-w-[125px] h-auto" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="radarCoreGrad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#818cf8" stop-opacity="0.4"/>
-              <stop offset="60%" stop-color="#4f46e5" stop-opacity="0.15"/>
-              <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-
-          <!-- Concentric Radar Rings -->
-          <circle cx="70" cy="70" r="62" fill="none" stroke="#4338ca" stroke-width="0.8" stroke-dasharray="2 3"/>
-          <circle cx="70" cy="70" r="46" fill="none" stroke="#6366f1" stroke-width="0.9"/>
-          <circle cx="70" cy="70" r="30" fill="url(#radarCoreGrad)" stroke="#818cf8" stroke-width="1.2"/>
-
-          <!-- Radar Crosshairs -->
-          <line x1="70" y1="8" x2="70" y2="132" stroke="#4f46e5" stroke-width="0.8" stroke-dasharray="3 3"/>
-          <line x1="8" y1="70" x2="132" y2="70" stroke="#4f46e5" stroke-width="0.8" stroke-dasharray="3 3"/>
-
-          <!-- Rotating Radar Sweep Line -->
-          <line x1="70" y1="70" x2="70" y2="12" stroke="#a855f7" stroke-width="2" class="animate-radar"/>
-
-          <!-- Center Conductor Icon -->
-          <circle cx="70" cy="70" r="16" fill="#1e1b4b" stroke="#c084fc" stroke-width="1.8"/>
-          <text x="70" y="74" text-anchor="middle" fill="#ffffff" font-size="12">👨‍✈️</text>
-
-          <!-- 4 Radiating Command Beams -->
-          <!-- ↖ 01 Blueprint -->
-          <path d="M 54 54 L 18 18" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="2 2"/>
-          <!-- ↗ 02 TDD Harness -->
-          <path d="M 86 54 L 122 18" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="2 2"/>
-          <!-- ↙ 03 Skills Guide -->
-          <path d="M 54 86 L 18 122" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="2 2"/>
-          <!-- ↘ 04 Security Shield -->
-          <path d="M 86 86 L 122 122" stroke="#34d399" stroke-width="1.5" stroke-dasharray="2 2"/>
-        </svg>
-      </div>
-
-      <!-- Core Label & Takeaway -->
-      <div class="text-center space-y-1">
-        <div class="text-[10.5px] font-black text-indigo-200">인간 시스템 지휘자</div>
-        <div class="text-[8.5px] font-mono text-slate-400 leading-tight">
-          신택스 타이피스트에서<br>
-          <strong class="text-sky-300">4대 시스템 총괄 사령관</strong>으로
-        </div>
-      </div>
-    </div>
-
-    <!-- RIGHT COLUMN: 02. Testing & 04. Guardrails (5 cols) -->
-    <div class="col-span-5 flex flex-col justify-between gap-2.5">
-      <!-- 02. TDD Harness Card -->
-      <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-indigo-400 bg-slate-950/90 shadow-lg">
-        <div>
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] font-mono text-indigo-400 font-bold uppercase tracking-wider">02 / TDD HARNESS</span>
-            <span class="text-[9px] font-mono text-indigo-300 bg-indigo-950/80 px-1.5 py-0.5 rounded border border-indigo-800/50">자가치유 관문</span>
-          </div>
-          <h3 class="text-sm font-bold text-white mb-0.5">테스트 주도 검증력 (Harness Checkpoint)</h3>
-
-          <!-- Google Flow Generated Scene 2: TDD Test Harness & Self-Healing Loop -->
-          <div class="relative rounded-lg overflow-hidden border border-indigo-900/60 my-1.5 h-24 group bg-slate-900 shadow-inner">
-            <img src="./slides/02-essence/assets/competency_02_harness.png" alt="TDD Test Harness Loop" class="w-full h-full object-cover object-center transition-all duration-300" />
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-1.5">
-              <div class="text-[8px] font-mono text-indigo-300 leading-tight drop-shadow">
-                ⚡ TDD 관문(Scan·Gate)에 부딪힌 AI가 Stderr 피드백 루프로 자가치유
-              </div>
-            </div>
-          </div>
-
-          <p class="text-[10.5px] text-slate-300 leading-snug">
-            인간이 코드를 한 줄씩 읽는 대신, <strong>자동화된 테스트 관문(Harness)</strong>을 세워 AI가 스스로 부딪히며 녹색 불(Green)을 띄우게 만드는 검증력.
-          </p>
-        </div>
-        <div class="text-[9.5px] text-indigo-300 font-mono border-t border-slate-800/80 pt-1 mt-1">
-          ✓ 컴파일러와 단위 테스트를 에이전트 가이드로 활용
-        </div>
-      </div>
-
-      <!-- 04. Security Guardrails Card -->
-      <div class="bento-tile p-3 flex flex-col justify-between border-t-2 border-t-emerald-400 bg-slate-950/90 shadow-lg">
-        <div>
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] font-mono text-emerald-400 font-bold uppercase tracking-wider">04 / SECURITY AUDITING</span>
-            <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-800/50">방패 &amp; 조율</span>
-          </div>
-          <h3 class="text-sm font-bold text-white mb-0.5">보안 가드레일 (Engineer-Tuned AI Shield)</h3>
-
-          <!-- Google Flow Generated Scene 4: Security Shield & Threat Defense -->
-          <div class="relative rounded-lg overflow-hidden border border-emerald-900/60 my-1.5 h-24 group bg-slate-900 shadow-inner">
-            <img src="./slides/02-essence/assets/competency_04_security.png" alt="Security Energy Shield" class="w-full h-full object-cover object-bottom transition-all duration-300" />
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-1.5">
-              <div class="text-[8px] font-mono text-emerald-300 leading-tight drop-shadow">
-                🛡️ 엔지니어 관제 콘솔의 통제 하에 전개되는 다층 제로 트러스트 쉴드
-              </div>
-            </div>
-          </div>
-
-          <p class="text-[10.5px] text-slate-300 leading-snug">
-            엔지니어의 통제 하에 <strong>AI가 제로 트러스트 쉴드(RLS · 시크릿 마스킹)</strong>를 전개하여 외부 침입과 데이터 유출을 원천 봉쇄하는 역량.
-          </p>
-        </div>
-        <div class="text-[9.5px] text-emerald-300 font-mono border-t border-slate-800/80 pt-1 mt-1">
-          ✓ 개발자의 최종 책임은 '동작'이 아닌 '안전'에 있다
-        </div>
-      </div>
+  <!-- Central 4 Competencies Visual Graphic (Replaces entire body) -->
+  <div class="w-full flex-1 flex items-center justify-center my-auto min-h-0 py-1">
+    <div class="rounded-xl overflow-hidden border border-slate-700/60 shadow-2xl flex items-center justify-center bg-white p-2 max-h-[470px]">
+      <img 
+        src="./slides/02-essence/assets/simplify_four_competencies.jpg" 
+        alt="2026 바이브 코더의 4대 핵심 역량 - 01. 아키텍처 문해력, 02. 테스트 주도 검증력, 03. 명세 정밀도, 04. 보안 가드레일" 
+        class="h-auto max-h-[450px] w-auto max-w-full object-contain rounded-lg" 
+      />
     </div>
   </div>
 
   <!-- Bottom Takeaway Banner -->
-  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-1">
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800 mt-1 shrink-0">
     <div class="flex items-center gap-2">
       <span class="text-sky-400 font-bold">💡 2026 패러다임 전환:</span>
       <span class="text-slate-200">신택스를 외워 타이핑하던 엔지니어는 도태됩니다. <strong>관제탑에서 4대 역량으로 AI를 지휘하는 아키텍트</strong>만이 살아남습니다.</span>
