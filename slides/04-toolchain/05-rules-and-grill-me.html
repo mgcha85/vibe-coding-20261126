@@ -44,7 +44,7 @@
               <span>2️⃣ Project Rules (.cursor/rules/*.md, .agents/rules/)</span>
             </div>
             <div class="text-[10px] text-slate-400 font-sans">
-              레포지토리 공통 규칙: "중요 정보는 .env 사용, 프론트엔드는 Svelte, 백엔드는 Go"
+              레포지토리 공통 규칙: "BE는 Python 3.12 + DuckDB, FE는 Astro 5, pandas 금지"
             </div>
           </div>
 
@@ -53,7 +53,7 @@
               <span>3️⃣ Directory Rules (Local AGENTS.md / GEMINI.md)</span>
             </div>
             <div class="text-[10px] text-slate-300 font-sans">
-              특정 폴더 우선순위: <code class="text-rose-300">live-trading/</code> 내에서는 절대 백테스트 코드 수정 금지.
+              특정 폴더 우선순위: <code class="text-rose-300">data/raw/</code> 원본 h5ad 수정 절대 금지, <code class="text-rose-300">backend/</code> 내 <code class="text-rose-300">import pandas</code> 전면 금지.
             </div>
           </div>
         </div>
@@ -87,9 +87,9 @@
               <span>❌</span> <span>무지성 즉시 코딩 (Yes-Man)</span>
             </div>
             <div class="text-[10px] text-slate-300 space-y-1 font-sans">
-              <div>• "유저 인증 기능 만들어줘"</div>
-              <div class="text-rose-400">➔ 에이전트: "네!" (NextAuth 혼자 설치)</div>
-              <div>• 2시간 뒤: "Supabase 쓰기로 했는데 왜 마음대로 라이브러리를 바꿔?" ➔ 전면 롤백</div>
+              <div>• "PBMC 군집 분석 파이프라인 만들어줘"</div>
+              <div class="text-rose-400">➔ 에이전트: "네!" (pandas와 matplotlib로 500줄 작성)</div>
+              <div>• 2시간 뒤: "DuckDB SSOT랑 Astro 쓰기로 했는데 왜 pandas를 써?" ➔ 전면 롤백</div>
             </div>
           </div>
 
@@ -99,8 +99,8 @@
               <span>✅</span> <span>/grill-me 역질문 정렬</span>
             </div>
             <div class="text-[10px] text-slate-300 space-y-1 font-sans">
-              <div>• "유저 인증 기능 만들려고 해. <strong>/grill-me</strong>"</div>
-              <div class="text-emerald-300">➔ 에이전트: "인터뷰를 시작합니다. 1) JWT vs Session? 2) 소셜 로그인 포함? 3) RLS 정책은?"</div>
+              <div>• "PBMC 군집 분석 파이프라인 만들려고 해. <strong>/grill-me</strong>"</div>
+              <div class="text-emerald-300">➔ 에이전트: "인터뷰 시작합니다: 1) Leiden resolution(igraph)? 2) DuckDB 테이블 적재 스키마? 3) Astro UMAP JSON 포맷?"</div>
               <div>• 3분 만에 아키텍처 의사결정 완료 ➔ 원샷 성공</div>
             </div>
           </div>

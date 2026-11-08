@@ -85,7 +85,7 @@
           <div 
             onclick="openProjectModal(event)" 
             class="p-2.5 rounded bg-amber-50/70 border-2 border-amber-300 hover:border-amber-500 hover:bg-amber-100/70 transition-all cursor-pointer shadow-xs group"
-            title="클릭하여 주식 퀀트 PROJECT.md 실전 예제 열람"
+            title="클릭하여 PBMC 3k PROJECT.md 실전 예제 열람"
           >
             <div class="flex items-center justify-between text-amber-800 font-bold text-[11px] mb-0.5">
               <span class="flex items-center gap-1.5">
@@ -97,20 +97,20 @@
               </span>
             </div>
             <div class="text-[10px] text-slate-700 font-sans leading-relaxed">
-              • 현재 시스템의 비즈니스 목표: <strong>"미국 대형 기술주 &amp; KOSPI 1m/5m VWAP 모멘텀 돌파 전략"</strong><br>
-              • 이 프로젝트만의 데이터 계약: <code class="text-amber-800 font-mono font-bold bg-amber-100 px-1 py-0.2 rounded">/data/stock_market</code>, 증권사 실시간 Open API 명세.
+              • 현재 시스템의 비즈니스 목표: <strong>"10x Genomics PBMC 3k 단일세포 전사체 파이프라인"</strong><br>
+              • 이 프로젝트만의 데이터 계약: <code class="text-amber-800 font-mono font-bold bg-amber-100 px-1 py-0.2 rounded">data/raw/pbmc3k_raw.h5ad</code>, DuckDB 웨어하우스 스키마.
             </div>
           </div>
 
           <!-- Domain-specific Skills -->
           <div class="p-2.5 rounded bg-slate-50 border border-slate-200">
             <div class="flex items-center justify-between text-purple-700 font-bold text-[11px] mb-0.5">
-              <span>📂 skills/domain-* (도메인 특화 스킬)</span>
+              <span>📂 skills/data-analytics-* (도메인 특화 스킬)</span>
               <span class="text-[9.5px] text-slate-500 font-sans">해당 레포 한정</span>
             </div>
             <div class="text-[10px] text-slate-600 font-sans leading-relaxed">
-              • <code class="text-purple-700 font-mono font-bold bg-purple-100/60 px-1 py-0.2 rounded">stock-db-schema</code>: 주식 일봉/분봉 틱 데이터 및 수정주가 보정 SQLite DDL.<br>
-              • <code class="text-purple-700 font-mono font-bold bg-purple-100/60 px-1 py-0.2 rounded">stock-backtest-live-workflow</code>: 퀀트 백테스트 검증 결과를 Go 실시간 주문 집행 엔진으로 연계.
+              • <code class="text-purple-700 font-mono font-bold bg-purple-100/60 px-1 py-0.2 rounded">db-duckdb-schema</code>: 2,700개 세포 &times; 32,738개 유전자 DuckDB 정규화 DDL.<br>
+              • <code class="text-purple-700 font-mono font-bold bg-purple-100/60 px-1 py-0.2 rounded">data-analytics-dimreduce-cluster</code>: HVG 2,000, PCA 50, Leiden resolution 1.0 군집 연동.
             </div>
           </div>
         </div>
@@ -141,10 +141,10 @@
             <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block border border-emerald-500/30"></span>
           </div>
           <span class="text-sm font-mono font-bold text-slate-800 flex items-center gap-1.5">
-            <span>📋</span> PROJECT.md &middot; 미국 대형 기술주 &amp; KOSPI 주식 퀀트 실전 정의서 (Domain SSOT)
+            <span>📋</span> PROJECT.md &middot; 10x Genomics PBMC 3k scRNA-seq 단일세포 전사체 실전 정의서 (Domain SSOT)
           </span>
           <span class="text-[10px] font-mono text-amber-800 bg-amber-100/80 px-2 py-0.5 rounded border border-amber-300 font-bold">
-            주식 도메인 특화
+            생물정보학 도메인 특화
           </span>
         </div>
         <button 
@@ -157,56 +157,56 @@
 
       <!-- Modal Body (Editorial Light Theme Code View) -->
       <div class="flex-1 overflow-y-auto p-5 bg-slate-50/70 font-mono text-xs text-slate-800 leading-relaxed space-y-3.5">
-        <!-- 1. Strategy Domain & Target Universe -->
+        <!-- 1. Identity & Runtime Scope -->
         <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
           <div class="text-sky-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 1. Project Mission &amp; Equity Strategy Scope</span>
+            <span># 1. Project Identity &amp; Runtime Scope</span>
           </div>
           <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
-            - <strong>Primary Goal:</strong> 미국 S&amp;P500/나스닥100 대형 기술주 및 KOSPI200 주도주 대상 실시간 퀀트 알고리즘 트레이딩 파이프라인.<br>
-            - <strong>Core Strategy:</strong> 1분봉/5분봉 가격 모멘텀 돌파 + 거래량 가중 평균가(VWAP) 밴드 회귀 하이브리드 전략.<br>
-            - <strong>Execution Stack Split:</strong><br>
-            &nbsp;&nbsp;• <strong>Research &amp; Backtest:</strong> Python 3.12 (Polars 벡터 연산, 파라미터 그리드 탐색, 슬리피지/수수료 시뮬레이션)<br>
-            &nbsp;&nbsp;• <strong>Live Trading Engine:</strong> Go 1.23 (초저지연 실시간 시세 파싱, 호가 잔량 불균형 감시, 주문 집행 엔진)<br>
-            &nbsp;&nbsp;• <strong>Monitoring Frontend:</strong> Svelte + Tailwind CSS (실시간 체결 및 포지션 PnL 대시보드)
+            - <strong>Project Name:</strong> <code class="text-sky-900 bg-sky-100/70 px-1.5 py-0.5 rounded font-bold font-mono">pbmc3k-vibe-lab</code><br>
+            - <strong>Domain:</strong> scRNA-seq / PBMC cell-type clustering (단일세포 전사체 분석 및 세포타입 판정)<br>
+            - <strong>Execution Runtime:</strong><br>
+            &nbsp;&nbsp;• <strong>Backend:</strong> Python 3.12 (<code class="font-mono text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded">.venv</code>, <code class="font-mono text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded">uv</code> 패키지 동기화)<br>
+            &nbsp;&nbsp;• <strong>Frontend:</strong> Astro 5 (<code class="font-mono text-sky-800 bg-sky-50 px-1 py-0.2 rounded">frontend/</code>, pin <code class="font-mono font-bold">astro@5.16.6</code>; Node 22.22 호환)<br>
+            &nbsp;&nbsp;• <strong>Warehouse SSOT:</strong> <code class="text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded border border-amber-300 font-mono font-bold">data/warehouse/pbmc3k.duckdb</code>
           </p>
         </div>
 
-        <!-- 2. Stock Data Contract -->
+        <!-- 2. Seed Data & Dependency Policy -->
         <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
           <div class="text-amber-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 2. Equity Data Contract &amp; Hive Partition</span>
+            <span># 2. Seed Data Contract &amp; Dependency Policy</span>
           </div>
           <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
-            - <strong>Market Data Root:</strong> <code class="text-amber-800 bg-amber-100/80 px-1.5 py-0.5 rounded border border-amber-300 font-mono font-bold">/data/stock_market</code> (절대경로 엄수; 임의 변경 금지)<br>
-            - <strong>Partition Layout:</strong> <code class="text-slate-700 bg-slate-100 px-1 py-0.2 rounded font-mono">/data/stock_market/ticks/market={US|KR}/symbol={TICKER}/dt=YYYY-MM-DD/</code><br>
-            - <strong>Corporate Actions Invariant:</strong> 주식 액면분할, 무상증자, 배당락 이벤트 시 수정주가(Adjusted Close) 계산 모듈을 거쳐 백테스트 데이터 정합성 보장.<br>
-            - <strong>Broker API:</strong> 국내 주식 한국투자증권(KIS) Open API + 해외 주식 Interactive Brokers(IBKR) REST/WebSocket 연동
+            - <strong>Seed Data:</strong> <code class="text-amber-800 bg-amber-100/80 px-1.5 py-0.5 rounded border border-amber-300 font-mono font-bold">data/raw/pbmc3k_raw.h5ad</code> (2,700 세포 &times; 32,738 유전자, raw count matrix, hg19)<br>
+            - <strong>Allowed BE:</strong> duckdb, polars, scanpy, anndata, numpy, scipy, scikit-learn, igraph, umap-learn, h5py, pyarrow, ruff<br>
+            - <strong>Forbidden (절대 금기):</strong> <strong class="text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-300">import pandas</strong> 전면 금지, pyspark, dask dataframe, jupyter를 산출 경로로 사용하는 행위 금지
           </p>
         </div>
 
-        <!-- 3. Risk Management & Execution Rules -->
+        <!-- 3. Analysis Pipeline Defaults -->
         <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
           <div class="text-emerald-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 3. Risk Management &amp; Circuit Breakers</span>
+            <span># 3. Single-Cell Analysis Defaults (분석 알고리즘 표준)</span>
           </div>
           <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
-            - <strong>포지션 사이징:</strong> 단일 주식 종목당 전체 운용 자산의 최대 10% 이내 엄수.<br>
-            - <strong>손절 및 익절 규칙:</strong> 진입가 대비 -1.8% 도달 시 즉시 시장가 손절(Stop-Loss), +3.5% 도달 시 50% 분할 익절 후 트레일링 스탑 활성화.<br>
-            - <strong>일간 최대 손실 제한(Daily MDD):</strong> 당일 누적 손실 -3.0% 도달 시 전 포지션 즉시 시장가 청산 및 당일 신규 진입 전면 중단(Circuit Breaker).<br>
-            - <strong>체결 슬리피지 통제:</strong> 매수/매도 5단계 호가 잔량 비율(Order Book Imbalance)이 1.5배 이상 유리할 때만 주문 제출.
+            - <strong>Random Seed:</strong> <code class="bg-slate-100 px-1 rounded font-mono">seed = 0</code> / <code class="bg-slate-100 px-1 rounded font-mono">sc.settings.seed = 0</code><br>
+            - <strong>QC 필터링 기준:</strong> 미토콘드리아 유전자 접두사 <code class="bg-slate-100 px-1 rounded font-mono">MT-</code>, <code class="text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded font-bold font-mono">pct_counts_mt &lt; 5 AND 200 &lt;= n_genes_by_counts &lt; 2500</code>, <code class="bg-slate-100 px-1 rounded font-mono">min_cells = 3</code><br>
+            - <strong>정규화 &amp; 차원축소:</strong> <code class="bg-slate-100 px-1 rounded font-mono">target_sum = 1e4</code>, HVG = <code class="text-indigo-800 bg-indigo-50 px-1 rounded font-bold font-mono">seurat top 2000</code>, PCA <code class="font-mono">n_comps = 50</code>, neighbors <code class="font-mono">n_neighbors = 15, n_pcs = 30</code><br>
+            - <strong>군집 &amp; 마커 추출:</strong> Leiden <code class="text-purple-800 bg-purple-50 px-1 rounded font-bold font-mono">resolution=1.0, flavor=igraph, n_iterations=2</code>, rank_genes_groups method = <code class="bg-slate-100 px-1 rounded font-mono">wilcoxon, use_raw=True</code>
           </p>
         </div>
 
-        <!-- 4. Research to Production Checkpoint -->
+        <!-- 4. Canonical Marker Panel & UI Charts -->
         <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
           <div class="text-purple-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 4. Backtest-to-Live Handoff Protocol</span>
+            <span># 4. Canonical Marker Panel &amp; ECharts UI SSoT</span>
           </div>
           <p class="text-slate-700 text-[11px] mb-1 leading-relaxed font-sans">
-            - <strong>배포 승인 기준:</strong> 최근 3년(2023~2026) 백테스트 결과 샤프비율 &gt; 1.8, 승률 &gt; 54%, 거래당 기댓값(왕복 0.1% 수수료/슬리피지 차감 후) 양수 보장.<br>
-            - <strong>전략 파라미터 고정:</strong> Python 연구 단계에서 검증된 파라미터는 <code class="text-purple-800 bg-purple-50 px-1 py-0.2 rounded border border-purple-200 font-mono">config/strategy_params.json</code>으로 추출되어 Go 엔진 런타임에 주입.<br>
-            - <strong>텔레그램 체결 알림:</strong> 주문 생성, 정정, 체결(`open -&gt; close`) 발생 시 텔레그램 봇으로 실시간 손익 및 슬리피지 보고 전송.
+            - <strong>표준 세포 마커 패널 (SSOT):</strong><br>
+            &nbsp;&nbsp;<code class="text-purple-900 bg-purple-100/80 px-1.5 py-0.5 rounded border border-purple-200 font-bold font-mono text-[10px]">IL7R, CD3D, CD3E, CD8A, CD8B, MS4A1, CD79A, CD14, LYZ, S100A8, FCGR3A, MS4A7, GNLY, NKG7, FCER1A, CST3, PPBP</code><br>
+            - <strong>타입 판정 규칙:</strong> Wilcoxon 상위 유전자 중 하우스키핑(RPS/RPL/MT-) 제외 후 canonical marker 평균 발현으로 판정.<br>
+            - <strong>UI Visualization SSoT:</strong> Astro 컴포넌트 내 <strong>Apache ECharts 5</strong> (<code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded font-mono">echarts-setup.ts</code>); UMAP 산점도, 바이올린 custom series, 닷플롯 차트 일원화 (손수 SVG나 Plotly 금지).
           </p>
         </div>
       </div>

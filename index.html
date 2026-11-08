@@ -4673,7 +4673,7 @@
               <span class="text-base">💬</span>
               <div>
                 <div class="text-slate-800 font-bold text-[11px]">User Prompt (질문/지시)</div>
-                <div class="text-[10px] text-slate-500">"추천 파이프라인 배포해줘"</div>
+                <div class="text-[10px] text-slate-500">"PBMC 3k QC 필터링 및 UMAP 파이프라인 돌려줘"</div>
               </div>
             </div>
             <span class="text-[10px] text-sky-700 bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200 font-bold">Turn Start</span>
@@ -4704,10 +4704,10 @@
               </span>
             </div>
             <ul class="text-[10.5px] text-slate-700 space-y-0.5 list-disc list-inside font-sans">
-              <li>미션 &amp; 스코프 (Mission &amp; Scope)</li>
-              <li>데이터 계약 (<code class="text-amber-800 bg-amber-100/70 px-1 py-0.2 rounded border border-amber-200 font-mono">/data/corpus</code> 보존)</li>
-              <li>빌드 &amp; 품질 게이트 (<code class="font-mono text-sky-700 bg-sky-100 px-1 py-0.2 rounded">uv sync</code>, 린터, 테스트)</li>
-              <li>배포 &amp; 운영 규칙 (<code class="font-mono text-amber-700 bg-amber-100 px-1 py-0.2 rounded">podman-compose</code>, 포트)</li>
+              <li>미션 &amp; 스코프 (PBMC 3k DuckDB ➔ 파이프라인 ➔ Astro)</li>
+              <li>데이터 계약 (<code class="text-amber-800 bg-amber-100/70 px-1 py-0.2 rounded border border-amber-200 font-mono">data/raw/</code> 불변, DuckDB SSOT)</li>
+              <li>품질 게이트 (<code class="font-mono text-rose-700 bg-rose-50 px-1 py-0.2 rounded">pandas 금지</code>, ruff, Astro 빌드)</li>
+              <li>파이프라인 순서 (ingest ➔ eda ➔ qc ➔ cluster ➔ markers)</li>
             </ul>
           </div>
 
@@ -4787,14 +4787,14 @@
             title="클릭하여 예시 확인"
           >
             <div class="text-sky-700 font-bold text-[11px] mb-0.5 flex items-center gap-1">
-              <span>1️⃣</span> <span>Mission &amp; Scope</span>
+              <span>1️⃣</span> <span>Mission &amp; Stack</span>
             </div>
             <div class="text-[10px] text-slate-600 leading-snug">
-              프로젝트의 목표, 언어 스택 분업(Python AI 코어 vs Go 게이트웨이), 산출물 저장 위치 정의.
+              10x PBMC 3k 단일세포 분석, Python(DuckDB·Polars·Scanpy) + Astro 5(ECharts) 명확한 분업.
             </div>
           </div>
 
-          <!-- Pillar 2 (/data/corpus) -->
+          <!-- Pillar 2 (data/raw/) -->
           <div 
             onclick="openAgentsModal(event)" 
             class="p-2 rounded bg-slate-50 border border-slate-200 cursor-pointer hover:border-amber-400 hover:bg-amber-50/50 transition-all"
@@ -4804,7 +4804,7 @@
               <span>2️⃣</span> <span>Data Contract (데이터 계약)</span>
             </div>
             <div class="text-[10px] text-slate-600 leading-snug">
-              절대경로 원칙(<code class="text-amber-800 bg-amber-100/70 px-1 py-0.2 rounded border border-amber-200 font-mono">/data/corpus</code>), 임의의 데이터 폴더 오염 방지 및 파티션 보존.
+              <code class="text-amber-800 bg-amber-100/70 px-1 py-0.2 rounded border border-amber-200 font-mono">data/raw/pbmc3k_raw.h5ad</code> 불변 보존, DuckDB(<code class="text-slate-700 font-mono">pbmc3k.duckdb</code>) SSOT 엄수.
             </div>
           </div>
 
@@ -4818,7 +4818,7 @@
               <span>3️⃣</span> <span>Quality &amp; Build Gates</span>
             </div>
             <div class="text-[10px] text-slate-600 leading-snug">
-              <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded font-mono">uv sync</code>, 린터 및 테스트 통과 의무화, 작업 전후 검증 커맨드 표준화.
+              <code class="text-rose-700 bg-rose-50 px-1 py-0.2 rounded font-mono">import pandas</code> 실패(ImportError) 게이트, <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded font-mono">ruff check</code>, Astro 빌드 의무화.
             </div>
           </div>
 
@@ -4829,10 +4829,10 @@
             title="클릭하여 예시 확인"
           >
             <div class="text-purple-700 font-bold text-[11px] mb-0.5 flex items-center gap-1">
-              <span>4️⃣</span> <span>Safe Change &amp; Operations</span>
+              <span>4️⃣</span> <span>Pipeline Order &amp; Safe Change</span>
             </div>
             <div class="text-[10px] text-slate-600 leading-snug">
-              파괴적 git 명령어 금지, .env 파일 커밋 엄금, 최소 단위 수정 및 LESSON_AND_LEARN 기록 의무.
+              ingest ➔ eda ➔ qc ➔ cluster ➔ markers 순서 엄수, 원본/DB 임의 삭제 엄금, LESSON_AND_LEARN 기록.
             </div>
           </div>
         </div>
@@ -4884,59 +4884,56 @@
         <!-- 1. Mission & Scope -->
         <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
           <div class="text-sky-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 1. Mission &amp; Architecture Scope</span>
+            <span># 1. Mission &amp; Scope (PBMC 3k scRNA-seq Vibe Lab)</span>
           </div>
           <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
-            - <strong>Primary Goal:</strong> 대규모 트래픽 환경의 실시간 데이터 인텔리전스 및 추천 엔진 파이프라인 구축.<br>
-            - <strong>Language Stack Split:</strong><br>
-            &nbsp;&nbsp;• <strong>Research &amp; AI Brain:</strong> Python 3.12 (모델 실험, 임베딩 벡터화, EDA)<br>
-            &nbsp;&nbsp;• <strong>Live Runtime Engine:</strong> Go 1.23 (초고속 gRPC 게이트웨이, Zero-Crash 24/7 스트리밍 파이프라인)<br>
-            &nbsp;&nbsp;• <strong>Frontend UI:</strong> SvelteKit + Tailwind CSS (실시간 관제 대시보드)<br>
-            - <strong>Core Outputs:</strong> <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 font-mono">src/engine/</code> (Go 모듈), <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200 font-mono">src/ai_model/</code> (Python 패키지), <code class="text-amber-800 bg-amber-50 px-1 py-0.2 rounded border border-amber-200 font-mono">artifacts/reports/</code>
+            - <strong>Primary Goal:</strong> 10x Genomics PBMC 3k 데이터를 <strong>DuckDB 웨어하우스 → 분석 파이프라인 → Astro 대시보드 시각화</strong>까지 재현 가능한 연구 앱으로 구축.<br>
+            - <strong>Scope:</strong> QC 필터링 → 차원축소/Leiden 군집 → Wilcoxon 마커 탐색 → 마커 기반 세포타입(T, B, Monocyte 등) 판정 → Astro 시각화.<br>
+            - <strong>Out of Scope:</strong> 클라우드 다중 샘플 통합, 원시 데이터 재다운로드 금지(<code class="text-slate-800 bg-slate-100 px-1 py-0.2 rounded font-mono">data/raw/pbmc3k_raw.h5ad</code>에 이미 캐시됨).
           </p>
         </div>
 
-        <!-- 2. Data Contract -->
+        <!-- 2. Stack & Forbidden Rules -->
         <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
           <div class="text-amber-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 2. Data Contract (데이터 계약 &amp; 절대경로 엄수)</span>
+            <span># 2. Stack (강제 스택 &amp; 엄격한 금기 사항)</span>
           </div>
           <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
-            - <strong>Root Data Path:</strong> <code class="text-amber-800 bg-amber-100/80 px-1.5 py-0.5 rounded border border-amber-300 font-mono font-bold">/data/corpus</code> (절대경로 원칙; 임의의 상대경로나 /tmp 변조 엄금)<br>
-            - <strong>Storage Layout:</strong> Hive Partition 구조 준수 (<code class="text-slate-700 bg-slate-100 px-1 py-0.2 rounded font-mono">/data/corpus/events/dt=YYYY-MM-DD/hh=HH/</code>)<br>
-            - <strong>Agent Protocol:</strong><br>
-            &nbsp;&nbsp;• 데이터 스키마 또는 파티션 컬럼을 임의로 변경하지 않고 사전문서와 일치시킬 것<br>
-            &nbsp;&nbsp;• 대용량 쿼리는 DuckDB / Polars 벡터화 엔진을 사용하여 메모리 OOM 방지
+            - <strong>BE:</strong> Python 3.12 + <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded font-mono">.venv</code> (<code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded font-mono">uv</code>로 패키지 관리)<br>
+            - <strong>Warehouse SSOT:</strong> <code class="text-amber-800 bg-amber-100/80 px-1 py-0.2 rounded border border-amber-300 font-mono font-bold">DuckDB (주력)</code> — 테이블·집계·Astro 내보내기의 단일 진실 공급원<br>
+            - <strong>DataFrame:</strong> <code class="text-slate-800 bg-slate-100 px-1 py-0.2 rounded font-mono">Polars (보조)</code> — SQL로 어색한 변환만 사용. <strong class="text-rose-700 bg-rose-50 px-1 py-0.2 rounded border border-rose-200">import pandas 전면 금지</strong><br>
+            - <strong>Graph ML:</strong> <code class="text-slate-800 bg-slate-100 px-1 py-0.2 rounded font-mono">scanpy / numpy / scipy / igraph</code> (PCA, UMAP, Leiden 군집, rank_genes_groups만 허용)<br>
+            - <strong>FE &amp; Charts:</strong> <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded font-mono">Astro 5</code> + <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded font-mono">Apache ECharts 5</code> (<code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded font-mono">echarts-setup.ts</code> 기반; 손수 SVG나 타 차트 라이브러리 엄금)
           </p>
         </div>
 
-        <!-- 3. Quality & Build Gates -->
+        <!-- 3. Directory Ownership & Pipeline Order -->
         <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
           <div class="text-emerald-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 3. Quality &amp; Build Gates (품질 검증 관문)</span>
+            <span># 3. Directory Ownership &amp; Pipeline Order (절대 순서)</span>
           </div>
           <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
-            - <strong>Python Quality Gates:</strong><br>
-            &nbsp;&nbsp;• 패키지 의존성 동기화: <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200 font-mono">uv sync</code><br>
-            &nbsp;&nbsp;• 린트 &amp; 정적 검사: <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200 font-mono">uv run ruff check src/ tests/</code><br>
-            &nbsp;&nbsp;• 자동화 단위 테스트: <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200 font-mono">uv run pytest -q tests/</code><br>
-            - <strong>Go Quality Gates:</strong><br>
-            &nbsp;&nbsp;• 빌드 및 린트: <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 font-mono">golangci-lint run ./...</code><br>
-            &nbsp;&nbsp;• 동시성 레이스 검사: <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 font-mono">go test -race -v ./...</code><br>
-            - <strong>Verification Rule:</strong> 모든 PR 및 코드 변경 전 린트와 테스트가 100% 통과(Exit Code 0)해야만 작업 완료를 선언한다.
+            - <strong>디렉토리 소유권:</strong><br>
+            &nbsp;&nbsp;• <code class="text-rose-700 bg-rose-50 px-1 py-0.2 rounded font-mono">data/raw/</code> : 읽기 전용 원본 h5ad (수정 금지)<br>
+            &nbsp;&nbsp;• <code class="text-amber-800 bg-amber-50 px-1 py-0.2 rounded font-mono">data/warehouse/</code> : DuckDB 파일만 보관 (<code class="font-mono">pbmc3k.duckdb</code>)<br>
+            &nbsp;&nbsp;• <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded font-mono">backend/</code> : 파이프라인 단계 모듈 / <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded font-mono">frontend/</code> : Astro 앱 (시각화 SSOT)<br>
+            - <strong>파이프라인 절대 순서:</strong><br>
+            &nbsp;&nbsp;1. <code class="text-indigo-700 font-mono">db-ingest-h5ad</code> ➔ 2. <code class="text-indigo-700 font-mono">data-analytics-eda</code> ➔ 3. <code class="text-indigo-700 font-mono">data-analytics-qc</code> ➔ 4. <code class="text-indigo-700 font-mono">data-analytics-dimreduce-cluster</code> ➔ 5. <code class="text-indigo-700 font-mono">data-analytics-markers</code> ➔ 6. <code class="text-indigo-700 font-mono">data-analytics-celltype</code> ➔ 7. <code class="text-indigo-700 font-mono">data-analytics-export</code><br>
+            &nbsp;&nbsp;※ 앞 단계 산출물 없이 뒷 단계를 구현하지 않는다!
           </p>
         </div>
 
-        <!-- 4. Safe Change & Operations -->
+        <!-- 4. Quality Gates & Safe Change -->
         <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
           <div class="text-purple-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 4. Safe Change Policy &amp; Operations</span>
+            <span># 4. Quality Gates &amp; Safe Change Policy</span>
           </div>
           <p class="text-slate-700 text-[11px] mb-1 leading-relaxed font-sans">
-            - <strong>파괴적 Git 행위 엄금:</strong> <code class="text-rose-700 bg-rose-50 px-1 py-0.2 rounded border border-rose-200 font-mono font-bold">git push --force</code>, <code class="text-rose-700 bg-rose-50 px-1 py-0.2 rounded border border-rose-200 font-mono font-bold">git reset --hard</code> 금지<br>
-            - <strong>시크릿 3계층 격리:</strong> API 키 및 DB 패스워드는 <code class="text-amber-800 bg-amber-50 px-1 py-0.2 rounded border border-amber-200 font-mono">.env.dev</code> / <code class="text-amber-800 bg-amber-50 px-1 py-0.2 rounded border border-amber-200 font-mono">.env.prod</code> 에만 기록하고 Git 커밋 절대 금지<br>
-            - <strong>컨테이너 배포:</strong> <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 font-mono">podman-compose up -d</code> 로 무중단 서비스 롤아웃<br>
-            - <strong>트러블슈팅 아카이빙:</strong> 복잡한 버그나 설계 변경 발생 시 <code class="text-indigo-800 bg-indigo-50 px-1 py-0.2 rounded border border-indigo-200 font-mono font-bold">LESSON_AND_LEARN.md</code>에 원인과 해결책을 필히 기록
+            - <strong>3대 품질 검증 게이트:</strong><br>
+            &nbsp;&nbsp;1) <code class="text-rose-700 bg-rose-50 px-1 py-0.2 rounded font-mono font-bold">.venv/bin/python -c "import pandas"</code> ➔ 반드시 <strong>ImportError</strong> 발생 확인<br>
+            &nbsp;&nbsp;2) <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded font-mono font-bold">.venv/bin/ruff check backend/</code> ➔ 린트 무결성 검증<br>
+            &nbsp;&nbsp;3) <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded font-mono font-bold">cd frontend &amp;&amp; npm run build</code> ➔ Astro 정적 빌드 100% 성공<br>
+            - <strong>안전 규칙:</strong> 커밋은 사용자 요청 시에만 수행, <code class="text-slate-700 bg-slate-100 px-1 py-0.2 rounded font-mono">DROP TABLE</code> 및 원본 삭제 금지, 트러블슈팅 발생 시 <code class="text-purple-700 font-mono font-bold">LESSON_AND_LEARN.md</code> 기록 의무.
           </p>
         </div>
       </div>
@@ -5023,26 +5020,25 @@
 
         <!-- Tree View with document icons -->
         <div class="p-2.5 rounded bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto">
-          <div class="text-slate-400">📁 <span class="text-white font-bold">my-project/</span></div>
+          <div class="text-slate-400">📁 <span class="text-white font-bold">pbmc3k-vibe-lab/</span></div>
           <div class="pl-3 text-slate-400">├── 📜 <span class="text-sky-300 font-bold">AGENTS.md</span> <span class="text-[10px] text-slate-500 font-sans">(매 턴 인덱스/헌법)</span></div>
           <div class="pl-3 text-slate-400">├── 📂 <span class="text-indigo-300 font-bold">.cursor/skills/</span> <span class="text-[10px] text-slate-500 font-sans">(또는 .agents/skills)</span></div>
           
-          <!-- UI Category -->
-          <div class="pl-6 text-emerald-400">├── 📁 <span class="font-bold text-emerald-300">ui-components/</span> <span class="text-[10px] text-emerald-400/80 font-sans">(프론트엔드 그룹)</span></div>
-          <div class="pl-9 text-slate-400">│   ├── 📄 <span class="text-amber-300">SKILL.md</span> <span class="text-[9.5px] text-slate-400 font-sans">(트리거 메타데이터 + 사규)</span></div>
-          <div class="pl-9 text-slate-400">│   └── 📑 <span class="text-slate-300">REFERENCE.md</span> <span class="text-[9.5px] text-slate-400 font-sans">(필요시 읽는 디자인 가이드)</span></div>
+          <!-- DB/Warehouse Category -->
+          <div class="pl-6 text-amber-400">├── 📁 <span class="font-bold text-amber-300">db-duckdb-schema/</span> <span class="text-[10px] text-amber-400/80 font-sans">(DuckDB 웨어하우스 SSOT)</span></div>
+          <div class="pl-9 text-slate-400">│   ├── 📄 <span class="text-amber-300">SKILL.md</span> <span class="text-[9.5px] text-slate-400 font-sans">(genes/cells/counts 스키마)</span></div>
+          <div class="pl-9 text-slate-400">│   └── 📑 <span class="text-slate-300">REFERENCE.md</span></div>
           
-          <!-- UI Style/Tailwind -->
-          <div class="pl-6 text-emerald-400">├── 📁 <span class="font-bold text-emerald-300">ui-tailwind-design/</span></div>
-          <div class="pl-9 text-slate-400">│   └── 📄 <span class="text-amber-300">SKILL.md</span></div>
-          
-          <!-- Backend/Trading Category -->
-          <div class="pl-6 text-purple-400">├── 📁 <span class="font-bold text-purple-300">trading-db-schema/</span> <span class="text-[10px] text-purple-400/80 font-sans">(백엔드/도메인 그룹)</span></div>
-          <div class="pl-9 text-slate-400">│   ├── 📄 <span class="text-amber-300">SKILL.md</span></div>
-          <div class="pl-9 text-slate-400">│   └── 📑 <span class="text-slate-300">INDEX.md</span></div>
+          <!-- Data Analytics Category -->
+          <div class="pl-6 text-purple-400">├── 📁 <span class="font-bold text-purple-300">data-analytics-dimreduce-cluster/</span> <span class="text-[10px] text-purple-400/80 font-sans">(분석 파이프라인)</span></div>
+          <div class="pl-9 text-slate-400">│   └── 📄 <span class="text-amber-300">SKILL.md</span> <span class="text-[9.5px] text-slate-400 font-sans">(HVG/PCA/UMAP/Leiden igraph)</span></div>
+
+          <!-- UI & Charts Category -->
+          <div class="pl-6 text-emerald-400">├── 📁 <span class="font-bold text-emerald-300">ui-echarts/</span> <span class="text-[10px] text-emerald-400/80 font-sans">(Astro 차트 SSoT)</span></div>
+          <div class="pl-9 text-slate-400">│   └── 📄 <span class="text-amber-300">SKILL.md</span> <span class="text-[9.5px] text-slate-400 font-sans">(ECharts 5.6 &middot; violin custom)</span></div>
           
           <!-- Operations Category -->
-          <div class="pl-6 text-cyan-400">└── 📁 <span class="font-bold text-cyan-300">ops-deployment/</span> <span class="text-[10px] text-cyan-400/80 font-sans">(인프라/운영 그룹)</span></div>
+          <div class="pl-6 text-cyan-400">└── 📁 <span class="font-bold text-cyan-300">ops-pipeline-orchestration/</span> <span class="text-[10px] text-cyan-400/80 font-sans">(전체 재실행 &amp; 게이트)</span></div>
           <div class="pl-9 text-slate-400">    └── 📄 <span class="text-amber-300">SKILL.md</span></div>
         </div>
       </div>
@@ -5071,43 +5067,43 @@
             <div class="flex items-center justify-between text-emerald-300 font-mono font-bold text-[11px] mb-1">
               <span class="flex items-center gap-1.5">
                 <span class="px-1.5 py-0.5 bg-emerald-900/60 rounded text-emerald-200 border border-emerald-700">ui-*</span>
-                <span>프론트엔드 및 시각 디자인 그룹</span>
+                <span>프론트엔드 및 시각화 그룹</span>
               </span>
-              <span class="text-[9.5px] text-slate-400">Trigger: 버튼, 레이아웃, 모달, CSS</span>
+              <span class="text-[9.5px] text-slate-400">Trigger: UMAP, 바이올린, ECharts, Astro</span>
             </div>
             <div class="text-[10.5px] text-slate-300">
-              <code class="text-emerald-300 font-mono">ui-components</code>, <code class="text-emerald-300 font-mono">ui-tailwind-design</code>, <code class="text-emerald-300 font-mono">uiux-governance</code><br>
-              <span class="text-slate-400">→ UI 요청 시 백엔드 린터나 DB 스키마가 끼어들지 않고 UI 디자인 사규만 깔끔하게 활성화.</span>
+              <code class="text-emerald-300 font-mono">ui-echarts</code>, <code class="text-emerald-300 font-mono">ui-viz-umap</code>, <code class="text-emerald-300 font-mono">ui-viz-qc</code>, <code class="text-emerald-300 font-mono">ui-methods-explain</code><br>
+              <span class="text-slate-400">→ UI 요청 시 백엔드 ML이나 DB 쿼리가 끼어들지 않고 ECharts 라이브러리 및 라이트 테마 토큰만 활성화.</span>
             </div>
           </div>
 
-          <!-- ops-* / deploy-* Group -->
+          <!-- db-* & data-analytics-* Group -->
+          <div class="p-2.5 rounded bg-purple-950/30 border border-purple-500/40">
+            <div class="flex items-center justify-between text-purple-300 font-mono font-bold text-[11px] mb-1">
+              <span class="flex items-center gap-1.5">
+                <span class="px-1.5 py-0.5 bg-purple-900/60 rounded text-purple-200 border border-purple-700">data-analytics-* / db-*</span>
+                <span>생물정보 데이터 파이프라인 &amp; 웨어하우스</span>
+              </span>
+              <span class="text-[9.5px] text-slate-400">Trigger: QC, 클러스터링, Leiden, 마커</span>
+            </div>
+            <div class="text-[10.5px] text-slate-300">
+              <code class="text-purple-300 font-mono">db-duckdb-schema</code>, <code class="text-purple-300 font-mono">data-analytics-qc</code>, <code class="text-purple-300 font-mono">data-analytics-dimreduce-cluster</code><br>
+              <span class="text-slate-400">→ DuckDB 테이블 스키마 계약 및 Seurat HVG 2000, Leiden igraph 등 단일세포 전사체 분석 표준 자동 주입.</span>
+            </div>
+          </div>
+
+          <!-- ops-* Group -->
           <div class="p-2.5 rounded bg-cyan-950/30 border border-cyan-500/40">
             <div class="flex items-center justify-between text-cyan-300 font-mono font-bold text-[11px] mb-1">
               <span class="flex items-center gap-1.5">
                 <span class="px-1.5 py-0.5 bg-cyan-900/60 rounded text-cyan-200 border border-cyan-700">ops-*</span>
-                <span>인프라, CI/CD &amp; 배포 운영 그룹</span>
+                <span>파이프라인 오케스트레이션 &amp; 품질 게이트</span>
               </span>
-              <span class="text-[9.5px] text-slate-400">Trigger: 배포, 포드맨, 깃허브 액션, 포트</span>
+              <span class="text-[9.5px] text-slate-400">Trigger: 파이프라인 재실행, 게이트 검증, 배포</span>
             </div>
             <div class="text-[10.5px] text-slate-300">
-              <code class="text-cyan-300 font-mono">ops-deployment</code>, <code class="text-cyan-300 font-mono">ops-podman-compose</code>, <code class="text-cyan-300 font-mono">ops-secrets-audit</code><br>
-              <span class="text-slate-400">→ 배포 명령어 입력 시 포트 충돌 체크, .env.prod 보안 검증 룰이 자동으로 가동.</span>
-            </div>
-          </div>
-
-          <!-- domain-* Group -->
-          <div class="p-2.5 rounded bg-purple-950/30 border border-purple-500/40">
-            <div class="flex items-center justify-between text-purple-300 font-mono font-bold text-[11px] mb-1">
-              <span class="flex items-center gap-1.5">
-                <span class="px-1.5 py-0.5 bg-purple-900/60 rounded text-purple-200 border border-purple-700">domain-*</span>
-                <span>핵심 비즈니스 &amp; 데이터 파이프라인 그룹</span>
-              </span>
-              <span class="text-[9.5px] text-slate-400">Trigger: 백테스트, 지표, 모델, 거래체결</span>
-            </div>
-            <div class="text-[10.5px] text-slate-300">
-              <code class="text-purple-300 font-mono">trading-db-schema</code>, <code class="text-purple-300 font-mono">btc-backtest-workflow</code>, <code class="text-purple-300 font-mono">prompt-drift-prevention</code><br>
-              <span class="text-slate-400">→ 금융 데이터 계약(/mnt/data/finance)과 지표 표준을 즉각 에이전트에 주입.</span>
+              <code class="text-cyan-300 font-mono">ops-pipeline-orchestration</code>, <code class="text-cyan-300 font-mono">deployment-operations</code><br>
+              <span class="text-slate-400">→ 전체 7단계 파이프라인 순차 실행 및 <code class="text-rose-300 font-mono">import pandas</code> 차단 게이트, Astro 빌드 검증 가동.</span>
             </div>
           </div>
         </div>
@@ -5661,7 +5657,7 @@
               <span>2️⃣ Project Rules (.cursor/rules/*.md, .agents/rules/)</span>
             </div>
             <div class="text-[10px] text-slate-400 font-sans">
-              레포지토리 공통 규칙: "중요 정보는 .env 사용, 프론트엔드는 Svelte, 백엔드는 Go"
+              레포지토리 공통 규칙: "BE는 Python 3.12 + DuckDB, FE는 Astro 5, pandas 금지"
             </div>
           </div>
 
@@ -5670,7 +5666,7 @@
               <span>3️⃣ Directory Rules (Local AGENTS.md / GEMINI.md)</span>
             </div>
             <div class="text-[10px] text-slate-300 font-sans">
-              특정 폴더 우선순위: <code class="text-rose-300">live-trading/</code> 내에서는 절대 백테스트 코드 수정 금지.
+              특정 폴더 우선순위: <code class="text-rose-300">data/raw/</code> 원본 h5ad 수정 절대 금지, <code class="text-rose-300">backend/</code> 내 <code class="text-rose-300">import pandas</code> 전면 금지.
             </div>
           </div>
         </div>
@@ -5704,9 +5700,9 @@
               <span>❌</span> <span>무지성 즉시 코딩 (Yes-Man)</span>
             </div>
             <div class="text-[10px] text-slate-300 space-y-1 font-sans">
-              <div>• "유저 인증 기능 만들어줘"</div>
-              <div class="text-rose-400">➔ 에이전트: "네!" (NextAuth 혼자 설치)</div>
-              <div>• 2시간 뒤: "Supabase 쓰기로 했는데 왜 마음대로 라이브러리를 바꿔?" ➔ 전면 롤백</div>
+              <div>• "PBMC 군집 분석 파이프라인 만들어줘"</div>
+              <div class="text-rose-400">➔ 에이전트: "네!" (pandas와 matplotlib로 500줄 작성)</div>
+              <div>• 2시간 뒤: "DuckDB SSOT랑 Astro 쓰기로 했는데 왜 pandas를 써?" ➔ 전면 롤백</div>
             </div>
           </div>
 
@@ -5716,8 +5712,8 @@
               <span>✅</span> <span>/grill-me 역질문 정렬</span>
             </div>
             <div class="text-[10px] text-slate-300 space-y-1 font-sans">
-              <div>• "유저 인증 기능 만들려고 해. <strong>/grill-me</strong>"</div>
-              <div class="text-emerald-300">➔ 에이전트: "인터뷰를 시작합니다. 1) JWT vs Session? 2) 소셜 로그인 포함? 3) RLS 정책은?"</div>
+              <div>• "PBMC 군집 분석 파이프라인 만들려고 해. <strong>/grill-me</strong>"</div>
+              <div class="text-emerald-300">➔ 에이전트: "인터뷰 시작합니다: 1) Leiden resolution(igraph)? 2) DuckDB 테이블 적재 스키마? 3) Astro UMAP JSON 포맷?"</div>
               <div>• 3분 만에 아키텍처 의사결정 완료 ➔ 원샷 성공</div>
             </div>
           </div>
@@ -5985,7 +5981,7 @@
           <div 
             onclick="openProjectModal(event)" 
             class="p-2.5 rounded bg-amber-50/70 border-2 border-amber-300 hover:border-amber-500 hover:bg-amber-100/70 transition-all cursor-pointer shadow-xs group"
-            title="클릭하여 주식 퀀트 PROJECT.md 실전 예제 열람"
+            title="클릭하여 PBMC 3k PROJECT.md 실전 예제 열람"
           >
             <div class="flex items-center justify-between text-amber-800 font-bold text-[11px] mb-0.5">
               <span class="flex items-center gap-1.5">
@@ -5997,20 +5993,20 @@
               </span>
             </div>
             <div class="text-[10px] text-slate-700 font-sans leading-relaxed">
-              • 현재 시스템의 비즈니스 목표: <strong>"미국 대형 기술주 &amp; KOSPI 1m/5m VWAP 모멘텀 돌파 전략"</strong><br>
-              • 이 프로젝트만의 데이터 계약: <code class="text-amber-800 font-mono font-bold bg-amber-100 px-1 py-0.2 rounded">/data/stock_market</code>, 증권사 실시간 Open API 명세.
+              • 현재 시스템의 비즈니스 목표: <strong>"10x Genomics PBMC 3k 단일세포 전사체 파이프라인"</strong><br>
+              • 이 프로젝트만의 데이터 계약: <code class="text-amber-800 font-mono font-bold bg-amber-100 px-1 py-0.2 rounded">data/raw/pbmc3k_raw.h5ad</code>, DuckDB 웨어하우스 스키마.
             </div>
           </div>
 
           <!-- Domain-specific Skills -->
           <div class="p-2.5 rounded bg-slate-50 border border-slate-200">
             <div class="flex items-center justify-between text-purple-700 font-bold text-[11px] mb-0.5">
-              <span>📂 skills/domain-* (도메인 특화 스킬)</span>
+              <span>📂 skills/data-analytics-* (도메인 특화 스킬)</span>
               <span class="text-[9.5px] text-slate-500 font-sans">해당 레포 한정</span>
             </div>
             <div class="text-[10px] text-slate-600 font-sans leading-relaxed">
-              • <code class="text-purple-700 font-mono font-bold bg-purple-100/60 px-1 py-0.2 rounded">stock-db-schema</code>: 주식 일봉/분봉 틱 데이터 및 수정주가 보정 SQLite DDL.<br>
-              • <code class="text-purple-700 font-mono font-bold bg-purple-100/60 px-1 py-0.2 rounded">stock-backtest-live-workflow</code>: 퀀트 백테스트 검증 결과를 Go 실시간 주문 집행 엔진으로 연계.
+              • <code class="text-purple-700 font-mono font-bold bg-purple-100/60 px-1 py-0.2 rounded">db-duckdb-schema</code>: 2,700개 세포 &times; 32,738개 유전자 DuckDB 정규화 DDL.<br>
+              • <code class="text-purple-700 font-mono font-bold bg-purple-100/60 px-1 py-0.2 rounded">data-analytics-dimreduce-cluster</code>: HVG 2,000, PCA 50, Leiden resolution 1.0 군집 연동.
             </div>
           </div>
         </div>
@@ -6041,10 +6037,10 @@
             <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block border border-emerald-500/30"></span>
           </div>
           <span class="text-sm font-mono font-bold text-slate-800 flex items-center gap-1.5">
-            <span>📋</span> PROJECT.md &middot; 미국 대형 기술주 &amp; KOSPI 주식 퀀트 실전 정의서 (Domain SSOT)
+            <span>📋</span> PROJECT.md &middot; 10x Genomics PBMC 3k scRNA-seq 단일세포 전사체 실전 정의서 (Domain SSOT)
           </span>
           <span class="text-[10px] font-mono text-amber-800 bg-amber-100/80 px-2 py-0.5 rounded border border-amber-300 font-bold">
-            주식 도메인 특화
+            생물정보학 도메인 특화
           </span>
         </div>
         <button 
@@ -6057,56 +6053,56 @@
 
       <!-- Modal Body (Editorial Light Theme Code View) -->
       <div class="flex-1 overflow-y-auto p-5 bg-slate-50/70 font-mono text-xs text-slate-800 leading-relaxed space-y-3.5">
-        <!-- 1. Strategy Domain & Target Universe -->
+        <!-- 1. Identity & Runtime Scope -->
         <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
           <div class="text-sky-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 1. Project Mission &amp; Equity Strategy Scope</span>
+            <span># 1. Project Identity &amp; Runtime Scope</span>
           </div>
           <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
-            - <strong>Primary Goal:</strong> 미국 S&amp;P500/나스닥100 대형 기술주 및 KOSPI200 주도주 대상 실시간 퀀트 알고리즘 트레이딩 파이프라인.<br>
-            - <strong>Core Strategy:</strong> 1분봉/5분봉 가격 모멘텀 돌파 + 거래량 가중 평균가(VWAP) 밴드 회귀 하이브리드 전략.<br>
-            - <strong>Execution Stack Split:</strong><br>
-            &nbsp;&nbsp;• <strong>Research &amp; Backtest:</strong> Python 3.12 (Polars 벡터 연산, 파라미터 그리드 탐색, 슬리피지/수수료 시뮬레이션)<br>
-            &nbsp;&nbsp;• <strong>Live Trading Engine:</strong> Go 1.23 (초저지연 실시간 시세 파싱, 호가 잔량 불균형 감시, 주문 집행 엔진)<br>
-            &nbsp;&nbsp;• <strong>Monitoring Frontend:</strong> Svelte + Tailwind CSS (실시간 체결 및 포지션 PnL 대시보드)
+            - <strong>Project Name:</strong> <code class="text-sky-900 bg-sky-100/70 px-1.5 py-0.5 rounded font-bold font-mono">pbmc3k-vibe-lab</code><br>
+            - <strong>Domain:</strong> scRNA-seq / PBMC cell-type clustering (단일세포 전사체 분석 및 세포타입 판정)<br>
+            - <strong>Execution Runtime:</strong><br>
+            &nbsp;&nbsp;• <strong>Backend:</strong> Python 3.12 (<code class="font-mono text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded">.venv</code>, <code class="font-mono text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded">uv</code> 패키지 동기화)<br>
+            &nbsp;&nbsp;• <strong>Frontend:</strong> Astro 5 (<code class="font-mono text-sky-800 bg-sky-50 px-1 py-0.2 rounded">frontend/</code>, pin <code class="font-mono font-bold">astro@5.16.6</code>; Node 22.22 호환)<br>
+            &nbsp;&nbsp;• <strong>Warehouse SSOT:</strong> <code class="text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded border border-amber-300 font-mono font-bold">data/warehouse/pbmc3k.duckdb</code>
           </p>
         </div>
 
-        <!-- 2. Stock Data Contract -->
+        <!-- 2. Seed Data & Dependency Policy -->
         <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
           <div class="text-amber-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 2. Equity Data Contract &amp; Hive Partition</span>
+            <span># 2. Seed Data Contract &amp; Dependency Policy</span>
           </div>
           <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
-            - <strong>Market Data Root:</strong> <code class="text-amber-800 bg-amber-100/80 px-1.5 py-0.5 rounded border border-amber-300 font-mono font-bold">/data/stock_market</code> (절대경로 엄수; 임의 변경 금지)<br>
-            - <strong>Partition Layout:</strong> <code class="text-slate-700 bg-slate-100 px-1 py-0.2 rounded font-mono">/data/stock_market/ticks/market={US|KR}/symbol={TICKER}/dt=YYYY-MM-DD/</code><br>
-            - <strong>Corporate Actions Invariant:</strong> 주식 액면분할, 무상증자, 배당락 이벤트 시 수정주가(Adjusted Close) 계산 모듈을 거쳐 백테스트 데이터 정합성 보장.<br>
-            - <strong>Broker API:</strong> 국내 주식 한국투자증권(KIS) Open API + 해외 주식 Interactive Brokers(IBKR) REST/WebSocket 연동
+            - <strong>Seed Data:</strong> <code class="text-amber-800 bg-amber-100/80 px-1.5 py-0.5 rounded border border-amber-300 font-mono font-bold">data/raw/pbmc3k_raw.h5ad</code> (2,700 세포 &times; 32,738 유전자, raw count matrix, hg19)<br>
+            - <strong>Allowed BE:</strong> duckdb, polars, scanpy, anndata, numpy, scipy, scikit-learn, igraph, umap-learn, h5py, pyarrow, ruff<br>
+            - <strong>Forbidden (절대 금기):</strong> <strong class="text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-300">import pandas</strong> 전면 금지, pyspark, dask dataframe, jupyter를 산출 경로로 사용하는 행위 금지
           </p>
         </div>
 
-        <!-- 3. Risk Management & Execution Rules -->
+        <!-- 3. Analysis Pipeline Defaults -->
         <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
           <div class="text-emerald-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 3. Risk Management &amp; Circuit Breakers</span>
+            <span># 3. Single-Cell Analysis Defaults (분석 알고리즘 표준)</span>
           </div>
           <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
-            - <strong>포지션 사이징:</strong> 단일 주식 종목당 전체 운용 자산의 최대 10% 이내 엄수.<br>
-            - <strong>손절 및 익절 규칙:</strong> 진입가 대비 -1.8% 도달 시 즉시 시장가 손절(Stop-Loss), +3.5% 도달 시 50% 분할 익절 후 트레일링 스탑 활성화.<br>
-            - <strong>일간 최대 손실 제한(Daily MDD):</strong> 당일 누적 손실 -3.0% 도달 시 전 포지션 즉시 시장가 청산 및 당일 신규 진입 전면 중단(Circuit Breaker).<br>
-            - <strong>체결 슬리피지 통제:</strong> 매수/매도 5단계 호가 잔량 비율(Order Book Imbalance)이 1.5배 이상 유리할 때만 주문 제출.
+            - <strong>Random Seed:</strong> <code class="bg-slate-100 px-1 rounded font-mono">seed = 0</code> / <code class="bg-slate-100 px-1 rounded font-mono">sc.settings.seed = 0</code><br>
+            - <strong>QC 필터링 기준:</strong> 미토콘드리아 유전자 접두사 <code class="bg-slate-100 px-1 rounded font-mono">MT-</code>, <code class="text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded font-bold font-mono">pct_counts_mt &lt; 5 AND 200 &lt;= n_genes_by_counts &lt; 2500</code>, <code class="bg-slate-100 px-1 rounded font-mono">min_cells = 3</code><br>
+            - <strong>정규화 &amp; 차원축소:</strong> <code class="bg-slate-100 px-1 rounded font-mono">target_sum = 1e4</code>, HVG = <code class="text-indigo-800 bg-indigo-50 px-1 rounded font-bold font-mono">seurat top 2000</code>, PCA <code class="font-mono">n_comps = 50</code>, neighbors <code class="font-mono">n_neighbors = 15, n_pcs = 30</code><br>
+            - <strong>군집 &amp; 마커 추출:</strong> Leiden <code class="text-purple-800 bg-purple-50 px-1 rounded font-bold font-mono">resolution=1.0, flavor=igraph, n_iterations=2</code>, rank_genes_groups method = <code class="bg-slate-100 px-1 rounded font-mono">wilcoxon, use_raw=True</code>
           </p>
         </div>
 
-        <!-- 4. Research to Production Checkpoint -->
+        <!-- 4. Canonical Marker Panel & UI Charts -->
         <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
           <div class="text-purple-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 4. Backtest-to-Live Handoff Protocol</span>
+            <span># 4. Canonical Marker Panel &amp; ECharts UI SSoT</span>
           </div>
           <p class="text-slate-700 text-[11px] mb-1 leading-relaxed font-sans">
-            - <strong>배포 승인 기준:</strong> 최근 3년(2023~2026) 백테스트 결과 샤프비율 &gt; 1.8, 승률 &gt; 54%, 거래당 기댓값(왕복 0.1% 수수료/슬리피지 차감 후) 양수 보장.<br>
-            - <strong>전략 파라미터 고정:</strong> Python 연구 단계에서 검증된 파라미터는 <code class="text-purple-800 bg-purple-50 px-1 py-0.2 rounded border border-purple-200 font-mono">config/strategy_params.json</code>으로 추출되어 Go 엔진 런타임에 주입.<br>
-            - <strong>텔레그램 체결 알림:</strong> 주문 생성, 정정, 체결(`open -&gt; close`) 발생 시 텔레그램 봇으로 실시간 손익 및 슬리피지 보고 전송.
+            - <strong>표준 세포 마커 패널 (SSOT):</strong><br>
+            &nbsp;&nbsp;<code class="text-purple-900 bg-purple-100/80 px-1.5 py-0.5 rounded border border-purple-200 font-bold font-mono text-[10px]">IL7R, CD3D, CD3E, CD8A, CD8B, MS4A1, CD79A, CD14, LYZ, S100A8, FCGR3A, MS4A7, GNLY, NKG7, FCER1A, CST3, PPBP</code><br>
+            - <strong>타입 판정 규칙:</strong> Wilcoxon 상위 유전자 중 하우스키핑(RPS/RPL/MT-) 제외 후 canonical marker 평균 발현으로 판정.<br>
+            - <strong>UI Visualization SSoT:</strong> Astro 컴포넌트 내 <strong>Apache ECharts 5</strong> (<code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded font-mono">echarts-setup.ts</code>); UMAP 산점도, 바이올린 custom series, 닷플롯 차트 일원화 (손수 SVG나 Plotly 금지).
           </p>
         </div>
       </div>
@@ -6252,10 +6248,10 @@
             <span># 실전 트러블슈팅 기록 예시</span>
             <span class="text-[9px] text-rose-600 bg-rose-100/70 px-1 rounded">클릭: 전문 보기</span>
           </div>
-          <div>• <strong>증상:</strong> KIS 주식 호가 웹소켓 403 Forbidden 에러</div>
-          <div>• <strong>원인:</strong> 장중 OAuth2 토큰 만료 및 동시성 Lock 부재</div>
-          <div>• <strong>해결:</strong> 만료 15분 전 백그라운드 선제 갱신 루틴 추가</div>
-          <div>• <strong>교훈:</strong> 실시간 스트리밍은 사전 토큰 갱신 필수 설계</div>
+          <div>• <strong>증상:</strong> Scanpy Leiden 군집 시 leidenalg 부재 경고</div>
+          <div>• <strong>원인:</strong> scanpy 1.12는 flavor 미지정 시 leidenalg 탐색</div>
+          <div>• <strong>해결:</strong> flavor="igraph", n_iterations=2로 igraph 지정</div>
+          <div>• <strong>교훈:</strong> 클러스터링은 data-analytics 스킬 파라미터 준수</div>
         </div>
       </div>
 
@@ -6305,10 +6301,10 @@
             <span># 단계별 마일스톤 체크리스트</span>
             <span class="text-[9px] text-amber-700 bg-amber-100/70 px-1 rounded">클릭: 전문 보기</span>
           </div>
-          <div class="text-emerald-700 font-semibold">• [x] Phase 1: Polars 1분봉 수정주가 팩터 연산 엔진</div>
-          <div class="text-emerald-700 font-semibold">• [x] Phase 2: KIS/IBKR 웹소켓 시세 수신 링버퍼</div>
-          <div class="text-amber-800 font-bold">• [&gt;] Phase 3: 호가 불균형 1.5배 필터 주문 집행 (75%)</div>
-          <div class="text-slate-500">• [ ] Phase 4: Svelte 실시간 체결 대시보드 연동</div>
+          <div class="text-emerald-700 font-semibold">• [x] Phase 1: DuckDB 웨어하우스 적재 (2700 cells / 32738 genes)</div>
+          <div class="text-emerald-700 font-semibold">• [x] Phase 2: QC 필터링 &amp; Astro /qc 페이지 구축</div>
+          <div class="text-amber-800 font-bold">• [&gt;] Phase 3: HVG 2000 &amp; UMAP/Leiden 군집 연동 (85%)</div>
+          <div class="text-slate-500">• [ ] Phase 4: Wilcoxon 마커 탐색 &amp; Astro ECharts 연동</div>
         </div>
       </div>
 
@@ -6345,7 +6341,7 @@
 
         <div class="text-[11px] font-bold text-slate-900 mb-1">초기 설계 의도 &amp; 아키텍처 결정 (ADR)</div>
         <p class="text-[10.5px] text-slate-600 leading-relaxed mb-2 font-sans">
-          "왜 우리가 Redis 대신 SQLite를 선택했는가?"와 같은 <strong>근본적인 기술적 의사결정 의도</strong>를 영속화합니다.
+          "왜 pandas 대신 DuckDB를 주력 웨어하우스로 삼았는가?"와 같은 <strong>근본적인 기술적 의사결정 의도</strong>를 영속화합니다.
         </p>
 
         <!-- Template Box (Clickable) -->
@@ -6355,13 +6351,13 @@
           title="클릭하여 상세 예제 확인"
         >
           <div class="flex items-center justify-between text-sky-700 font-bold mb-1">
-            <span># 아키텍처 결정 레코드 (ADR-007)</span>
+            <span># INTENT &amp; 아키텍처 결정</span>
             <span class="text-[9px] text-sky-700 bg-sky-100/70 px-1 rounded">클릭: 전문 보기</span>
           </div>
-          <div>• <strong>의사결정:</strong> 실시간 틱 저장소로 SQLite WAL 모드 채택</div>
-          <div>• <strong>배경:</strong> 단일 노드 엣지 배포로 서버 운영 복잡도 최소화</div>
-          <div>• <strong>성능:</strong> 초당 35,000건 삽입 처리 및 무의존성 단일 파일</div>
-          <div>• <strong>경고:</strong> 에이전트가 멋대로 Redis/Kafka 데몬 추가 금지</div>
+          <div>• <strong>Why:</strong> PBMC 3k 전사체 파이프라인과 자연어 AI 분석 결합</div>
+          <div>• <strong>의사결정:</strong> pandas 금지, DuckDB 웨어하우스 SSOT 강제</div>
+          <div>• <strong>FE 규칙:</strong> Astro 5 + Apache ECharts 5 (Canvas/SVG 통일)</div>
+          <div>• <strong>경고:</strong> 에이전트가 Jupyter나 PNG만으로 시각화 때우기 금지</div>
         </div>
       </div>
 
@@ -6423,25 +6419,40 @@
           <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
             <div class="flex items-center justify-between mb-1.5">
               <span class="text-rose-800 font-bold text-sm"># LESSON_AND_LEARN.md &middot; 실전 트러블슈팅 오답 노트 (자가 치유 기록)</span>
-              <span class="text-[10px] bg-rose-50 text-rose-800 px-2 py-0.5 rounded border border-rose-200">Episodic Memory</span>
+              <span class="text-[10px] bg-rose-50 text-rose-800 px-2 py-0.5 rounded border border-rose-200 font-bold">Episodic Memory</span>
             </div>
             <p class="text-slate-600 text-[11px] mb-2 font-sans">
               에이전트가 문제를 해결한 후 원인과 해법을 기록하여, 다음 세션에서 동일한 버그로 토큰을 낭비하지 않도록 방지하는 오답 노트입니다.
             </p>
             <div class="bg-slate-50 p-3 rounded border border-slate-200 space-y-2 text-[10.5px]">
               <div>
-                <strong class="text-rose-700 font-bold">## [Issue #24] 장 초반 09:00 주식 호가 수신 중 WebSocket 403 에러 발생</strong>
+                <strong class="text-rose-700 font-bold">## [2026-11-08] Charts unified on ECharts</strong>
               </div>
-              <div class="text-slate-700 space-y-1">
-                <div>• <strong>증상 (Symptom):</strong> 장 시작 09:00 동시호가 급증 시 증권사 실시간 웹소켓 세션이 끊기고 403 Forbidden 에러 반복.</div>
-                <div>• <strong>원인 분석 (Root Cause):</strong> 한국투자증권(KIS) OAuth2 액세스 토큰의 유효기간(24시간) 만료 시 자동 재발급 메커니즘 부재 및 만료 시점에 다중 고루틴이 동시 재발급을 요청하면서 Rate Limit 초과.</div>
-                <div>• <strong>근본 해결책 (Fix):</strong></div>
-                <div class="pl-3 border-l-2 border-rose-300 text-slate-800">
-                  1) Go 엔진 내 <code class="bg-rose-100 text-rose-900 px-1 py-0.2 rounded font-bold">TokenManager</code> 싱글톤 구현: 만료 15분 전 백그라운드 선제 갱신<br>
-                  2) <code class="bg-rose-100 text-rose-900 px-1 py-0.2 rounded font-bold">sync.RWMutex</code>를 적용하여 갱신 중 들어오는 웹소켓 요청을 안전하게 대기 큐잉
-                </div>
-                <div>• <strong>검증 (Verification):</strong> 토큰 만료 가상 주입 테스트(<code class="bg-slate-200 px-1 rounded">go test -v -run TestTokenAutoRefresh</code>) 100% 통과 확인.</div>
-                <div>• <strong>교훈 (Rule for Agent):</strong> "인증 토큰 기반 실시간 스트리밍은 단순 만료 후 재시도가 아닌, 사전 백그라운드 갱신과 동시성 Lock을 필수로 설계할 것."</div>
+              <div class="text-slate-700 space-y-0.5">
+                <div>• <strong>Symptom:</strong> 손수 SVG 차트 4종이 제각각이라 상호작용 및 유지보수 비용 급증</div>
+                <div>• <strong>Root Cause:</strong> 초기 스캐폴드가 라이브러리 없이 수동 SVG로 시작</div>
+                <div>• <strong>Solution:</strong> <code class="bg-rose-100 text-rose-900 px-1 py-0.2 rounded font-bold">echarts@5.6.0</code> + <code class="bg-slate-200 px-1 rounded">frontend/src/lib/echarts-setup.ts</code>; violin은 <code class="bg-slate-200 px-1 rounded">custom</code> series</div>
+                <div>• <strong>Lesson:</strong> <code class="text-indigo-700 font-bold">ui-echarts</code>가 차트 SSoT. 새 플롯도 ECharts만 사용.</div>
+              </div>
+
+              <div class="pt-1.5 border-t border-slate-200">
+                <strong class="text-rose-700 font-bold">## [2026-11-08] Scanpy Leiden default backend</strong>
+              </div>
+              <div class="text-slate-700 space-y-0.5">
+                <div>• <strong>Symptom:</strong> <code class="bg-slate-200 px-1 rounded">sc.tl.leiden</code>이 leidenalg 미설치로 실패하거나 느림 경고</div>
+                <div>• <strong>Root Cause:</strong> scanpy 1.12는 flavor 미지정 시 leidenalg 경로, igraph가 권장</div>
+                <div>• <strong>Solution:</strong> <code class="bg-rose-100 text-rose-900 px-1 py-0.2 rounded font-bold">flavor="igraph", n_iterations=2, directed=False</code> + <code class="bg-slate-200 px-1 rounded">igraph</code> 패키지</div>
+                <div>• <strong>Lesson:</strong> 클러스터 단계는 <code class="text-indigo-700 font-bold">data-analytics-dimreduce-cluster</code> 파라미터 그대로 준수.</div>
+              </div>
+
+              <div class="pt-1.5 border-t border-slate-200">
+                <strong class="text-rose-700 font-bold">## [2026-11-08] pandas 금지와 AnnData</strong>
+              </div>
+              <div class="text-slate-700 space-y-0.5">
+                <div>• <strong>Symptom:</strong> AnnData <code class="bg-slate-200 px-1 rounded">.obs/.var</code>가 pandas DataFrame이라 변환 유혹</div>
+                <div>• <strong>Root Cause:</strong> 생태계 경계. warehouse SSOT는 DuckDB</div>
+                <div>• <strong>Solution:</strong> AnnData는 임시 수치 객체로만 쓰고, 표 산출은 즉시 DuckDB/Polars로 이관. 코드에 <code class="bg-rose-100 text-rose-900 px-1 py-0.2 rounded font-bold">import pandas</code> 금지</div>
+                <div>• <strong>Lesson:</strong> <code class="text-indigo-700 font-bold">db-query-patterns</code>의 "AnnData → DuckDB 브릿지"만 사용.</div>
               </div>
             </div>
           </div>
@@ -6452,40 +6463,39 @@
           <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
             <div class="flex items-center justify-between mb-1.5">
               <span class="text-amber-800 font-bold text-sm"># PLAN.md &middot; 마일스톤 단계별 구현 체크리스트 (State Machine)</span>
-              <span class="text-[10px] bg-amber-50 text-amber-800 px-2 py-0.5 rounded border border-amber-200">State SSoT</span>
+              <span class="text-[10px] bg-amber-50 text-amber-800 px-2 py-0.5 rounded border border-amber-200 font-bold">State SSoT</span>
             </div>
             <p class="text-slate-600 text-[11px] mb-2 font-sans">
               대화창을 닫거나 세션이 만료되어도 에이전트가 "내가 어디까지 코딩했는지" 1초 만에 파악할 수 있는 작업 체크리스트입니다.
             </p>
             <div class="bg-slate-50 p-3 rounded border border-slate-200 space-y-2 text-[10.5px]">
               <div>
-                <strong class="text-amber-700 font-bold">## 현재 목표: 주식 1분봉 VWAP 모멘텀 엔진 실시간 연동 (v1.4.0)</strong>
+                <strong class="text-amber-700 font-bold">## PBMC 3k 파이프라인 구현 단계 (Phase 0 ~ Phase 5)</strong>
               </div>
               <div class="space-y-1.5 text-slate-800">
                 <div class="flex items-center gap-2">
                   <span class="text-emerald-600 font-bold">✓ [x]</span>
-                  <span class="line-through text-slate-400">Phase 1: Polars 기반 1분봉/5분봉 수정주가 팩터 계산 엔진 구축</span>
+                  <span><strong>Phase 0 &middot; Harness:</strong> AGENTS / INTENT / PLAN / PROJECT / LESSON_AND_LEARN, skills 심볼릭 링크, 원본 h5ad</span>
                 </div>
                 <div class="flex items-center gap-2">
                   <span class="text-emerald-600 font-bold">✓ [x]</span>
-                  <span class="line-through text-slate-400">Phase 2: KIS/IBKR WebSocket 시세 수신 파서 및 동시성 링버퍼 구현</span>
+                  <span><strong>Phase 1 &middot; Warehouse:</strong> <code class="bg-slate-200 px-1 rounded">backend/ingest</code> : h5ad → DuckDB (2,700 cells / 32,738 genes, 2,286,884 nnz)</span>
                 </div>
-                <div class="flex items-center gap-2 bg-amber-100/60 p-1.5 rounded border border-amber-300">
-                  <span class="text-amber-800 font-bold">⚡ [&gt;]</span>
-                  <span class="text-amber-900 font-bold">Phase 3: 호가 불균형(Order Book Imbalance) 1.5배 필터링 및 주문 엔진 연동 (진행 중 - 75%)</span>
+                <div class="flex items-center gap-2">
+                  <span class="text-emerald-600 font-bold">✓ [x]</span>
+                  <span><strong>Phase 2 &middot; QC + Astro:</strong> <code class="bg-slate-200 px-1 rounded">backend/qc</code> : mt%/n_genes 필터, /qc 페이지 (2700→2638 cells 통과)</span>
                 </div>
-                <div class="pl-6 space-y-0.5 text-slate-700">
-                  <div>- [x] 5단계 매수/매도 호가 잔량 델타 계산기 (<code class="bg-slate-200 px-1 rounded">internal/detector/imbalance.go</code>)</div>
-                  <div>- [&gt;] 시장가/지정가 분할 주문 집행기 구현 중 (<code class="bg-slate-200 px-1 rounded">internal/executor/order.go:L84</code>)</div>
-                  <div>- [ ] 체결 확인 수신 및 SQLite 트랜잭션 기록</div>
+                <div class="flex items-center gap-2">
+                  <span class="text-emerald-600 font-bold">✓ [x]</span>
+                  <span><strong>Phase 3 &middot; Cluster:</strong> normalize → HVG 2000 → PCA 50 → UMAP → Leiden 9개 클러스터, /umap 페이지</span>
                 </div>
-                <div class="flex items-center gap-2 text-slate-500">
-                  <span>☐ [ ]</span>
-                  <span>Phase 4: Svelte 프론트엔드 포지션/PnL 실시간 웹소켓 스트리밍 UI 연동</span>
+                <div class="flex items-center gap-2">
+                  <span class="text-emerald-600 font-bold">✓ [x]</span>
+                  <span><strong>Phase 4 &middot; Markers:</strong> Wilcoxon DEG, /markers dot + violin, 세포타입 판정 (T 55% / B 13% / Mono 24%)</span>
                 </div>
-                <div class="flex items-center gap-2 text-slate-500">
-                  <span>☐ [ ]</span>
-                  <span>Phase 5: Podman 컨테이너 패키징 및 CI/CD 무중단 롤아웃</span>
+                <div class="flex items-center gap-2 bg-emerald-50 p-1.5 rounded border border-emerald-300">
+                  <span class="text-emerald-700 font-bold">✓ [x]</span>
+                  <span class="text-emerald-900 font-bold"><strong>Phase 5 &middot; Export &amp; Polish:</strong> Astro public/data/* 일괄 내보내기, ruff + npm run build 게이트 완료</span>
                 </div>
               </div>
             </div>
@@ -6496,28 +6506,28 @@
         <div id="ctx-doc-panel-roadmap" class="ctx-doc-panel hidden space-y-3">
           <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
             <div class="flex items-center justify-between mb-1.5">
-              <span class="text-amber-800 font-bold text-sm"># ROADMAP.md &middot; 중장기 제품 아키텍처 및 릴리스 로드맵</span>
-              <span class="text-[10px] bg-amber-50 text-amber-800 px-2 py-0.5 rounded border border-amber-200">Long-term Vision</span>
+              <span class="text-amber-800 font-bold text-sm"># ROADMAP.md &middot; 중장기 생물정보 플랫폼 진화 로드맵</span>
+              <span class="text-[10px] bg-amber-50 text-amber-800 px-2 py-0.5 rounded border border-amber-200 font-bold">Long-term Vision</span>
             </div>
             <p class="text-slate-600 text-[11px] mb-2 font-sans">
               에이전트가 눈앞의 단기 작업에 매몰되어 전체 시스템의 중장기 설계 방향성을 훼손하지 않도록 가이드하는 로드맵 문서입니다.
             </p>
             <div class="bg-slate-50 p-3 rounded border border-slate-200 space-y-2 text-[10.5px]">
               <div>
-                <strong class="text-amber-700 font-bold">## 2026 주식 퀀트 플랫폼 진화 로드맵</strong>
+                <strong class="text-amber-700 font-bold">## 2026 scRNA-seq 단일세포 전사체 연구 플랫폼 로드맵</strong>
               </div>
               <div class="space-y-2 text-slate-700">
                 <div>
-                  <div class="font-bold text-emerald-800">Q1. Core Reliability &amp; Single-Node Zero-Crash (완료)</div>
-                  <div class="text-[10px] pl-3">• Go 기반 실시간 체결 엔진 및 SQLite WAL 틱 저장소 구축<br>• 10대 배포 승인 게이트(CHECKLIST.md) 및 RLS 보안 격리 완료</div>
+                  <div class="font-bold text-emerald-800">Q1. Single-Sample PBMC 3k Reproduction (완료)</div>
+                  <div class="text-[10px] pl-3">• DuckDB 웨어하우스 SSOT + Scanpy igraph + Astro 5 ECharts 시각화<br>• pandas 금지 및 품질 검증 게이트(ruff + npm run build) 통과</div>
                 </div>
                 <div class="pt-1 border-t border-slate-200">
-                  <div class="font-bold text-amber-800">Q2. Scalability &amp; Multi-Market Universe (진행 중)</div>
-                  <div class="text-[10px] pl-3">• KOSPI200 외 S&amp;P500 미국 주식 유니버스 실시간 수집 확장<br>• 분산 틱 수집기 클러스터 (Go Raft 합의 기반 이중화 이중 채널)</div>
+                  <div class="font-bold text-amber-800">Q2. Multi-Sample Batch Integration &amp; Atlas (진행 중)</div>
+                  <div class="text-[10px] pl-3">• Harmony / scVI 배치 교정 알고리즘 추가 및 100k+ 세포 확장<br>• Parquet 컬럼 스토리지 파티셔닝 기반 다중 샘플 통합 쿼리</div>
                 </div>
                 <div class="pt-1 border-t border-slate-200">
-                  <div class="font-bold text-slate-600">Q3. Autonomous Intelligence &amp; Event-Driven AI (예정)</div>
-                  <div class="text-[10px] pl-3">• 기업 실적 공시(DART/EDGAR) 실시간 LLM 감성 분석 시그널 연계<br>• 멀티 에이전트 자동 리밸런싱 및 카나리 롤백 오케스트레이션</div>
+                  <div class="font-bold text-slate-600">Q3. Autonomous BioChatter &amp; Natural Language Query (예정)</div>
+                  <div class="text-[10px] pl-3">• AutoBA / scChat 연계 자연어 유전자 발현 쿼리 인터페이스<br>• 멀티 에이전트 마커 기반 세포 상태 자동 주석 및 논문 인용 리포트 생성</div>
                 </div>
               </div>
             </div>
@@ -6528,25 +6538,28 @@
         <div id="ctx-doc-panel-intent" class="ctx-doc-panel hidden space-y-3">
           <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
             <div class="flex items-center justify-between mb-1.5">
-              <span class="text-sky-800 font-bold text-sm"># INTENT.md &middot; 핵심 제품 철학 &amp; 비기능적 요구사항 (Intent SSoT)</span>
-              <span class="text-[10px] bg-sky-50 text-sky-800 px-2 py-0.5 rounded border border-sky-200">Design Intent</span>
+              <span class="text-sky-800 font-bold text-sm"># INTENT.md &middot; 핵심 연구 의도 &amp; 인수 기준 (Intent SSoT)</span>
+              <span class="text-[10px] bg-sky-50 text-sky-800 px-2 py-0.5 rounded border border-sky-200 font-bold">Design Intent</span>
             </div>
             <p class="text-slate-600 text-[11px] mb-2 font-sans">
               "왜 시스템이 이렇게 만들어졌는가"를 정의하여, 에이전트가 리팩토링 중 핵심 철학을 임의로 훼손하거나 불필요한 복잡성을 도입하는 것을 차단합니다.
             </p>
             <div class="bg-slate-50 p-3 rounded border border-slate-200 space-y-2 text-[10.5px]">
               <div>
-                <strong class="text-sky-700 font-bold">## 1. 근본 설계 철학 (Core Design Invariants)</strong>
+                <strong class="text-sky-700 font-bold">## 1. Why &amp; Persona</strong>
                 <div class="text-slate-700 mt-1 space-y-1">
-                  <div>• <strong>Zero-External DB Dependency:</strong> 중앙 집중형 무거운 DB 대신 SQLite + Parquet 조합을 고수하여 단일 바이너리 엣지 구동 지원.</div>
-                  <div>• <strong>Strict Separation of Brain &amp; Muscle:</strong> Python(연구/전략 연산)과 Go(실시간 체결/네트워크 I/O)의 역할을 절대 단일 언어로 합치지 않는다.</div>
+                  <div>• <strong>Why:</strong> 단일세포 전사체(PBMC 3k) 표준 파이프라인을 바이브 코딩으로 재현하면서, AutoBA/scChat류 <strong>자연어→분석</strong> 흐름과 <strong>군집 해석</strong>을 연결.</div>
+                  <div>• <strong>Persona:</strong> 생물정보학 입문 연구자 + 바이브 코딩 실습생. 한국어 UI로 QC·UMAP·마커를 한 페이지 흐름으로 확인.</div>
                 </div>
               </div>
               <div class="pt-1 border-t border-slate-200">
-                <strong class="text-rose-700 font-bold">## 2. 금기 사항 (Anti-Patterns / Forbidden Actions)</strong>
-                <div class="text-slate-700 mt-1 space-y-1">
-                  <div>• <strong>하드코딩 금지:</strong> 전략 수식이나 손절 수치를 Go 엔진 소스에 직접 쓰지 말고 항상 <code class="bg-slate-200 px-1 rounded">config/strategy_params.json</code>을 통해 주입할 것.</div>
-                  <div>• <strong>모의검증 없는 실주문 엄금:</strong> 단위 테스트와 백테스트 3개년 슬리피지 검증 전에는 실계좌 주문 루틴을 활성화하지 말 것 (<code class="bg-slate-200 px-1 rounded">DRY_RUN=true</code> 유지).</div>
+                <strong class="text-emerald-700 font-bold">## 2. Acceptance Criteria (인수 기준)</strong>
+                <div class="text-slate-700 mt-1 space-y-0.5">
+                  <div>1) <code class="bg-slate-200 px-1 rounded">data/raw/pbmc3k_raw.h5ad</code>를 재다운로드 없이 DuckDB로 적재한다.</div>
+                  <div>2) <code class="bg-rose-100 text-rose-900 px-1 rounded font-bold">import pandas</code>가 코드베이스에 없다. 표 연산은 DuckDB(+ Polars 보조)만 쓴다.</div>
+                  <div>3) QC → 군집 → 마커 → 타입 추론이 단계 모듈로 분리되고, 각 결과가 Astro에서 보인다.</div>
+                  <div>4) 기본 UI는 light background. 차트는 Astro 컴포넌트(Apache ECharts 5)다.</div>
+                  <div>5) 클러스터 해석은 마커 숫자 근거를 인용하며, T/B/Monocyte로 억지 분류하지 않는다.</div>
                 </div>
               </div>
             </div>
@@ -6558,23 +6571,23 @@
           <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
             <div class="flex items-center justify-between mb-1.5">
               <span class="text-sky-800 font-bold text-sm"># ADR.md &middot; Architectural Decision Records (아키텍처 의사결정 기록)</span>
-              <span class="text-[10px] bg-sky-50 text-sky-800 px-2 py-0.5 rounded border border-sky-200">Architectural SSoT</span>
+              <span class="text-[10px] bg-sky-50 text-sky-800 px-2 py-0.5 rounded border border-sky-200 font-bold">Architectural SSoT</span>
             </div>
             <p class="text-slate-600 text-[11px] mb-2 font-sans">
               주요 기술적 선택의 배경, 대안 평가, 채택 이유와 결과를 공식 문서로 박제하여 미래의 개발자와 에이전트가 뒤엎지 못하게 합니다.
             </p>
             <div class="bg-slate-50 p-3 rounded border border-slate-200 space-y-2 text-[10.5px]">
               <div>
-                <strong class="text-sky-700 font-bold">## ADR-007: 실시간 틱 데이터 스토리지로 SQLite WAL 모드 채택</strong>
-                <div class="text-[10px] text-slate-500 font-mono">Status: Accepted &middot; Date: 2026-03-15</div>
+                <strong class="text-sky-700 font-bold">## ADR-001: 분석 테이블/집계의 SSOT로 DuckDB 채택</strong>
+                <div class="text-[10px] text-slate-500 font-mono">Status: Accepted &middot; Date: 2026-11-08</div>
               </div>
               <div class="text-slate-700 space-y-1">
-                <div>• <strong>Context (문제 상황):</strong> 초당 수천 건의 주식 틱 데이터와 5단계 호가 잔량을 로컬에 초저지연 영속화해야 함. Redis나 PostgreSQL 데몬을 띄우면 메모리 오버헤드와 배포 복잡도 급증.</div>
-                <div>• <strong>Decision (결정 사항):</strong> Go 내장 임베디드 SQLite에 <code class="bg-sky-100 text-sky-900 px-1 py-0.2 rounded font-bold">PRAGMA journal_mode=WAL</code> 및 <code class="bg-sky-100 text-sky-900 px-1 py-0.2 rounded font-bold">PRAGMA synchronous=NORMAL</code> 적용.</div>
+                <div>• <strong>Context (문제 상황):</strong> 2,700개 세포 &times; 32,738개 유전자 및 228만 개 발현 카운트 매트릭스를 지연 없이 SQL 쿼리하고 Astro 정적 아티팩트로 내보내야 함. SQLite는 대용량 컬럼 집계에 느리고, PostgreSQL은 서버 데몬 설치 필요.</div>
+                <div>• <strong>Decision (결정 사항):</strong> DuckDB 임베디드 OLAP 엔진을 웨어하우스 SSOT로 채택. 표 연산은 DuckDB(+ Polars 보조)만 쓰고 pandas 전면 금지.</div>
                 <div>• <strong>Consequences (결과 및 트레이드오프):</strong></div>
                 <div class="pl-3 border-l-2 border-sky-300 text-slate-800">
-                  - <strong>장점:</strong> 단일 노드에서 초당 35,000건 삽입 처리 달성, 추가 인프라 데몬 0개, 단일 파일 복사로 백업 완료.<br>
-                  - <strong>제약:</strong> 동시 쓰기는 싱글 스레드로 제한되므로 Go 채널 기반 단일 워커 큐 패턴 준수 필수.
+                  - <strong>장점:</strong> 추가 DB 데몬 설치 없이 단일 파일(<code class="bg-sky-100 text-sky-900 px-1 rounded font-mono">pbmc3k.duckdb</code>)로 228만 카운트 집계 0.05초 달성.<br>
+                  - <strong>제약:</strong> AnnData 객체와의 경계에서 <code class="bg-slate-200 px-1 rounded font-mono">db-query-patterns</code> 브릿지 패턴을 반드시 준수해야 함.
                 </div>
               </div>
             </div>
@@ -6689,7 +6702,7 @@
               <span class="text-[9px] bg-slate-800 px-1.5 py-0.2 rounded text-slate-300">Immutable</span>
             </div>
             <div class="text-[9.5px] text-slate-400 font-sans mt-0.5">
-              <code class="text-slate-300 font-mono">/raw/</code> 논문, 거래소 API 문서, 회의록, 장애 로그 (AI 읽기 전용)
+              <code class="text-slate-300 font-mono">/raw/</code> 논문, scRNA-seq 데이터 명세, 벤더 API 문서, 회의록, 장애 로그 (AI 읽기 전용)
             </div>
           </div>
 
@@ -6775,8 +6788,8 @@
           </div>
           <div class="pl-6 text-slate-300">
             ├── 📑 <span class="text-cyan-300 font-bold">index.md</span> <span class="text-[9px] text-slate-500 font-sans">➔ 위키 전체 카탈로그 (양방향 링크 [[...]] 인덱싱)</span><br>
-            ├── 📁 <span class="text-amber-300 font-bold">entities/</span> <span class="text-[9px] text-slate-500 font-sans">➔ 핵심 개념 &middot; 패턴 ([[backtesting-rules]], [[data-contract]])</span><br>
-            ├── 📁 <span class="text-rose-300 font-bold">decisions/</span> <span class="text-[9px] text-slate-500 font-sans">➔ 아키텍처 결정 &middot; 시행착오 ([[look-ahead-bias-fix]])</span><br>
+            ├── 📁 <span class="text-amber-300 font-bold">entities/</span> <span class="text-[9px] text-slate-500 font-sans">➔ 핵심 개념 &middot; 패턴 ([[duckdb-warehouse]], [[scrna-seq-pipeline]])</span><br>
+            ├── 📁 <span class="text-rose-300 font-bold">decisions/</span> <span class="text-[9px] text-slate-500 font-sans">➔ 아키텍처 결정 &middot; 시행착오 ([[echarts-custom-violin]], [[leiden-igraph]])</span><br>
             └── 📁 <span class="text-purple-300 font-bold">_templates/</span> <span class="text-[9px] text-slate-500 font-sans">➔ 새 지식 인제스트용 표준 양식 (entity, decision)</span>
           </div>
 
@@ -6785,9 +6798,9 @@
             <span class="text-amber-400">└── 📂 .cursor/skills/</span> <span class="text-slate-400 font-sans text-[9px]">(상충 제거를 위해 원자 단위로 잘게 쪼갠 스킬 팩)</span>
           </div>
           <div class="pl-6 text-slate-300">
-            ├── 📁 <span class="text-emerald-300">ui-components/</span> &middot; 📁 <span class="text-emerald-300">ui-tailwind/</span> <span class="text-[9px] text-slate-500 font-sans">(UI 그룹)</span><br>
-            ├── 📁 <span class="text-cyan-300">ops-deployment/</span> &middot; 📁 <span class="text-cyan-300">ops-podman/</span> <span class="text-[9px] text-slate-500 font-sans">(인프라 그룹)</span><br>
-            └── 📁 <span class="text-purple-300">trading-db-schema/</span> &middot; 📁 <span class="text-purple-300">wiki-management/</span> <span class="text-[9px] text-slate-500 font-sans">(도메인/위키관리)</span>
+            ├── 📁 <span class="text-emerald-300">ui-echarts/</span> &middot; 📁 <span class="text-emerald-300">ui-viz-umap/</span> <span class="text-[9px] text-slate-500 font-sans">(UI/시각화)</span><br>
+            ├── 📁 <span class="text-cyan-300">ops-pipeline-orchestration/</span> <span class="text-[9px] text-slate-500 font-sans">(오케스트레이션)</span><br>
+            └── 📁 <span class="text-purple-300">db-duckdb-schema/</span> &middot; 📁 <span class="text-purple-300">data-analytics-dimreduce-cluster/</span> <span class="text-[9px] text-slate-500 font-sans">(분석 파이프라인)</span>
           </div>
         </div>
 
@@ -7022,7 +7035,7 @@
           <div class="p-2 bg-slate-900 rounded border border-slate-800">
             <div class="text-amber-300 font-bold mb-0.5 text-[11px]">Step 2. 에이전트에게 딱 한 줄만 입력</div>
             <div class="text-[11px] text-emerald-300 bg-slate-950 p-1.5 rounded border border-slate-800/80 font-bold">
-              "트레이딩 수익률 대시보드 화면 하나 만들어줘"
+              "PBMC 3k 세포 군집 대시보드 화면 하나 만들어줘"
             </div>
           </div>
 

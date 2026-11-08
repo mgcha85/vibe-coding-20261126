@@ -26,26 +26,25 @@
 
         <!-- Tree View with document icons -->
         <div class="p-2.5 rounded bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto">
-          <div class="text-slate-400">📁 <span class="text-white font-bold">my-project/</span></div>
+          <div class="text-slate-400">📁 <span class="text-white font-bold">pbmc3k-vibe-lab/</span></div>
           <div class="pl-3 text-slate-400">├── 📜 <span class="text-sky-300 font-bold">AGENTS.md</span> <span class="text-[10px] text-slate-500 font-sans">(매 턴 인덱스/헌법)</span></div>
           <div class="pl-3 text-slate-400">├── 📂 <span class="text-indigo-300 font-bold">.cursor/skills/</span> <span class="text-[10px] text-slate-500 font-sans">(또는 .agents/skills)</span></div>
           
-          <!-- UI Category -->
-          <div class="pl-6 text-emerald-400">├── 📁 <span class="font-bold text-emerald-300">ui-components/</span> <span class="text-[10px] text-emerald-400/80 font-sans">(프론트엔드 그룹)</span></div>
-          <div class="pl-9 text-slate-400">│   ├── 📄 <span class="text-amber-300">SKILL.md</span> <span class="text-[9.5px] text-slate-400 font-sans">(트리거 메타데이터 + 사규)</span></div>
-          <div class="pl-9 text-slate-400">│   └── 📑 <span class="text-slate-300">REFERENCE.md</span> <span class="text-[9.5px] text-slate-400 font-sans">(필요시 읽는 디자인 가이드)</span></div>
+          <!-- DB/Warehouse Category -->
+          <div class="pl-6 text-amber-400">├── 📁 <span class="font-bold text-amber-300">db-duckdb-schema/</span> <span class="text-[10px] text-amber-400/80 font-sans">(DuckDB 웨어하우스 SSOT)</span></div>
+          <div class="pl-9 text-slate-400">│   ├── 📄 <span class="text-amber-300">SKILL.md</span> <span class="text-[9.5px] text-slate-400 font-sans">(genes/cells/counts 스키마)</span></div>
+          <div class="pl-9 text-slate-400">│   └── 📑 <span class="text-slate-300">REFERENCE.md</span></div>
           
-          <!-- UI Style/Tailwind -->
-          <div class="pl-6 text-emerald-400">├── 📁 <span class="font-bold text-emerald-300">ui-tailwind-design/</span></div>
-          <div class="pl-9 text-slate-400">│   └── 📄 <span class="text-amber-300">SKILL.md</span></div>
-          
-          <!-- Backend/Trading Category -->
-          <div class="pl-6 text-purple-400">├── 📁 <span class="font-bold text-purple-300">trading-db-schema/</span> <span class="text-[10px] text-purple-400/80 font-sans">(백엔드/도메인 그룹)</span></div>
-          <div class="pl-9 text-slate-400">│   ├── 📄 <span class="text-amber-300">SKILL.md</span></div>
-          <div class="pl-9 text-slate-400">│   └── 📑 <span class="text-slate-300">INDEX.md</span></div>
+          <!-- Data Analytics Category -->
+          <div class="pl-6 text-purple-400">├── 📁 <span class="font-bold text-purple-300">data-analytics-dimreduce-cluster/</span> <span class="text-[10px] text-purple-400/80 font-sans">(분석 파이프라인)</span></div>
+          <div class="pl-9 text-slate-400">│   └── 📄 <span class="text-amber-300">SKILL.md</span> <span class="text-[9.5px] text-slate-400 font-sans">(HVG/PCA/UMAP/Leiden igraph)</span></div>
+
+          <!-- UI & Charts Category -->
+          <div class="pl-6 text-emerald-400">├── 📁 <span class="font-bold text-emerald-300">ui-echarts/</span> <span class="text-[10px] text-emerald-400/80 font-sans">(Astro 차트 SSoT)</span></div>
+          <div class="pl-9 text-slate-400">│   └── 📄 <span class="text-amber-300">SKILL.md</span> <span class="text-[9.5px] text-slate-400 font-sans">(ECharts 5.6 &middot; violin custom)</span></div>
           
           <!-- Operations Category -->
-          <div class="pl-6 text-cyan-400">└── 📁 <span class="font-bold text-cyan-300">ops-deployment/</span> <span class="text-[10px] text-cyan-400/80 font-sans">(인프라/운영 그룹)</span></div>
+          <div class="pl-6 text-cyan-400">└── 📁 <span class="font-bold text-cyan-300">ops-pipeline-orchestration/</span> <span class="text-[10px] text-cyan-400/80 font-sans">(전체 재실행 &amp; 게이트)</span></div>
           <div class="pl-9 text-slate-400">    └── 📄 <span class="text-amber-300">SKILL.md</span></div>
         </div>
       </div>
@@ -74,43 +73,43 @@
             <div class="flex items-center justify-between text-emerald-300 font-mono font-bold text-[11px] mb-1">
               <span class="flex items-center gap-1.5">
                 <span class="px-1.5 py-0.5 bg-emerald-900/60 rounded text-emerald-200 border border-emerald-700">ui-*</span>
-                <span>프론트엔드 및 시각 디자인 그룹</span>
+                <span>프론트엔드 및 시각화 그룹</span>
               </span>
-              <span class="text-[9.5px] text-slate-400">Trigger: 버튼, 레이아웃, 모달, CSS</span>
+              <span class="text-[9.5px] text-slate-400">Trigger: UMAP, 바이올린, ECharts, Astro</span>
             </div>
             <div class="text-[10.5px] text-slate-300">
-              <code class="text-emerald-300 font-mono">ui-components</code>, <code class="text-emerald-300 font-mono">ui-tailwind-design</code>, <code class="text-emerald-300 font-mono">uiux-governance</code><br>
-              <span class="text-slate-400">→ UI 요청 시 백엔드 린터나 DB 스키마가 끼어들지 않고 UI 디자인 사규만 깔끔하게 활성화.</span>
+              <code class="text-emerald-300 font-mono">ui-echarts</code>, <code class="text-emerald-300 font-mono">ui-viz-umap</code>, <code class="text-emerald-300 font-mono">ui-viz-qc</code>, <code class="text-emerald-300 font-mono">ui-methods-explain</code><br>
+              <span class="text-slate-400">→ UI 요청 시 백엔드 ML이나 DB 쿼리가 끼어들지 않고 ECharts 라이브러리 및 라이트 테마 토큰만 활성화.</span>
             </div>
           </div>
 
-          <!-- ops-* / deploy-* Group -->
+          <!-- db-* & data-analytics-* Group -->
+          <div class="p-2.5 rounded bg-purple-950/30 border border-purple-500/40">
+            <div class="flex items-center justify-between text-purple-300 font-mono font-bold text-[11px] mb-1">
+              <span class="flex items-center gap-1.5">
+                <span class="px-1.5 py-0.5 bg-purple-900/60 rounded text-purple-200 border border-purple-700">data-analytics-* / db-*</span>
+                <span>생물정보 데이터 파이프라인 &amp; 웨어하우스</span>
+              </span>
+              <span class="text-[9.5px] text-slate-400">Trigger: QC, 클러스터링, Leiden, 마커</span>
+            </div>
+            <div class="text-[10.5px] text-slate-300">
+              <code class="text-purple-300 font-mono">db-duckdb-schema</code>, <code class="text-purple-300 font-mono">data-analytics-qc</code>, <code class="text-purple-300 font-mono">data-analytics-dimreduce-cluster</code><br>
+              <span class="text-slate-400">→ DuckDB 테이블 스키마 계약 및 Seurat HVG 2000, Leiden igraph 등 단일세포 전사체 분석 표준 자동 주입.</span>
+            </div>
+          </div>
+
+          <!-- ops-* Group -->
           <div class="p-2.5 rounded bg-cyan-950/30 border border-cyan-500/40">
             <div class="flex items-center justify-between text-cyan-300 font-mono font-bold text-[11px] mb-1">
               <span class="flex items-center gap-1.5">
                 <span class="px-1.5 py-0.5 bg-cyan-900/60 rounded text-cyan-200 border border-cyan-700">ops-*</span>
-                <span>인프라, CI/CD &amp; 배포 운영 그룹</span>
+                <span>파이프라인 오케스트레이션 &amp; 품질 게이트</span>
               </span>
-              <span class="text-[9.5px] text-slate-400">Trigger: 배포, 포드맨, 깃허브 액션, 포트</span>
+              <span class="text-[9.5px] text-slate-400">Trigger: 파이프라인 재실행, 게이트 검증, 배포</span>
             </div>
             <div class="text-[10.5px] text-slate-300">
-              <code class="text-cyan-300 font-mono">ops-deployment</code>, <code class="text-cyan-300 font-mono">ops-podman-compose</code>, <code class="text-cyan-300 font-mono">ops-secrets-audit</code><br>
-              <span class="text-slate-400">→ 배포 명령어 입력 시 포트 충돌 체크, .env.prod 보안 검증 룰이 자동으로 가동.</span>
-            </div>
-          </div>
-
-          <!-- domain-* Group -->
-          <div class="p-2.5 rounded bg-purple-950/30 border border-purple-500/40">
-            <div class="flex items-center justify-between text-purple-300 font-mono font-bold text-[11px] mb-1">
-              <span class="flex items-center gap-1.5">
-                <span class="px-1.5 py-0.5 bg-purple-900/60 rounded text-purple-200 border border-purple-700">domain-*</span>
-                <span>핵심 비즈니스 &amp; 데이터 파이프라인 그룹</span>
-              </span>
-              <span class="text-[9.5px] text-slate-400">Trigger: 백테스트, 지표, 모델, 거래체결</span>
-            </div>
-            <div class="text-[10.5px] text-slate-300">
-              <code class="text-purple-300 font-mono">trading-db-schema</code>, <code class="text-purple-300 font-mono">btc-backtest-workflow</code>, <code class="text-purple-300 font-mono">prompt-drift-prevention</code><br>
-              <span class="text-slate-400">→ 금융 데이터 계약(/mnt/data/finance)과 지표 표준을 즉각 에이전트에 주입.</span>
+              <code class="text-cyan-300 font-mono">ops-pipeline-orchestration</code>, <code class="text-cyan-300 font-mono">deployment-operations</code><br>
+              <span class="text-slate-400">→ 전체 7단계 파이프라인 순차 실행 및 <code class="text-rose-300 font-mono">import pandas</code> 차단 게이트, Astro 빌드 검증 가동.</span>
             </div>
           </div>
         </div>

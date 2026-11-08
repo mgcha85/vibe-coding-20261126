@@ -32,7 +32,7 @@
               <span class="text-base">💬</span>
               <div>
                 <div class="text-slate-800 font-bold text-[11px]">User Prompt (질문/지시)</div>
-                <div class="text-[10px] text-slate-500">"추천 파이프라인 배포해줘"</div>
+                <div class="text-[10px] text-slate-500">"PBMC 3k QC 필터링 및 UMAP 파이프라인 돌려줘"</div>
               </div>
             </div>
             <span class="text-[10px] text-sky-700 bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200 font-bold">Turn Start</span>
@@ -63,10 +63,10 @@
               </span>
             </div>
             <ul class="text-[10.5px] text-slate-700 space-y-0.5 list-disc list-inside font-sans">
-              <li>미션 &amp; 스코프 (Mission &amp; Scope)</li>
-              <li>데이터 계약 (<code class="text-amber-800 bg-amber-100/70 px-1 py-0.2 rounded border border-amber-200 font-mono">/data/corpus</code> 보존)</li>
-              <li>빌드 &amp; 품질 게이트 (<code class="font-mono text-sky-700 bg-sky-100 px-1 py-0.2 rounded">uv sync</code>, 린터, 테스트)</li>
-              <li>배포 &amp; 운영 규칙 (<code class="font-mono text-amber-700 bg-amber-100 px-1 py-0.2 rounded">podman-compose</code>, 포트)</li>
+              <li>미션 &amp; 스코프 (PBMC 3k DuckDB ➔ 파이프라인 ➔ Astro)</li>
+              <li>데이터 계약 (<code class="text-amber-800 bg-amber-100/70 px-1 py-0.2 rounded border border-amber-200 font-mono">data/raw/</code> 불변, DuckDB SSOT)</li>
+              <li>품질 게이트 (<code class="font-mono text-rose-700 bg-rose-50 px-1 py-0.2 rounded">pandas 금지</code>, ruff, Astro 빌드)</li>
+              <li>파이프라인 순서 (ingest ➔ eda ➔ qc ➔ cluster ➔ markers)</li>
             </ul>
           </div>
 
@@ -146,14 +146,14 @@
             title="클릭하여 예시 확인"
           >
             <div class="text-sky-700 font-bold text-[11px] mb-0.5 flex items-center gap-1">
-              <span>1️⃣</span> <span>Mission &amp; Scope</span>
+              <span>1️⃣</span> <span>Mission &amp; Stack</span>
             </div>
             <div class="text-[10px] text-slate-600 leading-snug">
-              프로젝트의 목표, 언어 스택 분업(Python AI 코어 vs Go 게이트웨이), 산출물 저장 위치 정의.
+              10x PBMC 3k 단일세포 분석, Python(DuckDB·Polars·Scanpy) + Astro 5(ECharts) 명확한 분업.
             </div>
           </div>
 
-          <!-- Pillar 2 (/data/corpus) -->
+          <!-- Pillar 2 (data/raw/) -->
           <div 
             onclick="openAgentsModal(event)" 
             class="p-2 rounded bg-slate-50 border border-slate-200 cursor-pointer hover:border-amber-400 hover:bg-amber-50/50 transition-all"
@@ -163,7 +163,7 @@
               <span>2️⃣</span> <span>Data Contract (데이터 계약)</span>
             </div>
             <div class="text-[10px] text-slate-600 leading-snug">
-              절대경로 원칙(<code class="text-amber-800 bg-amber-100/70 px-1 py-0.2 rounded border border-amber-200 font-mono">/data/corpus</code>), 임의의 데이터 폴더 오염 방지 및 파티션 보존.
+              <code class="text-amber-800 bg-amber-100/70 px-1 py-0.2 rounded border border-amber-200 font-mono">data/raw/pbmc3k_raw.h5ad</code> 불변 보존, DuckDB(<code class="text-slate-700 font-mono">pbmc3k.duckdb</code>) SSOT 엄수.
             </div>
           </div>
 
@@ -177,7 +177,7 @@
               <span>3️⃣</span> <span>Quality &amp; Build Gates</span>
             </div>
             <div class="text-[10px] text-slate-600 leading-snug">
-              <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded font-mono">uv sync</code>, 린터 및 테스트 통과 의무화, 작업 전후 검증 커맨드 표준화.
+              <code class="text-rose-700 bg-rose-50 px-1 py-0.2 rounded font-mono">import pandas</code> 실패(ImportError) 게이트, <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded font-mono">ruff check</code>, Astro 빌드 의무화.
             </div>
           </div>
 
@@ -188,10 +188,10 @@
             title="클릭하여 예시 확인"
           >
             <div class="text-purple-700 font-bold text-[11px] mb-0.5 flex items-center gap-1">
-              <span>4️⃣</span> <span>Safe Change &amp; Operations</span>
+              <span>4️⃣</span> <span>Pipeline Order &amp; Safe Change</span>
             </div>
             <div class="text-[10px] text-slate-600 leading-snug">
-              파괴적 git 명령어 금지, .env 파일 커밋 엄금, 최소 단위 수정 및 LESSON_AND_LEARN 기록 의무.
+              ingest ➔ eda ➔ qc ➔ cluster ➔ markers 순서 엄수, 원본/DB 임의 삭제 엄금, LESSON_AND_LEARN 기록.
             </div>
           </div>
         </div>
@@ -243,59 +243,56 @@
         <!-- 1. Mission & Scope -->
         <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
           <div class="text-sky-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 1. Mission &amp; Architecture Scope</span>
+            <span># 1. Mission &amp; Scope (PBMC 3k scRNA-seq Vibe Lab)</span>
           </div>
           <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
-            - <strong>Primary Goal:</strong> 대규모 트래픽 환경의 실시간 데이터 인텔리전스 및 추천 엔진 파이프라인 구축.<br>
-            - <strong>Language Stack Split:</strong><br>
-            &nbsp;&nbsp;• <strong>Research &amp; AI Brain:</strong> Python 3.12 (모델 실험, 임베딩 벡터화, EDA)<br>
-            &nbsp;&nbsp;• <strong>Live Runtime Engine:</strong> Go 1.23 (초고속 gRPC 게이트웨이, Zero-Crash 24/7 스트리밍 파이프라인)<br>
-            &nbsp;&nbsp;• <strong>Frontend UI:</strong> SvelteKit + Tailwind CSS (실시간 관제 대시보드)<br>
-            - <strong>Core Outputs:</strong> <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 font-mono">src/engine/</code> (Go 모듈), <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200 font-mono">src/ai_model/</code> (Python 패키지), <code class="text-amber-800 bg-amber-50 px-1 py-0.2 rounded border border-amber-200 font-mono">artifacts/reports/</code>
+            - <strong>Primary Goal:</strong> 10x Genomics PBMC 3k 데이터를 <strong>DuckDB 웨어하우스 → 분석 파이프라인 → Astro 대시보드 시각화</strong>까지 재현 가능한 연구 앱으로 구축.<br>
+            - <strong>Scope:</strong> QC 필터링 → 차원축소/Leiden 군집 → Wilcoxon 마커 탐색 → 마커 기반 세포타입(T, B, Monocyte 등) 판정 → Astro 시각화.<br>
+            - <strong>Out of Scope:</strong> 클라우드 다중 샘플 통합, 원시 데이터 재다운로드 금지(<code class="text-slate-800 bg-slate-100 px-1 py-0.2 rounded font-mono">data/raw/pbmc3k_raw.h5ad</code>에 이미 캐시됨).
           </p>
         </div>
 
-        <!-- 2. Data Contract -->
+        <!-- 2. Stack & Forbidden Rules -->
         <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
           <div class="text-amber-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 2. Data Contract (데이터 계약 &amp; 절대경로 엄수)</span>
+            <span># 2. Stack (강제 스택 &amp; 엄격한 금기 사항)</span>
           </div>
           <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
-            - <strong>Root Data Path:</strong> <code class="text-amber-800 bg-amber-100/80 px-1.5 py-0.5 rounded border border-amber-300 font-mono font-bold">/data/corpus</code> (절대경로 원칙; 임의의 상대경로나 /tmp 변조 엄금)<br>
-            - <strong>Storage Layout:</strong> Hive Partition 구조 준수 (<code class="text-slate-700 bg-slate-100 px-1 py-0.2 rounded font-mono">/data/corpus/events/dt=YYYY-MM-DD/hh=HH/</code>)<br>
-            - <strong>Agent Protocol:</strong><br>
-            &nbsp;&nbsp;• 데이터 스키마 또는 파티션 컬럼을 임의로 변경하지 않고 사전문서와 일치시킬 것<br>
-            &nbsp;&nbsp;• 대용량 쿼리는 DuckDB / Polars 벡터화 엔진을 사용하여 메모리 OOM 방지
+            - <strong>BE:</strong> Python 3.12 + <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded font-mono">.venv</code> (<code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded font-mono">uv</code>로 패키지 관리)<br>
+            - <strong>Warehouse SSOT:</strong> <code class="text-amber-800 bg-amber-100/80 px-1 py-0.2 rounded border border-amber-300 font-mono font-bold">DuckDB (주력)</code> — 테이블·집계·Astro 내보내기의 단일 진실 공급원<br>
+            - <strong>DataFrame:</strong> <code class="text-slate-800 bg-slate-100 px-1 py-0.2 rounded font-mono">Polars (보조)</code> — SQL로 어색한 변환만 사용. <strong class="text-rose-700 bg-rose-50 px-1 py-0.2 rounded border border-rose-200">import pandas 전면 금지</strong><br>
+            - <strong>Graph ML:</strong> <code class="text-slate-800 bg-slate-100 px-1 py-0.2 rounded font-mono">scanpy / numpy / scipy / igraph</code> (PCA, UMAP, Leiden 군집, rank_genes_groups만 허용)<br>
+            - <strong>FE &amp; Charts:</strong> <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded font-mono">Astro 5</code> + <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded font-mono">Apache ECharts 5</code> (<code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded font-mono">echarts-setup.ts</code> 기반; 손수 SVG나 타 차트 라이브러리 엄금)
           </p>
         </div>
 
-        <!-- 3. Quality & Build Gates -->
+        <!-- 3. Directory Ownership & Pipeline Order -->
         <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
           <div class="text-emerald-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 3. Quality &amp; Build Gates (품질 검증 관문)</span>
+            <span># 3. Directory Ownership &amp; Pipeline Order (절대 순서)</span>
           </div>
           <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
-            - <strong>Python Quality Gates:</strong><br>
-            &nbsp;&nbsp;• 패키지 의존성 동기화: <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200 font-mono">uv sync</code><br>
-            &nbsp;&nbsp;• 린트 &amp; 정적 검사: <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200 font-mono">uv run ruff check src/ tests/</code><br>
-            &nbsp;&nbsp;• 자동화 단위 테스트: <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200 font-mono">uv run pytest -q tests/</code><br>
-            - <strong>Go Quality Gates:</strong><br>
-            &nbsp;&nbsp;• 빌드 및 린트: <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 font-mono">golangci-lint run ./...</code><br>
-            &nbsp;&nbsp;• 동시성 레이스 검사: <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 font-mono">go test -race -v ./...</code><br>
-            - <strong>Verification Rule:</strong> 모든 PR 및 코드 변경 전 린트와 테스트가 100% 통과(Exit Code 0)해야만 작업 완료를 선언한다.
+            - <strong>디렉토리 소유권:</strong><br>
+            &nbsp;&nbsp;• <code class="text-rose-700 bg-rose-50 px-1 py-0.2 rounded font-mono">data/raw/</code> : 읽기 전용 원본 h5ad (수정 금지)<br>
+            &nbsp;&nbsp;• <code class="text-amber-800 bg-amber-50 px-1 py-0.2 rounded font-mono">data/warehouse/</code> : DuckDB 파일만 보관 (<code class="font-mono">pbmc3k.duckdb</code>)<br>
+            &nbsp;&nbsp;• <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded font-mono">backend/</code> : 파이프라인 단계 모듈 / <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded font-mono">frontend/</code> : Astro 앱 (시각화 SSOT)<br>
+            - <strong>파이프라인 절대 순서:</strong><br>
+            &nbsp;&nbsp;1. <code class="text-indigo-700 font-mono">db-ingest-h5ad</code> ➔ 2. <code class="text-indigo-700 font-mono">data-analytics-eda</code> ➔ 3. <code class="text-indigo-700 font-mono">data-analytics-qc</code> ➔ 4. <code class="text-indigo-700 font-mono">data-analytics-dimreduce-cluster</code> ➔ 5. <code class="text-indigo-700 font-mono">data-analytics-markers</code> ➔ 6. <code class="text-indigo-700 font-mono">data-analytics-celltype</code> ➔ 7. <code class="text-indigo-700 font-mono">data-analytics-export</code><br>
+            &nbsp;&nbsp;※ 앞 단계 산출물 없이 뒷 단계를 구현하지 않는다!
           </p>
         </div>
 
-        <!-- 4. Safe Change & Operations -->
+        <!-- 4. Quality Gates & Safe Change -->
         <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
           <div class="text-purple-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 4. Safe Change Policy &amp; Operations</span>
+            <span># 4. Quality Gates &amp; Safe Change Policy</span>
           </div>
           <p class="text-slate-700 text-[11px] mb-1 leading-relaxed font-sans">
-            - <strong>파괴적 Git 행위 엄금:</strong> <code class="text-rose-700 bg-rose-50 px-1 py-0.2 rounded border border-rose-200 font-mono font-bold">git push --force</code>, <code class="text-rose-700 bg-rose-50 px-1 py-0.2 rounded border border-rose-200 font-mono font-bold">git reset --hard</code> 금지<br>
-            - <strong>시크릿 3계층 격리:</strong> API 키 및 DB 패스워드는 <code class="text-amber-800 bg-amber-50 px-1 py-0.2 rounded border border-amber-200 font-mono">.env.dev</code> / <code class="text-amber-800 bg-amber-50 px-1 py-0.2 rounded border border-amber-200 font-mono">.env.prod</code> 에만 기록하고 Git 커밋 절대 금지<br>
-            - <strong>컨테이너 배포:</strong> <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 font-mono">podman-compose up -d</code> 로 무중단 서비스 롤아웃<br>
-            - <strong>트러블슈팅 아카이빙:</strong> 복잡한 버그나 설계 변경 발생 시 <code class="text-indigo-800 bg-indigo-50 px-1 py-0.2 rounded border border-indigo-200 font-mono font-bold">LESSON_AND_LEARN.md</code>에 원인과 해결책을 필히 기록
+            - <strong>3대 품질 검증 게이트:</strong><br>
+            &nbsp;&nbsp;1) <code class="text-rose-700 bg-rose-50 px-1 py-0.2 rounded font-mono font-bold">.venv/bin/python -c "import pandas"</code> ➔ 반드시 <strong>ImportError</strong> 발생 확인<br>
+            &nbsp;&nbsp;2) <code class="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded font-mono font-bold">.venv/bin/ruff check backend/</code> ➔ 린트 무결성 검증<br>
+            &nbsp;&nbsp;3) <code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded font-mono font-bold">cd frontend &amp;&amp; npm run build</code> ➔ Astro 정적 빌드 100% 성공<br>
+            - <strong>안전 규칙:</strong> 커밋은 사용자 요청 시에만 수행, <code class="text-slate-700 bg-slate-100 px-1 py-0.2 rounded font-mono">DROP TABLE</code> 및 원본 삭제 금지, 트러블슈팅 발생 시 <code class="text-purple-700 font-mono font-bold">LESSON_AND_LEARN.md</code> 기록 의무.
           </p>
         </div>
       </div>

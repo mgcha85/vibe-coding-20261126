@@ -30,20 +30,20 @@
       ↓ (Every-Turn Prompt Pipeline)
 +-----------------------------------------------------------+
 | 📜 /AGENTS.md (최상단 자동 프리펜드 - 시스템 헌법)          |
-|  1. 프로젝트 정체성 & 미션                                |
-|  2. 기술 스택 & 런타임 제약 (Go, Svelte, Supabase 등)      |
-|  3. 디렉토리 맵 & 수정 권한 격리                          |
-|  4. 커밋 & 배포 거버넌스 규칙                             |
+|  1. 프로젝트 정체성 & 미션 (PBMC 3k scRNA-seq Vibe Lab)    |
+|  2. 기술 스택 & 런타임 제약 (Python 3.12, DuckDB, Astro 5) |
+|  3. 디렉토리 소유권 (data/raw 불변, backend, frontend)    |
+|  4. 품질 검증 게이트 (import pandas 금지, ruff, Astro 빌드)|
 +-----------------------------------------------------------+
       ↓
 [Agent LLM Reasoning & Tool Call Execution]
 ```
 
 ### 2.2 핵심 구성 4대 요소
-1. **Mission & Scope**: 시스템의 정체성과 이번 프로젝트의 절대 경계선 정의
-2. **Directory & Module Ownership**: 모듈별 책임 소재와 절대 수정해선 안 될 금지 구역 선언
-3. **Code Quality Gates**: 커밋 전 필수 실행해야 할 린터, 타입체커, 단위 테스트 명령어
-4. **Environment & Deployment Policy**: `.env` 비밀키 격리 및 `podman-compose`, CI/CD 배포 파이프라인 명시
+1. **Mission & Scope**: 단일세포 전사체 파이프라인 및 대시보드 구축 범위와 원시 데이터 불변 원칙 선언
+2. **Directory & Module Ownership**: `data/raw/`(읽기 전용), `data/warehouse/`(DuckDB SSOT), `backend/`, `frontend/` 책임 격리
+3. **Code Quality Gates**: `import pandas` 실패(ImportError) 검증, `ruff check backend/`, `npm run build` 정적 빌드 통과 의무화
+4. **Environment & Safe Change Policy**: `.env` 비밀키 격리, 원본 및 DB 임의 삭제 엄금, `LESSON_AND_LEARN.md` 오답 노트 의무화
 
 ---
 
@@ -53,18 +53,17 @@
 에이전트 스킬은 `.cursor/skills/`, `.agents/skills/`, `.opencode/skills/` 등 런타임 표준 경로에 배치됩니다. 서로 다른 에이전트 도구를 번갈아 사용하더라도 동일한 스킬을 동작시키기 위해 **심볼릭 링크(Symlink)**로 단일화합니다.
 
 ```
-my-project/
+pbmc3k-vibe-lab/
 ├── AGENTS.md                           # 프로젝트 헌법 (Every-turn 주입)
 ├── .cursor/skills/                     # (또는 .agents/skills)
-│   ├── ui-components/                  # 프론트엔드 컴포넌트 스킬
-│   │   ├── SKILL.md                    # 트리거 메타데이터 + 실행 규칙
-│   │   └── REFERENCE.md                # 필요 시 호출하는 상세 가이드
-│   ├── ui-tailwind-design/             # 디자인 토큰 & 스타일 거버넌스
-│   │   └── SKILL.md
-│   ├── backend-db-schema/              # 데이터베이스 스키마 규칙
-│   │   ├── SKILL.md
-│   │   └── SCHEMA.sql
-│   └── ops-deployment/                 # 인프라 & 배포 자동화
+│   ├── db-duckdb-schema/               # DuckDB 웨어하우스 SSOT 스킬
+│   │   ├── SKILL.md                    # genes/cells/counts 스키마 및 적재 규칙
+│   │   └── REFERENCE.md                # 필요 시 호출하는 SQL 쿼리 가이드
+│   ├── data-analytics-dimreduce-cluster/# 차원축소 & Leiden 군집 스킬
+│   │   └── SKILL.md                    # HVG 2000, PCA 50, Leiden igraph
+│   ├── ui-echarts/                     # Apache ECharts 5 차트 스킬
+│   │   └── SKILL.md                    # UMAP 산점도 및 custom violin 플롯
+│   └── ops-pipeline-orchestration/     # 파이프라인 전체 실행 & 품질 게이트
 │       └── SKILL.md
 ```
 
@@ -96,20 +95,20 @@ my-project/
 스킬이 "어떻게 구현할 것인가(How)"를 다룬다면, 룰(Rules)은 **"무엇을 절대 넘지 말아야 하는가(Constraint)"**를 통제합니다.
 
 1. **Global Rules (`~/.gemini/config`, `~/.cursorrules`)**: 개인 개발 환경의 기본 거버넌스 (한국어 응답, 불필요한 미사여구 금지 등)
-2. **Project Rules (`.cursor/rules/*.md`, `.agents/rules/`)**: 프로젝트 레포지토리 전반에 통용되는 강제 표준 (`.env` 시크릿 관리, Svelte/Go 스택 등)
-3. **Directory Rules (하위 폴더별 `AGENTS.md`)**: 특정 디렉토리 한정 최우선 룰 (예: `live-trading/` 폴더 내 백테스트 코드 수정 절대 금지)
+2. **Project Rules (`.cursor/rules/*.md`, `.agents/rules/`)**: 프로젝트 레포지토리 전반에 통용되는 강제 표준 (Python 3.12, DuckDB SSOT, Astro 5, `import pandas` 전면 금지)
+3. **Directory Rules (하위 폴더별 `AGENTS.md`)**: 특정 디렉토리 한정 최우선 룰 (예: `data/raw/` 원본 h5ad 파일 수정 절대 금지, `backend/` 내 `import pandas` 엄금)
 
 ### 5.2 /grill-me : 맹종(Blind Compliance) 방지 역질문 인터뷰
 사용자의 모호한 한마디 지시에 AI가 즉시 코딩을 시작하면 90% 이상 엉뚱한 아키텍처가 생성됩니다. `/grill-me` 패턴은 **에이전트가 작업을 착수하기 전 개발자에게 3~5가지 핵심 아키텍처 결정을 역질문**하여 상호 정렬을 마친 뒤 실행하도록 강제합니다.
 
 ```
-[User: "결제 기능 붙여줘"]
+[User: "PBMC 3k 군집 분석 파이프라인 만들어줘"]
       ↓ (Grill-me 인터뷰 가동)
-[Agent: "코딩 전에 3가지 설계를 먼저 확정하겠습니다:
-  1. 결제 모듈: Stripe Checkout vs PortOne?
-  2. 웹훅 검증: Supabase Edge Functions vs Go Backend?
-  3. 실패 시 정책: 즉시 구독 정지 vs 3일 Grace Period?"]
-      ↓ (개발자 답변 완료 후 원샷 구현 착수)
+[Agent: "코딩 착수 전에 3가지 설계를 먼저 확정하겠습니다:
+  1. 클러스터링 알고리즘: Leiden resolution=1.0 (igraph) vs Louvain?
+  2. 고변동 유전자(HVG): Seurat top 2000 기준 적용 여부?
+  3. 결과 저장소: DuckDB 테이블 적재 후 Astro용 JSON export 일괄 갱신 여부?"]
+      ↓ (연구자/개발자 답변 완료 후 원샷 구현 착수)
 ```
 
 ---
@@ -134,17 +133,17 @@ my-project/
 ```
 +------------------------------------+       +------------------------------------+
 |  중앙 전사 사규 레포지토리        |       |  개별 서비스 프로젝트 레포지토리   |
-|  (harness-collection / governance) |       |  (my-saas-service)                |
+|  (harness-collection / governance) |       |  (pbmc3k-vibe-lab)                 |
 +------------------------------------+       +------------------------------------+
 | • AGENTS.md (공통 헌법)             | =====>| • AGENTS.md (심볼릭 링크 연결)      |
 | • skills/uiux-governance           | (Sub- | • skills/ (공통 스킬 팩 링크)       |
-| • skills/deployment-operations     | module| • PROJECT.md (이 서비스 고유 비즈니스)|
-| • skills/security-guardrails       |  Link)| • .env.dev, .env.prod              |
+| • skills/deployment-operations     | module| • PROJECT.md (단일세포 전사체 특화)|
+| • skills/security-guardrails       |  Link)| • data/warehouse/pbmc3k.duckdb     |
 +------------------------------------+       +------------------------------------+
 ```
 
 - **공통 헌법 (`AGENTS.md`)**: 시크릿 관리, 배포 게이트, 커밋 컨벤션, 파괴적 명령어 금지 (Git Submodule/링크)
-- **프로젝트 특화 문서 (`PROJECT.md`)**: 서비스 고유의 비즈니스 도메인, 외부 API 키 명세, 특정 데이터베이스 스키마
+- **프로젝트 특화 문서 (`PROJECT.md`)**: 단일세포 전사체(PBMC 3k) 도메인, DuckDB 스키마, HVG/PCA/Leiden 분석 표준, 마커 패널 정의
 
 ---
 
@@ -178,28 +177,31 @@ LLM은 이전 대화를 스스로 기억하는 뇌가 없습니다. 완전한 **
         ┌──────────────────────────────┼──────────────────────────────┐
         ▼                              ▼                              ▼
  🩹 LESSON_AND_LEARN.md         📋 PLAN.md                     🎯 INTENT.md
- (일화 기억 · Episodic)        (작업 상태 · Working)          (비즈니스 의도 · Semantic)
- 동일 버그 재발 방지           현재 진행 단계 & 체크리스트    기능의 본질적 이유 & 수용 기준
+ (일화 기억 · Episodic)        (작업 상태 · Working)          (연구 의도 · Semantic)
+ 동일 버그 재발 방지           현재 진행 단계 & 체크리스트    파이프라인 본질적 이유 & 인수 기준
 ```
 
 ### 9.1 `LESSON_AND_LEARN.md` (오답 노트 / 일화 기억)
 동일한 에러로 에이전트가 반복 삽질하며 토큰을 날리는 것을 방지합니다:
-- **증상(Symptom)**: 발생했던 구체적 에러 메시지
-- **원인(Root Cause)**: 라이브러리 충돌, 토큰 만료, 동시성 락 등
-- **해결책(Solution)**: 검증된 해결 코드 및 조치
-- **교훈(Lesson)**: 향후 동일 작업 시 강제할 아키텍처 규칙
+- **실전 사례 1 (ECharts 차트 일원화)**: 손수 SVG 차트 4종이 제각각이라 상호작용 및 유지보수 비용 급증 → `echarts@5.6.0` + custom violin series로 통일. `ui-echarts`가 차트 SSoT.
+- **실전 사례 2 (Scanpy Leiden igraph 백엔드)**: `sc.tl.leiden`이 leidenalg 미설치로 실패 → `flavor="igraph", n_iterations=2`로 고정하여 단번에 통과.
+- **실전 사례 3 (pandas 금지와 AnnData)**: AnnData `.obs`/`.var`의 pandas DataFrame 변환 유혹 → AnnData는 임시 수치 객체로만 쓰고 표 산출은 즉시 DuckDB/Polars로 이관, 코드 내 `import pandas` 전면 금지.
+- **실전 사례 4 (리보솜 유전자 필터링)**: T cell 군집 top DEG가 RPS/RPL만 나옴 → 하우스키핑 유전자 제외 후 canonical marker 평균으로 세포타입 판정.
 
 ### 9.2 `PLAN.md` (작업 나침반 / 작업 기억)
 대규모 리팩토링이나 롱호라이즌(Long-horizon) 태스크 시 작업 위치를 잃지 않도록 동기화합니다:
-- 전체 구현 단계(Phase 1, 2, 3...) 정의
-- 완료된 작업 체크(`[x]`) 및 현재 진행 중인 마이크로 태스크 명시
-- 새 세션 시작 시 에이전트에게 `"PLAN.md 읽고 다음 미완료 단계 이어서 진행해줘"` 한 문장으로 인계
+- **Phase 0 (Harness)**: 헌법/문서/스킬 심볼릭 링크 및 원본 h5ad 캐시 배치
+- **Phase 1 (Warehouse)**: `backend/ingest`로 DuckDB에 2,700 세포 × 32,738 유전자 적재
+- **Phase 2 (QC + Astro)**: `backend/qc` 필터링 및 Astro `/qc` 시각화 페이지 구축
+- **Phase 3 (Cluster)**: HVG 2,000, PCA 50, UMAP 산점도 및 Leiden 9개 군집 추출
+- **Phase 4 (Markers & Annotation)**: Wilcoxon DEG 마커 탐색 및 세포타입(T, B, Monocyte 등) 판정
+- **Phase 5 (Export & Polish)**: Astro용 JSON 일괄 내보내기 및 ruff / Astro 빌드 게이트 통과
 
 ### 9.3 `INTENT.md` (의도 헌장 / 의미 기억)
-코드가 수십 번 리팩토링되어도 기능의 원래 목적이 변질되지 않도록 고정합니다:
-- 비즈니스 배경(Why) 및 페르소나
-- 핵심 인수 기준(Acceptance Criteria)
-- 비기능적 요구사항(응답 지연 < 100ms, 동시 접속자 1,000명 등)
+코드가 수십 번 리팩토링되어도 연구/제품의 원래 목적이 변질되지 않도록 고정합니다:
+- **Why**: 10x Genomics PBMC 3k 단일세포 전사체 파이프라인 재현 및 자연어 AI(AutoBA/scChat) 분석 연동.
+- **Persona**: 생물정보학 입문 연구자 + 바이브 코딩 실습생. 한국어 UI로 QC·UMAP·마커를 한 흐름으로 탐색.
+- **인수 기준**: 원시 데이터 재다운로드 없이 DuckDB 적재, `import pandas` 전면 금지, ECharts 기반 시각화, 마커 숫자 근거로 세포타입 판정.
 
 ---
 
@@ -230,14 +232,14 @@ LLM은 이전 대화를 스스로 기억하는 뇌가 없습니다. 완전한 **
 ```
 [위키가 없는 일반 개발자 (Zero Leverage)]
 - 프롬프트 2,000 토큰 소모:
-  "SvelteKit 써주고, Tailwind 다크 테마 색상 코드는 #0f172a 쓰고, .env.dev 만들고, 
-   테스트는 vitest 쓰고, 컴포넌트는 카드 형태로 분리해주고..."
-  ➔ 토큰 낭비, 3턴 뒤 규칙 망각, 조악한 스니펫 생성
+  "Astro 5 써주고, 라이트 테마 쓰고, 차트는 Apache ECharts 5 쓰고, DuckDB 웨어하우스에 넣고, 
+   pandas는 쓰지 말고, Leiden 군집은 igraph 백엔드로 해주고..."
+  ➔ 토큰 낭비, 3턴 뒤 규칙 망각, pandas 임포트 사고 발생
 
 [LLM-Wiki & 하네스 보유자 (10x Token Leverage)]
 - 프롬프트 30 토큰 소모:
-  "PLAN.md 2단계 대시보드 화면 구현해줘"
-  ➔ 에이전트가 AGENTS.md, ui-dashboard 스킬, 위키 디자인 토큰을 스스로 인출하여
+  "PLAN.md 3단계 UMAP 군집 시각화 컴포넌트 구현해줘"
+  ➔ 에이전트가 AGENTS.md, ui-viz-umap 스킬, ui-echarts 토큰을 스스로 인출하여
      1,970 토큰 분량의 완벽한 프로덕션 엔지니어링 코드 완성!
 ```
 
