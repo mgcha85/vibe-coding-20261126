@@ -44,8 +44,8 @@ Never edit the monolithic `index.html` directly. Always maintain slides as discr
 
 ## 2. Visual & Design Standards
 
-### 2.1 16:9 Widescreen & Bento-Tile Theme
-- **Fixed Stage Ratio**: `16:9` (`56.25vw` or `177.78vh`), `overflow: hidden`, max-width bounded.
+### 2.1 Full-Bleed Fluid Widescreen & Bento-Tile Theme
+- **Full-Bleed Stage Ratio**: `100vw × 100vh` without dead gray letterbox margins. Header (`h-14`) and footer (`h-12`) dock seamlessly at viewport edges. Slide content is centered within `max-w-[1720px]` with `padding: 1.25rem 3.5rem` to eliminate double-padding bugs, adapting gracefully to any screen ratio (16:9, 16:10, 21:9 ultrawide half/full split).
 - **Color Palette**:
   - Deep Canvas: `#030712`, `#070d1a`, `#0c1527` with radial dark gradients.
   - Accent Borders: Sky (`#38bdf8`), Purple/Violet (`#c084fc`, `#818cf8`), Emerald (`#34d399`), Amber (`#fbbf24`), Rose/Red (`#f43f5e`).
