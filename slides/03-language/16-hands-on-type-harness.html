@@ -1,147 +1,203 @@
-<section class="slide flex flex-col justify-between" data-title="3.15 Python QA 하네스 라이브 시연">
+<section class="slide flex flex-col justify-between" data-title="3.7 Python QA &amp; 아키텍처 하네스 라이브 시연">
   <!-- Header -->
-  <div class="mb-1">
+  <div class="mb-1 shrink-0">
     <div class="flex items-center justify-between">
-      <span class="text-indigo-600 font-mono text-xs uppercase tracking-wider font-bold">Chapter 03. 언어 &middot; 3.15 Python QA 하네스 시연</span>
+      <span class="text-indigo-600 font-mono text-xs uppercase tracking-wider font-bold">Chapter 03. 언어 &middot; 3.7 Python QA &amp; 아키텍처 하네스 시연</span>
       <span class="px-2.5 py-0.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 font-mono text-[10px] font-bold shadow-sm flex items-center gap-1.5">
         <span class="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-pulse"></span>
-        LIVE DEMO &middot; PYTHON QA
+        LIVE DEMO &middot; 5-LAYER QA HARNESS
       </span>
     </div>
-    <h2 class="text-2xl lg:text-3xl font-black text-slate-900 mt-0.5">Python QA 하네스 라이브 시연 : Pydantic &middot; Ruff &middot; Pytest</h2>
+    <h2 class="text-2xl lg:text-3xl font-black text-slate-900 mt-0.5">Python QA &amp; 아키텍처 하네스 시연 : 5대 가드레일</h2>
     <p class="text-xs text-slate-600 mt-0.5">
-      Python을 쓸 때 품질을 담보하는 유일한 길: <strong>Pydantic(스키마 계약) &middot; Ruff(0.01초 린팅) &middot; Pytest(자가치유 루프)</strong> 3대 방어선 실전 시연
+      Python을 쓸 때 품질과 아키텍처를 담보하는 유일한 길: <strong>Pydantic &middot; Pyright &middot; import-linter &middot; Ruff &middot; Pytest</strong> 5대 방어선 실전 시연
     </p>
   </div>
 
-  <!-- Top 3 QA Pillar Stat Cards -->
-  <div class="grid grid-cols-3 gap-3 my-0.5">
+  <!-- Top 5 QA Pillar Stat Cards -->
+  <div class="grid grid-cols-5 gap-2 my-0.5 shrink-0">
     <!-- Pillar 1: Pydantic -->
-    <div class="bg-white rounded-xl border border-slate-200/90 px-3 py-2 shadow-sm flex items-center justify-between">
-      <div class="flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-lg bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-700 font-bold font-mono text-xs">
+    <div class="bg-white rounded-xl border border-slate-200 px-2.5 py-1.5 shadow-sm flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-700 font-bold font-mono text-[11px] shrink-0">
           01
         </div>
-        <div>
-          <div class="text-[10px] font-mono font-bold text-rose-800 uppercase tracking-wider">Runtime Contract</div>
-          <div class="text-xs lg:text-sm font-extrabold text-slate-900">Pydantic 데이터 검증</div>
+        <div class="min-w-0">
+          <div class="text-[9px] font-mono font-bold text-rose-800 uppercase tracking-wider truncate">Runtime Schema</div>
+          <div class="text-[11.5px] font-extrabold text-slate-900 truncate">Pydantic</div>
         </div>
       </div>
-      <span class="text-[10.5px] font-mono font-bold px-2 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200">스키마 무결성</span>
+      <span class="text-[9.5px] font-mono font-bold px-1.5 py-0.2 rounded bg-rose-50 text-rose-700 border border-rose-200 shrink-0">계약 강제</span>
     </div>
 
-    <!-- Pillar 2: Ruff -->
-    <div class="bg-white rounded-xl border border-slate-200/90 px-3 py-2 shadow-sm flex items-center justify-between">
-      <div class="flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-lg bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-700 font-bold font-mono text-xs">
+    <!-- Pillar 2: Pyright -->
+    <div class="bg-white rounded-xl border border-slate-200 px-2.5 py-1.5 shadow-sm flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-700 font-bold font-mono text-[11px] shrink-0">
           02
         </div>
-        <div>
-          <div class="text-[10px] font-mono font-bold text-sky-800 uppercase tracking-wider">Ultra-Fast Linter</div>
-          <div class="text-xs lg:text-sm font-extrabold text-slate-900">Ruff 자동 정적 분석</div>
+        <div class="min-w-0">
+          <div class="text-[9px] font-mono font-bold text-sky-800 uppercase tracking-wider truncate">Type Checker</div>
+          <div class="text-[11.5px] font-extrabold text-slate-900 truncate">Pyright</div>
         </div>
       </div>
-      <span class="text-[10.5px] font-mono font-bold px-2 py-0.5 rounded bg-sky-50 text-sky-700 border border-sky-200">0.01초 교정</span>
+      <span class="text-[9.5px] font-mono font-bold px-1.5 py-0.2 rounded bg-sky-50 text-sky-700 border border-sky-200 shrink-0">None 세이프티</span>
     </div>
 
-    <!-- Pillar 3: Pytest -->
-    <div class="bg-white rounded-xl border border-slate-200/90 px-3 py-2 shadow-sm flex items-center justify-between">
-      <div class="flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 font-bold font-mono text-xs">
+    <!-- Pillar 3: import-linter -->
+    <div class="bg-white rounded-xl border border-slate-200 px-2.5 py-1.5 shadow-sm flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-700 font-bold font-mono text-[11px] shrink-0">
           03
         </div>
-        <div>
-          <div class="text-[10px] font-mono font-bold text-emerald-800 uppercase tracking-wider">Self-Healing Loop</div>
-          <div class="text-xs lg:text-sm font-extrabold text-slate-900">Pytest 자가치유 테스트</div>
+        <div class="min-w-0">
+          <div class="text-[9px] font-mono font-bold text-purple-800 uppercase tracking-wider truncate">Architecture</div>
+          <div class="text-[11.5px] font-extrabold text-slate-900 truncate">import-linter</div>
         </div>
       </div>
-      <span class="text-[10.5px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">All-Green 수렴</span>
+      <span class="text-[9.5px] font-mono font-bold px-1.5 py-0.2 rounded bg-purple-50 text-purple-700 border border-purple-200 shrink-0">계층 수호</span>
+    </div>
+
+    <!-- Pillar 4: Ruff -->
+    <div class="bg-white rounded-xl border border-slate-200 px-2.5 py-1.5 shadow-sm flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700 font-bold font-mono text-[11px] shrink-0">
+          04
+        </div>
+        <div class="min-w-0">
+          <div class="text-[9px] font-mono font-bold text-amber-800 uppercase tracking-wider truncate">Fast Linter</div>
+          <div class="text-[11.5px] font-extrabold text-slate-900 truncate">Ruff</div>
+        </div>
+      </div>
+      <span class="text-[9.5px] font-mono font-bold px-1.5 py-0.2 rounded bg-amber-50 text-amber-700 border border-amber-200 shrink-0">0.01초 교정</span>
+    </div>
+
+    <!-- Pillar 5: Pytest -->
+    <div class="bg-white rounded-xl border border-slate-200 px-2.5 py-1.5 shadow-sm flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 font-bold font-mono text-[11px] shrink-0">
+          05
+        </div>
+        <div class="min-w-0">
+          <div class="text-[9px] font-mono font-bold text-emerald-800 uppercase tracking-wider truncate">Self-Healing</div>
+          <div class="text-[11.5px] font-extrabold text-slate-900 truncate">Pytest</div>
+        </div>
+      </div>
+      <span class="text-[9.5px] font-mono font-bold px-1.5 py-0.2 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">All-Green</span>
     </div>
   </div>
 
-  <!-- Main Content Grid (Left: QA 3 Pillars Architecture / Right: Live Demonstration Terminal Walkthrough) -->
-  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-0.5 overflow-hidden">
-    <!-- LEFT: 3대 방어선 역할 및 전략 (5 cols) -->
-    <div class="col-span-5 bg-white rounded-2xl p-3.5 border border-slate-200 shadow-xl flex flex-col justify-between border-t-4 border-t-indigo-600 overflow-hidden">
-      <div>
-        <div class="flex items-center justify-between mb-1.5">
-          <span class="text-xs font-mono text-indigo-700 font-extrabold uppercase tracking-wider">PYTHON QA TRINITY</span>
-          <span class="text-[10px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded font-bold">에이전트 통제 원칙</span>
+  <!-- Main Content Grid -->
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-0.5 min-h-0 overflow-hidden">
+    <!-- LEFT: 5대 방어선 역할 및 전략 (5 cols) -->
+    <div class="col-span-5 bg-white rounded-2xl p-3 border border-slate-200 shadow-sm flex flex-col justify-between border-t-4 border-t-indigo-600 min-h-0 overflow-hidden">
+      <div class="min-h-0 overflow-hidden flex flex-col">
+        <div class="flex items-center justify-between mb-1 shrink-0">
+          <span class="text-xs font-mono text-indigo-700 font-extrabold uppercase tracking-wider">PYTHON DEFENSE IN DEPTH</span>
+          <span class="text-[9.5px] font-mono text-slate-600 bg-slate-100 px-2 py-0.2 rounded font-bold">에이전트 통제 원칙</span>
         </div>
-        <h3 class="text-sm lg:text-base font-black text-slate-900 mb-1.5">AI에게 코드를 맡길 때 반드시 쳐야 할 3대 안전망</h3>
+        <h3 class="text-xs xl:text-sm font-black text-slate-900 mb-1 shrink-0">AI에게 코드를 맡길 때 반드시 쳐야 할 5대 안전망</h3>
 
-        <div class="space-y-1.5 text-xs">
-          <!-- Pydantic Item -->
-          <div class="p-2 rounded-xl bg-slate-50 border border-slate-200/80">
+        <div class="space-y-1 text-xs flex-1 min-h-0 overflow-y-auto pr-0.5">
+          <!-- 1. Pydantic -->
+          <div class="p-1.5 rounded-lg bg-slate-50 border border-slate-200/80">
             <div class="flex items-center justify-between mb-0.5">
-              <span class="font-extrabold text-slate-900 flex items-center gap-1.5 text-[11.5px]">
-                <span class="w-2 h-2 rounded-full bg-rose-500 inline-block"></span>
+              <span class="font-bold text-slate-900 flex items-center gap-1.5 text-[11px]">
+                <span class="w-1.5 h-1.5 rounded-full bg-rose-500 inline-block"></span>
                 1. Pydantic : 입출력 계약 강제
               </span>
-              <span class="font-mono text-[9.5px] bg-rose-50 text-rose-700 px-1.5 py-0.2 rounded border border-rose-200 font-bold">Fail-Fast</span>
+              <span class="font-mono text-[9px] bg-rose-50 text-rose-700 px-1.5 py-0.2 rounded border border-rose-200 font-bold">Fail-Fast</span>
             </div>
-            <p class="text-slate-600 text-[11px] leading-snug">
-              LLM의 JSON 환각과 키 누락을 원천 차단. <code class="text-rose-800 bg-rose-50 px-1 rounded font-mono text-[10.5px]">Field(gt=0)</code> 등 타입 불일치 시 런타임 진입 전 즉시 차단.
+            <p class="text-slate-600 text-[10.5px] leading-tight">
+              LLM의 JSON 환각과 키 누락 차단. <code class="text-rose-800 bg-rose-50 px-1 rounded font-mono text-[10px]">Field(gt=0)</code> 등 스키마 위반 시 즉각 에러 발생.
             </p>
           </div>
 
-          <!-- Ruff Item -->
-          <div class="p-2 rounded-xl bg-slate-50 border border-slate-200/80">
+          <!-- 2. Pyright -->
+          <div class="p-1.5 rounded-lg bg-slate-50 border border-slate-200/80">
             <div class="flex items-center justify-between mb-0.5">
-              <span class="font-extrabold text-slate-900 flex items-center gap-1.5 text-[11.5px]">
-                <span class="w-2 h-2 rounded-full bg-sky-500 inline-block"></span>
-                2. Ruff : 초고속 정적 구문 세척
+              <span class="font-bold text-slate-900 flex items-center gap-1.5 text-[11px]">
+                <span class="w-1.5 h-1.5 rounded-full bg-sky-500 inline-block"></span>
+                2. Pyright : 엄격 정적 타입 체커
               </span>
-              <span class="font-mono text-[9.5px] bg-sky-50 text-sky-700 px-1.5 py-0.2 rounded border border-sky-200 font-bold">Rust-Powered</span>
+              <span class="font-mono text-[9px] bg-sky-50 text-sky-700 px-1.5 py-0.2 rounded border border-sky-200 font-bold">Strict Type</span>
             </div>
-            <p class="text-slate-600 text-[11px] leading-snug">
-              AI가 남발하는 미사용 import, 위험한 구문, 포매팅 결함을 0.01초 만에 자동 교정(<code class="text-sky-800 bg-sky-50 px-1 rounded font-mono text-[10.5px]">ruff check --fix</code>).
+            <p class="text-slate-600 text-[10.5px] leading-tight">
+              AI의 빈번한 실수인 <code class="text-sky-800 bg-sky-50 px-1 rounded font-mono text-[10px]">None</code> 역참조, 잘못된 속성 접근을 런타임 전 0.1초 만에 적발.
             </p>
           </div>
 
-          <!-- Pytest Item -->
-          <div class="p-2 rounded-xl bg-slate-50 border border-slate-200/80">
+          <!-- 3. import-linter -->
+          <div class="p-1.5 rounded-lg bg-slate-50 border border-slate-200/80">
             <div class="flex items-center justify-between mb-0.5">
-              <span class="font-extrabold text-slate-900 flex items-center gap-1.5 text-[11.5px]">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
-                3. Pytest : 피드백 자가치유 루프
+              <span class="font-bold text-slate-900 flex items-center gap-1.5 text-[11px]">
+                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 inline-block"></span>
+                3. import-linter : 아키텍처 계층 수호
               </span>
-              <span class="font-mono text-[9.5px] bg-emerald-50 text-emerald-700 px-1.5 py-0.2 rounded border border-emerald-200 font-bold">TDD Feedback</span>
+              <span class="font-mono text-[9px] bg-purple-50 text-purple-700 px-1.5 py-0.2 rounded border border-purple-200 font-bold">No Spaghetti</span>
             </div>
-            <p class="text-slate-600 text-[11px] leading-snug">
-              테스트를 먼저 제시하고 에이전트에게 실행 권한 부여. 실패 로그를 보고 스스로 코드를 수정해 <strong>100% All-Green</strong>까지 자가 수렴.
+            <p class="text-slate-600 text-[10.5px] leading-tight">
+              도메인/모델이 UI나 컨트롤러를 역참조하는 순환 수렁 차단. <code class="text-purple-800 bg-purple-50 px-1 rounded font-mono text-[10px]">contracts = "ui ➔ service ➔ domain"</code> 단방향 강제.
+            </p>
+          </div>
+
+          <!-- 4. Ruff -->
+          <div class="p-1.5 rounded-lg bg-slate-50 border border-slate-200/80">
+            <div class="flex items-center justify-between mb-0.5">
+              <span class="font-bold text-slate-900 flex items-center gap-1.5 text-[11px]">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block"></span>
+                4. Ruff : 초고속 정적 구문 세척
+              </span>
+              <span class="font-mono text-[9px] bg-amber-50 text-amber-700 px-1.5 py-0.2 rounded border border-amber-200 font-bold">Rust Fast</span>
+            </div>
+            <p class="text-slate-600 text-[10.5px] leading-tight">
+              AI가 남발하는 미사용 import, 포매팅 결함, 위험 구문을 0.01초 만에 자동 교정(<code class="text-amber-800 bg-amber-50 px-1 rounded font-mono text-[10px]">ruff check --fix</code>).
+            </p>
+          </div>
+
+          <!-- 5. Pytest -->
+          <div class="p-1.5 rounded-lg bg-slate-50 border border-slate-200/80">
+            <div class="flex items-center justify-between mb-0.5">
+              <span class="font-bold text-slate-900 flex items-center gap-1.5 text-[11px]">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span>
+                5. Pytest : 피드백 자가치유 루프
+              </span>
+              <span class="font-mono text-[9px] bg-emerald-50 text-emerald-700 px-1.5 py-0.2 rounded border border-emerald-200 font-bold">Self-Healing</span>
+            </div>
+            <p class="text-slate-600 text-[10.5px] leading-tight">
+              테스트 실패 로그를 본 에이전트가 코드를 스스로 수정하여 <strong>100% All-Green</strong>까지 자율 수렴.
             </p>
           </div>
         </div>
       </div>
 
-      <div class="text-[10.5px] font-mono text-indigo-900 bg-indigo-50/70 p-2 rounded-xl border border-indigo-200 mt-1.5">
-        💡 <strong>시연 핵심:</strong> 인간이 코드를 검토하지 않습니다. <strong>3대 툴체인의 피드백 루프</strong>가 AI를 통제합니다.
+      <div class="text-[10px] font-mono text-indigo-900 bg-indigo-50/70 p-1.5 rounded-lg border border-indigo-200 mt-1 shrink-0">
+        💡 <strong>통제 원칙:</strong> 인간이 코드를 검토하지 않습니다. <strong>5대 하네스의 자동 피드백 루프</strong>가 AI를 통제합니다.
       </div>
     </div>
 
     <!-- RIGHT: Live Demonstration Scenario & Code (7 cols) -->
-    <div class="col-span-7 bg-white rounded-2xl p-3.5 border border-slate-200 shadow-xl flex flex-col justify-between border-t-4 border-t-emerald-500 overflow-hidden">
+    <div class="col-span-7 bg-white rounded-2xl p-3 border border-slate-200 shadow-sm flex flex-col justify-between border-t-4 border-t-emerald-500 min-h-0 overflow-hidden">
       <div>
-        <div class="flex items-center justify-between mb-1.5">
-          <div class="flex items-center gap-2">
+        <div class="flex items-center justify-between mb-1">
+          <div class="flex items-center gap-1.5">
             <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
             <span class="text-xs font-mono text-emerald-900 font-black uppercase tracking-wider">LIVE DEMO SCENARIO</span>
           </div>
-          <span class="text-[10px] font-mono text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 font-bold">
-            실시간 자가치유 시연 파이프라인
+          <span class="text-[9.5px] font-mono text-emerald-800 bg-emerald-50 px-2 py-0.2 rounded-full border border-emerald-200 font-bold">
+            실시간 자가치유 파이프라인
           </span>
         </div>
-        <h3 class="text-sm lg:text-base font-black text-slate-900 mb-1.5">시연 시나리오 : 에이전트 자가치유(Self-Healing) 실황</h3>
+        <h3 class="text-xs xl:text-sm font-black text-slate-900 mb-1">시연 시나리오 : 에이전트 5단계 자가치유(Self-Healing) 실황</h3>
 
-        <div class="space-y-1.5 text-xs font-mono">
+        <div class="space-y-1 text-xs font-mono">
           <!-- Step 1: Pydantic Schema Definition -->
-          <div class="p-2 rounded-xl bg-slate-50 border border-slate-200">
-            <div class="flex items-center justify-between text-slate-700 font-bold mb-1 text-[10.5px]">
-              <span>[DEMO 1] Pydantic 엄격 모델 선언 (<code class="text-slate-900">schemas.py</code>)</span>
-              <span class="text-[9.5px] text-rose-700 bg-rose-50 px-1.5 py-0.2 rounded border border-rose-200 font-semibold">입력 규격</span>
+          <div class="p-1.5 rounded-lg bg-slate-50 border border-slate-200">
+            <div class="flex items-center justify-between text-slate-700 font-bold mb-0.5 text-[10px]">
+              <span>[DEMO 1] Pydantic &amp; 엄격 타입 모델 선언 (<code class="text-slate-900">schemas.py</code>)</span>
+              <span class="text-[9px] text-rose-700 bg-rose-50 px-1 py-0.2 rounded border border-rose-200 font-semibold">입력 규격</span>
             </div>
-            <div class="bg-slate-900 text-slate-100 p-1.5 rounded-lg text-[10px] leading-relaxed overflow-x-auto">
+            <div class="bg-slate-900 text-slate-100 p-1.5 rounded text-[9.5px] leading-relaxed overflow-x-auto">
               <span class="text-sky-400">class</span> <span class="text-amber-300">OrderRequest</span>(BaseModel):<br>
               &nbsp;&nbsp;&nbsp;&nbsp;user_id: <span class="text-sky-400">str</span> = Field(..., min_length=3)<br>
               &nbsp;&nbsp;&nbsp;&nbsp;amount: <span class="text-sky-400">float</span> = Field(..., gt=0)<br>
@@ -149,51 +205,52 @@
             </div>
           </div>
 
-          <!-- Step 2: Agent Execution Command -->
-          <div class="p-2 rounded-xl bg-slate-50 border border-slate-200">
-            <div class="flex items-center justify-between text-slate-700 font-bold mb-1 text-[10.5px]">
-              <span>[DEMO 2] 에이전트 실행 &amp; 자동 검증 지시</span>
-              <span class="text-[9.5px] text-sky-700 bg-sky-50 px-1.5 py-0.2 rounded border border-sky-200 font-semibold">프롬프트 가드</span>
+          <!-- Step 2: Agent Execution Command with 5-Shield -->
+          <div class="p-1.5 rounded-lg bg-slate-50 border border-slate-200">
+            <div class="flex items-center justify-between text-slate-700 font-bold mb-0.5 text-[10px]">
+              <span>[DEMO 2] 에이전트 실행 &amp; 5대 하네스 일괄 검증 지시</span>
+              <span class="text-[9px] text-sky-700 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 font-semibold">프롬프트 가드</span>
             </div>
-            <div class="bg-slate-900 text-emerald-300 p-1.5 rounded-lg text-[10px] leading-relaxed select-all">
-              "schemas.py의 OrderRequest를 처리하는 orderService를 작성해.<br>
-              작성 즉시 <span class="text-amber-300">ruff check --fix</span> 및 <span class="text-cyan-300">pytest tests/</span> 실행 후 스스로 수정하여 <strong>All Passed</strong> 상태로 제출해."
+            <div class="bg-slate-900 text-emerald-300 p-1.5 rounded text-[9.5px] leading-relaxed select-all">
+              "schemas.py의 규격을 만족하는 OrderService를 작성해.<br>
+              작성 즉시 <span class="text-amber-300">uv run ruff check --fix</span> &amp;&amp; <span class="text-sky-300">uv run pyright</span> &amp;&amp; <span class="text-purple-300">lint-imports</span> &amp;&amp; <span class="text-cyan-300">uv run pytest</span>를 실행하고,<br>
+              실패 시 스스로 수정하여 <strong>All Passed</strong> 상태로 완료해."
             </div>
           </div>
 
           <!-- Step 3: Terminal Self-Healing Outcome -->
-          <div class="p-2 rounded-xl bg-slate-50 border border-slate-200">
-            <div class="flex items-center justify-between text-slate-700 font-bold mb-1 text-[10.5px]">
+          <div class="p-1.5 rounded-lg bg-slate-50 border border-slate-200">
+            <div class="flex items-center justify-between text-slate-700 font-bold mb-0.5 text-[10px]">
               <span>[DEMO 3] 터미널 실시간 관전 포인트 (자가치유 관전)</span>
-              <span class="text-[9.5px] text-emerald-700 bg-emerald-50 px-1.5 py-0.2 rounded border border-emerald-200 font-semibold">결과 관찰</span>
+              <span class="text-[9px] text-emerald-700 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200 font-semibold">자동 방어</span>
             </div>
-            <div class="text-[10.5px] text-slate-700 font-sans leading-snug space-y-0.5">
-              <div>1. 린트 결함 &middot; 미사용 import ➔ <strong class="text-sky-700 font-mono">ruff</strong>가 0.01초 만에 자동 교정</div>
-              <div>2. 음수 금액 / 타입 위반 ➔ <strong class="text-rose-700 font-mono">Pydantic</strong> ValidationError 발생 즉시 차단</div>
-              <div>3. 테스트 실패 ➔ AI가 <strong class="text-emerald-700 font-mono">pytest</strong> 실패 로그 분석 후 스스로 로직을 수정하여 <strong class="text-emerald-700 font-mono">3 passed in 0.05s</strong> 완료!</div>
+            <div class="text-[10px] text-slate-700 font-sans leading-tight space-y-0.5">
+              <div>1. 린트 결함 &middot; 미사용 import ➔ <strong class="text-amber-700 font-mono">ruff</strong>가 0.01초 만에 자동 교정</div>
+              <div>2. None 참조 / 속성 누락 ➔ <strong class="text-sky-700 font-mono">pyright</strong> 엄격 타입 체커가 런타임 전 차단</div>
+              <div>3. 아키텍처 역참조 ➔ <strong class="text-purple-700 font-mono">import-linter</strong>가 계층 침범 및 순환 의존성 즉시 거부</div>
+              <div>4. 테스트 실패 ➔ AI가 <strong class="text-emerald-700 font-mono">pytest</strong> 실패 로그를 분석해 스스로 로직을 수정하여 <strong class="text-emerald-700 font-mono">All Passed</strong> 달성!</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="flex items-center justify-between pt-1.5 border-t border-slate-200 text-[10.5px] font-mono text-emerald-800 mt-1">
-        <span>✓ 시연 효과: 린팅부터 비즈니스 로직 테스트까지 AI 100% 자율 수렴</span>
-        <span class="font-bold text-indigo-700">All Tests Passed ✓</span>
+      <div class="flex items-center justify-between pt-1 border-t border-slate-200 text-[10px] font-mono text-emerald-800 mt-0.5 shrink-0">
+        <span>✓ 린팅부터 타입 검증, 아키텍처 계층, 단위 테스트까지 AI 100% 자율 수렴</span>
+        <span class="font-bold text-indigo-700">All Checks Passed ✓</span>
       </div>
     </div>
   </div>
 
   <!-- Bottom Banner -->
-  <div class="bg-white rounded-xl px-4 py-1.5 flex items-center justify-between text-[11px] font-mono text-slate-800 border border-slate-200 shadow-sm mt-0.5">
+  <div class="bg-white rounded-xl px-3.5 py-1.5 flex items-center justify-between text-[11px] font-mono text-slate-800 border border-slate-200 shadow-sm mt-0.5 shrink-0">
     <div class="flex items-center gap-2">
-      <span class="inline-flex items-center px-2 py-0.5 rounded text-[10.5px] font-bold font-mono bg-indigo-600 text-white shadow-sm">
-        🚀 시연 테이크어웨이
+      <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold font-mono bg-indigo-600 text-white shadow-sm">
+        🚀 핵심 테이크어웨이
       </span>
-      <span class="text-slate-800 font-medium">
-        Python으로 바이브 코딩할 때 인간의 눈 검토는 무의미합니다. <strong>Pydantic &middot; Ruff &middot; Pytest 하네스가 피드백 루프를 돌릴 때</strong> 비로소 상용 안정성이 확보됩니다.
+      <span class="text-slate-800 font-medium text-[10.5px]">
+        Python 바이브 코딩 시 <strong>Pydantic &middot; Pyright &middot; import-linter &middot; Ruff &middot; Pytest</strong> 5대 하네스가 갖춰져야 비로소 상용 안정성과 아키텍처가 지켜집니다.
       </span>
     </div>
-    <span class="text-indigo-600 font-bold text-[10.5px]">Next: 3.16 실무 전장 격돌 ➔</span>
+    <span class="text-indigo-600 font-bold text-[10.5px]">Next: 3.8 실무 전장 격돌 ➔</span>
   </div>
 </section>
-
