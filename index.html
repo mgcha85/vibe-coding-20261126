@@ -350,7 +350,7 @@
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1v4m0-4h-4m4 4l-5-5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
           <span>전체화면 [F]</span>
         </button>
-        <span id="slideCounter" class="text-[#2D9BB2] font-bold font-mono">01 / 82</span>
+        <span id="slideCounter" class="text-[#2D9BB2] font-bold font-mono">01 / 81</span>
       </div>
     </header>
 
@@ -6998,150 +6998,16 @@
       <span class="text-sky-700 font-bold">🌿 Git Worktree의 미학:</span>
       <span class="text-slate-800">중복 클론 없이 <strong>완벽히 격리된 물리 디렉토리</strong>를 에이전트마다 배정하십시오.</span>
     </div>
-    <span class="text-sky-700 font-bold text-[11px]">Slide 56</span>
-  </div>
-</section>
-
-      <!-- [COMPONENT] 05-parallel/04-parallel-orchestrators.html -->
-<section class="slide flex flex-col justify-between" data-title="5.3 병렬 오케스트레이션 도구 : hedr &amp; 격리 스택" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
-  <!-- Header -->
-  <div class="mb-2">
-    <div class="flex items-center justify-between">
-      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 05. 병렬화 &middot; 5.3 오케스트레이션 도구</span>
-      <span class="px-2.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-600/50 text-emerald-300 font-mono text-[11px] font-bold">
-        HEDR / HERDR &middot; DEVCONTAINER &middot; TMUX
-      </span>
-    </div>
-    <h2 class="text-3xl font-black text-white mt-1">병렬 오케스트레이션 도구 : hedr 및 다중 에이전트 제어</h2>
-    <p class="text-xs text-slate-300 mt-1">
-      수동으로 터미널 창을 4개 띄우지 마십시오. <strong>hedr(herdr)</strong> 등 모던 워크스페이스 러너와 컨테이너 격리로 <strong>태스크 큐잉 &middot; 실행 &middot; 환경변수 동기화</strong>를 자동화합니다.
-    </p>
-  </div>
-
-  <!-- Main Grid (12 cols) -->
-  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
-    
-    <!-- LEFT: Role of Orchestrator (5 cols) -->
-    <div class="col-span-5 bento-tile p-3.5 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
-      <div>
-        <div class="flex items-center justify-between mb-2">
-          <div class="flex items-center gap-1.5">
-            <span class="text-base">🎛️</span>
-            <span class="text-[11px] font-mono text-amber-400 font-bold uppercase">오케스트레이터의 역할 (hedr / herdr)</span>
-          </div>
-          <span class="text-[9.5px] font-mono text-amber-300 bg-amber-950 px-2 py-0.5 rounded border border-amber-800">Runner Engine</span>
-        </div>
-
-        <p class="text-[11px] text-slate-300 mb-2 leading-relaxed">
-          수동 worktree 명령과 터미널 관리를 자동화하여 <strong>"프롬프트 일괄 분배 &amp; 결과 수거"</strong> 파이프라인을 구축하는 제어탑입니다.
-        </p>
-
-        <!-- Automation Flow -->
-        <div class="space-y-1.5 text-xs font-mono">
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <div class="text-sky-300 font-bold text-[10.5px]">1. 자동 워크트리 프로비저닝</div>
-            <div class="text-[10px] text-slate-400 font-sans mt-0.5">
-              CLI 명령어 한 줄로 브랜치 생성, 워크트리 분리, `.env` 및 패키지 캐시 자동 연결.
-            </div>
-          </div>
-
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <div class="text-emerald-300 font-bold text-[10.5px]">2. 다중 에이전트 자동 바인딩</div>
-            <div class="text-[10px] text-slate-400 font-sans mt-0.5">
-              각 워크트리 창에 Claude Code, Aider, Codex를 백그라운드 데몬으로 자동 부착.
-            </div>
-          </div>
-
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <div class="text-purple-300 font-bold text-[10.5px]">3. 상태 관제 (State Tracking)</div>
-            <div class="text-[10px] text-slate-400 font-sans mt-0.5">
-              각 에이전트의 상태(<code class="text-amber-300">working</code>, <code class="text-emerald-300">done</code>, <code class="text-rose-400">blocked</code>)를 단일 대시보드에서 일괄 감시.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="p-2 rounded bg-amber-950/40 border border-amber-800/40 text-[10px] font-mono text-amber-300 mt-2">
-        ⚡ "터미널 탭 10개를 띄우는 것이 아니라, <strong>선언적으로 태스크를 큐잉</strong>하는 시스템"
-      </div>
-    </div>
-
-    <!-- RIGHT: Toolchain Comparison Matrix (7 cols) -->
-    <div class="col-span-7 bento-tile p-3.5 bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
-      <div>
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-[11px] font-mono text-cyan-300 font-bold uppercase">📊 병렬화 &amp; 격리 툴체인 4대 기술 비교</span>
-          <span class="text-[9.5px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Isolation Stack</span>
-        </div>
-
-        <!-- Matrix Table -->
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse text-xs">
-            <thead>
-              <tr class="border-b border-slate-700 bg-slate-950 text-slate-300 font-mono text-[10.5px]">
-                <th class="py-1.5 px-2.5 font-semibold text-slate-400">도구 / 기법</th>
-                <th class="py-1.5 px-2.5 font-semibold text-sky-300 border-l border-slate-800">격리 수준</th>
-                <th class="py-1.5 px-2.5 font-semibold text-emerald-300 border-l border-slate-800">적합한 작업</th>
-                <th class="py-1.5 px-2.5 font-semibold text-amber-300 border-l border-slate-800">핵심 강점</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-800 text-[10.5px] text-slate-200">
-              <tr class="transition-colors">
-                <td class="py-1.5 px-2.5 font-mono font-bold text-white">git worktree</td>
-                <td class="py-1.5 px-2.5 border-l border-slate-800 text-sky-300">디렉터리 (네이티브)</td>
-                <td class="py-1.5 px-2.5 border-l border-slate-800">일반 멀티 브랜치 개발</td>
-                <td class="py-1.5 px-2.5 border-l border-slate-800 font-sans">별도 도구 불필요, 모든 IDE 즉시 지원</td>
-              </tr>
-              <tr class="transition-colors">
-                <td class="py-1.5 px-2.5 font-mono font-bold text-amber-300">hedr / 러너</td>
-                <td class="py-1.5 px-2.5 border-l border-slate-800 text-amber-300">워크트리 + 프로세스</td>
-                <td class="py-1.5 px-2.5 border-l border-slate-800">다중 CLI 에이전트 동시 제어</td>
-                <td class="py-1.5 px-2.5 border-l border-slate-800 font-sans">에이전트 세션 유지, .env 동기화 자동화</td>
-              </tr>
-              <tr class="transition-colors">
-                <td class="py-1.5 px-2.5 font-mono font-bold text-emerald-300">DevContainer</td>
-                <td class="py-1.5 px-2.5 border-l border-slate-800 text-emerald-300">OS / 컨테이너 격리</td>
-                <td class="py-1.5 px-2.5 border-l border-slate-800">DB/네트워크 의존성 작업</td>
-                <td class="py-1.5 px-2.5 border-l border-slate-800 font-sans">포트 충돌 방지, 호스트 시스템 오염 0%</td>
-              </tr>
-              <tr class="transition-colors">
-                <td class="py-1.5 px-2.5 font-mono font-bold text-purple-300">Tmux / Zellij</td>
-                <td class="py-1.5 px-2.5 border-l border-slate-800 text-purple-300">터미널 멀티플렉싱</td>
-                <td class="py-1.5 px-2.5 border-l border-slate-800">백그라운드 에이전트 관제</td>
-                <td class="py-1.5 px-2.5 border-l border-slate-800 font-sans">SSH 세션 끊겨도 작업 유지, 경량 단일 창</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="p-2 rounded bg-slate-950 border border-slate-800 text-[10.5px] text-slate-300 leading-tight mt-2.5 font-sans">
-          💡 <strong class="text-cyan-300">최상의 프로덕션 조합:</strong> <code class="text-sky-300 font-mono">git worktree</code>로 코드 디렉토리를 격리하고, <code class="text-emerald-300 font-mono">hedr + DevContainer</code>로 포트/런타임을 감싸면 <strong>100% 무충돌 병렬 환경</strong> 완성!
-        </div>
-      </div>
-
-      <div class="flex items-center justify-between text-[10px] font-mono text-indigo-300 border-t border-slate-800 pt-1 mt-1">
-        <span>✓ 도구 조합을 통한 완벽한 격리 계층</span>
-        
-      </div>
-    </div>
-  </div>
-
-  <!-- Bottom Global Banner -->
-  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
-    <div class="flex items-center gap-2">
-      <span class="text-emerald-400 font-bold">🎛️ 오케스트레이션 결론:</span>
-      <span class="text-slate-200">단순한 터미널 탭 열기를 넘어, <strong>워크트리 + 러너(hedr) + 컨테이너</strong>의 3중 격리 인프라를 구축하십시오.</span>
-    </div>
-    <span class="text-emerald-400 font-bold text-[11px]">Slide 56</span>
+    <span class="text-sky-700 font-bold text-[11px]">Next: 5.3 세션 연속성 &amp; 모듈 분할 개발 ➔</span>
   </div>
 </section>
 
       <!-- [COMPONENT] 05-parallel/05-multi-session-and-modular-concurrency.html -->
-<section class="slide flex flex-col justify-between" data-title="5.4 다중 세션 연속성 &amp; 모듈 분할 병렬 개발" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
+<section class="slide flex flex-col justify-between" data-title="5.3 다중 세션 연속성 &amp; 모듈 분할 병렬 개발" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
-      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 05. 병렬화 &middot; 5.4 세션 연속성 &amp; 모듈 분할 개발</span>
+      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 05. 병렬화 &middot; 5.3 세션 연속성 &amp; 모듈 분할 개발</span>
       <span class="px-2.5 py-0.5 rounded bg-emerald-50 border border-emerald-300 text-emerald-800 font-mono text-[11px] font-bold">
         PERSISTENT STATE &middot; MODULAR CONCURRENCY
       </span>
@@ -7174,11 +7040,11 @@
 </section>
 
       <!-- [COMPONENT] 05-parallel/06-one-person-four-agents-pipeline.html -->
-<section class="slide flex flex-col justify-between" data-title="5.5 실전 워크플로 : 1인 4 에이전트 파이프라인" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
+<section class="slide flex flex-col justify-between" data-title="5.4 실전 워크플로 : 1인 4 에이전트 파이프라인" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
-      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 05. 병렬화 &middot; 5.5 실전 파이프라인</span>
+      <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 05. 병렬화 &middot; 5.4 실전 파이프라인</span>
       <span class="px-2.5 py-0.5 rounded bg-amber-50 border border-amber-300 text-amber-800 font-mono text-[11px] font-bold">
         THE ASYNC LOOP &middot; 4-TRACK CONCURRENCY
       </span>
@@ -7211,12 +7077,12 @@
 </section>
 
       <!-- [COMPONENT] 05-parallel/07-hands-on-worktree-parallel.html -->
-<section class="slide flex flex-col justify-between" data-title="5.6 실전 실습 : Worktree로 2명 동시 지휘" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
+<section class="slide flex flex-col justify-between" data-title="5.5 실전 실습 : Worktree로 2명 동시 지휘" data-chapter-id="ch05" data-chapter-badge="CHAPTER 05 · 병렬화" data-chapter-title="Ch 05. 병렬화 : 다중 에이전트 동시 운용" data-chapter-color="bg-[#2D9BB2]/10 text-[#1B7385] border-[#2D9BB2]/30" data-chapter-accent="text-[#2D9BB2]">
   <!-- Header -->
   <div class="mb-2">
     <div class="flex items-center justify-between">
       <div>
-        <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 05. 실전 실습 &middot; 5.6 병렬 워크스페이스 실습</span>
+        <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 05. 병렬화 &middot; 5.5 병렬 워크스페이스 실습</span>
         <h2 class="text-3xl font-black text-white mt-1">실전 팁 &amp; 바로바로 실습 : Worktree로 2명 동시 지휘</h2>
       </div>
       <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/40 text-xs font-mono font-bold animate-pulse">
@@ -10264,7 +10130,7 @@
             <h3 class="text-lg font-bold text-[#1A1A1A] flex items-center gap-2">
               <span class="text-[#2D9BB2] font-mono">📑</span> 전체 목차 (Curriculum Index)
             </h3>
-            <span class="text-xs text-slate-500 font-mono">총 82개 슬라이드</span>
+            <span class="text-xs text-slate-500 font-mono">총 81개 슬라이드</span>
           </div>
           <div class="flex items-center gap-3">
             <button id="toggleAllTocBtn" class="text-xs px-2.5 py-1 rounded bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 flex items-center gap-1.5 transition-colors font-medium">
