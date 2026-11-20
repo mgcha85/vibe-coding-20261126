@@ -7,3 +7,8 @@ dist/
 __pycache__/
 *.zip
 !downloads/*.zip
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.pyc
+demo/
