@@ -1456,74 +1456,50 @@
     </p>
   </div>
 
-  <div class="flex flex-col gap-2.5 flex-1 justify-between min-h-0">
-    <!-- Top: 4 Key Paradigm Milestones Infographic (Clean White Card Frame) -->
-    <div class="w-full flex-1 flex items-center justify-center min-h-0 my-0.5 bg-white rounded-2xl border border-slate-200 p-2 shadow-sm">
+  <div class="flex flex-col gap-2 flex-1 justify-between min-h-0 my-0.5">
+    <!-- Top: 4 Key Paradigm Milestones Infographic (Massive Centerpiece Stage) -->
+    <div class="w-full flex-1 flex items-center justify-center min-h-0 bg-white rounded-2xl border border-slate-200/80 p-2.5 shadow-sm">
       <img 
         src="./slides/01-lineage/assets/agent_evolution_4milestones.png" 
         alt="에이전트 진화의 4대 본질 (01. 상태 전이, 02. 조직 분업, 03. 심층 추론, 04. 2단계 루프)" 
-        class="w-full h-auto max-h-[350px] xl:max-h-[390px] object-contain rounded-xl"
+        class="w-auto h-full max-h-[660px] xl:max-h-[700px] object-contain rounded-xl shadow-xs"
       />
     </div>
 
-    <!-- Bottom: Benchmark Truth (Peach) & Bridge to Next Chapters (Lavender) -->
-    <div class="grid grid-cols-12 gap-3.5 items-stretch shrink-0">
-      <!-- Left: Ground Truth (Soft Peach, 5 cols) -->
-      <div class="col-span-5 rounded-2xl p-3 border border-[#F5DAC8] bg-[#FDF7F3] shadow-sm flex flex-col justify-between border-t-4 border-t-[#E87A4D]">
-        <div>
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] font-mono font-bold text-[#8C3A16] uppercase tracking-wider">BENCHMARK GROUND TRUTH</span>
-            <span class="text-[9.5px] font-mono text-slate-500 font-semibold">SWE-bench 실증</span>
-          </div>
-          <h4 class="text-xs md:text-sm font-extrabold text-slate-900 mb-1.5">프롬프트 테크닉의 종말과 도구의 승리</h4>
-
-          <div class="flex items-center gap-2 bg-white p-2 rounded-xl border border-[#F5DAC8] shadow-sm mb-1.5">
-            <div class="text-center px-1.5">
-              <span class="text-[9.5px] text-slate-500 block">단일 프롬프트</span>
-              <span class="text-base font-black text-[#BE123C] font-mono">1.96%</span>
-            </div>
-            <div class="text-slate-400 font-bold text-xs">➔</div>
-            <div class="text-center px-1.5">
-              <span class="text-[9.5px] text-slate-500 block">Tool + 피드백</span>
-              <span class="text-base font-black text-[#047857] font-mono">70%+</span>
-            </div>
-            <div class="text-[10px] text-slate-700 leading-tight pl-1 border-l border-slate-200">
-              모델의 체급보다 <strong>도구 환경(Environment)과 피드백 루프</strong>가 성능을 35배 결정.
-            </div>
+    <!-- Bottom: Streamlined Benchmark Ground Truth (Peach) & Next Roadmap Connection (Lavender) -->
+    <div class="grid grid-cols-12 gap-3 items-stretch shrink-0">
+      <!-- Left: Benchmark Ground Truth (Soft Peach, 5 cols) -->
+      <div class="col-span-5 rounded-xl p-2.5 border border-[#F5DAC8] bg-[#FDF7F3] shadow-2xs flex flex-col justify-between border-t-3 border-t-[#E87A4D]">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[10px] font-mono font-bold text-[#8C3A16] uppercase tracking-wider">BENCHMARK GROUND TRUTH</span>
+          <div class="flex items-center gap-1.5 text-[11px] font-mono font-bold">
+            <span class="text-slate-500 font-normal">단일</span>
+            <span class="text-[#BE123C] bg-[#FCEBF2] px-1.5 py-0.2 rounded border border-[#F5C2D7]">1.96%</span>
+            <span class="text-slate-400">➔</span>
+            <span class="text-slate-500 font-normal">도구+피드백</span>
+            <span class="text-[#047857] bg-[#E4F5EB] px-1.5 py-0.2 rounded border border-[#BCE8CD]">70%+</span>
           </div>
         </div>
-        <p class="text-[10.5px] text-slate-600 leading-snug">
-          &ldquo;더 정교한 프롬프트를 짜려고 씨름하지 마십시오. 모델에게 <strong>정확한 실행 권한과 린터·테스트 피드백</strong>을 쥐어주는 것이 수십 배 강력합니다.&rdquo;
+        <p class="text-[10.5px] text-slate-700 leading-snug">
+          모델 체급보다 <strong>도구 환경(Environment)과 피드백 루프</strong>가 성능을 35배 결정. 프롬프트 테크닉 대신 린터·테스트 피드백이 핵심.
         </p>
       </div>
 
-      <!-- Right: Why This Leads to Chapter 02 & Chapter 03-04 (Soft Lavender, 7 cols) -->
-      <div class="col-span-7 rounded-2xl p-3 border border-[#DFD2F5] bg-[#F7F3FC] shadow-sm flex flex-col justify-between border-t-4 border-t-[#7C59C8]">
-        <div>
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] font-mono font-bold text-[#4E3185] uppercase tracking-wider">NEXT ROADMAP CONNECTION</span>
-            <span class="text-[9.5px] font-mono text-slate-500 font-semibold">계보가 증명한 다음 단계</span>
-          </div>
-          <h4 class="text-xs md:text-sm font-extrabold text-slate-900 mb-1.5">계보에서 얻은 결론 : 다음 챕터로의 연결</h4>
-
-          <div class="grid grid-cols-2 gap-2 text-xs">
-            <div class="p-2 rounded-xl bg-white border border-[#DFD2F5]">
-              <strong class="text-[#554596] block mb-0.5 text-[11px] font-bold">Ch 02. 바이브 코딩의 본질</strong>
-              <p class="text-[10px] text-slate-600 leading-snug">
-                Karpathy의 '말이 코드가 되는' 이상 뒤에 숨겨진 <strong>복잡성 폭탄과 아키텍처 문해력</strong>의 필요성을 진단합니다.
-              </p>
-            </div>
-            <div class="p-2 rounded-xl bg-white border border-[#DFD2F5]">
-              <strong class="text-sky-800 block mb-0.5 text-[11px] font-bold">Ch 03~04. 언어와 툴체인</strong>
-              <p class="text-[10px] text-slate-600 leading-snug">
-                컴파일러 피드백을 주는 <strong>Go/Rust</strong>와, 기억을 유지하는 <strong>Skills &middot; LLM-Wiki</strong>를 구축합니다.
-              </p>
-            </div>
+      <!-- Right: Why This Leads to Next Chapters (Soft Lavender, 7 cols) -->
+      <div class="col-span-7 rounded-xl p-2.5 border border-[#DFD2F5] bg-[#F7F3FC] shadow-2xs flex flex-col justify-between border-t-3 border-t-[#7C59C8]">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[10px] font-mono font-bold text-[#4E3185] uppercase tracking-wider">NEXT ROADMAP CONNECTION</span>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-lg bg-white text-[#554596] border border-[#DFD2F5]">
+              Ch 02. 본질 &middot; 아키텍처 문해력
+            </span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-lg bg-white text-sky-800 border border-[#DFD2F5]">
+              Ch 03~04. Go/Rust &middot; 툴체인
+            </span>
           </div>
         </div>
-
-        <div class="flex items-center justify-between text-[10.5px] font-mono text-[#554596] border-t border-[#DFD2F5] pt-1.5 mt-1">
-          <span>💡 &ldquo;계보의 교훈 : 프롬프트 엔지니어링은 끝났고, 소프트웨어 아키텍처의 시대가 열렸다.&rdquo;</span>
+        <div class="flex items-center justify-between text-[10.5px] font-mono text-[#554596] border-t border-[#DFD2F5] pt-1">
+          <span>💡 &ldquo;프롬프트 엔지니어링은 끝났고, 소프트웨어 아키텍처의 시대가 열렸다.&rdquo;</span>
           <span class="font-bold text-[#E87A4D]">Next: Ch 02 ➔</span>
         </div>
       </div>
