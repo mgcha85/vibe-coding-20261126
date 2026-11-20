@@ -63,14 +63,12 @@
 
     .slide {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      inset: 0;
       width: 100%;
       max-width: 1720px;
       margin: 0 auto;
       height: 100%;
-      padding: 1.25rem 3.5rem;
+      padding: 1.5rem 3.5rem;
       box-sizing: border-box;
       opacity: 0;
       visibility: hidden;
@@ -357,7 +355,7 @@
     </header>
 
     <!-- Slides Wrapper (Injected from slides/ component files) -->
-    <main class="relative w-full h-full pt-14 pb-12 flex-1 overflow-hidden" id="slidesWrapper">
+    <main class="absolute top-14 bottom-12 left-0 right-0 overflow-hidden" id="slidesWrapper">
 {{SLIDES_CONTENT}}
     </main>
 
