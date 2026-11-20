@@ -7,7 +7,7 @@
   <div class="grid grid-cols-12 gap-5 flex-1 items-stretch">
     <!-- Left: SWE-bench Evidence & Multimodal v2 -->
     <div class="col-span-6 bento-tile p-4 flex flex-col justify-between border-l-4 border-l-sky-500">
-      <div>
+      <div class="flex-1 flex flex-col">
         <div class="flex items-center justify-between mb-2">
           <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-sky-500/20 text-sky-300">BENCHMARKS & SELF-HEALING</span>
           <span class="text-[11px] text-slate-400 font-mono">Feedback Loop</span>
@@ -31,100 +31,39 @@
           </div>
         </div>
 
-        <!-- 4-step Micro Loop -->
-        <div class="p-2 bg-slate-950/60 rounded border border-slate-800 text-[11px] font-mono text-slate-300 flex items-center justify-between mb-3">
-          <span class="px-1.5 py-0.5 bg-slate-800 rounded">1. 코드 작성</span>
-          <span class="text-slate-600">➔</span>
-          <span class="px-1.5 py-0.5 bg-slate-800 rounded text-indigo-300">2. 테스트 실행</span>
-          <span class="text-slate-600">➔</span>
-          <span class="px-1.5 py-0.5 bg-red-950 text-red-300 rounded border border-red-900/60">3. Stderr 관찰</span>
-          <span class="text-slate-600">➔</span>
-          <span class="px-1.5 py-0.5 bg-emerald-950 text-emerald-300 rounded border border-emerald-900/60">4. 국소 패치</span>
-        </div>
-
-        <!-- 2025 SWE-bench Multimodal v2 -->
-        <div class="p-2.5 bg-indigo-950/30 border border-indigo-800/40 rounded">
-          <div class="flex items-center justify-between mb-1">
-            <strong class="text-indigo-300 text-xs font-mono">2025 진화: SWE-bench Multimodal & v2</strong>
-            <span class="text-[10px] px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-300 font-mono">Vision Agent</span>
-          </div>
-          <p class="text-[11px] text-slate-300 leading-relaxed">
-            텍스트 코드뿐 아니라 <strong>브라우저 렌더링 화면, Figma 디자인 시안, 웹 UI 버그</strong>를 시각적으로 보고 고치는 멀티모달 자율 엔지니어링 연구로 확장.
-          </p>
+        <!-- 2025 SWE-bench Multimodal & Self-Healing Loop Graphic -->
+        <div class="w-full flex-1 flex items-center justify-center min-h-0 my-1">
+          <img 
+            src="./slides/01-lineage/assets/swebench_multimodal_v2.png" 
+            alt="자가 치유 루프 및 2025 진화: SWE-bench Multimodal & v2 (Vision Agent)" 
+            class="w-full h-auto max-h-[340px] xl:max-h-[370px] object-contain rounded-xl shadow-lg border border-indigo-900/50"
+          />
         </div>
       </div>
-      <div class="text-[10.5px] text-sky-400 font-mono border-t border-slate-800 pt-2">
+      <div class="text-[10.5px] text-sky-400 font-mono border-t border-slate-800 pt-2 mt-1">
         "도구 환경(Environment)과 테스트 피드백이 에이전트의 실질 지능을 결정한다."
       </div>
     </div>
 
     <!-- Right: 2025 Test-Time Compute & Repo Map -->
     <div class="col-span-6 bento-tile p-4 flex flex-col justify-between border-l-4 border-l-purple-500">
-      <div>
+      <div class="flex-1 flex flex-col">
         <div class="flex items-center justify-between mb-2">
           <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-purple-500/20 text-purple-300">2025 REASONING & REPO MAP</span>
           <span class="text-[11px] text-slate-400 font-mono">Long-Horizon Loop</span>
         </div>
         <h3 class="text-lg font-bold text-white mb-2">2025년: '추론 모델' 결합과 장기 실행(Long-Horizon)</h3>
-        <p class="text-xs text-slate-300 mb-3 leading-relaxed">
-          OpenAI o1/o3, Claude 3.5/3.7 Sonnet 등 <strong class="text-purple-300">Test-Time Compute(추론 시간 연산)</strong>의 에이전트 이식:
-        </p>
 
-        <div class="space-y-2.5 text-xs">
-          <!-- ① Test-Time Compute -->
-          <div class="p-3 bg-slate-900 rounded border border-slate-800">
-            <div class="flex items-center justify-between mb-1">
-              <strong class="text-purple-300 font-bold">① Test-Time Compute 기반 에이전트 계획 수립</strong>
-              <span class="text-[10px] font-mono text-purple-400">Think Before Coding</span>
-            </div>
-            <p class="text-[11px] text-slate-300 leading-relaxed mb-1.5">
-              과거에는 에이전트가 잘못된 코드를 짜면 되돌아오지 못했으나, 모델 내부의 <strong>Hidden CoT(생각 사슬)</strong>를 통해 코드를 실행하기 전 가상으로 수십 가지 경우의 수를 사전 시뮬레이션 및 Self-Correction.
-            </p>
-            <div class="text-[10.5px] text-purple-200 bg-purple-950/40 px-2 py-1 rounded font-mono">
-              ➔ "바로 코드를 타이핑하지 않고 먼저 깊게 생각하는" 에이전트로 패러다임 전환
-            </div>
-          </div>
-
-          <!-- ② Repo Map -->
-          <div class="p-3 bg-slate-900 rounded border border-slate-800">
-            <div class="flex items-center justify-between mb-1">
-              <strong class="text-sky-300 font-bold">② Aider의 'Repo Map' 최적화 (2024~2025)</strong>
-              <span class="text-[10px] font-mono text-sky-400">Tree-sitter + PageRank</span>
-            </div>
-            <p class="text-[11px] text-slate-300 leading-relaxed mb-1.5">
-              수십만 줄의 코드베이스를 토큰 낭비 없이 전달하기 위해, <strong>Tree-sitter(AST 분석기)</strong>와 <strong>PageRank 알고리즘</strong>을 결합해 현재 작업과 가장 연관된 핵심 파일·심볼 관계도만 추출:
-            </p>
-
-            <!-- Repo Map Compression Visual Flow -->
-            <div class="p-1.5 bg-slate-950/80 rounded border border-slate-800 text-[9.5px] font-mono my-1.5 flex items-center justify-between">
-              <div class="px-1.5 py-1 bg-red-950/40 border border-red-900/60 rounded text-center">
-                <div class="text-red-300 font-bold">전체 Repo</div>
-                <div class="text-[8px] text-slate-400">200k+ 토큰 ❌</div>
-              </div>
-              <span class="text-slate-600">➔</span>
-              <div class="px-1.5 py-1 bg-slate-900 border border-sky-800/60 rounded text-center">
-                <div class="text-sky-300 font-bold">Tree-sitter</div>
-                <div class="text-[8px] text-slate-400">AST 심볼 추출</div>
-              </div>
-              <span class="text-slate-600">➔</span>
-              <div class="px-1.5 py-1 bg-indigo-950/40 border border-indigo-800/60 rounded text-center">
-                <div class="text-indigo-300 font-bold">PageRank</div>
-                <div class="text-[8px] text-slate-400">중요도 그래프</div>
-              </div>
-              <span class="text-slate-600">➔</span>
-              <div class="px-1.5 py-1 bg-emerald-950/40 border border-emerald-800/60 rounded text-center">
-                <div class="text-emerald-300 font-bold">Repo Map</div>
-                <div class="text-[8px] text-emerald-400">80%+ 절감 ✅</div>
-              </div>
-            </div>
-
-            <div class="text-[10.5px] text-sky-200 bg-sky-950/40 px-2 py-0.5 rounded font-mono">
-              ➔ 컨텍스트 오염을 원천 차단하고 모델 지능을 유지하는 핵심 기술
-            </div>
-          </div>
+        <!-- 2025 Test-Time Compute & Repo Map Infographic -->
+        <div class="w-full flex-1 flex items-center justify-center min-h-0 my-1">
+          <img 
+            src="./slides/01-lineage/assets/test_time_compute_repomap.jpg" 
+            alt="Test-Time Compute 기반 계획 수립 및 Aider Repo Map 최적화" 
+            class="w-full h-full max-h-[460px] xl:max-h-[500px] object-contain rounded-xl shadow-lg border border-purple-900/40"
+          />
         </div>
       </div>
-      <div class="text-[10.5px] text-purple-300 font-mono border-t border-slate-800 pt-2">
+      <div class="text-[10.5px] text-purple-300 font-mono border-t border-slate-800 pt-2 mt-1">
         "깊은 사전 추론과 정밀한 코드베이스 맵핑이 롱호라이즌 성공률을 좌우한다."
       </div>
     </div>

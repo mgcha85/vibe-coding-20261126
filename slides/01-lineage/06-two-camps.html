@@ -5,75 +5,13 @@
   </div>
 
   <div class="flex flex-col gap-3.5 flex-1 justify-between">
-    <!-- Top: 4 Key Paradigm Milestones -->
-    <div class="grid grid-cols-4 gap-3">
-      <!-- 1. ReAct -->
-      <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-sky-500">
-        <div>
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-sky-100 text-sky-800 border border-sky-200">01. 상태 전이</span>
-            <span class="text-[10px] text-slate-500 font-mono">ICLR 2023</span>
-          </div>
-          <h3 class="text-sm font-bold text-slate-900 mb-1">손과 눈을 부여한 ReAct</h3>
-          <p class="text-[11px] text-slate-600 leading-relaxed">
-            프롬프트 1회성 텍스트 출력을 버리고, <strong>환경(Shell/File)을 관찰(Observe)하며 상태를 점진 전이</strong>하는 루프로 전환.
-          </p>
-        </div>
-        <div class="text-[10px] text-sky-700 font-mono border-t border-slate-100 pt-1.5 mt-2">
-          "텍스트 생성 ➔ 상태 머신 조작"
-        </div>
-      </div>
-
-      <!-- 2. SOP & Multi-Agent -->
-      <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-purple-500">
-        <div>
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800 border border-purple-200">02. 조직 분업</span>
-            <span class="text-[10px] text-slate-500 font-mono">ICLR 2024</span>
-          </div>
-          <h3 class="text-sm font-bold text-slate-900 mb-1">SOP와 컨텍스트 격리</h3>
-          <p class="text-[11px] text-slate-600 leading-relaxed">
-            AutoGPT의 단일 컨텍스트 오염을 타파. <strong>역할별 SOP와 정형 산출물(PRD/Design/Code)</strong> 강제로 연쇄 환각 차단.
-          </p>
-        </div>
-        <div class="text-[10px] text-purple-700 font-mono border-t border-slate-100 pt-1.5 mt-2">
-          "모놀리식 붕괴 ➔ 객체 분업"
-        </div>
-      </div>
-
-      <!-- 3. Reasoning & Repo Map -->
-      <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-indigo-500">
-        <div>
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 border border-indigo-200">03. 심층 추론</span>
-            <span class="text-[10px] text-slate-500 font-mono">2024~2025</span>
-          </div>
-          <h3 class="text-sm font-bold text-slate-900 mb-1">Test-Time Compute & Repo Map</h3>
-          <p class="text-[11px] text-slate-600 leading-relaxed">
-            코딩 전 <strong>사전 시뮬레이션(CoT)</strong>과 <strong>Tree-sitter + PageRank</strong> 기반 핵심 심볼 추출로 토큰 80% 압축.
-          </p>
-        </div>
-        <div class="text-[10px] text-indigo-700 font-mono border-t border-slate-100 pt-1.5 mt-2">
-          "타이핑 전 심층 사고 & AST 맵"
-        </div>
-      </div>
-
-      <!-- 4. Outer-Inner Loop -->
-      <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-emerald-500">
-        <div>
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200">04. 2단계 루프</span>
-            <span class="text-[10px] text-slate-500 font-mono">2026 표준</span>
-          </div>
-          <h3 class="text-sm font-bold text-slate-900 mb-1">Outer & Inner 물리적 분리</h3>
-          <p class="text-[11px] text-slate-600 leading-relaxed">
-            클라우드 지속형 워커(Outer)와 IDE 인라인 초고속 페어(Inner)로 분리하여 <strong>장기 태스크 완수율 극대화</strong>.
-          </p>
-        </div>
-        <div class="text-[10px] text-emerald-700 font-mono border-t border-slate-100 pt-1.5 mt-2">
-          "워크스페이스 격리 & 비동기 분업"
-        </div>
-      </div>
+    <!-- Top: 4 Key Paradigm Milestones Infographic -->
+    <div class="w-full flex-1 flex items-center justify-center min-h-0 my-1">
+      <img 
+        src="./slides/01-lineage/assets/agent_evolution_4milestones.png" 
+        alt="에이전트 진화의 4대 본질 (01. 상태 전이, 02. 조직 분업, 03. 심층 추론, 04. 2단계 루프)" 
+        class="w-full h-auto max-h-[370px] xl:max-h-[410px] object-contain rounded-2xl shadow-sm border border-slate-200"
+      />
     </div>
 
     <!-- Bottom: Benchmark Truth & Bridge to Next Chapters -->

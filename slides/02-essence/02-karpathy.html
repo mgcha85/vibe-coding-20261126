@@ -7,8 +7,8 @@
     </p>
   </div>
 
-  <!-- HyperFrames-style Living Video Player Mockup Stage -->
-  <div class="bento-tile p-0 rounded-xl overflow-hidden border border-slate-700/80 bg-slate-950 flex flex-col my-auto shadow-2xl">
+  <!-- HyperFrames-style Living Video Player Mockup Stage (Vertically Expanded) -->
+  <div class="bento-tile p-0 rounded-xl overflow-hidden border border-slate-700/80 bg-slate-950 flex-1 flex flex-col justify-between my-2 shadow-2xl min-h-[460px] lg:min-h-[500px]">
     <style>
       /* Master 12-second Video Loop Animations */
       @keyframes scrubberMove {
@@ -169,74 +169,79 @@
     </style>
 
     <!-- Video Player Header Controls -->
-    <div class="bg-slate-900/90 px-3.5 py-1.5 border-b border-slate-800 flex items-center justify-between text-[10.5px] font-mono">
+    <div class="bg-slate-900/95 px-4 py-2 border-b border-slate-800 flex items-center justify-between text-xs font-mono">
       <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
-        <span class="text-rose-400 font-bold uppercase tracking-wider">● REC</span>
+        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
+        <span class="text-rose-400 font-bold uppercase tracking-wider">● REC : 2023 vs 2026 CODING REVOLUTION</span>
       </div>
       <div class="flex items-center gap-3">
         <span class="text-sky-300 font-bold tracking-widest">12s LOOP</span>
-        <span class="text-[9.5px] bg-sky-950/80 text-sky-300 border border-sky-800/60 px-2 py-0.5 rounded">60 FPS Native</span>
+        <span class="text-[10px] bg-sky-950/80 text-sky-300 border border-sky-800/60 px-2 py-0.5 rounded font-bold">60 FPS Native</span>
       </div>
     </div>
 
     <!-- Live Animated Progress Scrubber -->
-    <div class="w-full bg-slate-900 h-1 overflow-hidden border-b border-slate-800">
+    <div class="w-full bg-slate-900 h-1.5 overflow-hidden border-b border-slate-800">
       <div class="bg-gradient-to-r from-sky-400 via-purple-400 to-emerald-400 h-full animate-scrubber"></div>
     </div>
 
-    <!-- Dual OS Windows Screen Area -->
-    <div class="grid grid-cols-2 gap-3 p-3 items-stretch">
+    <!-- Dual OS Windows Screen Area (Stretches Full Height) -->
+    <div class="grid grid-cols-2 gap-3.5 p-3.5 flex-1 items-stretch">
       <!-- Window 1: 2023 ChatGPT Snippet Interface -->
-      <div class="rounded-lg overflow-hidden border border-slate-800 flex flex-col justify-between bg-slate-950/90 shadow-lg">
+      <div class="rounded-lg overflow-hidden border border-slate-800 flex flex-col justify-between bg-slate-950/90 shadow-lg h-full">
         <!-- Title Bar -->
-        <div class="bg-slate-900/90 px-3 py-1.5 border-b border-slate-800 flex items-center justify-between">
+        <div class="bg-slate-900/90 px-3.5 py-2 border-b border-slate-800 flex items-center justify-between">
           <div class="flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-red-500/80"></span>
-            <span class="w-2 h-2 rounded-full bg-amber-500/80"></span>
-            <span class="w-2 h-2 rounded-full bg-emerald-500/80"></span>
-            <span class="text-[10px] font-mono text-slate-400 ml-1.5">ChatGPT (2023) - Web Chat UI</span>
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+            <span class="text-xs font-mono text-slate-300 ml-1.5 font-bold">ChatGPT (2023) - Web Chat UI</span>
           </div>
-          <span class="text-[9.5px] font-mono text-amber-400 bg-amber-950/50 px-1.5 py-0.5 rounded border border-amber-800/40">단편적 함수 복붙</span>
+          <span class="text-[10px] font-mono text-amber-400 bg-amber-950/50 px-2 py-0.5 rounded border border-amber-800/40">단편적 함수 복붙</span>
         </div>
 
         <!-- Chat Area (User Right / AI Left) -->
-        <div class="p-2.5 space-y-2 text-xs flex-1 flex flex-col justify-between min-h-[195px]">
-          <div class="space-y-1.5">
+        <div class="p-3 space-y-2.5 text-xs flex-1 flex flex-col justify-between">
+          <div class="space-y-2">
             <!-- User Prompt (Right Aligned) -->
             <div class="anim-chat-prompt flex justify-end">
-              <div class="flex items-start gap-1.5 bg-sky-950/50 border border-sky-700/60 p-2 rounded-lg max-w-[85%] text-right">
+              <div class="flex items-start gap-2 bg-sky-950/50 border border-sky-700/60 p-2.5 rounded-lg max-w-[88%] text-right shadow-sm">
                 <div>
-                  <div class="text-[9px] font-mono text-sky-400 font-bold mb-0.5">User</div>
-                  <div class="text-slate-200 text-[10px] leading-snug">
+                  <div class="text-[9.5px] font-mono text-sky-400 font-bold mb-0.5">User (인간)</div>
+                  <div class="text-slate-200 text-xs leading-snug">
                     "사용자 로그인 인증이랑 Stripe 결제 연동하는 함수 코드 짜줘."
                   </div>
                 </div>
-                <span class="w-4 h-4 rounded-full bg-sky-600 text-white font-bold flex items-center justify-center text-[9px] shrink-0 font-mono mt-0.5">U</span>
+                <span class="w-5 h-5 rounded-full bg-sky-600 text-white font-bold flex items-center justify-center text-[10px] shrink-0 font-mono mt-0.5">U</span>
               </div>
             </div>
 
             <!-- ChatGPT Thinking Animation (Left Aligned) -->
-            <div class="anim-chat-thinking items-center gap-1.5 px-1 py-0.5 text-slate-400 text-[9.5px] font-mono">
-              <span class="w-4 h-4 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-[9px] shrink-0 font-mono">AI</span>
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+            <div class="anim-chat-thinking items-center gap-2 px-1 py-0.5 text-slate-400 text-[10px] font-mono">
+              <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-[10px] shrink-0 font-mono">AI</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
               <span>ChatGPT is typing...</span>
             </div>
 
             <!-- ChatGPT Reply Bubble (Left Aligned) -->
             <div class="anim-chat-code flex justify-start">
-              <div class="flex items-start gap-1.5 bg-slate-900/60 border border-slate-800 p-2 rounded-lg max-w-[92%]">
-                <span class="w-4 h-4 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-[9px] shrink-0 font-mono mt-0.5">AI</span>
-                <div class="space-y-1 flex-1 text-[10px]">
-                  <div class="text-[9px] font-mono text-emerald-400 font-bold">ChatGPT (GPT-4)</div>
-                  <p class="text-slate-400 text-[9px]">요청하신 Node.js 인증 및 결제 함수 스니펫입니다:</p>
+              <div class="flex items-start gap-2 bg-slate-900/80 border border-slate-800 p-2.5 rounded-lg max-w-[95%] shadow-sm">
+                <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-[10px] shrink-0 font-mono mt-0.5">AI</span>
+                <div class="space-y-1.5 flex-1 text-xs">
+                  <div class="text-[10px] font-mono text-emerald-400 font-bold">ChatGPT (GPT-4)</div>
+                  <p class="text-slate-300 text-[10.5px]">요청하신 Node.js 인증 및 결제 처리 함수 스니펫입니다:</p>
                   
-                  <!-- Code Snippet Block -->
-                  <div class="bg-slate-950 p-2 rounded border border-slate-800 font-mono text-[9px] text-slate-300 leading-relaxed">
-                    <div class="text-slate-500">// 1. 수동으로 bcrypt와 stripe를 설치하세요</div>
-                    <div><span class="text-purple-400">async function</span> <span class="text-sky-300">handleLogin</span>(email, pw) {</div>
-                    <div class="pl-2.5 text-slate-400">const user = await db.find(email);</div>
-                    <div class="pl-2.5 text-slate-400">return bcrypt.compare(pw, user.hash);</div>
+                  <!-- Code Snippet Block (Enlarged and Clearer) -->
+                  <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 font-mono text-[10px] text-slate-300 leading-relaxed shadow-inner">
+                    <div class="text-slate-500">// 1. 수동 설치: npm i bcrypt stripe express jsonwebtoken</div>
+                    <div><span class="text-purple-400">import</span> Stripe <span class="text-purple-400">from</span> <span class="text-emerald-300">'stripe'</span>;</div>
+                    <div class="mt-1"><span class="text-purple-400">export async function</span> <span class="text-sky-300">handleLogin</span>(email, pw) {</div>
+                    <div class="pl-3 text-slate-400">const user = await db.findUser({ email });</div>
+                    <div class="pl-3 text-slate-400">if (!user) throw new Error("404 User Not Found");</div>
+                    <div class="pl-3 text-slate-400">return bcrypt.compare(pw, user.passwordHash);</div>
+                    <div>}</div>
+                    <div class="mt-1"><span class="text-purple-400">export async function</span> <span class="text-sky-300">createCheckout</span>(userId, priceId) {</div>
+                    <div class="pl-3 text-slate-400">return stripe.checkout.sessions.create({ /* 옵션 수동 입력 */ });</div>
                     <div>}</div>
                   </div>
                 </div>
@@ -245,91 +250,106 @@
           </div>
 
           <!-- Reality Check Callout (Animated Pulse) -->
-          <div class="anim-chat-warn p-1.5 bg-red-950/30 border border-red-900/50 rounded text-[10px] text-red-300 space-y-0.5">
-            <div class="font-bold flex items-center gap-1">
-              <span>⚠️ 2023의 한계 (인간의 수동 복붙 지옥)</span>
+          <div class="anim-chat-warn p-2.5 bg-red-950/40 border border-red-900/60 rounded-lg text-xs text-red-200 space-y-1 shadow-sm">
+            <div class="font-bold flex items-center gap-1.5 text-red-300">
+              <span>⚠️ 2023의 한계 (인간의 수동 복붙 & 배선 지옥)</span>
             </div>
-            <div class="text-[9.5px] text-slate-400 leading-tight">
-              디렉토리 생성, 패키지 설치, 라우팅, DB 마이그레이션 등 <strong class="text-red-200">노동의 95%는 여전히 인간의 몫</strong>
+            <div class="text-[10.5px] text-slate-300 leading-snug">
+              디렉토리 생성, 패키지 설치, 라우터 연결, 프론트엔드 연동, DB RLS 마이그레이션 등 <strong class="text-red-300 font-bold">실제 작업의 95%는 여전히 인간이 수동으로 처리</strong>
             </div>
           </div>
         </div>
 
         <!-- Footer -->
-        <div class="bg-slate-950 px-2.5 py-1 border-t border-slate-800 text-[9px] font-mono text-slate-500 flex justify-between">
+        <div class="bg-slate-950 px-3.5 py-1.5 border-t border-slate-800 text-[10px] font-mono text-slate-400 flex justify-between">
           <span>Context: Isolated Single Turn</span>
-          <span>Environment: None (No Tool)</span>
+          <span class="text-rose-400 font-bold">Environment: None (No Execution Tool)</span>
         </div>
       </div>
 
       <!-- Window 2: 2026 VS Code / Vibe Coding Studio -->
-      <div class="rounded-lg overflow-hidden border-2 border-sky-500/50 flex flex-col justify-between bg-slate-950 shadow-lg relative">
+      <div class="rounded-lg overflow-hidden border-2 border-sky-500/60 flex flex-col justify-between bg-slate-950 shadow-lg relative h-full">
         <!-- Title Bar -->
-        <div class="bg-slate-900 px-3 py-1.5 border-b border-slate-800 flex items-center justify-between">
+        <div class="bg-slate-900 px-3.5 py-2 border-b border-slate-800 flex items-center justify-between">
           <div class="flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-red-500/80"></span>
-            <span class="w-2 h-2 rounded-full bg-amber-500/80"></span>
-            <span class="w-2 h-2 rounded-full bg-emerald-500/80"></span>
-            <span class="text-[10px] font-mono text-slate-200 ml-1.5 font-bold">VS Code · Vibe Coding Agent (2026)</span>
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+            <span class="text-xs font-mono text-slate-100 ml-1.5 font-bold">VS Code · Vibe Coding Agent (2026)</span>
           </div>
-          <div class="flex items-center gap-1">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-            <span class="text-[9.5px] font-mono text-emerald-400 font-bold">Live Auto-Synthesis</span>
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span class="text-[10px] font-mono text-emerald-400 font-bold">Live Auto-Synthesis</span>
           </div>
         </div>
 
         <!-- IDE Workspace Body -->
-        <div class="p-2.5 space-y-1.5 text-xs flex-1 flex flex-col justify-between min-h-[195px]">
+        <div class="p-3 space-y-2 text-xs flex-1 flex flex-col justify-between">
           <!-- Agent Intent Prompt Bar (Animated Glow) -->
-          <div class="anim-ide-intent bg-indigo-950/40 border border-indigo-700/60 rounded p-1.5 flex items-center gap-1.5">
-            <span class="px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-mono text-[9px] font-bold shrink-0">INTENT</span>
-            <span class="text-[10px] text-white font-medium truncate">
+          <div class="anim-ide-intent bg-indigo-950/50 border border-indigo-600/70 rounded-lg p-2 flex items-center gap-2 shadow-sm">
+            <span class="px-2 py-0.5 rounded bg-indigo-500/30 text-indigo-300 font-mono text-[10px] font-bold shrink-0">INTENT</span>
+            <span class="text-xs text-white font-medium truncate">
               "Supabase Auth + Stripe 결제 + SvelteKit 반응형 대시보드 프로젝트 완제품 빌드해줘"
             </span>
           </div>
 
           <!-- Split View: File Tree + Auto Actions -->
-          <div class="grid grid-cols-12 gap-1.5 flex-1 items-stretch">
+          <div class="grid grid-cols-12 gap-2 flex-1 items-stretch">
             <!-- Left: Auto-generated Project Tree (Animated File Expansion) -->
-            <div class="anim-explorer col-span-5 bg-slate-900/90 rounded border border-slate-800 p-1.5 font-mono text-[9px] text-slate-300 space-y-0.5">
-              <div class="text-[8.5px] text-slate-500 font-bold uppercase mb-0.5">Explorer (Auto Scaffold)</div>
-              <div class="text-sky-300">📁 my-saas-app/</div>
+            <div class="anim-explorer col-span-5 bg-slate-900/90 rounded-lg border border-slate-800 p-2 font-mono text-[10px] text-slate-300 space-y-1">
+              <div class="text-[9px] text-slate-400 font-bold uppercase mb-1 flex items-center justify-between">
+                <span>Explorer (Scaffold)</span>
+                <span class="text-emerald-400 font-mono text-[8.5px]">18 Files</span>
+              </div>
+              <div class="text-sky-300 font-bold">📁 my-saas-app/</div>
+              <div class="pl-2 text-slate-400">├── 📁 src/lib/</div>
+              <div class="pl-4 text-emerald-300">│   ├── 📄 supabase.ts</div>
+              <div class="pl-4 text-emerald-300">│   └── 📄 stripe.ts</div>
               <div class="pl-2 text-slate-400">├── 📁 src/routes/</div>
-              <div class="anim-file-1 pl-4 text-emerald-300">├── 📄 +page.svelte ✨</div>
-              <div class="anim-file-2 pl-4 text-emerald-300">├── 📄 checkout/+server.ts</div>
-              <div class="anim-file-3 pl-2 text-amber-300">├── 📄 supabase_rls.sql</div>
+              <div class="anim-file-1 pl-4 text-emerald-300 font-bold">│   ├── 📄 +layout.svelte</div>
+              <div class="anim-file-2 pl-4 text-emerald-300 font-bold">│   ├── 📄 +page.svelte ✨</div>
+              <div class="anim-file-3 pl-4 text-emerald-300">│   └── 📄 checkout/+server.ts</div>
+              <div class="pl-2 text-amber-300">├── 📄 supabase_rls.sql</div>
+              <div class="pl-2 text-slate-400">├── 📄 .env.example</div>
               <div class="pl-2 text-slate-400">└── 📄 package.json</div>
             </div>
 
             <!-- Right: Autonomous Terminal (Animated Sequential Lines) -->
-            <div class="col-span-7 bg-slate-950 rounded border border-slate-800 p-1.5 font-mono text-[9px] flex flex-col justify-between">
-              <div class="space-y-0.5">
-                <div class="text-[8px] text-slate-500 uppercase font-bold">Integrated Terminal (Runner)</div>
-                <div class="anim-term-1 text-sky-400">$ uv run agent scaffold --preset=svelte-stripe</div>
-                <div class="anim-term-2 text-slate-300 text-[8.5px] pl-1.5">✔ Scaffolding 14 project files... Done</div>
-                <div class="anim-term-3 text-slate-300 text-[8.5px] pl-1.5">✔ Running 'npm install' deps... Done</div>
-                <div class="anim-term-4 text-slate-300 text-[8.5px] pl-1.5">✔ Applying Supabase RLS migrations... Done</div>
-                <div class="anim-term-5 text-emerald-400 text-[8.5px] pl-1.5 font-bold">✔ TypeScript check: 0 errors (Pass ✨)</div>
+            <div class="col-span-7 bg-slate-950 rounded-lg border border-slate-800 p-2 font-mono text-[9.5px] flex flex-col justify-between shadow-inner">
+              <div class="space-y-1">
+                <div class="text-[8.5px] text-slate-400 uppercase font-bold flex items-center justify-between">
+                  <span>Terminal (Runner)</span>
+                  <span class="text-emerald-400 text-[8px]">ACTIVE</span>
+                </div>
+                <div class="anim-term-1 text-sky-400 font-bold">$ uv run agent scaffold --preset=svelte-stripe</div>
+                <div class="anim-term-2 text-slate-300 text-[9px] pl-1.5">✔ Scaffolding 18 project files across 4 dirs... Done</div>
+                <div class="anim-term-3 text-slate-300 text-[9px] pl-1.5">✔ Resolving deps & running 'pnpm install'... Done</div>
+                <div class="anim-term-4 text-slate-300 text-[9px] pl-1.5">✔ Applying Supabase RLS security migrations... Done</div>
+                <div class="anim-term-5 text-emerald-400 text-[9px] pl-1.5 font-bold">✔ TypeScript strict check: 0 errors (Pass ✨)</div>
+                <div class="text-indigo-300 text-[9px] pl-1.5">✔ Vitest integration tests: 12 passed (100% ✨)</div>
               </div>
               <!-- Server Ready Badge (Animated Pop) -->
-              <div class="anim-server-ready p-1 bg-emerald-950/60 rounded border border-emerald-800/60 text-[8.5px] text-emerald-300 flex items-center justify-between mt-1">
-                <span>🚀 Local Server Ready</span>
-                <span class="text-slate-300 font-mono">http://localhost:5173</span>
+              <div class="anim-server-ready p-1.5 bg-emerald-950/70 rounded border border-emerald-800/70 text-[9.5px] text-emerald-300 flex items-center justify-between mt-1.5">
+                <span class="font-bold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  🚀 Local Dev Server Ready
+                </span>
+                <span class="text-slate-200 font-mono">http://localhost:5173</span>
               </div>
             </div>
           </div>
 
           <!-- 2026 Reality Callout (Animated Appearance) -->
-          <div class="anim-ide-callout p-1.5 bg-sky-950/40 border border-sky-800/60 rounded text-[10px] text-sky-200">
-            <strong class="text-sky-300">⚡ 2026 패러다임:</strong>
-            단일 함수 작성을 넘어, 에이전트가 <strong>환경 구축·의존성 설치·파일 구조화·컴파일 검증까지 완결</strong>
+          <div class="anim-ide-callout p-2 bg-sky-950/50 border border-sky-800/70 rounded-lg text-xs text-sky-200 shadow-sm">
+            <strong class="text-sky-300 font-bold">⚡ 2026 패러다임 (자율 프로젝트 합성):</strong>
+            단일 함수 스니펫을 넘어, 에이전트가 <strong>환경 구축·의존성 설치·파일 구조화·컴파일 검증·서버 기동까지 단 한 번에 완결</strong>
           </div>
         </div>
 
         <!-- Footer -->
-        <div class="bg-slate-900 px-2.5 py-1 border-t border-slate-800 text-[9px] font-mono text-slate-400 flex justify-between">
+        <div class="bg-slate-900 px-3.5 py-1.5 border-t border-slate-800 text-[10px] font-mono text-slate-300 flex justify-between">
           <span>Workspace: Multi-file Agent Session</span>
-          <span class="text-emerald-400 font-bold">Outcome: Ready-to-run App</span>
+          <span class="text-emerald-400 font-bold">Outcome: Ready-to-run SaaS App</span>
         </div>
       </div>
     </div>

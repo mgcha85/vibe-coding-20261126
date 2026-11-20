@@ -86,8 +86,8 @@ def build():
         print(f"Error: {TEMPLATE_FILE} not found!")
         return
 
-    # 순차적으로 slides 하위 디렉토리 및 파일 탐색
-    slide_files = sorted(SLIDES_DIR.glob("**/*.html"))
+    # 순차적으로 slides 하위 디렉토리 및 파일 탐색 (숨김 파일 _* 및 .* 제외)
+    slide_files = sorted([f for f in SLIDES_DIR.glob("**/*.html") if not f.name.startswith("_") and not f.name.startswith(".")])
     
     slides_html = []
     for sf in slide_files:
