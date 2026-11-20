@@ -1,38 +1,62 @@
-<section class="slide" data-title="1.1 프롬프트 종말과 ReAct">
-  <div class="mb-3">
-    <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
-    <h2 class="text-3xl font-black text-white">1.1 프롬프트의 종말과 ReAct 패러다임</h2>
+<section class="slide flex flex-col justify-between" data-title="1.1 프롬프트 종말과 ReAct">
+  <!-- Header with Split Pastel Accent -->
+  <div class="mb-1.5 shrink-0">
+    <div class="flex items-center justify-between">
+      <span class="text-xs font-mono font-bold px-3 py-1 rounded-full bg-[#EFEAF7] text-[#554596] border border-[#D5CBE8] uppercase">
+        CHAPTER 01 &middot; 계보 &middot; 1.1 패러다임 전환
+      </span>
+      <span class="text-[11px] font-mono text-[#8C3A16] bg-[#FDF7F3] px-2.5 py-0.5 rounded-full border border-[#F5DAC8] font-bold">
+        Single-Turn ➔ ReAct Loop
+      </span>
+    </div>
+    <h2 class="text-2xl md:text-3xl font-black text-slate-900 mt-1">1.1 프롬프트의 종말과 ReAct 패러다임의 탄생</h2>
+    <p class="text-xs text-slate-600 mt-0.5">
+      프롬프트를 수십 번 고쳐 쓰는 테크닉의 한계 ➔ LLM에게 <strong>손(도구 실행)</strong>과 <strong>눈(환경 관찰)</strong>을 주어 상태 머신으로 진화시킨 결정적 분기점:
+    </p>
   </div>
-  <div class="grid grid-cols-2 gap-5 flex-1 items-stretch">
-    <!-- Left: Single-turn Past (Replaced with Infographic Image) -->
-    <div class="bento-tile p-2 md:p-3 flex flex-col justify-between items-center border-l-4 border-l-red-500 bg-white shadow-sm overflow-hidden h-full">
-      <div class="w-full flex-1 flex items-center justify-center min-h-0 py-1">
+
+  <!-- Split Dual Panels: Left (Peach) vs Right (Lavender) -->
+  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch min-h-0 my-0.5">
+    <!-- LEFT: Single-turn Past (Soft Peach Panel) -->
+    <div class="rounded-2xl p-3 md:p-3.5 flex flex-col justify-between bg-[#FDF7F3] border border-[#F5DAC8] shadow-sm border-t-4 border-t-[#E87A4D] overflow-hidden min-h-0">
+      <div class="flex items-center justify-between mb-1 shrink-0">
+        <span class="text-[10.5px] font-mono font-bold px-2 py-0.5 rounded-full bg-[#FCE6D8] text-[#8C3A16] border border-[#F5DAC8]">
+          PAST : Single-turn 일방통행
+        </span>
+        <span class="text-[10px] font-mono text-slate-500 font-semibold">2022 ~ 2023 초</span>
+      </div>
+
+      <!-- Infographic Image in Clean White Card -->
+      <div class="w-full flex-1 flex items-center justify-center min-h-0 py-1 bg-white rounded-xl border border-[#F5DAC8]/70 p-1.5 shadow-inner">
         <img 
           src="./slides/01-lineage/assets/single_turn_prompt_fallacy.png" 
           alt="“완벽한 프롬프트”라는 환상 (PAST : Single-turn 일방통행 블랙박스 파이프라인의 필연적 실패)" 
-          class="w-full h-full max-h-[650px] xl:max-h-[720px] object-contain rounded-xl shadow-md"
+          class="w-full h-full max-h-[460px] xl:max-h-[520px] object-contain rounded-lg"
         />
       </div>
-      <div class="text-xs md:text-sm text-slate-600 font-mono font-semibold border-t border-slate-200 pt-2 w-full text-center mt-1">
-        "인간 시니어 개발자도 한 번에 무결점 1,000줄 코드를 짜지 않는다."
+
+      <div class="text-[11px] text-[#8C3A16] font-mono font-bold border-t border-[#F5DAC8] pt-1.5 w-full text-center mt-1 shrink-0">
+        &ldquo;인간 시니어 개발자도 한 번에 무결점 1,000줄 코드를 짜지 않는다.&rdquo;
       </div>
     </div>
 
-    <!-- Right: ReAct Revolution & SVG State Machine -->
-    <div class="bento-tile p-3 md:p-4 flex flex-col justify-between border-l-4 border-l-sky-500 bg-white shadow-sm overflow-hidden h-full">
-      <div class="mb-1">
+    <!-- RIGHT: ReAct Revolution (Soft Lavender Panel) -->
+    <div class="rounded-2xl p-3 md:p-3.5 flex flex-col justify-between bg-[#F7F3FC] border border-[#DFD2F5] shadow-sm border-t-4 border-t-[#7C59C8] overflow-hidden min-h-0">
+      <div class="mb-1 shrink-0">
         <div class="flex items-center justify-between mb-1">
-          <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-sky-500/20 text-sky-700 border border-sky-400/30">REVOLUTION : ReAct Framework</span>
-          <span class="text-[11px] text-emerald-600 font-mono font-bold">ICLR 2023</span>
+          <span class="text-[10.5px] font-mono font-bold px-2 py-0.5 rounded-full bg-[#E9DFF7] text-[#4E3185] border border-[#DFD2F5]">
+            REVOLUTION : ReAct Framework
+          </span>
+          <span class="text-[10px] text-emerald-700 font-mono font-bold bg-[#E4F5EB] px-2 py-0.5 rounded border border-[#C9EED7]">ICLR 2023</span>
         </div>
-        <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-0.5">손과 눈을 부여한 ReAct 루프</h3>
-        <p class="text-xs md:text-sm text-slate-600 leading-snug">
-          ReAct(Yao et al., ICLR 2023): LLM에게 <strong>손(도구 실행)</strong>과 <strong>눈(환경 관찰)</strong>을 주어 상태 머신으로 진화:
+        <h3 class="text-sm md:text-base font-extrabold text-slate-900 mb-0.5">손과 눈을 부여한 ReAct 루프</h3>
+        <p class="text-[11px] text-slate-600 leading-snug">
+          ReAct(Yao et al., ICLR 2023): LLM을 단순 텍스트 생성기가 아닌 <strong>상태 머신(State Machine)</strong>으로 진화:
         </p>
       </div>
 
-      <!-- SVG ReAct Loop State Machine (Vertically Expanded) -->
-      <div class="bg-slate-950 border border-slate-800 rounded-xl p-2 md:p-3 flex-1 flex items-center justify-center relative overflow-hidden my-1.5 shadow-inner min-h-[380px] lg:min-h-[420px]">
+      <!-- SVG ReAct Loop State Machine (High-Contrast Clean Light Frame) -->
+      <div class="bg-white border border-[#DFD2F5] rounded-xl p-2 flex-1 flex items-center justify-center relative overflow-hidden my-1 shadow-inner min-h-[340px] xl:min-h-[400px]">
         <style>
           @keyframes reactConveyor {
             to { stroke-dashoffset: -20; }
@@ -42,99 +66,95 @@
             animation: reactConveyor 1.2s linear infinite;
           }
           @keyframes centerGlowPulse {
-            0%, 100% { filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.4)); }
-            50% { filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.85)); }
+            0%, 100% { filter: drop-shadow(0 0 3px rgba(124, 89, 200, 0.3)); }
+            50% { filter: drop-shadow(0 0 10px rgba(124, 89, 200, 0.7)); }
           }
           .react-pulse-badge {
             animation: centerGlowPulse 2.5s ease-in-out infinite;
           }
         </style>
 
-        <svg viewBox="0 0 500 420" class="w-full h-full max-h-[440px]" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 500 420" class="w-full h-full max-h-[420px]" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <marker id="reactArrowSky" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-              <polygon points="0,0 8,4 0,8" fill="#38bdf8"/>
+              <polygon points="0,0 8,4 0,8" fill="#0284c7"/>
             </marker>
             <marker id="reactArrowIndigo" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-              <polygon points="0,0 8,4 0,8" fill="#818cf8"/>
+              <polygon points="0,0 8,4 0,8" fill="#6366f1"/>
             </marker>
             <marker id="reactArrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-              <polygon points="0,0 8,4 0,8" fill="#34d399"/>
+              <polygon points="0,0 8,4 0,8" fill="#059669"/>
             </marker>
             <marker id="reactArrowAmber" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-              <polygon points="0,0 8,4 0,8" fill="#fbbf24"/>
+              <polygon points="0,0 8,4 0,8" fill="#d97706"/>
             </marker>
           </defs>
 
           <!-- Arcs Connecting 4 Nodes (Symmetric Bezier Curves with Conveyor Dash Animation) -->
           <!-- 1. Reason -> Act -->
-          <path d="M 315 66 C 385 85, 410 125, 410 178" fill="none" stroke="#38bdf8" stroke-width="2.5" class="animate-react-flow" marker-end="url(#reactArrowSky)"/>
+          <path d="M 315 66 C 385 85, 410 125, 410 178" fill="none" stroke="#0284c7" stroke-width="2.5" class="animate-react-flow" marker-end="url(#reactArrowSky)"/>
           <!-- 2. Act -> Environment -->
-          <path d="M 410 240 C 410 295, 385 335, 315 354" fill="none" stroke="#818cf8" stroke-width="2.5" class="animate-react-flow" marker-end="url(#reactArrowIndigo)"/>
+          <path d="M 410 240 C 410 295, 385 335, 315 354" fill="none" stroke="#6366f1" stroke-width="2.5" class="animate-react-flow" marker-end="url(#reactArrowIndigo)"/>
           <!-- 3. Environment -> Observe -->
-          <path d="M 185 354 C 115 335, 90 295, 90 240" fill="none" stroke="#34d399" stroke-width="2.5" class="animate-react-flow" marker-end="url(#reactArrowGreen)"/>
+          <path d="M 185 354 C 115 335, 90 295, 90 240" fill="none" stroke="#059669" stroke-width="2.5" class="animate-react-flow" marker-end="url(#reactArrowGreen)"/>
           <!-- 4. Observe -> Reason (Closing Loop) -->
-          <path d="M 90 180 C 90 125, 115 85, 185 66" fill="none" stroke="#fbbf24" stroke-width="2.5" class="animate-react-flow" marker-end="url(#reactArrowAmber)"/>
+          <path d="M 90 180 C 90 125, 115 85, 185 66" fill="none" stroke="#d97706" stroke-width="2.5" class="animate-react-flow" marker-end="url(#reactArrowAmber)"/>
 
-          <!-- Continuous Flowing Particles (Traveling Photons) -->
-          <!-- Particle 1: Reason -> Act -->
-          <circle r="4" fill="#38bdf8" filter="drop-shadow(0 0 6px #38bdf8)">
+          <!-- Continuous Flowing Particles -->
+          <circle r="4" fill="#0284c7" filter="drop-shadow(0 0 5px #0284c7)">
             <animateMotion path="M 315 66 C 385 85, 410 125, 410 178" dur="1.3s" repeatCount="indefinite"/>
           </circle>
-          <!-- Particle 2: Act -> Environment -->
-          <circle r="4" fill="#818cf8" filter="drop-shadow(0 0 6px #818cf8)">
+          <circle r="4" fill="#6366f1" filter="drop-shadow(0 0 5px #6366f1)">
             <animateMotion path="M 410 240 C 410 295, 385 335, 315 354" dur="1.3s" repeatCount="indefinite"/>
           </circle>
-          <!-- Particle 3: Environment -> Observe -->
-          <circle r="4" fill="#34d399" filter="drop-shadow(0 0 6px #34d399)">
+          <circle r="4" fill="#059669" filter="drop-shadow(0 0 5px #059669)">
             <animateMotion path="M 185 354 C 115 335, 90 295, 90 240" dur="1.3s" repeatCount="indefinite"/>
           </circle>
-          <!-- Particle 4: Observe -> Reason -->
-          <circle r="4" fill="#fbbf24" filter="drop-shadow(0 0 6px #fbbf24)">
+          <circle r="4" fill="#d97706" filter="drop-shadow(0 0 5px #d97706)">
             <animateMotion path="M 90 180 C 90 125, 115 85, 185 66" dur="1.3s" repeatCount="indefinite"/>
           </circle>
 
           <!-- Center Badge -->
           <g class="react-pulse-badge">
-            <circle cx="250" cy="210" r="42" fill="#020617" stroke="#38bdf8" stroke-width="2"/>
-            <circle cx="250" cy="210" r="36" fill="rgba(56, 189, 248, 0.08)"/>
-            <text x="250" y="204" text-anchor="middle" fill="#38bdf8" font-size="14" font-weight="900" font-family="JetBrains Mono">ReAct</text>
-            <text x="250" y="219" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="600">상태 전이 루프</text>
-            <text x="250" y="231" text-anchor="middle" fill="#38bdf8" font-size="7.5" font-mono>Self-Healing</text>
+            <circle cx="250" cy="210" r="44" fill="#F7F3FC" stroke="#7C59C8" stroke-width="2.2"/>
+            <circle cx="250" cy="210" r="37" fill="#FFFFFF"/>
+            <text x="250" y="204" text-anchor="middle" fill="#5D3D9E" font-size="14" font-weight="900" font-family="JetBrains Mono">ReAct</text>
+            <text x="250" y="219" text-anchor="middle" fill="#1E1B26" font-size="9" font-weight="700">상태 전이 루프</text>
+            <text x="250" y="231" text-anchor="middle" fill="#059669" font-size="7.5" font-mono font-bold">Self-Healing</text>
           </g>
 
           <!-- Node 1: Reason (Top) -->
           <g transform="translate(155, 12)">
-            <rect width="190" height="54" rx="8" fill="#082f49" stroke="#38bdf8" stroke-width="1.8"/>
-            <text x="95" y="24" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">🧠 Reason (사고 &amp; 추론)</text>
-            <text x="95" y="42" text-anchor="middle" fill="#7dd3fc" font-size="9.5">상태 분석 &amp; 다음 행동 목표 계획</text>
+            <rect width="190" height="54" rx="10" fill="#F0F9FF" stroke="#0284c7" stroke-width="1.8"/>
+            <text x="95" y="24" text-anchor="middle" fill="#0369A1" font-size="12" font-weight="bold">🧠 Reason (사고 &amp; 추론)</text>
+            <text x="95" y="42" text-anchor="middle" fill="#0284C7" font-size="9.5">상태 분석 &amp; 다음 행동 목표 계획</text>
           </g>
 
           <!-- Node 2: Act (Right) -->
           <g transform="translate(333, 183)">
-            <rect width="155" height="54" rx="8" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.8"/>
-            <text x="77.5" y="24" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">🖐️ Act (도구 실행)</text>
-            <text x="77.5" y="42" text-anchor="middle" fill="#a5b4fc" font-size="9.5">도구 호출 (Shell · Edit · API)</text>
+            <rect width="155" height="54" rx="10" fill="#EEF2FF" stroke="#6366f1" stroke-width="1.8"/>
+            <text x="77.5" y="24" text-anchor="middle" fill="#4338CA" font-size="12" font-weight="bold">🖐️ Act (도구 실행)</text>
+            <text x="77.5" y="42" text-anchor="middle" fill="#4F46E5" font-size="9.5">도구 호출 (Shell &middot; Edit &middot; API)</text>
           </g>
 
           <!-- Node 3: Environment (Bottom) -->
           <g transform="translate(150, 354)">
-            <rect width="200" height="54" rx="8" fill="#064e3b" stroke="#34d399" stroke-width="1.8"/>
-            <text x="100" y="24" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">🖥️ Environment (실제 환경)</text>
-            <text x="100" y="42" text-anchor="middle" fill="#6ee7b7" font-size="9.5">실제 OS 터미널 · 파일시스템 실행</text>
+            <rect width="200" height="54" rx="10" fill="#ECFDF5" stroke="#059669" stroke-width="1.8"/>
+            <text x="100" y="24" text-anchor="middle" fill="#047857" font-size="12" font-weight="bold">🖥️ Environment (실제 환경)</text>
+            <text x="100" y="42" text-anchor="middle" fill="#059669" font-size="9.5">실제 OS 터미널 &middot; 파일시스템 실행</text>
           </g>
 
           <!-- Node 4: Observe (Left) -->
           <g transform="translate(12, 183)">
-            <rect width="155" height="54" rx="8" fill="#451a03" stroke="#fbbf24" stroke-width="1.8"/>
-            <text x="77.5" y="24" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">👁️ Observe (결과 관찰)</text>
-            <text x="77.5" y="42" text-anchor="middle" fill="#fde68a" font-size="9.5">Stderr &amp; 컴파일 에러 즉각 수신</text>
+            <rect width="155" height="54" rx="10" fill="#FFFBEB" stroke="#d97706" stroke-width="1.8"/>
+            <text x="77.5" y="24" text-anchor="middle" fill="#B45309" font-size="12" font-weight="bold">👁️ Observe (결과 관찰)</text>
+            <text x="77.5" y="42" text-anchor="middle" fill="#D97706" font-size="9.5">Stderr &amp; 컴파일 에러 즉각 수신</text>
           </g>
         </svg>
       </div>
 
-      <div class="text-[11px] text-sky-700 font-mono border-t border-slate-200 pt-2 flex items-center justify-between w-full mt-1">
-        <span>💡 텍스트 생성이 아닌 '시스템 조작 상태 전이(State Machine)'로의 진화</span>
+      <div class="text-[11px] text-[#5D3D9E] font-mono border-t border-[#DFD2F5] pt-1.5 flex items-center justify-between w-full mt-1 shrink-0">
+        <span>💡 텍스트 생성이 아닌 &lsquo;시스템 조작 상태 전이(State Machine)&rsquo;로의 도약</span>
         <span class="text-slate-500 font-bold">에이전트의 원형</span>
       </div>
     </div>

@@ -1,70 +1,85 @@
-<section class="slide" data-title="1.4 SWE-bench & 2025 추론 혁신">
-  <div class="mb-3">
-    <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
-    <h2 class="text-3xl font-black text-white">1.4 SWE-bench와 2025년 추론 모델(Test-Time Compute) 혁신</h2>
+<section class="slide flex flex-col justify-between" data-title="1.4 SWE-bench &amp; 2025 추론 혁신">
+  <!-- Header with Split Pastel Accent -->
+  <div class="mb-1.5 shrink-0">
+    <div class="flex items-center justify-between">
+      <span class="text-xs font-mono font-bold px-3 py-1 rounded-full bg-[#EFEAF7] text-[#554596] border border-[#D5CBE8] uppercase">
+        CHAPTER 01 &middot; 계보 &middot; 1.4 실증과 추론 모델
+      </span>
+      <span class="text-[11px] font-mono text-[#135A33] bg-[#F1F9F4] px-2.5 py-0.5 rounded-full border border-[#C9EED7] font-bold">
+        SWE-bench &middot; Test-Time Compute
+      </span>
+    </div>
+    <h2 class="text-2xl md:text-3xl font-black text-slate-900 mt-1">1.4 SWE-bench와 2025년 추론 모델(Test-Time Compute) 혁신</h2>
+    <p class="text-xs text-slate-600 mt-0.5">
+      GitHub 실제 오픈소스 2,294개 이슈 검증 ➔ <strong>피드백 루프</strong>와 <strong>Test-Time Compute</strong>가 이끈 성능 비약:
+    </p>
   </div>
 
-  <div class="grid grid-cols-12 gap-5 flex-1 items-stretch">
-    <!-- Left: SWE-bench Evidence & Multimodal v2 -->
-    <div class="col-span-6 bento-tile p-4 flex flex-col justify-between border-l-4 border-l-sky-500">
-      <div class="flex-1 flex flex-col">
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-sky-500/20 text-sky-300">BENCHMARKS & SELF-HEALING</span>
-          <span class="text-[11px] text-slate-400 font-mono">Feedback Loop</span>
+  <!-- Split Dual Panels: Left 6 cols (Peach/Mint) vs Right 6 cols (Lavender) -->
+  <div class="grid grid-cols-12 gap-4 flex-1 items-stretch min-h-0 my-0.5">
+    <!-- Left: SWE-bench Evidence & Multimodal v2 (Soft Peach Panel, 6 cols) -->
+    <div class="col-span-6 rounded-2xl p-3 md:p-3.5 flex flex-col justify-between bg-[#FDF7F3] border border-[#F5DAC8] shadow-sm border-t-4 border-t-[#E87A4D] overflow-hidden min-h-0">
+      <div class="flex-1 flex flex-col min-h-0">
+        <div class="flex items-center justify-between mb-1 shrink-0">
+          <span class="text-[10.5px] font-mono font-bold px-2 py-0.5 rounded-full bg-[#FCE6D8] text-[#8C3A16] border border-[#F5DAC8]">
+            BENCHMARKS &amp; SELF-HEALING
+          </span>
+          <span class="text-[10px] text-slate-500 font-mono font-semibold">Feedback Loop</span>
         </div>
-        <h3 class="text-lg font-bold text-white mb-2">자가 치유(Self-Healing)와 SWE-bench 실증</h3>
-        <p class="text-xs text-slate-300 mb-3 leading-relaxed">
-          실제 GitHub 2,294개 오픈소스 이슈 해결 벤치마크가 증명한 피드백 루프의 위력:
-        </p>
+        <h3 class="text-sm md:text-base font-extrabold text-slate-900 mb-1 shrink-0">자가 치유(Self-Healing)와 SWE-bench 실증</h3>
 
-        <!-- Benchmark Comparison -->
-        <div class="grid grid-cols-2 gap-2 mb-3">
-          <div class="p-2.5 bg-slate-900 rounded border border-slate-800">
-            <span class="text-[11px] text-slate-400 block mb-0.5">단일 프롬프트 (Zero-shot)</span>
-            <div class="text-xl font-black text-red-400 font-mono">1.96%</div>
-            <p class="text-[10px] text-slate-400 mt-0.5">맥락 없이 파일 전체 주입 시 100%에 가깝게 실패</p>
+        <!-- Benchmark Comparison Stat Cards (Split Pastel Colors) -->
+        <div class="grid grid-cols-2 gap-2 mb-1.5 shrink-0">
+          <!-- Zero-shot (Soft Rose Pink) -->
+          <div class="p-2 bg-[#FCEBF2] rounded-xl border border-[#F5C2D7]">
+            <span class="text-[10.5px] text-[#9C275A] font-bold block mb-0.5">단일 프롬프트 (Zero-shot)</span>
+            <div class="text-xl font-black text-[#BE123C] font-mono">1.96%</div>
+            <p class="text-[10px] text-slate-600 mt-0.5">맥락 없이 전체 주입 시 100%에 가깝게 실패</p>
           </div>
-          <div class="p-2.5 bg-sky-950/40 rounded border border-sky-800/60">
-            <span class="text-[11px] text-sky-300 block mb-0.5">Tool-use + 피드백 에이전트</span>
-            <div class="text-xl font-black text-emerald-400 font-mono">50% ~ 70%+</div>
-            <p class="text-[10px] text-emerald-300 mt-0.5">검색, 국소 수정, Stderr 관찰 루프로 비약적 상승</p>
+          <!-- Tool-use (Soft Mint) -->
+          <div class="p-2 bg-[#E4F5EB] rounded-xl border border-[#BCE8CD]">
+            <span class="text-[10.5px] text-[#1B7342] font-bold block mb-0.5">Tool-use + 피드백 에이전트</span>
+            <div class="text-xl font-black text-[#047857] font-mono">50% ~ 70%+</div>
+            <p class="text-[10px] text-slate-600 mt-0.5">검색, 국소 수정, Stderr 관찰 루프로 비약적 상승</p>
           </div>
         </div>
 
-        <!-- 2025 SWE-bench Multimodal & Self-Healing Loop Graphic -->
-        <div class="w-full flex-1 flex items-center justify-center min-h-0 my-1">
+        <!-- 2025 SWE-bench Multimodal & Self-Healing Loop Graphic in Clean White Frame -->
+        <div class="w-full flex-1 flex items-center justify-center min-h-0 my-0.5 bg-white rounded-xl border border-[#F5DAC8]/70 p-1 shadow-inner">
           <img 
             src="./slides/01-lineage/assets/swebench_multimodal_v2.png" 
-            alt="자가 치유 루프 및 2025 진화: SWE-bench Multimodal & v2 (Vision Agent)" 
-            class="w-full h-auto max-h-[340px] xl:max-h-[370px] object-contain rounded-xl shadow-lg border border-indigo-900/50"
+            alt="자가 치유 루프 및 2025 진화: SWE-bench Multimodal &amp; v2 (Vision Agent)" 
+            class="w-full h-auto max-h-[300px] xl:max-h-[340px] object-contain rounded-lg"
           />
         </div>
       </div>
-      <div class="text-[10.5px] text-sky-400 font-mono border-t border-slate-800 pt-2 mt-1">
-        "도구 환경(Environment)과 테스트 피드백이 에이전트의 실질 지능을 결정한다."
+      <div class="text-[11px] text-[#8C3A16] font-mono border-t border-[#F5DAC8] pt-1.5 mt-1 shrink-0">
+        &ldquo;도구 환경(Environment)과 테스트 피드백이 에이전트의 실질 지능을 결정한다.&rdquo;
       </div>
     </div>
 
-    <!-- Right: 2025 Test-Time Compute & Repo Map -->
-    <div class="col-span-6 bento-tile p-4 flex flex-col justify-between border-l-4 border-l-purple-500">
-      <div class="flex-1 flex flex-col">
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-purple-500/20 text-purple-300">2025 REASONING & REPO MAP</span>
-          <span class="text-[11px] text-slate-400 font-mono">Long-Horizon Loop</span>
+    <!-- Right: 2025 Test-Time Compute & Repo Map (Soft Lavender Panel, 6 cols) -->
+    <div class="col-span-6 rounded-2xl p-3 md:p-3.5 flex flex-col justify-between bg-[#F7F3FC] border border-[#DFD2F5] shadow-sm border-t-4 border-t-[#7C59C8] overflow-hidden min-h-0">
+      <div class="flex-1 flex flex-col min-h-0">
+        <div class="flex items-center justify-between mb-1 shrink-0">
+          <span class="text-[10.5px] font-mono font-bold px-2 py-0.5 rounded-full bg-[#E9DFF7] text-[#4E3185] border border-[#DFD2F5]">
+            2025 REASONING &amp; REPO MAP
+          </span>
+          <span class="text-[10px] text-slate-500 font-mono font-semibold">Long-Horizon Loop</span>
         </div>
-        <h3 class="text-lg font-bold text-white mb-2">2025년: '추론 모델' 결합과 장기 실행(Long-Horizon)</h3>
+        <h3 class="text-sm md:text-base font-extrabold text-slate-900 mb-1 shrink-0">2025년: '추론 모델' 결합과 장기 실행(Long-Horizon)</h3>
 
-        <!-- 2025 Test-Time Compute & Repo Map Infographic -->
-        <div class="w-full flex-1 flex items-center justify-center min-h-0 my-1">
+        <!-- Infographic Image in Clean White Frame -->
+        <div class="w-full flex-1 flex items-center justify-center min-h-0 my-0.5 bg-white rounded-xl border border-[#DFD2F5]/70 p-1 shadow-inner">
           <img 
             src="./slides/01-lineage/assets/test_time_compute_repomap.jpg" 
             alt="Test-Time Compute 기반 계획 수립 및 Aider Repo Map 최적화" 
-            class="w-full h-full max-h-[460px] xl:max-h-[500px] object-contain rounded-xl shadow-lg border border-purple-900/40"
+            class="w-full h-full max-h-[360px] xl:max-h-[420px] object-contain rounded-lg"
           />
         </div>
       </div>
-      <div class="text-[10.5px] text-purple-300 font-mono border-t border-slate-800 pt-2 mt-1">
-        "깊은 사전 추론과 정밀한 코드베이스 맵핑이 롱호라이즌 성공률을 좌우한다."
+      <div class="text-[11px] text-[#5D3D9E] font-mono border-t border-[#DFD2F5] pt-1.5 mt-1 shrink-0">
+        &ldquo;깊은 사전 추론과 정밀한 코드베이스 맵핑이 롱호라이즌 성공률을 좌우한다.&rdquo;
       </div>
     </div>
   </div>

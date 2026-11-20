@@ -1,259 +1,201 @@
-<section class="slide" data-title="1.3 2023~2024 학술 연구 대폭발">
-  <div class="mb-2.5">
-    <span class="text-sky-400 font-mono text-xs uppercase tracking-wider">Chapter 01. 계보</span>
-    <h2 class="text-3xl font-black text-white">1.3 2023년 하반기 ~ 2024년 학술 연구 대폭발 : Multi-Agent & CoALA</h2>
+<section class="slide flex flex-col justify-between" data-title="1.3 2023~2024 학술 연구 대폭발">
+  <!-- Header with Split Pastel Accent -->
+  <div class="mb-1.5 shrink-0">
+    <div class="flex items-center justify-between">
+      <span class="text-xs font-mono font-bold px-3 py-1 rounded-full bg-[#EFEAF7] text-[#554596] border border-[#D5CBE8] uppercase">
+        CHAPTER 01 &middot; 계보 &middot; 1.3 학술 분업의 태동
+      </span>
+      <span class="text-[11px] font-mono text-[#135A33] bg-[#F1F9F4] px-2.5 py-0.5 rounded-full border border-[#C9EED7] font-bold">
+        Multi-Agent &middot; CoALA &middot; SOP
+      </span>
+    </div>
+    <h2 class="text-2xl md:text-3xl font-black text-slate-900 mt-1">1.3 2023년 하반기 ~ 2024년 학술 연구 대폭발 : Multi-Agent &amp; CoALA</h2>
+    <p class="text-xs text-slate-600 mt-0.5">
+      자유 잡담을 금지하고 소프트웨어 엔지니어링 <strong>SOP(표준운영절차)</strong>와 인지과학 메모리를 결합한 분업 체계의 정립:
+    </p>
   </div>
 
-  <div class="flex flex-col gap-3 flex-1 justify-between">
-    <!-- Top: MetaGPT Multi-Agent SOP Architecture (SVG UML Class Diagram & SOP Pipeline) -->
-    <div class="bento-tile p-4 md:p-5 border-l-4 border-l-purple-500 bg-white shadow-sm flex-1 flex flex-col justify-between overflow-hidden my-1">
-      <div>
-        <div class="flex items-center justify-between mb-1.5">
+  <div class="flex flex-col gap-2.5 flex-1 justify-between min-h-0">
+    <!-- Top: MetaGPT Multi-Agent SOP Architecture (Soft Lavender Card) -->
+    <div class="rounded-2xl p-3 md:p-3.5 border border-[#DFD2F5] bg-[#F7F3FC] shadow-sm flex-1 flex flex-col justify-between overflow-hidden border-t-4 border-t-[#7C59C8] min-h-0">
+      <div class="shrink-0 mb-1">
+        <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <span class="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800 border border-purple-300">MetaGPT (2023.08 공개 / ICLR 2024)</span>
-            <h3 class="text-base md:text-lg font-black text-slate-900">소프트웨어 회사를 객체지향 클래스 &amp; SOP로 추상화한 Multi-Agent 구조</h3>
+            <span class="text-[10.5px] font-mono font-bold px-2 py-0.5 rounded-full bg-[#E9DFF7] text-[#4E3185] border border-[#DFD2F5]">
+              MetaGPT (ICLR 2024)
+            </span>
+            <h3 class="text-sm md:text-base font-extrabold text-slate-900">소프트웨어 회사를 객체지향 클래스 &amp; SOP로 추상화한 Multi-Agent 구조</h3>
           </div>
-          <span class="text-xs font-mono text-emerald-700 font-bold bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-300 shadow-sm">Pass@1 85%+ 달성 (CodeX 벤치마크)</span>
+          <span class="text-[10.5px] font-mono text-emerald-800 font-bold bg-[#E4F5EB] px-2 py-0.5 rounded-full border border-[#C9EED7]">
+            Pass@1 85%+ (CodeX)
+          </span>
         </div>
-        <p class="text-xs md:text-sm text-slate-700 mb-2 leading-relaxed">
-          에이전트 간 자유 자연어 잡담을 엄격히 차단하고, <strong>SOP(표준운영절차)</strong>와 정형화된 산출물(PRD, Design, Code, Test)을 강제하여 연쇄 환각을 극복:
-        </p>
       </div>
 
-      <!-- SVG UML Class Diagram (Vertically Expanded Pure OOP Architecture) -->
-      <div class="bg-slate-950 border border-slate-800 rounded-xl p-2 md:p-3 flex items-center justify-center relative overflow-hidden shadow-inner flex-1 min-h-[350px] lg:min-h-[390px]">
-        <svg viewBox="0 0 960 345" class="w-full h-full max-h-[390px]" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+      <!-- SVG UML Diagram Container (Clean White Frame) -->
+      <div class="bg-white border border-[#DFD2F5] rounded-xl p-1.5 flex items-center justify-center relative overflow-hidden shadow-inner flex-1 min-h-[220px] xl:min-h-[260px]">
+        <svg viewBox="0 0 960 345" class="w-full h-full max-h-[260px]" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <marker id="umlInheritArrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
-              <polygon points="1,1 9,5 1,9" fill="#0f172a" stroke="#c084fc" stroke-width="1.5"/>
+              <polygon points="1,1 9,5 1,9" fill="#F7F3FC" stroke="#7C59C8" stroke-width="1.8"/>
             </marker>
-            <linearGradient id="parentHeaderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#4c1d95"/>
-              <stop offset="100%" stop-color="#1e1b4b"/>
-            </linearGradient>
-            <linearGradient id="childHeaderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#1e293b"/>
-              <stop offset="100%" stop-color="#0f172a"/>
-            </linearGradient>
           </defs>
 
           <!-- Top Parent Class: SoftwareCompany -->
-          <g transform="translate(365, 10)">
-            <rect width="230" height="82" rx="8" fill="#090d16" stroke="#c084fc" stroke-width="2" filter="drop-shadow(0 2px 8px rgba(192,132,252,0.25))"/>
-            <rect width="230" height="26" rx="8" fill="url(#parentHeaderGrad)"/>
-            <rect y="20" width="230" height="6" fill="url(#parentHeaderGrad)"/>
-            <line x1="0" y1="26" x2="230" y2="26" stroke="#c084fc" stroke-width="1.2"/>
-            <text x="115" y="17.5" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="900" font-family="JetBrains Mono">🏢 SoftwareCompany</text>
-            <text x="12" y="41" fill="#e9d5ff" font-size="9" font-family="JetBrains Mono">+ Investment: float = 3.0</text>
-            <text x="12" y="54" fill="#e9d5ff" font-size="9" font-family="JetBrains Mono">+ Idea: str (User Prompt / Intent)</text>
-            <text x="12" y="67" fill="#e9d5ff" font-size="9" font-family="JetBrains Mono">+ SharedMemory: Environment</text>
-            <text x="12" y="77" fill="#38bdf8" font-size="8.5" font-family="JetBrains Mono" font-weight="bold">+ hire(Role: role) · run(n_round: int)</text>
+          <g transform="translate(365, 8)">
+            <rect width="230" height="74" rx="8" fill="#F7F3FC" stroke="#7C59C8" stroke-width="2" filter="drop-shadow(0 2px 4px rgba(124,89,200,0.15))"/>
+            <rect width="230" height="22" rx="8" fill="#EDE9FE"/>
+            <rect y="16" width="230" height="6" fill="#EDE9FE"/>
+            <line x1="0" y1="22" x2="230" y2="22" stroke="#7C59C8" stroke-width="1.2"/>
+            <text x="115" y="15" text-anchor="middle" fill="#5B21B6" font-size="11" font-weight="900" font-family="JetBrains Mono">🏢 SoftwareCompany</text>
+            <text x="12" y="36" fill="#4C1D95" font-size="8.5" font-family="JetBrains Mono">+ Investment: float = 3.0</text>
+            <text x="12" y="49" fill="#4C1D95" font-size="8.5" font-family="JetBrains Mono">+ Idea: str (User Prompt / Intent)</text>
+            <text x="12" y="62" fill="#0369A1" font-size="8" font-family="JetBrains Mono" font-weight="bold">+ hire(Role) &middot; run(n_round)</text>
           </g>
 
-          <!-- Arc Connectors from 6 Subclasses to SoftwareCompany -->
-          <!-- 1. Boss -> SoftwareCompany -->
-          <path d="M 83 125 C 83 95, 420 102, 440 92" fill="none" stroke="#a78bfa" stroke-width="1.6" marker-end="url(#umlInheritArrow)"/>
-          <!-- 2. ProductManager -> SoftwareCompany -->
-          <path d="M 243 125 C 243 95, 435 100, 455 92" fill="none" stroke="#a78bfa" stroke-width="1.6" marker-end="url(#umlInheritArrow)"/>
-          <!-- 3. Architect -> SoftwareCompany -->
-          <path d="M 403 125 C 403 104, 465 98, 470 92" fill="none" stroke="#a78bfa" stroke-width="1.6" marker-end="url(#umlInheritArrow)"/>
-          <!-- 4. ProjectManager -> SoftwareCompany -->
-          <path d="M 563 125 C 563 104, 495 98, 490 92" fill="none" stroke="#a78bfa" stroke-width="1.6" marker-end="url(#umlInheritArrow)"/>
-          <!-- 5. Engineer -> SoftwareCompany -->
-          <path d="M 723 125 C 723 95, 525 100, 505 92" fill="none" stroke="#a78bfa" stroke-width="1.6" marker-end="url(#umlInheritArrow)"/>
-          <!-- 6. QA -> SoftwareCompany -->
-          <path d="M 883 125 C 883 95, 540 102, 520 92" fill="none" stroke="#a78bfa" stroke-width="1.6" marker-end="url(#umlInheritArrow)"/>
+          <!-- Connectors -->
+          <path d="M 83 115 C 83 88, 420 95, 440 85" fill="none" stroke="#7C59C8" stroke-width="1.6" marker-end="url(#umlInheritArrow)"/>
+          <path d="M 243 115 C 243 88, 435 93, 455 85" fill="none" stroke="#7C59C8" stroke-width="1.6" marker-end="url(#umlInheritArrow)"/>
+          <path d="M 403 115 C 403 95, 465 91, 470 85" fill="none" stroke="#7C59C8" stroke-width="1.6" marker-end="url(#umlInheritArrow)"/>
+          <path d="M 563 115 C 563 95, 495 91, 490 85" fill="none" stroke="#7C59C8" stroke-width="1.6" marker-end="url(#umlInheritArrow)"/>
+          <path d="M 723 115 C 723 88, 525 93, 505 85" fill="none" stroke="#7C59C8" stroke-width="1.6" marker-end="url(#umlInheritArrow)"/>
+          <path d="M 883 115 C 883 88, 540 95, 520 85" fill="none" stroke="#7C59C8" stroke-width="1.6" marker-end="url(#umlInheritArrow)"/>
 
-          <!-- 6 Role Classes (y = 125 ~ 325, height 200px) -->
-          <!-- Class 1: Boss -->
-          <g transform="translate(10, 125)">
-            <rect width="146" height="200" rx="8" fill="#0f172a" stroke="#818cf8" stroke-width="1.5" filter="drop-shadow(0 2px 6px rgba(0,0,0,0.3))"/>
-            <rect width="146" height="26" rx="8" fill="url(#childHeaderGrad)"/>
-            <rect y="20" width="146" height="6" fill="url(#childHeaderGrad)"/>
-            <line x1="0" y1="26" x2="146" y2="26" stroke="#818cf8" stroke-width="1.2"/>
-            <text x="73" y="17.5" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">👑 Boss (CEO)</text>
-            <text x="8" y="44" fill="#c7d2fe" font-size="8.5" font-family="JetBrains Mono">+ requirement: str</text>
-            <text x="8" y="58" fill="#c7d2fe" font-size="8.5" font-family="JetBrains Mono">+ budget: float = 3.0</text>
-            <text x="8" y="72" fill="#c7d2fe" font-size="8.5" font-family="JetBrains Mono">+ target_milestone</text>
-            <line x1="6" y1="80" x2="140" y2="80" stroke="#334155" stroke-width="0.8"/>
-            <text x="8" y="96" fill="#93c5fd" font-size="8.5" font-family="JetBrains Mono">+ define_goal()</text>
-            <text x="8" y="110" fill="#93c5fd" font-size="8.5" font-family="JetBrains Mono">+ approve_prd()</text>
-            <text x="8" y="124" fill="#93c5fd" font-size="8.5" font-family="JetBrains Mono">+ review_final()</text>
-            <line x1="6" y1="134" x2="140" y2="134" stroke="#334155" stroke-width="0.8"/>
-            <!-- Output Artifact Card -->
-            <rect x="6" y="146" width="134" height="44" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
-            <text x="73" y="163" text-anchor="middle" fill="#a5b4fc" font-size="8" font-family="JetBrains Mono">📦 Output Artifact</text>
-            <text x="73" y="179" text-anchor="middle" fill="#ffffff" font-size="9.5" font-family="JetBrains Mono" font-weight="bold">User Requirement</text>
+          <!-- 6 Role Cards (Clean High-Contrast Cards) -->
+          <!-- 1. Boss -->
+          <g transform="translate(10, 115)">
+            <rect width="146" height="195" rx="8" fill="#FFFBEB" stroke="#F59E0B" stroke-width="1.5"/>
+            <rect width="146" height="24" rx="8" fill="#FEF3C7"/>
+            <text x="73" y="16" text-anchor="middle" fill="#92400E" font-size="10.5" font-family="JetBrains Mono" font-weight="bold">👑 Boss (Human)</text>
+            <text x="8" y="38" fill="#B45309" font-size="8.5" font-family="JetBrains Mono">Role: Initial Mandate</text>
+            <text x="8" y="52" fill="#78350F" font-size="8" font-family="JetBrains Mono">Input: Vague Intent</text>
+            <text x="73" y="170" text-anchor="middle" fill="#D97706" font-size="8" font-family="JetBrains Mono">📦 Output Artifact</text>
+            <text x="73" y="186" text-anchor="middle" fill="#78350F" font-size="9" font-family="JetBrains Mono" font-weight="bold">Investment &amp; Idea</text>
           </g>
 
-          <!-- Class 2: ProductManager -->
-          <g transform="translate(170, 125)">
-            <rect width="146" height="200" rx="8" fill="#0f172a" stroke="#818cf8" stroke-width="1.5" filter="drop-shadow(0 2px 6px rgba(0,0,0,0.3))"/>
-            <rect width="146" height="26" rx="8" fill="url(#childHeaderGrad)"/>
-            <rect y="20" width="146" height="6" fill="url(#childHeaderGrad)"/>
-            <line x1="0" y1="26" x2="146" y2="26" stroke="#818cf8" stroke-width="1.2"/>
-            <text x="73" y="17.5" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">📋 ProductManager</text>
-            <text x="8" y="44" fill="#c7d2fe" font-size="8.5" font-family="JetBrains Mono">+ prd: Document</text>
-            <text x="8" y="58" fill="#c7d2fe" font-size="8.5" font-family="JetBrains Mono">+ user_stories: list</text>
-            <text x="8" y="72" fill="#c7d2fe" font-size="8.5" font-family="JetBrains Mono">+ success_metrics</text>
-            <line x1="6" y1="80" x2="140" y2="80" stroke="#334155" stroke-width="0.8"/>
-            <text x="8" y="96" fill="#93c5fd" font-size="8.5" font-family="JetBrains Mono">+ write_prd()</text>
-            <text x="8" y="110" fill="#93c5fd" font-size="8.5" font-family="JetBrains Mono">+ analyze_market()</text>
-            <text x="8" y="124" fill="#93c5fd" font-size="8.5" font-family="JetBrains Mono">+ revise_prd()</text>
-            <line x1="6" y1="134" x2="140" y2="134" stroke="#334155" stroke-width="0.8"/>
-            <!-- Output Artifact Card -->
-            <rect x="6" y="146" width="134" height="44" rx="6" fill="#1e1b4b" stroke="#818cf8" stroke-width="1"/>
-            <text x="73" y="163" text-anchor="middle" fill="#c7d2fe" font-size="8" font-family="JetBrains Mono">📦 Output Artifact</text>
-            <text x="73" y="179" text-anchor="middle" fill="#ffffff" font-size="9.5" font-family="JetBrains Mono" font-weight="bold">PRD.md</text>
+          <!-- 2. ProductManager -->
+          <g transform="translate(170, 115)">
+            <rect width="146" height="195" rx="8" fill="#F0FDF4" stroke="#10B981" stroke-width="1.5"/>
+            <rect width="146" height="24" rx="8" fill="#D1FAE5"/>
+            <text x="73" y="16" text-anchor="middle" fill="#065F46" font-size="10.5" font-family="JetBrains Mono" font-weight="bold">📋 ProductManager</text>
+            <text x="8" y="38" fill="#047857" font-size="8.5" font-family="JetBrains Mono">Action: WritePRD</text>
+            <text x="8" y="52" fill="#064E3B" font-size="8" font-family="JetBrains Mono">Spec: User Stories</text>
+            <text x="73" y="170" text-anchor="middle" fill="#059669" font-size="8" font-family="JetBrains Mono">📦 Output Artifact</text>
+            <text x="73" y="186" text-anchor="middle" fill="#064E3B" font-size="9" font-family="JetBrains Mono" font-weight="bold">PRD.md Document</text>
           </g>
 
-          <!-- Class 3: Architect -->
-          <g transform="translate(330, 125)">
-            <rect width="146" height="200" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" filter="drop-shadow(0 2px 6px rgba(0,0,0,0.3))"/>
-            <rect width="146" height="26" rx="8" fill="url(#childHeaderGrad)"/>
-            <rect y="20" width="146" height="6" fill="url(#childHeaderGrad)"/>
-            <line x1="0" y1="26" x2="146" y2="26" stroke="#38bdf8" stroke-width="1.2"/>
-            <text x="73" y="17.5" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">📐 Architect</text>
-            <text x="8" y="44" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ system_design: Doc</text>
-            <text x="8" y="58" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ api_spec: OpenAPI</text>
-            <text x="8" y="72" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ data_structures</text>
-            <line x1="6" y1="80" x2="140" y2="80" stroke="#334155" stroke-width="0.8"/>
-            <text x="8" y="96" fill="#7dd3fc" font-size="8.5" font-family="JetBrains Mono">+ write_design()</text>
-            <text x="8" y="110" fill="#7dd3fc" font-size="8.5" font-family="JetBrains Mono">+ define_endpoints()</text>
-            <text x="8" y="124" fill="#7dd3fc" font-size="8.5" font-family="JetBrains Mono">+ review_code()</text>
-            <line x1="6" y1="134" x2="140" y2="134" stroke="#334155" stroke-width="0.8"/>
-            <!-- Output Artifact Card -->
-            <rect x="6" y="146" width="134" height="44" rx="6" fill="#082f49" stroke="#38bdf8" stroke-width="1"/>
-            <text x="73" y="163" text-anchor="middle" fill="#7dd3fc" font-size="8" font-family="JetBrains Mono">📦 Output Artifact</text>
-            <text x="73" y="179" text-anchor="middle" fill="#ffffff" font-size="9.5" font-family="JetBrains Mono" font-weight="bold">Design_Doc.md</text>
+          <!-- 3. Architect -->
+          <g transform="translate(330, 115)">
+            <rect width="146" height="195" rx="8" fill="#F0F9FF" stroke="#0EA5E9" stroke-width="1.5"/>
+            <rect width="146" height="24" rx="8" fill="#E0F2FE"/>
+            <text x="73" y="16" text-anchor="middle" fill="#0369A1" font-size="10.5" font-family="JetBrains Mono" font-weight="bold">🏛️ Architect</text>
+            <text x="8" y="38" fill="#0284C7" font-size="8.5" font-family="JetBrains Mono">Action: WriteDesign</text>
+            <text x="8" y="52" fill="#0C4A6E" font-size="8" font-family="JetBrains Mono">Spec: Class &amp; API</text>
+            <text x="73" y="170" text-anchor="middle" fill="#0284C7" font-size="8" font-family="JetBrains Mono">📦 Output Artifact</text>
+            <text x="73" y="186" text-anchor="middle" fill="#0C4A6E" font-size="9" font-family="JetBrains Mono" font-weight="bold">System Design Doc</text>
           </g>
 
-          <!-- Class 4: ProjectManager -->
-          <g transform="translate(490, 125)">
-            <rect width="146" height="200" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" filter="drop-shadow(0 2px 6px rgba(0,0,0,0.3))"/>
-            <rect width="146" height="26" rx="8" fill="url(#childHeaderGrad)"/>
-            <rect y="20" width="146" height="6" fill="url(#childHeaderGrad)"/>
-            <line x1="0" y1="26" x2="146" y2="26" stroke="#38bdf8" stroke-width="1.2"/>
-            <text x="73" y="17.5" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">📊 ProjectManager</text>
-            <text x="8" y="44" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ task_queue: list</text>
-            <text x="8" y="58" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ dependency_tree</text>
-            <text x="8" y="72" fill="#bae6fd" font-size="8.5" font-family="JetBrains Mono">+ assignee_matrix</text>
-            <line x1="6" y1="80" x2="140" y2="80" stroke="#334155" stroke-width="0.8"/>
-            <text x="8" y="96" fill="#7dd3fc" font-size="8.5" font-family="JetBrains Mono">+ break_tasks()</text>
-            <text x="8" y="110" fill="#7dd3fc" font-size="8.5" font-family="JetBrains Mono">+ assign_to_engineer()</text>
-            <text x="8" y="124" fill="#7dd3fc" font-size="8.5" font-family="JetBrains Mono">+ track_schedule()</text>
-            <line x1="6" y1="134" x2="140" y2="134" stroke="#334155" stroke-width="0.8"/>
-            <!-- Output Artifact Card -->
-            <rect x="6" y="146" width="134" height="44" rx="6" fill="#082f49" stroke="#38bdf8" stroke-width="1"/>
-            <text x="73" y="163" text-anchor="middle" fill="#7dd3fc" font-size="8" font-family="JetBrains Mono">📦 Output Artifact</text>
-            <text x="73" y="179" text-anchor="middle" fill="#ffffff" font-size="9.5" font-family="JetBrains Mono" font-weight="bold">Tasks.json</text>
+          <!-- 4. ProjectManager -->
+          <g transform="translate(490, 115)">
+            <rect width="146" height="195" rx="8" fill="#FDF4FF" stroke="#D946EF" stroke-width="1.5"/>
+            <rect width="146" height="24" rx="8" fill="#FAE8FF"/>
+            <text x="73" y="16" text-anchor="middle" fill="#86198F" font-size="10.5" font-family="JetBrains Mono" font-weight="bold">📊 ProjectManager</text>
+            <text x="8" y="38" fill="#C026D3" font-size="8.5" font-family="JetBrains Mono">Action: WriteTasks</text>
+            <text x="8" y="52" fill="#701A75" font-size="8" font-family="JetBrains Mono">Spec: Dependency</text>
+            <text x="73" y="170" text-anchor="middle" fill="#C026D3" font-size="8" font-family="JetBrains Mono">📦 Output Artifact</text>
+            <text x="73" y="186" text-anchor="middle" fill="#701A75" font-size="9" font-family="JetBrains Mono" font-weight="bold">Task &amp; File Tree</text>
           </g>
 
-          <!-- Class 5: Engineer -->
-          <g transform="translate(650, 125)">
-            <rect width="146" height="200" rx="8" fill="#0f172a" stroke="#34d399" stroke-width="1.5" filter="drop-shadow(0 2px 6px rgba(0,0,0,0.3))"/>
-            <rect width="146" height="26" rx="8" fill="url(#childHeaderGrad)"/>
-            <rect y="20" width="146" height="6" fill="url(#childHeaderGrad)"/>
-            <line x1="0" y1="26" x2="146" y2="26" stroke="#34d399" stroke-width="1.2"/>
-            <text x="73" y="17.5" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">💻 Engineer</text>
-            <text x="8" y="44" fill="#a7f3d0" font-size="8.5" font-family="JetBrains Mono">+ source_code: AST</text>
-            <text x="8" y="58" fill="#a7f3d0" font-size="8.5" font-family="JetBrains Mono">+ workspace: VFS</text>
-            <text x="8" y="72" fill="#a7f3d0" font-size="8.5" font-family="JetBrains Mono">+ compile_status</text>
-            <line x1="6" y1="80" x2="140" y2="80" stroke="#334155" stroke-width="0.8"/>
-            <text x="8" y="96" fill="#6ee7b7" font-size="8.5" font-family="JetBrains Mono">+ write_code()</text>
-            <text x="8" y="110" fill="#6ee7b7" font-size="8.5" font-family="JetBrains Mono">+ self_debug()</text>
-            <text x="8" y="124" fill="#6ee7b7" font-size="8.5" font-family="JetBrains Mono">+ commit_repo()</text>
-            <line x1="6" y1="134" x2="140" y2="134" stroke="#334155" stroke-width="0.8"/>
-            <!-- Output Artifact Card -->
-            <rect x="6" y="146" width="134" height="44" rx="6" fill="#064e3b" stroke="#34d399" stroke-width="1"/>
-            <text x="73" y="163" text-anchor="middle" fill="#6ee7b7" font-size="8" font-family="JetBrains Mono">📦 Output Artifact</text>
-            <text x="73" y="179" text-anchor="middle" fill="#ffffff" font-size="9.5" font-family="JetBrains Mono" font-weight="bold">Source Code</text>
+          <!-- 5. Engineer -->
+          <g transform="translate(650, 115)">
+            <rect width="146" height="195" rx="8" fill="#EEF2FF" stroke="#6366F1" stroke-width="1.5"/>
+            <rect width="146" height="24" rx="8" fill="#E0E7FF"/>
+            <text x="73" y="16" text-anchor="middle" fill="#3730A3" font-size="10.5" font-family="JetBrains Mono" font-weight="bold">💻 Engineer</text>
+            <text x="8" y="38" fill="#4F46E5" font-size="8.5" font-family="JetBrains Mono">Action: WriteCode</text>
+            <text x="8" y="52" fill="#312E81" font-size="8" font-family="JetBrains Mono">Spec: Type Hint</text>
+            <text x="73" y="170" text-anchor="middle" fill="#4F46E5" font-size="8" font-family="JetBrains Mono">📦 Output Artifact</text>
+            <text x="73" y="186" text-anchor="middle" fill="#312E81" font-size="9" font-family="JetBrains Mono" font-weight="bold">Code Files (.py)</text>
           </g>
 
-          <!-- Class 6: QA -->
-          <g transform="translate(810, 125)">
-            <rect width="146" height="200" rx="8" fill="#0f172a" stroke="#34d399" stroke-width="1.5" filter="drop-shadow(0 2px 6px rgba(0,0,0,0.3))"/>
-            <rect width="146" height="26" rx="8" fill="url(#childHeaderGrad)"/>
-            <rect y="20" width="146" height="6" fill="url(#childHeaderGrad)"/>
-            <line x1="0" y1="26" x2="146" y2="26" stroke="#34d399" stroke-width="1.2"/>
-            <text x="73" y="17.5" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">🧪 QA Engineer</text>
-            <text x="8" y="44" fill="#a7f3d0" font-size="8.5" font-family="JetBrains Mono">+ test_suite: Pytest</text>
-            <text x="8" y="58" fill="#a7f3d0" font-size="8.5" font-family="JetBrains Mono">+ coverage_report</text>
-            <text x="8" y="72" fill="#a7f3d0" font-size="8.5" font-family="JetBrains Mono">+ pass_status: bool</text>
-            <line x1="6" y1="80" x2="140" y2="80" stroke="#334155" stroke-width="0.8"/>
-            <text x="8" y="96" fill="#6ee7b7" font-size="8.5" font-family="JetBrains Mono">+ write_tests()</text>
-            <text x="8" y="110" fill="#6ee7b7" font-size="8.5" font-family="JetBrains Mono">+ execute_tests()</text>
-            <text x="8" y="124" fill="#6ee7b7" font-size="8.5" font-family="JetBrains Mono">+ report_bugs()</text>
-            <line x1="6" y1="134" x2="140" y2="134" stroke="#334155" stroke-width="0.8"/>
-            <!-- Output Artifact Card -->
-            <rect x="6" y="146" width="134" height="44" rx="6" fill="#064e3b" stroke="#34d399" stroke-width="1"/>
-            <text x="73" y="163" text-anchor="middle" fill="#6ee7b7" font-size="8" font-family="JetBrains Mono">📦 Output Artifact</text>
-            <text x="73" y="179" text-anchor="middle" fill="#ffffff" font-size="9.5" font-family="JetBrains Mono" font-weight="bold">Test Report (Pass)</text>
+          <!-- 6. QaEngineer -->
+          <g transform="translate(810, 115)">
+            <rect width="140" height="195" rx="8" fill="#F0FDF4" stroke="#059669" stroke-width="1.5"/>
+            <rect width="140" height="24" rx="8" fill="#D1FAE5"/>
+            <text x="70" y="16" text-anchor="middle" fill="#065F46" font-size="10.5" font-family="JetBrains Mono" font-weight="bold">🧪 QaEngineer</text>
+            <text x="8" y="38" fill="#047857" font-size="8.5" font-family="JetBrains Mono">Action: RunTest</text>
+            <text x="8" y="52" fill="#064E3B" font-size="8" font-family="JetBrains Mono">Spec: Pytest &middot; Mypy</text>
+            <text x="70" y="170" text-anchor="middle" fill="#059669" font-size="8" font-family="JetBrains Mono">📦 Output Artifact</text>
+            <text x="70" y="186" text-anchor="middle" fill="#064E3B" font-size="9" font-family="JetBrains Mono" font-weight="bold">Test Report (Pass)</text>
           </g>
         </svg>
       </div>
+
+      <div class="text-[10.5px] text-[#554596] font-mono border-t border-[#DFD2F5] pt-1 flex items-center justify-between w-full mt-1 shrink-0">
+        <span>💡 SOP(표준운영절차): 에이전트 간 자유 잡담을 금지하고 오직 검증된 마크다운 산출물만 전달</span>
+        <span class="text-slate-500 font-bold">환각 80% 차단</span>
+      </div>
     </div>
 
-    <!-- Bottom: Academic Papers & Andrew Ng Patterns -->
-    <div class="grid grid-cols-12 gap-4">
-      <!-- Left: Academic Milestones -->
-      <div class="col-span-7 bento-tile p-3.5 flex flex-col justify-between border-l-4 border-l-sky-500">
+    <!-- Bottom: Academic Milestones (Mint) & Andrew Ng (Peach) -->
+    <div class="grid grid-cols-12 gap-3 shrink-0">
+      <!-- Left: Academic Milestones (Soft Mint, 7 cols) -->
+      <div class="col-span-7 rounded-2xl p-2.5 md:p-3 border border-[#C9EED7] bg-[#F1F9F4] shadow-sm flex flex-col justify-between border-t-4 border-t-[#22A05B]">
         <div>
-          <span class="text-xs font-mono text-sky-400 font-bold block mb-1">2023~2024 학술 연구 트리</span>
-          <div class="grid grid-cols-3 gap-2 text-xs">
+          <span class="text-[10px] font-mono text-[#1B7342] font-bold block mb-1 uppercase tracking-wider">2023~2024 학술 연구 트리</span>
+          <div class="grid grid-cols-3 gap-1.5 text-xs">
             <!-- ChatDev -->
-            <div class="p-2 bg-slate-900 rounded border border-slate-800">
-              <div class="font-bold text-sky-300 text-[11px]">ChatDev (ACL 2024)</div>
-              <p class="text-[10px] text-slate-300 mt-1 leading-relaxed">
-                가상 SW 기업 모방. CEO-CTO-개발자-테스터 간 <strong>Multi-agent Chat-Chain</strong> 단계별 교차 검증.
+            <div class="p-1.5 bg-white rounded-lg border border-[#C9EED7]">
+              <div class="font-bold text-sky-800 text-[10.5px]">ChatDev (ACL 2024)</div>
+              <p class="text-[9.5px] text-slate-600 mt-0.5 leading-snug">
+                가상 SW 기업 모방. CEO-CTO-개발자 간 <strong>Chat-Chain</strong> 교차 검증.
               </p>
             </div>
             <!-- Reflexion -->
-            <div class="p-2 bg-slate-900 rounded border border-slate-800">
-              <div class="font-bold text-indigo-300 text-[11px]">Reflexion (NeurIPS 2023)</div>
-              <p class="text-[10px] text-slate-300 mt-1 leading-relaxed">
-                가중치 미수정. <strong>언어적 자가 반성</strong> 버퍼로 오류를 피드백해 Self-healing 달성.
+            <div class="p-1.5 bg-white rounded-lg border border-[#C9EED7]">
+              <div class="font-bold text-indigo-800 text-[10.5px]">Reflexion (NeurIPS)</div>
+              <p class="text-[9.5px] text-slate-600 mt-0.5 leading-snug">
+                가중치 미수정. <strong>언어적 자가 반성</strong> 버퍼로 오류를 피드백해 치유.
               </p>
             </div>
             <!-- CoALA Framework -->
-            <div class="p-2 bg-slate-900 rounded border border-slate-800">
-              <div class="font-bold text-purple-300 text-[11px]">CoALA (Sumers, 2024)</div>
-              <p class="text-[10px] text-slate-300 mt-1 leading-relaxed">
-                인지과학 기반: <strong>Working / Episodic / Semantic / Procedural Memory</strong> 4분할 체계화.
+            <div class="p-1.5 bg-white rounded-lg border border-[#C9EED7]">
+              <div class="font-bold text-purple-800 text-[10.5px]">CoALA (Sumers, 2024)</div>
+              <p class="text-[9.5px] text-slate-600 mt-0.5 leading-snug">
+                인지과학 기반: <strong>작업&middot;일화&middot;의미&middot;절차 메모리</strong> 4분할 체계화.
               </p>
             </div>
           </div>
         </div>
-        <div class="text-[10.5px] text-sky-300 font-mono border-t border-slate-800 pt-1.5 mt-1.5">
-          "에이전트의 지능은 모델 단독이 아니라, 조직적 아키텍처와 SOP 분업에서 나온다."
+        <div class="text-[9.5px] text-[#1B7342] font-mono border-t border-[#C9EED7] pt-1 mt-1">
+          "에이전트 지능은 모델 단독이 아닌, 조직적 아키텍처와 SOP 분업에서 나온다."
         </div>
       </div>
 
-      <!-- Right: Andrew Ng's 4 Patterns -->
-      <div class="col-span-5 bento-tile p-3.5 flex flex-col justify-between border-l-4 border-l-indigo-500">
+      <!-- Right: Andrew Ng Patterns (Soft Peach, 5 cols) -->
+      <div class="col-span-5 rounded-2xl p-2.5 md:p-3 border border-[#F5DAC8] bg-[#FDF7F3] shadow-sm flex flex-col justify-between border-t-4 border-t-[#E87A4D]">
         <div>
-          <span class="text-xs font-mono text-indigo-400 font-bold block mb-1">ANDREW NG'S AGENTIC PATTERNS (2024)</span>
-          <div class="grid grid-cols-2 gap-1.5 text-[10.5px]">
-            <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
-              <strong class="text-sky-300 block">① Reflection (반성)</strong>
-              <span class="text-slate-300 text-[10px]">출력 자가검토 & 개선 루프</span>
+          <span class="text-[10px] font-mono text-[#8C3A16] font-bold block mb-1 uppercase tracking-wider">ANDREW NG'S 4 PATTERNS</span>
+          <div class="grid grid-cols-2 gap-1 text-[9.5px]">
+            <div class="p-1 bg-white rounded border border-[#F5DAC8]">
+              <strong class="text-sky-800 block">① Reflection (반성)</strong>
+              <span class="text-slate-600 text-[9px]">자가검토 &amp; 개선 루프</span>
             </div>
-            <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
-              <strong class="text-indigo-300 block">② Tool Use (도구)</strong>
-              <span class="text-slate-300 text-[10px]">쉘, 파일, 웹 검색 조작</span>
+            <div class="p-1 bg-white rounded border border-[#F5DAC8]">
+              <strong class="text-indigo-800 block">② Tool Use (도구)</strong>
+              <span class="text-slate-600 text-[9px]">쉘, 파일, 웹 검색 조작</span>
             </div>
-            <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
-              <strong class="text-purple-300 block">③ Planning (계획)</strong>
-              <span class="text-slate-300 text-[10px]">과제 시퀀스 분할 실행</span>
+            <div class="p-1 bg-white rounded border border-[#F5DAC8]">
+              <strong class="text-purple-800 block">③ Planning (계획)</strong>
+              <span class="text-slate-600 text-[9px]">과제 시퀀스 분할</span>
             </div>
-            <div class="p-1.5 bg-slate-900 rounded border border-slate-800">
-              <strong class="text-emerald-300 block">④ Multi-agent (협업)</strong>
-              <span class="text-slate-300 text-[10px]">전문 역할 간 분업</span>
+            <div class="p-1 bg-white rounded border border-[#F5DAC8]">
+              <strong class="text-emerald-800 block">④ Multi-agent (협업)</strong>
+              <span class="text-slate-600 text-[9px]">전문 역할 간 분업</span>
             </div>
           </div>
         </div>
-        <div class="text-[10px] text-slate-400 font-mono border-t border-slate-800 pt-1.5 mt-1.5">
-          구형 모델도 4대 패턴을 타면 신형 모델 Zero-shot을 능가함
+        <div class="text-[9.5px] text-[#8C3A16] font-mono border-t border-[#F5DAC8] pt-1 mt-1">
+          구형 모델도 4대 패턴을 타면 최신 모델 Zero-shot을 능가함
         </div>
       </div>
     </div>

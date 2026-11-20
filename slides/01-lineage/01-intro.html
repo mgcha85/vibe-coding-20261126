@@ -1,108 +1,126 @@
 <section class="slide flex flex-col justify-between" data-title="Ch 01. 계보 인트로">
-  <div>
-    <span class="text-sky-400 font-mono text-xs tracking-widest font-semibold px-2.5 py-1 rounded bg-sky-500/10 border border-sky-400/20">CHAPTER 01 · HISTORICAL LINEAGE</span>
-    <h2 class="text-3xl md:text-4xl font-black text-white mt-2.5 mb-2">
+  <!-- Header with Split Pastel Badge -->
+  <div class="mb-1 shrink-0">
+    <div class="flex items-center justify-between">
+      <span class="text-xs font-mono font-bold px-3 py-1 rounded-full bg-[#EFEAF7] text-[#554596] border border-[#D5CBE8] tracking-widest uppercase">
+        CHAPTER 01 &middot; HISTORICAL LINEAGE
+      </span>
+      <span class="text-[11px] font-mono text-[#5E5873] bg-[#FBF0E9] px-2.5 py-0.5 rounded-full border border-[#F5DAC8] font-bold">
+        2022 ~ 2026 패러다임 진화
+      </span>
+    </div>
+    <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-2 mb-1 tracking-tight">
       계보 : 챗봇에서 자율 에이전트까지 (2022 ~ 2026)
     </h2>
-    <p class="text-sm text-slate-300 leading-relaxed max-w-4xl">
-      LLM은 더 이상 질문에 그럴듯한 텍스트로 답하는 '말동무'가 아닙니다. 
+    <p class="text-xs md:text-sm text-slate-600 leading-relaxed max-w-5xl">
+      LLM은 더 이상 질문에 그럴듯한 텍스트로 답하는 단순 말동무가 아닙니다. 
       단일 모놀리식의 좌절과 학술적 분업 연구, 그리고 추론 모델을 거쳐 현재의 자율 워크스페이스로 진화한 <strong>5단계 패러다임 로드맵</strong>을 추적합니다.
     </p>
   </div>
 
-  <!-- 5-Stage Evolution Timeline Roadmap -->
+  <!-- 5-Stage Evolution Timeline Roadmap (Split Pastel Palette) -->
   <div class="grid grid-cols-5 gap-3 my-auto">
-    <!-- 1. 2022 -->
-    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-slate-500">
+    <!-- 1. 2022 : ChatGPT (Soft Slate) -->
+    <div class="rounded-2xl p-4 flex flex-col justify-between bg-white border border-slate-200 shadow-sm border-t-4 border-t-slate-400">
       <div>
-        <div class="flex items-center justify-between mb-1">
-          <span class="text-xs font-mono font-bold text-slate-300">2022</span>
-          <span class="text-[10px] font-mono text-slate-400 bg-slate-800 px-1.5 py-0.2 rounded">Single-turn</span>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono font-bold text-slate-700">2022</span>
+          <span class="text-[10px] font-mono font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200">Single-turn</span>
         </div>
-        <h3 class="text-sm font-bold text-white mb-1">ChatGPT</h3>
-        <p class="text-[11px] text-slate-300 leading-relaxed">
-          1회성 텍스트 질의응답. 외부 실행 도구와 환경 관찰(눈)이 전무했던 수동 챗봇.
+        <h3 class="text-base font-extrabold text-slate-900 mb-1">ChatGPT</h3>
+        <p class="text-[11.5px] text-slate-600 leading-relaxed">
+          1회성 텍스트 질의응답. 도구 실행과 환경 관찰(눈)이 전무했던 수동 대화 챗봇.
         </p>
       </div>
-      <div class="text-[10px] text-slate-400 font-mono border-t border-slate-800 pt-1.5 mt-2">
-        "말동무의 시대"
+      <div class="text-[10.5px] text-slate-500 font-mono border-t border-slate-100 pt-2 mt-3 flex items-center justify-between">
+        <span>"말동무의 시대"</span>
+        <span class="text-[10px] text-slate-400">Step 01</span>
       </div>
     </div>
 
-    <!-- 2. 2023 -->
-    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-amber-500">
+    <!-- 2. 2023 : AutoGPT (Soft Peach) -->
+    <div class="rounded-2xl p-4 flex flex-col justify-between bg-[#FDF7F3] border border-[#F5DAC8] shadow-sm border-t-4 border-t-[#E87A4D]">
       <div>
-        <div class="flex items-center justify-between mb-1">
-          <span class="text-xs font-mono font-bold text-amber-400">2023</span>
-          <span class="text-[10px] font-mono text-amber-300 bg-amber-950/60 px-1.5 py-0.2 rounded">Monolithic</span>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono font-bold text-[#A84A22]">2023</span>
+          <span class="text-[10px] font-mono font-bold text-[#8C3A16] bg-[#FCE6D8] px-2 py-0.5 rounded-full border border-[#F5DAC8]">Monolithic</span>
         </div>
-        <h3 class="text-sm font-bold text-white mb-1">AutoGPT · ReAct</h3>
-        <p class="text-[11px] text-slate-300 leading-relaxed">
+        <h3 class="text-base font-extrabold text-slate-900 mb-1">AutoGPT &middot; ReAct</h3>
+        <p class="text-[11.5px] text-slate-700 leading-relaxed">
           Thought-Act-Observe 루프 태동. 단일 컨텍스트 오염과 연쇄 환각의 좌절.
         </p>
       </div>
-      <div class="text-[10px] text-amber-300 font-mono border-t border-slate-800 pt-1.5 mt-2">
-        "자율 루프의 첫 시도"
+      <div class="text-[10.5px] text-[#A84A22] font-mono border-t border-[#F5DAC8]/60 pt-2 mt-3 flex items-center justify-between">
+        <span>"자율 루프의 첫 시도"</span>
+        <span class="text-[10px] text-[#A84A22]/70">Step 02</span>
       </div>
     </div>
 
-    <!-- 3. 2024 -->
-    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-sky-500">
+    <!-- 3. 2024 : MetaGPT (Soft Lavender) -->
+    <div class="rounded-2xl p-4 flex flex-col justify-between bg-[#F7F3FC] border border-[#DFD2F5] shadow-sm border-t-4 border-t-[#7C59C8]">
       <div>
-        <div class="flex items-center justify-between mb-1">
-          <span class="text-xs font-mono font-bold text-sky-400">2024</span>
-          <span class="text-[10px] font-mono text-sky-300 bg-sky-950/60 px-1.5 py-0.2 rounded">Multi-Agent</span>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono font-bold text-[#5D3D9E]">2024</span>
+          <span class="text-[10px] font-mono font-bold text-[#4E3185] bg-[#E9DFF7] px-2 py-0.5 rounded-full border border-[#DFD2F5]">Multi-Agent</span>
         </div>
-        <h3 class="text-sm font-bold text-white mb-1">MetaGPT · CoALA</h3>
-        <p class="text-[11px] text-slate-300 leading-relaxed">
-          SOP 명세 강제로 환각 차단. 인지과학 4대 메모리(작업·일화·의미·절차) 체계화.
+        <h3 class="text-base font-extrabold text-slate-900 mb-1">MetaGPT &middot; CoALA</h3>
+        <p class="text-[11.5px] text-slate-700 leading-relaxed">
+          SOP 명세 강제로 환각 차단. 인지과학 4대 메모리(작업&middot;일화&middot;의미&middot;절차) 체계화.
         </p>
       </div>
-      <div class="text-[10px] text-sky-300 font-mono border-t border-slate-800 pt-1.5 mt-2">
-        "조직 분업과 기억"
+      <div class="text-[10.5px] text-[#5D3D9E] font-mono border-t border-[#DFD2F5]/60 pt-2 mt-3 flex items-center justify-between">
+        <span>"조직 분업과 기억"</span>
+        <span class="text-[10px] text-[#5D3D9E]/70">Step 03</span>
       </div>
     </div>
 
-    <!-- 4. 2025 -->
-    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-purple-500">
+    <!-- 4. 2025 : Reasoning Models (Soft Mint) -->
+    <div class="rounded-2xl p-4 flex flex-col justify-between bg-[#F1F9F4] border border-[#C9EED7] shadow-sm border-t-4 border-t-[#22A05B]">
       <div>
-        <div class="flex items-center justify-between mb-1">
-          <span class="text-xs font-mono font-bold text-purple-400">2025</span>
-          <span class="text-[10px] font-mono text-purple-300 bg-purple-950/60 px-1.5 py-0.2 rounded">Reasoning</span>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono font-bold text-[#1B7342]">2025</span>
+          <span class="text-[10px] font-mono font-bold text-[#135A33] bg-[#DCF3E4] px-2 py-0.5 rounded-full border border-[#C9EED7]">Reasoning</span>
         </div>
-        <h3 class="text-sm font-bold text-white mb-1">o1/o3 · Repo Map</h3>
-        <p class="text-[11px] text-slate-300 leading-relaxed">
+        <h3 class="text-base font-extrabold text-slate-900 mb-1">o1/o3 &middot; Repo Map</h3>
+        <p class="text-[11.5px] text-slate-700 leading-relaxed">
           Test-Time Compute로 실행 전 가상 검증. Tree-sitter + PageRank로 토큰 80% 절감.
         </p>
       </div>
-      <div class="text-[10px] text-purple-300 font-mono border-t border-slate-800 pt-1.5 mt-2">
-        "사전 추론 & AST 맵"
+      <div class="text-[10.5px] text-[#1B7342] font-mono border-t border-[#C9EED7]/60 pt-2 mt-3 flex items-center justify-between">
+        <span>"사전 추론 &amp; AST 맵"</span>
+        <span class="text-[10px] text-[#1B7342]/70">Step 04</span>
       </div>
     </div>
 
-    <!-- 5. 2026 -->
-    <div class="bento-tile p-3.5 flex flex-col justify-between border-t-4 border-t-emerald-500">
+    <!-- 5. 2026 : Outer-Inner Worktree (Soft Rose Lilac) -->
+    <div class="rounded-2xl p-4 flex flex-col justify-between bg-[#FCF2F6] border border-[#EFC9DD] shadow-sm border-t-4 border-t-[#C23B82]">
       <div>
-        <div class="flex items-center justify-between mb-1">
-          <span class="text-xs font-mono font-bold text-emerald-400">2026</span>
-          <span class="text-[10px] font-mono text-emerald-300 bg-emerald-950/60 px-1.5 py-0.2 rounded">Outer-Inner</span>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono font-bold text-[#8E285F]">2026</span>
+          <span class="text-[10px] font-mono font-bold text-[#741E4C] bg-[#F6D7E7] px-2 py-0.5 rounded-full border border-[#EFC9DD]">Outer-Inner</span>
         </div>
-        <h3 class="text-sm font-bold text-white mb-1">Grok · Worktree</h3>
-        <p class="text-[11px] text-slate-300 leading-relaxed">
-          클라우드 지속형 Outer Loop와 초고속 국소 Inner Loop의 물리적 분리 체제.
+        <h3 class="text-base font-extrabold text-slate-900 mb-1">Grok &middot; Worktree</h3>
+        <p class="text-[11.5px] text-slate-700 leading-relaxed">
+          클라우드 비동기 Outer Loop와 초고속 국소 Inner Loop의 물리적 분리 체제.
         </p>
       </div>
-      <div class="text-[10px] text-emerald-300 font-mono border-t border-slate-800 pt-1.5 mt-2">
-        "자율 클라우드 러너"
+      <div class="text-[10.5px] text-[#8E285F] font-mono border-t border-[#EFC9DD]/60 pt-2 mt-3 flex items-center justify-between">
+        <span>"자율 클라우드 러너"</span>
+        <span class="text-[10px] text-[#8E285F]/70">Step 05</span>
       </div>
     </div>
   </div>
 
-  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border border-slate-800">
-    <div class="flex items-center gap-2">
-      <span class="text-sky-400 font-bold">💡 KEY TAKEAWAY :</span>
-      <span>"단순 프롬프트 테크닉의 시대는 끝났다 ➔ 이제는 조직적 아키텍처와 툴체인의 시대다."</span>
+  <!-- Bottom Takeaway Banner (Split Pastel Theme) -->
+  <div class="rounded-xl px-4 py-2 flex items-center justify-between text-xs font-mono border border-slate-200 bg-white/95 shadow-sm mt-1 shrink-0">
+    <div class="flex items-center gap-2.5">
+      <span class="px-2.5 py-0.5 rounded-full bg-[#FCF8E3] text-[#856404] border border-[#F0E6B9] font-bold text-[11px]">
+        💡 KEY TAKEAWAY
+      </span>
+      <span class="text-slate-800 font-medium">
+        "단순 프롬프트 테크닉의 시대는 끝났다 ➔ 이제는 <strong>조직적 아키텍처와 툴체인의 피드백 루프</strong> 시대다."
+      </span>
     </div>
-    <span class="text-slate-500 text-[11px]">20분 아젠다 로드맵</span>
+    <span class="text-[#554596] font-bold text-[11px]">20분 아젠다 로드맵 ➔</span>
   </div>
 </section>

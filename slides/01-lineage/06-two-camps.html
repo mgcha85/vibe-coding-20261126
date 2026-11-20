@@ -1,74 +1,89 @@
-<section class="slide" data-title="Ch 01. 계보 핵심 요약">
-  <div class="mb-3">
-    <span class="text-sky-600 font-mono text-xs uppercase tracking-wider font-bold">Chapter 01. 계보 &middot; Summary</span>
-    <h2 class="text-3xl font-black text-slate-900 mt-1">Chapter 01 요약 : 에이전트 진화의 4대 본질과 도출점</h2>
+<section class="slide flex flex-col justify-between" data-title="Ch 01. 계보 핵심 요약">
+  <!-- Header with Split Pastel Accent -->
+  <div class="mb-1.5 shrink-0">
+    <div class="flex items-center justify-between">
+      <span class="text-xs font-mono font-bold px-3 py-1 rounded-full bg-[#EFEAF7] text-[#554596] border border-[#D5CBE8] uppercase">
+        CHAPTER 01 &middot; 계보 &middot; Summary
+      </span>
+      <span class="text-[11px] font-mono text-[#8C3A16] bg-[#FDF7F3] px-2.5 py-0.5 rounded-full border border-[#F5DAC8] font-bold">
+        4대 진화 본질 &middot; 결론
+      </span>
+    </div>
+    <h2 class="text-2xl md:text-3xl font-black text-slate-900 mt-1">Chapter 01 요약 : 에이전트 진화의 4대 본질과 도출점</h2>
+    <p class="text-xs text-slate-600 mt-0.5">
+      단일 챗봇에서 멀티에이전트 오케스트레이터로의 계보가 남긴 <strong>실전 엔지니어링의 나침반</strong>:
+    </p>
   </div>
 
-  <div class="flex flex-col gap-3.5 flex-1 justify-between">
-    <!-- Top: 4 Key Paradigm Milestones Infographic -->
-    <div class="w-full flex-1 flex items-center justify-center min-h-0 my-1">
+  <div class="flex flex-col gap-2.5 flex-1 justify-between min-h-0">
+    <!-- Top: 4 Key Paradigm Milestones Infographic (Clean White Card Frame) -->
+    <div class="w-full flex-1 flex items-center justify-center min-h-0 my-0.5 bg-white rounded-2xl border border-slate-200 p-2 shadow-sm">
       <img 
         src="./slides/01-lineage/assets/agent_evolution_4milestones.png" 
         alt="에이전트 진화의 4대 본질 (01. 상태 전이, 02. 조직 분업, 03. 심층 추론, 04. 2단계 루프)" 
-        class="w-full h-auto max-h-[370px] xl:max-h-[410px] object-contain rounded-2xl shadow-sm border border-slate-200"
+        class="w-full h-auto max-h-[350px] xl:max-h-[390px] object-contain rounded-xl"
       />
     </div>
 
-    <!-- Bottom: Benchmark Truth & Bridge to Next Chapters -->
-    <div class="grid grid-cols-12 gap-3.5 items-stretch">
-      <!-- Left: Ground Truth (SWE-bench 1.96% -> 70%+) -->
-      <div class="col-span-5 bento-tile p-4 border-l-4 border-l-amber-500 bg-amber-50/40 flex flex-col justify-between">
+    <!-- Bottom: Benchmark Truth (Peach) & Bridge to Next Chapters (Lavender) -->
+    <div class="grid grid-cols-12 gap-3.5 items-stretch shrink-0">
+      <!-- Left: Ground Truth (Soft Peach, 5 cols) -->
+      <div class="col-span-5 rounded-2xl p-3 border border-[#F5DAC8] bg-[#FDF7F3] shadow-sm flex flex-col justify-between border-t-4 border-t-[#E87A4D]">
         <div>
           <div class="flex items-center justify-between mb-1">
-            <span class="text-xs font-mono font-bold text-amber-800">BENCHMARK GROUND TRUTH</span>
-            <span class="text-[10px] font-mono text-slate-500">SWE-bench 실증</span>
+            <span class="text-[10px] font-mono font-bold text-[#8C3A16] uppercase tracking-wider">BENCHMARK GROUND TRUTH</span>
+            <span class="text-[9.5px] font-mono text-slate-500 font-semibold">SWE-bench 실증</span>
           </div>
-          <h4 class="text-sm font-bold text-slate-900 mb-2">프롬프트 테크닉의 종말과 도구의 승리</h4>
-          <div class="flex items-center gap-3 bg-white p-2.5 rounded-lg border border-amber-200 shadow-sm mb-2">
-            <div class="text-center px-2">
-              <span class="text-[10px] text-slate-500 block">단일 프롬프트</span>
-              <span class="text-lg font-black text-rose-600 font-mono">1.96%</span>
+          <h4 class="text-xs md:text-sm font-extrabold text-slate-900 mb-1.5">프롬프트 테크닉의 종말과 도구의 승리</h4>
+
+          <div class="flex items-center gap-2 bg-white p-2 rounded-xl border border-[#F5DAC8] shadow-sm mb-1.5">
+            <div class="text-center px-1.5">
+              <span class="text-[9.5px] text-slate-500 block">단일 프롬프트</span>
+              <span class="text-base font-black text-[#BE123C] font-mono">1.96%</span>
             </div>
-            <div class="text-slate-400 font-bold">➔</div>
-            <div class="text-center px-2">
-              <span class="text-[10px] text-slate-500 block">Tool-use + 피드백</span>
-              <span class="text-lg font-black text-emerald-600 font-mono">70%+</span>
+            <div class="text-slate-400 font-bold text-xs">➔</div>
+            <div class="text-center px-1.5">
+              <span class="text-[9.5px] text-slate-500 block">Tool + 피드백</span>
+              <span class="text-base font-black text-[#047857] font-mono">70%+</span>
             </div>
-            <div class="text-[10.5px] text-slate-700 leading-snug pl-1 border-l border-slate-200">
-              모델의 기본 지능보다 <strong>도구 환경(Environment)과 피드백 루프</strong>가 성능을 35배 결정.
+            <div class="text-[10px] text-slate-700 leading-tight pl-1 border-l border-slate-200">
+              모델의 체급보다 <strong>도구 환경(Environment)과 피드백 루프</strong>가 성능을 35배 결정.
             </div>
           </div>
         </div>
-        <p class="text-[11px] text-slate-600 leading-relaxed">
-          "더 정교한 프롬프트를 짜려고 씨름하지 마십시오. 모델에게 <strong>정확한 실행 권한과 린터·테스트 피드백</strong>을 쥐어주는 것이 수십 배 강력합니다."
+        <p class="text-[10.5px] text-slate-600 leading-snug">
+          &ldquo;더 정교한 프롬프트를 짜려고 씨름하지 마십시오. 모델에게 <strong>정확한 실행 권한과 린터·테스트 피드백</strong>을 쥐어주는 것이 수십 배 강력합니다.&rdquo;
         </p>
       </div>
 
-      <!-- Right: Why This Leads to Chapter 02 & Chapter 04 -->
-      <div class="col-span-7 bento-tile p-4 border-l-4 border-l-[#2D9BB2] flex flex-col justify-between">
+      <!-- Right: Why This Leads to Chapter 02 & Chapter 03-04 (Soft Lavender, 7 cols) -->
+      <div class="col-span-7 rounded-2xl p-3 border border-[#DFD2F5] bg-[#F7F3FC] shadow-sm flex flex-col justify-between border-t-4 border-t-[#7C59C8]">
         <div>
           <div class="flex items-center justify-between mb-1">
-            <span class="text-xs font-mono font-bold text-[#1B7385]">NEXT ROADMAP CONNECTION</span>
-            <span class="text-[10px] font-mono text-slate-500">계보가 증명한 다음 단계</span>
+            <span class="text-[10px] font-mono font-bold text-[#4E3185] uppercase tracking-wider">NEXT ROADMAP CONNECTION</span>
+            <span class="text-[9.5px] font-mono text-slate-500 font-semibold">계보가 증명한 다음 단계</span>
           </div>
-          <h4 class="text-sm font-bold text-slate-900 mb-2">계보에서 얻은 결론 : 다음 챕터로의 연결</h4>
+          <h4 class="text-xs md:text-sm font-extrabold text-slate-900 mb-1.5">계보에서 얻은 결론 : 다음 챕터로의 연결</h4>
+
           <div class="grid grid-cols-2 gap-2 text-xs">
-            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
-              <strong class="text-purple-900 block mb-1">Ch 02. 바이브 코딩의 본질</strong>
-              <p class="text-[11px] text-slate-600 leading-relaxed">
+            <div class="p-2 rounded-xl bg-white border border-[#DFD2F5]">
+              <strong class="text-[#554596] block mb-0.5 text-[11px] font-bold">Ch 02. 바이브 코딩의 본질</strong>
+              <p class="text-[10px] text-slate-600 leading-snug">
                 Karpathy의 '말이 코드가 되는' 이상 뒤에 숨겨진 <strong>복잡성 폭탄과 아키텍처 문해력</strong>의 필요성을 진단합니다.
               </p>
             </div>
-            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
-              <strong class="text-[#1B7385] block mb-1">Ch 03~04. 언어와 툴체인</strong>
-              <p class="text-[11px] text-slate-600 leading-relaxed">
-                컴파일러 피드백을 주는 <strong>Go/Rust</strong>와, 기억을 유지하는 <strong>Skills · LLM-Wiki</strong>를 구축합니다.
+            <div class="p-2 rounded-xl bg-white border border-[#DFD2F5]">
+              <strong class="text-sky-800 block mb-0.5 text-[11px] font-bold">Ch 03~04. 언어와 툴체인</strong>
+              <p class="text-[10px] text-slate-600 leading-snug">
+                컴파일러 피드백을 주는 <strong>Go/Rust</strong>와, 기억을 유지하는 <strong>Skills &middot; LLM-Wiki</strong>를 구축합니다.
               </p>
             </div>
           </div>
         </div>
-        <div class="flex items-center justify-between text-xs font-mono text-[#1B7385] border-t border-slate-100 pt-2 mt-2">
-          <span>💡 "계보의 교훈 : 프롬프트 엔지니어링은 끝났고, 소프트웨어 아키텍처의 시대가 열렸다."</span>
+
+        <div class="flex items-center justify-between text-[10.5px] font-mono text-[#554596] border-t border-[#DFD2F5] pt-1.5 mt-1">
+          <span>💡 &ldquo;계보의 교훈 : 프롬프트 엔지니어링은 끝났고, 소프트웨어 아키텍처의 시대가 열렸다.&rdquo;</span>
+          <span class="font-bold text-[#E87A4D]">Next: Ch 02 ➔</span>
         </div>
       </div>
     </div>
