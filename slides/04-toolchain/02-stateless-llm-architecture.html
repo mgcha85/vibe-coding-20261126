@@ -1,0 +1,151 @@
+<section class="slide flex flex-col justify-between" data-title="4.1 Stateless LLM의 본질과 Every-turn 컨텍스트 주입">
+  <!-- Header -->
+  <div class="mb-1">
+    <div class="flex items-center justify-between">
+      <span class="text-sky-600 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.1 Stateless LLM과 컨텍스트 주입</span>
+      <span class="px-2.5 py-0.5 rounded-full bg-sky-50 border border-sky-300 text-sky-800 font-mono text-[10px] font-bold shadow-sm flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-sky-600 animate-pulse"></span>
+        STATELESS ARCHITECTURE &middot; CONTEXT INJECTION
+      </span>
+    </div>
+    <h2 class="text-2xl lg:text-3xl font-black text-slate-900 mt-0.5">Stateless LLM의 본질과 Every-turn 컨텍스트 주입</h2>
+    <p class="text-xs text-slate-600 mt-0.5">
+      LLM은 이전 대화를 스스로 기억하지 못하는 <strong>완전한 상태 비저장(Stateless)</strong> 엔진입니다. 매 턴마다 외부 애플리케이션 계층이 헌법·규칙·이력을 주입해야 합니다.
+    </p>
+  </div>
+
+  <!-- Top 3 Architectural Pillar Stat Cards -->
+  <div class="grid grid-cols-3 gap-3 my-0.5">
+    <!-- Card 1 -->
+    <div class="bg-white rounded-xl border border-slate-200/90 px-3 py-2 shadow-sm flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-700 font-bold font-mono text-xs">
+          01
+        </div>
+        <div>
+          <div class="text-[10px] font-mono font-bold text-rose-800 uppercase tracking-wider">No Internal Memory</div>
+          <div class="text-xs lg:text-sm font-extrabold text-slate-900">Stateless 순수 함수</div>
+        </div>
+      </div>
+      <span class="text-[10.5px] font-mono font-bold px-2 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200">기억 상실의 뇌</span>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="bg-white rounded-xl border border-slate-200/90 px-3 py-2 shadow-sm flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-700 font-bold font-mono text-xs">
+          02
+        </div>
+        <div>
+          <div class="text-[10px] font-mono font-bold text-sky-800 uppercase tracking-wider">External Layer</div>
+          <div class="text-xs lg:text-sm font-extrabold text-slate-900">3대 외부 자산 보관</div>
+        </div>
+      </div>
+      <span class="text-[10.5px] font-mono font-bold px-2 py-0.5 rounded bg-sky-50 text-sky-700 border border-sky-200">헌법 &middot; 규칙 &middot; 이력</span>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="bg-white rounded-xl border border-slate-200/90 px-3 py-2 shadow-sm flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 font-bold font-mono text-xs">
+          03
+        </div>
+        <div>
+          <div class="text-[10px] font-mono font-bold text-emerald-800 uppercase tracking-wider">Every-Turn Injector</div>
+          <div class="text-xs lg:text-sm font-extrabold text-slate-900">매 턴 동적 깔때기 합성</div>
+        </div>
+      </div>
+      <span class="text-[10.5px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">컨텍스트 주입기</span>
+    </div>
+  </div>
+
+  <!-- Main Content Grid (Left: Diagram 5 cols / Right: Architectural Deep Dive 7 cols) -->
+  <div class="grid grid-cols-12 gap-3.5 flex-1 items-stretch my-0.5 overflow-hidden">
+    <!-- LEFT: High-Res Diagram (5 cols) -->
+    <div class="col-span-5 bg-white rounded-2xl p-2.5 border border-slate-200 shadow-xl flex items-center justify-center border-t-4 border-t-sky-500 overflow-hidden">
+      <div class="w-full h-full rounded-xl overflow-hidden bg-slate-950 flex items-center justify-center border border-slate-800 relative group">
+        <img 
+          src="./slides/04-toolchain/assets/stateless_llm_context_injection.jpg" 
+          alt="Stateless Large Language Model Architecture and Every-turn Context Injection" 
+          class="w-full h-full object-contain max-h-[460px] xl:max-h-[500px] transition-transform duration-300 group-hover:scale-[1.02]"
+        />
+        <div class="absolute bottom-2 right-2 px-2 py-0.5 bg-slate-900/80 backdrop-blur rounded text-[9.5px] font-mono text-slate-300 border border-slate-700">
+          Fig 4.1 Stateless Context Injector
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: 3대 아키텍처 원천 분석 (7 cols) -->
+    <div class="col-span-7 bg-white rounded-2xl p-3.5 border border-slate-200 shadow-xl flex flex-col justify-between border-t-4 border-t-indigo-600 overflow-hidden">
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-mono text-indigo-700 font-extrabold uppercase tracking-wider">CORE ARCHITECTURAL REALITY</span>
+          <span class="text-[10px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded font-bold">인프라 관점의 진실</span>
+        </div>
+        <h3 class="text-sm lg:text-base font-black text-slate-900 mb-1.5">에이전트의 '기억'은 모델의 지능이 아닌 툴체인의 인젝션 결과</h3>
+
+        <div class="space-y-1.5 text-xs">
+          <!-- Item 1: Stateless LLM -->
+          <div class="p-2 rounded-xl bg-slate-50 border border-slate-200/80">
+            <div class="flex items-center justify-between mb-0.5">
+              <span class="font-extrabold text-slate-900 flex items-center gap-1.5 text-[11.5px]">
+                <span class="w-2 h-2 rounded-full bg-rose-500 inline-block"></span>
+                1. STATELESS LLM (No Memory) : 완전한 기억 상실
+              </span>
+              <span class="font-mono text-[9.5px] bg-rose-50 text-rose-700 px-1.5 py-0.2 rounded border border-rose-200 font-bold">Pure Function</span>
+            </div>
+            <p class="text-slate-600 text-[11px] leading-snug">
+              LLM 가중치(Weights)는 요청 간 상태를 전혀 유지하지 못합니다. 이전 턴을 기억하는 것처럼 보이는 것은 매 요청마다 전체 맥락을 새로 전달하기 때문입니다.
+            </p>
+          </div>
+
+          <!-- Item 2: External Application Layer -->
+          <div class="p-2 rounded-xl bg-slate-50 border border-slate-200/80">
+            <div class="flex items-center justify-between mb-0.5">
+              <span class="font-extrabold text-slate-900 flex items-center gap-1.5 text-[11.5px]">
+                <span class="w-2 h-2 rounded-full bg-sky-500 inline-block"></span>
+                2. EXTERNAL APPLICATION LAYER : 3대 외부 자산
+              </span>
+              <span class="font-mono text-[9.5px] bg-sky-50 text-sky-700 px-1.5 py-0.2 rounded border border-sky-200 font-bold">3 Core Assets</span>
+            </div>
+            <p class="text-slate-600 text-[11px] leading-snug">
+              &bull; <strong>System Instructions</strong>: 최상위 헌법(<code class="text-sky-700 font-mono text-[10.5px]">AGENTS.md</code>)과 행동 강령(<code class="text-sky-700 font-mono text-[10.5px]">RULES</code>)<br>
+              &bull; <strong>User Preferences &amp; History</strong>: 도메인 설정, 이전 대화 및 실행 결과 기록
+            </p>
+          </div>
+
+          <!-- Item 3: Every-turn Context Injector -->
+          <div class="p-2 rounded-xl bg-slate-50 border border-slate-200/80">
+            <div class="flex items-center justify-between mb-0.5">
+              <span class="font-extrabold text-slate-900 flex items-center gap-1.5 text-[11.5px]">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+                3. CONTEXT INJECTOR : 매 턴 동적 깔때기 조립
+              </span>
+              <span class="font-mono text-[9.5px] bg-emerald-50 text-emerald-700 px-1.5 py-0.2 rounded border border-emerald-200 font-bold">Assembly Funnel</span>
+            </div>
+            <p class="text-slate-600 text-[11px] leading-snug">
+              에이전트 런타임(Claude Code, Antigravity 등)은 매 턴마다 분산된 자산들을 <strong>'단 하나의 Context Window'</strong>로 합성하여 전송합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[10.5px] font-mono text-sky-900 bg-sky-50/70 p-2 rounded-xl border border-sky-200 mt-1.5">
+        💡 <strong>결론:</strong> 에이전트의 지능을 높이려면 프롬프트 미사여구가 아닌, <strong>외부 툴체인(헌법·스킬·규칙)의 조립 파이프라인</strong>을 설계해야 합니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Banner -->
+  <div class="bg-white rounded-xl px-4 py-1.5 flex items-center justify-between text-[11px] font-mono text-slate-800 border border-slate-200 shadow-sm mt-0.5">
+    <div class="flex items-center gap-2">
+      <span class="inline-flex items-center px-2 py-0.5 rounded text-[10.5px] font-bold font-mono bg-sky-600 text-white shadow-sm">
+        🧩 다음 슬라이드 연결
+      </span>
+      <span class="text-slate-800 font-medium">
+        그렇다면 외부 툴체인은 <strong>이 자산들을 1장의 빈 문서에 구체적으로 어떻게 조립</strong>하는가?
+      </span>
+    </div>
+    <span class="text-sky-600 font-bold text-[10.5px]">Next: 4.2 토큰의 실체 : 컨텍스트 윈도우 조립 ➔</span>
+  </div>
+</section>
