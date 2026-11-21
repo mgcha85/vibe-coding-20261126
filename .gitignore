@@ -6,7 +6,7 @@ node_modules/
 dist/
 __pycache__/
 *.zip
-!downloads/*.zip
+downloads/
 .venv/
 .pytest_cache/
 .ruff_cache/
