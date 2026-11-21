@@ -5471,7 +5471,7 @@
       <!-- [COMPONENT] 04-toolchain/09-common-vs-project-skills.html -->
 <section class="slide flex flex-col justify-between" data-title="4.8 공통 Skills vs 프로젝트 특화: AGENTS.md와 PROJECT.md" data-chapter-id="ch04" data-chapter-badge="CHAPTER 04 · 툴체인" data-chapter-title="Ch 04. 툴체인 : Skills · LLM-Wiki · Context" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
   <!-- Header -->
-  <div class="mb-1.5">
+  <div class="mb-1.5 shrink-0">
     <div class="flex items-center justify-between">
       <span class="text-sky-600 font-mono text-xs uppercase tracking-wider font-bold">Chapter 04. 툴체인 &middot; 4.8 스킬 계층 분리</span>
       <span class="px-2.5 py-0.5 rounded bg-sky-50 border border-sky-300 text-sky-800 font-mono text-[11px] font-bold">
@@ -5485,10 +5485,10 @@
   </div>
 
   <!-- Main Grid (12 cols) -->
-  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1">
+  <div class="grid grid-cols-12 gap-3 flex-1 items-stretch my-1 min-h-0">
     
     <!-- LEFT: Common Skills Architecture (6 cols) -->
-    <div class="col-span-6 bento-tile p-3 bg-white border border-slate-200 border-t-4 border-t-sky-500 shadow-md flex flex-col justify-between">
+    <div class="col-span-6 bento-tile p-3 bg-white border border-slate-200 border-t-4 border-t-sky-500 shadow-md flex flex-col justify-between min-h-0">
       <div>
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center gap-1.5">
@@ -5498,7 +5498,7 @@
           <span class="text-[9.5px] font-mono text-sky-800 bg-sky-50 px-2 py-0.5 rounded border border-sky-200 font-bold">Symlink &middot; Submodule</span>
         </div>
 
-        <p class="text-[11px] text-slate-600 mb-2 leading-relaxed">
+        <p class="text-[11px] text-slate-600 mb-2 leading-relaxed font-sans">
           회사나 팀의 모든 레포지토리에서 100% 동일하게 공유되는 표준 거버넌스 문서와 범용 스킬 팩입니다.
         </p>
 
@@ -5530,13 +5530,13 @@
         </div>
       </div>
 
-      <div class="p-2 rounded bg-sky-50 border border-sky-200 text-[10.5px] font-mono text-sky-900 leading-snug">
+      <div class="p-2 rounded bg-sky-50 border border-sky-200 text-[10.5px] font-mono text-sky-900 leading-snug mt-2 shrink-0">
         💡 <strong class="text-sky-800">중앙 집중식 장점:</strong> 사내 코딩 컨벤션이나 보안 가이드가 바뀌면 중앙 레포 수정 하나로 모든 프로젝트에 즉시 동기화!
       </div>
     </div>
 
     <!-- RIGHT: Project-Specific Specialization (6 cols) -->
-    <div class="col-span-6 bento-tile p-3 bg-white border border-slate-200 border-t-4 border-t-amber-500 shadow-md flex flex-col justify-between">
+    <div class="col-span-6 bento-tile p-3 bg-white border border-slate-200 border-t-4 border-t-amber-500 shadow-md flex flex-col justify-between min-h-0">
       <div>
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center gap-1.5">
@@ -5546,7 +5546,7 @@
           <span class="text-[9.5px] font-mono text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 font-bold">Local Repository Only</span>
         </div>
 
-        <p class="text-[11px] text-slate-600 mb-2 leading-relaxed">
+        <p class="text-[11px] text-slate-600 mb-2 leading-relaxed font-sans">
           해당 레포지토리 고유의 비즈니스 도메인, 데이터 스키마, 특화 파이프라인만 격리하여 기술하는 전용 문서입니다.
         </p>
 
@@ -5556,7 +5556,7 @@
           <div 
             onclick="openProjectModal(event)" 
             class="p-2.5 rounded bg-amber-50/70 border-2 border-amber-300 hover:border-amber-500 hover:bg-amber-100/70 transition-all cursor-pointer shadow-xs group"
-            title="클릭하여 PBMC 3k PROJECT.md 실전 예제 열람"
+            title="클릭하여 pbmc3k-vibe-lab PROJECT.md 실전 예제 열람"
           >
             <div class="flex items-center justify-between text-amber-800 font-bold text-[11px] mb-0.5">
               <span class="flex items-center gap-1.5">
@@ -5568,8 +5568,8 @@
               </span>
             </div>
             <div class="text-[10px] text-slate-700 font-sans leading-relaxed">
-              • 현재 시스템의 비즈니스 목표: <strong>"10x Genomics PBMC 3k 단일세포 전사체 파이프라인"</strong><br>
-              • 이 프로젝트만의 데이터 계약: <code class="text-amber-800 font-mono font-bold bg-amber-100 px-1 py-0.2 rounded">data/raw/pbmc3k_raw.h5ad</code>, DuckDB 웨어하우스 스키마.
+              • 비즈니스 목표: <strong>"10x PBMC 3k DuckDB ➔ 분석 파이프라인 ➔ Astro 시각화"</strong><br>
+              • 스택 &amp; 데이터 계약: Python 3.12 (uv), DuckDB(SSOT), Astro 5 (<strong class="text-rose-700 bg-rose-50 px-1 py-0.2 rounded font-mono">import pandas 금지</strong>), <code class="text-amber-800 font-mono font-bold bg-amber-100 px-1 py-0.2 rounded">data/raw/pbmc3k_raw.h5ad</code>
             </div>
           </div>
 
@@ -5580,31 +5580,31 @@
               <span class="text-[9.5px] text-slate-500 font-sans">해당 레포 한정</span>
             </div>
             <div class="text-[10px] text-slate-600 font-sans leading-relaxed">
-              • <code class="text-purple-700 font-mono font-bold bg-purple-100/60 px-1 py-0.2 rounded">db-duckdb-schema</code>: 2,700개 세포 &times; 32,738개 유전자 DuckDB 정규화 DDL.<br>
-              • <code class="text-purple-700 font-mono font-bold bg-purple-100/60 px-1 py-0.2 rounded">data-analytics-dimreduce-cluster</code>: HVG 2,000, PCA 50, Leiden resolution 1.0 군집 연동.
+              • <code class="text-purple-700 font-mono font-bold bg-purple-100/60 px-1 py-0.2 rounded">db-duckdb-schema</code>: 2,700 세포 &times; 32,738 유전자 DuckDB 웨어하우스 DDL.<br>
+              • <code class="text-purple-700 font-mono font-bold bg-purple-100/60 px-1 py-0.2 rounded">ops-pipeline-orchestration</code>: ingest ➔ eda ➔ qc ➔ dimreduce ➔ markers 7단계 엄격 순서.
             </div>
           </div>
         </div>
       </div>
 
-      <div class="p-2 rounded bg-amber-50 border border-amber-200 text-[10.5px] font-mono text-amber-800 leading-snug">
+      <div class="p-2 rounded bg-amber-50 border border-amber-200 text-[10.5px] font-mono text-amber-800 leading-snug mt-2 shrink-0">
         💡 <strong class="text-amber-700">도메인 격리 원칙:</strong> 공통 사규(AGENTS.md)를 더럽히지 않고, 각 프로젝트의 특수성을 독립적으로 보존!
       </div>
     </div>
   </div>
 
-  <!-- Fullscreen Modal for PROJECT.md Stock Quant Production Example (Light Editorial Theme) -->
+  <!-- Fullscreen Modal for PROJECT.md Production Example (Light Editorial Theme) -->
   <div 
     id="project-modal" 
-    class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm hidden flex items-center justify-center p-6 transition-all"
+    class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 xl:p-8 transition-all"
     onclick="closeProjectModal(event)"
   >
     <div 
-      class="relative max-w-4xl w-full max-h-[88vh] flex flex-col bg-white border border-slate-300 rounded-xl overflow-hidden shadow-2xl" 
+      class="relative max-w-5xl w-full max-h-[90vh] flex flex-col bg-white border border-slate-300 rounded-xl overflow-hidden shadow-2xl" 
       onclick="event.stopPropagation()"
     >
       <!-- Modal Header (Editorial Light Window) -->
-      <div class="flex items-center justify-between px-5 py-3 bg-slate-100/90 border-b border-slate-200 shrink-0">
+      <div class="flex items-center justify-between px-5 py-3 bg-slate-100 border-b border-slate-200 shrink-0">
         <div class="flex items-center gap-3">
           <div class="flex items-center gap-1.5">
             <span class="w-3 h-3 rounded-full bg-rose-400 inline-block border border-rose-500/30"></span>
@@ -5612,74 +5612,258 @@
             <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block border border-emerald-500/30"></span>
           </div>
           <span class="text-sm font-mono font-bold text-slate-800 flex items-center gap-1.5">
-            <span>📋</span> PROJECT.md &middot; 10x Genomics PBMC 3k scRNA-seq 단일세포 전사체 실전 정의서 (Domain SSOT)
+            <span>📋</span> /PROJECT.md &middot; 실전 프로젝트 특화 정의서 전문
           </span>
-          <span class="text-[10px] font-mono text-amber-800 bg-amber-100/80 px-2 py-0.5 rounded border border-amber-300 font-bold">
-            생물정보학 도메인 특화
+          <span class="text-[10px] font-mono text-amber-800 bg-amber-100 px-2 py-0.5 rounded border border-amber-300 font-bold">
+            pbmc3k-vibe-lab &middot; Domain SSOT
           </span>
         </div>
-        <button 
-          onclick="closeProjectModal()" 
-          class="px-2.5 py-1 bg-white hover:bg-slate-200 text-slate-700 border border-slate-300 rounded text-xs font-mono font-bold transition-all shadow-sm cursor-pointer"
-        >
-          ✕ 닫기 (ESC)
-        </button>
+        <div class="flex items-center gap-2">
+          <button 
+            id="copy-project-btn"
+            onclick="copyProjectMarkdown()" 
+            class="px-2.5 py-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 rounded text-xs font-mono font-bold transition-all shadow-sm flex items-center gap-1 cursor-pointer"
+          >
+            <span>📋</span> <span id="copy-project-text">마크다운 복사</span>
+          </button>
+          <button 
+            onclick="closeProjectModal()" 
+            class="px-2.5 py-1 bg-slate-200 hover:bg-slate-300 text-slate-700 border border-slate-300 rounded text-xs font-mono font-bold transition-all shadow-sm cursor-pointer"
+          >
+            ✕ 닫기 (ESC)
+          </button>
+        </div>
       </div>
 
       <!-- Modal Body (Editorial Light Theme Code View) -->
-      <div class="flex-1 overflow-y-auto p-5 bg-slate-50/70 font-mono text-xs text-slate-800 leading-relaxed space-y-3.5">
-        <!-- 1. Identity & Runtime Scope -->
-        <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
-          <div class="text-sky-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 1. Project Identity &amp; Runtime Scope</span>
+      <div class="flex-1 overflow-y-auto p-5 bg-slate-50/70 font-mono text-xs text-slate-800 leading-relaxed space-y-4">
+        
+        <!-- Header Note -->
+        <div class="p-3.5 bg-amber-50/70 border border-amber-200 rounded-lg text-slate-700 font-sans text-xs flex items-center justify-between">
+          <div>
+            <strong class="text-amber-900 font-mono text-[13px] block"># PROJECT.md</strong>
+            <p class="text-[11.5px] text-slate-600 mt-0.5">
+              이 실습 저장소의 특화 SSOT다. 공통 규칙은 <code class="text-slate-800 font-mono bg-white px-1 py-0.2 rounded border border-slate-200">AGENTS.md</code>.
+            </p>
           </div>
-          <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
-            - <strong>Project Name:</strong> <code class="text-sky-900 bg-sky-100/70 px-1.5 py-0.5 rounded font-bold font-mono">pbmc3k-vibe-lab</code><br>
-            - <strong>Domain:</strong> scRNA-seq / PBMC cell-type clustering (단일세포 전사체 분석 및 세포타입 판정)<br>
-            - <strong>Execution Runtime:</strong><br>
-            &nbsp;&nbsp;• <strong>Backend:</strong> Python 3.12 (<code class="font-mono text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded">.venv</code>, <code class="font-mono text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded">uv</code> 패키지 동기화)<br>
-            &nbsp;&nbsp;• <strong>Frontend:</strong> Astro 5 (<code class="font-mono text-sky-800 bg-sky-50 px-1 py-0.2 rounded">frontend/</code>, pin <code class="font-mono font-bold">astro@5.16.6</code>; Node 22.22 호환)<br>
-            &nbsp;&nbsp;• <strong>Warehouse SSOT:</strong> <code class="text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded border border-amber-300 font-mono font-bold">data/warehouse/pbmc3k.duckdb</code>
-          </p>
+          <span class="px-2 py-1 bg-white text-amber-800 text-[10px] font-mono font-bold rounded border border-amber-200 shrink-0 ml-3">
+            Domain SSOT
+          </span>
         </div>
 
-        <!-- 2. Seed Data & Dependency Policy -->
-        <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
-          <div class="text-amber-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 2. Seed Data Contract &amp; Dependency Policy</span>
+        <!-- Identity & Mission Grid -->
+        <div class="grid grid-cols-12 gap-3">
+          <!-- Identity (5 cols) -->
+          <div class="col-span-5 p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
+            <div class="text-sky-800 font-bold text-sm font-mono flex items-center gap-2">
+              <span>## Identity</span>
+            </div>
+            <table class="w-full text-[11px] font-sans border-collapse">
+              <tbody class="divide-y divide-slate-200 font-mono">
+                <tr>
+                  <td class="p-1.5 text-slate-500 font-bold w-1/3">Name</td>
+                  <td class="p-1.5 text-sky-800 font-bold">pbmc3k-vibe-lab</td>
+                </tr>
+                <tr>
+                  <td class="p-1.5 text-slate-500 font-bold">Brand</td>
+                  <td class="p-1.5 text-slate-800">ChaLab</td>
+                </tr>
+                <tr>
+                  <td class="p-1.5 text-slate-500 font-bold">Domain</td>
+                  <td class="p-1.5 text-slate-700 text-[10px]">scRNA-seq / PBMC clustering</td>
+                </tr>
+                <tr>
+                  <td class="p-1.5 text-slate-500 font-bold">Root</td>
+                  <td class="p-1.5 text-[9.5px] text-slate-600 break-all">/mnt/data/.../src/ui</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
-            - <strong>Seed Data:</strong> <code class="text-amber-800 bg-amber-100/80 px-1.5 py-0.5 rounded border border-amber-300 font-mono font-bold">data/raw/pbmc3k_raw.h5ad</code> (2,700 세포 &times; 32,738 유전자, raw count matrix, hg19)<br>
-            - <strong>Allowed BE:</strong> duckdb, polars, scanpy, anndata, numpy, scipy, scikit-learn, igraph, umap-learn, h5py, pyarrow, ruff<br>
-            - <strong>Forbidden (절대 금기):</strong> <strong class="text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-300">import pandas</strong> 전면 금지, pyspark, dask dataframe, jupyter를 산출 경로로 사용하는 행위 금지
-          </p>
+
+          <!-- Mission & Scope (7 cols) -->
+          <div class="col-span-7 p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
+            <div class="text-amber-800 font-bold text-sm font-mono flex items-center gap-2">
+              <span>## Mission &amp; Scope</span>
+            </div>
+            <div class="text-[11px] font-sans text-slate-700 space-y-1">
+              <div>• <strong>목표:</strong> 10x PBMC 3k를 <strong>DuckDB 웨어하우스 → 분석 파이프라인 → Astro 시각화</strong>까지 재현 가능한 연구 앱으로 구축.</div>
+              <div>• <strong>범위:</strong> QC → 차원축소/군집 → 마커 → 세포타입 추론 → Astro 대시보드.</div>
+              <div>• <strong>범위 밖:</strong> 클라우드 배포, 다중 샘플 통합, 새 원시 데이터 다운로드 (이미 <code class="font-mono text-slate-800">data/raw/</code>에 있음).</div>
+            </div>
+          </div>
         </div>
 
-        <!-- 3. Analysis Pipeline Defaults -->
-        <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
-          <div class="text-emerald-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 3. Single-Cell Analysis Defaults (분석 알고리즘 표준)</span>
+        <!-- Stack (강제) -->
+        <div class="p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="text-emerald-800 font-bold text-sm font-mono flex items-center gap-2">
+              <span>## Stack (강제)</span>
+            </div>
+            <span class="text-[10px] font-mono text-rose-700 font-bold bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+              ⛔ import pandas 엄격 금지
+            </span>
           </div>
-          <p class="text-slate-700 text-[11px] mb-2 leading-relaxed font-sans">
-            - <strong>Random Seed:</strong> <code class="bg-slate-100 px-1 rounded font-mono">seed = 0</code> / <code class="bg-slate-100 px-1 rounded font-mono">sc.settings.seed = 0</code><br>
-            - <strong>QC 필터링 기준:</strong> 미토콘드리아 유전자 접두사 <code class="bg-slate-100 px-1 rounded font-mono">MT-</code>, <code class="text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded font-bold font-mono">pct_counts_mt &lt; 5 AND 200 &lt;= n_genes_by_counts &lt; 2500</code>, <code class="bg-slate-100 px-1 rounded font-mono">min_cells = 3</code><br>
-            - <strong>정규화 &amp; 차원축소:</strong> <code class="bg-slate-100 px-1 rounded font-mono">target_sum = 1e4</code>, HVG = <code class="text-indigo-800 bg-indigo-50 px-1 rounded font-bold font-mono">seurat top 2000</code>, PCA <code class="font-mono">n_comps = 50</code>, neighbors <code class="font-mono">n_neighbors = 15, n_pcs = 30</code><br>
-            - <strong>군집 &amp; 마커 추출:</strong> Leiden <code class="text-purple-800 bg-purple-50 px-1 rounded font-bold font-mono">resolution=1.0, flavor=igraph, n_iterations=2</code>, rank_genes_groups method = <code class="bg-slate-100 px-1 rounded font-mono">wilcoxon, use_raw=True</code>
-          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-[11px] font-sans border-collapse">
+              <thead>
+                <tr class="bg-slate-100 text-slate-700 border-b border-slate-300 font-mono text-[10.5px]">
+                  <th class="p-2 text-left w-24">층</th>
+                  <th class="p-2 text-left w-48">기술</th>
+                  <th class="p-2 text-left">규칙</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 text-[10.5px]">
+                <tr>
+                  <td class="p-2 font-mono font-bold text-sky-800 bg-slate-50/50">BE</td>
+                  <td class="p-2 font-mono text-slate-800">Python 3.12 + <code>.venv</code></td>
+                  <td class="p-2 font-mono text-slate-600"><code>uv</code>로 패키지 설치</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-mono font-bold text-amber-800 bg-slate-50/50">Warehouse</td>
+                  <td class="p-2 font-mono text-amber-900 font-bold">DuckDB (주력)</td>
+                  <td class="p-2 text-slate-700 font-sans">테이블 &middot; 집계 &middot; 내보내기의 SSOT</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-mono font-bold text-slate-700 bg-slate-50/50">Frame</td>
+                  <td class="p-2 font-mono text-slate-800">Polars (보조)</td>
+                  <td class="p-2 font-sans text-rose-700 font-bold">SQL로 어색한 변환만. <code>import pandas</code> 금지</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-mono font-bold text-purple-800 bg-slate-50/50">Graph ML</td>
+                  <td class="p-2 font-mono text-slate-700">scanpy / numpy / scipy / igraph</td>
+                  <td class="p-2 font-mono text-slate-600">PCA &middot; neighbors &middot; UMAP &middot; Leiden &middot; rank_genes_groups만</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-mono font-bold text-indigo-800 bg-slate-50/50">FE</td>
+                  <td class="p-2 font-mono text-indigo-900 font-bold">Astro 5</td>
+                  <td class="p-2 font-sans text-slate-700">모든 단계 시각화는 Astro 페이지 / 컴포넌트</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-mono font-bold text-emerald-800 bg-slate-50/50">Charts</td>
+                  <td class="p-2 font-mono text-emerald-900 font-bold">Apache ECharts</td>
+                  <td class="p-2 font-mono text-slate-600"><code>echarts-setup.ts</code> + <code>ui-viz-*</code>. 손수 SVG/타 차트 라이브러리 금지</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-mono font-bold text-slate-600 bg-slate-50/50">Methods</td>
+                  <td class="p-2 font-mono text-slate-700">/methods</td>
+                  <td class="p-2 font-sans text-slate-600">HTML 보드 + 단계 스키매틱 + 세포 퍼널 + 실행 타임라인. 웹 카피에 C4/스택명 금지</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-mono font-bold text-cyan-800 bg-slate-50/50">UI</td>
+                  <td class="p-2 font-sans text-slate-700">light background 기본</td>
+                  <td class="p-2 font-mono text-slate-600"><code>.cursor/skills/ui-*</code> 준수</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="p-2 bg-rose-50 rounded border border-rose-200 text-[10px] text-rose-800 font-sans">
+            <strong>⛔ 전면 금지:</strong> <code>pandas</code>, Jupyter를 최종 산출물로 사용, matplotlib/seaborn PNG &middot; 손수 SVG를 Astro 차트 대체로 사용(디버그 PNG는 <code>results/</code>만 허용).
+          </div>
         </div>
 
-        <!-- 4. Canonical Marker Panel & UI Charts -->
-        <div class="p-3.5 bg-white rounded-lg border border-slate-200 shadow-sm">
-          <div class="text-purple-800 font-bold text-sm mb-1.5 flex items-center gap-2">
-            <span># 4. Canonical Marker Panel &amp; ECharts UI SSoT</span>
+        <!-- Directory Ownership & Pipeline Order -->
+        <div class="grid grid-cols-12 gap-3">
+          <!-- Directory Ownership (5 cols) -->
+          <div class="col-span-5 p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
+            <div class="text-sky-800 font-bold text-sm font-mono flex items-center gap-2">
+              <span>## Directory Ownership</span>
+            </div>
+            <pre class="bg-slate-900 text-slate-100 p-2.5 rounded-lg text-[9.5px] leading-relaxed font-mono overflow-x-auto"><code>data/raw/             # 읽기 전용 원본 (h5ad)
+data/warehouse/       # DuckDB 파일만. BE 소유
+backend/              # Python 파이프라인 단계 모듈
+frontend/             # Astro 앱. 시각화 SSOT
+frontend/public/data/ # DuckDB export (생성물)
+results/              # 요약 md/json (행렬 금지)
+.cursor/skills/       # 절차 기억 SSOT</code></pre>
+            <p class="text-[10px] text-slate-500 font-sans">
+              상세 트리는 스킬 <code class="font-mono text-slate-700">data-analytics-source-tree</code>를 읽는다.
+            </p>
           </div>
-          <p class="text-slate-700 text-[11px] mb-1 leading-relaxed font-sans">
-            - <strong>표준 세포 마커 패널 (SSOT):</strong><br>
-            &nbsp;&nbsp;<code class="text-purple-900 bg-purple-100/80 px-1.5 py-0.5 rounded border border-purple-200 font-bold font-mono text-[10px]">IL7R, CD3D, CD3E, CD8A, CD8B, MS4A1, CD79A, CD14, LYZ, S100A8, FCGR3A, MS4A7, GNLY, NKG7, FCER1A, CST3, PPBP</code><br>
-            - <strong>타입 판정 규칙:</strong> Wilcoxon 상위 유전자 중 하우스키핑(RPS/RPL/MT-) 제외 후 canonical marker 평균 발현으로 판정.<br>
-            - <strong>UI Visualization SSoT:</strong> Astro 컴포넌트 내 <strong>Apache ECharts 5</strong> (<code class="text-sky-800 bg-sky-50 px-1 py-0.2 rounded font-mono">echarts-setup.ts</code>); UMAP 산점도, 바이올린 custom series, 닷플롯 차트 일원화 (손수 SVG나 Plotly 금지).
-          </p>
+
+          <!-- Pipeline Order (7 cols) -->
+          <div class="col-span-7 p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
+            <div class="text-indigo-800 font-bold text-sm font-mono flex items-center gap-2">
+              <span>## Pipeline Order (절대 순서)</span>
+            </div>
+            <ol class="text-[10.5px] font-mono text-slate-700 space-y-1 list-decimal list-inside bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+              <li><strong class="text-sky-800">db-ingest-h5ad</strong> &mdash; h5ad ➔ DuckDB</li>
+              <li><strong class="text-sky-800">data-analytics-eda</strong> &mdash; 기본 EDA + ui-viz-eda (/eda)</li>
+              <li><strong class="text-amber-800">data-analytics-qc</strong> &mdash; QC 필터 + ui-viz-qc</li>
+              <li><strong class="text-purple-800">data-analytics-dimreduce-cluster</strong> &mdash; PCA/UMAP/Leiden + ui-viz-umap</li>
+              <li><strong class="text-emerald-800">data-analytics-markers</strong> &mdash; DEG + ui-viz-dotplot / ui-viz-violin</li>
+              <li><strong class="text-emerald-800">data-analytics-celltype</strong> &mdash; 마커 기반 타입 추론</li>
+              <li><strong class="text-indigo-800">data-analytics-export</strong> &mdash; Astro용 아티팩트 갱신</li>
+            </ol>
+            <p class="text-[10px] text-slate-600 font-sans">
+              👉 앞 단계 산출물 없이 뒷 단계를 구현하지 않는다. 오케스트레이션: <code class="font-mono text-slate-700">ops-pipeline-orchestration</code>.
+            </p>
+          </div>
         </div>
+
+        <!-- Runtime, Dependency Policy & Data Contract -->
+        <div class="grid grid-cols-12 gap-3">
+          <!-- Runtime & Deps (6 cols) -->
+          <div class="col-span-6 p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
+            <div class="text-purple-800 font-bold text-sm font-mono flex items-center gap-2">
+              <span>## Runtime &amp; Dependency Policy</span>
+            </div>
+            <div class="text-[10.5px] font-sans text-slate-700 space-y-1 leading-relaxed">
+              <div>• <strong>Python:</strong> <code class="font-mono">.venv</code> (CPython 3.12), 패키지 관리: <code class="font-mono font-bold text-sky-800">uv</code></div>
+              <div>• <strong>Frontend:</strong> Astro 5 (<code class="font-mono text-slate-700">frontend/</code>, pin <code class="font-mono font-bold">astro@5.16.6</code>; Node 22.22 OK)</div>
+              <div>• <strong>Warehouse:</strong> <code class="font-mono font-bold text-amber-800">data/warehouse/pbmc3k.duckdb</code></div>
+              <div>• <strong>Allowed BE:</strong> duckdb, polars, scanpy, anndata, numpy, scipy, scikit-learn, igraph, umap-learn, h5py, pyarrow, ruff</div>
+              <div>• <strong>FE Charts:</strong> <strong>Apache ECharts 5</strong> (<code class="font-mono">echarts</code>). 차트 색은 <code class="font-mono">ui-design-tokens</code> CSS 변수만 허용.</div>
+            </div>
+          </div>
+
+          <!-- Data Contract & Seed (6 cols) -->
+          <div class="col-span-6 p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
+            <div class="text-amber-800 font-bold text-sm font-mono flex items-center gap-2">
+              <span>## Data Contract &amp; Seed Data</span>
+            </div>
+            <div class="text-[10.5px] font-sans text-slate-700 space-y-1 leading-relaxed">
+              <div>• <strong>원본:</strong> <code class="font-mono text-amber-800 font-bold">data/raw/pbmc3k_raw.h5ad</code> (2700 &times; 32738, raw count, hg19)</div>
+              <div>• <strong>스키마:</strong> 스킬 <code class="font-mono text-slate-800">db-duckdb-schema</code></div>
+              <div>• <strong>분석 시드:</strong> 난수 고정 <code class="font-mono bg-slate-100 px-1 rounded">random_state=0</code> / <code class="font-mono bg-slate-100 px-1 rounded">sc.settings.seed = 0</code></div>
+              <div>• <strong>QC 기본 필터:</strong> <code class="font-mono font-bold text-emerald-800 bg-emerald-50 px-1 rounded">pct_counts_mt &lt; 5 AND 200 &lt;= n_genes_by_counts &lt; 2500</code></div>
+              <div>• <strong>Local UI:</strong> <code class="font-mono text-sky-800">http://127.0.0.1:8899</code> (Footer Brand: ChaLab)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analysis Defaults & Marker Panel -->
+        <div class="grid grid-cols-12 gap-3">
+          <!-- Analysis Defaults (6 cols) -->
+          <div class="col-span-6 p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
+            <div class="text-emerald-800 font-bold text-sm font-mono flex items-center gap-2">
+              <span>## Analysis defaults</span>
+            </div>
+            <pre class="bg-slate-50 text-slate-800 p-2.5 rounded border border-slate-200 text-[10px] leading-relaxed font-mono overflow-x-auto"><code>seed = 0
+mt gene prefix = MT-
+keep cells: pct_counts_mt &lt; 5 AND 200 &lt;= n_genes_by_counts &lt; 2500
+filter_genes min_cells = 3
+normalize target_sum = 1e4
+HVG = seurat top 2000
+PCA n_comps = 50; neighbors n_neighbors=15 n_pcs=30
+Leiden resolution=1.0 flavor=igraph n_iterations=2 directed=False
+rank_genes_groups method=wilcoxon use_raw=True</code></pre>
+          </div>
+
+          <!-- Marker Panel & Quality Gates (6 cols) -->
+          <div class="col-span-6 p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
+            <div class="text-purple-800 font-bold text-sm font-mono flex items-center gap-2">
+              <span>## Canonical marker panel &amp; Quality Gates</span>
+            </div>
+            <div class="p-2 bg-purple-50 rounded border border-purple-200 text-[9.5px] font-mono text-purple-900 leading-snug break-all">
+              IL7R, CD3D, CD3E, CD8A, CD8B, MS4A1, CD79A, CD14, LYZ, S100A8, FCGR3A, MS4A7, GNLY, NKG7, FCER1A, CST3, PPBP
+            </div>
+            <div class="text-rose-800 font-bold text-xs font-mono pt-1">## Quality Gates (커맨드)</div>
+            <pre class="bg-slate-900 text-emerald-300 p-2 rounded text-[10px] font-mono leading-relaxed"><code>.venv/bin/python -c "import pandas"  # 반드시 ImportError
+.venv/bin/ruff check backend/
+cd frontend &amp;&amp; npm run build</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <!-- Modal Footer -->
@@ -5698,6 +5882,8 @@
   </div>
 
   <script>
+    const B64_PROJECT_MD = "IyBQUk9KRUNULm1kCgrsnbQg7Iuk7Iq1IOyggOyepeyGjOydmCDtirntmZQgU1NPVOuLpC4g6rO17Ya1IOq3nOy5meydgCBgQUdFTlRTLm1kYC4KCiMjIElkZW50aXR5Cgp8IO2CpCB8IOqwkiB8CnwgLS0tIHwgLS0tIHwKfCBOYW1lIHwgcGJtYzNrLXZpYmUtbGFiIHwKfCBCcmFuZCAoZm9vdGVyKSB8IENoYUxhYiB8CnwgRG9tYWluIHwgc2NSTkEtc2VxIC8gUEJNQyBjZWxsLXR5cGUgY2x1c3RlcmluZyB8CnwgUm9vdCB8IGAvbW50L2RhdGEvcHJvamVjdHMvbGVjdHVyZXMvdmliZS1jb2Rpbmcvc3JjL3VpYCB8CgojIyBNaXNzaW9uICYgU2NvcGUKCi0g66qp7ZGcOiAxMHggUEJNQyAza+ulvCAqKkR1Y2tEQiDsm6jslrTtlZjsmrDsiqQg4oaSIOu2hOyEnSDtjIzsnbTtlITrnbzsnbgg4oaSIEFzdHJvIOyLnOqwge2ZlCoq6rmM7KeAIOyerO2YhCDqsIDriqXtlZwg7Jew6rWsIOyVseycvOuhnCDqtazstpXtlZzri6QuCi0g67KU7JyEOiBRQyDihpIg7LCo7JuQ7LaV7IaML+q1sOynkSDihpIg66eI7LukIOKGkiDshLjtj6ztg4DsnoUg7LaU66GgIOKGkiBBc3RybyDrjIDsi5zrs7Trk5wuCi0g67KU7JyEIOuwljog7YG065287Jqw65OcIOuwsO2PrCwg64uk7KSRIOyDmO2UjCDthrXtlaksIOyDiCDsm5Dsi5wg642w7J207YSwIOuLpOyatOuhnOuTnCjsnbTrr7ggYGRhdGEvcmF3L2Dsl5Ag7J6I7J2MKS4KCiMjIFN0YWNrICjqsJXsoJwpCgp8IOy4tSB8IOq4sOyIoCB8IOq3nOy5mSB8CnwgLS0tIHwgLS0tIHwgLS0tIHwKfCBCRSB8IFB5dGhvbiAzLjEyICsgYC52ZW52YCB8IGB1dmDroZwg7Yyo7YKk7KeAIOyEpOy5mCB8CnwgV2FyZWhvdXNlIHwgKipEdWNrREIgKOyjvOugpSkqKiB8IO2FjOydtOu4lMK37KeR6rOEwrfrgrTrs7TrgrTquLDsnZggU1NPVCB8CnwgRnJhbWUgfCAqKlBvbGFycyAo67O07KGwKSoqIHwgU1FM66GcIOyWtOyDie2VnCDrs4DtmZjrp4wuIGBpbXBvcnQgcGFuZGFzYCAqKuq4iOyngCoqIHwKfCBHcmFwaCBNTCB8IHNjYW5weSAvIG51bXB5IC8gc2NpcHkgLyBpZ3JhcGggfCBQQ0HCt25laWdoYm9yc8K3VU1BUMK3TGVpZGVuwrdyYW5rX2dlbmVzX2dyb3Vwc+unjCB8CnwgRkUgfCAqKkFzdHJvKiogfCDrqqjrk6Ag64uo6rOEIOyLnOqwge2ZlOuKlCBBc3RybyDtjpjsnbTsp4Av7Lu07Y+s64SM7Yq4IHwKfCBDaGFydHMgfCAqKkFwYWNoZSBFQ2hhcnRzKiogfCBgZnJvbnRlbmQvc3JjL2xpYi9lY2hhcnRzLXNldHVwLnRzYCArIGB1aS12aXotKmAuIOyGkOyImCBTVkcv7YOAIOywqO2KuCDrnbzsnbTruIzrn6zrpqwg6riI7KeAIHwKfCBNZXRob2RzIGV4cGxhaW4gfCBgL21ldGhvZHNgIHwgSFRNTCDrs7Trk5wo64iE6rCAL+ustOyXh+ydhCwg642w7J207YSwIO2dkOumhCkgKyDri6jqs4Qg7Iqk7YKk66ek7YuxICsg7IS47Y+sIO2NvOuEkCArIOyLpO2WiSDtg4DsnoTrnbzsnbggKGB1aS1tZXRob2RzLWV4cGxhaW5gKS4gKirsm7kg7Lm07ZS87JeQIEM0IOugiOuyqOuqhcK37Iqk7YOd66qFKER1Y2tEQi9Bc3Ryby9FQ2hhcnRzIOuTsSkg6riI7KeAKiogfAp8IFVJIHwgbGlnaHQgYmFja2dyb3VuZCDquLDrs7ggfCBgLmN1cnNvci9za2lsbHMvdWktKmAg7KSA7IiYIHwKCuq4iOyngDogYHBhbmRhc2AsIEp1cHl0ZXLrpbwg7LWc7KKFIOyCsOy2nOusvOuhnCDsgqzsmqksIG1hdHBsb3RsaWIvc2VhYm9ybiBQTkfCt+yGkOyImCBTVkfrpbwgQXN0cm8g7LCo7Yq4IOuMgOyytOuhnCDsgqzsmqko65SU67KE6re4IFBOR+uKlCBgcmVzdWx0cy9g66eMKS4KCiMjIERpcmVjdG9yeSBPd25lcnNoaXAKCmBgYApkYXRhL3Jhdy8gICAgICAgICAgICAgICAgICMg7J296riwIOyghOyaqSDsm5Drs7ggKGg1YWQpLiDsiJjsoJUg6riI7KeACmRhdGEvd2FyZWhvdXNlLyAgICAgICAgICAgIyBEdWNrREIg7YyM7J2866eMLiBCRSBpbmdlc3Qv67aE7ISd7J20IOyGjOycoApiYWNrZW5kLyAgICAgICAgICAgICAgICAgICMgUHl0aG9uIO2MjOydtO2UhOudvOyduCDri6jqs4Qg66qo65OICmZyb250ZW5kLyAgICAgICAgICAgICAgICAgIyBBc3RybyDslbEuIOyLnOqwge2ZlCBTU09UCmZyb250ZW5kL3B1YmxpYy9kYXRhLyAgICAgIyBEdWNrREIgZXhwb3J0IEpTT04vUGFycXVldCAo7IOd7ISx66y8KQpyZXN1bHRzLyAgICAgICAgICAgICAgICAgICMg7JqU7JW9IG1kL2pzb24uIOuMgOyaqeufiSDtlonroKwg6riI7KeACi5jdXJzb3Ivc2tpbGxzLyAgICAgICAgICAgIyDsoIjssKgg6riw7Ja1IFNTT1QgKC5hZ2VudHMvLm9wZW5jb2Rl64qUIOyLrOuzvOumrSDrp4HtgawpCmBgYAoK7IOB7IS4IO2KuOumrOuKlCDsiqTtgqwgYGRhdGEtYW5hbHl0aWNzLXNvdXJjZS10cmVlYOulvCDsnb3ripTri6QuCgojIyBQaXBlbGluZSBPcmRlciAo7KCI64yAIOyInOyEnCkKCjEuIGBkYi1pbmdlc3QtaDVhZGAg4oCUIGg1YWQg4oaSIER1Y2tEQgoyLiBgZGF0YS1hbmFseXRpY3MtZWRhYCDigJQg6riw67O4IEVEQSArIGB1aS12aXotZWRhYCAoYC9lZGFgOyBRQyDsp4DtkZwg7YWM7J2067iUIOydtO2bhCkKMy4gYGRhdGEtYW5hbHl0aWNzLXFjYCDigJQgUUMg7ZWE7YSwICsgYHVpLXZpei1xY2AKNC4gYGRhdGEtYW5hbHl0aWNzLWRpbXJlZHVjZS1jbHVzdGVyYCDigJQgUENBL1VNQVAvTGVpZGVuICsgYHVpLXZpei11bWFwYAo1LiBgZGF0YS1hbmFseXRpY3MtbWFya2Vyc2Ag4oCUIERFRyArIGB1aS12aXotZG90cGxvdGAgLyBgdWktdml6LXZpb2xpbmAKNi4gYGRhdGEtYW5hbHl0aWNzLWNlbGx0eXBlYCDigJQg66eI7LukIOq4sOuwmCDtg4DsnoUg7LaU66GgCjcuIGBkYXRhLWFuYWx5dGljcy1leHBvcnRgIOKAlCBBc3Ryb+yaqSDslYTti7DtjKntirgg6rCx7IugCgrslZ4g64uo6rOEIOyCsOy2nOusvCDsl4bsnbQg65K3IOuLqOqzhOulvCDqtaztmITtlZjsp4Ag7JWK64qU64ukLiDsmKTsvIDsiqTtirjroIjsnbTshZjsnYAgYG9wcy1waXBlbGluZS1vcmNoZXN0cmF0aW9uYC4KCiMjIFJ1bnRpbWUKCi0gUHl0aG9uOiBgLnZlbnZgIChDUHl0aG9uIDMuMTIpCi0gUGFja2FnZSBtYW5hZ2VyOiBgdXZgCi0gTm9kZTogQXN0cm8gNSDtlITroaDtirggKGBmcm9udGVuZC9gLCBwaW4gYGFzdHJvQDUuMTYuNmA7IE5vZGUgMjIuMjIgT0spCi0gREIgZmlsZTogYGRhdGEvd2FyZWhvdXNlL3BibWMzay5kdWNrZGJgCgojIyBEZXBlbmRlbmN5IHBvbGljeQoKKipBbGxvd2VkIEJFOioqIGR1Y2tkYiwgcG9sYXJzLCBzY2FucHksIGFubmRhdGEsIG51bXB5LCBzY2lweSwgc2Npa2l0LWxlYXJuLCBpZ3JhcGgsIHVtYXAtbGVhcm4sIGg1cHksIHB5YXJyb3csIHJ1ZmYKCioqRm9yYmlkZGVuOioqIHBhbmRhcywgcHlzcGFyaywgZGFzayBkYXRhZnJhbWUsIGp1cHl0ZXLrpbwg7IKw7LacIOqyveuhnOuhnCDsgqzsmqkKCioqRkU6KiogYXN0cm8sIHR5cGVzY3JpcHQsICoqQXBhY2hlIEVDaGFydHMgNSoqIChgZWNoYXJ0c2ApLiDssKjtirgg7IOJ7J2AIGB1aS1kZXNpZ24tdG9rZW5zYCBDU1Mg67OA7IiY66eMLiDshpDsiJggU1ZHL1Bsb3RseS9DaGFydC5qcyDquIjsp4AuCgojIyBTZWVkIGRhdGEKCi0gYGRhdGEvcmF3L3BibWMza19yYXcuaDVhZGAg4oCUIFNjYW5weSBgcGJtYzNrYCByYXcgKOydtOuvuCDsupDsi5zrkKgpCi0g7J6s7LqQ7IucOiBgLnZlbnYvYmluL3B5dGhvbiBzY3JpcHRzL3ByZXBhcmVfZGF0YS5weWAgKOqyveuhnOuKlCByYXcg65SU66CJ7YSw66as66GcIOunnuy2nCDqsoMpCi0gVXBzdHJlYW06IDEweCBHZW5vbWljcyBQQk1DIDNrIGZpbHRlcmVkIG1hdHJpeAoKIyMgRGF0YSBDb250cmFjdAoKLSDsm5Drs7g6IGBkYXRhL3Jhdy9wYm1jM2tfcmF3Lmg1YWRgICgyNzAwIMOXIDMyNzM4LCByYXcgY291bnQsIGhnMTkpCi0gV2FyZWhvdXNlOiBgZGF0YS93YXJlaG91c2UvcGJtYzNrLmR1Y2tkYmAKLSDsiqTtgqTrp4g6IOyKpO2CrCBgZGItZHVja2RiLXNjaGVtYWAKLSDsi5zrk5w6IOu2hOyEnSDrgpzsiJggYHJhbmRvbV9zdGF0ZT0wYCAvIGBzYy5zZXR0aW5ncy5zZWVkID0gMGAKLSBRQyDquLDrs7g6IGBwY3RfY291bnRzX210IDwgNWAgQU5EIGAyMDAgPD0gbl9nZW5lc19ieV9jb3VudHMgPCAyNTAwYAoKIyMgQW5hbHlzaXMgZGVmYXVsdHMKCmBgYApzZWVkID0gMAptdCBnZW5lIHByZWZpeCA9IE1ULQprZWVwIGNlbGxzOiBwY3RfY291bnRzX210IDwgNSBBTkQgMjAwIDw9IG5fZ2VuZXNfYnlfY291bnRzIDwgMjUwMApmaWx0ZXJfZ2VuZXMgbWluX2NlbGxzID0gMwpub3JtYWxpemUgdGFyZ2V0X3N1bSA9IDFlNApIVkcgPSBzZXVyYXQgdG9wIDIwMDAKUENBIG5fY29tcHMgPSA1MDsgbmVpZ2hib3JzIG5fbmVpZ2hib3JzPTE1IG5fcGNzPTMwCkxlaWRlbiByZXNvbHV0aW9uPTEuMCBmbGF2b3I9aWdyYXBoIG5faXRlcmF0aW9ucz0yIGRpcmVjdGVkPUZhbHNlCnJhbmtfZ2VuZXNfZ3JvdXBzIG1ldGhvZD13aWxjb3hvbiB1c2VfcmF3PVRydWUKYGBgCgojIyBDYW5vbmljYWwgbWFya2VyIHBhbmVsCgpgSUw3UiwgQ0QzRCwgQ0QzRSwgQ0Q4QSwgQ0Q4QiwgTVM0QTEsIENENzlBLCBDRDE0LCBMWVosIFMxMDBBOCwgRkNHUjNBLCBNUzRBNywgR05MWSwgTktHNywgRkNFUjFBLCBDU1QzLCBQUEJQYAoKIyMgTG9jYWwgVUkKCi0gRGV2L3ByZXZpZXc6IGBodHRwOi8vMTI3LjAuMC4xOjg4OTlgIChgZnJvbnRlbmQvcGFja2FnZS5qc29uYCBzY3JpcHRzKQotIEZvb3RlciBicmFuZDogQ2hhTGFiCgojIyBRdWFsaXR5IEdhdGVzCgpgYGBiYXNoCi52ZW52L2Jpbi9weXRob24gLWMgImltcG9ydCBwYW5kYXMiICAjIOuwmOuTnOyLnCBJbXBvcnRFcnJvcgoudmVudi9iaW4vcnVmZiBjaGVjayBiYWNrZW5kLwpjZCBmcm9udGVuZCAmJiBucG0gcnVuIGJ1aWxkCmBgYAoKIyMgUmVsYXRlZCBsZWN0dXJlIHByb21wdHMKCuyLpOyKtSDsnpDsl7DslrQg7ZSE66Gs7ZSE7Yq4IOy0iOyViDogYHByb21wdHMubWRgLgo=";
+
     function openProjectModal(e) {
       if (e) e.stopPropagation();
       const modal = document.getElementById("project-modal");
@@ -5714,6 +5900,24 @@
       if (modal) modal.classList.add("hidden");
     }
 
+    function copyProjectMarkdown() {
+      try {
+        const decoded = decodeURIComponent(escape(atob(B64_PROJECT_MD)));
+        navigator.clipboard.writeText(decoded).then(() => {
+          const textSpan = document.getElementById("copy-project-text");
+          if (textSpan) {
+            const original = textSpan.innerText;
+            textSpan.innerText = "복사 완료 ✓";
+            setTimeout(() => { textSpan.innerText = original; }, 2000);
+          }
+        }).catch(err => {
+          console.error("복사 실패:", err);
+        });
+      } catch (e) {
+        console.error("Base64 디코딩 실패:", e);
+      }
+    }
+
     document.addEventListener("keydown", function(ev) {
       if (ev.key === "Escape") {
         const modal = document.getElementById("project-modal");
@@ -5726,12 +5930,12 @@
   </script>
 
   <!-- Bottom Global Banner -->
-  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-700 border border-slate-200 bg-white">
+  <div class="bento-tile px-4 py-1.5 flex items-center justify-between text-xs font-mono text-slate-700 border border-slate-200 bg-white shrink-0">
     <div class="flex items-center gap-2">
       <span class="text-sky-600 font-bold">🏛️ 2원화 설계:</span>
       <span class="text-slate-700"><strong>AGENTS.md</strong>로 회사의 공통 뼈대를 세우고, <strong>PROJECT.md</strong>로 도메인의 살을 붙이십시오.</span>
     </div>
-    <span class="text-sky-600 font-bold text-[11px]">Slide 45</span>
+    <span class="text-sky-600 font-bold text-[11px]">Chapter 04 &middot; Slide 36</span>
   </div>
 </section>
 
