@@ -1,40 +1,55 @@
-<section class="slide" data-title="Part 1 & 4.1 핵심 요약">
-  <div class="mb-4">
-    <span class="text-emerald-400 font-mono text-xs uppercase tracking-wider">Milestone Summary</span>
-    <h2 class="text-3xl font-black text-white">Part 1 및 4.1 핵심 요약 (Key Takeaways)</h2>
-  </div>
-  <div class="grid grid-cols-3 gap-6 flex-1 items-stretch">
-    <div class="bento-tile p-6 flex flex-col justify-between border-t-4 border-t-sky-500">
-      <div>
-        <div class="text-3xl mb-2">🧠</div>
-        <h3 class="text-base font-bold text-white mb-2">1. 단일 루프의 붕괴</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
-          AutoGPT의 실패는 모델 성능 부족이 아닌, '인지 아키텍처 부재'에서 비롯되었습니다. 이제 에이전트는 분업(Multi-Agent)과 SOP로 작동합니다.
+<section class="slide justify-center" data-title="APPENDIX. 부록 인트로">
+  <div class="max-w-4xl mx-auto my-auto w-full">
+    <!-- Header Badges -->
+    <div class="flex items-center gap-2 mb-3">
+      <span class="text-purple-600 font-mono text-sm tracking-widest font-bold px-3 py-1 rounded bg-purple-50 border border-purple-200">APPENDIX</span>
+      <span class="text-sky-600 font-mono text-xs px-2.5 py-1 rounded bg-sky-50 border border-sky-200 font-bold">🛠️ 실전 인프라 &amp; 에이전트 확장 부록</span>
+    </div>
+    
+    <!-- Title & Subtitle -->
+    <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4 leading-tight">
+      부록 : <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-sky-600 to-indigo-700">실전 에이전트 확장 &amp; 브라우저 연동 인프라</span>
+    </h2>
+    
+    <p class="text-base text-slate-700 leading-relaxed mb-6">
+      정적 코드 작성과 단위 테스트를 넘어, AI 에이전트가 <strong>실제 브라우저 환경에서 로그인된 포털 탐색, 웹 폼 자동화, E2E 데이터 수집</strong>을 수행하기 위한 고급 연결 인프라와 실전 툴체인을 정리합니다.<br>
+      일반 Chrome 직접 디버깅과 에이전트 전용 브라우징 프레임워크 <strong>ego-lite</strong>의 아키텍처 차이 및 MCP 결합 전략을 다룹니다.
+    </p>
+
+    <!-- 3 Bento Tiles for Appendix Overview -->
+    <div class="grid grid-cols-3 gap-4 mb-6">
+      <div class="bento-tile p-4 border-t-4 border-t-purple-600 bg-white">
+        <div class="text-xs font-mono text-purple-700 font-bold mb-1">APPENDIX A.1</div>
+        <div class="text-base font-bold text-slate-900 mb-1">브라우저 연결 인프라</div>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Chrome/Brave CDP(원격 디버깅) 직접 연결 vs. ego-lite 격리 Space &amp; MCP 연결 실전 비교
         </p>
       </div>
-      <span class="text-[11px] text-sky-400 font-mono font-semibold">From Monolith to Multi-Agent</span>
+
+      <div class="bento-tile p-4 border-t-4 border-t-sky-500 bg-white">
+        <div class="text-xs font-mono text-sky-700 font-bold mb-1">APPENDIX A.2</div>
+        <div class="text-base font-bold text-slate-900 mb-1">AI Agent 전용 프롬프트</div>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          브라우저 세션 제어, SSO/2FA 사용자 인수(Takeover), 접근성 트리 기반 토큰 절감 지시법
+        </p>
+      </div>
+
+      <div class="bento-tile p-4 border-t-4 border-t-indigo-500 bg-white">
+        <div class="text-xs font-mono text-indigo-700 font-bold mb-1">APPENDIX A.3</div>
+        <div class="text-base font-bold text-slate-900 mb-1">기업망 &amp; 폐쇄망 배포</div>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          오프라인 환경 ego-lite 바이너리 반입, 사내 SSO 세션 보존, 프록시 및 SSL 인증서 호환
+        </p>
+      </div>
     </div>
 
-    <div class="bento-tile p-6 flex flex-col justify-between border-t-4 border-t-indigo-500">
-      <div>
-        <div class="text-3xl mb-2">⚡</div>
-        <h3 class="text-base font-bold text-white mb-2">2. 1시간 런칭의 실현</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
-          Vercel, Supabase, Stripe BaaS 생태계를 결합하여 인프라 설정 시간을 0으로 줄이고 비즈니스 로직 검증에 모든 시간을 집중할 수 있습니다.
-        </p>
-      </div>
-      <span class="text-[11px] text-indigo-400 font-mono font-semibold">Serverless BaaS Power</span>
-    </div>
-
-    <div class="bento-tile p-6 flex flex-col justify-between border-t-4 border-t-emerald-500">
-      <div>
-        <div class="text-3xl mb-2">🛠️</div>
-        <h3 class="text-base font-bold text-white mb-2">3. 툴체인의 결정적 역할</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
-          프롬프트에 모든 규칙을 우겨넣지 않고, 절차 기억(Skills), 영속 기억(Wiki), 격리 에이전트(Aside)를 장착해야 프로덕션 엔지니어링이 가능합니다.
-        </p>
-      </div>
-      <span class="text-[11px] text-emerald-400 font-mono font-semibold">Toolchain is the Brain</span>
+    <!-- Tech Badges -->
+    <div class="flex items-center gap-3 text-xs font-mono text-slate-600">
+      <span class="px-2.5 py-1 rounded bg-slate-100 text-purple-800 border border-purple-200">#BrowserAutomation</span>
+      <span class="px-2.5 py-1 rounded bg-slate-100 text-sky-800 border border-sky-200">#EgoLite</span>
+      <span class="px-2.5 py-1 rounded bg-slate-100 text-indigo-800 border border-indigo-200">#ChromeCDP</span>
+      <span class="px-2.5 py-1 rounded bg-slate-100 text-emerald-800 border border-emerald-200">#MCP_Integration</span>
+      <span class="px-2.5 py-1 rounded bg-slate-100 text-amber-800 border border-amber-200">#HumanInTheLoop</span>
     </div>
   </div>
 </section>

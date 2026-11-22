@@ -73,9 +73,9 @@ CHAPTER_INFO = {
         "accent": "text-[#BE123C]",
     },
     "99-summary": {
-        "id": "summary",
-        "badge": "WRAP-UP · 총정리",
-        "title": "Wrap-up : 전체 핵심 요약 & 엔지니어의 미래",
+        "id": "appendix",
+        "badge": "APPENDIX · 부록",
+        "title": "Appendix. 부록 : 실전 에이전트 확장 & 브라우저 연결",
         "color": "bg-[#554596]/10 text-[#403375] border-[#554596]/30",
         "accent": "text-[#554596]",
     },

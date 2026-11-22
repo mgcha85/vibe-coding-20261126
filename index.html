@@ -10835,80 +10835,256 @@ cd frontend &amp;&amp; npm run build</code></pre>
 </section>
 
       <!-- [COMPONENT] 99-summary/01-summary.html -->
-<section class="slide" data-title="Part 1 & 4.1 핵심 요약" data-chapter-id="summary" data-chapter-badge="WRAP-UP · 총정리" data-chapter-title="Wrap-up : 전체 핵심 요약 & 엔지니어의 미래" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
-  <div class="mb-4">
-    <span class="text-emerald-400 font-mono text-xs uppercase tracking-wider">Milestone Summary</span>
-    <h2 class="text-3xl font-black text-white">Part 1 및 4.1 핵심 요약 (Key Takeaways)</h2>
-  </div>
-  <div class="grid grid-cols-3 gap-6 flex-1 items-stretch">
-    <div class="bento-tile p-6 flex flex-col justify-between border-t-4 border-t-sky-500">
-      <div>
-        <div class="text-3xl mb-2">🧠</div>
-        <h3 class="text-base font-bold text-white mb-2">1. 단일 루프의 붕괴</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
-          AutoGPT의 실패는 모델 성능 부족이 아닌, '인지 아키텍처 부재'에서 비롯되었습니다. 이제 에이전트는 분업(Multi-Agent)과 SOP로 작동합니다.
+<section class="slide justify-center" data-title="APPENDIX. 부록 인트로" data-chapter-id="appendix" data-chapter-badge="APPENDIX · 부록" data-chapter-title="Appendix. 부록 : 실전 에이전트 확장 & 브라우저 연결" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
+  <div class="max-w-4xl mx-auto my-auto w-full">
+    <!-- Header Badges -->
+    <div class="flex items-center gap-2 mb-3">
+      <span class="text-purple-600 font-mono text-sm tracking-widest font-bold px-3 py-1 rounded bg-purple-50 border border-purple-200">APPENDIX</span>
+      <span class="text-sky-600 font-mono text-xs px-2.5 py-1 rounded bg-sky-50 border border-sky-200 font-bold">🛠️ 실전 인프라 &amp; 에이전트 확장 부록</span>
+    </div>
+    
+    <!-- Title & Subtitle -->
+    <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4 leading-tight">
+      부록 : <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-sky-600 to-indigo-700">실전 에이전트 확장 &amp; 브라우저 연동 인프라</span>
+    </h2>
+    
+    <p class="text-base text-slate-700 leading-relaxed mb-6">
+      정적 코드 작성과 단위 테스트를 넘어, AI 에이전트가 <strong>실제 브라우저 환경에서 로그인된 포털 탐색, 웹 폼 자동화, E2E 데이터 수집</strong>을 수행하기 위한 고급 연결 인프라와 실전 툴체인을 정리합니다.<br>
+      일반 Chrome 직접 디버깅과 에이전트 전용 브라우징 프레임워크 <strong>ego-lite</strong>의 아키텍처 차이 및 MCP 결합 전략을 다룹니다.
+    </p>
+
+    <!-- 3 Bento Tiles for Appendix Overview -->
+    <div class="grid grid-cols-3 gap-4 mb-6">
+      <div class="bento-tile p-4 border-t-4 border-t-purple-600 bg-white">
+        <div class="text-xs font-mono text-purple-700 font-bold mb-1">APPENDIX A.1</div>
+        <div class="text-base font-bold text-slate-900 mb-1">브라우저 연결 인프라</div>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Chrome/Brave CDP(원격 디버깅) 직접 연결 vs. ego-lite 격리 Space &amp; MCP 연결 실전 비교
         </p>
       </div>
-      <span class="text-[11px] text-sky-400 font-mono font-semibold">From Monolith to Multi-Agent</span>
+
+      <div class="bento-tile p-4 border-t-4 border-t-sky-500 bg-white">
+        <div class="text-xs font-mono text-sky-700 font-bold mb-1">APPENDIX A.2</div>
+        <div class="text-base font-bold text-slate-900 mb-1">AI Agent 전용 프롬프트</div>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          브라우저 세션 제어, SSO/2FA 사용자 인수(Takeover), 접근성 트리 기반 토큰 절감 지시법
+        </p>
+      </div>
+
+      <div class="bento-tile p-4 border-t-4 border-t-indigo-500 bg-white">
+        <div class="text-xs font-mono text-indigo-700 font-bold mb-1">APPENDIX A.3</div>
+        <div class="text-base font-bold text-slate-900 mb-1">기업망 &amp; 폐쇄망 배포</div>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          오프라인 환경 ego-lite 바이너리 반입, 사내 SSO 세션 보존, 프록시 및 SSL 인증서 호환
+        </p>
+      </div>
     </div>
 
-    <div class="bento-tile p-6 flex flex-col justify-between border-t-4 border-t-indigo-500">
-      <div>
-        <div class="text-3xl mb-2">⚡</div>
-        <h3 class="text-base font-bold text-white mb-2">2. 1시간 런칭의 실현</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
-          Vercel, Supabase, Stripe BaaS 생태계를 결합하여 인프라 설정 시간을 0으로 줄이고 비즈니스 로직 검증에 모든 시간을 집중할 수 있습니다.
-        </p>
-      </div>
-      <span class="text-[11px] text-indigo-400 font-mono font-semibold">Serverless BaaS Power</span>
-    </div>
-
-    <div class="bento-tile p-6 flex flex-col justify-between border-t-4 border-t-emerald-500">
-      <div>
-        <div class="text-3xl mb-2">🛠️</div>
-        <h3 class="text-base font-bold text-white mb-2">3. 툴체인의 결정적 역할</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
-          프롬프트에 모든 규칙을 우겨넣지 않고, 절차 기억(Skills), 영속 기억(Wiki), 격리 에이전트(Aside)를 장착해야 프로덕션 엔지니어링이 가능합니다.
-        </p>
-      </div>
-      <span class="text-[11px] text-emerald-400 font-mono font-semibold">Toolchain is the Brain</span>
+    <!-- Tech Badges -->
+    <div class="flex items-center gap-3 text-xs font-mono text-slate-600">
+      <span class="px-2.5 py-1 rounded bg-slate-100 text-purple-800 border border-purple-200">#BrowserAutomation</span>
+      <span class="px-2.5 py-1 rounded bg-slate-100 text-sky-800 border border-sky-200">#EgoLite</span>
+      <span class="px-2.5 py-1 rounded bg-slate-100 text-indigo-800 border border-indigo-200">#ChromeCDP</span>
+      <span class="px-2.5 py-1 rounded bg-slate-100 text-emerald-800 border border-emerald-200">#MCP_Integration</span>
+      <span class="px-2.5 py-1 rounded bg-slate-100 text-amber-800 border border-amber-200">#HumanInTheLoop</span>
     </div>
   </div>
 </section>
 
       <!-- [COMPONENT] 99-summary/02-next-preview.html -->
-<section class="slide justify-center items-center text-center relative" data-title="다음 세션 예고" data-chapter-id="summary" data-chapter-badge="WRAP-UP · 총정리" data-chapter-title="Wrap-up : 전체 핵심 요약 & 엔지니어의 미래" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
-  <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/15 border border-indigo-400/30 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-4">
-    Up Next : Part 2 & Part 3
+<section class="slide flex flex-col justify-between" data-title="A.1 브라우저 연결 인프라 : Chrome CDP vs ego-lite" data-chapter-id="appendix" data-chapter-badge="APPENDIX · 부록" data-chapter-title="Appendix. 부록 : 실전 에이전트 확장 & 브라우저 연결" data-chapter-color="bg-[#554596]/10 text-[#403375] border-[#554596]/30" data-chapter-accent="text-[#554596]">
+  <!-- Header -->
+  <div class="mb-1 shrink-0">
+    <div class="flex items-center justify-between">
+      <span class="text-purple-600 font-mono text-[11px] xl:text-xs uppercase tracking-wider font-bold">APPENDIX A.1 &middot; 브라우저 연동 인프라</span>
+      <span class="px-2 py-0.5 rounded bg-purple-50 border border-purple-200 text-purple-800 font-mono text-[10px] xl:text-[11px] font-bold">
+        BROWSER INFRASTRUCTURE &middot; CDP vs. EGO-LITE
+      </span>
+    </div>
+    <h2 class="text-xl xl:text-2xl 2xl:text-3xl font-black text-slate-900 mt-0.5">AI Agent 브라우저 연결 : Chrome CDP 직접 연결 vs. ego-lite</h2>
+    <p class="text-[11px] xl:text-xs text-slate-600 mt-0.5">
+      에이전트에게 실제 웹 상호작용 능력을 부여할 때, 사용자의 일상 브라우징 간섭 없이 <strong>세션 격리 &middot; 토큰 최적화 &middot; SSO 인수(Takeover)</strong>를 달성하는 전략을 선택해야 합니다.
+    </p>
   </div>
-  <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
-    잠시 후 계속됩니다
-  </h2>
-  <p class="text-lg text-slate-300 max-w-xl mb-8">
-    4.1 이후의 실전 세션에서는 <strong class="text-sky-300">토큰 비용 90% 절감법, Rust/Go 언어 선택 이유, Git Worktree 병렬화</strong>가 이어집니다.
-  </p>
 
-  <div class="bento-tile p-5 max-w-lg w-full text-left space-y-2">
-    <div class="flex items-center justify-between text-xs font-mono">
-      <span class="text-slate-400">• Ch 04 후반부</span>
-      <span class="text-sky-300">Skills, LLM-Wiki, Aside 라이브 구현</span>
+  <!-- Top: 2 Connection Methods Grid -->
+  <div class="grid grid-cols-2 gap-2 xl:gap-3 shrink-0">
+    <!-- Method 1: Chrome / Brave CDP -->
+    <div class="bento-tile p-2 xl:p-2.5 bg-white border border-slate-200 shadow-sm flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <div class="flex items-center gap-1.5">
+            <span class="text-xs">🌐</span>
+            <span class="text-[11px] xl:text-xs font-bold text-slate-900">방법 1. Chrome / Brave 직접 연결 (CDP Port 9222)</span>
+          </div>
+          <span class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-amber-50 text-amber-800 border border-amber-200 font-semibold">CDP 원격 디버깅</span>
+        </div>
+
+        <!-- CLI Command -->
+        <div class="space-y-0.5 mb-1.5">
+          <div class="text-[9.5px] font-mono text-slate-500 font-semibold">
+            브라우저 백그라운드 원격 디버깅 기동:
+          </div>
+          <pre class="bg-slate-900 text-slate-100 p-1.5 rounded text-[9px] xl:text-[9.5px] font-mono overflow-x-auto leading-tight border border-slate-800"><code># Brave / Chrome 9222 포트 활성화
+nohup brave-browser --remote-debugging-port=9222 --user-data-dir=/tmp/agent-chrome-profile >/dev/null 2>&1 &
+# (Google Chrome 실행 시 google-chrome 명령어 사용)</code></pre>
+        </div>
+
+        <!-- Agent Prompt -->
+        <div class="space-y-0.5">
+          <div class="text-[9.5px] font-mono text-slate-700 font-bold flex items-center gap-1">
+            <span class="text-amber-600">💬</span> Agent 지시 프롬프트 예시:
+          </div>
+          <div class="bg-slate-50 border border-slate-200 rounded p-1.5 text-[9.5px] xl:text-[10px] text-slate-700 font-sans leading-tight">
+            "로컬 <strong>9222 포트</strong>에 실행 중인 Chrome CDP에 연결해서 <code>https://target-service.com</code>에 접속하고, 최신 공지사항 목록을 추출해 줘."
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-1 pt-1 border-t border-slate-100 text-[9px] text-slate-500 font-mono">
+        ⚠️ 단점: 사용자 개인 탭 간섭 위험, 원본 DOM 그대로 전달되어 토큰 과소비
+      </div>
     </div>
-    <div class="flex items-center justify-between text-xs font-mono">
-      <span class="text-slate-400">• Ch 05 언어</span>
-      <span class="text-indigo-300">Python의 런타임 함정과 Go/Rust 비교</span>
+
+    <!-- Method 2: ego-lite & MCP -->
+    <div class="bento-tile p-2 xl:p-2.5 bg-white border border-slate-200 shadow-sm flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <div class="flex items-center gap-1.5">
+            <span class="text-xs">⚡</span>
+            <span class="text-[11px] xl:text-xs font-bold text-slate-900">방법 2. ego-lite 설치 &amp; MCP / CLI 연결 (추천)</span>
+          </div>
+          <span class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-purple-50 text-purple-800 border border-purple-200 font-semibold">Agent 전용 Chromium</span>
+        </div>
+
+        <!-- Download & Links -->
+        <div class="flex items-center gap-1.5 mb-1.5">
+          <a href="https://lite.ego.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[9.5px] font-mono font-bold text-purple-700 hover:text-purple-900 bg-purple-50 hover:bg-purple-100 px-1.5 py-0.5 rounded border border-purple-200 transition-colors">
+            <span>📥 ego-lite 공식 다운로드</span>
+            <span class="text-[8px]">↗</span>
+          </a>
+          <a href="https://lite.ego.app/document/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[9.5px] font-mono text-slate-600 hover:text-slate-900 bg-slate-50 hover:bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200 transition-colors">
+            <span>📖 공식 문서</span>
+            <span class="text-[8px]">↗</span>
+          </a>
+          <a href="https://github.com/citrolabs/ego-lite" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[9.5px] font-mono text-slate-600 hover:text-slate-900 bg-slate-50 hover:bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200 transition-colors">
+            <span>🐙 GitHub</span>
+            <span class="text-[8px]">↗</span>
+          </a>
+        </div>
+
+        <!-- Agent Prompt -->
+        <div class="space-y-0.5 mb-1">
+          <div class="text-[9.5px] font-mono text-slate-700 font-bold flex items-center gap-1">
+            <span class="text-purple-600">💬</span> Agent 지시 프롬프트 (설치 &amp; MCP 등록):
+          </div>
+          <div class="bg-purple-50/50 border border-purple-100 rounded p-1.5 text-[9.5px] xl:text-[10px] text-slate-700 font-sans leading-tight">
+            "<code>npx skills add citrolabs/ego-lite</code>로 ego-browser 스킬을 등록하고, MCP 설정에 <code>ego-browser mcp</code>를 추가해 줘. 이후 에이전트 전용 <strong>Space</strong>에서 대상 웹사이트를 탐색하고, 로그인/2FA가 필요하면 내게 인계를 요청해 줘."
+          </div>
+        </div>
+
+        <!-- MCP Config Snippet -->
+        <div class="bg-slate-900 text-slate-200 px-1.5 py-0.5 rounded text-[9px] font-mono border border-slate-800 flex items-center justify-between">
+          <span class="text-slate-400">MCP 등록:</span>
+          <code>{"mcpServers": {"ego-browser": {"command": "ego-browser", "args": ["mcp"]}}}</code>
+        </div>
+      </div>
+
+      <div class="mt-1 pt-1 border-t border-slate-100 text-[9px] text-purple-700 font-mono">
+        ✓ 장점: Space 기반 사용자 창 비간섭 &middot; 접근성 트리 스냅샷으로 토큰 85% 절감
+      </div>
     </div>
-    <div class="flex items-center justify-between text-xs font-mono">
-      <span class="text-slate-400">• Ch 06 비용</span>
-      <span class="text-purple-300">Prompt Caching & 계층형 라우팅 (90% 절감)</span>
+  </div>
+
+  <!-- Bottom: Deep Comparison Table (ego-lite vs. Chrome) -->
+  <div class="bento-tile p-2 xl:p-2.5 bg-white border border-slate-200 shadow-md flex-1 flex flex-col justify-between min-h-0 my-0.5 xl:my-1 overflow-hidden">
+    <div>
+      <div class="flex items-center justify-between mb-0.5 pb-0.5 border-b border-slate-100">
+        <div class="flex items-center gap-1.5">
+          <span class="text-xs">⚖️</span>
+          <h3 class="text-[11px] xl:text-xs font-bold text-slate-900 uppercase font-mono tracking-wide">
+            핵심 비교 : ego-lite vs. Chrome (AI Agent를 위해 왜 ego-lite를 쓰는가?)
+          </h3>
+        </div>
+        <span class="text-[9px] font-mono text-purple-700 bg-purple-50 px-1.5 py-0.2 rounded border border-purple-200 font-bold">
+          4대 아키텍처 차별점
+        </span>
+      </div>
+
+      <div class="overflow-x-auto rounded border border-slate-200">
+        <table class="w-full text-left border-collapse text-[9.5px] xl:text-[10.5px]">
+          <thead>
+            <tr class="bg-slate-50 border-b border-slate-200 text-slate-700 font-mono">
+              <th class="py-0.5 xl:py-1 px-2 xl:px-2.5 w-[20%] font-bold text-slate-800">비교 항목</th>
+              <th class="py-0.5 xl:py-1 px-2 xl:px-2.5 w-[38%] font-bold text-slate-700">일반 브라우저 (Chrome / Brave CDP 직접 연결)</th>
+              <th class="py-0.5 xl:py-1 px-2 xl:px-2.5 w-[42%] font-bold text-purple-800 bg-purple-50/50">에이전트 전용 브라우저 (ego-lite &amp; ego-browser)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 font-sans">
+            <!-- 1. Session Isolation -->
+            <tr class="hover:bg-slate-50/60 transition-colors">
+              <td class="py-0.5 xl:py-1 px-2 xl:px-2.5 font-mono font-bold text-slate-800">
+                <span>🛡️ 세션 격리 (Isolation)</span>
+              </td>
+              <td class="py-0.5 xl:py-1 px-2 xl:px-2.5 text-slate-600 leading-tight">
+                사용자의 개인 탭, 쿠키, 검색 기록과 뒤섞이거나 별도 임시 프로필 수동 생성 필요. 에이전트 동작 시 창 포커스를 빼앗겨 작업 방해.
+              </td>
+              <td class="py-0.5 xl:py-1 px-2 xl:px-2.5 text-slate-800 bg-purple-50/20 font-medium leading-tight">
+                사용자와 AI가 Chromium을 공유하되 에이전트 전용 <strong>Space (독립 BrowserContext)</strong>에서 작동. 사용자 탭/포커스 침범 <strong>0%</strong>.
+              </td>
+            </tr>
+
+            <!-- 2. Token Consumption -->
+            <tr class="hover:bg-slate-50/60 transition-colors">
+              <td class="py-0.5 xl:py-1 px-2 xl:px-2.5 font-mono font-bold text-slate-800">
+                <span>📉 토큰 최적화 (Token Diet)</span>
+              </td>
+              <td class="py-0.5 xl:py-1 px-2 xl:px-2.5 text-slate-600 leading-tight">
+                수만 줄의 원본 HTML DOM 전체를 컨텍스트에 주입하여 페이지당 <strong>30,000~80,000 토큰</strong> 과소비 &amp; 윈도우 조기 폭발.
+              </td>
+              <td class="py-0.5 xl:py-1 px-2 xl:px-2.5 text-purple-900 bg-purple-50/20 font-bold leading-tight">
+                <strong>접근성 트리(Accessibility Tree) &amp; ARIA Selector</strong> 스냅샷으로 상호작용 요소만 압축 추출. <strong>토큰 80~90% 절감</strong>.
+              </td>
+            </tr>
+
+            <!-- 3. Human Takeover -->
+            <tr class="hover:bg-slate-50/60 transition-colors">
+              <td class="py-0.5 xl:py-1 px-2 xl:px-2.5 font-mono font-bold text-slate-800">
+                <span>🤝 인간-AI 인수 (SSO / 2FA)</span>
+              </td>
+              <td class="py-0.5 xl:py-1 px-2 xl:px-2.5 text-slate-600 leading-tight">
+                사내 SSO 로그인, 2단계 인증(OTP), Cloudflare CAPTCHA 차단 시 자동화 스크립트가 먹통이 되며 전체 워크플로우 크래시.
+              </td>
+              <td class="py-0.5 xl:py-1 px-2 xl:px-2.5 text-slate-800 bg-purple-50/20 font-medium leading-tight">
+                인증이 필요할 때 <strong>사용자가 Space 탭에서 직접 2FA/로그인 처리(Takeover)</strong>. 쿠키가 유지되어 에이전트가 바로 작업 재개.
+              </td>
+            </tr>
+
+            <!-- 4. Tool Integration -->
+            <tr class="hover:bg-slate-50/60 transition-colors">
+              <td class="py-0.5 xl:py-1 px-2 xl:px-2.5 font-mono font-bold text-slate-800">
+                <span>🔌 에이전트 도구 결합</span>
+              </td>
+              <td class="py-0.5 xl:py-1 px-2 xl:px-2.5 text-slate-600 leading-tight">
+                원격 디버깅 포트 관리, 웹소켓 CDP 클라이언트 스크립트(Playwright/Puppeteer) 작성 등 하네스 구축 공수 과다.
+              </td>
+              <td class="py-0.5 xl:py-1 px-2 xl:px-2.5 text-slate-800 bg-purple-50/20 font-medium leading-tight">
+                <strong>MCP(Model Context Protocol) 및 단일 <code>ego-browser</code> CLI</strong> 지원으로 Cursor/에이전트에 즉시 네이티브 도구로 결합.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="flex items-center justify-between text-xs font-mono">
-      <span class="text-slate-400">• Ch 07 병렬화</span>
-      <span class="text-cyan-300">Git Worktree 다중 에이전트 오케스트레이션</span>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="bento-tile px-3 xl:px-4 py-1 xl:py-1.5 flex items-center justify-between text-[10.5px] xl:text-xs font-mono text-slate-700 border border-slate-200 bg-white shrink-0">
+    <div class="flex items-center gap-2">
+      <span class="text-purple-600 font-bold">💡 실전 권장 전략:</span>
+      <span class="text-slate-700">단순 스크래핑은 CDP 연결로 빠르게 테스트하고, <strong>로그인 포털 자동화 &middot; 대규모 E2E 태스크</strong>는 <strong>ego-lite Space + MCP</strong> 조합을 사용하십시오.</span>
     </div>
-    <div class="flex items-center justify-between text-xs font-mono">
-      <span class="text-slate-400">• Ch 08 가드레일</span>
-      <span class="text-emerald-300">Supabase RLS 누수 감사 & 시크릿 격리</span>
-    </div>
+    <span class="text-purple-600 font-bold text-[10px] xl:text-[11px]">APPENDIX A.1 완료</span>
   </div>
 </section>
     </main>
