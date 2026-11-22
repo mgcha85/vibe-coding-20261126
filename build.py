@@ -134,8 +134,10 @@ def build():
         raw_text = sf.read_text(encoding="utf-8")
         rel_path = sf.relative_to(SLIDES_DIR)
         
-        # Check for raw **bold** markdown
-        bold_matches = re.findall(r"\*\*[^*]+\*\*", raw_text)
+        # Check for raw **bold** markdown (excluding <textarea> and <pre> code blocks)
+        text_to_check = re.sub(r'<textarea\b[^>]*>[\s\S]*?</textarea>', '', raw_text)
+        text_to_check = re.sub(r'<pre\b[^>]*>[\s\S]*?</pre>', '', text_to_check)
+        bold_matches = re.findall(r"\*\*[^*]+\*\*", text_to_check)
         if bold_matches:
             markdown_warnings.append(f"  - [{rel_path}] Raw bold markdown detected: {bold_matches}")
 
