@@ -4,7 +4,7 @@
     <div class="flex items-center justify-between">
       <div>
         <span class="text-[#1B7385] font-mono text-[11px] uppercase tracking-wider font-bold">Chapter 03. 언어 &middot; 중간 휴식 (Intermission)</span>
-        <h2 class="text-2xl xl:text-3xl font-black text-slate-900 mt-0.5">☕ 중간 휴식 (15min) &amp; 실습 준비 : Google Antigravity &amp; 실습 팩 (2종)</h2>
+        <h2 class="text-2xl xl:text-3xl font-black text-slate-900 mt-0.5">☕ 중간 휴식 (15min) &amp; 실습 준비 : Antigravity &middot; Python &middot; uv &amp; 실습 팩</h2>
       </div>
       <div class="flex items-center gap-2">
         <span class="px-2.5 py-0.5 rounded-full bg-cyan-100 text-[#1B7385] border border-cyan-300 text-xs font-mono font-bold">
@@ -16,7 +16,7 @@
       </div>
     </div>
     <p class="text-[11px] text-slate-600 mt-0.5">
-      언어 및 5대 타입 하네스 세션을 마치고 잠시 쉬어갑니다. 이어지는 실습 세션(Ch 04~06)을 위해 <strong>Google Antigravity 설치</strong>와 <strong>실습 팩 2종(스킬 번들 &amp; 분석 데이터)</strong>을 미리 다운로드해주세요.
+      언어 및 5대 타입 하네스 세션을 마치고 잠시 쉬어갑니다. 이어지는 실습 세션(Ch 04~06)을 위해 <strong>Google Antigravity 설치</strong>, <strong>Python 3.10+ 및 uv 설치</strong>, <strong>실습 팩 2종(스킬 번들 &amp; 분석 데이터)</strong>을 미리 준비해주세요.
     </p>
   </div>
 
@@ -193,37 +193,133 @@
       </div>
     </div>
 
-    <!-- RIGHT: Antigravity Screenshot & Guide (6 cols) -->
-    <div class="col-span-6 bento-tile p-2.5 xl:p-3 flex flex-col justify-between bg-white border border-slate-200 min-h-0">
-      <!-- Title & Status Header -->
-      <div class="flex items-center justify-between px-2.5 py-1.5 bg-slate-50 rounded border border-slate-200 mb-1.5 shrink-0">
-        <div class="flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span class="text-xs font-bold text-slate-800">Google Antigravity 공식 다운로드 화면</span>
+    <!-- RIGHT: Antigravity & Python/uv Guide (6 cols) -->
+    <div class="col-span-6 flex flex-col justify-between gap-2 min-h-0">
+      
+      <!-- Top: Antigravity Screenshot & Download Card -->
+      <div class="bento-tile p-2.5 xl:p-3 flex flex-col justify-between bg-white border border-slate-200 shrink-0">
+        <div class="flex items-center justify-between px-2.5 py-1 bg-slate-50 rounded border border-slate-200 mb-1.5 shrink-0">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-sky-500"></span>
+            <span class="text-xs font-bold text-slate-800">Google Antigravity 공식 다운로드 화면</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <span class="text-[9.5px] font-mono text-slate-500">antigravity.google/download</span>
+            <span class="text-[9.5px] font-mono px-1.5 py-0.2 bg-sky-100 text-sky-700 font-bold rounded">Google AI</span>
+          </div>
         </div>
-        <div class="flex items-center gap-1.5">
-          <span class="text-[10px] font-mono text-slate-500">antigravity.google/download</span>
-          <span class="text-[10px] font-mono px-1.5 py-0.5 bg-sky-100 text-sky-700 font-bold rounded">Google AI</span>
+
+        <div class="flex items-center gap-3 bg-slate-50 rounded-lg border border-slate-200 p-2">
+          <div class="w-36 h-20 shrink-0 overflow-hidden rounded border border-slate-200 bg-white">
+            <img 
+              src="./slides/03-language/assets/antigravity_download.png" 
+              alt="Google Antigravity Download Page - Windows / Mac / Linux" 
+              class="w-full h-full object-cover rounded"
+            />
+          </div>
+          <div class="flex-1 min-w-0 text-[11px] text-slate-600 space-y-1">
+            <div class="font-bold text-slate-900 text-xs">Windows / macOS / Linux 지원</div>
+            <div class="text-[10px] text-slate-500 leading-tight">
+              Google 계정 로그인 후 빈 폴더(워크스페이스)를 열어두시면 준비 완료입니다.
+            </div>
+            <div class="flex items-center justify-between text-[10px] font-mono pt-0.5">
+              <span class="text-sky-700 font-semibold truncate mr-1">antigravity.google/download</span>
+              <a href="https://antigravity.google/download" target="_blank" rel="noopener noreferrer" 
+                 class="px-2 py-0.5 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded text-[9.5px] shrink-0 transition flex items-center gap-1">
+                <span>사이트 열기</span>
+                <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Image Container -->
-      <div class="flex-1 flex items-center justify-center min-h-0 overflow-hidden bg-slate-50 rounded-lg border border-slate-200/90 p-2">
-        <img 
-          src="./slides/03-language/assets/antigravity_download.png" 
-          alt="Google Antigravity Download Page - Windows / Mac / Linux" 
-          class="w-full h-full max-h-[360px] xl:max-h-[460px] object-contain rounded-md shadow-sm border border-slate-200"
-        />
+      <!-- Bottom: STEP 3 - Python & pip install uv Guide -->
+      <div class="bento-tile p-3 xl:p-3.5 border-l-4 border-l-amber-500 flex flex-col justify-between bg-white flex-1 min-h-0">
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[10px] font-mono font-bold text-amber-700 uppercase flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+              STEP 3 &middot; Python 런타임 &amp; uv 패키지 관리자 설치
+            </span>
+            <span class="text-[10px] font-mono text-amber-800 font-bold bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+              RULE 10 준수
+            </span>
+          </div>
+          <h3 class="text-sm xl:text-base font-bold text-slate-900 mb-0.5">
+            Python 3.10+ 설치 &amp; <code class="text-amber-800 font-mono">pip install uv</code> 세팅
+          </h3>
+          <p class="text-[11px] text-slate-600 leading-relaxed mb-1.5">
+            강의 실습(Ch 04~06) 및 5대 타입 하네스 자동 실행을 위해 <strong>Python 3.10+</strong> 및 <strong>uv</strong>를 전역 설치합니다.
+          </p>
+
+          <!-- 2-Step Python + uv Grid -->
+          <div class="grid grid-cols-2 gap-2 my-1">
+            <!-- Substep 1: Python -->
+            <div class="p-2 rounded-lg bg-amber-50/50 border border-amber-200 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-0.5">
+                  <span class="text-[11px] font-bold text-amber-900 flex items-center gap-1">
+                    <span>🐍</span> <span>1. Python 버전 확인</span>
+                  </span>
+                  <span class="text-[9px] font-mono text-amber-700 bg-white px-1.5 py-0.2 rounded border border-amber-200">기본 런타임</span>
+                </div>
+                <div class="text-[9.5px] text-slate-600 leading-tight mb-1">
+                  터미널에서 버전 확인 (미설치 시 <a href="https://www.python.org" target="_blank" class="text-amber-700 underline font-semibold">python.org</a>에서 설치)
+                </div>
+              </div>
+              <div class="bg-slate-900 rounded p-1.5 border border-slate-800 font-mono text-[9px] text-emerald-300 select-all space-y-0.5">
+                <div class="truncate"><span class="text-slate-500">$ </span>python --version</div>
+                <div class="text-slate-400 text-[8px] truncate"># Python 3.10 이상 필수</div>
+              </div>
+            </div>
+
+            <!-- Substep 2: pip install uv -->
+            <div class="p-2 rounded-lg bg-emerald-50/50 border border-emerald-200 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-0.5">
+                  <span class="text-[11px] font-bold text-emerald-900 flex items-center gap-1">
+                    <span>⚡</span> <span>2. uv 설치 (<code class="font-mono text-emerald-800">pip</code>)</span>
+                  </span>
+                  <span class="text-[9px] font-mono text-emerald-700 bg-white px-1.5 py-0.2 rounded border border-emerald-200">10~100배 속도</span>
+                </div>
+                <div class="text-[9.5px] text-slate-600 leading-tight mb-1">
+                  Rust 기반 초고속 패키지 관리자 <code class="font-bold text-emerald-800 font-mono">uv</code> 전역 설치
+                </div>
+              </div>
+              <div class="bg-slate-900 rounded p-1.5 border border-slate-800 font-mono text-[9px] text-emerald-300 select-all space-y-0.5">
+                <div class="truncate text-amber-300 font-bold"><span class="text-slate-500">$ </span>pip install uv</div>
+                <div class="truncate"><span class="text-slate-500">$ </span>uv --version</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Terminal Alternative One-Liner Box -->
+        <div class="bg-slate-900 rounded p-1.5 border border-slate-800 text-[8.5px] font-mono text-slate-300 mt-1 shrink-0">
+          <div class="flex items-center justify-between text-[8px] text-slate-400 mb-0.5">
+            <span class="flex items-center gap-1 text-slate-200 font-bold">
+              <svg class="w-2.5 h-2.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              독립형 자동 설치 (pip 미사용 시 권장 스크립트)
+            </span>
+            <span class="text-amber-400 font-semibold">Standalone Installer</span>
+          </div>
+          <div class="text-slate-300 select-all space-y-0.5 leading-tight">
+            <div class="truncate"><span class="text-slate-500">macOS/Linux: </span><span class="text-emerald-300">curl -LsSf https://astral.sh/uv/install.sh | sh</span></div>
+            <div class="truncate"><span class="text-slate-500">Windows: </span><span class="text-emerald-300">powershell -c "irm https://astral.sh/uv/install.ps1 | iex"</span></div>
+          </div>
+        </div>
+
+        <!-- Bottom Tip -->
+        <div class="text-[9.5px] text-slate-600 bg-amber-50/70 border border-amber-200/60 p-1 rounded mt-1 flex items-center justify-between shrink-0">
+          <div class="flex items-center gap-1.5">
+            <span class="text-amber-700 font-bold shrink-0">💡 준비 기준:</span>
+            <span><code class="text-amber-800 font-mono font-bold">python --version</code> 및 <code class="text-emerald-800 font-mono font-bold">uv --version</code> 정상 출력 시 준비 완료</span>
+          </div>
+          <span class="text-[9px] font-mono text-amber-700 font-bold">RULE[user_global] 10</span>
+        </div>
       </div>
 
-      <!-- Caption Banner -->
-      <div class="mt-1.5 p-1.5 bg-slate-50 rounded border border-slate-200 text-[11px] text-slate-600 flex items-center justify-between shrink-0">
-        <div class="flex items-center gap-1.5">
-          <span class="text-sky-600 font-bold">🖥️ 권장 환경:</span>
-          <span>Google 계정 로그인 &middot; Windows 10/11, macOS 12+, Ubuntu 20.04+</span>
-        </div>
-        <span class="text-[10px] font-mono text-[#1B7385] font-bold">15분 뒤 Part 2 실습 시작</span>
-      </div>
     </div>
   </div>
 

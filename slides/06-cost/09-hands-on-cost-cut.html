@@ -4,7 +4,7 @@
     <div class="flex items-center justify-between">
       <div>
         <span class="text-cyan-600 font-mono text-xs uppercase tracking-wider font-bold">Chapter 06. 실전 실습 &middot; 6.8 토큰 다이어트 &amp; 도구 설치</span>
-        <h2 class="text-2xl md:text-3xl font-black text-slate-900 mt-1">실전 팁 &amp; 바로바로 실습 : caveman 장착 &amp; RTK &middot; Graphify 설치</h2>
+        <h2 class="text-2xl md:text-3xl font-black text-slate-900 mt-1">실전 팁 &amp; 바로바로 실습 : i-have-adhd 장착 &amp; RTK &middot; Graphify 설치</h2>
       </div>
       <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-700 border border-amber-400/40 text-xs font-mono font-bold animate-pulse">
         ⏱️ 5분 실습 (Hands-on)
@@ -25,12 +25,12 @@
         <div class="space-y-2 text-xs text-slate-700 leading-relaxed font-sans">
           <div class="p-2.5 bg-rose-50/60 rounded-xl border border-rose-200">
             <strong class="text-rose-700 block mb-0.5 font-bold">❌ 흔한 토큰 낭비:</strong>
-            "친절하게 설명해줘" 프롬프트 ➔ 300줄짜리 교과서식 설명이 출력되어 토큰과 시간 낭비.
+            "친절하게 설명해줘" 프롬프트 ➔ "Great question!" 등 300줄짜리 교과서식 설명이 출력되어 토큰과 시간 낭비.
           </div>
 
           <div class="p-2.5 bg-emerald-50/60 rounded-xl border border-emerald-200">
-            <strong class="text-emerald-800 block mb-0.5 font-bold">✅ 프로 바이브 코더의 비결:</strong>
-            규칙에 <code class="text-amber-700 font-mono bg-amber-50 px-1 rounded border border-amber-200">caveman</code> 모드를 기본 탑재하고, 파일 전체 대신 <strong>타입 정의와 인터페이스만 추출</strong>하여 전달합니다.
+            <strong class="text-emerald-800 block mb-0.5 font-bold">✅ i-have-adhd (답변 직격 스킬):</strong>
+            미사여구·서론·결론 완전 제거(No preamble/closers), <strong>행동 우선(Action-first) &amp; 번호 매긴 단계</strong>로 출력하여 토큰 누수를 원천 차단합니다.
           </div>
 
           <div class="p-2.5 bg-purple-50/60 rounded-xl border border-purple-200">
@@ -55,43 +55,50 @@
         <h3 class="text-sm md:text-base font-bold text-slate-900">실습 : 1분 만에 토큰 다이어트 도구 설치 &amp; 세팅</h3>
 
         <!-- PROMPT HERO BOX (User Requested) -->
-        <div class="p-3 bg-gradient-to-br from-cyan-50 via-white to-purple-50 rounded-xl border-2 border-cyan-500 shadow-sm">
-          <div class="flex items-center justify-between mb-2">
+        <div class="p-2.5 bg-gradient-to-br from-cyan-50 via-white to-purple-50 rounded-xl border-2 border-cyan-500 shadow-sm">
+          <div class="flex items-center justify-between mb-1.5">
             <div class="flex items-center gap-1.5">
               <span class="text-amber-600 font-bold text-xs">🚀 실전 복사 프롬프트</span>
               <span class="text-slate-700 text-xs font-semibold">(채팅창에 그대로 붙여넣기)</span>
             </div>
-            <span class="text-[10px] font-mono text-cyan-800 bg-cyan-100 px-2.5 py-0.5 rounded-full border border-cyan-300 font-bold">
+            <span class="text-[10px] font-mono text-cyan-800 bg-cyan-100 px-2 py-0.5 rounded-full border border-cyan-300 font-bold">
               Copy &amp; Paste
             </span>
           </div>
           
           <!-- Terminal-style Code Block -->
-          <div class="p-3 rounded-lg font-mono text-xs md:text-sm leading-relaxed select-all shadow-inner" style="background-color: #0A0F1D !important; border: 1.5px solid #06B6D4;">
+          <div class="p-2.5 rounded-lg font-mono text-xs md:text-sm leading-relaxed select-all shadow-inner" style="background-color: #0A0F1D !important; border: 1.5px solid #06B6D4;">
+            <div class="text-emerald-300 font-semibold hover:underline">https://github.com/ayghri/i-have-adhd</div>
             <div class="text-cyan-300 font-semibold hover:underline">https://github.com/rtk-ai/rtk</div>
             <div class="text-purple-300 font-semibold hover:underline">https://github.com/Graphify-Labs/graphify</div>
-            <div class="text-amber-400 font-extrabold mt-1">설치해줘</div>
+            <div class="text-amber-400 font-extrabold mt-0.5">설치해줘</div>
           </div>
 
-          <p class="text-xs text-slate-700 font-sans mt-2 leading-relaxed">
-            👉 Claude Code, Cursor, Antigravity 채팅창에 위 프롬프트를 <strong>그대로 입력</strong>하면, 에이전트가 리포지토리를 직접 클론·분석하여 <strong>RTK(출력 90% 압축)</strong>와 <strong>Graphify(코드 지식 그래프)</strong>를 자동으로 환경에 빌드·구성합니다.
+          <p class="text-xs text-slate-700 font-sans mt-1.5 leading-relaxed">
+            👉 Claude Code, Cursor, Antigravity 채팅창에 위 프롬프트를 <strong>그대로 입력</strong>하면, 에이전트가 리포지토리를 직접 클론·분석하여 <strong>i-have-adhd(미사여구 제거·액션 중심)</strong>, <strong>RTK(출력 90% 압축)</strong>, <strong>Graphify(코드 지식 그래프)</strong>를 자동으로 환경에 빌드·구성합니다.
           </p>
         </div>
 
-        <div class="space-y-1.5 text-xs font-mono">
-          <!-- Step 1 -->
+        <div class="space-y-1.5 text-xs">
+          <!-- Step 1: i-have-adhd -->
           <div class="p-2 bg-slate-50 rounded-lg border border-slate-200">
-            <div class="text-amber-700 font-bold text-[11px] mb-0.5">Step 1. 시스템 프롬프트에 caveman 규칙 장착</div>
-            <div class="text-[10px] text-slate-800 bg-white p-1.5 rounded border border-slate-200 font-mono">
-              # Rule: Cut conversational filler. Respond in terse, dense keyword bullets.
+            <div class="flex items-center justify-between mb-0.5">
+              <span class="text-amber-700 font-bold text-[11px] font-mono">1️⃣ i-have-adhd (출력 직격)</span>
+              <span class="text-[9.5px] font-mono text-amber-800 bg-amber-100/70 px-1.5 py-0.2 rounded border border-amber-300 font-bold">미사여구 박멸</span>
+            </div>
+            <div class="text-[10.5px] text-slate-700 font-sans leading-snug">
+              서론·결론·공손체 100% 제거, <strong>행동 우선(Action-first) &amp; 단계별 번호 매김</strong>으로 응답 속도와 토큰 70% 절감
             </div>
           </div>
 
-          <!-- Step 2 -->
+          <!-- Step 2: RTK & Graphify -->
           <div class="p-2 bg-slate-50 rounded-lg border border-slate-200">
-            <div class="text-amber-700 font-bold text-[11px] mb-0.5">Step 2. 20턴 후 /compact 실행 후 새 창에서 세션 이어하기</div>
-            <div class="text-[10.5px] text-slate-600 font-sans">
-              불렛 포인트 5선으로 압축된 체크포인트를 새 터미널/세션에 붙여넣고 바통 터치!
+            <div class="flex items-center justify-between mb-0.5">
+              <span class="text-cyan-700 font-bold text-[11px] font-mono">2️⃣ RTK &amp; Graphify (입력 &middot; 컨텍스트 최적화)</span>
+              <span class="text-[9.5px] font-mono text-cyan-800 bg-cyan-100/70 px-1.5 py-0.2 rounded border border-cyan-300 font-bold">입력 토큰 90% 절감</span>
+            </div>
+            <div class="text-[10.5px] text-slate-700 font-sans leading-snug">
+              <strong>RTK</strong>: 수천 줄 diff·테스트 로그를 90% 초고속 압축(&lt;25ms) | <strong>Graphify</strong>: 소스 의존성 지식 그래프화로 무차별 파일 스캔 방지
             </div>
           </div>
         </div>
