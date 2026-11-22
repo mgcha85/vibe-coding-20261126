@@ -1,0 +1,48 @@
+[project]
+name = "quality-stack-lab"
+version = "0.1.0"
+description = "Python Quality Stack 5대 하네스 실습 (uv, Ruff, Pyright, Pydantic, Pytest, import-linter)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.7.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.4.0",
+    "pyright>=1.1.360",
+    "pytest>=8.0.0",
+    "import-linter>=2.0",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = []
+
+[tool.pyright]
+include = ["src", "tests"]
+typeCheckingMode = "standard"
+pythonVersion = "3.11"
+reportMissingImports = true
+reportMissingTypeStubs = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.importlinter]
+root_package = "src"
+
+[[tool.importlinter.contracts]]
+name = "3-tier architecture layer enforcement"
+type = "layers"
+layers = [
+    "src.api",
+    "src.services",
+    "src.domain",
+]

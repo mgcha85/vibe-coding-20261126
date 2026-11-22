@@ -1,139 +1,220 @@
 <section class="slide flex flex-col justify-between" data-title="3.6 Python을 살리는 유일한 길: Quality Stack">
   <!-- Header -->
-  <div class="mb-2">
+  <div class="mb-1 shrink-0">
     <div class="flex items-center justify-between">
       <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">Chapter 03. 언어 &middot; 3.6 Python 품질 하네스</span>
       <span class="px-2.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-700/50 text-indigo-300 font-mono text-[11px] font-bold">
         QUALITY STACK HARNESS
       </span>
     </div>
-    <h2 class="text-3xl font-black text-white mt-1">Python을 안전하게 쓰는 유일한 길 : Quality Stack</h2>
-    <p class="text-xs text-slate-300 mt-1">
-      AI가 코드를 작성할 때 Python을 쓰려면, <strong>uv &middot; Ruff &middot; Pyright &middot; Pydantic</strong>으로 구성된 강력한 검증 방어선이 필수적입니다.
+    <h2 class="text-2xl lg:text-3xl font-black text-white mt-0.5">Python을 안전하게 쓰는 유일한 길 : Quality Stack</h2>
+    <p class="text-xs text-slate-300 mt-0.5">
+      AI가 코드를 작성할 때 Python을 쓰려면, <strong>uv &middot; Ruff &middot; Pyright &middot; import-linter &middot; Pydantic(Pytest)</strong> 5대 검증 방어선이 필수적입니다.
     </p>
   </div>
 
   <!-- Main Bento Grid -->
-  <div class="grid grid-cols-2 gap-4 flex-1 items-stretch my-2">
+  <div class="grid grid-cols-2 gap-3.5 flex-1 items-stretch my-1 min-h-0">
     <!-- LEFT: Python Quality Stack 장점 -->
-    <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-emerald-500 bg-slate-900/95 border border-slate-700/70 shadow-xl">
+    <div class="bento-tile p-3.5 xl:p-4 flex flex-col justify-between border-t-4 border-t-emerald-500 bg-slate-900/95 border border-slate-700/70 shadow-xl min-h-0">
       <div>
-        <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center justify-between mb-2">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
             <span class="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wide">Quality Stack의 3대 무기</span>
           </div>
-          <span class="text-[11px] font-mono font-bold text-emerald-300 bg-emerald-950/90 px-2.5 py-1 rounded border border-emerald-600/50">
+          <span class="text-[10.5px] font-mono font-bold text-emerald-300 bg-emerald-950/90 px-2.5 py-0.5 rounded border border-emerald-600/50">
             생태계 &middot; 점진적 유연성 🛡️
           </span>
         </div>
-        <h3 class="text-lg font-bold text-white mb-3">Python + 보조 도구(Ruff/Pyright/uv)의 위력</h3>
+        <h3 class="text-base xl:text-lg font-bold text-white mb-2">Python + 보조 도구(Ruff/Pyright/uv)의 위력</h3>
         
-        <div class="space-y-2.5 text-xs">
+        <div class="space-y-2 text-xs">
           <!-- Item 1 -->
-          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
-            <div class="flex items-center justify-between mb-1">
-              <strong class="text-emerald-300 text-[12.5px]">01. 점진적 타이핑(Gradual Typing)의 유연성</strong>
-              <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded">Fast Vibe</span>
+          <div class="p-2.5 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
+            <div class="flex items-center justify-between mb-0.5">
+              <strong class="text-emerald-300 text-[12px]">01. 점진적 타이핑(Gradual Typing)의 유연성</strong>
+              <span class="text-[9.5px] font-mono text-slate-400 bg-slate-900 px-1.5 py-0.2 rounded">Fast Vibe</span>
             </div>
-            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+            <p class="text-slate-200 text-[11px] leading-relaxed">
               초기 프로토타이핑은 스크립트로 극도로 빠르게 돌려보고(Fast Vibe), 검증된 핵심 로직에만 <strong>Pydantic 모델 &middot; Type Hint</strong>를 점진 적용해 유연성 극대화.
             </p>
           </div>
 
           <!-- Item 2 -->
-          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
-            <div class="flex items-center justify-between mb-1">
-              <strong class="text-emerald-300 text-[12.5px]">02. 압도적인 AI &middot; ML 생태계 독점 (90%+)</strong>
-              <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded">Ecosystem King</span>
+          <div class="p-2.5 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
+            <div class="flex items-center justify-between mb-0.5">
+              <strong class="text-emerald-300 text-[12px]">02. 압도적인 AI &middot; ML 생태계 독점 (90%+)</strong>
+              <span class="text-[9.5px] font-mono text-slate-400 bg-slate-900 px-1.5 py-0.2 rounded">Ecosystem King</span>
             </div>
-            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+            <p class="text-slate-200 text-[11px] leading-relaxed">
               PyTorch, Hugging Face, LangChain, vLLM, DeepSpeed 등 최신 AI 코어 프레임워크가 Python 1st-party로만 출시되어 타 언어로 대체 불가.
             </p>
           </div>
 
           <!-- Item 3 -->
-          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
-            <div class="flex items-center justify-between mb-1">
-              <strong class="text-emerald-300 text-[12.5px]">03. Rust 기반 차세대 툴체인의 극단적 속도</strong>
-              <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded">uv &middot; Ruff</span>
+          <div class="p-2.5 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
+            <div class="flex items-center justify-between mb-0.5">
+              <strong class="text-emerald-300 text-[12px]">03. Rust 기반 차세대 툴체인의 극단적 속도</strong>
+              <span class="text-[9.5px] font-mono text-slate-400 bg-slate-900 px-1.5 py-0.2 rounded">uv &middot; Ruff</span>
             </div>
-            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+            <p class="text-slate-200 text-[11px] leading-relaxed">
               <strong class="text-cyan-300">uv</strong>(초고속 가상환경/패키징) + <strong class="text-cyan-300">Ruff</strong>(Rust 기반 린터) 도입으로 C/Rust급 <strong>수 밀리초(ms) 단위</strong> 실시간 피드백 루프 달성.
             </p>
           </div>
         </div>
       </div>
 
-      <div class="text-[11px] text-emerald-300 font-mono bg-emerald-950/40 border border-emerald-800/40 px-3 py-1.5 rounded mt-3 flex items-center justify-between">
+      <div class="text-[10.5px] text-emerald-300 font-mono bg-emerald-950/40 border border-emerald-800/40 px-2.5 py-1 rounded mt-2 flex items-center justify-between shrink-0">
         <span>✓ 결론: AI 모델링 &middot; 데이터 연구 &middot; 빠른 가설 검증에 압도적 최적</span>
         <span class="font-bold">Fast R&amp;D</span>
       </div>
     </div>
 
     <!-- RIGHT: 치명적 단점 및 방어책 -->
-    <div class="bento-tile p-5 flex flex-col justify-between border-t-4 border-t-rose-500 bg-slate-900/95 border border-slate-700/70 shadow-xl">
+    <div class="bento-tile p-3.5 xl:p-4 flex flex-col justify-between border-t-4 border-t-rose-500 bg-slate-900/95 border border-slate-700/70 shadow-xl min-h-0">
       <div>
-        <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center justify-between mb-2">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-rose-400 animate-pulse"></span>
             <span class="text-xs font-mono text-rose-400 font-bold uppercase tracking-wide">치명적 함정과 방어 가드레일</span>
           </div>
-          <span class="text-[11px] font-mono font-bold text-rose-300 bg-rose-950/90 px-2.5 py-1 rounded border border-rose-600/50">
+          <span class="text-[10.5px] font-mono font-bold text-rose-300 bg-rose-950/90 px-2.5 py-0.5 rounded border border-rose-600/50">
             환각 방어선 🛡️
           </span>
         </div>
-        <h3 class="text-lg font-bold text-white mb-3">보조 도구 없이는 런타임 지뢰밭으로 돌변</h3>
+        <h3 class="text-base xl:text-lg font-bold text-white mb-2">보조 도구 없이는 런타임 지뢰밭으로 돌변</h3>
 
-        <div class="space-y-2.5 text-xs">
+        <div class="space-y-2 text-xs">
           <!-- Item 1 -->
-          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
-            <div class="flex items-center justify-between mb-1">
-              <strong class="text-rose-300 text-[12.5px]">01. AI 환각에 대한 런타임 참사 방어</strong>
-              <span class="text-[10px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded">Pyright Strict</span>
+          <div class="p-2.5 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
+            <div class="flex items-center justify-between mb-0.5">
+              <strong class="text-rose-300 text-[12px]">01. AI 환각에 대한 런타임 참사 방어</strong>
+              <span class="text-[9.5px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.2 rounded">Pyright Strict</span>
             </div>
-            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+            <p class="text-slate-200 text-[11px] leading-relaxed">
               신택스 검사만으로는 <code class="text-rose-300 bg-rose-950 px-1 rounded">AttributeError</code>를 잡을 수 없음. 반드시 <strong class="text-cyan-300">Pyright</strong> 정적 분석기를 파이프라인에 배치해 배포 전 차단.
             </p>
           </div>
 
           <!-- Item 2 -->
-          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
-            <div class="flex items-center justify-between mb-1">
-              <strong class="text-rose-300 text-[12.5px]">02. 파이프라인 자동화로 오버헤드 상쇄</strong>
-              <span class="text-[10px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded">Pre-commit</span>
+          <div class="p-2.5 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
+            <div class="flex items-center justify-between mb-0.5">
+              <strong class="text-rose-300 text-[12px]">02. 파이프라인 자동화로 오버헤드 상쇄</strong>
+              <span class="text-[9.5px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.2 rounded">Pre-commit</span>
             </div>
-            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+            <p class="text-slate-200 text-[11px] leading-relaxed">
               개발자가 일일이 수동 실행하지 않도록, Git Pre-commit 훅 또는 에이전트의 Bash Tool 실행 조건에 <code class="text-cyan-300 bg-slate-950 px-1 rounded">uv run ruff check</code>을 의무화.
             </p>
           </div>
 
           <!-- Item 3 -->
-          <div class="p-3 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
-            <div class="flex items-center justify-between mb-1">
-              <strong class="text-rose-300 text-[12.5px]">03. Pydantic으로 토큰 낭비와 환각 차단</strong>
-              <span class="text-[10px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded">Structured Input</span>
+          <div class="p-2.5 bg-slate-950/80 rounded-lg border border-slate-800 transition-colors">
+            <div class="flex items-center justify-between mb-0.5">
+              <strong class="text-rose-300 text-[12px]">03. Pydantic으로 토큰 낭비와 환각 차단</strong>
+              <span class="text-[9.5px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.2 rounded">Structured Input</span>
             </div>
-            <p class="text-slate-200 text-[11.5px] leading-relaxed">
+            <p class="text-slate-200 text-[11px] leading-relaxed">
               딕셔너리(dict) 대신 <strong class="text-emerald-300">Pydantic BaseModel</strong>을 규격으로 AI에게 제공하면 불필요한 설명 토큰을 80% 줄이고 필드명 오타 원천 차단.
             </p>
           </div>
         </div>
       </div>
 
-      <div class="text-[11px] text-rose-300 font-mono bg-rose-950/40 border border-rose-800/40 px-3 py-1.5 rounded mt-3 flex items-center justify-between">
+      <div class="text-[10.5px] text-rose-300 font-mono bg-rose-950/40 border border-rose-800/40 px-2.5 py-1 rounded mt-2 flex items-center justify-between shrink-0">
         <span>⚠ 결론: 방어선 없는 순수 Python은 금지, Quality Stack 장착 시 강력한 무기</span>
         <span class="font-bold">Guarded Python</span>
       </div>
     </div>
   </div>
 
-  <!-- Bottom Takeaway -->
-  <div class="bento-tile px-4 py-2 flex items-center justify-between text-xs font-mono text-slate-200 border border-slate-700 bg-slate-900/95 mt-1">
-    <div class="flex items-center gap-2">
-      <span class="text-emerald-400 font-bold">💡 실전 원칙:</span>
-      <span>Python으로 바이브 코딩을 할 때는 <strong>"uv + Ruff + Pydantic"</strong>을 반드시 하네스로 묶어서 AI를 구동해야 합니다.</span>
+  <!-- Practice Package & 5 Tool Test Command Console -->
+  <div class="bento-tile p-2.5 xl:p-3 bg-slate-900/95 border border-slate-700/80 rounded-xl mt-1 shrink-0 flex flex-col gap-1.5 shadow-lg">
+    <!-- Top row: Title + Download Buttons -->
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[10px] font-bold border border-emerald-500/40">
+          🛠️ 실습 팩 (LAB)
+        </span>
+        <span class="text-xs font-bold text-white">5대 하네스 실습 패키지 (<code class="text-emerald-300 font-mono font-bold">python_quality_stack.zip</code>)</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="https://github.com/mgcha85/vibe-coding-20261126/releases/download/v1.0.0/python_quality_stack.zip" target="_blank" rel="noopener noreferrer"
+           class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[10.5px] rounded shadow-sm flex items-center gap-1.5 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+          <span>GitHub 다운로드 (35 KB)</span>
+        </a>
+        <a href="https://github.com/mgcha85/vibe-coding-20261126/tree/main/labs/quality-stack-lab" target="_blank" rel="noopener noreferrer"
+           class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-[10.5px] rounded border border-slate-700 flex items-center gap-1 transition">
+          <span>GitHub 코드 보기 &rarr;</span>
+        </a>
+      </div>
     </div>
-    <span class="text-amber-400 font-bold text-[11px]">Next: 3.15 Python QA 하네스 시연 ➔</span>
+
+    <!-- 5 Tool Test Commands Grid -->
+    <div class="grid grid-cols-5 gap-1.5 text-[9.5px] font-mono">
+      <!-- 1. uv -->
+      <div class="p-1.5 bg-slate-950/80 rounded border border-slate-800 flex flex-col justify-between">
+        <div class="text-slate-400 font-bold text-[8.5px] flex items-center justify-between mb-0.5">
+          <span class="text-cyan-400 font-bold">01. uv (환경/실행)</span>
+          <span class="text-[8px] bg-slate-800 px-1 rounded text-slate-400">Setup</span>
+        </div>
+        <div class="text-emerald-300 select-all truncate font-semibold" title="uv run python -m src.api.main">
+          uv run python -m src.api.main
+        </div>
+      </div>
+
+      <!-- 2. Ruff -->
+      <div class="p-1.5 bg-slate-950/80 rounded border border-slate-800 flex flex-col justify-between">
+        <div class="text-slate-400 font-bold text-[8.5px] flex items-center justify-between mb-0.5">
+          <span class="text-amber-400 font-bold">02. Ruff (초고속 린트)</span>
+          <span class="text-[8px] bg-slate-800 px-1 rounded text-slate-400">Linter</span>
+        </div>
+        <div class="text-emerald-300 select-all truncate font-semibold" title="uv run ruff check">
+          uv run ruff check
+        </div>
+      </div>
+
+      <!-- 3. Pyright -->
+      <div class="p-1.5 bg-slate-950/80 rounded border border-slate-800 flex flex-col justify-between">
+        <div class="text-slate-400 font-bold text-[8.5px] flex items-center justify-between mb-0.5">
+          <span class="text-sky-400 font-bold">03. Pyright (정적 타입)</span>
+          <span class="text-[8px] bg-slate-800 px-1 rounded text-slate-400">Type</span>
+        </div>
+        <div class="text-emerald-300 select-all truncate font-semibold" title="uv run pyright">
+          uv run pyright
+        </div>
+      </div>
+
+      <!-- 4. import-linter -->
+      <div class="p-1.5 bg-slate-950/80 rounded border border-slate-800 flex flex-col justify-between">
+        <div class="text-slate-400 font-bold text-[8.5px] flex items-center justify-between mb-0.5">
+          <span class="text-purple-400 font-bold">04. import-linter (계층)</span>
+          <span class="text-[8px] bg-slate-800 px-1 rounded text-slate-400">Arch</span>
+        </div>
+        <div class="text-emerald-300 select-all truncate font-semibold" title="uv run lint-imports">
+          uv run lint-imports
+        </div>
+      </div>
+
+      <!-- 5. Pytest (Pydantic & Tests) -->
+      <div class="p-1.5 bg-slate-950/80 rounded border border-slate-800 flex flex-col justify-between">
+        <div class="text-slate-400 font-bold text-[8.5px] flex items-center justify-between mb-0.5">
+          <span class="text-rose-400 font-bold">05. Pydantic &amp; Pytest</span>
+          <span class="text-[8px] bg-slate-800 px-1 rounded text-slate-400">Tests</span>
+        </div>
+        <div class="text-emerald-300 select-all truncate font-semibold" title="uv run pytest">
+          uv run pytest
+        </div>
+      </div>
+    </div>
+
+    <!-- Terminal curl & run_checks one-liner -->
+    <div class="text-[9px] font-mono text-slate-400 flex items-center justify-between bg-slate-950 px-2 py-0.5 rounded border border-slate-800/80 select-all">
+      <div class="truncate mr-2">
+        <strong class="text-slate-300">터미널 다운로드:</strong> <code class="text-emerald-300">curl -LO https://github.com/mgcha85/vibe-coding-20261126/releases/download/v1.0.0/python_quality_stack.zip</code>
+      </div>
+      <span class="text-slate-400 shrink-0 font-bold">일괄 실행: <code class="text-cyan-300">./run_checks.sh</code></span>
+    </div>
   </div>
 </section>
