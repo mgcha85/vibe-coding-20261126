@@ -32,7 +32,7 @@
               <span class="text-base">💬</span>
               <div>
                 <div class="text-slate-800 font-bold text-[11px]">User Prompt (질문/지시)</div>
-                <div class="text-[10px] text-slate-500">"DuckDB 기반 QC 필터 및 UMAP 시각화 파이프라인 짜줘"</div>
+                <div class="text-[10px] text-slate-500">"신규 기능 개발 전 INTENT.md 확인하고 PLAN.md 먼저 작성해줘"</div>
               </div>
             </div>
             <span class="text-[10px] text-sky-700 bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200 font-bold">Turn Start</span>
@@ -56,17 +56,17 @@
             <div class="flex items-center justify-between text-sky-900 font-bold text-[11.5px] mb-1">
               <div class="flex items-center gap-1.5">
                 <span class="text-base group-hover:scale-110 transition-transform">📜</span>
-                <span class="text-sky-950 font-black">/AGENTS.md (실전 헌법 예시)</span>
+                <span class="text-sky-950 font-black">/AGENTS.md (실전 헌법 전문)</span>
               </div>
               <span class="text-[9.5px] font-mono bg-sky-600 text-white px-2 py-0.5 rounded shadow-sm font-bold flex items-center gap-1">
                 <span>🔍 클릭: 헌법 전문</span>
               </span>
             </div>
             <ul class="text-[10.5px] text-slate-700 space-y-0.5 list-disc list-inside font-sans">
-              <li><strong>미션 &amp; 스코프</strong>: 10x PBMC 3k (DuckDB 웨어하우스 ➔ 분석 파이프라인 ➔ Astro 대시보드)</li>
-              <li><strong>강제 스택</strong>: Python 3.12 (<code class="text-sky-800 bg-sky-100/70 px-1 py-0.2 rounded font-mono">uv</code>), DuckDB, SQLite (ops), Astro + ECharts (<code class="text-rose-700 font-mono font-bold">pandas 금지</code>)</li>
-              <li><strong>컨텍스트 로드 순서</strong>: 헌법 ➔ INTENT/PLAN/PROJECT ➔ 스킬 ➔ 레슨 ➔ 소스</li>
-              <li><strong>운영 헌법</strong>: 모호하면 Grill-me(3~5개), 엄격 품질 게이트, 5개 격리 Worktree</li>
+              <li><strong>핵심 원칙 &amp; SSOT</strong>: 프로젝트 특화는 <code class="text-sky-800 bg-sky-100/70 px-1 py-0.2 rounded font-mono font-bold">PROJECT.md</code>, 절차 실행은 <code class="text-indigo-800 bg-indigo-100/70 px-1 py-0.2 rounded font-mono font-bold">.cursor/skills/</code></li>
+              <li><strong>6대 표준 문서</strong>: PROJECT &middot; INTENT &middot; ROADMAP &middot; PLAN &middot; ADR &middot; LESSON_AND_LEARN</li>
+              <li><strong>2대 착수 관문</strong>: Gate 1 Grill-me (INTENT 100%) ➔ Gate 2 Mandatory PLAN.md (승인 전 코딩 금지)</li>
+              <li><strong>4대 Worktree</strong>: <code class="text-slate-800 font-mono font-bold">main/</code>(시작점 &middot; 통합), <code class="text-slate-700 font-mono">ui/</code>, <code class="text-slate-700 font-mono">data/</code>, <code class="text-slate-700 font-mono">analytics/</code> (Push 시 자동 머지)</li>
             </ul>
           </div>
 
@@ -139,59 +139,59 @@
         </div>
 
         <div class="grid grid-cols-2 gap-2 text-xs">
-          <!-- Pillar 1: Mission & Stack -->
+          <!-- Pillar 1: 6 Essential Docs & Cold-Start Hydration -->
           <div 
             onclick="openAgentsModal(event)" 
             class="p-2 rounded bg-slate-50 border border-slate-200 cursor-pointer hover:border-sky-400 hover:bg-sky-50/50 transition-all"
             title="클릭하여 예시 확인"
           >
             <div class="text-sky-700 font-bold text-[11px] mb-0.5 flex items-center gap-1">
-              <span>1️⃣</span> <span>1) Mission &amp; 2) Stack (강제)</span>
+              <span>1️⃣</span> <span>1) 6대 표준 문서 &amp; 3) Cold-Start 적재</span>
             </div>
             <div class="text-[10px] text-slate-600 leading-snug">
-              DuckDB(분석) &middot; SQLite(ops) &middot; Astro(FE) 단일 표준. <code class="text-rose-700 font-mono font-bold">import pandas 금지</code> &middot; Jupyter 최종 산출물 금지.
+              PROJECT &middot; INTENT &middot; PLAN 등 6대 문서로 첫 턴(Cold-Start) 지능 즉시 복원 및 자의적 탈선 원천 차단.
             </div>
           </div>
 
-          <!-- Pillar 2: Directory & Pipeline Order -->
+          <!-- Pillar 2: 2 Gates: Grill-me & PLAN.md -->
           <div 
             onclick="openAgentsModal(event)" 
             class="p-2 rounded bg-slate-50 border border-slate-200 cursor-pointer hover:border-amber-400 hover:bg-amber-50/50 transition-all"
             title="클릭하여 예시 확인"
           >
             <div class="text-amber-700 font-bold text-[11px] mb-0.5 flex items-center gap-1">
-              <span>2️⃣</span> <span>3) 소유권 &amp; 4) Pipeline Order</span>
+              <span>2️⃣</span> <span>2) 2대 필수 관문: Grill-me &amp; PLAN</span>
             </div>
             <div class="text-[10px] text-slate-600 leading-snug">
-              h5ad ➔ EDA ➔ QC ➔ DimReduce ➔ Markers ➔ CellType ➔ Export 엄격 순서. 선행 산출물 없이 후행 구현 금지.
+              모호하면 역질문(3~5개)으로 INTENT 100% 완성. 사용자 명시 승인 전 코딩 절대 금지 게이트.
             </div>
           </div>
 
-          <!-- Pillar 3: Context Load & Grill-me & Gates -->
+          <!-- Pillar 3: Safety Rules & Knowledge Feedback -->
           <div 
             onclick="openAgentsModal(event)" 
             class="p-2 rounded bg-slate-50 border border-slate-200 cursor-pointer hover:border-emerald-400 hover:bg-emerald-50/50 transition-all"
             title="클릭하여 예시 확인"
           >
             <div class="text-emerald-700 font-bold text-[11px] mb-0.5 flex items-center gap-1">
-              <span>3️⃣</span> <span>5) Context 순서 &amp; 6) Grill-me &amp; 7) Gates</span>
+              <span>3️⃣</span> <span>4) 운영 안전 규칙 &amp; 5) 지식 환류</span>
             </div>
             <div class="text-[10px] text-slate-600 leading-snug">
-              모호하면 구현 전 역질문(3~5개). <code class="text-emerald-800 font-mono">ruff check</code>, <code class="text-slate-800 font-mono">pandas</code> 임포트 차단, <code class="text-rose-700 font-mono">rm -rf</code> 파괴 금지.
+              <code class="text-rose-700 font-mono font-bold">rm -rf</code> 파괴 명령 금지, .env 시크릿 보호. 해결된 버그는 LESSON &middot; Skills로 승격.
             </div>
           </div>
 
-          <!-- Pillar 4: Data Contract & Skills & Worktrees -->
+          <!-- Pillar 4: Skills Routing & 4 Worktrees -->
           <div 
             onclick="openAgentsModal(event)" 
             class="p-2 rounded bg-slate-50 border border-slate-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/50 transition-all"
             title="클릭하여 예시 확인"
           >
             <div class="text-purple-700 font-bold text-[11px] mb-0.5 flex items-center gap-1">
-              <span>4️⃣</span> <span>8) Data Contract &amp; 11) Worktrees</span>
+              <span>4️⃣</span> <span>6~7) Skills &amp; 8) 4대 Worktree</span>
             </div>
             <div class="text-[10px] text-slate-600 leading-snug">
-              2700×32738 hg19 계약. <code class="text-purple-800 font-mono">main</code>(통합), <code class="text-slate-700 font-mono">ui</code>, <code class="text-slate-700 font-mono">auth</code>, <code class="text-slate-700 font-mono">analytics</code>, <code class="text-slate-700 font-mono">db</code> 5개 worktree 도메인 격리.
+              상황별 스킬 라우팅(data/ui/db/ops). <code class="text-purple-800 font-mono font-bold">main/</code>에서 시작, 도메인 분할 격리 및 Push 자동 머지.
             </div>
           </div>
         </div>
@@ -224,7 +224,7 @@
             <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block border border-emerald-500/30"></span>
           </div>
           <span class="text-sm font-mono font-bold text-slate-800 flex items-center gap-1.5">
-            <span>📜</span> /AGENTS.md &middot; 실전 프로젝트 헌법 예시 전문
+            <span>📜</span> /AGENTS.md &middot; 실전 프로젝트 헌법 전문 (SSOT)
           </span>
           <span class="text-[10.5px] font-mono text-sky-800 bg-sky-100 px-2 py-0.5 rounded border border-sky-300 font-bold">
             Every-turn SSOT
@@ -255,7 +255,8 @@
           <div>
             <strong class="text-sky-900 font-mono text-[13px] block"># AGENTS.md</strong>
             <p class="text-[11.5px] text-slate-700 mt-0.5">
-              <strong>PBMC 3k scRNA-seq 바이브 코딩 실습 저장소의 Every-turn 헌법이다.</strong> 모호하면 코딩 전에 역질문한다.
+              프로젝트 특화(스택·데이터·포트·게이트 커맨드)는 <code class="text-sky-800 bg-sky-100/70 px-1 py-0.2 rounded font-mono font-bold">PROJECT.md</code>에 둔다. 모호하면 코딩 전에 역질문(Grill-me)한다.<br>
+              절차·단계 실행은 <code class="text-indigo-800 bg-indigo-100/70 px-1 py-0.2 rounded font-mono font-bold">.cursor/skills/</code>가 SSOT다. <code class="text-slate-600 font-mono">CLAUDE.md</code>는 만들지 않는다 (AGENTS와 중복).
             </p>
           </div>
           <span class="px-2 py-1 bg-white text-sky-800 text-[10px] font-mono font-bold rounded border border-sky-200 shrink-0 ml-3">
@@ -263,371 +264,306 @@
           </span>
         </div>
 
-        <!-- 1) Mission & Scope -->
-        <div class="p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
-          <div class="text-sky-800 font-bold text-sm flex items-center gap-2 font-mono">
-            <span>## 1) Mission &amp; Scope</span>
+        <!-- 1. 6대 표준 문서 체계 & 역할 -->
+        <div class="p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="text-sky-800 font-bold text-sm flex items-center gap-2 font-mono">
+              <span>## 1. 개별 프로젝트 6대 표준 문서 체계 &amp; 역할</span>
+            </div>
+            <span class="text-[10px] font-mono text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200 font-bold">
+              6 Standard Docs
+            </span>
           </div>
-          <ul class="text-[11px] font-sans text-slate-700 space-y-1.5 list-disc list-inside">
-            <li><strong>목표:</strong> 10x PBMC 3k를 <strong class="text-sky-800">DuckDB 웨어하우스 ➔ 분석 파이프라인 ➔ Astro 시각화</strong>까지 재현 가능한 연구 앱으로 구축한다.</li>
-            <li><strong>범위:</strong> QC ➔ 차원축소/군집 ➔ 마커 ➔ 세포타입 추론 ➔ Astro 대시보드 + <strong class="text-amber-800">로컬 로그인/회원(ops SQLite)</strong>.</li>
-            <li><strong>범위 밖:</strong> 클라우드 배포, 다중 샘플 통합, 새 원시 데이터 다운로드(이미 <code class="text-slate-700 bg-slate-100 px-1 py-0.2 rounded font-mono">data/raw/</code>에 있음), OIDC/SSO.</li>
-          </ul>
+          <p class="text-[11px] font-sans text-slate-700">
+            모든 프로젝트 루트에는 다음 6대 마크다운 문서가 배치되어 에이전트의 드리프트(탈선)를 차단하고 작업 연속성을 보장합니다:
+          </p>
+          
+          <!-- Tree Block -->
+          <div class="p-2.5 rounded font-mono text-[11px] leading-relaxed text-cyan-300 bg-[#0A0F1D] border border-slate-800 select-all shadow-inner">
+📁 project-root/<br>
+├── 🔗 <span class="text-amber-300 font-bold">AGENTS.md</span> -&gt; .knowledge/00_meta/AGENTS.md  <span class="text-slate-500"># 전역 헌법 링크</span><br>
+├── 📄 <span class="text-sky-300 font-bold">PROJECT.md</span>                                <span class="text-slate-500"># 프로젝트 고정 런타임/환경 명세</span><br>
+├── 📄 <span class="text-emerald-300 font-bold">INTENT.md</span>                                 <span class="text-slate-500"># 현재 스프린트 의도 &amp; 바운더리</span><br>
+├── 📄 <span class="text-purple-300 font-bold">ROADMAP.md</span>                                <span class="text-slate-500"># 마일스톤 및 거시적 진행도</span><br>
+├── 📄 <span class="text-rose-300 font-bold">PLAN.md</span>                                   <span class="text-slate-500"># 현재 작업 단위 세부 실행 계획서</span><br>
+├── 📄 <span class="text-cyan-300 font-bold">ADR.md</span>                                    <span class="text-slate-500"># 아키텍처 기술 결정 기록 (append-only)</span><br>
+└── 📄 <span class="text-amber-200 font-bold">LESSON_AND_LEARN.md</span>                       <span class="text-slate-500"># 누적 시행착오 &amp; 트러블슈팅 장부</span>
+          </div>
+
+          <!-- Document Table -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-[11px] font-sans border-collapse">
+              <thead>
+                <tr class="bg-slate-100 text-slate-700 border-b border-slate-300 font-mono text-[10.5px]">
+                  <th class="p-2 text-left w-1/5 font-bold">문서명</th>
+                  <th class="p-2 text-left w-2/5 font-bold">역할 및 성격</th>
+                  <th class="p-2 text-left w-1/5 font-bold">참조 시점</th>
+                  <th class="p-2 text-left w-1/5 font-bold">갱신 주기</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200">
+                <tr>
+                  <td class="p-2 font-mono font-bold text-sky-800 bg-slate-50/50"><code>PROJECT.md</code></td>
+                  <td class="p-2 text-slate-700">런타임 환경, 포트, 스택, 불변 제약</td>
+                  <td class="p-2 font-bold text-indigo-700">세션 첫 턴, 인프라 작업</td>
+                  <td class="p-2 text-slate-600">스택/포트/환경 변경 시에만</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-mono font-bold text-purple-800 bg-slate-50/50"><code>ROADMAP.md</code></td>
+                  <td class="p-2 text-slate-700">거시적 마일스톤(M1~Mn), 일정, 진척도</td>
+                  <td class="p-2 font-bold text-indigo-700">세션 첫 턴, 스프린트 시작/종료</td>
+                  <td class="p-2 text-slate-600">마일스톤 달성 및 변경 시</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-mono font-bold text-emerald-800 bg-slate-50/50"><code>INTENT.md</code></td>
+                  <td class="p-2 text-slate-700">현재 작업의 목적, 수용 기준, 제외 범위(Do NOT)</td>
+                  <td class="p-2 font-bold text-emerald-700">세션 첫 턴, 작업 착수(Grill-me)</td>
+                  <td class="p-2 text-slate-600">새로운 기능/스프린트 시작 시</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-mono font-bold text-rose-800 bg-slate-50/50"><code>PLAN.md</code></td>
+                  <td class="p-2 text-slate-700">구체적 파일 변경 명세([NEW]/[MODIFY]), 검증 계획</td>
+                  <td class="p-2 font-bold text-rose-700">세션 첫 턴, 구현 코딩 직전</td>
+                  <td class="p-2 text-slate-600">매 작업/스프린트 단위 승인 후</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-mono font-bold text-cyan-800 bg-slate-50/50"><code>ADR.md</code></td>
+                  <td class="p-2 text-slate-700">아키텍처·기술 스택 선정 결정 기록 (번호 증가)</td>
+                  <td class="p-2 font-bold text-indigo-700">세션 첫 턴, 아키텍처 설계 시</td>
+                  <td class="p-2 text-slate-600">중요 기술/구조 결정 시 (Append-Only)</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-mono font-bold text-amber-800 bg-slate-50/50"><code>LESSON_AND_LEARN.md</code></td>
+                  <td class="p-2 text-slate-700">재발 방지 장부 (증상, 원인, 해결책, 규칙)</td>
+                  <td class="p-2 font-bold text-amber-700">세션 첫 턴, 디버깅/구현 착수 전</td>
+                  <td class="p-2 text-slate-600">트러블슈팅/버그 해결 직후 (최신 상단)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        <!-- 2) Stack (강제) -->
+        <!-- 2. 작업 착수 2대 필수 관문 -->
+        <div class="p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="text-sky-800 font-bold text-sm flex items-center gap-2 font-mono">
+              <span>## 2. 작업 착수 2대 필수 관문: Grill-me &amp; PLAN.md Gate</span>
+            </div>
+            <span class="text-[10px] font-mono text-rose-700 font-bold bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+              승인 전 코딩 절대 금지
+            </span>
+          </div>
+          <p class="text-[11px] font-sans text-slate-700">
+            에이전트가 사용자의 첫 프롬프트를 수신했을 때, <strong>코드 작성을 시작하기 전에 반드시 통과해야 하는 2단계 강제 게이트(Gate)</strong>입니다:
+          </p>
+
+          <div class="grid grid-cols-2 gap-3 text-[11px] font-sans">
+            <!-- Gate 1: Grill-me -->
+            <div class="p-3 bg-amber-50/60 rounded-lg border border-amber-200 space-y-1.5">
+              <div class="font-bold text-amber-900 flex items-center justify-between">
+                <span>Gate 1: Grill-me 프로토콜</span>
+                <span class="text-[9.5px] font-mono bg-amber-100 text-amber-800 px-1.5 py-0.2 rounded border border-amber-300 font-bold">INTENT 100% 루프</span>
+              </div>
+              <p class="text-amber-900/90 leading-tight">
+                <strong>원칙:</strong> 에이전트는 절대 사용자의 의도를 자의적으로 추측하거나 임의로 넘겨짚지 않는다.
+              </p>
+              <ul class="text-slate-700 space-y-1 list-disc list-inside text-[10.5px]">
+                <li>첫 프롬프트 수신 시 <code class="font-mono text-slate-800 bg-white px-1 rounded">./INTENT.md</code> 필수 항목(Goal, Criteria, Scope) 충족도 자체 평가</li>
+                <li>1%라도 모호함이 있다면 <strong>즉시 작업을 멈추고 날카로운 역질문(Grill-me, 3~5개)</strong> 투입</li>
+                <li>INTENT가 100% 명확해질 때까지 인터뷰 루프 지속</li>
+                <li>합의된 내용을 <code class="font-mono text-slate-800 bg-white px-1 rounded">./INTENT.md</code>에 기록 후 게이트 통과</li>
+              </ul>
+            </div>
+
+            <!-- Gate 2: Mandatory PLAN.md -->
+            <div class="p-3 bg-rose-50/60 rounded-lg border border-rose-200 space-y-1.5">
+              <div class="font-bold text-rose-900 flex items-center justify-between">
+                <span>Gate 2: Mandatory PLAN.md 프로토콜</span>
+                <span class="text-[9.5px] font-mono bg-rose-100 text-rose-800 px-1.5 py-0.2 rounded border border-rose-300 font-bold">승인 전 코딩 금지</span>
+              </div>
+              <p class="text-rose-900/90 leading-tight">
+                <strong>원칙:</strong> 첫 프롬프트에서 코드를 바로 수정하거나 작성하는 것은 <strong>치명적 규정 위반</strong>이다.
+              </p>
+              <ul class="text-slate-700 space-y-1 list-disc list-inside text-[10.5px]">
+                <li>INTENT 완성 후 코딩 전 반드시 <code class="font-mono text-slate-800 bg-white px-1 rounded">./PLAN.md</code> 선작성</li>
+                <li>스택, 상태 설계, 파일별 변경([NEW]/[MODIFY]), 단계별 로드맵, 검증 계획 명시</li>
+                <li>작성 완료 시 <strong>실행을 중단(STOP)하고 사용자에게 명시적 검토/승인 요청</strong></li>
+                <li>사용자가 플랜을 승인하면 비로소 구현(Coding) 착수</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Cold-Start 문맥 적재 -->
         <div class="p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
           <div class="flex items-center justify-between">
             <div class="text-sky-800 font-bold text-sm flex items-center gap-2 font-mono">
-              <span>## 2) Stack (강제)</span>
+              <span>## 3. 빈 세션 / 신규 쓰레드 첫 턴 문맥 적재 (Cold-Start Context Hydration)</span>
             </div>
-            <span class="text-[10px] font-mono text-rose-700 font-bold bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
-              규칙 위반 시 빌드 차단
+            <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-bold">
+              7-Step Hydration
             </span>
           </div>
-          <div class="overflow-x-auto">
-            <table class="w-full text-[11px] font-sans border-collapse">
-              <thead>
-                <tr class="bg-slate-100 text-slate-700 border-b border-slate-300 font-mono text-[10.5px]">
-                  <th class="p-2 text-left w-1/5">층</th>
-                  <th class="p-2 text-left w-1/4">기술</th>
-                  <th class="p-2 text-left">규칙</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-200">
-                <tr>
-                  <td class="p-2 font-mono font-bold text-slate-800 bg-slate-50/50">BE</td>
-                  <td class="p-2 font-mono text-slate-700">Python 3.12 + <code>.venv</code></td>
-                  <td class="p-2 text-slate-700"><code>uv</code>로 패키지 설치</td>
-                </tr>
-                <tr>
-                  <td class="p-2 font-mono font-bold text-amber-700 bg-slate-50/50">Warehouse</td>
-                  <td class="p-2 font-mono font-bold text-amber-700">DuckDB</td>
-                  <td class="p-2 text-slate-700">분석 테이블·집계·내보내기만. <strong>로그인/회원 금지</strong></td>
-                </tr>
-                <tr>
-                  <td class="p-2 font-mono font-bold text-slate-800 bg-slate-50/50">Ops DB</td>
-                  <td class="p-2 font-mono font-bold text-slate-800">SQLite (<code>data/ops/app.sqlite</code>)</td>
-                  <td class="p-2 text-slate-700">회원·세션·감사 로그. <strong>분석 행렬 금지</strong></td>
-                </tr>
-                <tr>
-                  <td class="p-2 font-mono font-bold text-indigo-700 bg-slate-50/50">Auth API</td>
-                  <td class="p-2 font-mono text-slate-700">FastAPI (<code>backend/auth</code>)</td>
-                  <td class="p-2 text-slate-700">기동 시 회원 메모리 적재; 변경 시 메모리➔SQLite sync; 로그는 비동기</td>
-                </tr>
-                <tr>
-                  <td class="p-2 font-mono font-bold text-emerald-700 bg-slate-50/50">Frame</td>
-                  <td class="p-2 font-mono font-bold text-emerald-700">Polars (보조)</td>
-                  <td class="p-2 text-slate-700">SQL로 어색한 변환만. <code class="text-rose-700 font-bold font-mono">import pandas 금지</code></td>
-                </tr>
-                <tr>
-                  <td class="p-2 font-mono font-bold text-purple-700 bg-slate-50/50">Graph ML</td>
-                  <td class="p-2 font-mono text-slate-700">scanpy / numpy / scipy / igraph</td>
-                  <td class="p-2 text-slate-700">PCA·neighbors·UMAP·Leiden·rank_genes_groups만</td>
-                </tr>
-                <tr>
-                  <td class="p-2 font-mono font-bold text-sky-700 bg-slate-50/50">FE</td>
-                  <td class="p-2 font-mono font-bold text-sky-700">Astro</td>
-                  <td class="p-2 text-slate-700">모든 단계 시각화는 Astro 페이지/컴포넌트</td>
-                </tr>
-                <tr>
-                  <td class="p-2 font-mono font-bold text-cyan-700 bg-slate-50/50">Charts</td>
-                  <td class="p-2 font-mono font-bold text-cyan-700">Apache ECharts</td>
-                  <td class="p-2 text-slate-700"><code>frontend/src/lib/echarts-setup.ts</code> + <code>ui-viz-*</code>. 손수 SVG/타 라이브러리 금지</td>
-                </tr>
-                <tr>
-                  <td class="p-2 font-mono font-bold text-slate-800 bg-slate-50/50">Methods explain</td>
-                  <td class="p-2 font-mono text-slate-700"><code>/methods</code></td>
-                  <td class="p-2 text-slate-700">HTML 보드 + 단계 스키매틱 + 세포 퍼널 + 실행 타임라인. <strong>웹 카피에 C4 레벨명·스택명 금지</strong></td>
-                </tr>
-                <tr>
-                  <td class="p-2 font-mono font-bold text-slate-800 bg-slate-50/50">UI</td>
-                  <td class="p-2 font-mono text-slate-700">light background 기본</td>
-                  <td class="p-2 text-slate-700"><code>.cursor/skills/ui-*</code> 준수</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="p-2.5 bg-rose-50/80 border border-rose-200 rounded text-rose-800 text-[10.5px] font-sans">
-            🚫 <strong>금지 사항:</strong> <code class="font-mono text-rose-900 font-bold">pandas</code>, Jupyter를 최종 산출물로 사용, matplotlib/seaborn PNG·손수 SVG를 Astro 차트 대체로 사용 (디버그 PNG는 <code class="font-mono text-slate-800">results/</code>만 허용).
-          </div>
-        </div>
-
-        <!-- 3) Directory Ownership & 4) Pipeline Order -->
-        <div class="grid grid-cols-12 gap-3">
-          <!-- 3) Directory Ownership (5 cols) -->
-          <div class="col-span-5 p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2 flex flex-col justify-between">
-            <div>
-              <div class="text-sky-800 font-bold text-sm flex items-center gap-2 font-mono mb-1">
-                <span>## 3) Directory Ownership</span>
-              </div>
-              <pre class="bg-slate-900 text-slate-100 p-2.5 rounded text-[10px] font-mono leading-relaxed overflow-x-auto">
-<code>data/raw/             # 읽기 전용 원본 (h5ad)
-data/warehouse/       # DuckDB 파일만 (BE 소유)
-data/ops/             # SQLite ops DB (auth 소유)
-backend/              # 분석 파이프라인 + auth API
-frontend/             # Astro 앱 (시각화 SSOT)
-frontend/public/data/ # DuckDB export JSON/Parquet
-results/              # 요약 md/json (행렬 금지)
-.cursor/skills/       # 절차 기억 SSOT</code></pre>
+          <p class="text-[11px] font-sans text-slate-700 leading-relaxed">
+            새로운 세션/쓰레드가 열렸을 때 AI 에이전트는 이전 대화 기억이 전혀 없는 상태(Stateless)입니다. 따라서 <strong>첫 턴에 질문에 답변하거나 코딩하기 전, 반드시 다음 7단계 순서로 프로젝트 문맥을 파악(Hydrate)</strong>한 후 작업에 착수합니다:
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-[10.5px] font-sans">
+            <div class="p-2 rounded bg-slate-50 border border-slate-200 flex items-start gap-2">
+              <span class="w-5 h-5 rounded-full bg-sky-100 text-sky-800 font-mono font-bold flex items-center justify-center shrink-0 text-[10px]">1</span>
+              <div><strong class="text-slate-900 font-mono">PROJECT.md 필독</strong>: 런타임 환경(스택, 빌드/기동 커맨드, 포트, 제약사항) 확인</div>
             </div>
-            <p class="text-[10px] text-slate-500 font-sans pt-1">
-              상세 트리는 스킬 <code class="text-sky-700 font-mono">data-analytics-source-tree</code>를 참조한다.
-            </p>
-          </div>
-
-          <!-- 4) Pipeline Order (7 cols) -->
-          <div class="col-span-7 p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
-            <div class="text-amber-800 font-bold text-sm flex items-center gap-2 font-mono">
-              <span>## 4) Pipeline Order (절대 순서)</span>
+            <div class="p-2 rounded bg-slate-50 border border-slate-200 flex items-start gap-2">
+              <span class="w-5 h-5 rounded-full bg-purple-100 text-purple-800 font-mono font-bold flex items-center justify-center shrink-0 text-[10px]">2</span>
+              <div><strong class="text-slate-900 font-mono">ROADMAP.md 필독</strong>: 현재 좌표 확인(M1~Mn 마일스톤 중 위치와 남은 단계)</div>
             </div>
-            <ol class="space-y-1 text-[11px] font-sans">
-              <li class="p-1.5 bg-slate-50 rounded border border-slate-200 flex items-center justify-between">
-                <span><strong>1.</strong> <code class="font-mono text-sky-700">db-ingest-h5ad</code></span>
-                <span class="text-slate-500 text-[10px]">h5ad ➔ DuckDB 적재</span>
-              </li>
-              <li class="p-1.5 bg-slate-50 rounded border border-slate-200 flex items-center justify-between">
-                <span><strong>2.</strong> <code class="font-mono text-sky-700">data-analytics-eda</code></span>
-                <span class="text-slate-500 text-[10px]">기본 EDA + ui-viz-eda (/eda)</span>
-              </li>
-              <li class="p-1.5 bg-slate-50 rounded border border-slate-200 flex items-center justify-between">
-                <span><strong>3.</strong> <code class="font-mono text-sky-700">data-analytics-qc</code></span>
-                <span class="text-slate-500 text-[10px]">QC 필터 + ui-viz-qc</span>
-              </li>
-              <li class="p-1.5 bg-slate-50 rounded border border-slate-200 flex items-center justify-between">
-                <span><strong>4.</strong> <code class="font-mono text-sky-700">data-analytics-dimreduce-cluster</code></span>
-                <span class="text-slate-500 text-[10px]">PCA / UMAP / Leiden + ui-viz-umap</span>
-              </li>
-              <li class="p-1.5 bg-slate-50 rounded border border-slate-200 flex items-center justify-between">
-                <span><strong>5.</strong> <code class="font-mono text-sky-700">data-analytics-markers</code></span>
-                <span class="text-slate-500 text-[10px]">DEG + ui-viz-dotplot / violin</span>
-              </li>
-              <li class="p-1.5 bg-slate-50 rounded border border-slate-200 flex items-center justify-between">
-                <span><strong>6.</strong> <code class="font-mono text-sky-700">data-analytics-celltype</code></span>
-                <span class="text-slate-500 text-[10px]">마커 기반 세포타입 추론</span>
-              </li>
-              <li class="p-1.5 bg-slate-50 rounded border border-slate-200 flex items-center justify-between">
-                <span><strong>7.</strong> <code class="font-mono text-sky-700">data-analytics-export</code></span>
-                <span class="text-slate-500 text-[10px]">Astro용 아티팩트 갱신</span>
-              </li>
-            </ol>
-            <div class="text-[10px] text-amber-800 bg-amber-50 p-1.5 rounded border border-amber-200 font-sans">
-              ⚠️ <strong>철칙:</strong> 앞 단계 산출물 없이 뒷 단계를 구현하지 않는다. 오케스트레이션은 <code class="font-mono">ops-pipeline-orchestration</code>.
+            <div class="p-2 rounded bg-slate-50 border border-slate-200 flex items-start gap-2">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 font-mono font-bold flex items-center justify-center shrink-0 text-[10px]">3</span>
+              <div><strong class="text-slate-900 font-mono">INTENT.md 필독</strong>: 현재 작업 목적(Why), 수용 기준(Do), 제외 범위(Do NOT) 확인</div>
+            </div>
+            <div class="p-2 rounded bg-slate-50 border border-slate-200 flex items-start gap-2">
+              <span class="w-5 h-5 rounded-full bg-rose-100 text-rose-800 font-mono font-bold flex items-center justify-center shrink-0 text-[10px]">4</span>
+              <div><strong class="text-slate-900 font-mono">PLAN.md 필독</strong>: 직전/현재 진행 상황(실행 단계, 미완료 체크리스트) 확인</div>
+            </div>
+            <div class="p-2 rounded bg-slate-50 border border-slate-200 flex items-start gap-2">
+              <span class="w-5 h-5 rounded-full bg-cyan-100 text-cyan-800 font-mono font-bold flex items-center justify-center shrink-0 text-[10px]">5</span>
+              <div><strong class="text-slate-900 font-mono">ADR.md 확인</strong>: 기술 결정 제약 확인(과거 기각/결정된 사항 번복·재질문 방지)</div>
+            </div>
+            <div class="p-2 rounded bg-slate-50 border border-slate-200 flex items-start gap-2">
+              <span class="w-5 h-5 rounded-full bg-amber-100 text-amber-800 font-mono font-bold flex items-center justify-center shrink-0 text-[10px]">6</span>
+              <div><strong class="text-slate-900 font-mono">LESSON_AND_LEARN.md 확인</strong>: 지뢰밭 회피(과거 버그·실패 경험 학습하여 재발 차단)</div>
+            </div>
+            <div class="p-2 rounded bg-slate-50 border border-slate-200 flex items-start gap-2 md:col-span-2">
+              <span class="w-5 h-5 rounded-full bg-indigo-100 text-indigo-800 font-mono font-bold flex items-center justify-center shrink-0 text-[10px]">7</span>
+              <div><strong class="text-slate-900 font-mono">관련 .cursor/skills/&lt;name&gt;/SKILL.md (필요 시 REFERENCE.md)</strong> 및 대상 모듈 소스 확인</div>
             </div>
           </div>
         </div>
 
-        <!-- 5) Context Load Order -->
-        <div class="p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
-          <div class="text-sky-800 font-bold text-sm flex items-center gap-2 font-mono">
-            <span>## 5) Context Load Order (코드 수정 전 엄격 로딩 순서)</span>
-          </div>
-          <div class="grid grid-cols-5 gap-2 text-center font-mono text-[11px] pt-1">
-            <div class="p-2 bg-sky-50 rounded border border-sky-200">
-              <span class="text-sky-800 font-bold block mb-0.5">1단계</span>
-              <strong class="text-slate-800 text-[10.5px]">AGENTS.md</strong>
-              <span class="text-[9.5px] text-slate-500 block mt-0.5">본 헌법 문서</span>
-            </div>
-            <div class="p-2 bg-amber-50 rounded border border-amber-200">
-              <span class="text-amber-800 font-bold block mb-0.5">2단계</span>
-              <strong class="text-slate-800 text-[10px]">INTENT ➔ PLAN ➔ PROJECT</strong>
-              <span class="text-[9.5px] text-slate-500 block mt-0.5">범위 &middot; 계획 &middot; 스택</span>
-            </div>
-            <div class="p-2 bg-emerald-50 rounded border border-emerald-200">
-              <span class="text-emerald-800 font-bold block mb-0.5">3단계</span>
-              <strong class="text-slate-800 text-[10px]">.cursor/skills/*/SKILL.md</strong>
-              <span class="text-[9.5px] text-slate-500 block mt-0.5">필요시 REFERENCE.md</span>
-            </div>
-            <div class="p-2 bg-purple-50 rounded border border-purple-200">
-              <span class="text-purple-800 font-bold block mb-0.5">4단계</span>
-              <strong class="text-slate-800 text-[10.5px]">LESSON_AND_LEARN.md</strong>
-              <span class="text-[9.5px] text-slate-500 block mt-0.5">과거 실수 사전 차단</span>
-            </div>
-            <div class="p-2 bg-slate-100 rounded border border-slate-300">
-              <span class="text-slate-700 font-bold block mb-0.5">5단계</span>
-              <strong class="text-slate-800 text-[10.5px]">대상 모듈 소스</strong>
-              <span class="text-[9.5px] text-slate-500 block mt-0.5">최종 수정 작업</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 6) Grill-me & 7) Quality Gates -->
+        <!-- 4 & 5. 안전 규칙 및 지식 환류 -->
         <div class="grid grid-cols-2 gap-3">
-          <!-- 6) Grill-me -->
+          <!-- 4. 공통 코딩 및 운영 안전 규칙 -->
           <div class="p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
-            <div class="text-amber-800 font-bold text-sm flex items-center gap-2 font-mono">
-              <span>## 6) Grill-me</span>
+            <div class="text-sky-800 font-bold text-sm flex items-center gap-2 font-mono">
+              <span>## 4. 공통 코딩 및 운영 안전 규칙</span>
             </div>
-            <p class="text-[11px] font-sans text-slate-700 leading-relaxed">
-              요구가 모호하면 구현 전 <strong>3~5개만</strong> 묻는다.<br>
-              <span class="text-slate-500 text-[10.5px]">예: 어느 파이프라인 단계인지, 새 DuckDB 테이블인지 export 갱신인지, Astro 라우트 추가인지.</span>
-            </p>
+            <ul class="text-[10.5px] font-sans text-slate-700 space-y-1.5 list-disc list-inside">
+              <li><strong>안전 제약:</strong> <code class="text-rose-700 font-mono font-bold">rm -rf</code>, <code class="text-rose-700 font-mono font-bold">DROP TABLE</code> / <code class="text-rose-700 font-mono font-bold">DROP DATABASE</code> 파괴 명령은 명시 요청 없이 절대 금지</li>
+              <li><strong>시크릿 격리:</strong> <code class="font-mono text-slate-800 bg-slate-100 px-1 rounded">.env</code> 및 민감 API 키는 커밋 금지 (<code class="font-mono text-slate-700">.gitignore</code> 필수)</li>
+              <li><strong>Git 제어:</strong> 커밋·푸시는 사용자 요청 시에만 수행</li>
+              <li><strong>품질 게이트:</strong> 프로젝트 품질 게이트 커맨드는 <code class="font-mono text-slate-800 bg-slate-100 px-1 rounded">PROJECT.md</code>를 따름</li>
+              <li><strong>사규 갱신:</strong> 새 스킬·규칙 생성 시 <code class="font-mono text-slate-800 bg-slate-100 px-1 rounded">harness-agents-md</code>로 동기화</li>
+            </ul>
           </div>
 
-          <!-- 7) Quality Gates -->
+          <!-- 5. 지식 환류 & 자산 승격 프로토콜 -->
           <div class="p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
-            <div class="text-emerald-800 font-bold text-sm flex items-center gap-2 font-mono">
-              <span>## 7) Quality Gates</span>
+            <div class="text-sky-800 font-bold text-sm flex items-center gap-2 font-mono">
+              <span>## 5. 지식 환류 &amp; 자산 승격 프로토콜</span>
             </div>
-            <pre class="bg-slate-900 text-emerald-400 p-2.5 rounded text-[10px] font-mono leading-relaxed overflow-x-auto">
-<code>.venv/bin/python -c "import pandas"  # 반드시 ImportError
-.venv/bin/ruff check backend/
-cd frontend &amp;&amp; npm run build</code></pre>
-            <p class="text-[10px] text-slate-600 font-sans">
-              커밋은 사용자 요청 시에만. <code class="text-amber-800 font-mono">.env</code> 커밋 금지. <code class="text-rose-700 font-mono">rm -rf / DROP TABLE</code> 파괴 명령 절대 금지.
-            </p>
+            <ul class="text-[10.5px] font-sans text-slate-700 space-y-1.5 list-disc list-inside">
+              <li><strong>프로젝트 로컬 기록:</strong> 해결된 버그, 예외 상황, 안티패턴을 <code class="font-mono text-slate-800 bg-slate-100 px-1 rounded">./LESSON_AND_LEARN.md</code> 상단에 <strong>증상/원인/해결책/교훈 4줄 포맷</strong>으로 추가</li>
+              <li><strong>중앙 볼트 승격 (Graduation):</strong> 타 프로젝트에서도 쓰일 범용 자산은 <code class="font-mono text-slate-800 bg-slate-100 px-1 rounded">.cursor/skills/</code> 신규 스킬로 승격하고 <code class="font-mono text-slate-800 bg-slate-100 px-1 rounded">AGENTS.md</code> 업데이트</li>
+              <li><strong>세션 복구 (Recovery):</strong> 세션 재개 시 항상 <code class="font-mono text-slate-800 bg-slate-100 px-1 rounded">PLAN.md</code> 미완료 체크리스트부터 이어받아 작업 중단 없이 연속 진행</li>
+            </ul>
           </div>
         </div>
 
-        <!-- 8) Data Contract -->
-        <div class="p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
-          <div class="text-sky-800 font-bold text-sm flex items-center gap-2 font-mono">
-            <span>## 8) Data Contract</span>
-          </div>
-          <div class="grid grid-cols-2 gap-2 text-[11px] font-sans">
-            <div class="p-2 bg-slate-50 rounded border border-slate-200">
-              <span class="text-slate-500 font-mono text-[10px] block">원본 데이터</span>
-              <strong class="text-slate-800 font-mono text-[10.5px]">data/raw/pbmc3k_raw.h5ad</strong>
-              <span class="text-slate-500 text-[10px] block mt-0.5">(2700 &times; 32738, raw count, hg19)</span>
+        <!-- 6 & 7. Agent Skills & 상황별 참조 규칙 -->
+        <div class="p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="text-sky-800 font-bold text-sm flex items-center gap-2 font-mono">
+              <span>## 6. Agent Skills &amp; 7. 상황별 참조 규칙</span>
             </div>
-            <div class="p-2 bg-slate-50 rounded border border-slate-200">
-              <span class="text-slate-500 font-mono text-[10px] block">저장소 분리</span>
-              <span class="text-slate-800 text-[10.5px] block font-mono"><strong>Warehouse:</strong> data/warehouse/pbmc3k.duckdb</span>
-              <span class="text-slate-800 text-[10.5px] block font-mono"><strong>Ops DB:</strong> data/ops/app.sqlite</span>
-            </div>
-            <div class="p-2 bg-slate-50 rounded border border-slate-200">
-              <span class="text-slate-500 font-mono text-[10px] block">QC 기본 조건</span>
-              <code class="text-indigo-800 font-mono text-[10px]">pct_counts_mt &lt; 5 AND 200 &lt;= n_genes_by_counts &lt; 2500</code>
-            </div>
-            <div class="p-2 bg-slate-50 rounded border border-slate-200">
-              <span class="text-slate-500 font-mono text-[10px] block">난수 시드 &amp; Auth 시드</span>
-              <span class="text-slate-700 text-[10.5px] font-mono">random_state=0 / sc.settings.seed = 0</span>
-              <span class="text-slate-500 text-[10px] block font-mono mt-0.5">admin/admin123, viewer/viewer123 (실습용)</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 9) Skills Index -->
-        <div class="p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
-          <div class="text-emerald-800 font-bold text-sm flex items-center gap-2 font-mono">
-            <span>## 9) Skills Index</span>
-          </div>
-          <div class="overflow-x-auto">
-            <table class="w-full text-[11px] font-sans border-collapse">
-              <thead>
-                <tr class="bg-slate-100 text-slate-700 border-b border-slate-300 font-mono text-[10.5px]">
-                  <th class="p-2 text-left w-1/4">Prefix</th>
-                  <th class="p-2 text-left">Skills</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-200">
-                <tr>
-                  <td class="p-2 font-mono font-bold text-sky-700 bg-slate-50/50"><code>data-analytics-*</code></td>
-                  <td class="p-2 font-mono text-slate-700 text-[10.5px]"><code>source-tree</code>, <code>eda</code>, <code>qc</code>, <code>dimreduce-cluster</code>, <code>markers</code>, <code>celltype</code>, <code>export</code></td>
-                </tr>
-                <tr>
-                  <td class="p-2 font-mono font-bold text-amber-700 bg-slate-50/50"><code>db-*</code></td>
-                  <td class="p-2 font-mono text-slate-700 text-[10.5px]"><code>duckdb-schema</code>, <code>ingest-h5ad</code>, <code>query-patterns</code></td>
-                </tr>
-                <tr>
-                  <td class="p-2 font-mono font-bold text-purple-700 bg-slate-50/50"><code>ui-*</code></td>
-                  <td class="p-2 font-mono text-slate-700 text-[10.5px]"><code>echarts</code>, <code>methods-explain</code>, <code>chrome</code>, <code>astro-app</code>, <code>design-tokens</code>, <code>color-system</code>, <code>typography</code>, <code>layout-grid</code>, <code>viz-eda</code>, <code>viz-qc</code>, <code>viz-umap</code>, <code>viz-dotplot</code>, <code>viz-violin</code></td>
-                </tr>
-                <tr>
-                  <td class="p-2 font-mono font-bold text-indigo-700 bg-slate-50/50"><code>ops-*</code></td>
-                  <td class="p-2 font-mono text-slate-700 text-[10.5px]"><code>pipeline-orchestration</code></td>
-                </tr>
-                <tr>
-                  <td class="p-2 font-mono font-bold text-emerald-700 bg-slate-50/50"><code>gate-*</code></td>
-                  <td class="p-2 font-mono text-slate-700 text-[10.5px]"><code>worktree-bootstrap</code> (start in <code>main/</code>, then ui/auth/analytics/db)</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- 10) Session Recovery & 11) Worktrees (ch5) -->
-        <div class="grid grid-cols-12 gap-3">
-          <!-- 10) Session Recovery (5 cols) -->
-          <div class="col-span-5 p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2 flex flex-col justify-between">
-            <div>
-              <div class="text-purple-800 font-bold text-sm flex items-center gap-2 font-mono mb-2">
-                <span>## 10) Session Recovery</span>
-              </div>
-              <p class="text-[11px] font-sans text-slate-700 leading-relaxed mb-2">
-                세션이 바뀌면 <code class="text-indigo-800 font-mono bg-indigo-50 px-1 py-0.2 rounded font-bold">PLAN.md</code>의 <strong>미완료 체크부터 이어간다</strong>.
-              </p>
-              <div class="p-2.5 bg-slate-50 rounded border border-slate-200 text-[10px] text-slate-700 font-sans space-y-1">
-                <span class="font-bold text-purple-800 block">새 교훈 발생 시:</span>
-                <div><code class="text-slate-800 font-mono">LESSON_AND_LEARN.md</code>에 <strong>증상 / 원인 / 해결 / 교훈</strong> 4줄 포맷으로 추가.</div>
-              </div>
-            </div>
-            <div class="text-[9.5px] font-mono text-slate-500 pt-2 border-t border-slate-100">
-              ✓ 세션 단절에도 100% 문맥 복원
-            </div>
+            <span class="text-[10px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+              .cursor/skills/
+            </span>
           </div>
 
-          <!-- 11) Worktrees (ch5) (7 cols) -->
-          <div class="col-span-7 p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
-            <div class="flex items-center justify-between">
-              <div class="text-purple-800 font-bold text-sm flex items-center gap-2 font-mono">
-                <span>## 11) Worktrees (ch5)</span>
-              </div>
-              <span class="text-[10px] font-mono text-slate-500">기본 cwd: main/</span>
-            </div>
-            <p class="text-[10.5px] font-sans text-slate-600">
-              컨테이너 <code class="text-slate-800 font-mono text-[10px]">/mnt/data/projects/lectures/vibe-coding/src</code> — bare + worktrees.
-            </p>
-            <div class="overflow-x-auto">
-              <table class="w-full text-[10.5px] font-sans border-collapse">
+          <div class="grid grid-cols-2 gap-3 text-[10.5px] font-sans">
+            <!-- Skills Table -->
+            <div class="overflow-x-auto border border-slate-200 rounded-lg">
+              <table class="w-full border-collapse">
                 <thead>
                   <tr class="bg-slate-100 text-slate-700 border-b border-slate-200 font-mono text-[10px]">
-                    <th class="p-1.5 text-left">Path</th>
-                    <th class="p-1.5 text-left">Branch</th>
-                    <th class="p-1.5 text-left">Focus</th>
+                    <th class="p-1.5 text-left w-1/3 font-bold">Prefix</th>
+                    <th class="p-1.5 text-left font-bold">Skills</th>
                   </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-200">
-                  <tr>
-                    <td class="p-1.5 font-mono font-bold text-sky-700"><code>main/</code></td>
-                    <td class="p-1.5 font-mono"><code>main</code></td>
-                    <td class="p-1.5 text-slate-700">통합 (기본 작업 위치)</td>
-                  </tr>
-                  <tr>
-                    <td class="p-1.5 font-mono font-bold text-indigo-700"><code>ui/</code></td>
-                    <td class="p-1.5 font-mono"><code>ui</code></td>
-                    <td class="p-1.5 text-slate-700">FE / Astro 대시보드</td>
-                  </tr>
-                  <tr>
-                    <td class="p-1.5 font-mono font-bold text-amber-700"><code>auth/</code></td>
-                    <td class="p-1.5 font-mono"><code>auth</code></td>
-                    <td class="p-1.5 text-slate-700">로그인·인증 API</td>
-                  </tr>
-                  <tr>
-                    <td class="p-1.5 font-mono font-bold text-emerald-700"><code>analytics/</code></td>
-                    <td class="p-1.5 font-mono"><code>analytics</code></td>
-                    <td class="p-1.5 text-slate-700">분석 파이프라인</td>
-                  </tr>
-                  <tr>
-                    <td class="p-1.5 font-mono font-bold text-cyan-700"><code>db/</code></td>
-                    <td class="p-1.5 font-mono"><code>db</code></td>
-                    <td class="p-1.5 text-slate-700">DuckDB·ingest·스키마</td>
-                  </tr>
+                <tbody class="divide-y divide-slate-200 font-mono text-[10px]">
+                  <tr><td class="p-1.5 font-bold text-sky-700"><code>data-analytics-*</code></td><td class="p-1.5 text-slate-700">source-tree, eda, qc, dimreduce-cluster, markers, celltype, export</td></tr>
+                  <tr><td class="p-1.5 font-bold text-amber-700"><code>db-*</code></td><td class="p-1.5 text-slate-700">duckdb-schema, ingest-h5ad, query-patterns</td></tr>
+                  <tr><td class="p-1.5 font-bold text-purple-700"><code>ui-*</code></td><td class="p-1.5 text-slate-700">echarts, methods-explain, chrome, astro-app, design-tokens, color-system, typography, layout-grid, viz-*</td></tr>
+                  <tr><td class="p-1.5 font-bold text-emerald-700"><code>ops-*</code></td><td class="p-1.5 text-slate-700">pipeline-orchestration</td></tr>
+                  <tr><td class="p-1.5 font-bold text-slate-600">(agent style)</td><td class="p-1.5 text-slate-700">ponytail (audit/debt/gain/help/review), i-have-adhd</td></tr>
+                  <tr><td class="p-1.5 font-bold text-cyan-700">(knowledge graph)</td><td class="p-1.5 text-slate-700">graphify</td></tr>
                 </tbody>
               </table>
             </div>
-            <div class="text-[9.5px] font-mono text-slate-500 pt-1">
-              상세: <code>WORKTREES.md</code>. 도메인 작업은 해당 worktree 브랜치에서 수행.
+
+            <!-- Routing Table -->
+            <div class="overflow-x-auto border border-slate-200 rounded-lg">
+              <table class="w-full border-collapse">
+                <thead>
+                  <tr class="bg-slate-100 text-slate-700 border-b border-slate-200 font-mono text-[10px]">
+                    <th class="p-1.5 text-left w-2/5 font-bold">상황</th>
+                    <th class="p-1.5 text-left font-bold">읽을 곳 (SSOT)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 font-sans text-[10px]">
+                  <tr><td class="p-1.5 text-slate-700">폴더 추가·경로·소유권</td><td class="p-1.5 font-mono text-sky-700"><code>data-analytics-source-tree</code></td></tr>
+                  <tr><td class="p-1.5 text-slate-700">파이프라인 단계 순서</td><td class="p-1.5 font-mono text-slate-700"><code>ops-pipeline-orchestration</code> + <code>PROJECT.md</code></td></tr>
+                  <tr><td class="p-1.5 text-slate-700">웨어하우스 스키마·쿼리</td><td class="p-1.5 font-mono text-amber-700"><code>db-*</code></td></tr>
+                  <tr><td class="p-1.5 text-slate-700">차트·페이지·크롬</td><td class="p-1.5 font-mono text-purple-700"><code>ui-*</code></td></tr>
+                  <tr><td class="p-1.5 text-slate-700">스택·데이터 계약·게이트</td><td class="p-1.5 font-mono text-slate-800 font-bold"><code>PROJECT.md</code></td></tr>
+                  <tr><td class="p-1.5 text-slate-700">최소 변경·YAGNI</td><td class="p-1.5 font-mono text-emerald-700"><code>ponytail</code> (+ audit/review)</td></tr>
+                  <tr><td class="p-1.5 text-slate-700">4대 Worktree &amp; 자동 머지</td><td class="p-1.5 font-mono text-indigo-700 font-bold"><code>git-worktree-orchestration</code></td></tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
 
+        <!-- 8. 4대 Worktree 협업 규정 & Push 자동 머지 -->
+        <div class="p-4 bg-white rounded-lg border border-slate-200 shadow-sm space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="text-sky-800 font-bold text-sm flex items-center gap-2 font-mono">
+              <span>## 8. 4대 Worktree 협업 규정 &amp; Push 자동 머지</span>
+            </div>
+            <span class="text-[10px] font-mono text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200 font-bold">
+              Multi-Agent Isolation
+            </span>
+          </div>
+          <div class="grid grid-cols-4 gap-2 text-[10.5px] font-mono">
+            <div class="p-2 rounded bg-indigo-50/70 border border-indigo-200">
+              <span class="font-bold text-indigo-800 block">📁 main/ (시작점)</span>
+              <span class="text-[9.5px] text-slate-600 font-sans">통합 허브, 공통 설정, 배포/CI, 에이전트 기본 작업 시작점</span>
+            </div>
+            <div class="p-2 rounded bg-slate-50 border border-slate-200">
+              <span class="font-bold text-purple-800 block">📁 ui/</span>
+              <span class="text-[9.5px] text-slate-600 font-sans">프론트엔드 (Svelte/Astro, ECharts, UI 컴포넌트)</span>
+            </div>
+            <div class="p-2 rounded bg-slate-50 border border-slate-200">
+              <span class="font-bold text-amber-800 block">📁 data/</span>
+              <span class="text-[9.5px] text-slate-600 font-sans">DuckDB 스키마, 웨어하우스, ingest 파이프라인</span>
+            </div>
+            <div class="p-2 rounded bg-slate-50 border border-slate-200">
+              <span class="font-bold text-sky-800 block">📁 analytics/</span>
+              <span class="text-[9.5px] text-slate-600 font-sans">통계/ML 모델, 분석 파이프라인</span>
+            </div>
+          </div>
+          <ul class="text-[10.5px] font-sans text-slate-700 space-y-1 list-disc list-inside mt-1">
+            <li>프로젝트 생성 및 신규 스프린트 시 항상 <strong><code>main/</code></strong>에서 시작한다.</li>
+            <li>컨테이너 루트에는 코드를 직접 작성하지 않고 각 도메인 Worktree에서만 코딩한다.</li>
+            <li>각 도메인 Worktree에서 작업 후 <code class="font-mono text-slate-800 bg-slate-100 px-1 rounded">git push</code> 시 pre-push 훅을 통해 <strong><code>main</code> 브랜치로 자동 머지</strong>된다.</li>
+            <li>머지 충돌 발생 시 <code class="font-mono text-slate-800 bg-slate-100 px-1 rounded">main/</code>으로 이동하여 충돌을 해결한 뒤 커밋한다.</li>
+          </ul>
+        </div>
       </div>
 
       <!-- Modal Footer -->
-      <div class="px-5 py-2.5 bg-slate-100 border-t border-slate-200 text-xs font-mono text-slate-600 flex items-center justify-between shrink-0">
-        <span class="flex items-center gap-1.5 text-slate-700">
-          <span>💡</span> <span>모든 AI 에이전트는 작업 시작 전 위 헌법을 읽고 절대 벗어나지 않습니다.</span>
+      <div class="flex items-center justify-between px-5 py-3 bg-slate-100 border-t border-slate-200 shrink-0">
+        <span class="text-xs text-slate-600 font-mono">
+          💡 <strong>Tip:</strong> [마크다운 복사] 버튼을 눌러 프로젝트 루트의 <code class="text-sky-800 bg-sky-100/70 px-1 py-0.5 rounded font-bold">AGENTS.md</code>에 그대로 적용하십시오.
         </span>
         <button 
           onclick="closeAgentsModal()" 
@@ -641,98 +577,117 @@ cd frontend &amp;&amp; npm run build</code></pre>
 
   <textarea id="raw-agents-markdown" class="hidden"># AGENTS.md
 
-PBMC 3k scRNA-seq 바이브 코딩 실습 저장소의 Every-turn 헌법이다. 모호하면 코딩 전에 역질문한다.
+프로젝트 특화(스택·데이터·포트·게이트 커맨드)는 `PROJECT.md`에 둔다. 모호하면 코딩 전에 역질문(Grill-me)한다.
+절차·단계 실행은 `.cursor/skills/`가 SSOT다. `CLAUDE.md`는 만들지 않는다 (AGENTS와 중복).
 
-## 1) Mission & Scope
+---
 
-- 목표: 10x PBMC 3k를 **DuckDB 웨어하우스 → 분석 파이프라인 → Astro 시각화**까지 재현 가능한 연구 앱으로 구축한다.
-- 범위: QC → 차원축소/군집 → 마커 → 세포타입 추론 → Astro 대시보드 + **로컬 로그인/회원(ops SQLite)**.
-- 범위 밖: 클라우드 배포, 다중 샘플 통합, 새 원시 데이터 다운로드(이미 `data/raw/`에 있음), OIDC/SSO.
+## 1. 개별 프로젝트 6대 표준 문서 체계 &amp; 역할
 
-## 2) Stack (강제)
+모든 프로젝트 루트에는 다음 6대 마크다운 문서가 배치되어 에이전트의 드리프트(탈선)를 차단하고 작업 연속성을 보장합니다:
 
-| 층 | 기술 | 규칙 |
-| --- | --- | --- |
-| BE | Python 3.12 + `.venv` | `uv`로 패키지 설치 |
-| Warehouse | **DuckDB** | 분석 테이블·집계·내보내기만. 로그인/회원 금지 |
-| Ops DB | **SQLite** (`data/ops/app.sqlite`) | 회원·세션·감사 로그. 분석 행렬 금지 |
-| Auth API | FastAPI (`backend/auth`) | 기동 시 회원 메모리 적재; 변경 시 메모리→SQLite sync; 로그는 비동기 |
-| Frame | **Polars (보조)** | SQL로 어색한 변환만. `import pandas` **금지** |
-| Graph ML | scanpy / numpy / scipy / igraph | PCA·neighbors·UMAP·Leiden·rank_genes_groups만 |
-| FE | **Astro** | 모든 단계 시각화는 Astro 페이지/컴포넌트 |
-| Charts | **Apache ECharts** | `frontend/src/lib/echarts-setup.ts` + `ui-viz-*`. 손수 SVG/타 차트 라이브러리 금지 |
-| Methods explain | `/methods` | HTML 보드(누가/무엇을, 데이터 흐름) + 단계 스키매틱 + 세포 퍼널 + 실행 타임라인 (`ui-methods-explain`). **웹 카피에 C4 레벨명·스택명(DuckDB/Astro/ECharts 등) 금지** |
-| UI | light background 기본 | `.cursor/skills/ui-*` 준수 |
-
-금지: `pandas`, Jupyter를 최종 산출물로 사용, matplotlib/seaborn PNG·손수 SVG를 Astro 차트 대체로 사용(디버그 PNG는 `results/`만).
-
-## 3) Directory Ownership
-
-```
-data/raw/                 # 읽기 전용 원본 (h5ad). 수정 금지
-data/warehouse/           # DuckDB 파일만. BE ingest/분석이 소유
-data/ops/                 # SQLite ops DB만. backend/auth 소유
-backend/                  # 분석 단계 + backend/auth (ops API)
-frontend/                 # Astro 앱. 시각화 SSOT
-frontend/public/data/     # DuckDB export JSON/Parquet (생성물)
-results/                  # 요약 md/json. 대용량 행렬 금지
-.cursor/skills/           # 절차 기억 SSOT (.agents/.opencode는 심볼릭 링크)
+```text
+📁 project-root/
+├── 🔗 AGENTS.md -&gt; .knowledge/00_meta/AGENTS.md  # 전역 헌법 링크
+├── 📄 PROJECT.md                                # 프로젝트 고정 런타임/환경 명세
+├── 📄 INTENT.md                                 # 현재 스프린트 의도 &amp; 바운더리
+├── 📄 ROADMAP.md                                # 마일스톤 및 거시적 진행도
+├── 📄 PLAN.md                                   # 현재 작업 단위 세부 실행 계획서
+├── 📄 ADR.md                                    # 아키텍처 기술 결정 기록 (append-only)
+└── 📄 LESSON_AND_LEARN.md                       # 누적 시행착오 &amp; 트러블슈팅 장부
 ```
 
-상세 트리는 스킬 `data-analytics-source-tree`를 읽는다.
+### 문서별 역할 및 갱신 주기
+| 문서명 | 역할 및 성격 | 참조 시점 | 갱신 주기 |
+|:---|:---|:---|:---|
+| **`PROJECT.md`** | 런타임 환경, 포트, 스택, 불변 제약 | **세션 첫 턴**, 인프라/환경 작업 시 | 스택/포트/환경 변경 시에만 |
+| **`ROADMAP.md`** | 거시적 마일스톤(M1~Mn), 일정, 진척도 | **세션 첫 턴**, 스프린트 시작/종료 시 | 마일스톤 달성 및 변경 시 |
+| **`INTENT.md`** | 현재 작업의 목적, 수용 기준, 제외 범위(Do NOT) | **세션 첫 턴**, 작업 착수(Grill-me) 시 | 새로운 기능/스프린트 시작 시 |
+| **`PLAN.md`** | 구체적 파일 변경 명세([NEW]/[MODIFY]), 검증 계획 | **세션 첫 턴**, 구현 코딩 직전 | 매 작업/스프린트 단위 승인 후 |
+| **`ADR.md`** | 아키텍처·기술 스택 선정 결정 기록 (번호 증가) | **세션 첫 턴**, 아키텍처 설계 시 | 중요한 기술/구조 결정 시 (Append-Only) |
+| **`LESSON_AND_LEARN.md`** | 재발 방지 장부 (증상, 원인, 해결책, 규칙) | **세션 첫 턴**, 디버깅/구현 착수 전 | 트러블슈팅/버그 해결 직후 (최신 상단) |
 
-### Worktrees (ch5)
+---
 
-컨테이너 `/mnt/data/projects/lectures/vibe-coding/src` — bare `.bare` + `main`/`ui`/`auth`/`analytics`/`db`.  
-도메인 작업은 해당 worktree 브랜치에서. 맵: `WORKTREES.md`.
+## 2. 작업 착수 2대 필수 관문: Grill-me &amp; PLAN.md Gate
 
-## 4) Pipeline Order (절대 순서)
+에이전트가 사용자의 첫 프롬프트를 수신했을 때, **코드 작성을 시작하기 전에 반드시 통과해야 하는 2단계 강제 게이트(Gate)**입니다.
 
-1. `db-ingest-h5ad` — h5ad → DuckDB
-2. `data-analytics-eda` — 기본 EDA + `ui-viz-eda` (`/eda`; QC 지표 테이블 이후)
-3. `data-analytics-qc` — QC 필터 + `ui-viz-qc`
-4. `data-analytics-dimreduce-cluster` — PCA/UMAP/Leiden + `ui-viz-umap`
-5. `data-analytics-markers` — DEG + `ui-viz-dotplot` / `ui-viz-violin`
-6. `data-analytics-celltype` — 마커 기반 타입 추론
-7. `data-analytics-export` — Astro용 아티팩트 갱신
+### Gate 1: Grill-me 프로토콜 (INTENT.md 100% 완성 루프)
+- **원칙**: 에이전트는 절대 사용자의 의도를 자의적으로 추측하거나 임의로 넘겨짚지 않는다.
+- **실행 규정**:
+  1. 첫 프롬프트 수신 시, 해당 요구사항이 `./INTENT.md`의 필수 항목(Goal, Acceptance Criteria, Out of Scope)을 명확하게 채울 수 있는지 자체 평가한다.
+  2. 만약 요구사항, 예외 처리, 비즈니스 룰, 또는 &quot;하지 말아야 할 것(Out of Scope)&quot;에 1%라도 모호함이 남아있다면, **즉시 작업을 멈추고 사용자에게 날카롭고 구체적인 질문(Grill-me, 3~5개)을 던진다.**
+  3. 질문은 한 번에 끝나지 않아도 되며, `INTENT.md`가 100% 명확해질 때까지 인터뷰 루프를 유지한다.
+  4. 합의된 내용을 `./INTENT.md`에 기록하고 게이트를 통과한다.
 
-앞 단계 산출물 없이 뒷 단계를 구현하지 않는다. 오케스트레이션은 `ops-pipeline-orchestration`.
+### Gate 2: Mandatory PLAN.md 프로토콜 (승인 전 코딩 절대 금지)
+- **원칙**: 첫 프롬프트에서 코드를 바로 수정하거나 작성하는 것은 **치명적 규정 위반**이다.
+- **실행 규정**:
+  1. `INTENT.md`가 완성되면, 코딩에 들어가기 전 반드시 `./PLAN.md`를 먼저 작성한다.
+  2. `PLAN.md` 필수 포함 내용:
+     - 사용할 개발 스택 (프레임워크, 언어, 핵심 라이브러리)
+     - 시스템 아키텍처 및 상태 관리 설계
+     - 파일별 변경 명세 ([NEW], [MODIFY], [DELETE])
+     - 단계별 실행 로드맵 (Step-by-Step)
+     - 자동/수동 검증 계획
+  3. 작성이 끝나면 **실행을 중단(STOP)하고 사용자에게 명시적 검토 및 승인을 요청**한다.
+  4. 사용자가 플랜을 승인하면 비로소 구현(Coding)을 시작한다.
 
-## 5) Context Load Order
+---
 
-코드 수정 전:
+## 3. 빈 세션 / 신규 쓰레드 첫 턴 문맥 적재 (Cold-Start Context Hydration)
 
-1. `AGENTS.md` (본 문서)
-2. `INTENT.md` → `PLAN.md` → `PROJECT.md`
-3. 관련 `.cursor/skills/<name>/SKILL.md` (필요 시 `REFERENCE.md`)
-4. `LESSON_AND_LEARN.md`
-5. 대상 모듈 소스
+새로운 대화 세션이나 쓰레드가 열렸을 때(첫 턴), AI 에이전트는 이전 대화 기억이 전혀 없는 상태(Stateless)입니다.  
+따라서 **첫 턴에 사용자의 요청을 처리하거나 질문에 답변하기 전, 반드시 프로젝트 루트의 문서들을 먼저 읽어서 전체 프로젝트 문맥을 파악(Hydrate)**한 후 작업에 착수해야 합니다:
 
-## 6) Grill-me
+1. **`PROJECT.md` 필독 (런타임 환경 파악)**:
+   - 개발 스택(Rust, Svelte, Supabase 등), 빌드/기동 명령어, 포트, SSH 접속 정보, 아키텍처 제약사항 확인.
+2. **`ROADMAP.md` 필독 (현재 좌표 확인)**:
+   - 프로젝트가 전체 로드맵 중 어느 마일스톤(M1, M2 등)에 위치해 있는지, 전체 목표와 남은 단계 파악.
+3. **`INTENT.md` 필독 (현재 작업 의도 파악)**:
+   - 현재 작업의 목적(Why), 수용 기준(Do), **범위 밖(Do NOT / Out of Scope)** 확인하여 자의적 오버엔지니어링 원천 차단.
+4. **`PLAN.md` 필독 (직전/현재 진행 상황 확인)**:
+   - 직전에 수립된 실행 단계, 진행 중인 태스크 및 체크리스트의 완료 여부 확인.
+5. **`ADR.md` 확인 (기술 결정 제약 확인)**:
+   - 이미 과거에 결정된 아키텍처·라이브러리·프로토콜 결정 사항을 확인하여 이미 기각되거나 확정된 결정을 번복/재질문하지 않음.
+6. **`LESSON_AND_LEARN.md` 확인 (지뢰밭 회피)**:
+   - 과거 이 프로젝트에서 겪었던 버그, 환경 이슈, 실패 경험, 주의 사항을 확인하여 동일한 실수를 절대 반복하지 않음.
+7. **관련 `.cursor/skills/&lt;name&gt;/SKILL.md` (필요 시 `REFERENCE.md`)** 및 대상 모듈 소스 확인.
 
-요구가 모호하면 구현 전 3~5개만 묻는다. 예: 어느 파이프라인 단계인지, 새 DuckDB 테이블인지 export 갱신인지, Astro 라우트 추가인지.
+---
 
-## 7) Quality Gates
+## 4. 공통 코딩 및 운영 안전 규칙
 
-```bash
-.venv/bin/python -c "import pandas"  # 반드시 ImportError
-.venv/bin/ruff check backend/
-cd frontend && npm run build
-```
+- **안전 제약**:
+  - `rm -rf`, `DROP TABLE` / `DROP DATABASE` 등 파괴 명령은 사용자 명시 요청 없이 절대 금지.
+  - `.env` 및 민감 시크릿 키는 커밋하지 않는다 (.gitignore 필수).
+  - 커밋·푸시는 사용자 요청 시에만 수행한다.
+- **품질 게이트**:
+  - 프로젝트 품질 게이트 커맨드는 `PROJECT.md`를 따른다.
+- **사규 갱신**:
+  - 새 스킬·에이전트·운영 규칙이 생기면 `harness-agents-md` 기준으로 본 문서를 최신 동기화한다.
 
-커밋은 사용자 요청 시에만. `.env` 시크릿 커밋 금지. `rm -rf`, `DROP TABLE`/`DROP DATABASE` 파괴 명령 금지(명시 요청 제외).
+---
 
-## 8) Data Contract
+## 5. 지식 환류 &amp; 자산 승격 프로토콜 (Post-Task Hook &amp; Recovery)
 
-- 원본: `data/raw/pbmc3k_raw.h5ad` (2700 × 32738, raw count, hg19)
-- Warehouse: `data/warehouse/pbmc3k.duckdb` (분석 전용)
-- Ops: `data/ops/app.sqlite` (회원·세션·audit)
-- 스키마: 스킬 `db-duckdb-schema` / `backend/common/ops_schema.sql`
-- 시드: 분석 난수 `random_state=0` / `sc.settings.seed = 0`
-- QC 기본: `pct_counts_mt < 5` AND `200 <= n_genes_by_counts < 2500`
-- Auth 시드: `admin/admin123`, `viewer/viewer123` (실습용)
+작업이 종료되거나 버그가 해결되었을 때, 에이전트는 지식을 중앙 볼트로 환류시켜 복리 효과를 창출해야 합니다.
 
-## 9) Skills Index
+1. **프로젝트 로컬 기록**:
+   - 해결된 버그, 예외 상황, 성능 병목, 안티패턴을 `./LESSON_AND_LEARN.md` 상단에 증상/원인/해결책/교훈 4줄 포맷과 날짜를 함께 추가.
+2. **중앙 볼트 승격 (Knowledge Graduation)**:
+   - 해당 문제 해결책이나 자동화 패턴이 타 프로젝트에서도 쓰일 수 있는 범용 자산인 경우:
+     - `.cursor/skills/`에 신규 스킬 문서 보강.
+     - 신규 카테고리의 경우 `AGENTS.md` 업데이트.
+3. **세션 복구 (Session Recovery)**:
+   - 세션이나 쓰레드가 끊기거나 재개될 때는 항상 `PLAN.md`의 미완료 체크리스트부터 이어받아 작업 중단 없이 진행.
+
+---
+
+## 6. Agent Skills
+
+`.cursor/skills/` flat 목록. (`.cursor/skills-unused/`는 제외)
 
 | Prefix | Skills |
 | --- | --- |
@@ -740,25 +695,40 @@ cd frontend && npm run build
 | `db-*` | `duckdb-schema`, `ingest-h5ad`, `query-patterns` |
 | `ui-*` | `echarts`, `methods-explain`, `chrome`, `astro-app`, `design-tokens`, `color-system`, `typography`, `layout-grid`, `viz-eda`, `viz-qc`, `viz-umap`, `viz-dotplot`, `viz-violin` |
 | `ops-*` | `pipeline-orchestration` |
-| `gate-*` | `worktree-bootstrap` (start in `main/`, then ui/auth/analytics/db) |
+| (agent style) | `ponytail`, `ponytail-audit`, `ponytail-debt`, `ponytail-gain`, `ponytail-help`, `ponytail-review`, `i-have-adhd` |
+| (knowledge graph) | `graphify` |
 
-## 10) Session Recovery
+---
 
-세션이 바뀌면 `PLAN.md`의 미완료 체크부터 이어간다. 새 교훈은 `LESSON_AND_LEARN.md`에 증상/원인/해결/교훈 4줄로 추가한다.
+## 7. 상황별 스킬 참조 규칙
 
-## 11) Worktrees (ch5)
+| 상황 | 읽을 곳 |
+| --- | --- |
+| 폴더 추가·경로·소유권 | `data-analytics-source-tree` |
+| 파이프라인 단계 순서 | `ops-pipeline-orchestration` + `PROJECT.md` |
+| 웨어하우스 스키마·쿼리 | `db-*` |
+| 차트·페이지·크롬 | `ui-*` |
+| 스택·데이터 계약·로컬 URL·게이트 | `PROJECT.md` |
+| 최소 변경·YAGNI | `ponytail` (+ audit/review/debt/gain/help) |
+| ADHD-friendly 출력 (액션 먼저) | `i-have-adhd` |
+| 코드베이스 지식 그래프·경로 질의 | `graphify` (`/graphify .`로 빌드) |
+| 4대 Worktree 구성 &amp; Push 자동 머지 | `git-worktree-orchestration` |
 
-컨테이너: `/mnt/data/projects/lectures/vibe-coding/src` — bare + worktrees.
+---
 
-| Path | Branch | Focus |
-| --- | --- | --- |
-| `main/` | `main` | 통합 |
-| `ui/` | `ui` | FE / Astro |
-| `auth/` | `auth` | 로그인·인증 |
-| `analytics/` | `analytics` | 분석 파이프라인 |
-| `db/` | `db` | DuckDB·ingest·스키마 |
+## 8. 4대 Worktree 협업 규정 &amp; Push 자동 머지
 
-상세: `WORKTREES.md`. 에이전트 기본 cwd는 **`main/`**.
+- **4대 Worktree 도메인 구성**:
+  - `main/`: 전체 통합 허브, 공통 설정, 배포/CI, **에이전트 기본 작업 시작점 (Start here)**
+  - `ui/`: 프론트엔드 (Svelte/Astro, ECharts, UI 컴포넌트)
+  - `data/`: DuckDB 스키마, 웨어하우스, ingest 파이프라인
+  - `analytics/`: 통계/ML 모델, 분석 파이프라인
+- **작업 원칙**:
+  - 프로젝트 생성 및 신규 스프린트 시 항상 **`main/`**에서 시작한다.
+  - 컨테이너 루트에는 앱 코드를 직접 작성하지 않고 각 도메인 Worktree에서만 코딩한다.
+  - 각 도메인 Worktree(`ui`, `data`, `analytics`)에서 작업 후 `git push`를 실행하면 `.bare/hooks/pre-push` 훅을 통해 **`main` 브랜치로 자동 머지**된다.
+  - 머지 충돌 발생 시 `main/`으로 이동하여 충돌을 해결한 뒤 커밋한다.
+
 </textarea>
 
   <script>
@@ -781,16 +751,43 @@ cd frontend && npm run build
     function copyAgentsMarkdown() {
       const textarea = document.getElementById("raw-agents-markdown");
       if (!textarea) return;
-      navigator.clipboard.writeText(textarea.value).then(() => {
-        const textSpan = document.getElementById("copy-btn-text");
-        if (textSpan) {
-          const original = textSpan.innerText;
-          textSpan.innerText = "복사 완료 ✓";
-          setTimeout(() => { textSpan.innerText = original; }, 2000);
+      const textToCopy = textarea.value;
+
+      const fallbackCopy = () => {
+        try {
+          const temp = document.createElement("textarea");
+          temp.value = textToCopy;
+          temp.style.position = "fixed";
+          temp.style.opacity = "0";
+          document.body.appendChild(temp);
+          temp.focus();
+          temp.select();
+          document.execCommand("copy");
+          document.body.removeChild(temp);
+          showAgentsCopyFeedback();
+        } catch (e) {
+          console.error("복사 실패:", e);
         }
-      }).catch(err => {
-        console.error("복사 실패:", err);
-      });
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          showAgentsCopyFeedback();
+        }).catch(err => {
+          fallbackCopy();
+        });
+      } else {
+        fallbackCopy();
+      }
+    }
+
+    function showAgentsCopyFeedback() {
+      const textSpan = document.getElementById("copy-btn-text");
+      if (textSpan) {
+        const original = textSpan.innerText;
+        textSpan.innerText = "복사 완료 ✓";
+        setTimeout(() => { textSpan.innerText = original; }, 2000);
+      }
     }
 
     document.addEventListener("keydown", function(ev) {

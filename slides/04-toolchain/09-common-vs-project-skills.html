@@ -33,14 +33,23 @@
 
         <!-- Document Cards -->
         <div class="space-y-1.5 text-xs font-mono">
-          <!-- AGENTS.md -->
-          <div class="p-2.5 rounded bg-slate-50 border border-slate-200">
-            <div class="flex items-center justify-between text-sky-700 font-bold text-[11px] mb-0.5">
-              <span>📜 AGENTS.md (공통 헌법)</span>
-              <span class="text-[9.5px] text-slate-500 font-sans">루트 심볼릭 링크</span>
+          <!-- AGENTS.md (Clickable trigger for global constitution modal) -->
+          <div 
+            onclick="openAgentsModal(event)" 
+            class="p-2.5 rounded bg-sky-50/70 border-2 border-sky-300 hover:border-sky-500 hover:bg-sky-100/70 transition-all cursor-pointer shadow-xs group"
+            title="클릭하여 AGENTS.md 헌법 전문 보기"
+          >
+            <div class="flex items-center justify-between text-sky-800 font-bold text-[11px] mb-0.5">
+              <span class="flex items-center gap-1.5">
+                <span class="group-hover:scale-110 transition-transform">📜</span>
+                <span class="font-bold underline decoration-sky-400 underline-offset-2">AGENTS.md (공통 헌법)</span>
+              </span>
+              <span class="text-[9.5px] font-mono bg-sky-600 text-white px-2 py-0.5 rounded shadow-xs font-bold flex items-center gap-1">
+                <span>🔍 클릭: 헌법 보기</span>
+              </span>
             </div>
-            <div class="text-[10px] text-slate-600 font-sans leading-relaxed">
-              • .env 시크릿 관리, 배포 게이트, 커밋 컨벤션, 공통 파괴적 명령어 금지 룰.<br>
+            <div class="text-[10px] text-slate-700 font-sans leading-relaxed">
+              • .env 시크릿 관리, 2대 필수 관문(Grill-me &amp; PLAN), 4대 Worktree 규정.<br>
               • 중앙 사규 저장소(<code class="text-sky-700 font-mono font-bold bg-sky-100/60 px-1 py-0.2 rounded">harness-collection</code>)에서 Git Submodule/심볼릭 링크로 연결.
             </div>
           </div>
