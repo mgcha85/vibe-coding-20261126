@@ -83,6 +83,15 @@ nohup brave-browser --remote-debugging-port=9222 --user-data-dir=/tmp/agent-chro
         <div class="space-y-0.5 mb-1">
           <div class="text-[9.5px] font-mono text-slate-700 font-bold flex items-center gap-1">
             <span class="text-purple-600">💬</span> Agent 지시 프롬프트 (설치 &amp; MCP 등록):
+            <button
+              type="button"
+              class="ml-auto inline-flex items-center gap-1 rounded border border-purple-200 bg-white px-1.5 py-0.5 text-[8.5px] font-sans font-bold text-purple-700 transition-colors hover:bg-purple-100"
+              onclick="copyEgoLitePrompt(this)"
+              aria-label="방법 2 지시 프롬프트 복사"
+              title="지시 프롬프트 복사"
+            >
+              <span>📋</span> <span>프롬프트 복사</span>
+            </button>
           </div>
           <div class="bg-purple-50/50 border border-purple-100 rounded p-1.5 text-[9.5px] xl:text-[10px] text-slate-700 font-sans leading-tight">
             "<code>npx skills add citrolabs/ego-lite</code>로 ego-browser 스킬을 등록하고, MCP 설정에 <code>ego-browser mcp</code>를 추가해 줘. 이후 에이전트 전용 <strong>Space</strong>에서 대상 웹사이트를 탐색하고, 로그인/2FA가 필요하면 내게 인계를 요청해 줘."
@@ -193,3 +202,51 @@ nohup brave-browser --remote-debugging-port=9222 --user-data-dir=/tmp/agent-chro
     <span class="text-purple-600 font-bold text-[10px] xl:text-[11px]">APPENDIX A.1 완료</span>
   </div>
 </section>
+
+<script>
+  function copyEgoLitePrompt(button) {
+    const promptText = 'npx skills add citrolabs/ego-lite로 ego-browser 스킬을 등록하고, MCP 설정에 ego-browser mcp를 추가해 줘. 이후 에이전트 전용 Space에서 대상 웹사이트를 탐색하고, 로그인/2FA가 필요하면 내게 인계를 요청해 줘.';
+    const originalLabel = '<span>📋</span> <span>프롬프트 복사</span>';
+    const copiedLabel = '<span>✓</span> <span>복사 완료!</span>';
+
+    const showCopied = () => {
+      button.innerHTML = copiedLabel;
+      button.classList.add('bg-purple-100', 'text-purple-900');
+      setTimeout(() => {
+        button.innerHTML = originalLabel;
+        button.classList.remove('bg-purple-100', 'text-purple-900');
+      }, 1800);
+    };
+
+    const fallbackCopy = () => {
+      const textarea = document.createElement('textarea');
+      textarea.value = promptText;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      const copied = document.execCommand('copy');
+      textarea.remove();
+      if (!copied) throw new Error('Fallback copy failed');
+    };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(promptText).then(showCopied).catch(() => {
+        try {
+          fallbackCopy();
+          showCopied();
+        } catch (error) {
+          console.error('방법 2 프롬프트 복사 실패:', error);
+        }
+      });
+    } else {
+      try {
+        fallbackCopy();
+        showCopied();
+      } catch (error) {
+        console.error('방법 2 프롬프트 복사 실패:', error);
+      }
+    }
+  }
+</script>
