@@ -111,6 +111,30 @@ nohup brave-browser --remote-debugging-port=9222 --user-data-dir=/tmp/agent-chro
     </div>
   </div>
 
+  <!-- Video Prompt Example -->
+  <div class="bento-tile p-2 xl:p-2.5 bg-sky-50/50 border border-sky-200 shadow-sm shrink-0 my-0.5">
+    <div class="flex items-center justify-between gap-2 mb-1">
+      <div class="flex items-center gap-1.5 min-w-0">
+        <span class="text-xs">🎬</span>
+        <span class="text-[10.5px] xl:text-xs font-bold text-slate-900 truncate">동영상 제작 예제 · SSD 원리 8초 숏츠 (영어 더빙)</span>
+        <span class="text-[8px] font-mono px-1.5 py-0.5 rounded bg-sky-100 text-sky-800 border border-sky-200 font-semibold shrink-0">VIDEO PROMPT</span>
+      </div>
+      <button
+        type="button"
+        class="inline-flex items-center gap-1 rounded border border-sky-200 bg-white px-1.5 py-0.5 text-[8.5px] font-sans font-bold text-sky-700 transition-colors hover:bg-sky-100 shrink-0"
+        onclick="copySsdShortsPrompt(this)"
+        aria-label="SSD 원리 동영상 제작 프롬프트 복사"
+        title="동영상 제작 프롬프트 복사"
+      >
+        <span>📋</span> <span>프롬프트 복사</span>
+      </button>
+    </div>
+    <div class="flex items-center gap-2 rounded border border-sky-100 bg-white px-2 py-1 text-[8.5px] xl:text-[9px] text-slate-700 leading-tight">
+      <span class="font-mono font-bold text-sky-700 shrink-0">PROMPT</span>
+      <span class="truncate">Create an 8-second vertical 9:16 Shorts explainer showing NAND flash cells storing data as electrical charge, the controller reading it instantly, and an HDD spinning disk crossed out. English voice-over, neutral American accent: “An SSD stores data as electrical charge in flash memory. Its controller reads it instantly—no moving parts, just speed.” Add clean English captions, smooth 3D cutaway animation, high contrast, no logos, no background music.</span>
+    </div>
+  </div>
+
   <!-- Bottom: Deep Comparison Table (ego-lite vs. Chrome) -->
   <div class="bento-tile p-2 xl:p-2.5 bg-white border border-slate-200 shadow-md flex-1 flex flex-col justify-between min-h-0 my-0.5 xl:my-1 overflow-hidden">
     <div>
@@ -246,6 +270,52 @@ nohup brave-browser --remote-debugging-port=9222 --user-data-dir=/tmp/agent-chro
         showCopied();
       } catch (error) {
         console.error('방법 2 프롬프트 복사 실패:', error);
+      }
+    }
+  }
+
+  function copySsdShortsPrompt(button) {
+    const promptText = 'Create an 8-second vertical 9:16 Shorts explainer showing NAND flash cells storing data as electrical charge, the controller reading it instantly, and an HDD spinning disk crossed out. English voice-over, neutral American accent: “An SSD stores data as electrical charge in flash memory. Its controller reads it instantly—no moving parts, just speed.” Add clean English captions, smooth 3D cutaway animation, high contrast, no logos, no background music.';
+    const originalLabel = '<span>📋</span> <span>프롬프트 복사</span>';
+    const copiedLabel = '<span>✓</span> <span>복사 완료!</span>';
+
+    const showCopied = () => {
+      button.innerHTML = copiedLabel;
+      button.classList.add('bg-sky-100', 'text-sky-900');
+      setTimeout(() => {
+        button.innerHTML = originalLabel;
+        button.classList.remove('bg-sky-100', 'text-sky-900');
+      }, 1800);
+    };
+
+    const fallbackCopy = () => {
+      const textarea = document.createElement('textarea');
+      textarea.value = promptText;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      const copied = document.execCommand('copy');
+      textarea.remove();
+      if (!copied) throw new Error('Fallback copy failed');
+    };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(promptText).then(showCopied).catch(() => {
+        try {
+          fallbackCopy();
+          showCopied();
+        } catch (error) {
+          console.error('SSD 숏츠 프롬프트 복사 실패:', error);
+        }
+      });
+    } else {
+      try {
+        fallbackCopy();
+        showCopied();
+      } catch (error) {
+        console.error('SSD 숏츠 프롬프트 복사 실패:', error);
       }
     }
   }
